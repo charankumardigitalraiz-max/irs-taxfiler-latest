@@ -1,0 +1,130 @@
+:root {
+  --contact-bar-height: 0px;
+  --nav-height: 64px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --contact-bar-height: 0px;
+  }
+}
+
+.contact-bar {
+  display: none;
+}
+
+.contact-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "us india"
+    "mail cta";
+  align-items: center;
+  gap: 6px 8px;
+  padding: 8px 0;
+  font-size: 12px;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.contact-link {
+  padding-left: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.contact-us {
+  grid-area: us;
+}
+
+.contact-india {
+  grid-area: india;
+}
+
+.contact-mail {
+  grid-area: mail;
+}
+
+.contact-link:hover {
+  opacity: 0.8;
+}
+
+.contact-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.contact-btn {
+  grid-column: span 2;
+  grid-area: cta;
+  justify-self: end;
+  padding: 6px 12px;
+  background: #fff;
+  color: #1f3b53;
+  border: none;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+
+.contact-btn:hover {
+  background: #ebf3ff;
+}
+
+@media (min-width: 640px) {
+  .contact-inner {
+    padding: 0 24px;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 14px;
+    padding: 10px 0;
+  }
+
+  .contact-btn {
+    grid-column: auto;
+    padding: 6px 16px;
+    font-size: 14px;
+  }
+
+  .contact-cta {
+    margin-left: auto;
+  }
+}
+
+.main-nav {
+  position: fixed;
+  top: var(--contact-bar-height);
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--nav-height);
+  background-color: #ffffff;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: calc(var(--contact-bar-height) + var(--nav-height));
+  max-height: calc(100vh - var(--contact-bar-height) - var(--nav-height));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+

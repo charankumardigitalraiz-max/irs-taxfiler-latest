@@ -1,0 +1,27 @@
+// Auth utility functions
+export const getAuthToken = () => {
+  return localStorage.getItem('authToken');
+};
+
+export const setAuthToken = (token) => {
+  localStorage.setItem('authToken', token);
+};
+
+export const getUser = () => {
+  const user = localStorage.getItem('user');
+  return user ? JSON.parse(user) : null;
+};
+
+export const setUser = (user) => {
+  localStorage.setItem('user', JSON.stringify(user));
+};
+
+export const isAuthenticated = () => {
+  return !!getAuthToken();
+};
+
+export const clearAuth = () => {
+  localStorage.removeItem('authToken');
+  localStorage.removeItem('user');
+};
+
