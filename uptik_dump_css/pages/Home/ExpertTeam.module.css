@@ -1,0 +1,232 @@
+/*MEET OUR EXPERTS*/
+.Expertcontainer {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f3f7f5;
+}
+
+.Expertheading {
+    color: var(--PrimaryColor);
+    text-transform: uppercase;
+    font-size: var(--ParagraphFontSize);
+    line-height: var(--Paragraphlineheight);
+    text-align: center;
+    font-weight: 700;
+    margin: 0;
+    margin-top: 30px;
+}
+
+.Experttitle {
+    font-size: var(--HeadingFontSize);
+    line-height: var(--Headinglineheight);
+    font-weight: bold;
+    color: #000;
+    margin: 0;
+    margin-bottom: 30px;
+  
+}
+
+.ExpertteamGrid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.ExpertteamGrid_mobileView {
+    display: none;
+}
+
+.Expertcard {
+    background-color: transparent;
+    width: 300px;
+    perspective: 1000px;
+    height: 600px;
+    text-align: center;
+    border-radius: 30px;
+}
+
+.Expertcard_inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    border-radius: 45px;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.Expertcard:hover .Expertcard_inner {
+    transform: rotateY(180deg);
+}
+
+.Expert_card_front,
+.Expert_card_back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.Expert_card_front {
+    color: black;
+    background-color: #f3f7f5;
+    border-radius: 30px;
+}
+
+.Expert_card_back {
+    background-color: #fff;
+    color: #000;
+    transform: rotateY(180deg);
+    border-radius: 30px;
+}
+
+
+
+.Expertcard img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+.Expertname {
+    /* font-size: 24px; */
+    font-size: var(--ParagraphFontSize);
+    line-height: var(--Paragraphlineheight);
+    margin: 10px;
+    font-weight: bold;
+}
+
+.Expertrole {
+    font-size: var(--ParagraphFontSize);
+    line-height: var(--Paragraphlineheight);
+    color: #666;
+    margin-top: 5px;
+}
+
+.Experttext {
+    padding: 15px 20px;
+    font-size: 14px;
+    line-height: 26px;
+    color: #000;
+    text-align: left;
+    margin: 0;
+
+}
+
+
+.expertText strong {
+    font-weight: bold; /* Ensures the name stays bold */
+    color: #2d2d2d;    /* You can adjust the color to make it stand out */
+    font-size: 1.1rem; /* Adjust the font size to make it slightly larger if needed */
+  }
+  
+  /* Optional: Additional styling for the overall expert text */
+  .expertText {
+    font-size: 1rem;   /* Default text size */
+    line-height: 1.6;   /* Improve readability */
+    color: #333;       /* Default color for text */
+  }
+  
+
+@media (max-width: 768px) {
+    .ExpertteamGrid {
+        display: none;
+    }
+
+    .ExpertteamGrid_mobileView {
+        display: block;
+    }
+
+    .Expertcard {
+        width: 350px;
+        height: 460px;
+        padding: 0;
+    }
+
+    .Expertcard_inner {
+        position: relative;
+        width: 90%;
+        /* height: unset; */
+        text-align: center;
+        transition: transform 0.6s;
+        border-radius: 45px;
+        transform-style: preserve-3d;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .Expertrole {
+        margin: 5px;
+    }
+
+    .Expertname {
+        margin: 5px;
+    }
+
+    .Experttext {
+        padding: 8px 10px;
+        font-size: 12px;
+        line-height: 20px;
+        color: #000;
+        text-align: left;
+        margin: 0;
+    }
+}
+
+
+
+@media (max-width: 600px) {
+    .ExpertteamGrid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .Expertcard {
+        width: 350px;
+        height: 460px;
+        padding: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .Expertcard_inner {
+        width: 100%;
+    }
+    .Expert_card_back{
+        background-color: #fff;
+    }
+    .Expertcard img {
+    width: 100%;
+    max-width: 230px;
+    margin: auto;
+    height: auto;
+    border-radius: 12px;
+    }
+    .Experttext {
+    padding: 8px 10px;
+        font-size: 12px;
+        line-height: 20px;
+        color: #000;
+        text-align: center;
+        margin: auto;
+        width: 180px;
+    }
+    .Expertcard {
+        width: 350px;
+        height: 460px;
+        padding: 0;
+    }
+}
+
+
+
+/* @media (max-width: 400px) {
+    .Expertcard img {
+        width: 100%;
+        height: 480px;
+        border-radius: 12px;
+    }
+
+} */

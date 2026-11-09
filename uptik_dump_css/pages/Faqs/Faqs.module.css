@@ -1,0 +1,39 @@
+.AboutusheroSection {
+    background: #0d251c;
+    color: white;
+    text-align: center;
+    padding-top: 50px;
+    font-weight: bold;
+    height: 30vh;
+  }
+
+  .AboutusheroSection h1{
+    text-align: center;
+  margin-top: 5.5%;
+    font-size: var(--bannerheading);
+    line-height: var(--bannerlineheight);
+    font-family: var(--FontFamily);
+    font-weight: 700;
+    letter-spacing: 0px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @media (max-width: 768px) {
+  .AboutusheroSection {
+    height: 26vh;
+        background: #0d251c;
+        color: white;
+        text-align: center;
+        padding-top: 80px;
+  }}
+  @media (max-width: 500px) {
+    .AboutusheroSection {
+      height: 20vh;
+      background: #0d251c;
+      color: white;
+      text-align: center;
+      padding-top: 100px;
+    }}
+   

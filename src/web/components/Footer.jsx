@@ -1,7 +1,5 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-// import { useDispatch, useSelector } from "react-redux";
-// import { createSitevisitandcount } from "../Redux/Slices/siteVisitSlice";
 import {
   EnvelopeIcon,
   PhoneIcon,
@@ -26,457 +24,372 @@ import {
   ScaleIcon,
 } from "@heroicons/react/24/outline";
 
-/* ✅ Social Media Icons */
+/* Brand Social Media Icons */
 import { FaInstagram, FaLinkedin, FaSlack, FaWhatsapp } from "react-icons/fa";
 
-import footerLogo from "../assets/footerlogo.png";
-import { useEffect } from "react";
-
-const SEGMENTS = {
-  0: ["a", "b", "c", "d", "e", "f"],
-  1: ["b", "c"],
-  2: ["a", "b", "g", "e", "d"],
-  3: ["a", "b", "c", "d", "g"],
-  4: ["f", "g", "b", "c"],
-  5: ["a", "f", "g", "c", "d"],
-  6: ["a", "f", "e", "d", "c", "g"],
-  7: ["a", "b", "c"],
-  8: ["a", "b", "c", "d", "e", "f", "g"],
-  9: ["a", "b", "c", "d", "f", "g"],
-};
-
-const Segment = ({ on, className }) => (
-  <div
-    className={`${className} ${on
-        ? "bg-slate-100 shadow-[0_0_4px_rgba(255,255,255,0.35)]"
-        : "bg-slate-600/40"
-      }`}
-  />
-);
-
-const Digit = ({ value }) => {
-  const active = SEGMENTS[value] || [];
-
-  return (
-    <div className="relative w-7 h-11 mx-[2px]">
-      <Segment on={active.includes("a")} className="absolute top-0 left-2 w-4 h-[2.5px] rounded-sm" />
-      <Segment on={active.includes("b")} className="absolute top-1 right-0 w-[2.5px] h-4 rounded-sm" />
-      <Segment on={active.includes("c")} className="absolute bottom-1 right-0 w-[2.5px] h-4 rounded-sm" />
-      <Segment on={active.includes("d")} className="absolute bottom-0 left-2 w-4 h-[2.5px] rounded-sm" />
-      <Segment on={active.includes("e")} className="absolute bottom-1 left-0 w-[2.5px] h-4 rounded-sm" />
-      <Segment on={active.includes("f")} className="absolute top-1 left-0 w-[2.5px] h-4 rounded-sm" />
-      <Segment
-        on={active.includes("g")}
-        className="absolute top-1/2 left-2 w-4 h-[2.5px] rounded-sm -translate-y-1/2"
-      />
-    </div>
-  );
-};
-
-const SevenSegmentCounter = ({ value }) => {
-  const digits = value.toString().padStart(6, "0").split("");
-
-  return (
-    <div className="flex flex-col items-center">
-      <span className="text-[9px] tracking-[0.3em] text-slate-400 uppercase mb-1">
-        Site Visits
-      </span>
-
-      <div className="flex bg-[#0a0f18] px-4 py-2 rounded-md border border-white/15">
-        {digits.map((d, i) => (
-          <Digit key={i} value={Number(d)} />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const renderDigitalCounter = (value = 0) => {
-  const digits = value.toString().padStart(5, "0").split("");
-
-  return (
-    <div className="flex items-center gap-1 font-mono">
-      {digits.map((digit, i) => (
-        <span
-          key={i}
-          className="
-            w-7 h-9 flex items-center justify-center
-            rounded-md
-            bg-black/70
-            border border-cyan-400/30
-            text-cyan-400 text-sm font-semibold
-            shadow-[inset_0_0_12px_rgba(34,211,238,0.35)]
-          "
-        >
-          {digit}
-        </span>
-      ))}
-    </div>
-  );
-};
+import Logo from "../assets/irs-logo.png";
 
 const Footer = () => {
-  // const dispatch = useDispatch();
-  // const { count } = useSelector((state) => state.siteVisit);
   const currentYear = new Date().getFullYear();
 
-  // useEffect(() => {
-  //   dispatch(createSitevisitandcount());
-  // }, [dispatch]);
-
   return (
-    <footer className="relative overflow-hidden bg-[#0b1626] text-slate-200">
-      {/* ================= TOP ================= */}
-      <div className="relative">
-        {/* Animated glow background */}
-        <div className="absolute inset-0">
-          <motion.div
-            animate={{ x: [0, 100, 0], y: [0, 50, 0], scale: [1, 1.2, 1] }}
-            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-16 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"
-          />
-          <motion.div
-            animate={{ x: [0, -80, 0], y: [0, -60, 0], scale: [1, 1.3, 1] }}
-            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-12 right-10 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-        </div>
+    <footer className="relative bg-white border-t border-slate-200/80 text-gray-600 font-sans antialiased">
+      {/* ========================================================= */}
+      {/* MAIN FOOTER NAVIGATION COLUMNS                            */}
+      {/* ========================================================= */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-7">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-8 xl:gap-10">
 
-        {/* ================= GRID ================= */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-            {/* ================= COMPANY ================= */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
+          {/* Column 1: Company Profile */}
+          <div className="text-left font-sans lg:pr-2">
+            <Link to="/" className="inline-block mb-3.5 group">
               <img
-                src={footerLogo}
-                alt="IRSTax Filer Logo"
-                className="h-11 w-auto mb-4 brightness-125 drop-shadow-[0_0_12px_rgba(255,255,255,0.45)] bg-white/10 backdrop-blur-md rounded-lg px-3 py-2"
+                src={Logo}
+                alt="IRS Tax Filer"
+                className="h-10 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
               />
+            </Link>
 
-              <p className="text-sm text-slate-300 mb-4 leading-relaxed">
-                Your trusted partner for expert tax filing services. We help
-                maximize refunds and ensure compliance with confidence.
-              </p>
+            <p className="text-[13px] text-gray-500 font-normal leading-relaxed mb-4">
+              Your trusted partner for expert tax filing services. We help maximize refunds and ensure compliance with confidence.
+            </p>
 
-              <div className="space-y-3 text-sm">
-                <div className="flex items-center gap-3">
-                  <PhoneIcon className="h-4 w-4 text-slate-300" />
-                  <a
-                    href="tel:+14157876190"
-                    className="hover:text-white transition"
-                  >
-                    +1 (415) 787-6190
-                  </a>
+            {/* Direct Contact Numbers & Email (Commented by user) */}
+            {/* <div className="space-y-2.5 text-xs text-slate-700 mb-5">
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-slate-100 text-[#165479] flex items-center justify-center shrink-0">
+                  <PhoneIcon className="w-3.5 h-3.5" />
                 </div>
-
-                <div className="flex items-center gap-3">
-                  <PhoneIcon className="h-4 w-4 text-slate-300" />
-                  <a
-                    href="tel:+919052333668"
-                    className="hover:text-white transition"
-                  >
-                    +91 9052 333 667/668
-                  </a>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <EnvelopeIcon className="h-4 w-4 text-slate-300" />
-                  <a
-                    href="mailto:contact@irstaxfiler.com"
-                    className="hover:text-white transition"
-                  >
-                    contact@irstaxfiler.com
-                  </a>
-                </div>
+                <a
+                  href="tel:+14157876190"
+                  className="hover:text-[#165479] font-medium transition-colors"
+                >
+                  +1 (415) 787-6190
+                </a>
               </div>
 
-              <div className="flex gap-4 mt-6">
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-slate-100 text-[#165479] flex items-center justify-center shrink-0">
+                  <PhoneIcon className="w-3.5 h-3.5" />
+                </div>
                 <a
-                  href="https://www.instagram.com/irs_tax_filers/?hl=en"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Instagram"
-                  className="w-9 h-9 border-2 border-white rounded-full bg-white flex items-center justify-center text-2xl text-pink-500 transition transform hover:scale-110 aspect-square"
+                  href="tel:+919052333668"
+                  className="hover:text-[#165479] font-medium transition-colors"
                 >
-                  <FaInstagram />
-                </a>
-
-                <a
-                  href="https://www.linkedin.com/company/irs-tax-filer/"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="LinkedIn"
-                  className="w-9 h-9 border-2 border-white rounded-full bg-white flex items-center justify-center text-2xl text-blue-600 transition transform hover:scale-110 aspect-square"
-                >
-                  <FaLinkedin />
-                </a>
-
-                <a
-                  href="https://irstaxfilerworkspace.slack.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Slack"
-                  className="w-9 h-9 border-2 border-white rounded-full bg-white flex items-center justify-center text-2xl text-purple-500 transition transform hover:scale-110 aspect-square"
-                >
-                  <FaSlack />
-                </a>
-
-                <a
-                  href="https://wa.me/919052333667?text=Hi"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="WhatsApp"
-                  className="w-9 h-9 border-2 border-white rounded-full bg-white flex items-center justify-center text-2xl text-green-500 transition transform hover:scale-110 aspect-square"
-                >
-                  <FaWhatsapp />
+                  +91 9052 333 667/668
                 </a>
               </div>
-            </motion.div>
 
-            {/* ================= SERVICES ================= */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <h3 className="font-semibold text-white mb-6 flex items-center gap-2">
-                <DocumentTextIcon className="h-5 w-5 text-blue-300" /> Services
-              </h3>
-
-              <ul className="space-y-3 text-sm">
-                {[
-                  {
-                    icon: BuildingOfficeIcon,
-                    text: "Federal & State Tax Filing",
-                    link: "/services/us-individual/federal-state-local",
-                  },
-                  {
-                    icon: BanknotesIcon,
-                    text: "FBAR & FATCA Services",
-                    link: "/services/us-individual/fbar-fatca",
-                  },
-                  {
-                    icon: UserGroupIcon,
-                    text: "Tax Representation",
-                    link: "/services/us-individual/representation",
-                  },
-                  {
-                    icon: IdentificationIcon,
-                    text: "ITIN Assistance",
-                    link: "/services/us-individual/itin",
-                  },
-                  {
-                    icon: BuildingOffice2Icon,
-                    text: "US Incorporations",
-                    link: "/services/us-business/incorporations",
-                  },
-                  {
-                    icon: GlobeAltIcon,
-                    text: "Indian Tax Filing",
-                    link: "/services/indian/tax-filing",
-                  },
-                ].map((item, i) => (
-                  <li key={i}>
-                    <Link
-                      to={item.link}
-                      className="flex items-center gap-3 text-slate-300 hover:text-white hover:translate-x-1 transition"
-                    >
-                      <item.icon className="w-5 h-5 text-blue-300" />
-                      {item.text}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* ================= RESOURCES ================= */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <h3 className="font-semibold text-white mb-6 flex items-center gap-2">
-                <BookOpenIcon className="h-5 w-5 text-blue-300" />
-                Resources
-              </h3>
-
-              <ul className="space-y-3 text-sm">
-                {[
-                  {
-                    icon: ClipboardDocumentCheckIcon,
-                    text: "Tax Resources",
-                    link: "/tax-resources",
-                  },
-                  {
-                    icon: CurrencyDollarIcon,
-                    text: "Pricing",
-                    link: "/pricing",
-                  },
-                  {
-                    icon: InformationCircleIcon,
-                    text: "About Us",
-                    link: "/about",
-                  },
-                  { icon: GiftIcon, text: "Refer & Earn", link: "/referrals" },
-                  {
-                    icon: ChatBubbleLeftRightIcon,
-                    text: "Contact Us",
-                    link: "/contact",
-                  },
-                ].map((item, i) => (
-                  <li key={i}>
-                    <Link
-                      to={item.link}
-                      className="flex items-center gap-3 text-slate-300 hover:text-white hover:translate-x-1 transition"
-                    >
-                      <item.icon className="w-5 h-5 text-blue-300" />
-                      {item.text}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* ================= SUPPORT ================= */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <h3 className="font-semibold text-white mb-6 flex items-center gap-2">
-                <QuestionMarkCircleIcon className="h-5 w-5 text-blue-300" />
-                Support
-              </h3>
-
-              <ul className="space-y-3 text-sm">
-                {[
-                  {
-                    icon: LifebuoyIcon,
-                    text: "Customer Support",
-                    link: "/help/support",
-                  },
-                  {
-                    icon: QuestionMarkCircleIcon,
-                    text: "Get Help",
-                    link: "/help/contact",
-                  },
-                  {
-                    icon: ShieldCheckIcon,
-                    text: "Security",
-                    link: "/security",
-                  },
-                  { icon: ScaleIcon, text: "Terms of Service", link: "/terms" },
-                  {
-                    icon: LockClosedIcon,
-                    text: "Privacy Policy",
-                    link: "/privacy",
-                  },
-                ].map((item, i) => (
-                  <li key={i}>
-                    <Link
-                      to={item.link}
-                      className="flex items-center gap-3 text-slate-300 hover:text-white hover:translate-x-1 transition"
-                    >
-                      <item.icon className="w-5 h-5 text-blue-300" />
-                      {item.text}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* ================= LOCATIONS ================= */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <h3 className="font-semibold text-white mb-6 flex items-center gap-2">
-                <MapPinIcon className="h-5 w-5 text-blue-300" />
-                Addresses
-              </h3>
-              <div className="">
-                <p className="text-sm text-slate-300 mb-4 leading-snug">
-                  <strong className="text-white flex items-center gap-1">
-                    <MapPinIcon className="h-5 w-5 text-blue-300" />
-                    Dallas, USA
-                  </strong>
-                  <a
-                    href="https://www.google.com/maps/place/13610+Floyd+Cir,+Dallas,+TX+75243"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block pl-5 mt-1"
-                  >
-                    13610 Floyd Cir, Dallas,
-                    <br /> TX 75243
-                  </a>
-                </p>
-
-                {/* <p className="text-sm text-slate-300 leading-snug">
-                  <strong className="text-white flex items-center gap-1">
-                    <MapPinIcon className="h-5 w-5 text-blue-300" />
-                    Hyderabad, India
-                  </strong>
-                  <a
-                    href="https://www.google.com/maps/place/Manjeera+Majestic+Commercial,+803,+JNTU+-+Hitech+City+Rd,+K+P+H+B+Phase+1,+Kukatpally,+Hyderabad,+Telangana+500072"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block pl-5 mt-1"
-                  >
-                    # 801, Manjeera Majestic Commercial, Hitech City Road,
-                    Hyderabad, Telangana 500072
-                  </a>
-                </p> */}
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-slate-100 text-[#165479] flex items-center justify-center shrink-0">
+                  <EnvelopeIcon className="w-3.5 h-3.5" />
+                </div>
+                <a
+                  href="mailto:contact@irstaxfiler.com"
+                  className="hover:text-[#165479] font-medium transition-colors"
+                >
+                  contact@irstaxfiler.com
+                </a>
               </div>
-            </motion.div>
+            </div>
+
+            <div className="flex items-center gap-2.5">
+              <a
+                href="https://www.linkedin.com/company/irs-tax-filer/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                className="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-600 hover:text-white hover:bg-[#0077B5] hover:border-[#0077B5] flex items-center justify-center transition-all hover:scale-105 shadow-2xs"
+              >
+                <FaLinkedin className="w-3.5 h-3.5" />
+              </a>
+
+              <a
+                href="https://www.instagram.com/irs_tax_filers/?hl=en"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                className="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-600 hover:text-white hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:border-transparent flex items-center justify-center transition-all hover:scale-105 shadow-2xs"
+              >
+                <FaInstagram className="w-3.5 h-3.5" />
+              </a>
+
+              <a
+                href="https://wa.me/919052333667?text=Hi"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="WhatsApp"
+                className="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-600 hover:text-white hover:bg-[#25D366] hover:border-[#25D366] flex items-center justify-center transition-all hover:scale-105 shadow-2xs"
+              >
+                <FaWhatsapp className="w-3.5 h-3.5" />
+              </a>
+
+              <a
+                href="https://irstaxfilerworkspace.slack.com/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Slack"
+                className="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-600 hover:text-white hover:bg-[#4A154B] hover:border-[#4A154B] flex items-center justify-center transition-all hover:scale-105 shadow-2xs"
+              >
+                <FaSlack className="w-3.5 h-3.5" />
+              </a>
+            </div> */}
           </div>
+
+          {/* Column 2: Services Navigation */}
+          <div className="text-left font-sans">
+            <div className="flex items-center justify-between pb-2.5 mb-3.5 border-b border-gray-100">
+              <span className="text-[13px] font-semibold text-gray-900 tracking-tight uppercase tracking-wider flex items-center gap-2">
+                <DocumentTextIcon className="w-4 h-4 text-[#165479]" />
+                <span>Services</span>
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#749220]" />
+            </div>
+
+            <ul className="space-y-2 text-[13px]">
+              {[
+                {
+                  icon: BuildingOfficeIcon,
+                  text: "Federal & State Tax Filing",
+                  link: "/services/us-individual/federal-state-local",
+                  color: "text-sky-600",
+                },
+                {
+                  icon: BanknotesIcon,
+                  text: "FBAR & FATCA Services",
+                  link: "/services/us-individual/fbar-fatca",
+                  color: "text-emerald-600",
+                },
+                {
+                  icon: UserGroupIcon,
+                  text: "Tax Representation",
+                  link: "/services/us-individual/representation",
+                  color: "text-indigo-600",
+                },
+                {
+                  icon: IdentificationIcon,
+                  text: "ITIN Assistance",
+                  link: "/services/us-individual/itin",
+                  color: "text-amber-600",
+                },
+                {
+                  icon: BuildingOffice2Icon,
+                  text: "US Incorporations",
+                  link: "/services/us-business/incorporations",
+                  color: "text-[#165479]",
+                },
+                {
+                  icon: GlobeAltIcon,
+                  text: "Indian Tax Filing",
+                  link: "/services/indian/tax-filing",
+                  color: "text-[#749220]",
+                },
+              ].map((item, i) => (
+                <li key={i}>
+                  <Link
+                    to={item.link}
+                    className="group flex items-center gap-2.5 py-1 text-gray-700 hover:text-[#165479] font-medium transition-all duration-200 hover:translate-x-1"
+                  >
+                    <item.icon className={`w-4 h-4 ${item.color} shrink-0 transition-transform duration-200 group-hover:scale-125`} />
+                    <span className="leading-snug">{item.text}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Resources Navigation */}
+          <div className="text-left font-sans">
+            <div className="flex items-center justify-between pb-2.5 mb-3.5 border-b border-gray-100">
+              <span className="text-[13px] font-semibold text-gray-900 tracking-tight uppercase tracking-wider flex items-center gap-2">
+                <BookOpenIcon className="w-4 h-4 text-[#749220]" />
+                <span>Resources</span>
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#749220]" />
+            </div>
+
+            <ul className="space-y-2 text-[13px]">
+              {[
+                {
+                  icon: ClipboardDocumentCheckIcon,
+                  text: "Tax Resources",
+                  link: "/tax-resources",
+                  color: "text-blue-600",
+                },
+                {
+                  icon: CurrencyDollarIcon,
+                  text: "Pricing",
+                  link: "/pricing",
+                  color: "text-emerald-600",
+                },
+                {
+                  icon: InformationCircleIcon,
+                  text: "About Us",
+                  link: "/about",
+                  color: "text-cyan-600",
+                },
+                {
+                  icon: GiftIcon,
+                  text: "Refer & Earn",
+                  link: "/referrals",
+                  color: "text-rose-500",
+                },
+                {
+                  icon: ChatBubbleLeftRightIcon,
+                  text: "Contact Us",
+                  link: "/contact",
+                  color: "text-[#749220]",
+                },
+              ].map((item, i) => (
+                <li key={i}>
+                  <Link
+                    to={item.link}
+                    className="group flex items-center gap-2.5 py-1 text-gray-700 hover:text-[#165479] font-medium transition-all duration-200 hover:translate-x-1"
+                  >
+                    <item.icon className={`w-4 h-4 ${item.color} shrink-0 transition-transform duration-200 group-hover:scale-125`} />
+                    <span className="leading-snug">{item.text}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Support Navigation */}
+          <div className="text-left font-sans">
+            <div className="flex items-center justify-between pb-2.5 mb-3.5 border-b border-gray-100">
+              <span className="text-[13px] font-semibold text-gray-900 tracking-tight uppercase tracking-wider flex items-center gap-2">
+                <QuestionMarkCircleIcon className="w-4 h-4 text-sky-600" />
+                <span>Support</span>
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#749220]" />
+            </div>
+
+            <ul className="space-y-2 text-[13px]">
+              {[
+                {
+                  icon: LifebuoyIcon,
+                  text: "Customer Support",
+                  link: "/help/support",
+                  color: "text-blue-600",
+                },
+                {
+                  icon: QuestionMarkCircleIcon,
+                  text: "Get Help",
+                  link: "/help/contact",
+                  color: "text-amber-500",
+                },
+                {
+                  icon: ShieldCheckIcon,
+                  text: "Security",
+                  link: "/security",
+                  color: "text-emerald-600",
+                },
+                {
+                  icon: ScaleIcon,
+                  text: "Terms of Service",
+                  link: "/terms",
+                  color: "text-purple-600",
+                },
+                {
+                  icon: LockClosedIcon,
+                  text: "Privacy Policy",
+                  link: "/privacy",
+                  color: "text-rose-500",
+                },
+              ].map((item, i) => (
+                <li key={i}>
+                  <Link
+                    to={item.link}
+                    className="group flex items-center gap-2.5 py-1 text-gray-700 hover:text-[#165479] font-medium transition-all duration-200 hover:translate-x-1"
+                  >
+                    <item.icon className={`w-4 h-4 ${item.color} shrink-0 transition-transform duration-200 group-hover:scale-125`} />
+                    <span className="leading-snug">{item.text}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 5: Office Addresses */}
+          <div className="text-left font-sans">
+            <div className="flex items-center justify-between pb-2.5 mb-3.5 border-b border-gray-100">
+              <span className="text-[13px] font-semibold text-gray-900 tracking-tight uppercase tracking-wider flex items-center gap-2">
+                <MapPinIcon className="w-4 h-4 text-rose-500" />
+                <span>Addresses</span>
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#749220]" />
+            </div>
+
+            <div className="space-y-3.5 text-[13px]">
+              {/* Dallas Office */}
+              <div className="group">
+                <div className="font-semibold text-gray-900 flex items-center gap-1.5 mb-1 text-xs">
+                  <MapPinIcon className="w-3.5 h-3.5 text-rose-500 shrink-0" />
+                  <span>Dallas, USA</span>
+                </div>
+                <a
+                  href="https://www.google.com/maps/place/13610+Floyd+Cir,+Dallas,+TX+75243"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-[#165479] font-medium transition-colors block pl-5 leading-relaxed text-xs"
+                >
+                  13610 Floyd Cir, Dallas,<br />
+                  TX 75243
+                </a>
+              </div>
+
+              {/* Hyderabad Office */}
+              {/* <div className="group pt-2 border-t border-gray-100/80">
+                <div className="font-semibold text-gray-900 flex items-center gap-1.5 mb-1 text-xs">
+                  <BuildingOffice2Icon className="w-3.5 h-3.5 text-[#749220] shrink-0" />
+                  <span>Hyderabad, India</span>
+                </div>
+                <a
+                  href="https://www.google.com/maps/place/Manjeera+Majestic+Commercial,+803,+JNTU+-+Hitech+City+Rd,+K+P+H+B+Phase+1,+Kukatpally,+Hyderabad,+Telangana+500072"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-[#165479] font-medium transition-colors block pl-5 leading-relaxed text-xs"
+                >
+                  # 801, Manjeera Majestic Commercial,<br />
+                  Hitech City Rd, Hyderabad 500072
+                </a>
+              </div> */}
+            </div>
+          </div>
+
         </div>
       </div>
 
-      {/* ================= BOTTOM BAR ================= */}
-      <div className="border-t border-white/10 bg-[#06101e]">
-        <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col lg:flex-row justify-between items-center gap-4">
-          <div className="flex flex-wrap gap-x-4 text-xs text-slate-300">
-            <Link to="/terms" className="hover:text-white">
+      {/* ========================================================= */}
+      {/* BOTTOM LEGAL & COPYRIGHT BAR                              */}
+      {/* ========================================================= */}
+      <div className="border-t border-gray-100 bg-slate-50/70 py-4 sm:py-5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-3">
+
+          {/* Copyright */}
+          <div className="text-xs text-gray-500 font-normal">
+            © {currentYear} IRSTax Filer. All Rights Reserved.
+          </div>
+
+          {/* Legal Navigation Links */}
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-3 gap-y-1 text-xs text-gray-600 font-medium">
+            <Link to="/terms" className="hover:text-[#165479] transition-colors">
               Terms
-            </Link>{" "}
-            |
-            <Link to="/privacy" className="hover:text-white">
+            </Link>
+            <span className="text-gray-300 font-normal">|</span>
+            <Link to="/privacy" className="hover:text-[#165479] transition-colors">
               Privacy
-            </Link>{" "}
-            |
-            <Link to="/glba" className="hover:text-white">
+            </Link>
+            <span className="text-gray-300 font-normal">|</span>
+            <Link to="/glba" className="hover:text-[#165479] transition-colors">
               GLBA
-            </Link>{" "}
-            |
-            <Link to="/do-not-sell" className="hover:text-white">
+            </Link>
+            <span className="text-gray-300 font-normal">|</span>
+            <Link to="/do-not-sell" className="hover:text-[#165479] transition-colors">
               Do Not Sell My Info
             </Link>
           </div>
 
-          <div className="flex flex-col items-center gap-1">
-            {/* +count */}
-            {renderDigitalCounter(10000)}
-            {/* <SevenSegmentCounter value={count} /> */}
-          </div>
-
-          <div className="text-xs text-slate-300 space-y-1 text-center lg:text-right">
-            <div className="flex justify-center lg:justify-end gap-4">
-              <span className="flex items-center gap-1">
-                <ShieldCheckIcon className="h-4 w-4" /> TRUSTe
-              </span>
-              <span className="flex items-center gap-1">
-                <ShieldCheckIcon className="h-4 w-4" /> SSL Secured
-              </span>
-            </div>
-
-            <div>© {currentYear} IRSTax Filer. All Rights Reserved.</div>
-          </div>
         </div>
       </div>
     </footer>

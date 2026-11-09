@@ -1,0 +1,328 @@
+.AboutusheroSection {
+    background: #0d251c;
+    color: white;
+    text-align: center;
+    padding-top: 50px;
+    font-weight: bold;
+    height: 30vh;
+  }
+  
+  .AboutusheroSection h1 {
+    text-align: center;
+  margin-top: 5.5%;
+    font-size: var(--bannerheading);
+    line-height: var(--bannerlineheight);
+    font-family: var(--FontFamily);
+    font-weight: 700;
+    letter-spacing: 0px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+/* Main Container */
+.registerContainer {
+    font-family: var(--FontFamily);
+  }
+  
+  /* Hero Section */
+  .registerHero {
+    display: flex;
+        justify-content: center;
+        /* align-items: center; */
+        text-align: center;
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: auto;
+  }
+
+  .registerHero_content{
+    width: 50%;
+  }
+  .registerHero_img{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .registerLockImg{
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  
+  }
+  
+  .registerHero h2 {
+    font-size: var(--HeadingFontSize);
+    line-height: var( --Headinglineheight);
+    font-family: var(--FontFamily);
+    font-weight: bold;
+    color: #080E06;
+    text-align: left;
+  }
+  
+  .registerHero p {
+    font-size: var(--ParagraphFontSize);
+    line-height: var( --Paragraphlineheight);
+    font-family: var(--FontFamily);
+    max-width: 600px;
+    margin: 10px auto;
+    text-align: left;
+  }
+  
+  .registerWhySection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  .registerImageContainer{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .registerWhyContent{
+    width: 50%;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+  }
+  
+  .registerImageContainer img {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+  }
+  
+  .registerWhyContent {
+    max-width: 500px;
+  }
+  
+  .registerWhyContent h3 {
+    font-size: var(--HeadingFontSize);
+    line-height: var(--Headinglineheight);
+    font-family: var(--FontFamily);
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .registerWhyContent ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .registerWhyContent ul li {
+    margin-bottom: 10px;
+    font-size: var(--ParagraphFontSize);
+    line-height: var( --Paragraphlineheight);
+    font-family: var(--FontFamily);
+  }
+  
+  /* Registration Form Section */
+   .registerFormSection {
+    text-align: center;
+    background: #fff;
+    padding: 40px 20px;
+  }
+
+  .registerFormSection h2 {
+      color: linear-gradient(90deg, #165479 0%, #749220 100%);
+      font-size: var(--SubheadingFontSize);
+      line-height: var( --Paragraphlineheight);
+      font-family: var(--FontFamily);
+      margin-bottom: 30px;
+  }
+
+  .registerForm_div{
+    width: 50%;  
+  }
+
+  .registerForm_heading{
+    text-align: center;
+    padding: 0px 10px;
+  }
+  .registerForm_heading h2{
+    color: #080E06;
+    font-size: var(--SubheadingFontSize);
+    line-height: var( --Paragraphlineheight);
+    font-family: var(--FontFamily);
+  }
+  .registerForm_heading p{
+   color: #080E06;
+   font-size: var(--ParagraphFontSize);
+   line-height: var( --Paragraphlineheight);
+   font-family: var(--FontFamily);
+  }
+
+  .registerForm{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 30px;
+  }
+  
+  .registerFormWrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .registerFormGroup {
+    margin-bottom: 25px;
+    text-align: left;
+  }
+  
+  .registerFormGroup label {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #575757;
+  }
+  
+  .registerFormGroup input {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #080E06;
+    font-weight: 700;
+  }
+
+  .registerFormGroup select{
+    width: 99%;
+    padding: 5px 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .registerSubmitBtn {
+    width: 50%;
+    padding: 12px;
+     background: linear-gradient(90deg, #165479 0%, #749220 100%);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .registerSubmitBtn:hover {
+    background-color: #08432e;
+  }
+
+  /* Placeholder color */
+.registerFormGroup input::placeholder {
+    color: #141414;  /* Dark placeholder color */
+    opacity: 1; /* Ensures full visibility */
+  }
+  
+  .registerFormGroup input::-webkit-input-placeholder {
+    color: #141414;
+  }
+  
+  .registerFormGroup input:-moz-placeholder {
+    color: #141414;
+  }
+  
+  .registerFormGroup input::-moz-placeholder {
+    color: #141414;
+  }
+  
+  .registerFormGroup input:-ms-input-placeholder {
+    color: #141414;
+  }
+  .placeholderbirth{
+    width: 100% !important;
+  }
+  
+
+  @media (max-width: 768px) {
+    .AboutusheroSection {
+      height: 26vh;
+      background: #0d251c;
+      color: white;
+      text-align: center;
+      padding-top: 80px;
+    }
+    .registerHero {
+        flex-direction: column;
+    }
+    .registerHero_content{
+        width: 100%;
+    }
+    .registerHero_img{
+        width: 100%;
+    }
+    .registerWhySection {
+      flex-direction: column-reverse;
+      text-align: center;
+    }
+  
+    .registerFormWrapper {
+      padding: 20px;
+    }
+    .registerWhyContent{
+        width: 90%;
+        padding-left: 0px;
+        padding-right: 0px;
+        text-align: left;
+    }
+    .registerImageContainer{
+        width: 100%;
+    }
+  }
+
+  
+  @media (max-width: 500px) {
+    .AboutusheroSection {
+      height: 20vh;
+      background: #0d251c;
+      color: white;
+      text-align: center;
+      padding-top: 100px;
+    }}
+   
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+
+    .registerForm {
+      flex-direction: column;
+      align-items: center;
+      gap: 0px;
+    }
+  
+    .registerForm_div {
+      width: 100%;
+    }
+  
+    .registerFormWrapper {
+      padding: 15px;
+    }
+  
+    .registerSubmitBtn {
+      width: 100%;
+    }
+  }
+  
+  .successMessage{
+    color: green;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .errorMessage{
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+  }

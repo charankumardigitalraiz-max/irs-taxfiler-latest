@@ -1,0 +1,190 @@
+.AboutusheroSection {
+    background: #0d251c;
+    color: white;
+    text-align: center;
+    padding-top: 50px;
+    font-weight: bold;
+    height: 30vh;
+}
+
+.AboutusheroSection h1 {
+    text-align: center;
+    margin-top: 5.5%;
+      font-size: var(--bannerheading);
+      line-height: var(--bannerlineheight);
+      font-family: var(--FontFamily);
+      font-weight: 700;
+      letter-spacing: 0px;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+}
+
+.Contactcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 5%;
+    gap: 20px;
+}
+
+.Contactform {
+    width: 45%;
+}
+
+.Contactdetails {
+    width: 45%;
+}
+
+.Contactform h3 {
+    font-size: var(--HeadingFontSize);
+    line-height: var(--Headinglineheight);
+    font-family: var(--FontFamily);
+    color: #002147;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.Contactform_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.Contactform_div .inputbirth{
+    width: 100%;
+    margin: 0;
+    border: none;
+    font-family: var(--FontFamily);
+    font-weight: 400;
+    font-size: var(--ParagraphFontSize);
+    line-height: var(--Paragraphlineheight);
+    letter-spacing: 0%;
+    text-align: justify;
+}
+
+
+.Contactform_div input,
+.Contactform_div_textarea {
+    width: 96%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-bottom: 2px solid #165479;
+    font-family: var(--FontFamily);
+    font-weight: 400;
+    font-size: var(--ParagraphFontSize);
+    line-height: var(--Paragraphlineheight);
+    letter-spacing: 0%;
+    text-align: justify;
+}
+
+.Contactform_div_textarea {
+    height: 100px;
+}
+
+
+.Contactform_div input::placeholder,
+.Contactform_div_textarea::placeholder {
+    color: #080E06;
+    opacity: 1;
+}
+
+
+.Contactform_button {
+    background: linear-gradient(90deg, #165479 0%, #749220 100%);
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: var(--FontFamily);
+    font-size: 16px;
+}
+
+.contactlogo {
+    width: 150px;
+    height: auto;
+}
+
+
+.Contactdetails_content {
+    padding: 20px;
+}
+
+.Contactdetails_span {
+    font-size: var(--ParagraphFontSize);
+    line-height: var(--Paragraphlineheight);
+    font-family: var(--FontFamily);
+    margin-bottom: 20px;
+
+}
+
+.Contacticon {
+    font-size: var(--ParagraphFontSize);
+    line-height: var(--Paragraphlineheight);
+    margin-right: 10px;
+    color: var(--PrimaryColor);
+    font-weight: 800;
+}
+
+.Contact_socialicon {
+    color: #749220;
+    font-size: var(--ParagraphFontSize);
+    line-height: var(--Paragraphlineheight);
+}
+
+.Contactdetails_socialicons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px;
+}
+
+/* Add this to your CSS file */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
+@media (max-width: 768px) {
+    .AboutusheroSection {
+        height: 26vh;
+        background: #0d251c;
+        color: white;
+        text-align: center;
+        padding-top: 80px;
+      }
+
+    .Contactcontainer {
+        flex-direction: column;
+    }
+    .Contactform_div {
+     flex-direction: column;
+    }
+    
+    .Contactform {
+        width: 100%;
+    }
+    
+    .Contactdetails {
+        width: 100%;
+        margin-top: 6%;
+    }
+ 
+}
+
+@media (max-width: 500px) {
+    .AboutusheroSection {
+      height: 20vh;
+      background: #0d251c;
+      color: white;
+      text-align: center;
+      padding-top: 100px;
+    }}
+   

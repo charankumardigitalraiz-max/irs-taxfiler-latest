@@ -7,6 +7,19 @@ export default {
   theme: {
     extend: {
       colors: {
+        uptik: {
+          green: '#749220',
+          greenHover: '#637D1A',
+          greenLight: '#F6F9EE',
+          greenBorder: '#E2EBE0',
+          accent: '#6ABB57',
+          emerald: '#0c513f',
+          navy: '#165479',
+          navyDark: '#0A4973',
+          dark: '#0a2d41',
+          tealDark: '#142a2b',
+        },
+
         primary: {
           50: '#FAF7FD',
           100: '#F3EDFC',
@@ -43,7 +56,9 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Montserrat', 'Jost', 'Inter', 'system-ui', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
+        jost: ['Jost', 'sans-serif'],
       },
     },
   },

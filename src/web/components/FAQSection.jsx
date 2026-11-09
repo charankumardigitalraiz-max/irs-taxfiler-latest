@@ -1,30 +1,30 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDownIcon, ChevronUpIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
   const faqs = [
     {
-      question: "What is the revised last date for Tax filing for FY 2025 (AY 2026)?",
-      answer: "The Internal Revenue Service has extended the Tax filing due date for FY 2025 (AY 2026) to October 15, 2026, for individuals not subject to audit. This extension provides additional time to ensure accurate filing and timely refunds. It's important to file before the deadline to avoid late fees and penalties. TaxFiling's secure online filing services can help you complete your Tax filing quickly and accurately."
+      question: "What is the IRS deadline to file U.S. Federal and State taxes?",
+      answer: "For most U.S. individual taxpayers, the federal tax filing deadline is April 15 each year. If you need more time, we can e-file an automatic 6-month extension (Form 4868) on your behalf to extend your filing deadline to October 15. For U.S. citizens and expats residing abroad on April 15, an automatic 2-month extension to June 15 applies."
     },
     {
-      question: "What is Tax Filing?",
-      answer: "Tax filing is the process of submitting your income and tax details to the Income Tax Department through an official Income Tax Return (ITR) form. It ensures compliance with tax laws, maintains transparency in financial records, and enables the tax department to assess whether you've paid the correct amount of tax or are eligible for a refund. TaxFiling simplifies this process by providing step-by-step guidance and expert support throughout your tax filing journey."
+      question: "What is U.S. Tax Filing with IRS Tax Filer?",
+      answer: "U.S. tax filing is the annual reporting of your worldwide income, itemized or standard deductions, tax credits, and tax withholdings to the Internal Revenue Service (IRS) and state tax authorities using Form 1040, 1040-NR, or corporate forms. IRS Tax Filer provides certified CPA preparation and secure IRS Authorized e-filing, ensuring you claim every eligible credit and receive your maximum legal refund."
     },
     {
-      question: "What documents do I need to file my taxes?",
-      answer: "You will need your PAN card, Aadhaar card, salary slips, Form 16 (if applicable), bank statements, investment statements, and any other income-related documents. We provide a complete checklist after you sign up to ensure you have all necessary documents."
+      question: "What documents do I need to file my U.S. taxes?",
+      answer: "You will generally need your Social Security Number (SSN) or ITIN, Form W-2 (from employers), Form 1099 (for contractor income, interest, dividends, or stock trades), Form 1098 (for mortgage interest), Form 1095-A (health insurance), and records for deductions or business expenses. Expats with foreign bank balances also submit account information for FBAR (FinCEN 114) and FATCA (Form 8938) reporting."
     },
     {
-      question: "How long does the tax filing process take?",
-      answer: "Typically, the entire process takes 2-4 weeks from document submission to final filing. This includes verification, consultation, preparation, and filing. Complex cases may take longer, but we keep you updated throughout the process."
+      question: "How long does the CPA tax preparation and e-filing take?",
+      answer: "Once you upload your tax documents to our encrypted portal, our licensed CPAs complete your review and return draft within 2 to 3 business days. After you review and approve the draft, we e-file directly with the IRS and state authorities. IRS direct deposit refunds typically arrive within 10 to 21 days."
     },
     {
-      question: "Is my personal information secure?",
-      answer: "Absolutely. We use bank-level encryption and secure servers to protect all your documents and personal information. We comply with all data protection regulations and never share your information with third parties."
+      question: "Is my Social Security Number and tax data secure?",
+      answer: "Absolutely. We enforce bank-grade 256-bit SSL encryption, SOC-2 compliant cloud storage, and strict IRS-mandated security standards. Your Social Security numbers, financial details, and uploaded documents are strictly confidential and never shared with third parties."
     }
   ];
 
@@ -33,57 +33,57 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="bg-white py-16">
+    <section className="bg-white py-16 sm:py-20 font-sans border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center relative"
+          className="mb-14 text-center relative"
         >
-          {/* Badge */}
-          <div className="flex justify-center mb-6">
+          {/* Eyebrow Badge in UpTik Olive Green */}
+          <div className="flex justify-center mb-5">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center justify-center space-x-2 bg-[#4C2691]/10 px-4 py-2 rounded-full border border-[#4C2691]/20"
+              className="inline-flex items-center justify-center space-x-2 bg-[#749220]/15 px-4 py-1.5 rounded-full border border-[#749220]/30"
             >
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              <QuestionMarkCircleIcon className="h-4 w-4" style={{ color: '#4C2691' }} />
-            </motion.div>
-            <span className="text-sm font-semibold" style={{ color: '#4C2691' }}>Got Questions?</span>
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              >
+                <QuestionMarkCircleIcon className="h-4 w-4 text-[#749220]" />
+              </motion.div>
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#749220]">Got Questions?</span>
             </motion.div>
           </div>
 
-          {/* Main Heading with Gradient */}
+          {/* Main Heading with UpTik Navy & Olive Palette */}
           <div className="relative inline-block">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 leading-tight">
-              <span className="block text-gray-900">Frequently Asked</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-[36px] font-bold mb-3 tracking-tight leading-snug">
+              <span className="text-gray-900">Frequently Asked </span>
               <motion.span
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="block text-[#4C2691]"
+                className="text-[#165479]"
               >
                 Questions
               </motion.span>
             </h2>
             
-            {/* Decorative Underline */}
+            {/* Decorative Gradient Underline */}
             <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: '100%' }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="h-1 bg-[#4C2691] rounded-full mx-auto"
-              style={{ maxWidth: '120px' }}
+              className="h-1 bg-gradient-to-r from-[#165479] to-[#749220] rounded-full mx-auto"
+              style={{ maxWidth: '140px' }}
             ></motion.div>
           </div>
 
@@ -93,67 +93,69 @@ const FAQSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-base text-gray-600 mt-6 max-w-2xl mx-auto"
+            className="text-base sm:text-[17px] text-gray-600 mt-4 max-w-2xl mx-auto leading-[28px] font-normal"
           >
-            Find quick answers to common questions about our tax filing services
+            Find quick, transparent answers to common questions about our U.S. Federal, State, and Expat tax filing services.
           </motion.p>
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
-          <div className="space-y-0">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="border-b border-gray-200 last:border-b-0"
-              >
-                <button
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full flex items-center justify-between py-6 text-left hover:opacity-80 transition-opacity group"
+          <div className="space-y-3">
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className={`rounded-2xl border transition-all duration-200 ${
+                    isOpen 
+                      ? 'border-[#749220]/50 bg-[#F6F9EE]/40 shadow-sm' 
+                      : 'border-gray-200/80 bg-white hover:border-[#165479]/30'
+                  }`}
                 >
-                  <h3 className="text-base md:text-lg font-medium pr-8" style={{ 
-                    color: '#111827',
-                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-                    fontWeight: 500
-                  }}>
-                    {faq.question}
-                  </h3>
-                  <motion.div
-                    animate={{ rotate: openIndex === index ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex-shrink-0"
+                  <button
+                    onClick={() => toggleFAQ(index)}
+                    className="w-full flex items-center justify-between p-5 sm:p-6 text-left transition-colors group cursor-pointer"
                   >
-                    <ChevronDownIcon 
-                      className="h-5 w-5 text-gray-500 group-hover:text-[#4C2691] transition-colors" 
-                    />
-                  </motion.div>
-                </button>
-                
-                <AnimatePresence>
-                  {openIndex === index && (
+                    <h3 className={`text-base sm:text-lg pr-6 font-bold transition-colors leading-snug ${
+                      isOpen ? 'text-[#165479]' : 'text-gray-900 group-hover:text-[#749220]'
+                    }`}>
+                      {faq.question}
+                    </h3>
                     <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
+                      animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
+                      className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+                        isOpen ? 'bg-[#749220] text-white' : 'bg-gray-100 text-gray-500 group-hover:bg-[#749220]/20 group-hover:text-[#749220]'
+                      }`}
                     >
-                      <div className="pb-6 pt-2">
-                        <p className="text-sm md:text-base leading-relaxed text-gray-600" style={{ 
-                          fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-                          fontWeight: 400
-                        }}>
-                          {faq.answer}
-                        </p>
-                      </div>
+                      <ChevronDownIcon className="h-4 w-4" />
                     </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
+                  </button>
+                  
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-5 sm:px-6 pb-6 pt-1 border-t border-[#749220]/15">
+                          <p className="text-sm sm:text-base leading-[28px] text-gray-600 font-normal">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -162,5 +164,3 @@ const FAQSection = () => {
 };
 
 export default FAQSection;
-
-

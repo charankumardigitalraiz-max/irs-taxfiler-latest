@@ -1,153 +1,103 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   DocumentTextIcon,
-  BuildingOfficeIcon,
+  BuildingOffice2Icon,
   MapPinIcon,
   CheckCircleIcon,
   ArrowRightIcon,
   ShieldCheckIcon,
-  ClockIcon,
-  CurrencyDollarIcon,
-  UserGroupIcon,
-  StarIcon,
-  ChartBarIcon,
-  PhoneIcon,
-  EnvelopeIcon,
-} from '@heroicons/react/24/outline';
-import SEO from '../../components/seo/SEO';
-import Logo from '../../assets/irsLogo.png';
+  ChevronDownIcon,
+  CalendarDaysIcon,
+  CheckBadgeIcon,
+} from "@heroicons/react/24/outline";
+
+import SEO from "../../components/seo/SEO";
+import LeadModal from "../../components/popup";
+import Logo from "../../assets/irsLogo.png";
+import individualPhoto from "../../assets/services/individual-1040.jpg";
+import multiStatePhoto from "../../assets/services/multi-state.jpg";
 
 const FederalStateLocal = () => {
-  const federalFeatures = [
-    {
-      icon: CheckCircleIcon,
-      title: 'Form 1040 Preparation',
-      description:
-        'We handle all aspects of preparing and filing Form 1040, ensuring that your income, deductions, and credits are accurately reported.',
-    },
-    {
-      icon: CheckCircleIcon,
-      title: 'Self-Employed & Freelancers',
-      description:
-        'We specialize in helping self-employed individuals, gig workers, and freelancers handle taxes, including Schedule C and estimated tax payments.',
-    },
-    {
-      icon: CheckCircleIcon,
-      title: 'Tax Credits and Deductions',
-      description:
-        'Maximize your refund with credits such as the Earned Income Tax Credit (EITC), Child Tax Credit, and other deductions for mortgage interest, student loans, and more.',
-    },
-  ];
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const stateFeatures = [
-    {
-      icon: CheckCircleIcon,
-      title: 'State Income Tax Filing',
-      description:
-        'We ensure compliance with state income tax regulations, maximizing benefits while navigating complex state-specific laws.',
-    },
-    {
-      icon: CheckCircleIcon,
-      title: 'Multi-State Filing',
-      description:
-        'For those who work in multiple states or live in one state but work in another, we provide expert assistance in filing multiple state returns.',
-    },
-    {
-      icon: CheckCircleIcon,
-      title: 'No-Income-Tax States',
-      description:
-        'If you live in a no-income-tax state (like Florida, Texas, or Washington), we help ensure that all federal obligations are met while minimizing state filing burdens.',
-    },
-  ];
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
-  const localFeatures = [
-    {
-      icon: CheckCircleIcon,
-      title: 'City & County Tax Filing',
-      description:
-        'We handle city and county income tax returns, ensuring compliance with local tax ordinances and regulations in your area.',
-    },
-    {
-      icon: CheckCircleIcon,
-      title: 'Local Tax Deductions',
-      description:
-        'Maximize your local tax savings by identifying all eligible local deductions, exemptions, and credits available in your jurisdiction.',
-    },
-    {
-      icon: CheckCircleIcon,
-      title: 'Multi-Jurisdiction Filing',
-      description:
-        'For individuals working or living in multiple cities or counties, we coordinate all local tax filings to ensure complete compliance.',
-    },
-  ];
-
-  const taxTypes = [
-    {
-      icon: DocumentTextIcon,
-      title: 'Federal Tax Filing',
-      description: 'Complete federal tax return preparation and filing',
-      gradient: '#2B547E',
-      bgGradient: '#F5F9FF',
-      features: federalFeatures,
-      color: '#2B547E',
-    },
-    {
-      icon: BuildingOfficeIcon,
-      title: 'State Tax Filing',
-      description: 'Multi-state tax compliance and filing services',
-      gradient: '#2B547E',
-      bgGradient: '#F5F9FF',
-      features: stateFeatures,
-      color: '#2B547E',
-    },
-    {
-      icon: MapPinIcon,
-      title: 'Local Tax Filing',
-      description: 'City and county tax filing and compliance',
-      gradient: '#2B547E',
-      bgGradient: '#F5F9FF',
-      features: localFeatures,
-      color: '#2B547E',
-    },
-  ];
-
-  const benefits = [
-    {
-      icon: ShieldCheckIcon,
-      title: 'Expert Preparation',
-      description: 'Certified tax professionals ensure accuracy and compliance.',
-      color: '#EFF6FF',
-    },
-    {
-      icon: ClockIcon,
-      title: 'Timely Filing',
-      description: 'We ensure all deadlines are met to avoid penalties.',
-      color: '#F0FDF4',
-    },
-    {
-      icon: CurrencyDollarIcon,
-      title: 'Maximize Refunds',
-      description: 'We identify all eligible deductions and credits.',
-      color: '#FEF3C7',
-    },
-    {
-      icon: UserGroupIcon,
-      title: 'Dedicated Support',
-      description: 'Get personalized assistance throughout the process.',
-      color: '#F3E8FF',
-    },
-  ];
-
-  const title = "US Federal, State & Local Tax Filing | IRS Tax Filer";
-  const description = "File your U.S. federal, state & local tax returns online with IRS Tax Filer. Fast, accurate and compliant service for individuals.";
-  const keywords = " US federal tax return, US state tax filing, US local tax return, NRI US tax filing, online ITR filing, IRS Tax Filer services";
+  const title = "U.S. Federal, State & Local Tax Filing | CPA-Reviewed | IRS Tax Filer";
+  const description =
+    "File your U.S. federal Form 1040, multi-state SALT returns, and municipal local taxes online with certified CPA guidance. Guaranteed maximum refund and 100% IRS accuracy.";
+  const keywords =
+    "federal tax filing, state tax return, local municipal tax, Form 1040, multi-state tax filing, SALT deductions, CPA tax review, IRS Tax Filer";
   const canonical = window.location.href;
-  const image = { Logo };
+  const image = Logo;
+
+  const filingJurisdictions = [
+    {
+      title: "Federal Tax Filing",
+      tag: "Form 1040",
+      icon: <DocumentTextIcon className="w-5 h-5 text-[#749220]" />,
+      description: "Full federal income tax preparation with deduction audits for individuals, families, and freelancers.",
+      points: [
+        "Form 1040, W-2 & 1099 e-file",
+        "Itemized vs. standard deduction audit",
+        "Child, EV, EITC & education credits",
+      ],
+      compliance: "IRS Authorized Direct e-File",
+    },
+    {
+      title: "State Tax Filing",
+      tag: "All 50 States",
+      icon: <BuildingOffice2Icon className="w-5 h-5 text-[#165479]" />,
+      description: "Multi-state returns ensuring full credit offsets and zero double-taxation across state lines.",
+      points: [
+        "Resident, part-year & non-resident returns",
+        "Out-of-state tax credit reconciliation",
+        "Remote worker & commuter compliance",
+      ],
+      compliance: "50-State SALT e-File",
+    },
+    {
+      title: "City & Local Taxes",
+      tag: "Municipal",
+      icon: <MapPinIcon className="w-5 h-5 text-[#749220]" />,
+      description: "Specialized compliance for cities, counties, and school districts with local tax requirements.",
+      points: [
+        "NYC, Philadelphia, Ohio RITA & MI cities",
+        "Local earned income tax (EIT) filings",
+        "Municipal withholding reconciliation",
+      ],
+      compliance: "Municipal Tax Compliant",
+    },
+  ];
+
+  const processSteps = [
+    {
+      step: "01",
+      title: "Upload Documents",
+      description: "Upload your W-2s, 1099s, and deduction receipts to your encrypted portal.",
+    },
+    {
+      step: "02",
+      title: "CPA Prepares Return",
+      description: "A licensed CPA reviews eligible write-offs and drafts your complete return.",
+    },
+    {
+      step: "03",
+      title: "Review & Sign",
+      description: "Check your line-by-line refund calculation and approve before submission.",
+    },
+    {
+      step: "04",
+      title: "Direct IRS e-File",
+      description: "Direct electronic filing with real-time tracking until your refund arrives.",
+    },
+  ];
 
 
   return (
-    <>
+    <div className="bg-white text-gray-900 font-sans antialiased">
       <SEO
         title={title}
         description={description}
@@ -155,453 +105,261 @@ const FederalStateLocal = () => {
         image={image}
         keywords={keywords}
       />
-      <div className="min-h-screen bg-gray-50">
-        {/* Enhanced Hero Section */}
-        <section className="relative overflow-hidden py-28" style={{ backgroundColor: '#2B547E' }}>
-          {/* Animated Background Elements */}
-          <div className="absolute inset-0">
-            {/* Gradient Orbs */}
-            <motion.div
-              animate={{
-                x: [0, 100, 0],
-                y: [0, 50, 0],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-20 left-10 w-72 h-72 bg-[#2B547E]/30 rounded-full blur-3xl"
-            ></motion.div>
-            <motion.div
-              animate={{
-                x: [0, -80, 0],
-                y: [0, -60, 0],
-                scale: [1, 1.3, 1],
-              }}
-              transition={{
-                duration: 25,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute bottom-20 right-10 w-96 h-96 bg-[#2B547E]/30 rounded-full blur-3xl"
-            ></motion.div>
-            <motion.div
-              animate={{
-                x: [0, 60, 0],
-                y: [0, -40, 0],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 18,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#2B547E]/20 rounded-full blur-3xl"
-            ></motion.div>
 
-            {/* Grid Pattern Overlay */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+      {/* 1. HERO SECTION: EXACT MATCH TYPOGRAPHY + REAL IMAGE (NO BREADCRUMBS) */}
+      <section className="relative overflow-hidden pt-8 sm:pt-10 lg:pt-12 pb-12 sm:pb-16 lg:pb-20 bg-white border-b border-slate-100">
+        <div className="absolute top-1/4 right-10 w-[500px] h-[500px] bg-gradient-to-bl from-[#165479]/[0.05] via-[#749220]/[0.04] to-transparent rounded-full blur-3xl pointer-events-none" />
 
-            {/* Shine Effect */}
-            <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-transparent"></div>
-          </div>
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              {/* Left Side - Text Content */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
+        <div className="relative max-w-7xl 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            {/* Left Content Column */}
+            <div className="lg:col-span-7 xl:col-span-7 text-left font-sans">
+              {/* Main Headline - Matches Home Hero Typography exactly */}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                style={{ lineHeight: 1.18 }}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] 2xl:text-[52px] font-normal text-gray-900 tracking-tight mb-4 sm:mb-5"
               >
-                {/* Badge */}
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md px-4 py-2 rounded-full mb-6 border border-white/30 shadow-lg"
-                >
-                  <motion.div
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  >
-                    <StarIcon className="h-4 w-4 text-yellow-300" />
-                  </motion.div>
-                  <span className="text-white font-semibold text-xs md:text-sm">Complete Tax Compliance Solution</span>
-                </motion.div>
+                Federal, State & Local <br className="hidden sm:inline" />
+                <span className="font-medium bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                  Tax Filing, Simplified.
+                </span>
+              </motion.h1>
 
-                {/* Main Heading */}
-                <motion.h1
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight"
-                >
-                  <span className="block text-white drop-shadow-lg">
-                    Federal, State & Local
-                  </span>
-                  <motion.span
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    className="block text-[#EB4149] drop-shadow-2xl"
-                  >
-                    Tax Filing
-                  </motion.span>
-                </motion.h1>
+              {/* Subheading - Matches Home Hero Typography exactly */}
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="text-sm sm:text-base lg:text-[17px] text-gray-600 font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
+              >
+                Complete CPA preparation for your Form 1040, multi-state allocations, and city taxes with guaranteed maximum refunds and 100% IRS accuracy.
+              </motion.p>
 
-                {/* Subtitle */}
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                  className="text-sm md:text-base lg:text-lg text-white/90 mb-6 leading-relaxed"
+              {/* Action Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex flex-wrap sm:flex-nowrap items-center gap-3 mb-6"
+              >
+                <Link
+                  to="/login"
+                  className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-6 rounded-xl bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] text-white font-medium text-sm sm:text-[15px] shadow-[0_4px_16px_rgba(22,84,121,0.25)] border border-white/20 transition-all duration-200 group shrink-0"
                 >
-                  Complete tax compliance across all levels. We handle your federal,
-                  state, and local tax obligations with expertise and precision.
-                </motion.p>
+                  <span>Start Filing</span>
+                  <ArrowRightIcon className="w-4 h-4 stroke-[2.2] group-hover:translate-x-1 transition-transform" />
+                </Link>
 
-                {/* Contact Information */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
-                  className="mb-6"
+                <button
+                  type="button"
+                  onClick={handleOpenModal}
+                  className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-6 rounded-xl bg-white hover:bg-[#F6F9EE] text-[#165479] border-2 border-[#165479]/15 hover:border-[#749220] font-medium text-sm sm:text-[15px] transition-all duration-200 group cursor-pointer shrink-0"
                 >
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <a
-                      href="tel:+91 9052 333 667"
-                      className="group flex items-center space-x-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-xl px-5 py-3 hover:bg-white/20 transition-all duration-300"
-                    >
-                      <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
-                        <PhoneIcon className="h-5 w-5 text-white" />
-                      </div>
-                      <div>
-                        <div className="text-xs text-white/70">Call Us</div>
-                        <div className="text-sm font-semibold text-white">+91 9052 333 667</div>
-                      </div>
-                    </a>
-                    <a
-                      href="mailto:contact@irstaxfiler.com"
-                      className="group flex items-center space-x-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-xl px-5 py-3 hover:bg-white/20 transition-all duration-300"
-                    >
-                      <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
-                        <EnvelopeIcon className="h-5 w-5 text-white" />
-                      </div>
-                      <div>
-                        <div className="text-xs text-white/70">Email Us</div>
-                        <div className="text-sm font-semibold text-white">contact@irstaxfiler.com</div>
-                      </div>
-                    </a>
-                  </div>
-                </motion.div>
-
-                {/* Trust Indicators */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 1 }}
-                  className="flex flex-wrap items-center gap-4 text-white/80"
-                >
-                  <div className="flex items-center space-x-2">
-                    <CheckCircleIcon className="h-4 w-4 text-green-300" />
-                    <span className="text-xs font-medium">Certified Experts</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircleIcon className="h-4 w-4 text-green-300" />
-                    <span className="text-xs font-medium">100% Secure</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircleIcon className="h-4 w-4 text-green-300" />
-                    <span className="text-xs font-medium">Fast Processing</span>
-                  </div>
-                </motion.div>
+                  <CalendarDaysIcon className="w-4 h-4 text-[#749220] group-hover:scale-110 transition-transform stroke-[2.2]" />
+                  <span>Talk to CPA</span>
+                </button>
               </motion.div>
 
-              {/* Right Side - Image */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="relative"
-              >
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              {/* Service Guarantees */}
+              <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-gray-500">
+                <ShieldCheckIcon className="w-4 h-4 text-[#749220]" />
+                <span className="font-medium text-gray-800">Licensed CPAs & Enrolled Agents</span>
+                <span className="text-gray-300">•</span>
+                <span>Direct Electronic Filing to IRS & State Agencies</span>
+              </div>
+            </div>
+
+            {/* Right Column: Clean Showcase with Real Image */}
+            <div className="lg:col-span-5 xl:col-span-5 relative flex justify-center lg:justify-end">
+              <div className="relative w-full max-w-[460px]">
+                {/* Main Image Card */}
+                <div className="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-[0_16px_40px_rgba(22,84,121,0.08)] bg-white group">
+                  {/* Subtle Header Bar */}
+                  <div className="px-4 py-2.5 bg-slate-50/90 border-b border-slate-100 flex items-center justify-between text-xs">
+                    <span className="font-semibold text-gray-800 flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-[#749220]" />
+                      Form 1040 Multi-Jurisdiction Filing
+                    </span>
+                  </div>
+
+                  {/* Image */}
                   <img
-                    src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop&q=80"
-                    alt="Tax filing professional"
-                    className="w-full h-auto object-cover"
+                    src={individualPhoto}
+                    alt="U.S. Federal, State and Local Tax Preparation"
+                    className="w-full h-[280px] sm:h-[320px] object-cover transition-transform duration-500 group-hover:scale-[1.01]"
+                    loading="eager"
                   />
-                  <div className="absolute inset-0 bg-[#2B547E]/10"></div>
+
+                  {/* Clean Bottom Caption Strip */}
+                  <div className="px-4 py-3 bg-white border-t border-slate-100 flex items-center justify-between text-xs text-gray-600">
+                    <span className="flex items-center gap-1.5">
+                      <CheckBadgeIcon className="w-4 h-4 text-[#165479]" />
+                      <span>Dual CPA Line-by-Line Review</span>
+                    </span>
+                    <span className="font-semibold text-emerald-600">
+                      100% IRS Accuracy
+                    </span>
+                  </div>
                 </div>
-                {/* Decorative Elements */}
-                <div className="absolute -top-4 -right-4 w-24 h-24 bg-[#2B547E]/20 rounded-full blur-2xl"></div>
-                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-[#2B547E]/20 rounded-full blur-2xl"></div>
-              </motion.div>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Bottom Wave Decoration */}
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg className="w-full h-16 text-white" fill="currentColor" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,50 L1200,120 L0,120 Z"></path>
-            </svg>
+      {/* 2. JURISDICTION FILING TIERS WITH SECONDARY IMAGE */}
+      <section className="py-14 sm:py-18 bg-white border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-xl mx-auto mb-10 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
+              Complete Coverage for{" "}
+              <span className="font-medium bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                Every Level
+              </span>
+            </h2>
+            <p className="text-xs sm:text-sm text-gray-500 font-normal mt-2">
+              From federal Form 1040 to multi-state SALT allocations and city taxes.
+            </p>
           </div>
-        </section>
 
-        {/* Three Tax Filing Cards - Enhanced Design */}
-        <section className="py-20 bg-white relative">
-          <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: '#2B547E' }}></div>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold text-primary-navy mb-4">
-                Complete Tax Filing Solutions
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                From federal to local, we've got you covered at every level
-              </p>
-            </motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            {/* Secondary Image: Multi-State SALT Visual */}
+            <div className="lg:col-span-4 rounded-2xl overflow-hidden border border-slate-200/90 shadow-2xs relative group min-h-[260px] flex flex-col justify-end">
+              <img
+                src={multiStatePhoto}
+                alt="Multi-State Tax Allocation and SALT Credit Filings"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
+              <div className="relative z-10 p-5 text-left text-white">
+                <h3 className="text-base font-semibold text-white leading-snug">
+                  Multi-State & Remote Worker Tax Returns
+                </h3>
+                <p className="text-xs text-white/80 mt-1 leading-relaxed">
+                  We calculate out-of-state credits so you never get double-taxed.
+                </p>
+              </div>
+            </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {taxTypes.map((taxType, index) => {
-                const Icon = taxType.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.15 }}
-                    className="group relative"
-                  >
-                    <div className="rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border border-gray-200/50 overflow-hidden h-full" style={{ backgroundColor: taxType.bgGradient }}>
-                      {/* Decorative Top Bar */}
-                      <div className="h-2" style={{ backgroundColor: taxType.gradient }}></div>
-
-                      <div className="p-8">
-                        {/* Icon and Title */}
-                        <div className="flex items-center space-x-4 mb-6">
-                          <motion.div
-                            whileHover={{ scale: 1.1, rotate: 5 }}
-                            className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow"
-                            style={{ backgroundColor: taxType.gradient }}
-                          >
-                            <Icon className="h-8 w-8 text-white" />
-                          </motion.div>
-                          <div>
-                            <h3 className="text-2xl font-bold text-primary-navy mb-1">
-                              {taxType.title}
-                            </h3>
-                            <p className="text-sm text-gray-600">{taxType.description}</p>
-                          </div>
-                        </div>
-
-                        {/* Features List */}
-                        <div className="space-y-5">
-                          {taxType.features.map((feature, featureIndex) => {
-                            const FeatureIcon = feature.icon;
-                            return (
-                              <motion.div
-                                key={featureIndex}
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.4, delay: featureIndex * 0.1 }}
-                                className="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/60 transition-colors"
-                              >
-                                <div className="flex-shrink-0 mt-1">
-                                  <FeatureIcon className={`h-5 w-5`} style={{ color: taxType.color }} />
-                                </div>
-                                <div>
-                                  <h4 className="text-base font-semibold text-primary-navy mb-1.5">
-                                    {feature.title}
-                                  </h4>
-                                  <p className="text-sm text-gray-600 leading-relaxed">
-                                    {feature.description}
-                                  </p>
-                                </div>
-                              </motion.div>
-                            );
-                          })}
-                        </div>
+            {/* 3 Jurisdiction Cards */}
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+              {filingJurisdictions.map((tier, idx) => (
+                <div
+                  key={idx}
+                  className="group bg-white hover:bg-[#FAFCFE] rounded-2xl p-5 border border-slate-200/90 hover:border-[#165479]/40 shadow-2xs hover:shadow-sm transition-all duration-300 flex flex-col justify-between text-left"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="w-9 h-9 rounded-xl bg-[#F6F9EE] border border-[#749220]/25 flex items-center justify-center shrink-0">
+                        {tier.icon}
                       </div>
                     </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
 
-        {/* Benefits Section - Enhanced */}
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold text-primary-navy mb-4">
-                Why Choose Our Tax Filing Services?
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                We combine expertise, technology, and personalized service to
-                ensure your taxes are filed correctly and efficiently.
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {benefits.map((benefit, index) => {
-                const Icon = benefit.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    whileHover={{ y: -8, scale: 1.02 }}
-                    className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-                  >
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4`}
-                      style={{ backgroundColor: benefit.color }}
-                    >
-                      <Icon className="h-8 w-8" style={{ color: '#2B547E' }} />
-                    </motion.div>
-                    <h3 className="text-xl font-bold text-primary-navy mb-3 text-center">
-                      {benefit.title}
+                    <h3 className="text-sm font-semibold text-gray-900 group-hover:text-[#165479] transition-colors">
+                      {tier.title}
                     </h3>
-                    <p className="text-gray-600 text-center">{benefit.description}</p>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
 
-        {/* What's Included Section - Enhanced */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-              <div className="inline-flex items-center space-x-2 bg-primary-blue/10 px-4 py-2 rounded-full mb-4">
-                <ChartBarIcon className="h-5 w-5 text-primary-blue" />
-                <span className="text-primary-blue font-semibold">Comprehensive Service</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-primary-navy mb-4">
-                What's Included
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Our comprehensive service covers everything you need for complete
-                tax compliance at all levels.
-              </p>
-            </motion.div>
+                    <p className="text-xs text-gray-500 font-normal leading-relaxed mt-1 mb-3">
+                      {tier.description}
+                    </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[
-                'Complete tax return preparation',
-                'E-filing with IRS and state agencies',
-                'Local tax filing and compliance',
-                'All necessary forms and schedules',
-                'Tax optimization and strategy',
-                'Refund processing assistance',
-                'Amended return filing if needed',
-                'Year-round support and consultation',
-                'Document organization and review',
-                'Audit support and representation',
-                'Multi-jurisdiction coordination',
-                'Deadline tracking and reminders',
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  whileHover={{ x: 5, scale: 1.02 }}
-                  className="flex items-center space-x-3 bg-white p-4 rounded-xl hover:shadow-md transition-all border border-gray-100"
-                >
-                  <div className="flex-shrink-0">
-                    <CheckCircleIcon className="h-6 w-6 text-primary-blue" />
+                    <ul className="space-y-1.5 pt-2.5 border-t border-slate-100">
+                      {tier.points.map((pt, pIdx) => (
+                        <li key={pIdx} className="flex items-center gap-1.5 text-[11px] text-gray-600 font-normal">
+                          <CheckCircleIcon className="w-3.5 h-3.5 text-[#749220] stroke-[2.2] shrink-0" />
+                          <span>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <span className="text-gray-700 font-medium">{item}</span>
-                </motion.div>
+
+                  <div className="mt-4 pt-2.5 border-t border-slate-100 flex items-center justify-between">
+                    <span className="text-[10px] text-emerald-600 font-medium">
+                      {tier.compliance}
+                    </span>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Enhanced CTA Section */}
-        <section className="py-20 relative overflow-hidden" style={{ backgroundColor: '#2B547E' }}>
-          <div className="absolute inset-0">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+      {/* 3. SIMPLE 4-STEP WORKFLOW */}
+      <section className="py-14 sm:py-18 bg-slate-50/60 border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-xl mx-auto mb-10">
+            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
+              How It{" "}
+              <span className="font-medium bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                Works
+              </span>
+            </h2>
+            <p className="text-xs sm:text-sm text-gray-500 font-normal mt-1.5">
+              4 simple steps to your complete CPA-prepared tax return.
+            </p>
           </div>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <motion.div
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="inline-block mb-6"
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {processSteps.map((step, sIdx) => (
+              <div
+                key={sIdx}
+                className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-2xs text-left"
               >
-                <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto">
-                  <StarIcon className="h-10 w-10 text-white" />
+                <div className="w-8 h-8 rounded-lg bg-[#F6F9EE] text-[#749220] flex items-center justify-center font-bold text-xs mb-3 font-mono">
+                  {step.step}
                 </div>
-              </motion.div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                Ready to File Your Taxes?
-              </h2>
-              <p className="text-xl md:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Get started today with our expert tax filing services. We'll handle
-                your federal, state, and local tax obligations with precision and
-                care.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center space-x-2 px-10 py-5 rounded-xl font-bold text-lg hover:opacity-90 transition-all duration-300 shadow-2xl"
-                    style={{ backgroundColor: 'white', color: '#2B547E' }}
-                  >
-                    <span>Get Started</span>
-                    <ArrowRightIcon className="h-5 w-5" />
-                  </Link>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    to="/pricing"
-                    className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
-                  >
-                    <span>View Pricing</span>
-                  </Link>
-                </motion.div>
+                <h3 className="text-sm font-semibold text-gray-900">
+                  {step.title}
+                </h3>
+                <p className="text-xs text-gray-500 font-normal mt-1.5 leading-relaxed">
+                  {step.description}
+                </p>
               </div>
-            </motion.div>
+            ))}
           </div>
-        </section>
-      </div>
-    </>
+        </div>
+      </section>
+
+
+      {/* 5. CLEAN BOTTOM CTA BANNER */}
+      <section className="py-14 sm:py-16 bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] text-white font-sans relative overflow-hidden">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h2 className="text-2xl sm:text-3xl font-normal mb-2 tracking-tight">
+            Ready to file your <span className="font-medium text-[#D8EBA4]">Federal & State taxes?</span>
+          </h2>
+          <p className="text-xs sm:text-sm text-white/90 max-w-md mx-auto mb-6 font-normal">
+            Certified CPA preparation with guaranteed maximum refunds and 100% IRS accuracy.
+          </p>
+
+          <div className="flex flex-wrap sm:flex-nowrap gap-3 justify-center items-center">
+            <Link
+              to="/login"
+              className="h-11 px-6 rounded-xl bg-white text-[#165479] hover:bg-gray-50 font-medium text-sm shadow-sm transition-all inline-flex items-center justify-center gap-2 group"
+            >
+              <span>Start Filing</span>
+              <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform stroke-[2]" />
+            </Link>
+
+            <button
+              type="button"
+              onClick={handleOpenModal}
+              className="h-11 px-6 rounded-xl bg-white/10 hover:bg-white/20 border border-white/25 text-white font-medium text-sm transition-all inline-flex items-center justify-center gap-2 cursor-pointer group"
+            >
+              <CalendarDaysIcon className="w-4 h-4 text-[#D8EBA4] stroke-[2] group-hover:scale-110 transition-transform" />
+              <span>Talk to CPA</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Lead Generation Modal */}
+      <LeadModal open={isModalOpen} onClose={handleCloseModal} />
+    </div>
   );
 };
 

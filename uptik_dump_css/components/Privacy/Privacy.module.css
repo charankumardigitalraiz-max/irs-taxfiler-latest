@@ -1,0 +1,122 @@
+.AboutusheroSection {
+    background: #0d251c;
+    color: white;
+    text-align: center;
+    padding-top: 50px;
+    font-weight: bold;
+    height: 45vh;
+  }
+  
+  .AboutusheroSection h1 {
+    text-align: center;
+    margin-top: 60px;
+    padding: 20px;
+    font-size: var(--bannerheading);
+    line-height: var(--bannerlineheight);
+    font-family: var(--FontFamily);
+    font-weight: 700;
+    letter-spacing: 0px;
+  }
+
+
+.PrivacyContainer {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: var(--FontFamily);
+    color:#080E06;
+  }
+  
+  .PrivacyHeader {
+    font-size: var(--HeadingFontSize);
+    font-family: var(--FontFamily);
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .PrivacySection {
+    margin-bottom: 20px;
+  }
+  
+  .PrivacySubHeader {
+    font-size: var(--SubheadingFontSize);
+    font-family: var(--FontFamily);
+    font-weight: bold;
+    margin-top: 15px;
+    color:#080E06;
+  }
+  
+  .PrivacyText {
+    font-size: var(--ParagraphFontSize);
+    line-height: var(--Paragraphlineheight);
+    font-family: var(--FontFamily);
+  }
+  
+  .PrivacyList {
+    padding-left: 20px;
+  }
+  
+  .PrivacyListItem {
+    margin-bottom: 10px;
+    font-size: var(--ParagraphFontSize);
+    line-height: var(--Paragraphlineheight);
+    font-family: var(--FontFamily);
+  }
+
+  
+  @media (max-width: 768px) {
+    .AboutusheroSection {
+      height: 20vh;
+      background: #0d251c;
+      color: white;
+      text-align: center;
+      padding-top: 100px;
+    }
+    .AboutusheroSection h1 {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .mobilePadding {
+      height: 20vh;
+      padding-top: 20px;
+    }
+    .mobilePadding h1 {
+     margin-top: 35px;
+     margin-bottom: 0;
+     padding: 0;
+    }
+    .PrivacyContainer {
+      padding: 15px;
+    }
+    .PrivacyHeader {
+      font-size: var(--HeadingFontSize);
+    }
+    .PrivacySubHeader {
+        font-size: var(--SubheadingFontSize);
+    }
+    .PrivacyText {
+        font-size: var(--ParagraphFontSize);
+    }
+  }
+  
+  
+/* Mobile view */
+@media (max-width: 500px) {
+  .AboutusheroSection {
+    height: 20vh;
+    background: #0d251c;
+    color: white;
+    text-align: center;
+  }
+  .AboutusheroSection h1 {
+    text-align: center;
+    margin-top: 0px;
+  }
+  .mobilePadding {
+    padding-top: 20px;
+  }
+  .mobilePadding h1 {
+   margin-top: 20px;
+   padding: 0;
+  }
+}

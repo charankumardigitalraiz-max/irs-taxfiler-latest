@@ -1,0 +1,157 @@
+/***********************************
+ * Navbar Container
+ **********************************/
+
+.navbar__header {
+  background-color: #fff;
+  position: sticky; 
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  /* margin:10px auto; */
+  /* border-radius: 10px; */
+}
+
+
+.navbar__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  position: fixed;
+  background-color: #fff;
+  color: black;
+  left: 10px;
+  top: 10px;
+  right: 10px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.navoffset{
+  left: 0;
+  right: 0;
+  top: 0;
+  border-radius: 0;
+}
+
+.navbar__links a {
+  text-decoration: none;
+  color: #333; 
+  transition: color 0.3s ease;
+}
+
+.navbar__links a.active {
+  color: var(--PrimaryColor); 
+  font-weight: 700;
+}
+
+.navbar_links_items{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+/***********************************
+ * Logo
+ **********************************/
+.navbar__logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0c513f; /* Dark green color */
+}
+
+.logo{
+  padding-top: 12px;
+  width: 150px;
+  height: 150px;
+}
+
+/***********************************
+ * Links (Desktop)
+ **********************************/
+.navbar__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:15px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: max-height 0.3s ease;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.navbar__links li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar__links li a:hover {
+  color: #0c513f;
+}
+
+.registerButton {
+  background: linear-gradient(90deg, #165479 0%, #749220 100%);
+  color: white;
+  padding: 10px 30px;
+  border-radius: 5px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/***********************************
+ * Hamburger Menu (Mobile)
+ **********************************/
+.navbar__hamburger {
+  display: none; /* hidden on desktop */
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/***********************************
+ * Mobile Responsive Styles
+ **********************************/
+@media (max-width: 768px) {
+  /* Hide the desktop nav by default */
+  .navbar__links {
+    position: absolute;
+    top: 60px; /* just below navbar */
+    right: 0;
+    background-color: #fff;
+    width: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 0; /* collapsed by default */
+    text-align: center;
+  }
+
+  /* Show links when active */
+  .navbar__linksActive {
+    max-height: 300px; /* adjust as needed */
+    padding: 1rem 0;
+  }
+
+  .navbar__links li a {
+    display: block;
+    padding: 10px 0px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+  }
+
+ 
+
+  /* Show hamburger icon on mobile */
+  .navbar__hamburger {
+    display: block;
+  }
+}
+

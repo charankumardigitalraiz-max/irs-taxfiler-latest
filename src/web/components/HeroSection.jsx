@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import LeadModal from "../components/popup";
+import usaTaxHeroPhoto from "../assets/usa-tax-filing-hero.jpg";
+import irsHeroBanner from "../assets/irs-taxfiler-3d-hero.jpg";
+import uptikHeroImg from "../assets/uptik-hero-showcase.png";
 import globalTaxHeroImg from "../assets/tax-hero-right-complete-cards-hd.png";
 import {
   DocumentTextIcon,
@@ -16,6 +19,7 @@ import {
   CheckBadgeIcon,
   EnvelopeIcon,
   UserGroupIcon,
+  CalendarDaysIcon,
 } from "@heroicons/react/24/outline";
 
 // Animated Counter Component
@@ -131,9 +135,6 @@ const AnimatedCounter = ({ value, duration = 2.5, delay = 0 }) => {
 
 const HeroSection = () => {
   const [selectedService, setSelectedService] = useState("us-individual");
-  const donutRadius = 55;
-  const donutCircumference = 2 * Math.PI * donutRadius;
-  const donutProgressValue = 0.82;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -159,9 +160,9 @@ const HeroSection = () => {
       ),
     },
     {
-      id: "indian",
-      label: "Indian & NRI",
-      badge: "ITR 1-7 & Cross-Border",
+      id: "us-expat",
+      label: "US Expat & Foreign Assets",
+      badge: "FBAR, FATCA & 1040-NR",
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
@@ -192,32 +193,28 @@ const HeroSection = () => {
           features: ["Global accounts", "Compliance"],
         },
         {
-          title: "S-Corporation Filing",
-          description: "Complete business filing support for growing companies.",
-          tag: "Form 1120-S",
-          route: "/services/us-business/smb-tax-filing",
-          icon: (
-            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-            </svg>
-          ),
-          features: ["Business income", "CPA review"],
+          title: "Multi-State & Remote Worker Filing",
+          description: "Accurate state allocations for remote employees and state-to-state movers.",
+          tag: "SALT Returns",
+          route: "/services/us-individual/federal-state-local",
+          icon: <CheckCircleIcon className="w-5 h-5 text-white" />,
+          features: ["Multi-state allocations", "SALT deductions"],
         },
         {
-          title: "Partnership Return",
-          description: "Simplify allocations, schedules, and partner reporting.",
-          tag: "Form 1065",
-          route: "/services/us-business/smb-tax-filing",
-          icon: <UserGroupIcon className="w-5 h-5 text-white" />,
-          features: ["K-1 support", "Multi-partner"],
+          title: "Amended Returns & Prior Years",
+          description: "Catch up on past tax years and claim missed refunds with IRS Form 1040-X.",
+          tag: "Form 1040-X",
+          route: "/services/us-individual/federal-state-local",
+          icon: <ClockIcon className="w-5 h-5 text-white" />,
+          features: ["Prior year filing", "IRS penalty mitigation"],
         },
         {
-          title: "Indian & NRI Tax Filing",
-          description: "Cross-border guidance for India residents and NRIs.",
-          tag: "ITR / NRI",
-          route: "/services/indian/tax-filing",
+          title: "Expat & Non-Resident (1040-NR)",
+          description: "Dual-status, tax treaties, and US tax returns for visa holders & expats.",
+          tag: "Form 1040-NR",
+          route: "/services/us-individual/federal-state-local",
           icon: <GlobeAltIcon className="w-5 h-5 text-white" />,
-          features: ["India filing", "NRI support"],
+          features: ["1040-NR filing", "Treaty benefits"],
         },
       ],
     },
@@ -259,41 +256,41 @@ const HeroSection = () => {
         },
       ],
     },
-    indian: {
-      title: "Indian & NRI Cross-Border Tax Services",
-      subtitle: "Seamless Income Tax Return (ITR) preparation for Non-Resident Indians and global professionals.",
+    "us-expat": {
+      title: "US Expat & International Tax Compliance",
+      subtitle: "Full IRS compliance for Americans abroad, green card holders, and non-resident foreign investors.",
       items: [
         {
-          title: "Indian ITR Return Preparation",
-          description: "Filing across all ITR forms (ITR-1 through ITR-7) for NRIs with salary, property, and capital gains in India.",
-          tag: "ITR 1 to 7",
-          route: "/services/indian/tax-filing",
+          title: "FBAR & FATCA Asset Disclosures",
+          description: "FinCEN Form 114 and IRS Form 8938 reporting for foreign financial accounts and offshore assets.",
+          tag: "FinCEN 114 & 8938",
+          route: "/services/us-individual/fbar-fatca",
           icon: <BanknotesIcon className="w-5 h-5" />,
-          features: ["Capital gain indexation", "Rental property deduction", "E-verification assistance"],
+          features: ["Foreign bank accounts", "PFIC calculation", "IRS penalty protection"],
         },
         {
-          title: "Tax Notice & Assessment Defense",
-          description: "Professional representation before the Income Tax Department (ITD) for notices, scrutiny assessments, and appeals.",
-          tag: "ITD Defense",
-          route: "/services/indian/representation",
+          title: "IRS Streamlined Filing Compliance",
+          description: "Catch up on past-due U.S. returns with IRS penalty amnesty for expats living overseas.",
+          tag: "Streamlined IRS",
+          route: "/services/us-individual/federal-state-local",
           icon: <ShieldCheckIcon className="w-5 h-5" />,
-          features: ["Section 148 / 143 notice reply", "Online dispute resolution", "Faceless assessment support"],
+          features: ["3 years delinquent returns", "6 years FBARs", "Zero penalty relief"],
         },
         {
-          title: "DTAA & Double Tax Relief",
-          description: "Optimize tax treaties between US and India to avoid paying tax twice on overseas income and dividends.",
-          tag: "Treaty Relief",
-          route: "/services/indian/tax-filing",
+          title: "Foreign Earned Income & Tax Credits",
+          description: "Maximize Form 2555 FEIE exclusions and Form 1116 Foreign Tax Credits to eliminate double taxation.",
+          tag: "Form 2555 / 1116",
+          route: "/services/us-individual/federal-state-local",
           icon: <GlobeAltIcon className="w-5 h-5" />,
-          features: ["Form 67 foreign tax credit", "Tax residency certificate (TRC)", "Withholding tax optimization"],
+          features: ["FEIE exclusion claim", "Foreign tax credit carryover", "Housing deduction"],
         },
         {
-          title: "NRE / NRO Bank Account Taxation",
-          description: "Tax compliance for interest earnings, repatriations (Form 15CA/15CB), and Indian mutual funds.",
-          tag: "15CA / 15CB",
-          route: "/services/indian/tax-filing",
+          title: "ITIN Acquisition & Certification",
+          description: "Obtain an IRS Individual Taxpayer Identification Number without mailing original passports.",
+          tag: "Form W-7 / ITIN",
+          route: "/services/us-individual/federal-state-local",
           icon: <CheckCircleIcon className="w-5 h-5" />,
-          features: ["NRE interest exemption", "NRO TDS refund claim", "Chartered Accountant certificate"],
+          features: ["IRS Certifying Acceptance", "Spouse & dependent ITIN", "Fast IRS approval"],
         },
       ],
     },
@@ -302,63 +299,43 @@ const HeroSection = () => {
   const taxFilingBadges = [
     {
       title: "IRS Authorized e-File",
-      tag: "Official Provider",
+      tag: "Official e-File Provider",
       icon: <ShieldCheckIcon className="w-5 h-5" />,
     },
     {
-      title: "Form 1040 & 1040-NR",
-      tag: "Resident & Non-Resident",
+      title: "Form 1040 Federal Return",
+      tag: "Individual & Family Filers",
       icon: <DocumentTextIcon className="w-5 h-5" />,
     },
     {
-      title: "FBAR & FATCA",
-      tag: "FinCEN 114 & Form 8938",
+      title: "Form 1040-NR & Expats",
+      tag: "Non-Resident & Expat Returns",
       icon: <GlobeAltIcon className="w-5 h-5" />,
     },
     {
-      title: "Indian ITR Filing",
-      tag: "ITR 1 to 7 for NRIs",
-      icon: <BanknotesIcon className="w-5 h-5" />,
-    },
-    {
-      title: "ITIN Assistance",
-      tag: "Form W-7 Certified",
-      icon: <CheckBadgeIcon className="w-5 h-5" />,
-    },
-    {
-      title: "W-2 & 1099 Returns",
-      tag: "Salaried & Contractors",
-      icon: <DocumentTextIcon className="w-5 h-5" />,
-    },
-    {
-      title: "US Business Tax",
-      tag: "1120, 1120-S & 1065",
-      icon: <BanknotesIcon className="w-5 h-5" />,
-    },
-    {
-      title: "IRS Representation",
-      tag: "Audit Defense & CPA Support",
-      icon: <UserGroupIcon className="w-5 h-5" />,
-    },
-    {
-      title: "Dual Status Returns",
-      tag: "Expat Tax Specialists",
-      icon: <ClockIcon className="w-5 h-5" />,
-    },
-    {
-      title: "State & Local (SALT)",
-      tag: "Multi-State Filings",
-      icon: <CheckCircleIcon className="w-5 h-5" />,
-    },
-    {
-      title: "Foreign Tax Credit",
-      tag: "Form 1116 & 2555 FEIE",
+      title: "FBAR & FATCA Reporting",
+      tag: "FinCEN 114 & Form 8938",
       icon: <SparklesIcon className="w-5 h-5" />,
     },
     {
-      title: "100% Accuracy Guarantee",
-      tag: "Max Refund Promise",
+      title: "U.S. Corporate & Business",
+      tag: "Form 1120, 1120-S & 1065",
+      icon: <BanknotesIcon className="w-5 h-5" />,
+    },
+    {
+      title: "Multi-State Taxes (SALT)",
+      tag: "All 50 States Filings",
+      icon: <CheckCircleIcon className="w-5 h-5" />,
+    },
+    {
+      title: "ITIN Number Certification",
+      tag: "IRS Form W-7 Certified",
       icon: <CheckBadgeIcon className="w-5 h-5" />,
+    },
+    {
+      title: "IRS Audit Defense & CPA Support",
+      tag: "Audit Shield & Representation",
+      icon: <UserGroupIcon className="w-5 h-5" />,
     },
   ];
 
@@ -372,32 +349,42 @@ const HeroSection = () => {
       {/* ========================================================= */}
       <section className="relative overflow-hidden pt-24 sm:pt-28 md:pt-32 lg:pt-20 pb-12 sm:pb-16 lg:pb-14 bg-white lg:min-h-[calc(100vh-4rem)] flex items-center">
 
-        {/* Ambient Studio Lighting Mesh */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[520px] bg-gradient-to-b from-purple-100/40 via-indigo-50/20 to-transparent pointer-events-none blur-3xl -z-10" />
-        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] opacity-35 pointer-events-none -z-10" />
+        {/* Clean Pure White Background */}
 
         <div className="relative max-w-7xl 2xl:max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-10 items-center">
 
             {/* Left Content Column */}
-            <div className="lg:col-span-5 xl:col-span-5 lg:pr-2 xl:pr-4 font-sans text-left">
+            <div className="lg:col-span-7 xl:col-span-7 lg:pr-6 xl:pr-10 font-sans text-left">
 
+              {/* Trust Eyebrow Pill with Pulsing Live Status Dot */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F6F9EE] border border-[#749220]/30 shadow-xs mb-4 sm:mb-5"
+              >
+                <span className="flex h-2 w-2 relative">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#749220] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#749220]"></span>
+                </span>
+                <span className="text-xs sm:text-[13px] font-semibold text-[#165479] tracking-wide">
+                  IRS Authorized e-File Provider • U.S. Federal & State Taxes
+                </span>
+              </motion.div>
 
-
-              {/* Main Heading - Bold Modern Typography with Gradient Accent */}
+              {/* Main Heading - Bold UpTik Typography with Gradient Accent */}
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                style={{ lineHeight: 1.22 }}
-                className="text-3xl sm:text-4xl md:text-4xl lg:text-[38px] xl:text-[44px] 2xl:text-[48px] font-normal text-gray-900 tracking-tight mb-4 sm:mb-5 lg:mb-6"
+                style={{ lineHeight: 1.18 }}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] 2xl:text-[52px] font-semibold text-gray-900 tracking-tight mb-4 sm:mb-5"
               >
-                Tax filing, <br className="hidden sm:inline" />
-                <span className="bg-gradient-to-r from-primary via-purple-700 to-indigo-600 bg-clip-text text-transparent">
-                  simplified & optimized
-                </span>{" "}
-                <br className="hidden sm:inline" />
-                for the world.
+                U.S. Tax Filing, <br className="hidden sm:inline" />
+                <span className="bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                  simplified & optimized.
+                </span>
               </motion.h1>
 
               {/* Subheading */}
@@ -405,56 +392,102 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
-                className="text-sm sm:text-base lg:text-lg text-gray-600 font-normal leading-relaxed mb-6 sm:mb-7 max-w-xl"
+                className="text-sm sm:text-base lg:text-[17px] text-gray-600 font-normal leading-[28px] mb-6 max-w-2xl"
               >
-                Prepare, file, and optimize your federal, state, and cross-border taxes with certified CPA guidance. Enjoy maximum refunds, guaranteed IRS accuracy, and seamless filing from anywhere in the world.
+                File your U.S. federal and state taxes with certified CPA guidance. Enjoy maximum refunds, guaranteed 100% IRS accuracy, and seamless online filing for US taxpayers, expats, and green card holders.
               </motion.p>
 
-              {/* CTA Action Buttons */}
+              {/* High-Impact Value Checklist (Reference: Stripe / Ramp / UpTik) */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.18 }}
+                className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6 max-w-lg"
+              >
+                <div className="flex items-center gap-2 text-xs sm:text-[13px] text-gray-700 font-medium">
+                  <div className="w-5 h-5 rounded-full bg-[#749220]/15 text-[#749220] flex items-center justify-center shrink-0">
+                    <CheckCircleIcon className="w-3.5 h-3.5 stroke-[2.5]" />
+                  </div>
+                  <span>100% CPA-Reviewed Filing</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs sm:text-[13px] text-gray-700 font-medium">
+                  <div className="w-5 h-5 rounded-full bg-[#749220]/15 text-[#749220] flex items-center justify-center shrink-0">
+                    <CheckCircleIcon className="w-3.5 h-3.5 stroke-[2.5]" />
+                  </div>
+                  <span>Guaranteed Maximum Refund</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs sm:text-[13px] text-gray-700 font-medium">
+                  <div className="w-5 h-5 rounded-full bg-[#749220]/15 text-[#749220] flex items-center justify-center shrink-0">
+                    <CheckCircleIcon className="w-3.5 h-3.5 stroke-[2.5]" />
+                  </div>
+                  <span>FBAR & FATCA US Reporting</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs sm:text-[13px] text-gray-700 font-medium">
+                  <div className="w-5 h-5 rounded-full bg-[#749220]/15 text-[#749220] flex items-center justify-center shrink-0">
+                    <CheckCircleIcon className="w-3.5 h-3.5 stroke-[2.5]" />
+                  </div>
+                  <span>IRS & State Audit Defense</span>
+                </div>
+              </motion.div>
+
+              {/* CTA Action Buttons - Perfectly Adjusted & Balanced */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6 sm:mb-7"
+                className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-4 mb-6"
               >
+                {/* Primary Button */}
                 <Link
                   to="/login"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:px-7 sm:py-3.5 rounded-full bg-primary text-white font-normal text-xs sm:text-sm shadow-[0_8px_20px_rgba(76,38,145,0.25)] hover:bg-primary-700 hover:shadow-[0_12px_28px_rgba(76,38,145,0.35)] hover:-translate-y-0.5 transition-all group"
+                  className="relative inline-flex items-center justify-center gap-2.5 h-11 sm:h-12 px-5 sm:px-6 rounded-xl bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] text-white font-bold text-sm sm:text-[15px] shadow-[0_6px_20px_-3px_rgba(22,84,121,0.35),inset_0_1px_1px_rgba(255,255,255,0.25)] border border-white/20 hover:border-[#749220]/60 hover:shadow-[0_8px_24px_-3px_rgba(116,146,32,0.35)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 group overflow-hidden shrink-0"
                 >
-                  <span>Start for free</span>
-                  <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  {/* Subtle Light-Sweep Sheen on Hover */}
+                  <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-700 ease-out pointer-events-none" />
+                  <span className="relative z-10 tracking-tight">Start Filing</span>
+                  <ArrowRightIcon className="relative z-10 w-4 h-4 stroke-[2.5] group-hover:translate-x-1 transition-transform" />
                 </Link>
 
+                {/* Secondary Button */}
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="inline-flex items-center justify-center gap-2.5 sm:gap-3 px-5 py-3 sm:px-6 sm:py-3.5 rounded-full bg-white text-gray-800 border border-gray-200/90 font-normal text-xs sm:text-sm shadow-xs hover:bg-gray-50 hover:border-gray-300 hover:text-primary transition-all group"
+                  className="relative inline-flex items-center justify-center gap-2.5 h-11 sm:h-12 px-5 sm:px-6 rounded-xl bg-white hover:bg-[#F6F9EE] text-[#165479] hover:text-[#0A4973] border-2 border-[#165479]/15 hover:border-[#749220] font-bold text-sm sm:text-[15px] shadow-[0_2px_8px_rgba(22,84,121,0.06)] hover:shadow-[0_6px_20px_-3px_rgba(116,146,32,0.25)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 group cursor-pointer shrink-0"
                 >
-                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[10px] sm:text-xs pl-0.5 group-hover:bg-primary group-hover:text-white transition-all">
-                    ▶
-                  </div>
-                  <span>See how it works</span>
+                  <CalendarDaysIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#749220] group-hover:scale-110 transition-transform stroke-[2.2]" />
+                  <span className="tracking-tight">Talk to CPA</span>
                 </button>
               </motion.div>
+
+              {/* Friction Reducer Note */}
+              {/* <p className="text-[12px] text-gray-500 font-medium mb-6 flex items-center gap-2">
+                <span className="text-[#749220]">✓</span> No upfront credit card
+                <span className="text-gray-300">•</span>
+                <span className="text-[#749220]">✓</span> 15-min response time
+                <span className="text-gray-300">•</span>
+                <span className="text-[#749220]">✓</span> Bank-grade 256-bit security
+              </p> */}
 
               {/* Live Social Proof Avatar Stack */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.23 }}
-                className="flex items-center gap-3 mb-6 pb-2 border-b border-gray-100"
+                className="flex items-center gap-3 pt-4 border-t border-gray-100"
               >
                 <div className="flex -space-x-2 overflow-hidden shrink-0">
-                  <span className="inline-flex h-7 w-7 rounded-full ring-2 ring-white bg-purple-100 text-purple-700 text-[10px] font-normal items-center justify-center">AK</span>
-                  <span className="inline-flex h-7 w-7 rounded-full ring-2 ring-white bg-blue-100 text-blue-700 text-[10px] font-bold items-center justify-center">SR</span>
-                  <span className="inline-flex h-7 w-7 rounded-full ring-2 ring-white bg-emerald-100 text-emerald-700 text-[10px] font-normal items-center justify-center">MD</span>
-                  <span className="inline-flex h-7 w-7 rounded-full ring-2 ring-white bg-amber-100 text-amber-700 text-[10px] font-normal items-center justify-center">JP</span>
+                  <span className="inline-flex h-8 w-8 rounded-full ring-2 ring-white bg-[#0A4973] text-white text-[10px] font-bold items-center justify-center">1040</span>
+                  <span className="inline-flex h-8 w-8 rounded-full ring-2 ring-white bg-[#749220] text-white text-[10px] font-bold items-center justify-center">W-2</span>
+                  <span className="inline-flex h-8 w-8 rounded-full ring-2 ring-white bg-[#165479] text-white text-[10px] font-bold items-center justify-center">CPA</span>
+                  <span className="inline-flex h-8 w-8 rounded-full ring-2 ring-white bg-[#0c513f] text-white text-[10px] font-bold items-center justify-center">IRS</span>
                 </div>
                 <div className="text-left">
-                  <div className="flex items-center gap-1 text-amber-400 text-xs leading-none">
-                    <span>★★★★★</span>
-                    <span className="text-gray-900 font-normal ml-1 text-xs">4.9/5</span>
+                  <div className="flex items-center gap-1.5 text-amber-500 text-xs leading-none">
+                    <span className="tracking-tight text-amber-400">★★★★★</span>
+                    <span className="text-gray-900 font-bold ml-1 text-xs">4.9/5 Rating</span>
                   </div>
-                  <p className="text-[11px] text-gray-500 font-normal mt-0.5">Trusted by 10,000+ taxpayers across 50+ countries</p>
+                  <p className="text-[12px] text-gray-500 font-medium mt-0.5">
+                    Trusted by 10,000+ U.S. taxpayers, expats & filers worldwide
+                  </p>
                 </div>
               </motion.div>
 
@@ -470,71 +503,48 @@ const HeroSection = () => {
                   <span className="font-semibold text-gray-800 text-xs">100% IRS Accuracy</span>
                 </div>
                 <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-50/90 border border-gray-200/80 shadow-2xs">
-                  <SparklesIcon className="w-4 h-4 text-primary" />
+                  <SparklesIcon className="w-4 h-4 text-[#749220]" />
                   <span className="font-semibold text-gray-800 text-xs">Maximum Refund Promise</span>
                 </div>
                 <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-50/90 border border-gray-200/80 shadow-2xs">
-                  <ShieldCheckIcon className="w-4 h-4 text-purple-700" />
+                  <ShieldCheckIcon className="w-4 h-4 text-[#749220]" />
                   <span className="font-semibold text-gray-800 text-xs">Licensed CPA Review</span>
                 </div>
               </motion.div> */}
             </div>
 
-            {/* Right Visual Presentation - Interactive Floating Glass Badges */}
+            {/* Right Visual Presentation - Prominently Sized without background glow */}
             <motion.div
-              className="lg:col-span-7 xl:col-span-7 relative flex justify-center lg:justify-end items-center"
+              className="lg:col-span-5 xl:col-span-5 relative flex justify-center lg:justify-end items-center"
             >
-              <div className="relative w-full max-w-[380px] sm:max-w-[480px] md:max-w-[540px] lg:max-w-[640px] xl:max-w-[700px] 2xl:max-w-[760px] mx-auto lg:mr-0 flex justify-center lg:justify-end">
-                {/* Ambient Soft Radial Backdrop Glow */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-purple-200/40 via-primary-100/20 to-indigo-100/30 rounded-full blur-3xl pointer-events-none transform scale-95" />
-
-                {/* Floating Micro-Card 1: Top-Left Refund Maximizer */}
-                {/* <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-                  className="hidden sm:flex absolute -top-3 left-2 lg:-left-4 bg-white/95 backdrop-blur-md rounded-2xl p-3 sm:p-3.5 shadow-[0_16px_36px_rgba(76,38,145,0.12)] border border-purple-100/90 z-20 items-center gap-3 select-none"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100 flex items-center justify-center shrink-0 text-lg">
-                    💰
-                  </div>
-                  <div className="text-left">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400">Avg. Tax Refund</div>
-                    <div className="text-base font-extrabold text-gray-900 leading-tight">+$3,850</div>
-                    <div className="text-[10px] font-semibold text-emerald-600 flex items-center gap-0.5">
-                      <span>▲</span> 100% CPA Optimized
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  animate={{ y: [0, 8, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="hidden sm:flex absolute -bottom-3 right-4 lg:-right-2 bg-white/95 backdrop-blur-md rounded-2xl p-3 sm:p-3.5 shadow-[0_16px_36px_rgba(76,38,145,0.12)] border border-purple-100/90 z-20 items-center gap-3 select-none"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-primary-50 text-primary border border-primary-200/70 flex items-center justify-center shrink-0">
-                    <ShieldCheckIcon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-gray-400">IRS Compliance</div>
-                    <div className="text-xs sm:text-sm font-extrabold text-gray-900 leading-tight">Zero-Error Filing</div>
-                    <div className="text-[10px] font-medium text-purple-700">Audit Defense Included</div>
-                  </div>
-                </motion.div> */}
-
-                {/* 3D Global Tax Illustration with Country Cards */}
-                <motion.div
-                  className="relative z-10 flex justify-center lg:justify-end w-full"
-                >
+              <div className="relative w-full max-w-[360px] sm:max-w-[440px] md:max-w-[490px] lg:max-w-[530px] xl:max-w-[570px] 2xl:max-w-[610px] mx-auto lg:mr-0 flex justify-center lg:justify-end">
+                {/* Real Commercial Photography Container */}
+                <div className="relative z-10 w-full group">
                   <img
-                    src={globalTaxHeroImg}
-                    alt="Global Tax Preparation, IRS Advisory and Country Filing"
-                    className="w-full h-auto max-h-[320px] sm:max-h-[400px] md:max-h-[460px] lg:max-h-[min(68vh,590px)] xl:max-h-[min(74vh,660px)] 2xl:max-h-[720px] object-contain select-none drop-shadow-sm"
+                    src={usaTaxHeroPhoto}
+                    alt="U.S. Federal & State Tax Filing - IRS Form 1040 CPA Reviewed"
+                    className="w-full h-auto max-h-[280px] sm:max-h-[350px] md:max-h-[400px] lg:max-h-[450px] xl:max-h-[490px] object-cover rounded-2xl sm:rounded-3xl shadow-[0_16px_40px_rgba(22,84,121,0.12)] border border-gray-100 select-none transition-transform duration-300 group-hover:scale-[1.01]"
                     loading="eager"
                   />
-                </motion.div>
+
+                  {/* Compact High-Trust IRS Verified Glass Pill */}
+                  <div className="absolute -bottom-3.5 sm:-bottom-4 left-3 sm:left-5 right-3 sm:right-5 bg-white/95 backdrop-blur-md rounded-2xl p-3 sm:p-3.5 shadow-lg border border-gray-200/90 flex items-center justify-between z-20 select-none">
+                    <div className="flex items-center gap-2.5 sm:gap-3">
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-[#F6F9EE] text-[#749220] border border-[#749220]/30 flex items-center justify-center font-bold text-xs sm:text-sm shrink-0">
+                        IRS
+                      </div>
+                      <div className="text-left">
+                        <div className="text-xs sm:text-[13px] font-bold text-gray-900 leading-tight">U.S. Form 1040 e-File</div>
+                        <div className="text-[10px] sm:text-[11px] text-gray-500 font-medium">Federal & All 50 States</div>
+                      </div>
+                    </div>
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-bold text-[11px] shrink-0 border border-emerald-200/60">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 100% CPA Verified
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
-
           </div>
 
           {/* ========================================================= */}
@@ -542,11 +552,11 @@ const HeroSection = () => {
           {/* ========================================================= */}
           <div className="mt-4 sm:mt-4 lg:mt-4 pt-6 w-full font-sans">
             <div className="text-center mb-4 sm:mb-5 flex items-center justify-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-              <span className="text-[11px] sm:text-xs font-semibold tracking-wider text-primary uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#749220]" />
+              <span className="text-[11px] sm:text-xs font-semibold tracking-wider text-[#749220] uppercase">
                 IRS Authorized Tax Preparation & Expat Compliance Specialties
               </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#749220]" />
             </div>
 
             {/* Scrolling Track with Subtle Edge Fades */}
@@ -559,13 +569,13 @@ const HeroSection = () => {
                 {taxFilingBadges.map((badge, i) => (
                   <div
                     key={`tax-badge-1-${i}`}
-                    className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white border border-gray-200/80 shadow-xs hover:border-primary hover:shadow-md hover:bg-purple-50/20 transition-all duration-200 shrink-0 group cursor-default"
+                    className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white border border-gray-200/80 shadow-xs hover:border-[#749220] hover:shadow-md hover:bg-[#F6F9EE]/60 transition-all duration-200 shrink-0 group cursor-default"
                   >
-                    <div className="w-9 h-9 rounded-xl bg-primary-50 text-primary border border-primary-200 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                    <div className="w-9 h-9 rounded-xl bg-[#F6F9EE] text-[#749220] border border-[#749220]/30 flex items-center justify-center shrink-0 group-hover:bg-[#749220] group-hover:text-white transition-colors">
                       {badge.icon}
                     </div>
                     <div className="text-left">
-                      <div className="text-xs sm:text-sm font-semibold text-gray-900 group-hover:text-primary transition-colors whitespace-nowrap">
+                      <div className="text-xs sm:text-sm font-semibold text-gray-900 group-hover:text-[#165479] transition-colors whitespace-nowrap">
                         {badge.title}
                       </div>
                       <div className="text-[10px] sm:text-[11px] text-gray-500 font-normal whitespace-nowrap">
@@ -578,13 +588,13 @@ const HeroSection = () => {
                 {taxFilingBadges.map((badge, i) => (
                   <div
                     key={`tax-badge-2-${i}`}
-                    className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white border border-gray-200/80 shadow-xs hover:border-primary hover:shadow-md hover:bg-purple-50/20 transition-all duration-200 shrink-0 group cursor-default"
+                    className="flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white border border-gray-200/80 shadow-xs hover:border-[#749220] hover:shadow-md hover:bg-[#F6F9EE]/60 transition-all duration-200 shrink-0 group cursor-default"
                   >
-                    <div className="w-9 h-9 rounded-xl bg-primary-50 text-primary border border-primary-200 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                    <div className="w-9 h-9 rounded-xl bg-[#F6F9EE] text-[#749220] border border-[#749220]/30 flex items-center justify-center shrink-0 group-hover:bg-[#749220] group-hover:text-white transition-colors">
                       {badge.icon}
                     </div>
                     <div className="text-left">
-                      <div className="text-xs sm:text-sm font-semibold text-gray-900 group-hover:text-primary transition-colors whitespace-nowrap">
+                      <div className="text-xs sm:text-sm font-semibold text-gray-900 group-hover:text-[#165479] transition-colors whitespace-nowrap">
                         {badge.title}
                       </div>
                       <div className="text-[10px] sm:text-[11px] text-gray-500 font-normal whitespace-nowrap">
@@ -601,310 +611,180 @@ const HeroSection = () => {
       </section>
 
       {/* ========================================================= */}
-      {/* 2. LIVE PLATFORMS SECTION (CLEAN RIBBON)                  */}
+      {/* 3. TAX FILING SUITE - ELEGANT LIGHT MODERN DECK           */}
       {/* ========================================================= */}
-      {/* <section className="py-8 bg-white border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-5">
-            <div className="text-center md:text-left">
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary">Flexible Access</span>
-              <h3 className="text-base md:text-lg font-semibold text-gray-900">We are now live for Tax filing on</h3>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-center gap-4">
-
-              <div
-                onClick={() => navigate("/login")}
-                className="cursor-pointer flex items-center gap-3 px-5 py-2.5 rounded-full border border-gray-200 hover:border-primary hover:bg-purple-50/50 transition-all duration-200"
-              >
-                <div className="w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                  </svg>
-                </div>
-                <span className="text-xs font-semibold text-gray-800">Web Portal</span>
-              </div>
-
-      
-              <div
-                onClick={() => window.open("https://wa.me/919052333667?text=Hi", "_blank")}
-                className="cursor-pointer flex items-center gap-3 px-5 py-2.5 rounded-full border border-gray-200 hover:border-emerald-500 hover:bg-emerald-50/50 transition-all duration-200"
-              >
-                <div className="w-7 h-7 rounded-full bg-[#25D366] text-white flex items-center justify-center">
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                  </svg>
-                </div>
-                <span className="text-xs font-semibold text-gray-800">WhatsApp</span>
-              </div>
-
-          
-              <div
-                onClick={() => window.open("https://irstaxfilerworkspace.slack.com/", "_blank")}
-                className="cursor-pointer flex items-center gap-3 px-5 py-2.5 rounded-full border border-gray-200 hover:border-pink-500 hover:bg-pink-50/50 transition-all duration-200"
-              >
-                <div className="w-7 h-7 rounded-full bg-white border border-gray-200 flex items-center justify-center">
-                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none">
-                    <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52z" fill="#E01E5A" />
-                    <path d="M6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z" fill="#E01E5A" />
-                    <path d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834z" fill="#36C5F0" />
-                    <path d="M8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z" fill="#36C5F0" />
-                    <path d="M18.956 5.042a2.528 2.528 0 0 1 2.522-2.52A2.528 2.528 0 0 1 24 5.042a2.528 2.528 0 0 1-2.522 2.52h-2.522V5.042z" fill="#2EB67D" />
-                    <path d="M17.688 5.042a2.528 2.528 0 0 1-2.523 2.52 2.527 2.527 0 0 1-2.52-2.52V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v2.52z" fill="#2EB67D" />
-                    <path d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52z" fill="#ECB22E" />
-                    <path d="M15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z" fill="#ECB22E" />
-                  </svg>
-                </div>
-                <span className="text-xs font-semibold text-gray-800">Slack</span>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      {/* ========================================================= */}
-      {/* 3. TAX FILING SUITE - COMPACT SINGLE-VIEW DECK            */}
-      {/* ========================================================= */}
-      <section className="relative py-8 sm:py-10 lg:py-11 bg-white border-y border-gray-100 font-sans overflow-hidden">
-
-        {/* Ambient Decorative SVG Circles with Soft Lavender Tinted Fills & Rings */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {/* Subtle Ambient Underlying Tint */}
-          <div className="absolute top-1/4 -left-20 w-[450px] h-[450px] rounded-full bg-purple-100/40 blur-3xl" />
-          <div className="absolute top-1/3 -right-20 w-[450px] h-[450px] rounded-full bg-purple-100/40 blur-3xl" />
-
-          {/* Left Decorative SVG Circles Layer - Top-Left & Mid-Left */}
-          <svg
-            className="absolute -top-10 -left-20 w-[380px] sm:w-[440px] h-[680px] overflow-visible"
-            fill="none"
-            viewBox="0 0 440 680"
-          >
-            <defs>
-              {/* Top-Left Soft Lavender Radial Gradient Fill */}
-              <radialGradient id="leftTopDisc" cx="45%" cy="45%" r="55%">
-                <stop offset="0%" stopColor="#e4d5f7" stopOpacity="0.9" />
-                <stop offset="60%" stopColor="#ede5fa" stopOpacity="0.75" />
-                <stop offset="100%" stopColor="#f5effd" stopOpacity="0.3" />
-              </radialGradient>
-              {/* Mid-Left Soft Lavender Radial Gradient Fill */}
-              <radialGradient id="leftMidDisc" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#dfcbf5" stopOpacity="0.95" />
-                <stop offset="65%" stopColor="#eae0f8" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#f6f0fd" stopOpacity="0.3" />
-              </radialGradient>
-            </defs>
-
-            {/* Top-Left Circle (Borderless Filled Disc) */}
-            <circle cx="160" cy="160" r="185" fill="url(#leftTopDisc)" />
-
-            {/* Mid-Left Floating Circle (Borderless Filled Disc) */}
-            <circle cx="75" cy="480" r="90" fill="url(#leftMidDisc)" />
-          </svg>
-
-          {/* Right Decorative SVG Circles Layer - Top-Right, Mid-Right & Bottom-Right */}
-          <svg
-            className="absolute -top-10 -right-24 w-[420px] sm:w-[480px] h-[740px] overflow-visible"
-            fill="none"
-            viewBox="0 0 480 740"
-          >
-            <defs>
-              {/* Top-Right Soft Lavender Radial Gradient Fill */}
-              <radialGradient id="rightTopDisc" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#e4d5f7" stopOpacity="0.9" />
-                <stop offset="65%" stopColor="#ede5fa" stopOpacity="0.75" />
-                <stop offset="100%" stopColor="#f5effd" stopOpacity="0" />
-              </radialGradient>
-              {/* Mid-Right Soft Lavender Radial Gradient Fill */}
-              <radialGradient id="rightMidDisc" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#dfcbf5" stopOpacity="0.95" />
-                <stop offset="65%" stopColor="#eae0f8" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#f6f0fd" stopOpacity="0" />
-              </radialGradient>
-              {/* Bottom-Right Soft Lavender Radial Gradient Fill */}
-              <radialGradient id="rightBottomDisc" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#e5d6f8" stopOpacity="0.9" />
-                <stop offset="65%" stopColor="#ede5fa" stopOpacity="0.75" />
-                <stop offset="100%" stopColor="#f6f0fd" stopOpacity="0" />
-              </radialGradient>
-            </defs>
-
-            {/* Top-Right Large Circle (Borderless) */}
-            <circle cx="340" cy="130" r="175" fill="url(#rightTopDisc)" />
-
-            {/* Mid-Right Large Circle (Borderless) */}
-            <circle cx="380" cy="380" r="165" fill="url(#rightMidDisc)" />
-
-            {/* Bottom-Right Circle (Beside CPA Spotlight Card, Borderless) */}
-            <circle cx="330" cy="630" r="115" fill="url(#rightBottomDisc)" />
-          </svg>
-        </div>
+      <section className="relative py-16 sm:py-20 lg:py-24 bg-white border-y border-gray-100 font-sans overflow-hidden">
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Section Header - Compact */}
-          <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-5">
-            {/* Top Eyebrow Tag with Green Dot */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-gray-200/80 shadow-xs mb-2 text-[12px] font-normal text-gray-700">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
-              <span>Tax Filing & Advisory Suite</span>
+          {/* Section Header - Editorial, Light & Spacious */}
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+            {/* Subtle Eyebrow Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F6F9EE] border border-[#749220]/25 mb-3 text-[11px] font-medium text-[#749220] tracking-wider uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#749220]" />
+              <span>Full-Service Tax Preparation</span>
             </div>
 
-            <h2 className="text-2xl sm:text-[28px] lg:text-[32px] font-normal text-gray-900 tracking-tight leading-snug">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-gray-900 tracking-tight leading-snug">
               Explore Our{" "}
-              <span className="bg-gradient-to-r from-primary via-purple-700 to-indigo-600 bg-clip-text text-transparent">
+              <span className="font-medium text-[#165479]">
                 Filing Services
               </span>
             </h2>
 
-            <p className="text-xs sm:text-sm text-[#64748b] mt-1 font-normal">
-              Everything you need to file confidently, wherever you live.
+            <p className="text-sm sm:text-[15px] text-gray-500 mt-2.5 max-w-xl mx-auto font-normal leading-relaxed">
+              Certified CPA preparation, dual-status compliance, and maximum refunds tailored for US taxpayers, businesses, and expats.
             </p>
 
-            {/* Segmented Category Pill Switcher */}
-            <div className="mt-3.5 flex justify-center">
-              <div className="inline-flex items-center p-1 bg-[#f1f3f7] rounded-full border border-gray-200/70 shadow-xs gap-1">
-                {serviceCategories.map((cat, cIdx) => {
+            {/* Segmented Category Switcher - Minimalist Clean Pill */}
+            <div className="mt-8 flex justify-center">
+              <div className="inline-flex items-center p-1 bg-gray-50/90 rounded-full border border-gray-200/60 shadow-2xs gap-1">
+                {serviceCategories.map((cat) => {
                   const isActive = selectedService === cat.id;
                   const count = services[cat.id]?.items.length || 0;
                   return (
-                    <div key={cat.id} className="flex items-center">
-                      <button
-                        type="button"
-                        onClick={() => setSelectedService(cat.id)}
-                        className={`flex items-center gap-1.5 py-1.5 px-4 sm:px-5 rounded-full text-xs font-normal transition-all duration-200 cursor-pointer whitespace-nowrap ${isActive
-                          ? "bg-white text-[#5629B2] shadow-xs border border-purple-100/80"
-                          : "text-[#475569] hover:text-gray-900"
-                          }`}
-                      >
-                        <div className={`w-3.5 h-3.5 shrink-0 ${isActive ? "text-[#5629B2]" : "text-[#475569]"}`}>
-                          {cat.icon}
-                        </div>
-                        <span>{cat.label}</span>
-                        <span className={isActive ? "text-[#5629B2] font-normal ml-0.5" : "text-[#64748b] font-normal ml-0.5"}>
-                          ({count})
-                        </span>
-                      </button>
-                      {cIdx === 1 && (
-                        <div className="w-[1px] h-3 bg-gray-300 mx-1 hidden sm:block" />
-                      )}
-                    </div>
+                    <button
+                      key={cat.id}
+                      type="button"
+                      onClick={() => setSelectedService(cat.id)}
+                      className={`flex items-center gap-2 py-2 px-4 sm:px-5 rounded-full text-xs sm:text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${isActive
+                        ? "bg-white text-[#165479] shadow-xs border border-gray-200/80"
+                        : "text-gray-500 hover:text-gray-900"
+                        }`}
+                    >
+                      <div className={`w-3.5 h-3.5 shrink-0 ${isActive ? "text-[#749220]" : "text-gray-400"}`}>
+                        {cat.icon}
+                      </div>
+                      <span className="font-normal">{cat.label}</span>
+                      <span className={`text-[11px] font-normal px-1.5 py-0.2 rounded-full ${isActive ? "bg-[#F6F9EE] text-[#749220]" : "text-gray-400"
+                        }`}>
+                        {count}
+                      </span>
+                    </button>
                   );
                 })}
               </div>
             </div>
           </div>
 
-          {/* 3-Column Studio Cards Grid - Compact Studio Proportions */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4.5 mt-5">
+          {/* 3-Column Services Grid - Elegant, Airy & Beautiful */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
             {services[selectedService]?.items.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-2xl p-4 sm:p-5 border border-[#f0f0f4] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_20px_rgba(86,41,178,0.06)] hover:border-[#e9e2fc] transition-all duration-300 group flex flex-col justify-between text-left"
+                className="relative bg-white rounded-3xl p-6 sm:p-7 border border-gray-100/90 shadow-[0_2px_16px_rgba(22,84,121,0.03)] hover:shadow-[0_16px_36px_-6px_rgba(22,84,121,0.08)] hover:border-[#749220]/30 hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between text-left"
               >
                 <div>
-                  {/* Top Row: Violet Squircle Icon + Tag */}
-                  <div className="flex items-center justify-between mb-2.5">
-                    <div className="w-10 h-10 rounded-xl bg-[#5629B2] text-white flex items-center justify-center shrink-0 shadow-xs">
+                  {/* Top Row: Gentle Icon Squircle + Delicate Form Tag */}
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-11 h-11 rounded-2xl bg-[#F6F9EE] text-[#749220] border border-[#749220]/25 flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#165479] group-hover:text-white group-hover:border-[#165479]">
                       {item.icon}
                     </div>
                     {item.tag && (
-                      <span className="text-[11px] font-normal text-[#5629B2] bg-[#f3effe] px-2.5 py-0.5 rounded-full tracking-wide">
+                      <span className="text-[11px] font-normal text-primary bg-[#C3DCEB]/20 border border-[#C3DCEB]/40 px-3 py-1 rounded-full tracking-wide">
                         {item.tag}
                       </span>
                     )}
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-sm sm:text-base font-medium text-gray-900 mb-1 group-hover:text-[#5629B2] transition-colors leading-snug line-clamp-1">
+                  {/* Title - Clean font-medium */}
+                  <h3 className="text-base sm:text-[17px] font-medium text-gray-900 mb-2 group-hover:text-[#165479] transition-colors leading-snug">
                     {item.title}
                   </h3>
 
-                  {/* Description */}
-                  <p className="text-xs text-[#64748b] leading-relaxed font-normal mb-3 line-clamp-2">
+                  {/* Description - Gentle font-normal */}
+                  <p className="text-xs sm:text-[13px] text-gray-500 leading-relaxed font-normal mb-5">
                     {item.description}
                   </p>
 
-                  {/* Feature Tags / Chips */}
+                  {/* Minimalist Feature List with Soft Bullet Dots */}
                   {item.features && item.features.length > 0 && (
-                    <div className="flex flex-wrap items-center gap-1.5 mb-3.5">
-                      {item.features.slice(0, 2).map((feat, fIdx) => (
-                        <span
-                          key={fIdx}
-                          className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#ecfdf3] text-[11px] font-normal text-gray-700"
-                        >
-                          <span className="w-3 h-3 rounded-full bg-[#10b981] text-white flex items-center justify-center text-[8px] shrink-0">
-                            ✓
-                          </span>
-                          <span className="truncate max-w-[130px]">{feat}</span>
-                        </span>
+                    <ul className="space-y-2 mb-6">
+                      {item.features.map((feat, fIdx) => (
+                        <li key={fIdx} className="flex items-center gap-2 text-xs text-gray-600 font-normal">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#749220]/70 shrink-0" />
+                          <span>{feat}</span>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   )}
                 </div>
 
-                {/* Bottom Action Link */}
-                <div className="pt-1 border-t border-gray-50 flex items-center justify-between">
+                {/* Bottom Action Link - Refined & Light */}
+                <div className="pt-4 border-t border-gray-50 flex items-center justify-between">
                   <Link
                     to={item.route || "/login"}
-                    className="inline-flex items-center gap-1 text-xs font-normal text-[#5629B2] hover:text-[#48209e] group-hover:translate-x-0.5 transition-all"
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-[13px] font-medium text-[#165479] hover:text-[#749220] transition-colors group/link"
                   >
                     <span>File Return</span>
-                    <ArrowRightIcon className="w-3.5 h-3.5" />
+                    <ArrowRightIcon className="w-3.5 h-3.5 stroke-[1.8] group-hover/link:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </div>
             ))}
 
-            {/* 6th Slot: CPA Spotlight Card - Compact */}
-            <div className="bg-[#f4f0fd] rounded-2xl p-4 sm:p-5 border border-[#ede6fa] relative overflow-hidden flex flex-col justify-between shadow-[0_2px_12px_rgba(0,0,0,0.03)] text-left">
-              {/* Top-Right Decorative Curve Overlay */}
-              <div className="absolute top-0 right-0 w-28 h-28 bg-[#e8e0fc]/70 rounded-bl-[80px] pointer-events-none" />
-
+            {/* 6th Slot: Harmonious CPA Consultation Spotlight Card */}
+            <div className="relative bg-gradient-to-b from-[#F6F9EE]/70 via-[#F6F9EE]/40 to-white rounded-3xl p-6 sm:p-7 border border-[#749220]/30 shadow-[0_2px_16px_rgba(116,146,32,0.05)] hover:shadow-[0_16px_36px_-6px_rgba(116,146,32,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left group">
               <div>
-                {/* Top Squircle with Shield */}
-                <div className="w-10 h-10 rounded-xl bg-[#5629B2] text-white flex items-center justify-center shrink-0 shadow-xs mb-2.5">
-                  <ShieldCheckIcon className="w-5 h-5 text-white" />
+                {/* Top Squircle with Shield & Badge */}
+                <div className="flex items-center justify-between mb-5">
+                  <div className="w-11 h-11 rounded-2xl bg-white text-[#749220] border border-[#749220]/25 shadow-2xs flex items-center justify-center shrink-0">
+                    <ShieldCheckIcon className="w-5 h-5 stroke-[1.8]" />
+                  </div>
+                  <span className="text-[11px] font-normal text-[#749220] bg-white border border-[#749220]/30 px-3 py-1 rounded-full tracking-wide">
+                    15-Min Free
+                  </span>
                 </div>
 
-                <h3 className="text-sm sm:text-base font-normal text-gray-900 mb-1">
-                  CPA Spotlight
+                <h3 className="text-base sm:text-[17px] font-medium text-gray-900 mb-2 leading-snug">
+                  CPA Advisory Session
                 </h3>
 
-                <p className="text-xs text-[#64748b] leading-relaxed font-normal mb-3 line-clamp-2">
-                  Get expert guidance before you file.
+                <p className="text-xs sm:text-[13px] text-gray-600 leading-relaxed font-normal mb-5">
+                  Connect 1-on-1 with a licensed CPA or IRS Enrolled Agent for tailored guidance before submitting.
                 </p>
+
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-center gap-2 text-xs text-gray-600 font-normal">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#749220] shrink-0" />
+                    <span>Dual-status & expat tax review</span>
+                  </li>
+                  <li className="flex items-center gap-2 text-xs text-gray-600 font-normal">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#749220] shrink-0" />
+                    <span>Prior-year catch up & penalty relief</span>
+                  </li>
+                </ul>
               </div>
 
               <div>
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(true)}
-                  className="w-full py-2 px-3 rounded-lg bg-[#5629B2] hover:bg-[#48209e] text-white font-normal text-xs shadow-xs hover:shadow-sm transition-all flex items-center justify-center cursor-pointer"
+                  className="w-full py-2.5 px-4 rounded-xl bg-[#165479] hover:bg-[#0A4973] text-white font-medium text-xs sm:text-[13px] shadow-sm hover:shadow transition-all flex items-center justify-center gap-2 cursor-pointer group/btn"
                 >
-                  <span>Free CPA Consultation</span>
+                  <span>Book Free Consultation</span>
+                  <ArrowRightIcon className="w-3.5 h-3.5 stroke-[1.8] group-hover/btn:translate-x-0.5 transition-transform" />
                 </button>
-
-                <div className="flex items-center gap-1.5 text-[11px] font-normal text-gray-600 mt-2.5">
-                  <span className="w-3 h-3 rounded-full bg-[#10b981] text-white flex items-center justify-center text-[8px] shrink-0">
-                    ✓
-                  </span>
-                  <span>Verified tax experts</span>
-                </div>
               </div>
             </div>
           </div>
 
-          {/* Bottom Trust Guarantee Ribbon - Ultra Compact */}
-          <div className="mt-5 py-2 px-4 sm:px-6 rounded-full bg-white border border-gray-200/80 shadow-2xs flex flex-wrap items-center justify-center gap-2 text-xs text-center max-w-xl mx-auto">
-            <div className="flex items-center gap-1.5 text-gray-900 font-normal">
-              <span className="w-3.5 h-3.5 rounded-full bg-[#10b981] text-white flex items-center justify-center text-[9px] shrink-0">
-                ✓
-              </span>
-              <span>100% accuracy guarantee</span>
+          {/* Bottom Trust Guarantee Strip - Minimal, Elegant & Light */}
+          <div className="mt-12 py-3 px-6 rounded-full bg-gray-50/80 border border-gray-100 flex flex-wrap items-center justify-center gap-5 sm:gap-8 text-xs text-gray-500 font-normal text-center max-w-3xl mx-auto">
+            <div className="flex items-center gap-1.5">
+              <CheckCircleIcon className="w-4 h-4 text-[#749220] stroke-[1.8]" />
+              <span>100% IRS Accuracy Guarantee</span>
             </div>
-            <span className="text-gray-300 hidden sm:inline">|</span>
-            <span className="text-[#64748b] font-normal">
-              Secure, compliant, and reviewed by tax professionals.
-            </span>
+            <span className="text-gray-300 hidden sm:inline">•</span>
+            <div className="flex items-center gap-1.5">
+              <ShieldCheckIcon className="w-4 h-4 text-[#165479] stroke-[1.8]" />
+              <span>Licensed CPA & Enrolled Agent Review</span>
+            </div>
+            <span className="text-gray-300 hidden sm:inline">•</span>
+            <div className="flex items-center gap-1.5">
+              <SparklesIcon className="w-4 h-4 text-[#749220] stroke-[1.8]" />
+              <span>Maximum Refund Guarantee</span>
+            </div>
           </div>
 
         </div>
@@ -915,7 +795,7 @@ const HeroSection = () => {
       {/* ========================================================= */}
       <section className="relative py-12 sm:py-16 lg:py-10 bg-white font-sans overflow-hidden">
         {/* Ambient Subtle Lavender Aura */}
-        <div className="absolute top-1/3 right-10 w-[550px] h-[550px] rounded-full bg-gradient-to-tr from-purple-100/40 via-purple-50/20 to-transparent blur-3xl pointer-events-none" />
+        <div className="absolute top-1/3 right-10 w-[550px] h-[550px] rounded-full bg-gradient-to-tr from-[#165479]/10 via-[#749220]/5 to-transparent blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -932,12 +812,12 @@ const HeroSection = () => {
               </div>
 
               {/* Display Headline */}
-              <h2 className="text-4xl sm:text-5xl lg:text-[52px] xl:text-[56px] font-normal text-gray-900 tracking-tight leading-[1.18] space-y-1 sm:space-y-2">
+              <h2 className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-bold text-gray-900 tracking-tight leading-[1.18] space-y-1 sm:space-y-2">
                 <span className="block whitespace-nowrap">Why Thousands</span>
-                <span className="block whitespace-nowrap bg-gradient-to-r from-[#5b21b6] via-[#7c3aed] to-[#6366f1] bg-clip-text text-transparent">
+                <span className="block whitespace-nowrap bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
                   Choose Our
                 </span>
-                <span className="block whitespace-nowrap bg-gradient-to-r from-[#5b21b6] via-[#7c3aed] to-[#6366f1] bg-clip-text text-transparent">
+                <span className="block whitespace-nowrap bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
                   Tax Team
                 </span>
               </h2>
@@ -957,29 +837,29 @@ const HeroSection = () => {
                 {/* SVG Connecting Dashed Paths Layer */}
                 <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" viewBox="0 0 860 590" fill="none">
                   {/* Dashed line from Card 3 up to Card 1 left edge */}
-                  <path d="M 45 340 L 45 170 Q 45 155 60 155 L 80 155" stroke="#c084fc" strokeWidth="1.5" strokeDasharray="4 4" strokeOpacity="0.85" />
-                  <circle cx="80" cy="155" r="10" fill="#ede5fa" fillOpacity="0.85" />
-                  <circle cx="80" cy="155" r="4.5" fill="#7c3aed" />
+                  <path d="M 45 340 L 45 170 Q 45 155 60 155 L 80 155" stroke="#749220" strokeWidth="1.5" strokeDasharray="4 4" strokeOpacity="0.85" />
+                  <circle cx="80" cy="155" r="10" fill="#ECF2DC" fillOpacity="0.85" />
+                  <circle cx="80" cy="155" r="4.5" fill="#749220" />
 
                   {/* Dashed line from Card 1 top edge up and right to Card 2 */}
-                  <path d="M 380 30 L 380 10 Q 380 0 400 0 L 520 0" stroke="#c084fc" strokeWidth="1.5" strokeDasharray="4 4" strokeOpacity="0.85" />
-                  <circle cx="520" cy="0" r="10" fill="#ede5fa" fillOpacity="0.85" />
-                  <circle cx="520" cy="0" r="4.5" fill="#7c3aed" />
+                  <path d="M 380 30 L 380 10 Q 380 0 400 0 L 520 0" stroke="#749220" strokeWidth="1.5" strokeDasharray="4 4" strokeOpacity="0.85" />
+                  <circle cx="520" cy="0" r="10" fill="#ECF2DC" fillOpacity="0.85" />
+                  <circle cx="520" cy="0" r="4.5" fill="#749220" />
 
                   {/* Dashed line from Card 1 right edge curving down to Card 4 */}
-                  <path d="M 490 260 L 530 260 Q 555 260 555 285 L 555 315 L 590 315" stroke="#c084fc" strokeWidth="1.5" strokeDasharray="4 4" strokeOpacity="0.85" />
-                  <circle cx="490" cy="260" r="10" fill="#ede5fa" fillOpacity="0.85" />
-                  <circle cx="490" cy="260" r="4.5" fill="#7c3aed" />
-                  <circle cx="555" cy="315" r="10" fill="#ede5fa" fillOpacity="0.85" />
-                  <circle cx="555" cy="315" r="4.5" fill="#7c3aed" />
+                  <path d="M 490 260 L 530 260 Q 555 260 555 285 L 555 315 L 590 315" stroke="#749220" strokeWidth="1.5" strokeDasharray="4 4" strokeOpacity="0.85" />
+                  <circle cx="490" cy="260" r="10" fill="#ECF2DC" fillOpacity="0.85" />
+                  <circle cx="490" cy="260" r="4.5" fill="#749220" />
+                  <circle cx="555" cy="315" r="10" fill="#ECF2DC" fillOpacity="0.85" />
+                  <circle cx="555" cy="315" r="4.5" fill="#749220" />
                 </svg>
 
                 {/* 1. Centerpiece Hero Card: AI + CPA Accuracy */}
-                <div className="absolute top-7 left-20 z-30 w-[410px] rounded-[36px] bg-gradient-to-b from-[#fbfaff] via-[#f7f3fe] to-[#f2ecfc] border border-[#e4d7f8] p-7 shadow-[0_20px_50px_rgba(124,58,237,0.08)] text-left hover:shadow-[0_24px_56px_rgba(124,58,237,0.12)] transition-all">
+                <div className="absolute top-7 left-20 z-30 w-[410px] rounded-[36px] bg-gradient-to-b from-[#FFFFFF] via-[#F6F9EE] to-[#F6F9EE] border border-[#DCE6BC] p-7 shadow-[0_20px_50px_rgba(22,84,121,0.08)] text-left hover:shadow-[0_24px_56px_rgba(116,146,32,0.12)] transition-all">
                   <div className="flex items-center justify-between">
                     {/* Big White Squircle with Purple Brain Icon */}
-                    <div className="w-18 h-18 rounded-[24px] bg-white border border-purple-100/80 shadow-xs flex items-center justify-center">
-                      <svg className="w-10 h-10 text-[#7c3aed]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <div className="w-18 h-18 rounded-[24px] bg-white border border-[#C3DCEB]/70 shadow-xs flex items-center justify-center">
+                      <svg className="w-10 h-10 text-[#749220]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M9.5 4a3.5 3.5 0 0 0-3.5 3.5c0 .33.05.65.13.95A4 4 0 0 0 4 12c0 1.25.58 2.37 1.48 3.1A4.5 4.5 0 0 0 9.5 20h.5V4h-.5z" />
                         <path d="M14.5 4a3.5 3.5 0 0 1 3.5 3.5c0 .33-.05.65-.13.95A4 4 0 0 1 20 12c0 1.25-.58 2.37-1.48 3.1A4.5 4.5 0 0 1 14.5 20h-.5V4h.5z" />
                         <path d="M6.5 12h3" />
@@ -991,12 +871,12 @@ const HeroSection = () => {
                       </svg>
                     </div>
                     {/* Soft Lavender Pill Badge */}
-                    <span className="text-xs font-normal text-[#6d28d9] bg-[#ede6fa] px-4 py-1.5 rounded-full border border-purple-200/50 shadow-2xs">
+                    <span className="text-xs font-normal text-[#637D1A] bg-[#F6F9EE] px-4 py-1.5 rounded-full border border-[#749220]/30 shadow-2xs">
                       Our Core Advantage
                     </span>
                   </div>
 
-                  <h3 className="text-2xl font-normal text-[#1e1b4b] tracking-tight mt-6">
+                  <h3 className="text-2xl font-normal text-[#0A4973] tracking-tight mt-6">
                     AI + CPA Accuracy
                   </h3>
                   <p className="text-xs sm:text-sm text-[#52525b] font-normal leading-relaxed mt-2.5">
@@ -1004,7 +884,7 @@ const HeroSection = () => {
                   </p>
 
                   {/* Bottom Rounded Pill */}
-                  <div className="mt-6 px-4 py-2.5 rounded-full bg-white/95 border border-purple-100 shadow-2xs inline-flex items-center gap-2.5 text-xs text-[#3f3f46] font-normal">
+                  <div className="mt-6 px-4 py-2.5 rounded-full bg-white/95 border border-[#C3DCEB] shadow-2xs inline-flex items-center gap-2.5 text-xs text-[#3f3f46] font-normal">
                     <span className="w-4 h-4 rounded-md bg-[#10b981] text-white flex items-center justify-center text-[10px] shrink-0">
                       ✓
                     </span>
@@ -1013,56 +893,56 @@ const HeroSection = () => {
                 </div>
 
                 {/* 2. Top-Right Card: Anytime Expert Chat */}
-                <div className="absolute top-0 right-14 z-20 w-[260px] rounded-[32px] bg-white border border-purple-100/90 p-6 shadow-[0_16px_36px_rgba(0,0,0,0.03)] text-left hover:shadow-[0_20px_42px_rgba(0,0,0,0.05)] transition-all">
-                  <div className="w-16 h-16 rounded-[22px] bg-[#f0eaff] text-[#7c3aed] flex items-center justify-center shadow-xs">
-                    <svg className="w-8 h-8 text-[#7c3aed]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <div className="absolute top-0 right-14 z-20 w-[260px] rounded-[32px] bg-white border border-[#C3DCEB]/80 p-6 shadow-[0_16px_36px_rgba(0,0,0,0.03)] text-left hover:shadow-[0_20px_42px_rgba(0,0,0,0.05)] transition-all">
+                  <div className="w-16 h-16 rounded-[22px] bg-[#F0F6FA] text-[#749220] flex items-center justify-center shadow-xs">
+                    <svg className="w-8 h-8 text-[#749220]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
                     </svg>
                   </div>
-                  <h4 className="text-lg font-normal text-[#1e1b4b] tracking-tight mt-4">
+                  <h4 className="text-lg font-normal text-[#0A4973] tracking-tight mt-4">
                     Anytime Expert Chat
                   </h4>
                   <p className="text-xs text-[#52525b] font-normal leading-relaxed mt-2">
                     Get answers from real tax experts whenever you need them — not just during tax season.
                   </p>
                   <div className="flex justify-end mt-4">
-                    <div className="w-10 h-10 rounded-full border border-purple-200/90 bg-white text-[#7c3aed] flex items-center justify-center hover:bg-purple-50 transition-colors shadow-2xs cursor-pointer">
+                    <div className="w-10 h-10 rounded-full border border-[#749220]/40 bg-white text-[#749220] flex items-center justify-center hover:bg-[#F6F9EE] transition-colors shadow-2xs cursor-pointer">
                       <ArrowRightIcon className="w-4 h-4" />
                     </div>
                   </div>
                 </div>
 
                 {/* 3. Bottom-Left Card: Refund Accelerator */}
-                <div className="absolute bottom-2 left-0 z-20 w-[270px] rounded-[32px] bg-white border border-purple-100/90 p-6 shadow-[0_16px_36px_rgba(0,0,0,0.04)] text-left hover:shadow-[0_20px_42px_rgba(0,0,0,0.06)] transition-all">
-                  <div className="w-16 h-16 rounded-[22px] bg-[#f0eaff] text-[#7c3aed] flex items-center justify-center shadow-xs">
-                    <svg className="w-8 h-8 text-[#7c3aed]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <div className="absolute bottom-2 left-0 z-20 w-[270px] rounded-[32px] bg-white border border-[#C3DCEB]/80 p-6 shadow-[0_16px_36px_rgba(0,0,0,0.04)] text-left hover:shadow-[0_20px_42px_rgba(0,0,0,0.06)] transition-all">
+                  <div className="w-16 h-16 rounded-[22px] bg-[#F0F6FA] text-[#749220] flex items-center justify-center shadow-xs">
+                    <svg className="w-8 h-8 text-[#749220]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                     </svg>
                   </div>
-                  <h4 className="text-lg font-normal text-[#1e1b4b] tracking-tight mt-4">
+                  <h4 className="text-lg font-normal text-[#0A4973] tracking-tight mt-4">
                     Refund Accelerator
                   </h4>
                   <p className="text-xs text-[#52525b] font-normal leading-relaxed mt-2">
                     Smart checks, faster filing, and proactive monitoring to help you get your refund sooner.
                   </p>
                   <div className="flex justify-end mt-4">
-                    <div className="w-10 h-10 rounded-full border border-purple-200/90 bg-white text-[#7c3aed] flex items-center justify-center hover:bg-purple-50 transition-colors shadow-2xs cursor-pointer">
+                    <div className="w-10 h-10 rounded-full border border-[#749220]/40 bg-white text-[#749220] flex items-center justify-center hover:bg-[#F6F9EE] transition-colors shadow-2xs cursor-pointer">
                       <ArrowRightIcon className="w-4 h-4" />
                     </div>
                   </div>
                 </div>
 
                 {/* 4. Bottom-Right Card: Global Compliance (Cleanly Positioned Below Card 2) */}
-                <div className="absolute bottom-2 right-0 z-20 w-[240px] h-[330px] rounded-[32px] bg-white border border-purple-100/90 p-6 shadow-[0_16px_36px_rgba(0,0,0,0.03)] text-left flex flex-col justify-between hover:shadow-[0_20px_42px_rgba(0,0,0,0.05)] transition-all">
+                <div className="absolute bottom-2 right-0 z-20 w-[240px] h-[330px] rounded-[32px] bg-white border border-[#C3DCEB]/80 p-6 shadow-[0_16px_36px_rgba(0,0,0,0.03)] text-left flex flex-col justify-between hover:shadow-[0_20px_42px_rgba(0,0,0,0.05)] transition-all">
                   <div>
-                    <div className="w-16 h-16 rounded-[22px] bg-[#f0eaff] text-[#7c3aed] flex items-center justify-center shadow-xs">
-                      <svg className="w-8 h-8 text-[#7c3aed]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <div className="w-16 h-16 rounded-[22px] bg-[#F0F6FA] text-[#749220] flex items-center justify-center shadow-xs">
+                      <svg className="w-8 h-8 text-[#749220]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="12" cy="12" r="10" />
                         <line x1="2" y1="12" x2="22" y2="12" />
                         <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                       </svg>
                     </div>
-                    <h4 className="text-lg font-normal text-[#1e1b4b] tracking-tight mt-4">
+                    <h4 className="text-lg font-normal text-[#0A4973] tracking-tight mt-4">
                       Global Compliance
                     </h4>
                     <p className="text-xs text-[#52525b] font-normal leading-relaxed mt-2">
@@ -1070,7 +950,7 @@ const HeroSection = () => {
                     </p>
                   </div>
                   <div className="flex justify-end mt-auto pt-2">
-                    <div className="w-10 h-10 rounded-full border border-purple-200/90 bg-white text-[#7c3aed] flex items-center justify-center hover:bg-purple-50 transition-colors shadow-2xs cursor-pointer">
+                    <div className="w-10 h-10 rounded-full border border-[#749220]/40 bg-white text-[#749220] flex items-center justify-center hover:bg-[#F6F9EE] transition-colors shadow-2xs cursor-pointer">
                       <ArrowRightIcon className="w-4 h-4" />
                     </div>
                   </div>
@@ -1081,10 +961,10 @@ const HeroSection = () => {
               {/* Mobile / Tablet Responsive Fallback Layout */}
               <div className="block lg:hidden space-y-4">
                 {/* Centerpiece Full Width */}
-                <div className="rounded-[28px] bg-gradient-to-b from-[#fbfaff] via-[#f7f3fe] to-[#f2ecfc] border border-[#e4d7f8] p-6 shadow-sm text-left">
+                <div className="rounded-[28px] bg-gradient-to-b from-[#FFFFFF] via-[#F6F9EE] to-[#F6F9EE] border border-[#DCE6BC] p-6 shadow-sm text-left">
                   <div className="flex items-center justify-between">
-                    <div className="w-16 h-16 rounded-[22px] bg-white border border-purple-100 shadow-xs flex items-center justify-center">
-                      <svg className="w-8 h-8 text-[#7c3aed]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <div className="w-16 h-16 rounded-[22px] bg-white border border-[#C3DCEB] shadow-xs flex items-center justify-center">
+                      <svg className="w-8 h-8 text-[#749220]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M9.5 4a3.5 3.5 0 0 0-3.5 3.5c0 .33.05.65.13.95A4 4 0 0 0 4 12c0 1.25.58 2.37 1.48 3.1A4.5 4.5 0 0 0 9.5 20h.5V4h-.5z" />
                         <path d="M14.5 4a3.5 3.5 0 0 1 3.5 3.5c0 .33-.05.65-.13.95A4 4 0 0 1 20 12c0 1.25-.58 2.37-1.48 3.1A4.5 4.5 0 0 1 14.5 20h-.5V4h.5z" />
                         <path d="M6.5 12h3" />
@@ -1095,17 +975,17 @@ const HeroSection = () => {
                         <path d="M14.5 8H17" />
                       </svg>
                     </div>
-                    <span className="text-xs font-normal text-[#6d28d9] bg-[#ede6fa] px-3.5 py-1.5 rounded-full border border-purple-200/50">
+                    <span className="text-xs font-normal text-[#637D1A] bg-[#F6F9EE] px-3.5 py-1.5 rounded-full border border-[#749220]/30">
                       Our Core Advantage
                     </span>
                   </div>
-                  <h3 className="text-xl font-normal text-[#1e1b4b] tracking-tight mt-4">
+                  <h3 className="text-xl font-normal text-[#0A4973] tracking-tight mt-4">
                     AI + CPA Accuracy
                   </h3>
                   <p className="text-xs sm:text-sm text-[#52525b] font-normal leading-relaxed mt-2">
                     Advanced AI meets licensed CPAs to deliver greater accuracy, fewer errors, and bigger opportunities for your refund.
                   </p>
-                  <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white border border-purple-100 shadow-2xs text-xs text-[#3f3f46] font-normal">
+                  <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white border border-[#C3DCEB] shadow-2xs text-xs text-[#3f3f46] font-normal">
                     <span className="w-4 h-4 rounded-md bg-[#10b981] text-white flex items-center justify-center text-[10px] shrink-0">
                       ✓
                     </span>
@@ -1120,7 +1000,7 @@ const HeroSection = () => {
                       title: "Anytime Expert Chat",
                       desc: "Get answers from real tax experts whenever you need them — not just during tax season.",
                       icon: (
-                        <svg className="w-7 h-7 text-[#7c3aed]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <svg className="w-7 h-7 text-[#749220]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
                         </svg>
                       ),
@@ -1129,7 +1009,7 @@ const HeroSection = () => {
                       title: "Refund Accelerator",
                       desc: "Smart checks, faster filing, and proactive monitoring to help you get your refund sooner.",
                       icon: (
-                        <svg className="w-7 h-7 text-[#7c3aed]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <svg className="w-7 h-7 text-[#749220]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                           <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                         </svg>
                       ),
@@ -1138,7 +1018,7 @@ const HeroSection = () => {
                       title: "Global Compliance",
                       desc: "Stay compliant across borders with up-to-date guidance for U.S. and international tax rules.",
                       icon: (
-                        <svg className="w-7 h-7 text-[#7c3aed]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <svg className="w-7 h-7 text-[#749220]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                           <circle cx="12" cy="12" r="10" />
                           <line x1="2" y1="12" x2="22" y2="12" />
                           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
@@ -1146,12 +1026,12 @@ const HeroSection = () => {
                       ),
                     },
                   ].map((card, cIdx) => (
-                    <div key={cIdx} className="rounded-[28px] bg-white border border-purple-100/90 p-5 shadow-2xs text-left flex flex-col justify-between">
+                    <div key={cIdx} className="rounded-[28px] bg-white border border-[#C3DCEB]/80 p-5 shadow-2xs text-left flex flex-col justify-between">
                       <div>
-                        <div className="w-14 h-14 rounded-[20px] bg-[#f0eaff] text-[#7c3aed] flex items-center justify-center shadow-xs">
+                        <div className="w-14 h-14 rounded-[20px] bg-[#F0F6FA] text-[#749220] flex items-center justify-center shadow-xs">
                           {card.icon}
                         </div>
-                        <h4 className="text-base font-normal text-[#1e1b4b] tracking-tight mt-3">
+                        <h4 className="text-base font-normal text-[#0A4973] tracking-tight mt-3">
                           {card.title}
                         </h4>
                         <p className="text-xs text-[#52525b] font-normal leading-relaxed mt-1.5">
@@ -1159,7 +1039,7 @@ const HeroSection = () => {
                         </p>
                       </div>
                       <div className="flex justify-end mt-3 pt-2">
-                        <div className="w-8 h-8 rounded-full border border-purple-200/90 bg-white text-[#7c3aed] flex items-center justify-center shadow-2xs">
+                        <div className="w-8 h-8 rounded-full border border-[#749220]/40 bg-white text-[#749220] flex items-center justify-center shadow-2xs">
                           <ArrowRightIcon className="w-3.5 h-3.5" />
                         </div>
                       </div>
@@ -1173,11 +1053,11 @@ const HeroSection = () => {
           </div>
 
           {/* Bottom Trust Strip */}
-          <div className="mt-14 sm:mt-18 pt-8 border-t border-[#ede8fc]">
+          {/* <div className="mt-14 sm:mt-18 pt-8 border-t border-[#F6F9EE]">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:items-center lg:justify-between gap-y-6 gap-x-8 lg:gap-0 text-left">
 
               <div className="flex items-center gap-3 shrink-0 group">
-                <span className="text-3xl sm:text-4xl lg:text-[38px] font-normal text-[#5629B2] tracking-tight leading-none">
+                <span className="text-3xl sm:text-4xl lg:text-[38px] font-normal text-[#165479] tracking-tight leading-none">
                   97%
                 </span>
                 <span className="text-base sm:text-[17px] text-[#556480] font-normal tracking-tight">
@@ -1230,7 +1110,7 @@ const HeroSection = () => {
               </div>
 
             </div>
-          </div>
+          </div> */}
 
 
         </div>
@@ -1243,7 +1123,7 @@ const HeroSection = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 tracking-tight mb-2">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight mb-2">
               Join Thousands of Happy Taxpayers
             </h2>
             <p className="text-sm text-gray-600">
@@ -1280,10 +1160,10 @@ const HeroSection = () => {
             ].map((stat, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl p-6 text-center border border-gray-200 hover:border-primary/40 transition-all duration-200"
+                className="bg-white rounded-2xl p-6 text-center border border-gray-200 hover:border-[#749220]/40 transition-all duration-200"
               >
                 <div className="text-2xl mb-2">{stat.icon}</div>
-                <div className="text-3xl font-semibold text-primary mb-1 tracking-tight">
+                <div className="text-3xl font-semibold text-[#749220] mb-1 tracking-tight">
                   <AnimatedCounter
                     value={stat.number}
                     duration={2.2}
@@ -1310,9 +1190,9 @@ const HeroSection = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="text-center mb-14">
-            <span className="text-xs font-semibold uppercase tracking-wider text-primary">Simple Process</span>
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mt-2 mb-3">
-              File Your Taxes in <span className="text-primary">4 Simple Steps</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#749220]">Simple Process</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight mt-2 mb-3">
+              File Your Taxes in <span className="text-[#749220]">4 Simple Steps</span>
             </h2>
             <p className="text-base text-gray-600 max-w-xl mx-auto">
               Our streamlined process makes tax filing quick, easy, and stress-free. Get started today!
@@ -1348,11 +1228,11 @@ const HeroSection = () => {
             ].map((step, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl p-6 border border-gray-200 hover:border-primary/50 hover:shadow-md transition-all duration-200 flex flex-col justify-between text-center relative"
+                className="bg-white rounded-2xl p-6 border border-gray-200 hover:border-[#749220]/50 hover:shadow-md transition-all duration-200 flex flex-col justify-between text-center relative"
               >
                 <div>
                   {/* Outlined Number in PumpkinTax Style */}
-                  <div className="text-5xl font-semibold text-primary/85 mb-3 font-mono">
+                  <div className="text-5xl font-semibold text-[#749220]/85 mb-3 font-mono">
                     {step.step}
                   </div>
 
@@ -1366,7 +1246,7 @@ const HeroSection = () => {
 
                 <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
                   <span>Duration</span>
-                  <span className="font-semibold text-primary bg-purple-50 px-2 py-0.5 rounded-full">
+                  <span className="font-semibold text-[#749220] bg-[#F6F9EE] px-2 py-0.5 rounded-full">
                     {step.time}
                   </span>
                 </div>
@@ -1378,7 +1258,7 @@ const HeroSection = () => {
           <div className="text-center mt-12">
             <Link
               to="/login"
-              className="px-8 py-3.5 rounded-full font-semibold text-sm bg-primary text-white shadow hover:bg-primary-700 transition-all inline-flex items-center gap-2"
+              className="px-8 py-3.5 rounded-full font-semibold text-sm bg-[#749220] text-white shadow hover:bg-[#749220]-700 transition-all inline-flex items-center gap-2"
             >
               <span>Start Filing Now</span>
               <ArrowRightIcon className="w-4 h-4" />
@@ -1398,8 +1278,8 @@ const HeroSection = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="text-center mb-14">
-            <span className="text-xs font-semibold uppercase tracking-wider text-primary">Client Reviews</span>
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mt-2 mb-3">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#749220]">Client Reviews</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight mt-2 mb-3">
               Real Clients, Real Results - See What They Say
             </h2>
             <p className="text-base text-gray-600 max-w-xl mx-auto">
@@ -1417,11 +1297,11 @@ const HeroSection = () => {
                 savings: "Saved $3,200",
               },
               {
-                name: "Raj Patel",
-                role: "Indian ITR Filer",
+                name: "David K.",
+                role: "U.S. Expat Taxpayer",
                 rating: 5,
-                text: "Filing ITR was so stressful before. Now it takes 10 minutes and I get maximum refunds. Worth every rupee!",
-                savings: "Maximum Refund",
+                text: "Filing my U.S. taxes from abroad was so stressful before. Their CPA caught deductions for my Foreign Earned Income that saved me thousands!",
+                savings: "Saved $4,150",
               },
               {
                 name: "John Smith",
@@ -1461,7 +1341,7 @@ const HeroSection = () => {
                       {testimonial.role}
                     </div>
                   </div>
-                  <span className="text-[11px] text-primary font-semibold bg-purple-50 px-2.5 py-1 rounded-full">
+                  <span className="text-[11px] text-[#749220] font-semibold bg-[#F6F9EE] px-2.5 py-1 rounded-full">
                     Verified Filer
                   </span>
                 </div>
@@ -1473,326 +1353,30 @@ const HeroSection = () => {
       </section>
 
       {/* ========================================================= */}
-      {/* 8. SERVICES SHOWCASE GRID                                 */}
+      {/* 8. FINAL ACTION BANNER                                    */}
       {/* ========================================================= */}
-      <section className="py-20 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          <div className="text-center mb-14">
-            <span className="text-xs font-semibold uppercase tracking-wider text-primary">Comprehensive Solutions</span>
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight mt-2 mb-3">
-              Get Expert Tax Filing <span className="text-primary">for Every Situation</span>
-            </h2>
-            <p className="text-base text-gray-600 max-w-xl mx-auto">
-              No matter your tax situation, we have the expertise to maximize your refund and ensure accurate filing.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                title: "U.S. Federal, State & Local Tax Filing",
-                description: "Complete federal and state tax return preparation and filing for all income types including W-2, 1099, investment income, and more.",
-                services: [
-                  "Form 1040 preparation",
-                  "All schedules and forms",
-                  "E-filing with IRS",
-                  "Tax optimization strategies",
-                ],
-                cta: "File US Taxes Now",
-                link: "/services/us-individual/federal-state-local",
-                icon: DocumentTextIcon,
-              },
-              {
-                title: "Indian Tax Filing (ITR)",
-                description: "Expert handling of Indian Income Tax Returns (ITR) for NRIs, residents, and dual citizens with U.S. income.",
-                services: [
-                  "ITR preparation & filing",
-                  "NRI tax compliance",
-                  "Tax treaty benefits",
-                  "Double taxation relief",
-                ],
-                cta: "File ITR Now",
-                link: "/services/indian/tax-filing",
-                icon: GlobeAltIcon,
-              },
-              {
-                title: "FBAR & FATCA Filing",
-                description: "Foreign Bank Account Report (FBAR) and FATCA compliance filing services for U.S. persons with foreign accounts.",
-                services: [
-                  "FBAR (FinCEN Form 114)",
-                  "FATCA Form 8938",
-                  "Account aggregation",
-                  "Compliance review",
-                ],
-                cta: "Get Compliance Help",
-                link: "/services/us-individual/fbar-fatca",
-                icon: BanknotesIcon,
-              },
-            ].map((service, index) => {
-              const ServiceIcon = service.icon;
-              return (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl p-7 border border-gray-200 hover:border-primary/50 hover:shadow-md transition-all duration-200 flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="w-12 h-12 rounded-xl bg-purple-50 text-primary flex items-center justify-center mb-5">
-                      <ServiceIcon className="w-6 h-6" />
-                    </div>
-
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="text-xs text-gray-600 mb-5 leading-relaxed">
-                      {service.description}
-                    </p>
-
-                    <ul className="space-y-2 mb-6">
-                      {service.services.map((item, i) => (
-                        <li key={i} className="flex items-center text-xs text-gray-700">
-                          <CheckCircleIcon className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <Link
-                    to={service.link}
-                    className="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-full bg-primary text-white font-semibold text-xs shadow hover:bg-primary-700 transition-all gap-1.5"
-                  >
-                    <span>{service.cta}</span>
-                    <ArrowRightIcon className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-
-        </div>
-      </section>
-
-      {/* ========================================================= */}
-      {/* 9. WHO WE CAN HELP SECTION                                */}
-      {/* ========================================================= */}
-      <section className="py-20 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-12 items-center">
-
-            {/* Left Column: Profiles */}
-            <div className="lg:col-span-7">
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary">Trusted Across Profiles</span>
-              <h2 className="text-3xl lg:text-4xl font-semibold text-gray-900 tracking-tight mt-2 mb-3">
-                Who We Can Help
-              </h2>
-              <p className="text-base text-gray-600 mb-8 max-w-xl">
-                Whether you are filing for the first time or managing multi-country income, our tax experts pair smart automation with dedicated CPAs to fit every situation.
-              </p>
-
-              <div className="space-y-3.5">
-                {[
-                  {
-                    title: "First-time & Salaried Filers",
-                    description: "Guided onboarding, digital document collection, and guaranteed accuracy for simple to moderate tax cases.",
-                    coverage: 94,
-                    badge: "Digital + CPA review",
-                  },
-                  {
-                    title: "Self-employed & Freelancers",
-                    description: "1099, gig work, and multi-client income filing with deduction discovery and quarterly tax planning.",
-                    coverage: 89,
-                    badge: "Max deductions",
-                  },
-                  {
-                    title: "High-net-worth individuals",
-                    description: "Layered strategies for stock compensation, RSUs/ESPP, multi-state income, and global reporting.",
-                    coverage: 82,
-                    badge: "Advisor-led",
-                  },
-                  {
-                    title: "Expats, NRIs & cross-border filers",
-                    description: "US & India filing, FBAR/FATCA, DTAA benefits, and compliance for multi-country incomes.",
-                    coverage: 88,
-                    badge: "Global compliance",
-                  },
-                ].map((segment, index) => (
-                  <div
-                    key={segment.title}
-                    className="rounded-2xl border border-gray-200 bg-white p-4.5 shadow-xs"
-                  >
-                    <div className="flex items-start justify-between gap-4 mb-2">
-                      <div>
-                        <h3 className="text-sm font-semibold text-gray-900 mb-0.5">
-                          {segment.title}
-                        </h3>
-                        <p className="text-xs text-gray-500">
-                          {segment.description}
-                        </p>
-                      </div>
-                      <span className="text-xs font-semibold text-primary bg-purple-50 px-2 py-0.5 rounded-md whitespace-nowrap">
-                        {segment.coverage}% fit
-                      </span>
-                    </div>
-
-                    <div className="h-1.5 rounded-full bg-gray-100 overflow-hidden">
-                      <div
-                        className="h-full rounded-full bg-primary"
-                        style={{ width: `${segment.coverage}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* 4 Mini Stat Badges */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
-                {[
-                  { value: "96%", label: "Client satisfaction" },
-                  { value: "4.9/5", label: "Average rating" },
-                  { value: "18k+", label: "Returns filed annually" },
-                  { value: "27", label: "Countries supported" },
-                ].map((stat, index) => (
-                  <div key={index} className="bg-purple-50/50 rounded-xl p-3 border border-purple-100 text-center">
-                    <div className="text-[11px] text-gray-500 mb-0.5">{stat.label}</div>
-                    <div className="text-base font-semibold text-primary">{stat.value}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Column: Clean Snapshot Card */}
-            <div className="lg:col-span-5">
-              <div className="rounded-3xl p-7 shadow-xl bg-primary text-white">
-                <div className="space-y-6">
-
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-purple-200 text-xs uppercase tracking-wider font-semibold">
-                        Platform Insights
-                      </p>
-                      <h4 className="text-xl font-semibold text-white mt-0.5">
-                        Client Mix Snapshot
-                      </h4>
-                    </div>
-                    <span className="px-3 py-1 rounded-full bg-white/10 text-white text-xs font-semibold">
-                      24/7 Experts
-                    </span>
-                  </div>
-
-                  {/* Donut Chart & Breakdown */}
-                  <div className="flex flex-col sm:flex-row items-center gap-6">
-                    <div className="relative flex items-center justify-center flex-shrink-0">
-                      <svg width="140" height="140" viewBox="0 0 140 140" className="-rotate-90">
-                        <circle
-                          cx="70"
-                          cy="70"
-                          r={donutRadius}
-                          fill="transparent"
-                          stroke="rgba(255,255,255,0.15)"
-                          strokeWidth="12"
-                        />
-                        <circle
-                          cx="70"
-                          cy="70"
-                          r={donutRadius}
-                          fill="transparent"
-                          stroke="#FCD34D"
-                          strokeWidth="12"
-                          strokeLinecap="round"
-                          strokeDasharray={donutCircumference}
-                          strokeDashoffset={donutCircumference * (1 - donutProgressValue)}
-                        />
-                      </svg>
-                      <div className="absolute inset-0 flex items-center justify-center flex-col text-center">
-                        <span className="text-2xl font-semibold text-white">82%</span>
-                        <span className="text-purple-200 text-[10px]">Engaged CPAs</span>
-                      </div>
-                    </div>
-
-                    <div className="space-y-3 flex-1 w-full text-xs">
-                      {[
-                        { label: "US Individual Filers", value: "41%", color: "#FCD34D" },
-                        { label: "Business & Entity Filers", value: "32%", color: "#A5B4FC" },
-                        { label: "NRIs & Expats", value: "27%", color: "#FBCFE8" },
-                      ].map((item) => (
-                        <div key={item.label}>
-                          <div className="flex items-center justify-between mb-1 text-purple-100">
-                            <span className="flex items-center gap-1.5">
-                              <span className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />
-                              {item.label}
-                            </span>
-                            <span className="font-semibold text-white">{item.value}</span>
-                          </div>
-                          <div className="h-1 rounded-full bg-white/10 overflow-hidden">
-                            <div
-                              className="h-full rounded-full"
-                              style={{ width: item.value, backgroundColor: item.color }}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Highlights */}
-                  <div className="grid grid-cols-2 gap-3 text-xs">
-                    <div className="rounded-xl bg-white/10 p-3">
-                      <div className="font-semibold text-amber-300 mb-0.5">Priority Support</div>
-                      <div className="text-[11px] text-purple-100/80">Under 15 min response time</div>
-                    </div>
-                    <div className="rounded-xl bg-white/10 p-3">
-                      <div className="font-semibold text-purple-200 mb-0.5">Audit Shield</div>
-                      <div className="text-[11px] text-purple-100/80">IRS & ITD representation</div>
-                    </div>
-                  </div>
-
-                  {/* Schedule Call Button */}
-                  <div className="pt-3 border-t border-white/15 flex items-center justify-between">
-                    <div>
-                      <p className="text-xs font-semibold text-white">10,000+ Clients</p>
-                      <p className="text-[10px] text-purple-200">Mobile + desktop</p>
-                    </div>
-                    <button
-                      onClick={() => setIsModalOpen(true)}
-                      className="px-5 py-2.5 rounded-full bg-white text-primary font-semibold text-xs shadow hover:bg-purple-50 transition-colors"
-                    >
-                      Schedule a Call
-                    </button>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================= */}
-      {/* 10. CLEAN CTA BANNER (LIKE PUMPKINTAX FINAL CALL)        */}
-      {/* ========================================================= */}
-      <section className="py-16 bg-primary text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-3 tracking-tight">
-            Ready to Get Your Maximum Tax Refund?
+      <section className="py-16 sm:py-20 bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] text-white font-sans">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal mb-3 tracking-tight leading-snug">
+            Ready to file your <span className="font-medium text-[#D8EBA4]">U.S. taxes?</span>
           </h2>
-          <p className="text-sm sm:text-base text-purple-100/90 max-w-xl mx-auto mb-6">
-            Stop leaving money on the table! Our experts will maximize your refund and file your taxes accurately.
+          <p className="text-sm sm:text-[15px] text-white/90 max-w-lg mx-auto mb-7 font-normal leading-relaxed">
+            Certified CPA preparation, guaranteed maximum refunds, and 100% IRS accuracy for the 2025–2026 tax season.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3.5 justify-center">
+          <div className="flex flex-wrap sm:flex-nowrap gap-3.5 justify-center items-center">
             <Link
               to="/login"
-              className="px-8 py-3.5 rounded-full font-semibold text-sm bg-white text-primary hover:bg-purple-50 shadow transition-all inline-flex items-center justify-center gap-2"
+              className="h-11 sm:h-12 px-6 rounded-xl bg-white text-[#165479] hover:bg-gray-50 font-medium text-sm sm:text-[15px] shadow-sm hover:shadow transition-all inline-flex items-center justify-center gap-2"
             >
-              <span>Start Filing Now - Get Maximum Refund</span>
-              <ArrowRightIcon className="w-4 h-4" />
+              <span>Start Filing</span>
+              <ArrowRightIcon className="w-4 h-4 stroke-[2]" />
             </Link>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="px-8 py-3.5 rounded-full font-semibold text-sm bg-transparent border border-white text-white hover:bg-white/10 transition-all inline-flex items-center justify-center"
+              className="h-11 sm:h-12 px-6 rounded-xl bg-white/10 hover:bg-white/20 border border-white/25 text-white font-medium text-sm sm:text-[15px] transition-all inline-flex items-center justify-center gap-2 cursor-pointer"
             >
-              <span>Schedule a Call</span>
+              <CalendarDaysIcon className="w-4 h-4 text-[#D8EBA4] stroke-[2]" />
+              <span>Talk to CPA</span>
             </button>
           </div>
         </div>

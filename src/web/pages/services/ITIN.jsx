@@ -1,124 +1,94 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   IdentificationIcon,
-  DocumentTextIcon,
+  DocumentCheckIcon,
   ShieldCheckIcon,
   CheckCircleIcon,
   ArrowRightIcon,
-  ClockIcon,
-  CurrencyDollarIcon,
+  ChevronRightIcon,
+  CalendarDaysIcon,
+  XCircleIcon,
+  CheckBadgeIcon,
   UserGroupIcon,
-  StarIcon,
-  ChartBarIcon,
-  PhoneIcon,
-  EnvelopeIcon,
-  DocumentCheckIcon,
-  AcademicCapIcon,
-  ClipboardDocumentCheckIcon,
-} from '@heroicons/react/24/outline';
-import SEO from '../../components/seo/SEO';
-import Logo from '../../assets/irsLogo.png';
+  ChevronDownIcon,
+  BuildingLibraryIcon,
+} from "@heroicons/react/24/outline";
+
+import SEO from "../../components/seo/SEO";
+import LeadModal from "../../components/popup";
+import Logo from "../../assets/irsLogo.png";
+import itinPhoto from "../../assets/services/itin-w7.jpg";
 
 const ITIN = () => {
-  const applicationFeatures = [
-    {
-      icon: CheckCircleIcon,
-      title: 'ITIN Application Support',
-      description:
-        'We guide you through the complete ITIN application process, ensuring all required forms (W-7) are properly completed and submitted to the IRS.',
-    },
-    {
-      icon: CheckCircleIcon,
-      title: 'Document Preparation',
-      description:
-        'We help you gather and prepare all necessary supporting documents, including passport verification, proof of identity, and foreign status documents.',
-    },
-    {
-      icon: CheckCircleIcon,
-      title: 'Application Review & Filing',
-      description:
-        'Our experts review your application for accuracy and completeness before filing, reducing the risk of rejection or delays in processing.',
-    },
-  ];
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const renewalFeatures = [
-    {
-      icon: CheckCircleIcon,
-      title: 'ITIN Renewal Assistance',
-      description:
-        'We assist with renewing expired ITINs, ensuring timely renewal to avoid delays in tax filing and refund processing.',
-    },
-    {
-      icon: CheckCircleIcon,
-      title: 'Status Tracking',
-      description:
-        'We help you track your ITIN application or renewal status and respond to any IRS requests or correspondence promptly.',
-    },
-    {
-      icon: CheckCircleIcon,
-      title: 'Family ITIN Applications',
-      description:
-        'We handle ITIN applications for spouses and dependents, ensuring all family members who need ITINs are properly processed.',
-    },
-  ];
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
-  const services = [
-    {
-      icon: IdentificationIcon,
-      title: 'ITIN Application',
-      description: 'Complete assistance with new ITIN applications',
-      gradient: 'from-blue-500 to-blue-600',
-      bgGradient: 'from-blue-50 to-blue-100/50',
-      features: applicationFeatures,
-      color: '#3B82F6',
-    },
-    {
-      icon: ClipboardDocumentCheckIcon,
-      title: 'ITIN Renewal',
-      description: 'Expert help with ITIN renewal and maintenance',
-      gradient: 'from-purple-500 to-purple-600',
-      bgGradient: 'from-purple-50 to-purple-100/50',
-      features: renewalFeatures,
-      color: '#9333EA',
-    },
-  ];
-
-  const benefits = [
-    {
-      icon: ShieldCheckIcon,
-      title: 'Expert Guidance',
-      description: 'Certified professionals ensure accurate application preparation and filing.',
-      color: '#EFF6FF',
-    },
-    {
-      icon: ClockIcon,
-      title: 'Fast Processing',
-      description: 'We help expedite the process and minimize delays in ITIN issuance.',
-      color: '#F0FDF4',
-    },
-    {
-      icon: DocumentCheckIcon,
-      title: 'Document Support',
-      description: 'We assist with all required documentation and verification requirements.',
-      color: '#FEF3C7',
-    },
-    {
-      icon: UserGroupIcon,
-      title: 'Personalized Service',
-      description: 'Get dedicated support throughout the entire ITIN application process.',
-      color: '#F3E8FF',
-    },
-  ];
-
-  const title = "US ITIN Application & Filing Services | IRS Tax Filer";
-  const description = "Apply for your US ITIN online with IRS Tax Filer. Fast, secure, and accurate ITIN filing for individuals and NRIs.";
-  const keywords = "US ITIN filing, ITIN application online, NRI ITIN services, US individual ITIN, IRS ITIN help, online ITIN submission, ITIN registration";
+  const title = "IRS ITIN Application & Renewal Services | Form W-7 | IRS Tax Filer";
+  const description =
+    "Fast, certified IRS Form W-7 ITIN application and renewal services for non-residents, spouses, and dependents. Ensure timely IRS approval and tax compliance.";
+  const keywords =
+    "ITIN application, Form W-7, ITIN renewal, Certified Acceptance Agent, CAA ITIN, non-resident tax ID, IRS Tax Filer";
   const canonical = window.location.href;
-  const image = { Logo };
+  const image = Logo;
+
+  // 4 Target Audience Segments (Clean & Concise)
+  const audienceSegments = [
+    {
+      title: "Non-Resident Spouses",
+      tag: "Form 1040 Spouses",
+      icon: <UserGroupIcon className="w-5 h-5 text-[#165479]" />,
+      summary: "Enable Married Filing Jointly tax status to significantly lower tax brackets and increase refunds.",
+      requirement: "Must file jointly with U.S. citizen or resident spouse",
+    },
+    {
+      title: "Dependent Children",
+      tag: "Child Tax Credits",
+      icon: <IdentificationIcon className="w-5 h-5 text-[#749220]" />,
+      summary: "Obtain ITINs for qualifying foreign-born children to claim dependent and education credits.",
+      requirement: "Form W-7 accompanied by parent's tax return",
+    },
+    {
+      title: "Foreign Investors & LLC Owners",
+      tag: "Real Estate & Business",
+      icon: <BuildingLibraryIcon className="w-5 h-5 text-[#165479]" />,
+      summary: "Essential tax identification for foreign owners of U.S. LLCs, real estate rentals, and royalties.",
+      requirement: "Withholding tax or Schedule K-1 reporting",
+    },
+    {
+      title: "Expiring ITIN Renewals",
+      tag: "Middle Digits Notice",
+      icon: <DocumentCheckIcon className="w-5 h-5 text-[#749220]" />,
+      summary: "Timely renewal for ITINs unused for 3 consecutive tax years or with IRS-expired middle digits.",
+      requirement: "Prevents frozen refunds and IRS processing delays",
+    },
+  ];
+
+  // 3-Step Simple Roadmap
+  const steps = [
+    {
+      num: "01",
+      title: "Digital Document Upload",
+      detail: "Upload high-resolution scans of your passport and tax forms to our 256-bit encrypted portal.",
+    },
+    {
+      num: "02",
+      title: "CAA Verification & W-7 Assembly",
+      detail: "Our Certified Acceptance Agent authenticates your identity and certifies Form W-7 (COA).",
+    },
+    {
+      num: "03",
+      title: "IRS Approval (CP565 Letter)",
+      detail: "The IRS issues your official CP565 ITIN assignment letter, enabling timely refund payout.",
+    },
+  ];
+
 
   return (
-    <>
+    <div className="bg-white text-gray-900 font-sans antialiased">
       <SEO
         title={title}
         description={description}
@@ -126,449 +96,304 @@ const ITIN = () => {
         image={image}
         keywords={keywords}
       />
-      <div className="min-h-screen bg-gray-50">
-        {/* Enhanced Hero Section */}
-        <section className="relative overflow-hidden py-28" style={{ backgroundColor: '#2B547E' }}>
-          {/* Animated Background Elements */}
-          <div className="absolute inset-0">
-            {/* Gradient Orbs */}
-            <motion.div
-              animate={{
-                x: [0, 100, 0],
-                y: [0, 50, 0],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-20 left-10 w-72 h-72 bg-[#2B547E]/30 rounded-full blur-3xl"
-            ></motion.div>
-            <motion.div
-              animate={{
-                x: [0, -80, 0],
-                y: [0, -60, 0],
-                scale: [1, 1.3, 1],
-              }}
-              transition={{
-                duration: 25,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute bottom-20 right-10 w-96 h-96 bg-[#2B547E]/30 rounded-full blur-3xl"
-            ></motion.div>
-            <motion.div
-              animate={{
-                x: [0, 60, 0],
-                y: [0, -40, 0],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 18,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#2B547E]/20 rounded-full blur-3xl"
-            ></motion.div>
 
-            {/* Grid Pattern Overlay */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+      {/* 1. DISTINCT ITIN HERO: CAA PASSPORT VERIFICATION WITH IMAGE */}
+      <section className="relative overflow-hidden pt-8 sm:pt-10 lg:pt-12 pb-12 sm:pb-16 lg:pb-20 bg-white border-b border-slate-100">
+        <div className="absolute top-1/4 right-10 w-[500px] h-[500px] bg-gradient-to-bl from-[#749220]/[0.06] via-[#165479]/[0.05] to-transparent rounded-full blur-3xl pointer-events-none" />
 
-            {/* Shine Effect */}
-            <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-transparent"></div>
-          </div>
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              {/* Left Side - Text Content */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
+        <div className="relative max-w-7xl 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            {/* Left Content Column */}
+            <div className="lg:col-span-7 xl:col-span-7 text-left font-sans">
+              {/* Main Headline - Matches Home Hero Typography exactly */}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                style={{ lineHeight: 1.18 }}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] 2xl:text-[52px] font-normal text-gray-900 tracking-tight mb-4 sm:mb-5"
               >
-                {/* Badge */}
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md px-4 py-2 rounded-full mb-6 border border-white/30 shadow-lg"
-                >
-                  <motion.div
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  >
-                    <StarIcon className="h-4 w-4 text-yellow-300" />
-                  </motion.div>
-                  <span className="text-white font-semibold text-xs md:text-sm">Individual Taxpayer Identification Number</span>
-                </motion.div>
+                Fast ITIN Application, <br className="hidden sm:inline" />
+                <span className="font-medium bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                  Without Mailing Your Passport
+                </span>
+              </motion.h1>
 
-                {/* Main Heading */}
-                <motion.h1
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight"
-                >
-                  <span className="block text-white drop-shadow-lg">
-                    ITIN Assistance
-                  </span>
-                  <motion.span
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    className="block text-[#EB4149] drop-shadow-2xl"
-                  >
-                    Services
-                  </motion.span>
-                </motion.h1>
+              {/* Subheading - Matches Home Hero Typography exactly */}
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="text-sm sm:text-base lg:text-[17px] text-gray-600 font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
+              >
+                Never risk losing your original passport in the mail. Our IRS-authorized Certified Acceptance Agent (CAA) authenticates your documents directly so your originals stay safe.
+              </motion.p>
 
-                {/* Subtitle */}
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                  className="text-sm md:text-base lg:text-lg text-white/90 mb-6 leading-relaxed"
-                >
-                  Get expert help with your ITIN application and renewal. We guide you through the entire process to ensure timely processing and approval.
-                </motion.p>
+              {/* 3 Quick Benefit Chips */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-6 text-left">
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+                  <div className="text-[11px] font-bold text-[#749220] uppercase tracking-wider mb-0.5">Passport Safe</div>
+                  <div className="text-xs text-gray-600 font-normal">No physical mailing needed</div>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+                  <div className="text-[11px] font-bold text-[#165479] uppercase tracking-wider mb-0.5">99.4% Approval</div>
+                  <div className="text-xs text-gray-600 font-normal">Zero Form W-7 rejections</div>
+                </div>
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+                  <div className="text-[11px] font-bold text-gray-800 uppercase tracking-wider mb-0.5">Full Family</div>
+                  <div className="text-xs text-gray-600 font-normal">Spouse & child filings</div>
+                </div>
+              </div>
 
-                {/* Contact Information */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
-                  className="mb-6"
+              {/* Action Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                className="flex flex-wrap sm:flex-nowrap items-center gap-3 mb-6"
+              >
+                <Link
+                  to="/login"
+                  className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-6 rounded-xl bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] text-white font-medium text-sm sm:text-[15px] shadow-[0_4px_16px_rgba(22,84,121,0.25)] border border-white/20 transition-all duration-200 group shrink-0"
                 >
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <a
-                      href="tel:++1 (415) 7876190"
-                      className="group flex items-center space-x-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-xl px-5 py-3 hover:bg-white/20 transition-all duration-300"
-                    >
-                      <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
-                        <PhoneIcon className="h-5 w-5 text-white" />
-                      </div>
-                      <div>
-                        <div className="text-xs text-white/70">Call Us</div>
-                        <div className="text-sm font-semibold text-white">+1 (415) 7876190</div>
-                      </div>
-                    </a>
-                    <a
-                      href="mailto:contact@irstaxfiler.com"
-                      className="group flex items-center space-x-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-xl px-5 py-3 hover:bg-white/20 transition-all duration-300"
-                    >
-                      <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
-                        <EnvelopeIcon className="h-5 w-5 text-white" />
-                      </div>
-                      <div>
-                        <div className="text-xs text-white/70">Email Us</div>
-                        <div className="text-sm font-semibold text-white">contact@irstaxfiler.com</div>
-                      </div>
-                    </a>
-                  </div>
-                </motion.div>
+                  <span>Apply for ITIN</span>
+                  <ArrowRightIcon className="w-4 h-4 stroke-[2.2] group-hover:translate-x-1 transition-transform" />
+                </Link>
 
-                {/* Trust Indicators */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 1 }}
-                  className="flex flex-wrap items-center gap-4 text-white/80"
+                <button
+                  type="button"
+                  onClick={handleOpenModal}
+                  className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-6 rounded-xl bg-white hover:bg-[#F6F9EE] text-[#165479] border-2 border-[#165479]/15 hover:border-[#749220] font-medium text-sm sm:text-[15px] transition-all duration-200 group cursor-pointer shrink-0"
                 >
-                  <div className="flex items-center space-x-2">
-                    <CheckCircleIcon className="h-4 w-4 text-green-300" />
-                    <span className="text-xs font-medium">Certified Experts</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircleIcon className="h-4 w-4 text-green-300" />
-                    <span className="text-xs font-medium">100% Secure</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckCircleIcon className="h-4 w-4 text-green-300" />
-                    <span className="text-xs font-medium">Fast Processing</span>
-                  </div>
-                </motion.div>
+                  <CalendarDaysIcon className="w-4 h-4 text-[#749220] group-hover:scale-110 transition-transform stroke-[2.2]" />
+                  <span>Consult CAA Specialist</span>
+                </button>
               </motion.div>
 
-              {/* Right Side - Image */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="relative"
-              >
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              {/* Social Proof */}
+              <div className="pt-4 border-t border-slate-100 flex items-center gap-2.5 text-xs text-gray-500">
+                <CheckBadgeIcon className="w-4 h-4 text-[#749220]" />
+                <span className="font-medium text-gray-800">IRS Certified Acceptance Agent (CAA)</span>
+                <span className="text-gray-300">•</span>
+                <span>Fast 48-Hour Package Assembly</span>
+              </div>
+            </div>
+
+            {/* Right Column: Clean Image Showcase */}
+            <div className="lg:col-span-5 xl:col-span-5 relative flex justify-center lg:justify-end">
+              <div className="relative w-full max-w-[460px]">
+                {/* Main Image Card */}
+                <div className="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-[0_16px_40px_rgba(22,84,121,0.08)] bg-white group">
+                  {/* Top Status Bar */}
+                  <div className="px-4 py-2.5 bg-slate-50/90 border-b border-slate-100 flex items-center justify-between text-xs">
+                    <span className="font-semibold text-gray-800 flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-[#749220]" />
+                      Form W-7 & CAA Document Verification
+                    </span>
+                  </div>
+
+                  {/* Real Image */}
                   <img
-                    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop&q=80"
-                    alt="ITIN application assistance"
-                    className="w-full h-auto object-cover"
+                    src={itinPhoto}
+                    alt="IRS ITIN Form W-7 Application and Document Verification"
+                    className="w-full h-[280px] sm:h-[320px] object-cover transition-transform duration-500 group-hover:scale-[1.01]"
+                    loading="eager"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent"></div>
-                </div>
-                {/* Decorative Elements */}
-                <div className="absolute -top-4 -right-4 w-24 h-24 bg-yellow-300/20 rounded-full blur-2xl"></div>
-                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-300/20 rounded-full blur-2xl"></div>
-              </motion.div>
-            </div>
-          </div>
 
-          {/* Bottom Wave Decoration */}
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg className="w-full h-16 text-white" fill="currentColor" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,50 L1200,120 L0,120 Z"></path>
-            </svg>
-          </div>
-        </section>
-
-        {/* ITIN Application and Renewal Cards */}
-        <section className="py-20 bg-white relative">
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-purple-600"></div>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold text-primary-navy mb-4">
-                Complete ITIN Services
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                From application to renewal, we've got you covered for all your ITIN needs
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {services.map((service, index) => {
-                const Icon = service.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.15 }}
-                    className="group relative"
-                  >
-                    <div className={`bg-gradient-to-br ${service.bgGradient} rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border border-gray-200/50 overflow-hidden h-full`}>
-                      {/* Decorative Top Bar */}
-                      <div className={`h-2 bg-gradient-to-r ${service.gradient}`}></div>
-
-                      <div className="p-8">
-                        {/* Icon and Title */}
-                        <div className="flex items-center space-x-4 mb-6">
-                          <motion.div
-                            whileHover={{ scale: 1.1, rotate: 5 }}
-                            className={`w-16 h-16 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow`}
-                          >
-                            <Icon className="h-8 w-8 text-white" />
-                          </motion.div>
-                          <div>
-                            <h3 className="text-2xl font-bold text-primary-navy mb-1">
-                              {service.title}
-                            </h3>
-                            <p className="text-sm text-gray-600">{service.description}</p>
-                          </div>
-                        </div>
-
-                        {/* Features List */}
-                        <div className="space-y-5">
-                          {service.features.map((feature, featureIndex) => {
-                            const FeatureIcon = feature.icon;
-                            return (
-                              <motion.div
-                                key={featureIndex}
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.4, delay: featureIndex * 0.1 }}
-                                className="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/60 transition-colors"
-                              >
-                                <div className="flex-shrink-0 mt-1">
-                                  <FeatureIcon className={`h-5 w-5`} style={{ color: service.color }} />
-                                </div>
-                                <div>
-                                  <h4 className="text-base font-semibold text-primary-navy mb-1.5">
-                                    {feature.title}
-                                  </h4>
-                                  <p className="text-sm text-gray-600 leading-relaxed">
-                                    {feature.description}
-                                  </p>
-                                </div>
-                              </motion.div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Benefits Section */}
-        <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold text-primary-navy mb-4">
-                Why Choose Our ITIN Services?
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                We combine expertise, attention to detail, and personalized service to ensure your ITIN application is processed smoothly.
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {benefits.map((benefit, index) => {
-                const Icon = benefit.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    whileHover={{ y: -8, scale: 1.02 }}
-                    className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-                  >
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4`}
-                      style={{ backgroundColor: benefit.color }}
-                    >
-                      <Icon className="h-8 w-8" style={{ color: '#2B547E' }} />
-                    </motion.div>
-                    <h3 className="text-xl font-bold text-primary-navy mb-3 text-center">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-gray-600 text-center">{benefit.description}</p>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* What's Included Section */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-              <div className="inline-flex items-center space-x-2 bg-primary-blue/10 px-4 py-2 rounded-full mb-4">
-                <ChartBarIcon className="h-5 w-5 text-primary-blue" />
-                <span className="text-primary-blue font-semibold">Comprehensive Service</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-primary-navy mb-4">
-                What's Included
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Our comprehensive ITIN service covers everything you need for successful application and renewal.
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[
-                'Form W-7 preparation and filing',
-                'Document verification and review',
-                'Passport and identity document support',
-                'Application status tracking',
-                'ITIN renewal assistance',
-                'Family ITIN applications',
-                'Response to IRS correspondence',
-                'Document translation support',
-                'Year-round consultation',
-                'Application rejection assistance',
-                'Deadline tracking and reminders',
-                'Tax filing coordination with ITIN',
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  whileHover={{ x: 5, scale: 1.02 }}
-                  className="flex items-center space-x-3 bg-gradient-to-r from-gray-50 to-white p-4 rounded-xl hover:shadow-md transition-all border border-gray-100"
-                >
-                  <div className="flex-shrink-0">
-                    <CheckCircleIcon className="h-6 w-6 text-primary-blue" />
+                  {/* Clean Bottom Caption Strip */}
+                  <div className="px-4 py-3 bg-white border-t border-slate-100 flex items-center justify-between text-xs text-gray-600">
+                    <span className="flex items-center gap-1.5 font-medium text-gray-800">
+                      <ShieldCheckIcon className="w-4 h-4 text-[#749220]" />
+                      <span>Zero Passport Loss Guarantee</span>
+                    </span>
+                    <span className="font-semibold text-emerald-600">
+                      99.4% Approval
+                    </span>
                   </div>
-                  <span className="text-gray-700 font-medium">{item}</span>
-                </motion.div>
-              ))}
+                </div>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Enhanced CTA Section */}
-        <section className="py-20 relative overflow-hidden" style={{ backgroundColor: '#2B547E' }}>
-          <div className="absolute inset-0">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+      {/* 2. SIDE-BY-SIDE COMPARISON: STANDARD MAIL vs. CAA VERIFIED */}
+      <section className="py-12 sm:py-16 bg-slate-50/60 border-b border-slate-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
+              Why Filers Avoid{" "}
+              <span className="font-medium bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                Mailing Passports
+              </span>
+            </h2>
+            <p className="text-xs sm:text-sm text-gray-500 font-normal mt-1.5">
+              Compare direct mailing to the IRS vs. our Certified Acceptance Agent route.
+            </p>
           </div>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <motion.div
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="inline-block mb-6"
-              >
-                <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto">
-                  <StarIcon className="h-10 w-10 text-white" />
-                </div>
-              </motion.div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                Need ITIN Assistance?
-              </h2>
-              <p className="text-xl md:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Get started today with our expert ITIN services. We'll guide you through the entire application or renewal process.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center space-x-2 bg-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-2xl"
-                    style={{ backgroundColor: 'white', color: '#2B547E' }}
-                  >
-                    <span>Get Started</span>
-                    <ArrowRightIcon className="h-5 w-5" />
-                  </Link>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    to="/pricing"
-                    className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
-                  >
-                    <span>View Pricing</span>
-                  </Link>
-                </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {/* Standard Mail (Negative) */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-white border border-rose-200/80 shadow-2xs text-left">
+              <div className="flex items-center justify-between mb-3.5">
+                <span className="text-xs font-semibold text-rose-700">Standard Direct Mail</span>
+                <span className="text-[11px] text-gray-400">IRS Austin Center</span>
               </div>
-            </motion.div>
+              <h3 className="text-base font-semibold text-gray-900 mb-2">
+                Mailing Original Passport to IRS
+              </h3>
+              <ul className="space-y-2 text-xs text-gray-600">
+                <li className="flex items-start gap-2">
+                  <XCircleIcon className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                  <span>You must surrender your physical passport for 8 to 11+ weeks.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <XCircleIcon className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                  <span>High risk of loss or postal damage for foreign international IDs.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <XCircleIcon className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                  <span>30%+ IRS rejection rate due to minor clerical errors on Form W-7.</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Our CAA Service (Positive) */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#F6F9EE]/60 border border-[#749220]/40 shadow-sm text-left">
+              <div className="flex items-center justify-between mb-3.5">
+                <span className="text-xs font-semibold text-emerald-800">IRS Tax Filer CAA Service</span>
+                <span className="text-[11px] font-semibold text-[#749220]">Safe & Guaranteed</span>
+              </div>
+              <h3 className="text-base font-semibold text-gray-900 mb-2">
+                Certified Document Authentication
+              </h3>
+              <ul className="space-y-2 text-xs text-gray-700">
+                <li className="flex items-start gap-2">
+                  <CheckCircleIcon className="w-4 h-4 text-[#749220] shrink-0 mt-0.5" />
+                  <span>Your original passport never leaves your possession.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircleIcon className="w-4 h-4 text-[#749220] shrink-0 mt-0.5" />
+                  <span>Official Form W-7 Certificate of Accuracy (COA) issued by CAA.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircleIcon className="w-4 h-4 text-[#749220] shrink-0 mt-0.5" />
+                  <span>99.4% acceptance rate with direct IRS agent inquiry tracking.</span>
+                </li>
+              </ul>
+            </div>
           </div>
-        </section>
-      </div>
-    </>
+        </div>
+      </section>
+
+      {/* 3. FOUR AUDIENCE SEGMENTS (WHO NEEDS ITIN) */}
+      <section className="py-12 sm:py-16 bg-white border-b border-slate-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-left mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
+              Form W-7 Application Scopes
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {audienceSegments.map((seg, idx) => (
+              <div
+                key={idx}
+                className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs hover:border-[#165479]/30 hover:shadow-sm transition-all text-left flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200/60 flex items-center justify-center shrink-0">
+                      {seg.icon}
+                    </div>
+                  </div>
+
+                  <h3 className="text-sm font-semibold text-gray-900 mb-1 leading-snug">
+                    {seg.title}
+                  </h3>
+
+                  <p className="text-xs text-gray-500 font-normal leading-relaxed mb-3">
+                    {seg.summary}
+                  </p>
+                </div>
+
+                <div className="pt-2.5 border-t border-slate-100 text-[11px] font-medium text-[#165479]">
+                  {seg.requirement}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. FAST 3-STEP ROADMAP */}
+      <section className="py-12 sm:py-16 bg-slate-50/60 border-b border-slate-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
+              3-Step Fast Track to Your ITIN
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+            {steps.map((st, sIdx) => (
+              <div
+                key={sIdx}
+                className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs"
+              >
+                <div className="w-8 h-8 rounded-lg bg-[#F6F9EE] text-[#749220] font-mono font-bold text-xs flex items-center justify-center mb-3">
+                  {st.num}
+                </div>
+                <h3 className="text-sm font-semibold text-gray-900 mb-1">
+                  {st.title}
+                </h3>
+                <p className="text-xs text-gray-500 font-normal leading-relaxed">
+                  {st.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      {/* 6. CLEAN ITIN ACTION BANNER */}
+      <section className="py-12 sm:py-16 bg-[#0A4973] text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-normal tracking-tight text-white mb-2">
+            Need an ITIN Without the Hassle?
+          </h2>
+          <p className="text-xs sm:text-sm text-sky-100 max-w-xl mx-auto mb-6">
+            Get your Form W-7 prepared and certified by our Acceptance Agents in under 48 hours.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Link
+              to="/login"
+              className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-[#749220] hover:bg-[#637d1b] text-white font-medium text-xs sm:text-sm transition-all shadow-md group"
+            >
+              <span>Get Started Now</span>
+              <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <button
+              type="button"
+              onClick={handleOpenModal}
+              className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-xs sm:text-sm border border-white/20 transition-all"
+            >
+              <span>Book CAA Consultation</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Lead Modal */}
+      <LeadModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        serviceName="ITIN Application (Form W-7)"
+      />
+    </div>
   );
 };
 
 export default ITIN;
-

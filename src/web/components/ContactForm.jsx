@@ -131,7 +131,7 @@ const ContactForm = () => {
               htmlFor="name"
               className="block text-xs font-medium text-gray-700 mb-1.5"
             >
-              Full Name <span className="text-[#EB4149]">*</span>
+              Full Name <span className="text-red-500">*</span>
             </label>
             <div className="relative">
               <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -141,7 +141,7 @@ const ContactForm = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#EB4149] focus:border-[#EB4149] focus:bg-white focus:outline-none transition-all"
+                className="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#165479] focus:border-[#165479] focus:bg-white focus:outline-none transition-all"
                 placeholder="John Doe"
               />
              
@@ -158,7 +158,7 @@ const ContactForm = () => {
               htmlFor="email"
               className="block text-xs font-medium text-gray-700 mb-1.5"
             >
-              Email Address <span className="text-[#EB4149]">*</span>
+              Email Address <span className="text-red-500">*</span>
             </label>
             <div className="relative">
               <EnvelopeIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -168,7 +168,7 @@ const ContactForm = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#EB4149] focus:border-[#EB4149] focus:bg-white focus:outline-none transition-all"
+                className="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#165479] focus:border-[#165479] focus:bg-white focus:outline-none transition-all"
                 placeholder="john@example.com"
               />
               
@@ -195,7 +195,7 @@ const ContactForm = () => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleNumber}
-                className="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#EB4149] focus:border-[#EB4149] focus:bg-white focus:outline-none transition-all"
+                className="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#165479] focus:border-[#165479] focus:bg-white focus:outline-none transition-all"
                 placeholder="+1 (234) 567-8900"
               />
               
@@ -212,7 +212,7 @@ const ContactForm = () => {
               htmlFor="subject"
               className="block text-xs font-medium text-gray-700 mb-1.5"
             >
-              Subject <span className="text-[#EB4149]">*</span>
+              Subject <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -220,7 +220,7 @@ const ContactForm = () => {
               name="subject"
               value={formData.subject}
               onChange={handleChange}
-              className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#EB4149] focus:border-[#EB4149] focus:bg-white focus:outline-none transition-all"
+              className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#165479] focus:border-[#165479] focus:bg-white focus:outline-none transition-all"
               placeholder="How can we help?"
             />
             {contactFormError.subject && (
@@ -235,7 +235,7 @@ const ContactForm = () => {
               htmlFor="message"
               className="block text-xs font-medium text-gray-700 mb-1.5"
             >
-              Message <span className="text-[#EB4149]">*</span>
+              Message <span className="text-red-500">*</span>
             </label>
             <textarea
               id="message"
@@ -243,7 +243,7 @@ const ContactForm = () => {
               value={formData.message}
               onChange={handleChange}
               rows={4}
-              className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#EB4149] focus:border-[#EB4149] focus:bg-white focus:outline-none transition-all resize-none"
+              className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#165479] focus:border-[#165479] focus:bg-white focus:outline-none transition-all resize-none"
               placeholder="Tell us more about your requirements..."
             />
             {contactFormError.message && (
@@ -267,7 +267,7 @@ const ContactForm = () => {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full text-white py-2.5 px-4 rounded-lg font-semibold text-sm transition-all duration-200 hover:shadow-md hover:opacity-90 transform bg-gradient-to-r from-[#2B547E] to-[#1E3A5F] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full text-white py-2.5 px-4 rounded-xl font-medium text-sm transition-all duration-200 hover:shadow-md hover:opacity-95 bg-gradient-to-r from-[#0A4973] to-[#165479] hover:from-[#083b5d] hover:to-[#124563] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
               {submitting ? 'Sending...' : 'Send Message'}
             </button>

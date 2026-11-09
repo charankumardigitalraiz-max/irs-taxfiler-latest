@@ -3,7 +3,33 @@
 @tailwind utilities;
 
 :root {
-  --color-primary-rgb: 76, 38, 145;
+  --color-primary-rgb: 116, 146, 32;
+  
+  /* UpTik Design Tokens */
+  --PrimaryColor: #749220;
+  --PrimaryHover: #637D1A;
+  --SecondaryNavy: #165479;
+  --DarkNavy: #0A4973;
+  --DeepDark: #0a2d41;
+  --DarkTeal: #142a2b;
+  --EmeraldDark: #0c513f;
+  --AccentGreen: #6ABB57;
+  --SubtleGreenBg: #F6F9EE;
+  --SubtleNavyBg: #F0F6FA;
+
+  --FontFamily: 'Montserrat', sans-serif;
+  --HeadingFont: 'Montserrat', sans-serif;
+  --BodyFont: 'Montserrat', sans-serif;
+
+  --TitleFontSize: 32px;
+  --HeadingFontSize: 34px;
+  --Headinglineheight: 45px;
+  --SubheadingFontSize: 24px;
+  --SubheadinglineSize: 38px;
+  --ParagraphFontSize: 16px;
+  --Paragraphlineheight: 28px;
+  --bannerheading: 42px;
+  --bannerlineheight: 54px;
 }
 
 @layer base {
@@ -13,13 +39,50 @@
 
   body {
     @apply bg-white text-gray-900;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Montserrat', 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
   }
 }
 
 @layer utilities {
+  .btn-uptik-gradient {
+    background: linear-gradient(90deg, #165479 0%, #749220 100%);
+    color: white;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-uptik-gradient:hover {
+    box-shadow: 0 8px 24px rgba(116, 146, 32, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .btn-uptik-hero {
+    background: linear-gradient(to right, #0A4973, #6A9113);
+    color: white;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-uptik-hero:hover {
+    box-shadow: 0 8px 24px rgba(10, 73, 115, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .btn-uptik-outline {
+    border: 2px solid #749220;
+    color: #749220;
+    font-weight: 700;
+    transition: all 0.2s ease;
+  }
+  .btn-uptik-outline:hover {
+    background-color: #749220;
+    color: white;
+  }
+
   .glass {
     @apply bg-white/80 backdrop-blur-lg border border-white/20;
   }

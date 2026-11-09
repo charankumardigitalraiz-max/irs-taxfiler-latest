@@ -6,12 +6,12 @@ import {
   PhoneIcon,
   ClockIcon,
   ChatBubbleLeftRightIcon,
-  BuildingOfficeIcon,
   AcademicCapIcon,
   BoltIcon,
   GiftIcon,
-  CheckCircleIcon,
   StarIcon,
+  ArrowUpRightIcon,
+  ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/outline";
 import SEO from '../components/seo/SEO';
 import Logo from '../assets/irsLogo.png';
@@ -24,16 +24,13 @@ const Contact = () => {
       description: "Send us an email and we'll respond within 24 hours.",
       contact: "contact@irstaxfiler.com",
       link: "mailto:contact@irstaxfiler.com",
-      color: "#EFF6FF",
     },
     {
       icon: PhoneIcon,
       title: "Call Us",
-      description:
-        "Speak directly with our tax experts for immediate assistance.",
+      description: "Speak directly with our tax experts for immediate assistance.",
       contact: "+1 (415) 7876190",
-      link: "tel:++1 (415) 7876190",
-      color: "#F0FDF4",
+      link: "tel:+14157876190",
     },
     {
       icon: ChatBubbleLeftRightIcon,
@@ -41,7 +38,6 @@ const Contact = () => {
       description: "Get instant help from our support team. Available 24/7.",
       contact: "Start Chat",
       link: "#",
-      color: "#FEF3C7",
     },
     {
       icon: ClockIcon,
@@ -49,7 +45,6 @@ const Contact = () => {
       description: "Our team is available during these hours.",
       contact: "Mon-Sat: 9:30AM-7:30PM CST",
       link: "#",
-      color: "#F3E8FF",
     },
   ];
 
@@ -68,163 +63,137 @@ const Contact = () => {
         image={image}
         keywords={keywords}
       />
-      <div className="min-h-screen bg-gray-50">
-        {/* Enhanced Hero Section */}
-        <section
-          className="relative overflow-hidden py-28"
-          style={{ backgroundColor: "#2B547E" }}
-        >
-          {/* Animated Background Elements */}
-          <div className="absolute inset-0">
-            <motion.div
-              animate={{
-                x: [0, 100, 0],
-                y: [0, 50, 0],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-20 left-10 w-72 h-72 bg-[#2B547E]/30 rounded-full blur-3xl"
-            ></motion.div>
-            <motion.div
-              animate={{
-                x: [0, -80, 0],
-                y: [0, -60, 0],
-                scale: [1, 1.3, 1],
-              }}
-              transition={{
-                duration: 25,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute bottom-20 right-10 w-96 h-96 bg-[#2B547E]/30 rounded-full blur-3xl"
-            ></motion.div>
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+
+      <div className="min-h-screen bg-white overflow-x-hidden w-full max-w-full">
+
+        {/* ========================================================================= */}
+        {/* 1. HERO & CONTACT METHODS SECTION                                         */}
+        {/* ========================================================================= */}
+        <section className="relative overflow-hidden pt-12 pb-16 sm:pt-16 sm:pb-24 bg-white border-b border-slate-100">
+          {/* Subtle Ambient Background Gradients */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden -z-10">
+            <div className="absolute -top-24 left-1/4 w-96 h-96 bg-sky-100/50 rounded-full blur-3xl opacity-60" />
+            <div className="absolute -top-20 right-1/4 w-80 h-80 bg-lime-100/40 rounded-full blur-3xl opacity-50" />
           </div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* Hero Header */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center"
+              transition={{ duration: 0.5 }}
+              className="text-center mb-10 sm:mb-14"
             >
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md px-4 py-2 rounded-full mb-6 border border-white/30 shadow-lg"
-              >
-                <motion.div
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                >
-                  <StarIcon className="h-4 w-4 text-yellow-300" />
-                </motion.div>
-                <span className="text-white font-semibold text-xs md:text-sm">We're Here to Help</span>
-              </motion.div>
+              {/* Tag Pill */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100/80 border border-slate-200/80 mb-4 select-none">
+                <StarIcon className="w-3.5 h-3.5 text-[#749220]" />
+                <span className="text-xs font-medium text-slate-700">We're Here to Help</span>
+              </div>
 
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight">
-                <span className="block text-white drop-shadow-lg">Contact Us</span>
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="block text-[#EB4149] drop-shadow-2xl"
-                >
+              {/* Main Headline */}
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-gray-900 tracking-tight leading-[1.25] mb-3.5 max-w-3xl mx-auto">
+                Contact Us —{" "}
+                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
                   Get in Touch Today
-                </motion.span>
+                </span>
               </h1>
 
-              <p className="text-base md:text-lg text-white/90 max-w-3xl mx-auto leading-relaxed">
-                Have questions? We're here to help. Get in touch with our team
-                today and let's discuss how we can assist you.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Bottom Wave Decoration */}
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg className="w-full h-16 text-white" fill="currentColor" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,50 L1200,120 L0,120 Z"></path>
-            </svg>
-          </div>
-        </section>
-
-        {/* Contact Methods Section */}
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className="mb-12 text-center"
-            >
-              <h2
-                className="text-3xl lg:text-4xl font-bold mb-4"
-                style={{ color: "#202020" }}
-              >
-                Get in Touch
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Choose the contact method that works best for you. We're ready to
-                assist.
+              {/* Subheading */}
+              <p className="text-sm sm:text-base lg:text-[17px] text-gray-600 font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-2 max-w-2xl mx-auto text-center">
+                Have questions? We're here to help. Get in touch with our team today and let's discuss how we can assist you.
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {/* Contact Methods Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
               {contactMethods.map((method, index) => {
                 const IconComponent = method.icon;
+                const isLime = index % 2 === 0;
+                const isLiveChat = method.title === "Live Chat";
+                const isBusinessHours = method.title === "Business Hours";
+
+                const cardContent = (
+                  <>
+                    {/* Top Accent Line on hover */}
+                    <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#749220]/0 to-transparent group-hover:via-[#749220] transition-all duration-300" />
+
+                    <div>
+                      {/* Top Row: Icon + Arrow / Indicator */}
+                      <div className="flex items-center justify-between mb-4">
+                        <div
+                          className={`w-11 h-11 rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-105 ${isLime
+                            ? 'bg-[#F6F9EE] border border-[#749220]/25 text-[#749220]'
+                            : 'bg-sky-50 border border-sky-100 text-[#165479]'
+                            }`}
+                        >
+                          <IconComponent className="w-5.5 h-5.5" />
+                        </div>
+
+                        {!isBusinessHours ? (
+                          <div className="w-8 h-8 rounded-lg bg-slate-50 group-hover:bg-sky-50 border border-slate-100/80 group-hover:border-sky-100 flex items-center justify-center text-slate-400 group-hover:text-[#165479] transition-all">
+                            <ArrowUpRightIcon className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                          </div>
+                        ) : (
+                          <span className="w-2 h-2 rounded-full bg-[#749220]" />
+                        )}
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-base font-medium text-gray-900 group-hover:text-[#165479] transition-colors mb-1.5 leading-snug">
+                        {method.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-xs sm:text-[13px] text-gray-500 font-normal leading-relaxed mb-4">
+                        {method.description}
+                      </p>
+                    </div>
+
+                    {/* Bottom Detail */}
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                      <span className="text-xs font-medium text-[#165479] group-hover:text-[#0A4973] transition-colors truncate">
+                        {method.contact}
+                      </span>
+                      {isLiveChat && (
+                        <span className="flex items-center gap-1.5 text-[11px] text-[#749220] font-medium shrink-0">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#749220] animate-pulse" />
+                          24/7
+                        </span>
+                      )}
+                    </div>
+                  </>
+                );
+
+                const cardClasses =
+                  "relative bg-white rounded-2xl p-6 border border-slate-200/90 shadow-2xs hover:shadow-[0_16px_36px_rgba(22,84,121,0.08)] hover:border-[#165479]/30 transition-all duration-300 text-left flex flex-col justify-between group overflow-hidden h-full";
+
                 return (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-white rounded-xl shadow-md border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 text-center"
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.35, delay: index * 0.08 }}
+                    className="h-full"
                   >
-                    <div
-                      className="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4"
-                      style={{ backgroundColor: method.color }}
-                    >
-                      <IconComponent
-                        className="w-8 h-8"
-                        style={{ color: "#2B547E" }}
-                      />
-                    </div>
-                    <h3
-                      className="text-xl font-bold mb-2"
-                      style={{ color: "#202020" }}
-                    >
-                      {method.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm mb-3">
-                      {method.description}
-                    </p>
-                    {method.link === "#" && method.title === "Live Chat" ? (
+                    {isLiveChat ? (
                       <button
                         onClick={(e) => {
                           e.preventDefault();
                           window.dispatchEvent(new CustomEvent("openLiveChat"));
                         }}
-                        className="text-sm font-semibold hover:opacity-70 transition-opacity"
-                        style={{ color: "#2B547E" }}
+                        className={`${cardClasses} w-full cursor-pointer`}
                       >
-                        {method.contact}
+                        {cardContent}
                       </button>
-                    ) : (
-                      <a
-                        href={method.link}
-                        className="text-sm font-semibold hover:opacity-70 transition-opacity"
-                        style={{ color: "#2B547E" }}
-                      >
-                        {method.contact}
+                    ) : method.link !== "#" ? (
+                      <a href={method.link} className={`${cardClasses} block`}>
+                        {cardContent}
                       </a>
+                    ) : (
+                      <div className={cardClasses}>
+                        {cardContent}
+                      </div>
                     )}
                   </motion.div>
                 );
@@ -233,378 +202,261 @@ const Contact = () => {
           </div>
         </section>
 
-        {/* Contact Form Section */}
-        <section id="send-message" className="py-16 bg-gradient-to-b from-gray-50 to-white">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* ========================================================================= */}
+        {/* 2. CONTACT FORM & OFFICE LOCATIONS                                        */}
+        {/* ========================================================================= */}
+        <section id="send-message" className="py-16 sm:py-20 bg-slate-50/60 border-b border-slate-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className="mb-8 text-center"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-center mb-10 sm:mb-14"
             >
-              <h2
-                className="text-2xl lg:text-3xl font-bold mb-2"
-                style={{ color: "#202020" }}
-              >
-                Send Us a Message
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25] mb-2.5">
+                Send Us a{" "}
+                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                  Message
+                </span>
               </h2>
-              <p className="text-sm text-gray-600 max-w-xl mx-auto">
+              <p className="text-sm sm:text-base text-gray-600 font-normal max-w-xl mx-auto leading-relaxed">
                 Fill out the form below and we'll get back to you as soon as possible.
               </p>
             </motion.div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-              <div className="h-full">
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+              {/* Left Column: Form */}
+              <div className="lg:col-span-6 h-full">
                 <ContactForm />
               </div>
+
+              {/* Right Column: Office Address List */}
               <motion.div
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6 }}
-                className="relative bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden flex flex-col"
+                transition={{ duration: 0.5 }}
+                className="lg:col-span-6 flex flex-col justify-between space-y-4"
               >
-                <div className="absolute inset-0 opacity-30">
-                  <div className="absolute -top-8 -right-8 w-32 h-32 bg-[#2B547E]/10 rounded-full blur-2xl"></div>
-                  <div className="absolute bottom-0 left-0 w-40 h-40 bg-[#EB4149]/10 rounded-full blur-2xl"></div>
-                </div>
-                <div className="relative z-10 p-5 flex flex-col">
-                  <div className="rounded-lg overflow-hidden shadow-sm mb-4">
-                    <img
-                      src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?w=900&auto=format&fit=crop&q=80"
-                      alt="Customer success team"
-                      className="w-full h-48 object-cover"
-                    />
-                  </div>
-                  <div className="space-y-3 text-gray-700 text-xs leading-relaxed">
-                    <p className="text-sm">
-                      Our customer success team is available worldwide to help you
-                      with onboarding, document collection, and any questions
-                      about your filing.
+                <div>
+                  {/* <div className="mb-3.5">
+                    <h3 className="text-lg font-medium text-gray-900 leading-snug">
+                      Visit Our{" "}
+                      <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                        Office
+                      </span>
+                    </h3>
+                    <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed mt-1">
+                      While we primarily serve clients remotely, you're welcome to schedule an in-person consultation.
                     </p>
-                    <ul className="space-y-2">
-                      <li className="flex items-start space-x-2">
-                        <CheckCircleIcon
-                          className="w-4 h-4 mt-0.5 flex-shrink-0"
-                          style={{ color: "#2B547E" }}
-                        />
-                        <span className="text-xs">
-                          Dedicated point of contact for personalized support
+                  </div> */}
+
+                  <div className="space-y-4">
+                    {/* Dallas Office Card */}
+                    <div className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.08)] hover:border-[#165479]/30 transition-all duration-200 group">
+                      {/* Card Header */}
+                      <div className="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-slate-100">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-sky-50 border border-sky-100 text-[#165479] shrink-0 transition-transform duration-200 group-hover:scale-105">
+                            <MapPinIcon className="w-4.5 h-4.5" />
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <h4 className="text-sm sm:text-base font-medium text-gray-900 leading-snug">
+                              Dallas, USA
+                            </h4>
+                            <span className="text-[10px] font-medium text-[#165479] bg-sky-50 px-2 py-0.5 rounded border border-sky-100">
+                              United States
+                            </span>
+                          </div>
+                        </div>
+                        <span className="text-[11px] text-slate-400 font-medium select-none">
+                          By Appointment
                         </span>
-                      </li>
-                      <li className="flex items-start space-x-2">
-                        <CheckCircleIcon
-                          className="w-4 h-4 mt-0.5 flex-shrink-0"
-                          style={{ color: "#2B547E" }}
-                        />
-                        <span className="text-xs">
-                          Average response time under two business hours
+                      </div>
+
+                      {/* Flex Body: Map & Address Text */}
+                      <div className="flex flex-col sm:flex-row gap-4 items-stretch">
+                        {/* Interactive Map Embed */}
+                        <div className="w-full sm:w-48 md:w-52 h-28 sm:h-32 rounded-xl overflow-hidden border border-slate-200/80 bg-slate-100 shadow-inner shrink-0">
+                          <iframe
+                            title="Dallas Office Map"
+                            src="https://maps.google.com/maps?q=13610+Floyd+Cir,+Dallas,+TX+75243&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                            className="w-full h-full border-0"
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                          />
+                        </div>
+
+                        {/* Address & Directions */}
+                        <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5">
+                          <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed">
+                            13610 Floyd Cir,<br />
+                            Dallas, TX 75243,<br />
+                            USA
+                          </p>
+
+                          <div className="pt-2">
+                            <a
+                              href="https://www.google.com/maps/place/13610+Floyd+Cir,+Dallas,+TX+75243"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 text-xs sm:text-[13px] font-medium text-[#165479] hover:text-[#0A4973] transition-colors"
+                            >
+                              <span>Get Directions</span>
+                              <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5" />
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Hyderabad Office Card */}
+                    <div className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.08)] hover:border-[#165479]/30 transition-all duration-200 group">
+                      {/* Card Header */}
+                      <div className="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-slate-100">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#F6F9EE] border border-[#749220]/25 text-[#749220] shrink-0 transition-transform duration-200 group-hover:scale-105">
+                            <MapPinIcon className="w-4.5 h-4.5" />
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <h4 className="text-sm sm:text-base font-medium text-gray-900 leading-snug">
+                              Hyderabad, India
+                            </h4>
+                            <span className="text-[10px] font-medium text-[#749220] bg-[#F6F9EE] px-2 py-0.5 rounded border border-[#749220]/20">
+                              India
+                            </span>
+                          </div>
+                        </div>
+                        <span className="text-[11px] text-slate-400 font-medium select-none">
+                          By Appointment
                         </span>
-                      </li>
-                      <li className="flex items-start space-x-2">
-                        <CheckCircleIcon
-                          className="w-4 h-4 mt-0.5 flex-shrink-0"
-                          style={{ color: "#2B547E" }}
-                        />
-                        <span className="text-xs">
-                          Secure communication with bank-level encryption
-                        </span>
-                      </li>
-                    </ul>
-                    <div className="pt-2 text-xs text-gray-500 border-t border-gray-100">
-                      * We respond to all messages within 24 hours.
+                      </div>
+
+                      {/* Flex Body: Map & Address Text */}
+                      <div className="flex flex-col sm:flex-row gap-4 items-stretch">
+                        {/* Interactive Map Embed */}
+                        <div className="w-full sm:w-48 md:w-52 h-28 sm:h-32 rounded-xl overflow-hidden border border-slate-200/80 bg-slate-100 shadow-inner shrink-0">
+                          <iframe
+                            title="Hyderabad Office Map"
+                            src="https://maps.google.com/maps?q=Manjeera+Majestic+Commercial,+Kukatpally,+Hyderabad,+Telangana+500072&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                            className="w-full h-full border-0"
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                          />
+                        </div>
+
+                        {/* Address & Directions */}
+                        <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5">
+                          <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed">
+                            #803, Manjeera Majestic Commercial,<br />
+                            Hitech City Road,<br />
+                            Hyderabad, Telangana 500072, India
+                          </p>
+
+                          <div className="pt-2">
+                            <a
+                              href="https://www.google.com/maps/place/Manjeera+Majestic+Commercial,+803,+JNTU+-+Hitech+City+Rd,+K+P+H+B+Phase+1,+Kukatpally,+Hyderabad,+Telangana+500072"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 text-xs sm:text-[13px] font-medium text-[#165479] hover:text-[#0A4973] transition-colors"
+                            >
+                              <span>Get Directions</span>
+                              <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5" />
+                            </a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                </div>
+
+                <div className="pt-3 border-t border-slate-200/80 text-xs text-slate-500 font-normal italic">
+                  * We respond to all messages within 24 hours.
                 </div>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Office Location Section */}
-        <section className="py-20">
+        {/* ========================================================================= */}
+        {/* 3. WHY CONTACT US? SECTION                                                */}
+        {/* ========================================================================= */}
+        <section className="py-16 sm:py-10 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className="mb-12 text-center"
-            >
-              <h2
-                className="text-3xl lg:text-4xl font-bold mb-4"
-                style={{ color: "#202020" }}
-              >
-                Visit Our Office
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                While we primarily serve clients remotely, you're welcome to
-                schedule an in-person consultation.
-              </p>
-            </motion.div>
-
-            <div className="">
-              {/* <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6 }}
-              className="bg-white rounded-xl shadow-lg border border-gray-200 p-8"
+              transition={{ duration: 0.5 }}
+              className="text-center mb-12 sm:mb-16"
             >
-              <div className="flex items-center space-x-3 mb-6">
-                <div
-                  className="w-14 h-14 rounded-lg flex items-center justify-center"
-                  style={{ backgroundColor: "#EFF6FF" }}
-                >
-                  <BuildingOfficeIcon
-                    className="w-7 h-7"
-                    style={{ color: "#2B537D" }}
-                  />
-                </div>
-                <h3 className="text-2xl font-bold" style={{ color: "#202020" }}>
-                  Office Address
-                </h3>
-              </div>
-              <div className="space-y-4">
-                <div className="">
-                  <p className="text-sm text-slate-300 mb-4 leading-snug">
-                    <strong className="text-white flex items-center gap-1">
-                      <MapPinIcon className="h-5 w-5 text-[#2B537D]" />
-                     <p className="text-[#2B537D]" >Dallas, USA</p> 
-                    </strong>
-
-                    <a
-                      href="https://www.google.com/maps/place/13610+Floyd+Cir,+Dallas,+TX+75243"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <p className="pl-5 text-[#2B537D]">
-                        13610 Floyd Cir, Dallas,
-                        <br /> TX 75243
-                      </p>
-                    </a>
-                  </p>
-
-                  <p className="text-sm text-slate-300 leading-snug">
-                    <strong className="text-white flex items-center gap-1">
-                      <MapPinIcon className="h-5 w-5 text-[#2B537D]" />
-                      <p className="text-[#2B537D]" > Hyderabad, India</p>
-                    </strong>
-
-                    <a
-                      href="https://www.google.com/maps/place/Manjeera+Majestic+Commercial,+803,+JNTU+-+Hitech+City+Rd,+K+P+H+B+Phase+1,+Kukatpally,+Hyderabad,+Telangana+500072"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <p className="pl-5 text-[#2B537D]">
-                        # 803, Manjeera Majestic Commercial, Hitech City Road,
-                        Hyderabad, Telangana 500072
-                      </p>
-                    </a>
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-gray-200">
-                  <p className="text-gray-600 text-sm">
-                    We're located in the heart of New York City. Schedule an
-                    appointment to visit our office for in-person consultations.
-                  </p>
-                </div>
-              </div>
-            </motion.div> */}
-              <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-
-                {/* Dallas Card */}
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ scale: 1.04 }}
-                  transition={{ duration: 0.3 }}
-                  className="
-      w-[300px] h-[240px] rounded-2xl p-7 bg-white cursor-pointer
-      border-2 border-gray-300
-      hover:border-[#2B537D]
-      shadow-sm hover:shadow-[0_10px_30px_rgba(0,0,0,0.15)]
-      transition-all duration-300
-    "
-                >
-                  <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 bg-[#EFF6FF]">
-                      <MapPinIcon className="w-7 h-7 text-[#2B537D]" />
-                    </div>
-
-                    <h4 className="text-lg font-semibold text-[#202020] text-center">Dallas, USA</h4>
-                    <p className="text-sm text-gray-600 mt-2 text-center leading-relaxed">
-                      13610 Floyd Cir,<br />
-                      Dallas, TX 75243<br />
-                      USA
-                    </p>
-                  </div>
-                </motion.div>
-
-
-                {/* Hyderabad Card */}
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ scale: 1.04 }}
-                  transition={{ duration: 0.3, delay: 0.05 }}
-                  className="
-      w-[300px] h-[240px] rounded-2xl p-7 bg-white cursor-pointer
-      border-2 border-gray-300
-      hover:border-[#EB4149]
-      shadow-sm hover:shadow-[0_10px_30px_rgba(0,0,0,0.15)]
-      transition-all duration-300
-    "
-                >
-                  <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 bg-[#F3E8FF]">
-                      <MapPinIcon className="w-7 h-7 text-[#EB4149]" />
-                    </div>
-
-                    <h4 className="text-lg font-semibold text-[#202020] text-center">Hyderabad, India</h4>
-                    <p className="text-sm text-gray-600 mt-2 text-center leading-relaxed">
-                      #803, Manjeera Majestic Commercial,<br />
-                      Hitech City Road,<br />
-                      Hyderabad, Telangana 500072<br />
-                      India
-                    </p>
-                  </div>
-                </motion.div>
-
-              </div>
-
-
-              {/* <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6 }}
-              className="bg-gray-100 rounded-xl shadow-lg border border-gray-200 overflow-hidden"
-            >
-              <div className="h-full flex items-center justify-center min-h-[300px] p-8">
-                <div className="text-center">
-                  <div
-                    className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4"
-                    style={{ backgroundColor: "#EB4149" }}
-                  >
-                    <MapPinIcon className="w-10 h-10 text-white" />
-                  </div>
-                  <p
-                    className="text-lg font-semibold mb-2"
-                    style={{ color: "#202020" }}
-                  >
-                    Map Integration
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    Google Maps can be integrated here
-                  </p>
-                </div>
-              </div>
-            </motion.div> */}
-            </div>
-          </div>
-        </section>
-
-        {/* Why Contact Us Section */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className="mb-12 text-center"
-            >
-              <h2
-                className="text-3xl lg:text-4xl font-bold mb-4"
-                style={{ color: "#202020" }}
-              >
-                Why Contact Us?
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25] mb-2.5">
+                Why Contact{" "}
+                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                  Us?
+                </span>
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-sm sm:text-base text-gray-600 font-normal max-w-2xl mx-auto leading-relaxed">
                 We're here to help you with all your tax filing needs.
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
               {[
                 {
                   icon: AcademicCapIcon,
                   title: "Expert Guidance",
                   description:
                     "Get personalized advice from certified tax professionals who understand your unique situation.",
-                  color: "#EFF6FF",
                 },
                 {
                   icon: BoltIcon,
                   title: "Quick Response",
                   description:
                     "We respond to all inquiries within 24 hours, ensuring you get the help you need promptly.",
-                  color: "#F0FDF4",
                 },
                 {
                   icon: GiftIcon,
                   title: "Free Consultation",
                   description:
                     "Schedule a free consultation to discuss your tax filing needs and get a personalized quote.",
-                  color: "#FEF3C7",
                 },
               ].map((feature, index) => {
                 const IconComponent = feature.icon;
+                const isLime = index === 1;
                 return (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="bg-white rounded-xl shadow-md border border-gray-200 p-6 hover:shadow-lg transition-all duration-300"
-                    whileHover={{ y: -5 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.35, delay: index * 0.08 }}
+                    className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.08)] hover:border-[#165479]/30 transition-all duration-200 flex flex-col justify-start group"
                   >
-                    <motion.div
-                      className="w-14 h-14 rounded-lg flex items-center justify-center mb-4"
-                      style={{ backgroundColor: feature.color }}
-                      whileHover={{
-                        scale: 1.1,
-                        rotate: [0, -10, 10, -10, 0],
-                      }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 20,
-                      }}
+                    <div
+                      className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-105 ${isLime
+                        ? 'bg-[#F6F9EE] border border-[#749220]/25 text-[#749220]'
+                        : 'bg-sky-50 border border-sky-100 text-[#165479]'
+                        }`}
                     >
-                      <motion.div
-                        animate={{
-                          y: [0, -5, 0],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: index * 0.3,
-                        }}
-                      >
-                        <IconComponent
-                          className="w-7 h-7"
-                          style={{ color: "#2B547E" }}
-                        />
-                      </motion.div>
-                    </motion.div>
-                    <h3
-                      className="text-xl font-bold mb-2"
-                      style={{ color: "#202020" }}
-                    >
+                      <IconComponent className="w-5.5 h-5.5" />
+                    </div>
+
+                    <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-2 leading-snug">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-600 text-sm">{feature.description}</p>
+
+                    <p className="text-xs sm:text-[13.5px] text-gray-600 font-normal leading-relaxed">
+                      {feature.description}
+                    </p>
                   </motion.div>
                 );
               })}
             </div>
           </div>
         </section>
+
       </div>
     </>
   );

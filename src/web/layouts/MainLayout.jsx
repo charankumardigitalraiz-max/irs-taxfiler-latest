@@ -9,7 +9,8 @@ const MainLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow">
+      {/* Global layout offset: reserves header height (64px / pt-16) so page content naturally starts below navbar everywhere */}
+      <main className="flex-grow pt-16">
         <Outlet />
       </main>
       <Footer />

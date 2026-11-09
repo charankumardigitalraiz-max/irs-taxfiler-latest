@@ -1,0 +1,261 @@
+.AboutusheroSection {
+  background: #0d251c;
+  color: white;
+  text-align: center;
+  padding-top: 50px;
+  font-weight: bold;
+  height: 30vh;
+}
+
+.AboutusheroSection h1 {
+  text-align: center;
+  margin-top: 5.5%;
+    font-size: var(--bannerheading);
+    line-height: var(--bannerlineheight);
+    font-family: var(--FontFamily);
+    font-weight: 700;
+    letter-spacing: 0px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.AboutuscontentSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10%;
+  gap: 40px;
+  margin: auto;
+}
+
+.AboutuscontentSectionReverse {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 40px;
+  margin: auto;
+  padding: 20px 10%;
+}
+
+.AboutustextContainer {
+  width: 45%;
+}
+
+.AboutustextContainer h5 {
+  color: #749220;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: var(--ParagraphFontSize);
+  line-height: var(--Paragraphlineheight);
+  margin: 0;
+}
+
+.AboutustextContainer h2 {
+  font-size: var(--HeadingFontSize);
+  font-weight: bold;
+  margin: 10px 0px;
+}
+
+.AboutustextContainer p {
+  color: gray;
+  margin-top: 1rem;
+  padding-top: 3px;
+  font-size: var(--ParagraphFontSize);
+  line-height: var(--Paragraphlineheight);
+  margin: 0px;
+  text-align: justify;
+}
+
+
+.AboutustextContainer h2 {
+  font-size:var( --HeadingFontSize);
+  line-height: var( --Headinglineheight);
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.AboutustextContainer ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.AboutustextContainer li {
+  color: gray;
+  font-size: var(--ParagraphFontSize);
+  line-height: var(--Paragraphlineheight);
+  padding-top: 10px;
+  text-align: justify;
+  word-spacing: -2px;
+}
+
+.AboutustextContainer li b{
+  font-weight: bold;
+  color: #222;
+  
+}
+.AboutustextContainer h3{
+   font-size: 24px;
+   line-height: 32px;
+   padding-top: 35px;
+   padding-bottom: 5px;
+   margin: 0;
+}
+
+
+
+.AboutusimageContainer {
+  width: 45%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AboutustextContainer {
+  width: 45%;
+}
+
+.AboutusimageContainer img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+}
+
+@media (max-width: 1024px) {
+  .AboutuscontentSection {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .AboutusheroSection {
+    height: 26vh;
+    background: #0d251c;
+    color: white;
+    text-align: center;
+    padding-top: 80px;
+  }
+
+  .AboutuscontentSection,
+  .AboutuscontentSectionReverse {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .AboutusimageContainer,
+  .AboutustextContainer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .AboutusheroSection {
+    height: 20vh;
+    background: #0d251c;
+    color: white;
+    text-align: center;
+    padding-top: 100px;
+  }}
+ 
+
+/*about us why */
+.responsiveContainer {
+  text-align: center;
+  padding: 50px 10%;
+}
+
+.responsiveTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0px;
+  margin-top: 0;
+}
+.responsiveContainer p{
+  margin-bottom: 40px;
+  margin-top: 10px;
+}
+
+.responsiveGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.responsiveCard {
+  background: white;
+  border: 2px solid #c2d4f8;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.responsiveCard:hover {
+  transform: translateY(-5px);
+}
+
+
+.responsiveIcon img {
+  width: 60px;
+  height: 60px;
+}
+
+.responsiveCardTitle {
+  font-size: var(--ParagraphFontSize);
+  line-height: var(--Paragraphlineheight);
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.responsiveCardDescription {
+  font-size: var(--ParagraphFontSize);
+  line-height: var(--Paragraphlineheight);
+  color: #080E06;
+  font-family: var(--FontFamily);
+  text-align: justify;
+  font-size: var(--ParagraphFontSize);
+  line-height: var(--Paragraphlineheight);
+  word-spacing: -2px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .responsiveGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .responsiveGrid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .responsiveCardTitle {
+    text-align: center;
+  }
+  .AboutuscontentSectionReverse {
+    padding: 5%;
+  }
+
+  .mobilePadding {
+    padding-top: 20px;
+  }
+  .mobilePadding h1 {
+   margin-top: 40px;
+   padding: 0;
+  }
+}
+@media (max-width: 500px) {
+  .mobilePadding {
+    padding-top: 20px;
+  }
+  .mobilePadding h1 {
+   margin-top: 20px;
+   padding: 0;
+  }
+}
