@@ -333,14 +333,14 @@ const TaxFilingServices = ({ onOpenModal }) => {
                     </p>
 
                     {/* Key Feature Bullets */}
-                    <ul className="mt-4 pt-3.5 border-t border-slate-100/90 space-y-2">
+                    {/* <ul className="mt-4 pt-3.5 border-t border-slate-100/90 space-y-2">
                       {item.features?.map((feat, fIdx) => (
                         <li key={fIdx} className="flex items-center gap-2 text-[12px] text-gray-600 font-normal">
                           <CheckCircleIcon className="w-3.5 h-3.5 text-[#749220] stroke-[2.2] shrink-0" />
                           <span className="truncate">{feat}</span>
                         </li>
                       ))}
-                    </ul>
+                    </ul> */}
                   </div>
 
                   {/* Card Footer Action */}
