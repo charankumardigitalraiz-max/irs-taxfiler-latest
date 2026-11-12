@@ -184,10 +184,13 @@ const IndianRepresentation = () => {
       <section className="py-12 sm:py-16 bg-white border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
-              Indian Tax Notices Resolved
+            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
+              Indian Tax Notices{" "}
+              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                Resolved & Defended
+              </span>
             </h2>
-            <p className="text-xs sm:text-sm text-gray-500 font-normal mt-1.5">
+            <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2.5">
               Experienced defense for all types of Income Tax Department communications.
             </p>
           </div>
@@ -203,20 +206,25 @@ const IndianRepresentation = () => {
                     <div className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200/60 flex items-center justify-center shrink-0">
                       {cat.icon}
                     </div>
+                    {cat.tag && (
+                      <span className="text-[10.5px] font-medium px-2 py-0.5 rounded-md border bg-sky-50 text-[#165479] border-sky-100">
+                        {cat.tag}
+                      </span>
+                    )}
                   </div>
 
                   <h3 className="text-base font-semibold text-gray-900 mb-2 leading-snug">
                     {cat.title}
                   </h3>
 
-                  <p className="text-xs text-gray-500 font-normal leading-relaxed mb-4">
+                  <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed mb-4">
                     {cat.summary}
                   </p>
 
-                  <ul className="space-y-1.5 pt-3 border-t border-slate-100">
+                  <ul className="space-y-2.5 pt-3.5 border-t border-slate-100">
                     {cat.points.map((pt, pIdx) => (
-                      <li key={pIdx} className="flex items-center gap-1.5 text-xs text-gray-600 font-normal">
-                        <CheckCircleIcon className="w-3.5 h-3.5 text-[#749220] stroke-[2.2] shrink-0" />
+                      <li key={pIdx} className="flex items-start gap-2.5 text-[13px] sm:text-sm text-gray-800 font-medium leading-snug">
+                        <CheckCircleIcon className="w-4 h-4 text-[#749220] stroke-[2.2] shrink-0 mt-0.5" />
                         <span>{pt}</span>
                       </li>
                     ))}
@@ -245,29 +253,31 @@ const IndianRepresentation = () => {
             {/* Right Steps */}
             <div className="lg:col-span-7 space-y-4 text-left">
               <div className="mb-4">
-                <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
-                  3-Step Notice Defense Protocol
+                <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
+                  3-Step Notice{" "}
+                  <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                    Defense Protocol
+                  </span>
                 </h2>
               </div>
 
-              {steps.map((step, sIdx) => (
-                <div
-                  key={sIdx}
-                  className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-2xs flex items-start gap-3.5"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-[#F6F9EE] text-[#749220] font-mono font-bold text-xs flex items-center justify-center shrink-0">
-                    {step.num}
+              <div className="space-y-4">
+                {steps.map((step, sIdx) => (
+                  <div key={sIdx} className="flex items-start gap-3.5">
+                    <div className="w-8 h-8 rounded-lg bg-[#F6F9EE] text-[#749220] font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 border border-[#749220]/25">
+                      {step.num}
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold text-gray-900 mb-0.5">
+                        {step.title}
+                      </h3>
+                      <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed">
+                        {step.detail}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-sm font-semibold text-gray-900 mb-0.5">
-                      {step.title}
-                    </h3>
-                    <p className="text-xs text-gray-500 font-normal leading-relaxed">
-                      {step.detail}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>

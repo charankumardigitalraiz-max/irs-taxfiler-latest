@@ -662,7 +662,7 @@ const Navbar = () => {
             <div className="flex items-center space-x-2" ref={ref}>
               {/* Logged Out UI */}
               {gettoken() === false && (
-                <div className="flex items-center gap-1 sm:gap-2 font-sans">
+                <div className="flex hover:underline items-center gap-1 sm:gap-2 font-sans">
                   <Link
                     to="/login"
                     className="hidden sm:inline-flex px-3 py-1.5 text-sm font-semibold text-gray-700 hover:text-[#749220] transition-colors"

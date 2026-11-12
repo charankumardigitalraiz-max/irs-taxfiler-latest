@@ -18,12 +18,12 @@ const Input = ({ label, type = 'text', value, onChange, placeholder, disabled = 
         disabled={disabled}
         readOnly={readOnly}
         className={clsx(
-          'w-full px-4 py-3 text-sm border border-gray-300 rounded-lg',
-          'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent',
+          'w-full px-4 py-3 text-sm border border-slate-200 rounded-xl',
+          'focus:outline-none focus:ring-2 focus:ring-[#165479]/15 focus:border-[#165479]',
           'transition-all',
-          error ? 'border-red-300 focus:ring-red-500' : '',
-          disabled ? 'bg-gray-100 cursor-not-allowed' : 'bg-white',
-          readOnly ? 'bg-gray-50 cursor-not-allowed' : '',
+          error ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : '',
+          disabled ? 'bg-slate-50 cursor-not-allowed' : 'bg-white',
+          readOnly ? 'bg-slate-50 cursor-not-allowed' : '',
           className
         )}
         {...props}

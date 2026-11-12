@@ -209,10 +209,13 @@ const SMBTaxFiling = () => {
       <section className="py-12 sm:py-16 bg-white border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
-              Business Tax Return Scopes
+            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
+              Business Tax Return{" "}
+              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                Scopes & Filing
+              </span>
             </h2>
-            <p className="text-xs sm:text-sm text-gray-500 font-normal mt-1.5">
+            <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2.5">
               Comprehensive filing services tailored to your specific corporate structure.
             </p>
           </div>
@@ -243,14 +246,14 @@ const SMBTaxFiling = () => {
                     {tier.deadline}
                   </div>
 
-                  <p className="text-xs text-gray-500 font-normal leading-relaxed mb-4">
+                  <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed mb-4">
                     {tier.summary}
                   </p>
 
-                  <ul className="space-y-1.5 pt-3 border-t border-slate-100">
+                  <ul className="space-y-2.5 pt-3.5 border-t border-slate-100">
                     {tier.points.map((pt, pIdx) => (
-                      <li key={pIdx} className="flex items-center gap-1.5 text-xs text-gray-600 font-normal">
-                        <CheckCircleIcon className="w-3.5 h-3.5 text-[#749220] stroke-[2.2] shrink-0" />
+                      <li key={pIdx} className="flex items-start gap-2.5 text-[13px] sm:text-sm text-gray-800 font-medium leading-snug">
+                        <CheckCircleIcon className="w-4 h-4 text-[#749220] stroke-[2.2] shrink-0 mt-0.5" />
                         <span>{pt}</span>
                       </li>
                     ))}
@@ -279,8 +282,11 @@ const SMBTaxFiling = () => {
             {/* Right Steps */}
             <div className="lg:col-span-7 space-y-4 text-left">
               <div className="mb-4">
-                <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
-                  3-Step Corporate Filing Process
+                <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
+                  3-Step Corporate{" "}
+                  <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                    Filing Process
+                  </span>
                 </h2>
               </div>
 
@@ -294,7 +300,7 @@ const SMBTaxFiling = () => {
                       <h3 className="text-sm font-semibold text-gray-900 mb-0.5">
                         {step.title}
                       </h3>
-                      <p className="text-xs text-gray-500 font-normal leading-relaxed">
+                      <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed">
                         {step.detail}
                       </p>
                     </div>

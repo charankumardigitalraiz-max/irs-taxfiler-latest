@@ -231,13 +231,13 @@ const FBARFATCA = () => {
       <section className="py-12 sm:py-16 bg-white border-b border-slate-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
               FBAR vs. FATCA{" "}
-              <span className="font-medium bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
                 Comparison
               </span>
             </h2>
-            <p className="text-xs sm:text-sm text-gray-500 font-normal mt-1.5">
+            <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2.5">
               Understand the core differences between FinCEN Form 114 and IRS Form 8938.
             </p>
           </div>
@@ -398,7 +398,7 @@ const FBARFATCA = () => {
                   </div>
                   <div>
                     <h4 className="text-xs font-semibold text-gray-900">3 Years Back Tax Returns</h4>
-                    <p className="text-[11px] text-gray-500 font-normal mt-0.5">
+                    <p className="text-xs text-gray-600 font-normal mt-0.5 leading-relaxed">
                       Delinquent or amended Form 1040s reporting worldwide income.
                     </p>
                   </div>
@@ -410,7 +410,7 @@ const FBARFATCA = () => {
                   </div>
                   <div>
                     <h4 className="text-xs font-semibold text-gray-900">6 Years Back FBAR Submissions</h4>
-                    <p className="text-[11px] text-gray-500 font-normal mt-0.5">
+                    <p className="text-xs text-gray-600 font-normal mt-0.5 leading-relaxed">
                       Prior FinCEN 114 filings with Treasury currency rates.
                     </p>
                   </div>
@@ -422,7 +422,7 @@ const FBARFATCA = () => {
                   </div>
                   <div>
                     <h4 className="text-xs font-semibold text-gray-900">Non-Willful Statement</h4>
-                    <p className="text-[11px] text-gray-500 font-normal mt-0.5">
+                    <p className="text-xs text-gray-600 font-normal mt-0.5 leading-relaxed">
                       Formal Form 14653/14654 certification drafted by CPAs.
                     </p>
                   </div>
@@ -436,10 +436,16 @@ const FBARFATCA = () => {
       {/* 4. REPORTABLE FOREIGN ASSETS (CLEAN 4-COLUMN GRID) */}
       <section className="py-12 sm:py-16 bg-white border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-left mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
-              Reportable Offshore Assets
+          <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
+              Reportable Offshore{" "}
+              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                Assets
+              </span>
             </h2>
+            <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2.5">
+              Comprehensive compliance across foreign accounts, mutual funds, and overseas pension plans.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

@@ -262,13 +262,13 @@ const Extension = () => {
                   </p>
 
                   {/* Points List */}
-                  <ul className="space-y-2.5 pt-3 border-t border-slate-100">
+                  <ul className="space-y-2.5 pt-3.5 border-t border-slate-100">
                     {ext.points.map((pt, pIdx) => (
                       <li
                         key={pIdx}
-                        className="flex items-start gap-2 text-xs sm:text-[12px] text-slate-500 font-semibold leading-relaxed"
+                        className="flex items-start gap-2.5 text-[13px] sm:text-sm text-gray-800 font-medium leading-snug"
                       >
-                        <CheckCircleIcon className="w-4 h-4 text-[#749220] shrink-0 mt-0.5 stroke-[2]" />
+                        <CheckCircleIcon className="w-4 h-4 text-[#749220] shrink-0 mt-0.5 stroke-[2.2]" />
                         <span>{pt}</span>
                       </li>
                     ))}

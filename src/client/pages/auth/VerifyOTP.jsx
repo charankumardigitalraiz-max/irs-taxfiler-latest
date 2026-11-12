@@ -1,9 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Shield, Loader2, ArrowLeft } from 'lucide-react';
-import Button from '../../components/common/Button';
+import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import {
+  ShieldCheck,
+  Loader2,
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
+  AlertCircle,
+  Sparkles,
+} from 'lucide-react';
 import { authService } from '../../services/authService';
 import { setAuthToken, setUser } from '../../utils/auth';
+import Logo from '/irs-logo.png';
+import featureIllustration from '../../../web/assets/uptik-feature-illustration.png';
 
 const VerifyOTP = () => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
@@ -17,7 +27,7 @@ const VerifyOTP = () => {
   useEffect(() => {
     const storedEmail = sessionStorage.getItem('pendingEmail');
     if (!storedEmail) {
-      navigate('/client/login');
+      navigate('/login');
       return;
     }
     setEmail(storedEmail);
@@ -61,9 +71,9 @@ const VerifyOTP = () => {
 
   const handleVerify = async () => {
     const otpString = otp.join('');
-    
+
     if (otpString.length !== 6) {
-      setError('Please enter the complete 6-digit OTP');
+      setError('Please enter the complete 6-digit OTP code');
       return;
     }
 
@@ -72,7 +82,7 @@ const VerifyOTP = () => {
 
     try {
       const response = await authService.verifyOTP(email, otpString);
-      
+
       if (response.success) {
         setAuthToken(response.token);
         setUser(response.user);
@@ -83,19 +93,13 @@ const VerifyOTP = () => {
         sessionStorage.removeItem('cameFromRegister');
 
         if (cameFromRegister) {
-          // User came from register page - go directly to dashboard after OTP verification
           sessionStorage.removeItem('pendingReferralCode');
           navigate('/client/dashboard');
         } else if (response.isExistingUser) {
-          // User came from login page and is already registered - go to dashboard
           sessionStorage.removeItem('pendingReferralCode');
           navigate('/client/dashboard');
         } else {
-          // User came from login page and is new - go to registration page
-          // Preserve referral code for new users going to registration
           const refCode = sessionStorage.getItem('pendingReferralCode');
-
-          // Store email so register page can auto-fill it
           sessionStorage.setItem('prefillEmail', email);
 
           if (refCode) {
@@ -105,15 +109,14 @@ const VerifyOTP = () => {
           }
         }
       } else {
-        setError(response.message || 'Invalid OTP. Please try again.');
+        setError(response.message || 'Invalid OTP code. Please try again.');
         setOtp(['', '', '', '', '', '']);
         inputRefs.current[0]?.focus();
       }
     } catch (err) {
-      // Extract error message from API response
-      const errorMessage = 
-        err.response?.data?.message || 
-        err.message || 
+      const errorMessage =
+        err.response?.data?.message ||
+        err.message ||
         'Something went wrong. Please try again.';
       setError(errorMessage);
     } finally {
@@ -123,7 +126,7 @@ const VerifyOTP = () => {
 
   const handleResendOTP = async () => {
     if (resendTimer > 0) return;
-    
+
     setLoading(true);
     try {
       const response = await authService.sendOTP(email);
@@ -131,14 +134,12 @@ const VerifyOTP = () => {
         setResendTimer(60);
         setError('');
       } else {
-        // Handle error response
         setError(response?.message || 'Failed to resend OTP. Please try again.');
       }
     } catch (err) {
-      // Fallback for unexpected errors
-      const errorMessage = 
-        err.response?.data?.message || 
-        err.message || 
+      const errorMessage =
+        err.response?.data?.message ||
+        err.message ||
         'Failed to resend OTP. Please try again.';
       setError(errorMessage);
     } finally {
@@ -147,87 +148,217 @@ const VerifyOTP = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        {/* Logo */}
-        <div className="text-center">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-primary-600 rounded-xl flex items-center justify-center">
-              <Shield className="w-7 h-7 text-white" />
-            </div>
-          </div>
-          <h2 className="text-3xl font-bold text-gray-900">Verify Your Email</h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Enter the 6-digit code sent to <span className="font-medium text-gray-900">{email}</span>
-          </p>
-        </div>
+    <div className="min-h-screen flex flex-col justify-between bg-slate-50/70 text-gray-900 font-sans antialiased relative overflow-hidden py-6 px-4 sm:px-6">
+      {/* Background Ambient Glows */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-80 bg-gradient-to-b from-[#165479]/[0.08] via-[#749220]/[0.05] to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-20 right-0 w-80 h-80 bg-[#749220]/[0.04] rounded-full blur-3xl pointer-events-none" />
 
-        {/* Form */}
-        <div className="bg-white py-8 px-10 shadow-sm rounded-xl border border-gray-200">
-          <div className="space-y-6">
-            {/* OTP Input */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-4 text-center">
-                Enter OTP Code
-              </label>
-              <div className="flex justify-center gap-2">
-                {otp.map((digit, index) => (
-                  <input
-                    key={index}
-                    ref={(el) => (inputRefs.current[index] = el)}
-                    type="text"
-                    inputMode="numeric"
-                    maxLength="1"
-                    value={digit}
-                    onChange={(e) => handleOtpChange(index, e.target.value)}
-                    onKeyDown={(e) => handleKeyDown(index, e)}
-                    onPaste={handlePaste}
-                    className="w-12 h-14 text-center text-xl font-semibold border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
-                  />
-                ))}
-              </div>
-            </div>
+      {/* Center Main Stage: Balanced Ergonomic Card (max-w-[840px]) */}
+      <main className="relative z-10 my-auto w-full max-w-[840px] mx-auto">
+        <div className="w-full bg-white rounded-3xl border border-slate-200/90 shadow-[0_20px_50px_rgba(22,84,121,0.08)] overflow-hidden grid grid-cols-1 md:grid-cols-2">
+          {/* =========================================================================
+              CARD LEFT: ERGONOMIC FORM (comfortably centered at max-w-[275px])
+              ========================================================================= */}
+          <div className="w-full p-7 sm:p-10 flex flex-col justify-between text-left bg-white">
+            <div className="w-full max-w-[275px] mx-auto">
+              <Link to="/" className="inline-flex items-center gap-2 group transition-opacity hover:opacity-90 mb-3.5">
+                <img src={Logo} alt="IRS Tax Filer" className="h-10 sm:h-11 w-auto object-contain" />
+              </Link>
 
-            {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
-                {error}
-              </div>
-            )}
+              {/* Title & Subtitle */}
+              <h1 className="text-xl sm:text-2xl font-normal text-gray-900 tracking-tight leading-tight">
+                Verify Your{" "}
+                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                  Email
+                </span>
+              </h1>
+              <p className="mt-1 text-xs text-gray-500 font-normal leading-relaxed">
+                We sent a verification code to <br />
+                <span className="font-semibold text-gray-800 break-all">{email}</span>
+              </p>
 
-            <Button
-              onClick={handleVerify}
-              className="w-full"
-              size="lg"
-              isLoading={loading}
-              disabled={otp.join('').length !== 6}
-            >
-              Verify OTP
-            </Button>
+              {/* Error Banner */}
+              {error && (
+                <div className="mt-3 flex items-start gap-2 bg-rose-50 border border-rose-200 text-rose-700 px-3 py-2 rounded-xl text-xs leading-relaxed">
+                  <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-600" />
+                  <span>{error}</span>
+                </div>
+              )}
 
-            <div className="text-center">
-              <p className="text-sm text-gray-600 mb-2">Didn't receive the code?</p>
-              <button
-                type="button"
-                onClick={handleResendOTP}
-                disabled={resendTimer > 0 || loading}
-                className="text-sm text-primary-600 hover:text-primary-700 font-medium disabled:text-gray-400 disabled:cursor-not-allowed transition-colors"
+              {/* Form */}
+              <form
+                className="mt-7 sm:mt-8 space-y-3.5"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleVerify();
+                }}
               >
-                {resendTimer > 0 ? `Resend OTP in ${resendTimer}s` : 'Resend OTP'}
-              </button>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-800 mb-2">
+                    Enter Verification Code
+                  </label>
+                  <div className="flex justify-between items-center gap-1 sm:gap-1.5">
+                    {otp.map((digit, index) => (
+                      <input
+                        key={index}
+                        ref={(el) => (inputRefs.current[index] = el)}
+                        type="text"
+                        inputMode="numeric"
+                        maxLength="1"
+                        value={digit}
+                        onChange={(e) => handleOtpChange(index, e.target.value)}
+                        onKeyDown={(e) => handleKeyDown(index, e)}
+                        onPaste={handlePaste}
+                        className="w-9 sm:w-10 h-10 sm:h-11 text-center text-base sm:text-lg font-bold text-gray-900 bg-white border border-slate-200 rounded-xl focus:border-[#165479] focus:ring-3 focus:ring-[#165479]/10 focus:outline-none transition-all shadow-2xs"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={loading || otp.join('').length !== 6}
+                  className="w-full inline-flex items-center justify-center gap-2 h-10 px-4 rounded-xl bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] text-white font-medium text-xs sm:text-[13px] shadow-[0_4px_14px_rgba(22,84,121,0.2)] border border-white/20 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed group cursor-pointer"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-3.5 h-3.5 animate-spin text-white" />
+                      <span>Verifying Code...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Verify & Continue</span>
+                      <ArrowRight className="w-3.5 h-3.5 stroke-[2.2] group-hover:translate-x-0.5 transition-transform" />
+                    </>
+                  )}
+                </button>
+              </form>
+
+              {/* Resend Code Section & Use Different Email */}
+              <div className="mt-3.5 text-center space-y-1">
+                {/* <p className="text-[11px] text-gray-400">Didn't receive the code?</p> */}
+                <div>
+                  <button
+                    type="button"
+                    onClick={handleResendOTP}
+                    disabled={resendTimer > 0 || loading}
+                    className="text-xs text-[#165479] hover:text-[#0A4973] font-semibold disabled:text-gray-400 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                  >
+                    {resendTimer > 0 ? `Resend new code in ${resendTimer}s` : 'Resend Verification Code'}
+                  </button>
+                </div>
+                <div className="pt-1">
+                  <button
+                    type="button"
+                    onClick={() => navigate('/login')}
+                    className="inline-flex items-center gap-1 text-[11px] text-gray-500 hover:text-[#165479] font-medium transition-colors cursor-pointer"
+                  >
+                    <ArrowLeft className="w-3 h-3 stroke-[2]" />
+                    <span>Use a different email</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Security Row */}
+            <div className="w-full max-w-[275px] mx-auto mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-gray-500 font-medium">
+              <span className="flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-[#749220]" />
+                <span>256-Bit SSL</span>
+              </span>
+              <span className="text-slate-200">•</span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-[#165479]" />
+                <span>Zero Password Risk</span>
+              </span>
+            </div>
+          </div>
+
+          {/* =========================================================================
+              CARD RIGHT: ANIMATING IMAGE ILLUSTRATOR & TRUST BADGES
+              ========================================================================= */}
+          <div className="hidden md:flex bg-gradient-to-b from-[#F6F9EE]/90 via-slate-50 to-[#EBF3F8]/80 md:border-l border-slate-200/80 p-7 sm:p-10 flex-col justify-between items-center text-center relative overflow-hidden">
+            {/* Ambient Background Glows */}
+            <div className="absolute -top-12 -right-12 w-44 h-44 bg-[#749220]/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-12 -left-12 w-44 h-44 bg-[#165479]/15 rounded-full blur-3xl pointer-events-none" />
+
+            {/* Top Badge */}
+            <div className="relative z-10 w-full flex items-center justify-between">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#165479] bg-white/90 px-3 py-1 rounded-full border border-slate-200 shadow-2xs">
+                <Sparkles className="w-3.5 h-3.5 text-[#749220]" />
+                <span>Tax Year 2025-2026</span>
+              </span>
+              <span className="text-xs font-medium text-gray-500">
+                Direct e-File
+              </span>
+            </div>
+
+            {/* Center: Animating 3D Illustration */}
+            <div className="relative my-auto py-3 w-full flex flex-col items-center justify-center z-10">
+              <div className="relative w-44 sm:w-48 h-44 sm:h-48 flex items-center justify-center">
+                {/* Floating Bobbing Animation */}
+                <motion.div
+                  animate={{ y: [-6, 6, -6] }}
+                  transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+                  className="w-full h-full flex items-center justify-center relative"
+                >
+                  <img
+                    src={featureIllustration}
+                    alt="IRS Tax Filing Illustration"
+                    className="w-full h-full object-contain drop-shadow-[0_12px_24px_rgba(22,84,121,0.18)] select-none pointer-events-none"
+                  />
+
+                  {/* Floating Pill Badge: Top Left */}
+                  <motion.div
+                    animate={{ y: [-3, 3, -3] }}
+                    transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                    className="absolute -top-1 -left-2 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-xl border border-slate-200/90 shadow-xs flex items-center gap-1.5 text-[11px] font-bold text-gray-900"
+                  >
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 stroke-[2.2]" />
+                    <span>IRS Accepted</span>
+                  </motion.div>
+
+                  {/* Floating Pill Badge: Bottom Right */}
+                  <motion.div
+                    animate={{ y: [3, -3, 3] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                    className="absolute -bottom-1 -right-2 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-xl border border-slate-200/90 shadow-xs flex items-center gap-1.5 text-[11px] font-bold text-gray-900"
+                  >
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#749220] stroke-[2.2]" />
+                    <span>CPA Verified</span>
+                  </motion.div>
+                </motion.div>
+              </div>
+
+              {/* Headline & Subtitle under illustration */}
+              <div className="mt-3.5 max-w-[250px]">
+                <h3 className="text-sm sm:text-base font-semibold text-gray-900 leading-snug">
+                  Fast, Accurate &{' '}
+                  <span className="bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                    CPA-Certified
+                  </span>
+                </h3>
+                <p className="text-xs text-gray-500 font-normal mt-1 leading-relaxed">
+                  Guaranteed deduction optimization and maximum legal refunds.
+                </p>
+              </div>
+            </div>
+
+            {/* Bottom Social Proof */}
+            <div className="relative z-10 w-full pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs text-gray-500">
+              <span className="flex items-center gap-1 font-semibold text-gray-800">
+                <span className="text-amber-500">★★★★★</span> 4.9/5
+              </span>
+              <span>10,000+ Filers</span>
             </div>
           </div>
         </div>
+      </main>
 
-        <div className="text-center">
-          <button
-            onClick={() => navigate('/client/login')}
-            className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Login
-          </button>
-        </div>
-      </div>
+      {/* Page Footer */}
+      <footer className="relative z-10 w-full max-w-[840px] mx-auto text-center text-xs text-gray-400 py-3">
+        <p>© {new Date().getFullYear()} IRS Tax Filer. Authorized IRS e-File Provider & Licensed CPA Practice.</p>
+      </footer>
     </div>
   );
 };

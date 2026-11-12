@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
-import { UserPlus, ArrowLeft, CheckCircle2, Shield, Clock, FileCheck, Gift } from 'lucide-react';
+import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
+import { UserPlus, ArrowLeft, ArrowRight, CheckCircle2, Shield, Clock, FileCheck, Gift, Loader2 } from 'lucide-react';
 import Input from '../../components/common/Input';
-import Button from '../../components/common/Button';
 import { authService } from '../../services/authService';
 import { setAuthToken, setUser, getUser } from '../../utils/auth';
+import Logo from '/irs-logo.png';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -198,147 +198,183 @@ const Register = () => {
   ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8">
-        {/* Logo */}
-        <div className="text-center">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-primary-600 rounded-xl flex items-center justify-center">
-              <UserPlus className="w-7 h-7 text-white" />
-            </div>
-          </div>
-          <h2 className="text-3xl font-bold text-gray-900">Complete Registration</h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Please fill in your details to continue
-          </p>
-        </div>
+    <div className="min-h-screen flex flex-col justify-between bg-white text-gray-900 font-sans antialiased relative overflow-hidden">
+      {/* Ambient Brand Glow Highlights */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-96 bg-gradient-to-b from-[#165479]/[0.08] via-[#749220]/[0.05] to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 right-0 w-96 h-96 bg-[#749220]/[0.04] rounded-full blur-3xl pointer-events-none" />
 
-        {/* Form */}
-        <div className="bg-white py-8 px-10 shadow-sm rounded-xl border border-gray-200">
-          <form className="space-y-5" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-2 gap-4">
-              <Input
-                label="First Name"
-                name="firstName"
-                type="text"
-                value={formData.firstName}
-                onChange={handleChange}
-                placeholder="John"
-                error={errors.firstName}
-                required
-              />
-              <Input
-                label="Last Name"
-                name="lastName"
-                type="text"
-                value={formData.lastName}
-                onChange={handleChange}
-                placeholder="Doe"
-                error={errors.lastName}
-                required
-              />
+      {/* Top Header Bar */}
+      <header className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex items-center justify-between">
+        <Link to="/" className="inline-flex items-center gap-2 group transition-opacity hover:opacity-90">
+          <img src={Logo} alt="IRS Tax Filer" className="h-10 sm:h-10 w-auto object-contain" />
+        </Link>
+
+        <Link
+          to="/"
+          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-gray-600 hover:text-[#165479] transition-colors"
+        >
+          <span>Back to Website</span>
+          <ArrowRight className="w-4 h-4 stroke-[2]" />
+        </Link>
+      </header>
+
+      {/* Main Form Area */}
+      <main className="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="w-full max-w-md">
+          {/* Header Eyebrow & Title */}
+          <div className="text-center mb-6 sm:mb-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F6F9EE] border border-[#749220]/30 shadow-2xs mb-3 text-xs font-medium text-[#749220]">
+              <span className="w-2 h-2 rounded-full bg-[#749220]" />
+              <span>Official IRS e-File Provider & Licensed CPAs</span>
             </div>
 
-            <Input
-              label="Email Address"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="your.email@example.com"
-              error={errors.email}
-              required
-              // Make email readonly only when coming from login flow (/client/register) with an authenticated user
-              disabled={location.pathname.startsWith('/client/register') && !!getUser()?.email}
-              className={
-                location.pathname.startsWith('/client/register') && !!getUser()?.email
-                  ? 'bg-gray-50 cursor-not-allowed'
-                  : ''
-              }
-            />
-
-            <Input
-              label="Mobile Number"
-              name="mobileNumber"
-              type="tel"
-              value={formData.mobileNumber}
-              onChange={handleChange}
-              placeholder="9876543210"
-              error={errors.mobileNumber}
-              required
-              maxLength="10"
-            />
-
-            <Input
-              label="Referral Code (optional)"
-              name="referralCode"
-              type="text"
-              value={formData.referralCode}
-              onChange={handleChange}
-              placeholder="Enter referral code if you have one"
-              // readOnly
-              // className="bg-gray-50 cursor-not-allowed"
-            />
-
-            <Input
-              label="Coupon Code (optional)"
-              name="couponCode"
-              type="text"
-              value={formData.couponCode}
-              onChange={handleChange}
-              placeholder="Enter coupon code if you have one"
-            />
-
-            {errors.submit && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
-                {errors.submit}
-              </div>
-            )}
-
-            <Button
-              type="submit"
-              className="w-full"
-              size="lg"
-              isLoading={loading}
-            >
-              {getUser()?.email && getUser()?.email.toLowerCase() === formData.email.toLowerCase() ? 'Complete Registration' : 'Continue with Email'}
-            </Button>
-          </form>
-        </div>
-
-        <div className="text-center">
-          <button
-            onClick={() => navigate('/client/login')}
-            className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Login
-          </button>
-        </div>
-
-        {/* Mobile Benefits - Show on small screens */}
-        <div className="lg:hidden bg-gradient-to-r from-primary-600 to-blue-600 rounded-2xl shadow-xl p-6 text-white">
-          <div className="mb-6">
-            <h3 className="text-xl font-bold mb-2">Why Choose IRS Tax Filer?</h3>
-            <p className="text-sm text-white/90">
-              Professional tax filing services with expert guidance
+            <h1 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
+              Complete{" "}
+              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                Registration
+              </span>
+            </h1>
+            <p className="mt-2 text-xs sm:text-sm text-gray-600 font-normal leading-relaxed max-w-sm mx-auto">
+              Please enter your details to set up your client tax filing profile.
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon;
-              return (
-                <div key={index} className="flex flex-col items-center text-center">
-                  <div className="p-2 bg-white/20 rounded-lg mb-2">
-                    <Icon className="w-5 h-5 text-white" />
-                  </div>
-                  <p className="text-xs font-medium text-white">{benefit.title}</p>
+
+          {/* Form Card */}
+          <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/90 shadow-[0_16px_40px_rgba(22,84,121,0.08)]">
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              <div className="grid grid-cols-2 gap-3.5">
+                <Input
+                  label="First Name"
+                  name="firstName"
+                  type="text"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  placeholder="John"
+                  error={errors.firstName}
+                  required
+                />
+                <Input
+                  label="Last Name"
+                  name="lastName"
+                  type="text"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  placeholder="Doe"
+                  error={errors.lastName}
+                  required
+                />
+              </div>
+
+              <Input
+                label="Email Address"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="your.email@example.com"
+                error={errors.email}
+                required
+                disabled={location.pathname.startsWith('/client/register') && !!getUser()?.email}
+                className={
+                  location.pathname.startsWith('/client/register') && !!getUser()?.email
+                    ? 'bg-slate-50 cursor-not-allowed'
+                    : ''
+                }
+              />
+
+              <Input
+                label="Mobile Number"
+                name="mobileNumber"
+                type="tel"
+                value={formData.mobileNumber}
+                onChange={handleChange}
+                placeholder="9876543210"
+                error={errors.mobileNumber}
+                required
+                maxLength="10"
+              />
+
+              <Input
+                label="Referral Code (optional)"
+                name="referralCode"
+                type="text"
+                value={formData.referralCode}
+                onChange={handleChange}
+                placeholder="Enter referral code if you have one"
+              />
+
+              <Input
+                label="Coupon Code (optional)"
+                name="couponCode"
+                type="text"
+                value={formData.couponCode}
+                onChange={handleChange}
+                placeholder="Enter coupon code if you have one"
+              />
+
+              {errors.submit && (
+                <div className="bg-rose-50 border border-rose-200 text-rose-700 px-4 py-3 rounded-xl text-xs sm:text-[13px] leading-relaxed">
+                  {errors.submit}
                 </div>
-              );
-            })}
+              )}
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] text-white font-medium text-sm sm:text-[15px] shadow-[0_4px_16px_rgba(22,84,121,0.25)] border border-white/20 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed group cursor-pointer mt-2"
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin text-white" />
+                    <span>Processing Registration...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>{getUser()?.email && getUser()?.email.toLowerCase() === formData.email.toLowerCase() ? 'Complete Registration' : 'Continue with Email'}</span>
+                    <ArrowRight className="w-4 h-4 stroke-[2.2] group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
+
+          <div className="mt-5 text-center">
+            <button
+              onClick={() => navigate('/login')}
+              className="inline-flex items-center gap-1.5 text-xs sm:text-[13px] text-gray-600 hover:text-[#165479] font-medium transition-colors cursor-pointer"
+            >
+              <ArrowLeft className="w-4 h-4 stroke-[2]" />
+              <span>Back to Login</span>
+            </button>
+          </div>
+
+          {/* Benefits Banner */}
+          <div className="mt-6 bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#134969] rounded-2xl shadow-sm p-5 text-white text-left">
+            <div className="mb-4">
+              <h3 className="text-sm font-semibold text-white">Why Register with IRS Tax Filer?</h3>
+              <p className="text-xs text-sky-100/90 mt-0.5">
+                Licensed CPA preparation, guaranteed maximum deductions, and year-round support.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {benefits.map((benefit, index) => {
+                const Icon = benefit.icon;
+                return (
+                  <div key={index} className="flex items-center gap-2 bg-white/10 rounded-lg p-2.5">
+                    <Icon className="w-4 h-4 text-[#749220] shrink-0" />
+                    <span className="text-[11px] font-medium text-white">{benefit.title}</span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="relative z-10 w-full py-4 sm:py-5 border-t border-slate-100 text-center text-[11px] sm:text-xs text-gray-400">
+        <p>© {new Date().getFullYear()} IRS Tax Filer. Authorized IRS e-File Provider & Licensed CPA Practice.</p>
+      </footer>
     </div>
   );
 };

@@ -214,13 +214,13 @@ const FederalStateLocal = () => {
       <section className="py-14 sm:py-18 bg-white border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-10 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
               Complete Coverage for{" "}
-              <span className="font-medium bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
                 Every Level
               </span>
             </h2>
-            <p className="text-xs sm:text-sm text-gray-500 font-normal mt-2">
+            <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2.5">
               From federal Form 1040 to multi-state SALT allocations and city taxes.
             </p>
           </div>
@@ -263,14 +263,14 @@ const FederalStateLocal = () => {
                       {tier.title}
                     </h3>
 
-                    <p className="text-xs text-gray-500 font-normal leading-relaxed mt-1 mb-3">
+                    <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed mt-1 mb-3">
                       {tier.description}
                     </p>
 
-                    <ul className="space-y-1.5 pt-2.5 border-t border-slate-100">
+                    <ul className="space-y-2.5 pt-3 border-t border-slate-100">
                       {tier.points.map((pt, pIdx) => (
-                        <li key={pIdx} className="flex items-center gap-1.5 text-[11px] text-gray-600 font-normal">
-                          <CheckCircleIcon className="w-3.5 h-3.5 text-[#749220] stroke-[2.2] shrink-0" />
+                        <li key={pIdx} className="flex items-start gap-2 text-xs sm:text-[13px] text-gray-800 font-medium leading-snug">
+                          <CheckCircleIcon className="w-4 h-4 text-[#749220] stroke-[2.2] shrink-0 mt-0.5" />
                           <span>{pt}</span>
                         </li>
                       ))}
@@ -293,13 +293,13 @@ const FederalStateLocal = () => {
       <section className="py-14 sm:py-18 bg-slate-50/60 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-10">
-            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
               How It{" "}
-              <span className="font-medium bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
                 Works
               </span>
             </h2>
-            <p className="text-xs sm:text-sm text-gray-500 font-normal mt-1.5">
+            <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2.5">
               4 simple steps to your complete CPA-prepared tax return.
             </p>
           </div>
@@ -310,13 +310,13 @@ const FederalStateLocal = () => {
                 key={sIdx}
                 className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-2xs text-left"
               >
-                <div className="w-8 h-8 rounded-lg bg-[#F6F9EE] text-[#749220] flex items-center justify-center font-bold text-xs mb-3 font-mono">
+                <div className="w-8 h-8 rounded-lg bg-[#F6F9EE] text-[#749220] flex items-center justify-center font-bold text-xs mb-3 font-mono border border-[#749220]/25">
                   {step.step}
                 </div>
                 <h3 className="text-sm font-semibold text-gray-900">
                   {step.title}
                 </h3>
-                <p className="text-xs text-gray-500 font-normal mt-1.5 leading-relaxed">
+                <p className="text-xs sm:text-[13px] text-gray-600 font-normal mt-1.5 leading-relaxed">
                   {step.description}
                 </p>
               </div>

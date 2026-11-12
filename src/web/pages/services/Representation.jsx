@@ -224,13 +224,16 @@ const Representation = () => {
       {/* 2. THREE HIGH-IMPACT NOTICE SOLUTIONS */}
       <section className="py-12 sm:py-16 bg-slate-50/60 border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-left mb-8 sm:mb-10">
-            <span className="text-xs font-semibold text-[#749220] uppercase tracking-wider block mb-1">
-              Common Notices Resolved
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
-              Rapid Response to IRS Notices & Audits
+          <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
+              Rapid Response to{" "}
+              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                IRS Notices & Audits
+              </span>
             </h2>
+            <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2.5">
+              Targeted representation strategies for every stage of federal tax inquiry and examination.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -290,32 +293,31 @@ const Representation = () => {
             {/* Right Steps */}
             <div className="lg:col-span-7 space-y-4 text-left">
               <div className="mb-4">
-                <span className="text-xs font-semibold text-[#749220] uppercase tracking-wider block mb-1">
-                  Defense Roadmap
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
-                  Our 3-Step Representation Protocol
+                <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
+                  3-Step Representation{" "}
+                  <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                    Protocol
+                  </span>
                 </h2>
               </div>
 
-              {defenseSteps.map((step, sIdx) => (
-                <div
-                  key={sIdx}
-                  className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/80 shadow-2xs flex items-start gap-3.5"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-[#F6F9EE] text-[#749220] font-mono font-bold text-xs flex items-center justify-center shrink-0">
-                    {step.num}
+              <div className="space-y-4">
+                {defenseSteps.map((step, sIdx) => (
+                  <div key={sIdx} className="flex items-start gap-3.5">
+                    <div className="w-8 h-8 rounded-lg bg-[#F6F9EE] text-[#749220] font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 border border-[#749220]/25">
+                      {step.num}
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold text-gray-900 mb-0.5">
+                        {step.title}
+                      </h3>
+                      <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed">
+                        {step.detail}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-sm font-semibold text-gray-900 mb-0.5">
-                      {step.title}
-                    </h3>
-                    <p className="text-xs text-gray-500 font-normal leading-relaxed">
-                      {step.detail}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>

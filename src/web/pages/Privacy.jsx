@@ -201,106 +201,67 @@ const Privacy = () => {
       image={image}
       keywords={keywords}
     />
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-white font-sans text-gray-900 antialiased">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-28" style={{ backgroundColor: '#EB4149' }}>
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <motion.div
-            animate={{
-              x: [0, 100, 0],
-              y: [0, 50, 0],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute top-20 left-10 w-72 h-72 bg-purple-400/30 rounded-full blur-3xl"
-          ></motion.div>
-          <motion.div
-            animate={{
-              x: [0, -80, 0],
-              y: [0, -60, 0],
-              scale: [1, 1.3, 1],
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl"
-          ></motion.div>
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+      <section className="relative overflow-hidden pt-12 sm:pt-16 pb-14 sm:pb-16 bg-white border-b border-slate-100">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden">
+          <div className="absolute -top-24 left-1/4 w-96 h-96 bg-sky-100/50 rounded-full blur-3xl opacity-60" />
+          <div className="absolute -top-20 right-1/4 w-80 h-80 bg-lime-100/40 rounded-full blur-3xl opacity-50" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
+            transition={{ duration: 0.45 }}
+            className="text-center max-w-3xl mx-auto"
           >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md px-4 py-2 rounded-full mb-6 border border-white/30 shadow-lg"
-            >
-              <ShieldCheckIcon className="h-4 w-4 text-yellow-300" />
-              <span className="text-white font-semibold text-xs md:text-sm">Your Privacy Matters</span>
-            </motion.div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6F9EE] border border-[#749220]/30 shadow-sm mb-4 text-xs font-medium text-[#749220]">
+              <ShieldCheckIcon className="h-3.5 w-3.5 text-[#749220]" />
+              <span>Your Privacy Matters</span>
+            </div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight">
-              <span className="block text-white drop-shadow-lg">Privacy Policy</span>
+            <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-gray-900 tracking-tight leading-[1.2] mb-3.5">
+              Privacy{" "}
+              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                Policy
+              </span>
             </h1>
 
-            <p className="text-base md:text-lg text-white/90 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-[17px] text-gray-600 font-normal max-w-2xl mx-auto leading-[30px] sm:leading-[32px] lg:leading-[34px]">
               We are committed to protecting your privacy and securing your sensitive tax information. 
               Learn how we collect, use, and safeguard your data.
             </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-8 text-sm text-white/80"
-            >
+            <div className="mt-5 inline-flex items-center px-3 py-1 rounded-full bg-slate-50 border border-slate-200/80 text-xs font-medium text-gray-500">
               <p>Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-            </motion.div>
+            </div>
           </motion.div>
-        </div>
-
-        {/* Bottom Wave Decoration */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-16 text-white" fill="currentColor" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,50 L1200,120 L0,120 Z"></path>
-          </svg>
         </div>
       </section>
 
       {/* Privacy Content */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Introduction */}
+      <section className="py-12 sm:py-16 bg-slate-50/70">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Top Intro & Commitment Split Banner */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-12"
+            transition={{ duration: 0.45 }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-10"
           >
-            <div className="bg-gradient-to-br from-purple-50 to-white rounded-2xl p-8 border border-purple-100 mb-8">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#EB4149' }}>
-                  <LockClosedIcon className="h-6 w-6 text-white" />
+            <div className="lg:col-span-7 bg-gradient-to-br from-[#0A3D5C] via-[#124C6F] to-[#165479] rounded-2xl p-6 sm:p-8 text-white shadow-sm relative overflow-hidden flex items-center">
+              <div className="absolute -top-12 -right-12 w-44 h-44 bg-[#749220]/30 rounded-full blur-3xl pointer-events-none" />
+              <div className="relative z-10 flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 border border-white/20 text-[#C5DF7B] flex items-center justify-center backdrop-blur-sm">
+                  <LockClosedIcon className="h-6 w-6" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold mb-3" style={{ color: '#EB4149' }}>
+                  <h2 className="text-lg sm:text-xl font-semibold text-white mb-2">
                     Our Commitment to Your Privacy
                   </h2>
-                  <p className="text-base text-gray-700 leading-relaxed">
+                  <p className="text-sm sm:text-[15px] text-sky-100/95 leading-relaxed">
                     At IRS Tax Filer, we understand that your tax information is highly sensitive and personal. 
                     We are committed to maintaining the highest standards of data protection and privacy. 
                     This Privacy Policy explains our practices regarding the collection, use, and protection of your information.
@@ -309,95 +270,174 @@ const Privacy = () => {
               </div>
             </div>
 
-            <p className="text-base text-gray-700 leading-relaxed mb-4">
-              This Privacy Policy describes how IRS Tax Filer collects, uses, shares, and protects your personal 
-              and financial information when you use our tax preparation and filing services.
-            </p>
-            <p className="text-base text-gray-700 leading-relaxed">
-              If you have any questions about this Privacy Policy, please contact us at{' '}
-              <a href="mailto:contact@irstaxfiler.com" className="text-[#EB4149] hover:underline font-semibold">
-                contact@irstaxfiler.com
-              </a>
-              {' '}or call us at{' '}
-              <a href="tel:++1 (415) 2231315" className="text-[#EB4149] hover:underline font-semibold">
-                +1 (415) 2231315
-              </a>.
-            </p>
+            <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 sm:p-8 flex flex-col justify-center">
+              <p className="text-sm sm:text-[15px] text-gray-700 leading-relaxed mb-3.5">
+                This Privacy Policy describes how IRS Tax Filer collects, uses, shares, and protects your personal 
+                and financial information when you use our tax preparation and filing services.
+              </p>
+              <p className="text-sm sm:text-[15px] text-gray-700 leading-relaxed pt-3.5 border-t border-slate-100">
+                If you have any questions about this Privacy Policy, please contact us at{' '}
+                <a href="mailto:contact@irstaxfiler.com" className="text-[#165479] hover:text-[#0A4973] hover:underline font-semibold transition-colors">
+                  contact@irstaxfiler.com
+                </a>
+                {' '}or call us at{' '}
+                <a href="tel:++1 (415) 2231315" className="text-[#165479] hover:text-[#0A4973] hover:underline font-semibold transition-colors">
+                  +1 (415) 2231315
+                </a>.
+              </p>
+            </div>
           </motion.div>
 
           {/* Privacy Sections */}
           {loading ? (
-            <div className="text-center py-12">
-              <p className="text-gray-500">Loading privacy policy...</p>
+            <div className="text-center py-12 bg-white rounded-2xl border border-slate-200/80">
+              <p className="text-sm text-gray-500">Loading privacy policy...</p>
             </div>
           ) : dynamicContent ? (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-white rounded-2xl shadow-md border border-gray-200 p-8"
+              transition={{ duration: 0.45 }}
+              className="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-6 sm:p-10"
             >
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">{dynamicContent.title}</h2>
+              <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6">{dynamicContent.title}</h2>
               <div
-                className="prose prose-lg max-w-none text-gray-700"
+                className="prose prose-base sm:prose-lg max-w-none text-gray-700"
                 dangerouslySetInnerHTML={{ __html: dynamicContent.content }}
               />
             </motion.div>
           ) : (
-            <div className="space-y-8">
-              {defaultSections.map((section, index) => {
-              const IconComponent = section.icon;
-              return (
-                <motion.div
-                  key={section.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-2xl shadow-md border border-gray-200 p-8 hover:shadow-lg transition-all duration-300"
-                >
-                  <div className="flex items-start space-x-4 mb-6">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#EB4149' }}>
-                      <IconComponent className="h-6 w-6 text-white" />
-                    </div>
-                    <h2 className="text-2xl font-bold text-gray-900 pt-2">
-                      {section.title}
-                    </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Left Sticky Section Index */}
+              <aside className="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
+                <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-6">
+                  <div className="flex items-center gap-2.5 pb-3.5 mb-3.5 border-b border-slate-100">
+                    <span className="w-2 h-2 rounded-full bg-[#749220]" />
+                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                      Policy Sections
+                    </span>
                   </div>
-                  <ul className="space-y-4">
-                    {section.content.map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex items-start space-x-3">
-                        <div className="flex-shrink-0 w-2 h-2 rounded-full mt-2" style={{ backgroundColor: '#EB4149' }}></div>
-                        <p className="text-base text-gray-700 leading-relaxed">
-                          {item}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              );
-              })}
+                  <nav className="space-y-1">
+                    {defaultSections.map((section, idx) => {
+                      const NavIcon = section.icon;
+                      return (
+                        <a
+                          key={section.id}
+                          href={`#${section.id}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            document.getElementById(section.id)?.scrollIntoView({
+                              behavior: 'smooth',
+                              block: 'start',
+                            });
+                          }}
+                          className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs sm:text-[13px] font-medium text-gray-700 hover:text-[#0A4973] hover:bg-sky-50/80 transition-colors group"
+                        >
+                          <NavIcon className={`w-4 h-4 shrink-0 ${idx % 2 === 1 ? 'text-[#749220]' : 'text-[#165479]'}`} />
+                          <span className="truncate">{section.title}</span>
+                        </a>
+                      );
+                    })}
+                  </nav>
+                </div>
+              </aside>
+
+              {/* Right Content Cards */}
+              <div className="lg:col-span-8 space-y-5">
+                {defaultSections.map((section, index) => {
+                  const IconComponent = section.icon;
+                  const isLime = index % 2 === 1;
+                  return (
+                    <motion.div
+                      id={section.id}
+                      key={section.id}
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-40px" }}
+                      transition={{ duration: 0.3 }}
+                      className="scroll-mt-24 bg-white rounded-2xl shadow-sm border border-slate-200/90 p-6 sm:p-7 hover:border-[#165479]/35 transition-all duration-200 relative overflow-hidden group"
+                    >
+                      <div
+                        className={`absolute top-0 inset-x-0 h-0.5 ${
+                          isLime
+                            ? "bg-gradient-to-r from-[#749220]/70 via-[#749220]/25 to-transparent"
+                            : "bg-gradient-to-r from-[#165479]/70 via-[#165479]/25 to-transparent"
+                        }`}
+                      />
+                      <div className="flex items-center gap-3.5 pb-4 mb-4 border-b border-slate-100">
+                        <div
+                          className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${
+                            isLime
+                              ? "bg-[#F6F9EE] border border-[#749220]/25 text-[#749220]"
+                              : "bg-sky-50 border border-sky-100 text-[#165479]"
+                          }`}
+                        >
+                          <IconComponent className="h-5 w-5" />
+                        </div>
+                        <h2 className="text-base sm:text-lg font-semibold text-gray-900 leading-snug">
+                          {section.title}
+                        </h2>
+                      </div>
+                      <ul className="space-y-3">
+                        {section.content.map((item, itemIndex) => {
+                          const colonIdx = item.indexOf(':');
+                          const hasLabel =
+                            colonIdx > 0 &&
+                            colonIdx <= 30 &&
+                            !item.slice(0, colonIdx).includes('http');
+                          return (
+                            <li key={itemIndex} className="flex items-start gap-3">
+                              <span
+                                className={`flex-shrink-0 w-1.5 h-1.5 rounded-full mt-2 ${
+                                  isLime ? "bg-[#749220]" : "bg-[#165479]"
+                                }`}
+                              />
+                              <p className="text-sm sm:text-[15px] text-gray-600 leading-relaxed">
+                                {hasLabel ? (
+                                  <>
+                                    <span className="font-semibold text-gray-900">
+                                      {item.slice(0, colonIdx + 1)}
+                                    </span>
+                                    {item.slice(colonIdx + 1)}
+                                  </>
+                                ) : (
+                                  item
+                                )}
+                              </p>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
           )}
 
-          {/* Security Highlights */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mt-16 bg-gradient-to-br from-green-50 to-white rounded-2xl p-8 border border-green-100"
-          >
-            <div className="flex items-start space-x-4 mb-6">
-              <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center bg-green-100">
-                <ShieldCheckIcon className="h-6 w-6" style={{ color: '#EB4149' }} />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-4" style={{ color: '#EB4149' }}>
-                  Security Measures We Implement
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Security Highlights & Contact Section */}
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            {/* Security Highlights */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45 }}
+              className="lg:col-span-6 bg-gradient-to-br from-[#0A3D5C] via-[#124C6F] to-[#165479] rounded-2xl p-6 sm:p-8 text-white shadow-sm relative overflow-hidden flex flex-col justify-center"
+            >
+              <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-[#749220]/30 rounded-full blur-3xl pointer-events-none" />
+              <div className="relative z-10">
+                <div className="flex items-center gap-3.5 pb-4 mb-5 border-b border-white/15">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center bg-white/10 border border-white/20 text-[#C5DF7B]">
+                    <ShieldCheckIcon className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-semibold text-white">
+                    Security Measures We Implement
+                  </h3>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
                     'Bank-level encryption (SSL/TLS)',
                     'Secure document storage',
@@ -406,57 +446,58 @@ const Privacy = () => {
                     'Employee confidentiality agreements',
                     'Compliance with industry standards',
                   ].map((item, index) => (
-                    <div key={index} className="flex items-center space-x-2">
-                      <CheckCircleIcon className="h-5 w-5 text-green-600 flex-shrink-0" />
-                      <span className="text-sm text-gray-700">{item}</span>
+                    <div
+                      key={index}
+                      className="flex items-center gap-2.5 bg-white/10 border border-white/15 px-3.5 py-2.5 rounded-lg backdrop-blur-sm"
+                    >
+                      <CheckCircleIcon className="h-5 w-5 text-[#C5DF7B] flex-shrink-0" />
+                      <span className="text-xs sm:text-sm text-white font-medium leading-snug">{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Contact Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mt-12 bg-gradient-to-br from-purple-50 to-white rounded-2xl p-8 border border-purple-100"
-          >
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-4" style={{ color: '#EB4149' }}>
-                Questions About Your Privacy?
+            {/* Contact Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45 }}
+              className="lg:col-span-6 bg-gradient-to-br from-[#DFEBC2]/55 via-white to-[#C3DCED]/55 rounded-2xl p-6 sm:p-8 border border-[#165479]/15 shadow-sm flex flex-col justify-center text-center"
+            >
+              <h3 className="text-xl sm:text-2xl font-normal text-gray-900 tracking-tight mb-2.5">
+                Questions About Your{" "}
+                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                  Privacy?
+                </span>
               </h3>
-              <p className="text-gray-700 mb-6">
+              <p className="text-sm text-gray-700 mb-5 max-w-lg mx-auto leading-relaxed">
                 Our privacy team is here to help. Contact us if you have questions about how we handle your information 
                 or if you want to exercise your privacy rights.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-wrap gap-2.5 justify-center">
                 <a
                   href="mailto:contact@irstaxfiler.com"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300 hover:shadow-lg"
-                  style={{ backgroundColor: '#EB4149' }}
+                  className="inline-flex items-center justify-center h-10 px-5 rounded-lg font-medium text-xs sm:text-sm text-white bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] shadow-sm transition-all"
                 >
                   Email Privacy Team
                 </a>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border-2 transition-all duration-300 hover:bg-gray-50"
-                  style={{ borderColor: '#EB4149', color: '#EB4149' }}
+                  className="inline-flex items-center justify-center h-10 px-5 rounded-lg font-medium text-xs sm:text-sm text-gray-800 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"
                 >
                   Contact Us
                 </Link>
                 <Link
                   to="/terms"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border-2 transition-all duration-300 hover:bg-gray-50"
-                  style={{ borderColor: '#EB4149', color: '#EB4149' }}
+                  className="inline-flex items-center justify-center h-10 px-5 rounded-lg font-medium text-xs sm:text-sm text-gray-800 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"
                 >
                   Terms & Conditions
                 </Link>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
     </div>

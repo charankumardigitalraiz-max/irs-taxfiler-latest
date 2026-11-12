@@ -221,13 +221,13 @@ const ITIN = () => {
       <section className="py-12 sm:py-16 bg-slate-50/60 border-b border-slate-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
               Why Filers Avoid{" "}
-              <span className="font-medium bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
                 Mailing Passports
               </span>
             </h2>
-            <p className="text-xs sm:text-sm text-gray-500 font-normal mt-1.5">
+            <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2.5">
               Compare direct mailing to the IRS vs. our Certified Acceptance Agent route.
             </p>
           </div>
@@ -242,7 +242,7 @@ const ITIN = () => {
               <h3 className="text-base font-semibold text-gray-900 mb-2">
                 Mailing Original Passport to IRS
               </h3>
-              <ul className="space-y-2 text-xs text-gray-600">
+              <ul className="space-y-2 text-xs sm:text-[13px] text-gray-600 font-normal">
                 <li className="flex items-start gap-2">
                   <XCircleIcon className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                   <span>You must surrender your physical passport for 8 to 11+ weeks.</span>
@@ -267,7 +267,7 @@ const ITIN = () => {
               <h3 className="text-base font-semibold text-gray-900 mb-2">
                 Certified Document Authentication
               </h3>
-              <ul className="space-y-2 text-xs text-gray-700">
+              <ul className="space-y-2 text-xs sm:text-[13px] text-gray-700 font-normal">
                 <li className="flex items-start gap-2">
                   <CheckCircleIcon className="w-4 h-4 text-[#749220] shrink-0 mt-0.5" />
                   <span>Your original passport never leaves your possession.</span>
@@ -289,10 +289,16 @@ const ITIN = () => {
       {/* 3. FOUR AUDIENCE SEGMENTS (WHO NEEDS ITIN) */}
       <section className="py-12 sm:py-16 bg-white border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-left mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
-              Form W-7 Application Scopes
+          <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
+              Form W-7 Application{" "}
+              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                Scopes
+              </span>
             </h2>
+            <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2.5">
+              Certified Acceptance Agent authentication for all qualifying categories.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -312,7 +318,7 @@ const ITIN = () => {
                     {seg.title}
                   </h3>
 
-                  <p className="text-xs text-gray-500 font-normal leading-relaxed mb-3">
+                  <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed mb-3">
                     {seg.summary}
                   </p>
                 </div>
@@ -330,26 +336,34 @@ const ITIN = () => {
       <section className="py-12 sm:py-16 bg-slate-50/60 border-b border-slate-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
-              3-Step Fast Track to Your ITIN
+            <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
+              3-Step Fast Track to{" "}
+              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                Your ITIN
+              </span>
             </h2>
+            <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2.5">
+              Secure in-person or remote video verification with zero passport transit risk.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
             {steps.map((st, sIdx) => (
               <div
                 key={sIdx}
-                className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs"
+                className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex flex-col justify-between"
               >
-                <div className="w-8 h-8 rounded-lg bg-[#F6F9EE] text-[#749220] font-mono font-bold text-xs flex items-center justify-center mb-3">
-                  {st.num}
+                <div>
+                  <div className="w-8 h-8 rounded-lg bg-[#F6F9EE] text-[#749220] font-mono font-bold text-xs flex items-center justify-center mb-3 border border-[#749220]/25">
+                    {st.num}
+                  </div>
+                  <h3 className="text-sm font-semibold text-gray-900 mb-1">
+                    {st.title}
+                  </h3>
+                  <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed">
+                    {st.detail}
+                  </p>
                 </div>
-                <h3 className="text-sm font-semibold text-gray-900 mb-1">
-                  {st.title}
-                </h3>
-                <p className="text-xs text-gray-500 font-normal leading-relaxed">
-                  {st.detail}
-                </p>
               </div>
             ))}
           </div>

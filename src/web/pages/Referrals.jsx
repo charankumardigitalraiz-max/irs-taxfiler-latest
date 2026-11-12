@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import SEO from '../components/seo/SEO';
 import Logo from '../assets/irsLogo.png';
+import referralIllustration from '../assets/referral-contact-illustration.jpg';
 import { submitWebsiteForm } from '../services/formApi';
 import { getMyReferral } from '../services/referralApi';
 import { getFrontendBaseUrl } from '../../baseurl';
@@ -15,41 +16,45 @@ import {
   CheckCircleIcon,
   ShieldCheckIcon,
   EnvelopeIcon,
-  PhoneIcon,
   ArrowRightIcon,
   PlusIcon,
   TrashIcon,
   TagIcon,
+  CheckBadgeIcon,
+  SparklesIcon,
 } from "@heroicons/react/24/outline";
-
-
 
 const Referrals = () => {
   const [referralCode, setReferralCode] = useState('');
   const [copied, setCopied] = useState(false);
-  const inputClass =
-    "w-full h-[44px] px-4 text-sm rounded-md border border-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-[#507295] focus:border-transparent";
+  const [copiedLink, setCopiedLink] = useState(false);
   const [friends, setFriends] = useState([
     { id: 1, name: "", email: "", phone: "" },
   ]);
 
-  const [referrals, setReferrals] = useState([]);
   const [yourName, setYourName] = useState("");
   const [yourNumber, setYourNumber] = useState("");
   const [referralError, setReferralError] = useState({});
   const isLoggedIn = !!localStorage.getItem("token") || !!localStorage.getItem("authToken");
-  const currentURL = window.location.origin;
 
   const [loading, setLoading] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [loadingReferral, setLoadingReferral] = useState(false);
 
+  const labelClass =
+    "block text-xs font-semibold text-gray-800 mb-1.5 whitespace-nowrap";
+  const getInputClass = (hasError = false) =>
+    `w-full h-10 sm:h-11 px-3.5 text-[13px] sm:text-sm text-gray-900 bg-white rounded-lg border shadow-sm placeholder:text-slate-400 focus:outline-none transition-all duration-150 ${hasError
+      ? "border-rose-400 hover:border-rose-500 focus:border-rose-500 focus:ring-2 focus:ring-rose-500/15"
+      : "border-slate-300 hover:border-slate-400 focus:border-[#165479] focus:ring-2 focus:ring-[#165479]/15"
+    }`;
+
   // Load referral code when user is logged in
   useEffect(() => {
     const loadReferralCode = async () => {
       if (!isLoggedIn) return;
-      
+
       setLoadingReferral(true);
       try {
         const referralRes = await getMyReferral();
@@ -58,7 +63,6 @@ const Referrals = () => {
         }
       } catch (error) {
         console.error('Error loading referral code:', error);
-        // Don't show error if user hasn't completed registration yet
         if (error.message && !error.message.includes('complete registration')) {
           console.warn('Failed to load referral code:', error.message);
         }
@@ -71,28 +75,25 @@ const Referrals = () => {
   }, [isLoggedIn]);
 
   const referralValidation = () => {
-    let newError = {};
+    const newError = {};
     if (!yourName.trim()) {
-      newError.yourName = "Name is required";
+      newError.yourName = "Your name is required";
     }
-
     if (!yourNumber.trim()) {
-      newError.yourNumber = "Number is required";
+      newError.yourNumber = "Your mobile number is required";
     }
-    // validate each friend
     friends.forEach((friend, index) => {
       if (!friend.name.trim()) {
-        newError[`friendName_${index}`] = "Friend name is required";
+        newError[`friendName_${index}`] = "Friend's name is required";
       }
       if (!friend.email.trim()) {
-        newError[`friendEmail_${index}`] = "Friend email is required";
+        newError[`friendEmail_${index}`] = "Friend's email is required";
       }
     });
 
     setReferralError(newError);
     return Object.keys(newError).length === 0;
   };
-
 
   const handleCopyCode = () => {
     if (!referralCode) return;
@@ -111,11 +112,18 @@ const Referrals = () => {
   const handleCopyLink = () => {
     const link = getReferralLink();
     navigator.clipboard.writeText(link);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2000);
   };
 
   const handleFriendChange = (id, field, value) => {
+    const idx = friends.findIndex((f) => f.id === id);
+    if (idx !== -1 && (field === "name" || field === "email")) {
+      const errorKey = field === "name" ? `friendName_${idx}` : `friendEmail_${idx}`;
+      if (referralError[errorKey]) {
+        setReferralError((prev) => ({ ...prev, [errorKey]: "" }));
+      }
+    }
     setFriends((prev) =>
       prev.map((friend) =>
         friend.id === id ? { ...friend, [field]: value } : friend
@@ -127,18 +135,19 @@ const Referrals = () => {
     const newId = Math.max(...friends.map((f) => f.id), 0) + 1;
     setFriends((prev) => [
       ...prev,
-      {
-        id: newId,
-        name: "",
-        email: "",
-        phone: "",
-      },
+      { id: newId, name: "", email: "", phone: "" },
     ]);
   };
 
   const removeFriend = (id) => {
     if (friends.length > 1) {
       setFriends((prev) => prev.filter((friend) => friend.id !== id));
+      setReferralError((prev) => {
+        const cleaned = {};
+        if (prev.yourName) cleaned.yourName = prev.yourName;
+        if (prev.yourNumber) cleaned.yourNumber = prev.yourNumber;
+        return cleaned;
+      });
     }
   };
 
@@ -157,9 +166,9 @@ const Referrals = () => {
 
     try {
       const payload = {
-        yourName: yourName,
-        yourNumber: yourNumber,
-        referralCode: referralCode || undefined, // Use fetched referral code if available
+        yourName,
+        yourNumber,
+        referralCode: referralCode || undefined,
         friends: validFriends.map((friend) => ({
           name: friend.name,
           email: friend.email,
@@ -169,8 +178,7 @@ const Referrals = () => {
 
       await submitWebsiteForm('refer-earn', payload);
       setSubmitSuccess(true);
-      
-      // Reset form after success
+
       setTimeout(() => {
         setYourName("");
         setYourNumber("");
@@ -186,10 +194,7 @@ const Referrals = () => {
   };
 
   const handleShareEmail = () => {
-    // Dynamic referral link - use the function to ensure it's always up-to-date
     const referralLink = getReferralLink();
-    
-    // Build email body with all details
     const subject = 'Join IRS Tax Filer - Get Professional Tax Filing Services';
     const body = `Hi!
 
@@ -207,694 +212,619 @@ When you sign up using my referral code or link, both of us will receive benefit
 
 Click here to get started: ${referralLink}
 
-Looking forward to helping you with your tax filing!
-
 Best regards,
 ${yourName || 'Your Friend'}`;
-    
+
     window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
-const handleNumber = (e, setValue) => {
-  let value = e.target.value;
 
-  value = value.replace(/[^0-9+]/g, "");
-
-  if (value.includes("+")) {
-    value =
-      "+" + value.slice(1).replace(/\+/g, "");
-  }
-
-  const digitsOnly = value.replace(/\D/g, "");
-  if (digitsOnly.length > 15) return;
-
-  setValue(value);
-};
+  const handleNumber = (e, setValue) => {
+    let value = e.target.value.replace(/[^0-9+]/g, "");
+    if (value.includes("+")) {
+      value = "+" + value.slice(1).replace(/\+/g, "");
+    }
+    const digitsOnly = value.replace(/\D/g, "");
+    if (digitsOnly.length > 15) return;
+    setValue(value);
+  };
 
   const benefits = [
     {
       icon: GiftIcon,
-      title: "You Can Get $15 Off",
+      title: "US$ 15 Credit for You",
       description:
-        "your friend receive $5 discount on your next tax filing service.",
-      color: "#EFF6FF",
+        "Receive a US$ 15 credit toward your next filing, while your friend gets US$ 5 off their first return.",
     },
     {
       icon: StarIcon,
       title: "Unlimited Referrals",
       description:
-        "Share your code with as many friends as you like and stack your savings.",
-      color: "#F0FDF4",
+        "Share your referral code with as many friends, family, or colleagues as you like and stack your rewards.",
     },
     {
       icon: ShieldCheckIcon,
-      title: "Priority Support",
+      title: "Priority CPA Support",
       description:
-        "Referred clients get accelerated onboarding and dedicated support.",
-      color: "#FEF3C7",
+        "Every referred client receives streamlined onboarding and dedicated guidance from our licensed CPAs.",
     },
   ];
 
+  const howItWorks = [
+    {
+      step: "01",
+      title: "Share Your Code",
+      description: "Send an invitation below or copy your personal referral code and link to share directly.",
+    },
+    {
+      step: "02",
+      title: "Friend Signs Up",
+      description: "Your friend creates their IRS Tax Filer account using your referral code or invitation link.",
+    },
+    {
+      step: "03",
+      title: "Both Earn Rewards",
+      description: "Your friend saves US$ 5 on their first filing, and you earn US$ 15 credit once they complete filing.",
+    },
+    {
+      step: "04",
+      title: "Stack Unlimited Credits",
+      description: "There is no cap on referrals—invite as many people as you want each tax season.",
+    },
+  ];
 
-   const title = "Referral Program | IRS Tax Filer";
-    const description = "Refer a friend to IRS Tax Filer and earn rewards. Share our tax services — get benefits when friends sign up.";
-    const keywords = "referral program,Refer & Earn,Information Referral,IRS Tax Filer referrals,  refer a friend tax filing, tax service referral, NRI tax referral,Refer A Friend";
-    const canonical = window.location.href;
-    const image = { Logo };
+  const title = "Referral Program | IRS Tax Filer";
+  const description = "Refer a friend to IRS Tax Filer and earn rewards. Share our tax services and get US$ 15 credit when friends sign up and file.";
+  const keywords = "referral program, Refer & Earn, IRS Tax Filer referrals, refer a friend tax filing, tax service referral, NRI tax referral";
+  const canonical = window.location.href;
+  const image = Logo;
 
-    console.log(canonical);
   return (
-
-    
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-
+    <>
       <SEO
-              title={title}
-              description={description}
-              canonical={canonical}
-              image={image}
-              keywords={keywords}
-            />
-      {/* Enhanced Hero Section */}
-      <section
-        className="relative overflow-hidden py-20"
-        style={{ backgroundColor: "#507295" }}
-      >
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <motion.div
-            animate={{
-              x: [0, 100, 0],
-              y: [0, 50, 0],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-purple-400/30 to-purple-500/30 rounded-full blur-3xl"
-          ></motion.div>
-          <motion.div
-            animate={{
-              x: [0, -80, 0],
-              y: [0, -60, 0],
-              scale: [1, 1.3, 1],
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-purple-500/30 to-pink-500/30 rounded-full blur-3xl"
-          ></motion.div>
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
-        </div>
+        title={title}
+        description={description}
+        canonical={canonical}
+        image={image}
+        keywords={keywords}
+      />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-5">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
+      <div className="min-h-screen bg-white font-sans text-gray-900 antialiased">
+
+        {/* ========================================================================= */}
+        {/* 1. HERO & REFERRAL INVITATION WORKSPACE                                   */}
+        {/* ========================================================================= */}
+        <section className="relative pt-12 sm:pt-16 pb-14 sm:pb-16 bg-white border-b border-slate-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            {/* Clean Centered Hero Header */}
+            <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35 }}
+                className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6F9EE] border border-[#749220]/30 shadow-2xs mb-4 text-xs font-medium text-[#749220]"
+              >
+                <span className="w-2 h-2 rounded-full bg-[#749220]" />
+                <span>Refer Friends • Earn US$ 15 Credit Each</span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.06 }}
+                className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-gray-900 tracking-tight leading-[1.2] mb-3.5"
+              >
+                Refer & Earn with{" "}
+                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                  IRS Tax Filer
+                </span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="text-sm sm:text-base lg:text-[17px] text-gray-600 font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl mx-auto"
+              >
+                Invite friends and colleagues to file with our licensed CPAs. They receive{" "}
+                <span className="font-medium text-gray-900">US$ 5 off</span> their first return, and you earn{" "}
+                <span className="font-medium text-gray-900">US$ 15 credit</span> when they file.
+              </motion.p>
+            </div>
+
+            {/* Unified Split Card: Left Form Attached to Right Animated Contact Illustrator */}
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center  space-x-2 bg-white/20 backdrop-blur-md px-4 py-2 rounded-full mt-8 mb-6 border border-white/30 shadow-lg"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.14 }}
+              className="bg-white rounded-md border border-slate-200/90 shadow-[0_2px_10px_rgba(22,84,121,0.035)] overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch"
             >
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              >
-                <StarIcon className="h-4 w-4 text-yellow-300 " />
-              </motion.div>
-              <span className="text-white font-semibold text-xs md:text-sm">
-                Refer Friends. Earn Rewards.
-              </span>
-            </motion.div>
 
-            <h1 className="text-xl md:text-2xl lg:text-3xl font-extrabold mb-3 leading-tight">
-              <span className="block text-white drop-shadow-lg text-xl md:text-2xl lg:text-3xl">
-                Refer & Earn
-              </span>
-              <motion.span
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="block bg-gradient-to-r from-yellow-300 via-yellow-200 to-yellow-400 bg-clip-text text-transparent drop-shadow-2xl text-xl md:text-2xl lg:text-3xl"
-              >
-                with irstax filer
-              </motion.span>
-            </h1>
-
-            <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-              Share your personalized referral code with friends and family.
-              When they file with us, both of you receive instant savings on
-              your next service.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Referral Code Card */}
-            {isLoggedIn && (
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/15 shadow-xl lg:col-span-1"
-              >
-                <div className="flex items-center space-x-3 mb-5">
-                  <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
-                    <GiftIcon className="h-5 w-5 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white">
-                      Your Referral Code
-                    </h3>
-                    <p className="text-sm text-white/70">
-                      Share this code to earn rewards
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-white/90 mb-2">
-                      Referral Code
-                    </label>
-                    <div className="flex items-center space-x-2">
-                      <div className="flex-1 bg-white/20 backdrop-blur-sm rounded-xl px-4 py-3 text-xl font-bold tracking-widest text-center text-white border border-white/30">
-                        {loadingReferral ? 'Loading...' : (referralCode || 'N/A')}
+              {/* Left Side: Invite Friends Form */}
+              <div className="lg:col-span-7 bg-white p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
+                <div>
+                  {/* Card Header */}
+                  <div className="flex flex-wrap items-center justify-between gap-4 pb-5 mb-6 border-b border-slate-100">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-[#F6F9EE] border border-[#749220]/25 flex items-center justify-center text-[#749220] shrink-0">
+                        <UserPlusIcon className="w-5 h-5" />
                       </div>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={handleCopyCode}
-                        disabled={!referralCode || loadingReferral}
-                        className="px-4 py-3 bg-white text-[#507295] rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      <div>
+                        <h2 className="text-base sm:text-lg font-semibold text-gray-900 leading-snug">
+                          Invite a Friend
+                        </h2>
+                        <p className="text-xs sm:text-sm text-gray-500">
+                          Enter your details and the friends you'd like to invite.
+                        </p>
+                      </div>
+                    </div>
+                    {/* 
+                    {!isLoggedIn && (
+                      <Link
+                        to="/login"
+                        className="inline-flex items-center gap-1.5 text-xs font-medium text-[#165479] hover:text-[#0A4973] bg-sky-50/80 px-3 py-1.5 rounded-full border border-sky-200/70 transition-colors"
                       >
-                        <ClipboardDocumentCheckIcon className="h-5 w-5" />
-                        <span>{copied ? "Copied!" : "Copy"}</span>
-                      </motion.button>
-                    </div>
+                        <span>Sign in for your personal link</span>
+                        <ArrowRightIcon className="w-3.5 h-3.5" />
+                      </Link>
+                    )} */}
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-semibold text-white/90 mb-2">
-                      Referral Link
-                    </label>
-                    <div className="flex items-center space-x-2">
-                      <input
-                        type="text"
-                        value={getReferralLink()}
-                        readOnly
-                        className="flex-1 px-3 py-2 bg-white/20 backdrop-blur-sm rounded-xl text-xs text-white/90 border border-white/30"
-                      />
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={handleCopyLink}
-                        disabled={!referralCode || loadingReferral}
-                        className="px-3 py-2 bg-white/20 backdrop-blur-sm border border-white/30 text-white rounded-xl hover:bg-white/30 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  {/* Error & Success Feedback */}
+                  {submitError && (
+                    <div className="mb-5 px-4 py-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs sm:text-sm">
+                      {submitError}
+                    </div>
+                  )}
+                  {submitSuccess && (
+                    <div className="mb-5 px-4 py-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700 text-xs sm:text-sm flex items-center gap-2">
+                      <CheckCircleIcon className="w-4 h-4 shrink-0" />
+                      <span>Referral invitation submitted successfully! We'll process it shortly.</span>
+                    </div>
+                  )}
+
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Your Details */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="yourName" className={labelClass}>
+                          Your Name <span className="text-rose-500">*</span>
+                        </label>
+                        <input
+                          id="yourName"
+                          type="text"
+                          value={yourName}
+                          onChange={(e) => {
+                            setYourName(e.target.value);
+                            if (referralError.yourName) setReferralError((prev) => ({ ...prev, yourName: '' }));
+                          }}
+                          className={getInputClass(referralError.yourName)}
+                          placeholder="e.g., Rahul Sharma"
+                        />
+                        {referralError.yourName && (
+                          <p className="mt-1 text-rose-600 text-xs">{referralError.yourName}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <label htmlFor="yourNumber" className={labelClass}>
+                          Your Mobile Number <span className="text-rose-500">*</span>
+                        </label>
+                        <input
+                          id="yourNumber"
+                          type="tel"
+                          value={yourNumber}
+                          onChange={(e) => {
+                            handleNumber(e, setYourNumber);
+                            if (referralError.yourNumber) setReferralError((prev) => ({ ...prev, yourNumber: '' }));
+                          }}
+                          className={getInputClass(referralError.yourNumber)}
+                          placeholder="+1 (415) 223-1315"
+                        />
+                        {referralError.yourNumber && (
+                          <p className="mt-1 text-rose-600 text-xs">{referralError.yourNumber}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Friends Section Header */}
+                    <div className="flex items-center justify-between pt-5 border-t border-slate-100">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Friends to Invite ({friends.length})
+                      </span>
+                      <button
+                        type="button"
+                        onClick={addFriend}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-[#165479] bg-sky-50 hover:bg-sky-100 border border-sky-200/80 transition-colors cursor-pointer"
                       >
-                        <LinkIcon className="h-5 w-5" />
-                      </motion.button>
+                        <PlusIcon className="w-3.5 h-3.5 stroke-[2.2]" />
+                        <span>Add Friend</span>
+                      </button>
                     </div>
-                  </div>
 
-                  <div className="pt-4 border-t border-white/20">
-                    <div className="space-y-2 text-sm text-white/80">
-                      <div className="flex items-center space-x-2">
-                        <GiftIcon className="h-4 w-4 text-yellow-300" />
-                        <span>US$ 15 credit for you</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <TagIcon className="h-4 w-4 text-green-300" />
-                        <span>US$ 5 discount for friend</span>
-                      </div>
+                    {/* Friends Rows */}
+                    <div className="space-y-4">
+                      {friends.map((friend, index) => (
+                        <div
+                          key={friend.id}
+                          className={index > 0 ? "pt-4 border-t border-slate-100" : ""}
+                        >
+                          {friends.length > 1 && (
+                            <div className="flex items-center justify-between mb-2.5">
+                              <span className="text-[11px] font-semibold uppercase tracking-wider text-[#165479]">
+                                Friend #{index + 1}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => removeFriend(friend.id)}
+                                title="Remove friend"
+                                className="inline-flex items-center gap-1 text-[11px] font-medium text-gray-400 hover:text-rose-600 transition-colors cursor-pointer"
+                              >
+                                <TrashIcon className="w-3.5 h-3.5" />
+                                <span>Remove</span>
+                              </button>
+                            </div>
+                          )}
+
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-start">
+                            <div>
+                              <label htmlFor={`friend-name-${friend.id}`} className={labelClass}>
+                                Friend's Name <span className="text-rose-500">*</span>
+                              </label>
+                              <input
+                                id={`friend-name-${friend.id}`}
+                                type="text"
+                                value={friend.name}
+                                onChange={(e) =>
+                                  handleFriendChange(friend.id, "name", e.target.value)
+                                }
+                                placeholder="e.g., Priya Patel"
+                                className={getInputClass(referralError[`friendName_${index}`])}
+                              />
+                              {referralError[`friendName_${index}`] && (
+                                <p className="mt-1 text-rose-600 text-xs">
+                                  {referralError[`friendName_${index}`]}
+                                </p>
+                              )}
+                            </div>
+
+                            <div>
+                              <label htmlFor={`friend-email-${friend.id}`} className={labelClass}>
+                                Friend's Email <span className="text-rose-500">*</span>
+                              </label>
+                              <input
+                                id={`friend-email-${friend.id}`}
+                                type="email"
+                                value={friend.email}
+                                onChange={(e) =>
+                                  handleFriendChange(friend.id, "email", e.target.value)
+                                }
+                                placeholder="priya@example.com"
+                                className={getInputClass(referralError[`friendEmail_${index}`])}
+                              />
+                              {referralError[`friendEmail_${index}`] && (
+                                <p className="mt-1 text-rose-600 text-xs">
+                                  {referralError[`friendEmail_${index}`]}
+                                </p>
+                              )}
+                            </div>
+
+                            <div>
+                              <label htmlFor={`friend-phone-${friend.id}`} className={labelClass}>
+                                Phone{" "}
+                                <span className="text-[11px] font-normal text-gray-400">
+                                  (Optional)
+                                </span>
+                              </label>
+                              <input
+                                id={`friend-phone-${friend.id}`}
+                                type="tel"
+                                value={friend.phone}
+                                onChange={(e) =>
+                                  handleNumber(e, (val) =>
+                                    handleFriendChange(friend.id, "phone", val)
+                                  )
+                                }
+                                placeholder="+1 (415) 223-1315"
+                                className={getInputClass()}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
 
-                  <div className="flex gap-3 pt-3">
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={handleShareEmail}
-                      disabled={!referralCode || loadingReferral}
-                      className="flex-1 px-4 py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 text-white rounded-xl font-semibold hover:bg-white/30 transition flex items-center justify-center space-x-2 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full h-11 sm:h-12 px-6 rounded-lg bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] text-white font-medium text-sm sm:text-[15px] shadow-sm border border-white/20 transition-all duration-200 inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer group"
                     >
-                      <EnvelopeIcon className="h-5 w-5" />
-                      <span>Share via Email</span>
-                    </motion.button>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-
-            {/* Refer a Friend Form */}
-            <div
-              className={`relative ${
-                isLoggedIn
-                  ? "lg:col-span-2"
-                  : "lg:col-span-3 flex justify-center"
-              }`}
-            >
-              {/* BADGE ABOVE CARD */}
-              <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-10">
-                <div className="flex items-center justify-center gap-2 px-8 py-2.5 min-w-[260px] rounded-full bg-purple-100 text-purple-700 font-semibold text-sm shadow">
-                  <StarIcon className="h-4 w-4" />
-                  <span>Earn up to US$ 50 + benefits</span>
+                      <span>
+                        {loading
+                          ? "Sending Invitation..."
+                          : `Send Referral Invitation (${friends.length})`}
+                      </span>
+                      {!loading && (
+                        <ArrowRightIcon className="w-4 h-4 stroke-[2.2] group-hover:translate-x-0.5 transition-transform" />
+                      )}
+                    </button>
+                  </form>
                 </div>
               </div>
 
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 lg:col-span-2"
-              >
-                {/* Your Details */}
-                <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="w-full">
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Your Name *
-                    </label>
-                    <input
-                      type="text"
-                      value={yourName}
-                      onChange={(e) => setYourName(e.target.value)}
-                      className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#507295] focus:border-transparent transition text-sm bg-white"
-                      placeholder="e.g., Rahul Sharma"
-                    />
-                    {referralError.yourName && (
-                      <span className="text-red-500 text-xs">
-                        {referralError.yourName}
-                      </span>
-                    )}
-                  </div>
+              {/* Right Side: Animated Contact & Referral Illustrator */}
+              <div className="lg:col-span-5 bg-gradient-to-br from-[#DFEBC2] via-[#E2EEF7] to-[#C3DCED] border-t lg:border-t-0 lg:border-l border-[#165479]/15 p-6 sm:p-8 flex flex-col justify-between items-center text-center relative overflow-hidden">
+                {/* Ambient Background Glows */}
+                <div className="absolute -top-12 -right-12 w-52 h-52 bg-[#749220]/30 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-12 -left-12 w-52 h-52 bg-[#165479]/25 rounded-full blur-3xl pointer-events-none" />
 
-                  <div className="w-full">
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Your mobile Number *
-                    </label>
-                    <input
-                      type="tel"
-                      value={yourNumber}
-                      onChange={(e) => handleNumber(e, setYourNumber)}
-                      className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#507295] focus:border-transparent transition text-sm bg-white"
-                      placeholder="+1 (415) 223-1315"
-                    />
-                    {referralError.yourNumber && (
-                      <span className="text-red-500 text-xs">
-                        {referralError.yourNumber}
-                      </span>
-                    )}
-                  </div>
+                {/* Top Status Bar */}
+                <div className="relative z-10 w-full flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A4973] bg-white/95 px-3 py-1 rounded-full border border-[#165479]/15 shadow-sm">
+                    <SparklesIcon className="w-3.5 h-3.5 text-[#749220]" />
+                    <span>Quick Contact & Invite</span>
+                  </span>
+                  <span className="text-xs font-semibold text-[#0A4973]">
+                    Instant Rewards
+                  </span>
                 </div>
 
-                <div className="flex items-center justify-between mt-4 mb-5">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-[#507295]/10 rounded-lg flex items-center justify-center">
-                      <UserPlusIcon
-                        className="h-5 w-5"
-                        style={{ color: "#507295" }}
-                      />
-                    </div>
-                    <div>
-                      <h3
-                        className="text-lg font-bold"
-                        style={{ color: "#507295" }}
-                      >
-                        Refer a Friend
-                      </h3>
-                      <p className="text-sm text-gray-500">
-                        Send referral invitation to your friends
-                      </p>
-                    </div>
-                  </div>
-                  <motion.button
-                    type="button"
-                    onClick={addFriend}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-3 py-2 rounded-lg text-sm font-semibold flex items-center space-x-1 transition-all duration-300 border-2"
-                    style={{
-                      borderColor: "#507295",
-                      color: "#507295",
-                      backgroundColor: "#54086310",
-                    }}
-                  >
-                    <PlusIcon className="h-4 w-4" />
-                    <span>Add Friend</span>
-                  </motion.button>
-                </div>
-
-                {submitError && (
-                  <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-                    {submitError}
-                  </div>
-                )}
-                {submitSuccess && (
-                  <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm">
-                    Referral submitted successfully! We'll process it soon.
-                  </div>
-                )}
-                <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                  {friends.map((friend, index) => (
+                {/* Center: Floating Animated Contact/Referral Illustration */}
+                <div className="relative my-auto py-5 w-full flex flex-col items-center justify-center z-10">
+                  <div className={`relative ${isLoggedIn ? "w-40 h-40" : "w-52 sm:w-56 h-52 sm:h-56"} flex items-center justify-center`}>
                     <motion.div
-                      key={friend.id}
-                      className="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1fr_40px] gap-4 items-end px-4 py-4 border border-gray-200 rounded-xl bg-white"
+                      animate={{ y: [-6, 6, -6] }}
+                      transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                      className="w-full h-full flex items-center justify-center relative"
                     >
-                      {/* Friend Name */}
-                      <div className="min-w-0">
-                        <label className="block text-xs font-semibold text-gray-600 mb-1">
-                          Friend Name *
-                        </label>
-                        <input
-                          type="text"
-                          value={friend.name}
-                          onChange={(e) =>
-                            handleFriendChange(
-                              friend.id,
-                              "name",
-                              e.target.value
-                            )
-                          }
-                          placeholder="e.g., Priya Sir"
-                          className={inputClass}
+                      <div className="w-full h-full rounded-2xl bg-white p-1.5 border border-white/90 shadow-[0_3px_12px_rgba(10,73,115,0.06)] overflow-hidden flex items-center justify-center">
+                        <img
+                          src={referralIllustration}
+                          alt="Contact and Invite Friends for Tax Rewards Illustration"
+                          className="w-full h-full object-contain rounded-xl select-none pointer-events-none"
                         />
-                        {referralError[`friendName_${index}`] && (
-                          <p className="text-red-500 text-xs">
-                            {referralError[`friendName_${index}`]}
-                          </p>
-                        )}
-                      </div>
-
-                      {/* Friend Email */}
-                      <div className="min-w-0">
-                        <label className="block text-xs font-semibold text-gray-600 mb-1">
-                          Friend Email *
-                        </label>
-                        <input
-                          type="email"
-                          value={friend.email}
-                          onChange={(e) =>
-                            handleFriendChange(
-                              friend.id,
-                              "email",
-                              e.target.value
-                            )
-                          }
-                          placeholder="e.g., priya@example.com"
-                          className={inputClass}
-                        />
-                        {referralError[`friendEmail_${index}`] && (
-                          <p className="text-red-500 text-xs">
-                            {referralError[`friendEmail_${index}`]}
-                          </p>
-                        )}
-                      </div>
-
-                      {/* Phone */}
-                      <div className="min-w-0">
-                        <label className="block text-xs font-semibold text-gray-600 mb-1">
-                          Phone
-                        </label>
-                        <input
-                          type="tel"
-                          value={friend.phone}
-                          onChange={(e) =>
-                            handleNumber(e, (val) =>
-                              handleFriendChange(friend.id, "phone", val)
-                            )
-                          }
-                          placeholder="e.g.,+1 (415) 223-1315"
-                          className={inputClass}
-                        />
-                      </div>
-
-                      {/* Note */}
-                      <div className="min-w-0">
-                        <label className="block text-xs font-semibold text-gray-600 mb-1">
-                          Note
-                        </label>
-                        <input
-                          type="text"
-                          placeholder="e.g., Works with me"
-                          className={inputClass}
-                        />
-                      </div>
-
-                      {/* Delete */}
-                      <div className="flex items-center justify-center h-[44px]">
-                        {friends.length > 1 && (
-                          <button
-                            type="button"
-                            onClick={() => removeFriend(friend.id)}
-                            className="text-gray-400 hover:text-red-600 transition"
-                          >
-                            🗑️
-                          </button>
-                        )}
                       </div>
                     </motion.div>
-                  ))}
+                  </div>
 
-                  {/* SUBMIT BUTTON */}
-                  <motion.button
-                    type="submit"
-                    disabled={loading}
-                    className="mt-4 w-full py-3 rounded-xl font-bold text-white text-sm"
-                    style={{ backgroundColor: "#507295" }}
-                  >
-                    {loading
-                      ? "Sending..."
-                      : `Send Referral (${friends.length})`}
-                  </motion.button>
-                </form>
-              </motion.div>
+                  {/* Logged-in Controls OR Guest Summary */}
+                  {isLoggedIn ? (
+                    <div className="w-full mt-5 pt-4 border-t border-[#165479]/15 space-y-3 text-left">
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-800 mb-1">
+                          Your Referral Code
+                        </label>
+                        <div className="flex items-center gap-2">
+                          <div className="flex-1 bg-white rounded-lg px-3 py-2 text-sm font-mono font-bold tracking-wider text-center text-[#0A4973] border border-slate-300/90 shadow-sm">
+                            {loadingReferral ? 'Loading...' : (referralCode || 'N/A')}
+                          </div>
+                          <button
+                            type="button"
+                            onClick={handleCopyCode}
+                            disabled={!referralCode || loadingReferral}
+                            className="h-9 px-3 rounded-lg bg-[#165479] hover:bg-[#0A4973] text-white text-xs font-medium shadow-sm transition-colors flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shrink-0"
+                          >
+                            <ClipboardDocumentCheckIcon className="w-3.5 h-3.5" />
+                            <span>{copied ? "Copied!" : "Copy"}</span>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-800 mb-1">
+                          Direct Share Link
+                        </label>
+                        <div className="flex items-center gap-2">
+                          <input
+                            type="text"
+                            value={getReferralLink()}
+                            readOnly
+                            className="flex-1 h-9 px-3 bg-white rounded-lg text-xs text-gray-700 border border-slate-300/90 shadow-sm focus:outline-none truncate"
+                          />
+                          <button
+                            type="button"
+                            onClick={handleCopyLink}
+                            disabled={!referralCode || loadingReferral}
+                            className="h-9 px-3 rounded-lg bg-white hover:bg-slate-50 border border-slate-300/90 shadow-sm text-[#0A4973] text-xs font-medium transition-colors flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shrink-0"
+                          >
+                            <LinkIcon className="w-3.5 h-3.5" />
+                            <span>{copiedLink ? "Copied" : "Link"}</span>
+                          </button>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={handleShareEmail}
+                        disabled={!referralCode || loadingReferral}
+                        className="w-full h-9 px-4 rounded-lg bg-white hover:bg-slate-50 border border-slate-300/90 shadow-sm text-gray-800 text-xs font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                      >
+                        <EnvelopeIcon className="w-4 h-4 text-[#165479]" />
+                        <span>Share via Email</span>
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="mt-5 max-w-[280px]">
+                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 leading-snug">
+                        Connect, Share &{" "}
+                        <span className="bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                          Save Together
+                        </span>
+                      </h3>
+                      <p className="text-xs sm:text-sm text-gray-700 font-normal mt-1.5 leading-relaxed">
+                        Send a quick invitation and our team contacts your friends with your referral savings attached.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Bottom Trust Bar */}
+                {/* <div className="relative z-10 w-full pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs text-gray-600">
+                  <span className="flex items-center gap-1.5 font-medium">
+                    <CheckCircleIcon className="w-4 h-4 text-[#749220]" />
+                    <span>US$ 15 Your Credit</span>
+                  </span>
+                  <span className="flex items-center gap-1.5 font-medium">
+                    <TagIcon className="w-4 h-4 text-[#165479]" />
+                    <span>US$ 5 Friend Off</span>
+                  </span>
+                </div> */}
+              </div>
+
+            </motion.div >
+          </div >
+        </section >
+
+        {/* ========================================================================= */}
+        {/* 2. REWARDS FOR BOTH SECTION (CLEAN 3-COLUMN GRID)                         */}
+        {/* ========================================================================= */}
+        <section className="py-14 sm:py-16 bg-slate-50/70 border-b border-slate-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div className="text-left mb-8 sm:mb-10">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25]">
+                Rewards for{" "}
+                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                  Both
+                </span>
+              </h2>
+              <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2 max-w-2xl">
+                Every referral unlocks meaningful savings for you and your friend.
+              </p>
             </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {benefits.map((benefit, index) => {
+                const Icon = benefit.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.06)] hover:border-[#165479]/30 transition-all duration-200"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-center text-[#165479] mb-4">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-base sm:text-[17px] font-semibold text-gray-900 mb-2 leading-snug">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 font-normal leading-relaxed">
+                      {benefit.description}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </div>
+
           </div>
-        </div>
+        </section>
 
-        {/* Bottom Wave Decoration */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg
-            className="w-full h-16 text-white"
-            fill="currentColor"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path d="M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,50 L1200,120 L0,120 Z"></path>
-          </svg>
-        </div>
-      </section>
+        {/* ========================================================================= */}
+        {/* 3. HOW IT WORKS SECTION (CLEAN 4-STEP HORIZONTAL FLOW)                    */}
+        {/* ========================================================================= */}
+        <section className="py-14 sm:py-16 bg-white border-b border-slate-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      {/* Benefits Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h3 className="text-4xl md:text-5xl font-bold text-primary-navy mb-4">
-              Rewards for Both
-            </h3>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Each referral unlocks savings for you and your friend. It's a
-              win-win situation.
-            </p>
-          </motion.div>
+            <div className="text-left mb-8 sm:mb-10">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25]">
+                How It{" "}
+                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                  Works
+                </span>
+              </h2>
+              <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2 max-w-2xl">
+                Four simple steps to invite friends and earn unlimited tax filing credits.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon;
-              return (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {howItWorks.map((item, idx) => (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
+                  key={idx}
+                  initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  transition={{ duration: 0.3, delay: idx * 0.05 }}
+                  className="bg-slate-50/70 rounded-2xl p-6 border border-slate-200/80 hover:bg-white hover:shadow-[0_10px_24px_rgba(22,84,121,0.06)] hover:border-[#165479]/30 transition-all duration-200"
                 >
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4`}
-                    style={{ backgroundColor: benefit.color }}
-                  >
-                    <Icon className="h-8 w-8" style={{ color: "#507295" }} />
-                  </motion.div>
-                  <h3 className="text-xl font-bold text-primary-navy mb-3 text-center">
-                    {benefit.title}
+                  <span className="inline-flex items-center justify-center px-2.5 py-1 rounded-lg bg-sky-50 border border-sky-100 text-xs font-mono font-semibold text-[#165479] mb-4">
+                    Step {item.step}
+                  </span>
+                  <h3 className="text-base font-semibold text-gray-900 mb-2 leading-snug">
+                    {item.title}
                   </h3>
-                  <p className="text-gray-600 text-center">
-                    {benefit.description}
+                  <p className="text-sm text-gray-600 font-normal leading-relaxed">
+                    {item.description}
                   </p>
                 </motion.div>
-              );
-            })}
+              ))}
+            </div>
+
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Discount Information Section */}
-      <section
-        className="py-20 bg-gradient-to-br from-[#507295] via-[#4a6b8a] to-[#3f5f7a] text-white relative overflow-hidden
-"
-      >
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h3 className="text-4xl md:text-5xl font-bold mb-4">
-              How It Works
-            </h3>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Simple steps to earn rewards for both you and your friends
-            </p>
-          </motion.div>
+        {/* ========================================================================= */}
+        {/* 4. CLEAN, MINIMAL CTA SECTION                                             */}
+        {/* ========================================================================= */}
+        <section className="py-14 sm:py-16 bg-slate-50/70">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                  <span className="text-2xl font-bold">1</span>
-                </div>
-                <h3 className="text-xl font-bold">Share Your Code</h3>
-              </div>
-              <p className="text-white/80">
-                Copy your unique referral code and share it with friends via
-                email, social media, or direct link.
+            <div className="rounded-2xl p-8 sm:p-10 bg-white border border-slate-200/90 shadow-2xs">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-normal text-gray-900 tracking-tight mb-2.5">
+                Ready to Start{" "}
+                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                  Earning Rewards?
+                </span>
+              </h2>
+
+              <p className="text-sm sm:text-base text-gray-600 font-normal max-w-lg mx-auto mb-6 leading-relaxed">
+                Share your referral code today and help friends file stress-free while unlocking credits for yourself.
               </p>
-            </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                  <span className="text-2xl font-bold">2</span>
-                </div>
-                <h3 className="text-xl font-bold">Friend Signs Up</h3>
-              </div>
-              <p className="text-white/80">
-                Your friend uses your referral code when signing up for irstax
-                filer services.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                  <span className="text-2xl font-bold">3</span>
-                </div>
-                <h3 className="text-xl font-bold">You Can Get $15 Off</h3>
-              </div>
-              <p className="text-white/80">
-                your friend completes their tax filing, Your Friend receive
-                $5 discount.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                  <GiftIcon className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold">Unlimited Referrals</h3>
-              </div>
-              <p className="text-white/80">
-                There's no limit! Refer as many friends as you want and keep
-                earning rewards.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 className="text-4xl md:text-5xl font-bold text-primary-navy mb-6">
-              Ready to Start Earning?
-            </h3>
-            <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-              Share your referral code with friends and family today. Start
-              earning rewards while helping others save on their tax filing.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              <div className="flex flex-wrap items-center justify-center gap-3">
                 <Link
-                  to="/contact"
-                  className="inline-flex items-center space-x-2 px-10 py-5 rounded-xl font-bold text-lg text-white transition-all duration-300 shadow-2xl"
-                  style={{ backgroundColor: "#507295" }}
+                  to={isLoggedIn ? "/client/referrals" : "/login"}
+                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-5 rounded-xl bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] text-white font-medium text-xs sm:text-sm shadow-sm transition-all"
                 >
-                  <span>Get Started</span>
-                  <ArrowRightIcon className="h-5 w-5" />
+                  <span>{isLoggedIn ? "Manage My Referrals" : "Sign In & Get Code"}</span>
+                  <ArrowRightIcon className="w-3.5 h-3.5" />
                 </Link>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+
                 <Link
                   to="/pricing"
-                  className="inline-flex items-center space-x-2 px-10 py-5 rounded-xl font-bold text-lg border-2 transition-all duration-300"
-                  style={{ borderColor: "#507295", color: "#507295" }}
+                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-5 rounded-xl bg-white hover:bg-slate-50 text-gray-800 font-medium text-xs sm:text-sm border border-slate-300 shadow-2xs transition-all"
                 >
                   <span>View Pricing</span>
                 </Link>
-              </motion.div>
+              </div>
+
+              <div className="mt-6 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-[11px] sm:text-xs text-gray-500 font-normal">
+                <span className="flex items-center gap-1.5">
+                  <CheckBadgeIcon className="w-4 h-4 text-[#749220]" />
+                  US$ 15 Credit per Referral
+                </span>
+                <span>•</span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircleIcon className="w-4 h-4 text-[#749220]" />
+                  US$ 5 Off for Friends
+                </span>
+                <span>•</span>
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheckIcon className="w-4 h-4 text-[#749220]" />
+                  Unlimited Invites
+                </span>
+              </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+
+          </div>
+        </section>
+
+      </div >
+    </>
   );
 };
 
