@@ -48,7 +48,7 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-14 sm:py-18 bg-white border-t border-slate-100 font-sans relative overflow-hidden">
+    <section className="py-12 sm:py-16 bg-white border-t border-slate-100 font-sans relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Compact Section Header */}
@@ -74,24 +74,24 @@ const TestimonialsSection = () => {
       {/* Infinite Seamless Scrolling Track with Soft Gradient Fade Masks */}
       <div className="relative w-full overflow-hidden py-3">
         {/* Left Gradient Edge Fade */}
-        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-32 lg:w-44 bg-gradient-to-r from-white via-white/90 to-transparent z-10" />
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-28 lg:w-44 bg-gradient-to-r from-white via-white/90 to-transparent z-10" />
         {/* Right Gradient Edge Fade */}
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-32 lg:w-44 bg-gradient-to-l from-white via-white/90 to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-28 lg:w-44 bg-gradient-to-l from-white via-white/90 to-transparent z-10" />
 
         {/* Animated Marquee Track with Smooth Pause-on-Hover */}
-        <div className="animate-marquee flex items-center gap-4 sm:gap-5 select-none hover:[animation-play-state:paused]">
+        <div className="animate-marquee flex items-stretch gap-3.5 sm:gap-5 select-none hover:[animation-play-state:paused] active:[animation-play-state:paused]">
           {[...clientReviews, ...clientReviews].map((item, index) => (
             <div
               key={index}
-              className="group relative w-[310px] sm:w-[340px] shrink-0 bg-white hover:bg-[#FAFCFE] rounded-2xl p-4.5 sm:p-5 border border-slate-200/90 hover:border-[#165479]/40 shadow-[0_2px_12px_rgba(22,84,121,0.03)] hover:shadow-[0_16px_36px_rgba(22,84,121,0.1)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between text-left overflow-hidden cursor-default min-h-[190px]"
+              className="group relative w-[285px] sm:w-[340px] shrink-0 bg-white hover:bg-[#FAFCFE] rounded-2xl p-4 sm:p-5 border border-slate-200 hover:border-[#165479]/40 shadow-[0_4px_16px_rgba(22,84,121,0.06)] hover:shadow-[0_16px_36px_rgba(22,84,121,0.1)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between text-left overflow-hidden cursor-default min-h-[188px] sm:min-h-[195px]"
             >
               {/* Animated Top Line on Hover */}
               <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div>
                 {/* Top: 5 Stars + Savings Badge */}
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex text-amber-400 gap-0.5">
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <div className="flex text-amber-400 gap-0.5 shrink-0">
                     {[...Array(5)].map((_, i) => (
                       <svg
                         key={i}
@@ -103,7 +103,7 @@ const TestimonialsSection = () => {
                       </svg>
                     ))}
                   </div>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#F6F9EE] text-[#749220] border border-[#749220]/25 group-hover:bg-[#165479] group-hover:text-white group-hover:border-[#165479] transition-all duration-200">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#F6F9EE] text-[#749220] border border-[#749220]/25 group-hover:bg-[#165479] group-hover:text-white group-hover:border-[#165479] transition-all duration-200 whitespace-nowrap shrink-0">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#749220] group-hover:bg-[#CBF056] transition-colors" />
                     <span>{item.savings}</span>
                   </span>
@@ -116,21 +116,21 @@ const TestimonialsSection = () => {
               </div>
 
               {/* Footer: Author Info + Verified Badge */}
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2.5 min-w-0">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#0A4973] to-[#165479] text-white flex items-center justify-center font-medium text-[11px] shrink-0 group-hover:scale-105 transition-transform">
                     {item.initials}
                   </div>
-                  <div>
-                    <div className="text-[13px] font-medium text-gray-900 leading-tight">
+                  <div className="min-w-0">
+                    <div className="text-[13px] font-medium text-gray-900 leading-tight truncate">
                       {item.name}
                     </div>
-                    <div className="text-[11px] text-gray-400 font-normal mt-0.5">
+                    <div className="text-[11px] text-gray-400 font-normal mt-0.5 truncate">
                       {item.role}
                     </div>
                   </div>
                 </div>
-                <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-600">
+                <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-600 shrink-0">
                   <CheckCircleIcon className="w-3.5 h-3.5 stroke-[2.2]" />
                   <span>Verified</span>
                 </span>
