@@ -36,6 +36,54 @@ import "./Navbar.css";
 
 import { gettoken, getuser } from "../helper/Token";
 
+/* ---------- CRISP SVG FLAGS ---------- */
+const UsFlag = ({ className = "w-4 h-3 rounded-xs shrink-0" }) => (
+  <svg viewBox="0 0 640 480" className={className} aria-label="USA Flag">
+    <g fillRule="evenodd">
+      <path fill="#bd3d44" d="M0 0h640v480H0z" />
+      <path stroke="#fff" strokeWidth="37" d="M0 55.5h640M0 129h640M0 203h640M0 277h640M0 351h640M0 424.5h640" />
+      <path fill="#192f5d" d="M0 0h260v260H0z" />
+      <circle cx="50" cy="50" r="10" fill="#fff" />
+      <circle cx="130" cy="50" r="10" fill="#fff" />
+      <circle cx="210" cy="50" r="10" fill="#fff" />
+      <circle cx="90" cy="90" r="10" fill="#fff" />
+      <circle cx="170" cy="90" r="10" fill="#fff" />
+      <circle cx="50" cy="130" r="10" fill="#fff" />
+      <circle cx="130" cy="130" r="10" fill="#fff" />
+      <circle cx="210" cy="130" r="10" fill="#fff" />
+      <circle cx="90" cy="170" r="10" fill="#fff" />
+      <circle cx="170" cy="170" r="10" fill="#fff" />
+      <circle cx="50" cy="210" r="10" fill="#fff" />
+      <circle cx="130" cy="210" r="10" fill="#fff" />
+      <circle cx="210" cy="210" r="10" fill="#fff" />
+    </g>
+  </svg>
+);
+
+const InFlag = ({ className = "w-4 h-3 rounded-xs shrink-0" }) => (
+  <svg viewBox="0 0 640 480" className={className} aria-label="India Flag">
+    <path fill="#ff9933" d="M0 0h640v160H0z" />
+    <path fill="#ffffff" d="M0 160h640v160H0z" />
+    <path fill="#138808" d="M0 320h640v160H0z" />
+    <g transform="translate(320 240)">
+      <circle r="44" fill="none" stroke="#000080" strokeWidth="6" />
+      <circle r="9" fill="#000080" />
+      {[...Array(12)].map((_, i) => (
+        <line
+          key={i}
+          x1="-42"
+          y1="0"
+          x2="42"
+          y2="0"
+          stroke="#000080"
+          strokeWidth="3.2"
+          transform={`rotate(${i * 15})`}
+        />
+      ))}
+    </g>
+  </svg>
+);
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -76,127 +124,152 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Right-Side Attached Contact Strip with Close/Toggle Option */}
-      {/* <div className="fixed right-0 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end font-sans">
+      {/* Full-Width Bottom Contact & Quick Utilities Bar */}
+      <div className="fixed bottom-0 inset-x-0 w-full z-50 font-sans pointer-events-auto">
         <AnimatePresence mode="wait">
           {isContactStripOpen ? (
             <motion.div
-              key="contact-strip-expanded"
-              initial={{ x: 80, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 80, opacity: 0 }}
+              key="contact-bar-full"
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 50, opacity: 0 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="bg-gradient-to-b from-[#0A4973] via-[#165479] to-[#0A4973] text-white shadow-[-6px_8px_32px_rgba(10,73,115,0.4)] rounded-l-2xl border-y border-l border-white/20 py-3 px-2 flex flex-col items-center gap-2 backdrop-blur-xl"
+              className="w-full bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#0A4973] text-white border-t border-white/20  py-2 px-3 sm:px-6"
             >
-             
-              <button
-                onClick={() => setIsContactStripOpen(false)}
-                className="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/25 text-white/70 hover:text-white flex items-center justify-center transition-all duration-150 mb-0.5 cursor-pointer"
-                title="Close sidebar"
-                aria-label="Close sidebar"
-              >
-                <XMarkIcon className="w-4 h-4" />
-              </button>
+              <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 flex-wrap">
+                {/* Left: Contact Numbers & Channels */}
+                <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                  {/* US Phone */}
+                  <a
+                    href="tel:+14044244191"
+                    className="h-9 px-3 rounded-full bg-[#749220] hover:bg-[#84a724] text-white flex items-center gap-2 transition-all duration-200 shadow-sm font-semibold text-xs sm:text-sm shrink-0 group/call cursor-pointer"
+                    title="Call US: +1 (404) 424-4191"
+                  >
+                    <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover/call:scale-110 transition-transform">
+                      <PhoneIcon className="w-3.5 h-3.5 group-hover/call:rotate-12 transition-transform" />
+                    </div>
+                    {/* <UsFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" /> */}
+                    <span className="tracking-tight whitespace-nowrap">US: +1 (404) 424-4191</span>
+                  </a>
 
-        
-              <div className="relative group/tip flex items-center">
-                <div className="absolute right-full mr-3 pointer-events-none opacity-0 group-hover/tip:opacity-100 transition-all duration-200 bg-gray-900 text-white text-xs font-semibold py-1.5 px-3 rounded-lg shadow-xl whitespace-nowrap z-50">
-                  Call US: +1 (415) 223-1315
+                  {/* India Phone */}
+                  <a
+                    href="tel:+919052333667"
+                    className="h-9 px-3 rounded-full  hover:bg-[#749220] text-white flex items-center gap-2 transition-all duration-200 shadow-sm font-semibold text-xs sm:text-sm shrink-0 group/in cursor-pointer "
+                    title="Call India: +91 9052 333 667/668"
+                  >
+                    <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover/in:scale-110 transition-transform">
+                      <PhoneIcon className="w-3.5 h-3.5 group-hover/in:rotate-12 transition-transform" />
+                    </div>
+                    {/* <InFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" /> */}
+                    <span className="tracking-tight whitespace-nowrap">India: +91 9052 333 667/668</span>
+                  </a>
+
+                  {/* WhatsApp */}
+                  <a
+                    href="https://wa.me/919052333667?text=Hi%20IRS%20Tax%20Filer"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-9 px-3 rounded-full bg-white/10 hover:bg-[#25D366] text-white flex items-center gap-1.5 transition-all duration-200 shadow-sm font-semibold text-xs shrink-0 border border-white/15"
+                    title="WhatsApp Support: +91 9052 333 667/668"
+                  >
+                    <ChatBubbleLeftRightIcon className="w-4 h-4" />
+                    <span className="hidden md:inline">WhatsApp</span>
+                  </a>
+
+                  {/* Email */}
+                  <a
+                    href="mailto:contact@irstaxfiler.com"
+                    className="hidden xl:inline-flex items-center gap-1.5 text-xs text-white/90 hover:text-white font-medium transition-colors ml-1"
+                    title="Email: contact@irstaxfiler.com"
+                  >
+                    <EnvelopeIcon className="w-4 h-4 text-lime-300" />
+                    <span>contact@irstaxfiler.com</span>
+                  </a>
                 </div>
-                <a
-                  href="tel:+14152231315"
-                  className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#749220] text-white flex items-center justify-center transition-all duration-200 shadow-sm"
-                  title="Call US: +1 (415) 223-1315"
-                >
-                  <PhoneIcon className="w-5 h-5" />
-                </a>
-              </div>
 
+                {/* Right: Actions & Close */}
+                <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 ml-auto">
+                  {/* Schedule Consultation */}
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="h-9 px-3.5 sm:px-4 rounded-full bg-gradient-to-r from-[#749220] to-[#5e7719] hover:from-[#84a724] hover:to-[#749220] text-white font-semibold text-xs flex items-center gap-1.5 shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap"
+                  >
+                    <CalendarDaysIcon className="w-4 h-4" />
+                    <span>Free Consultation</span>
+                  </button>
 
-              <div className="relative group/tip flex items-center">
-                <div className="absolute right-full mr-3 pointer-events-none opacity-0 group-hover/tip:opacity-100 transition-all duration-200 bg-gray-900 text-white text-xs font-semibold py-1.5 px-3 rounded-lg shadow-xl whitespace-nowrap z-50">
-                  WhatsApp Support: +91 9052 333 667
+                  {/* PayPal */}
+                  <button
+                    onClick={() => window.open('https://www.paypal.com/ncp/payment/9AWG5USG2AUDU', '_blank')}
+                    className="h-9 px-3 sm:px-4 rounded-full bg-[#0070ba] hover:bg-[#005ea6] text-white font-semibold text-xs flex items-center gap-1.5 shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap"
+                  >
+                    <CreditCardIcon className="w-4 h-4" />
+                    <span className="hidden sm:inline">Pay with</span> PayPal
+                  </button>
+
+                  {/* Close Bar */}
+                  <button
+                    onClick={() => setIsContactStripOpen(false)}
+                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/25 text-white/80 hover:text-white flex items-center justify-center transition-all duration-150 cursor-pointer ml-1"
+                    title="Minimize bar"
+                    aria-label="Minimize bar"
+                  >
+                    <XMarkIcon className="w-4 h-4" />
+                  </button>
                 </div>
-                <a
-                  href="https://wa.me/919052333667?text=Hi%20IRS%20Tax%20Filer"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#25D366] text-white flex items-center justify-center transition-all duration-200 shadow-sm"
-                  title="WhatsApp Support: +91 9052 333 667"
-                >
-                  <ChatBubbleLeftRightIcon className="w-5 h-5" />
-                </a>
               </div>
-
-   
-              <div className="relative group/tip flex items-center">
-                <div className="absolute right-full mr-3 pointer-events-none opacity-0 group-hover/tip:opacity-100 transition-all duration-200 bg-gray-900 text-white text-xs font-semibold py-1.5 px-3 rounded-lg shadow-xl whitespace-nowrap z-50">
-                  Email: contact@irstaxfiler.com
-                </div>
-                <a
-                  href="mailto:contact@irstaxfiler.com"
-                  className="w-10 h-10 rounded-xl bg-white/10 hover:bg-[#749220] text-white flex items-center justify-center transition-all duration-200 shadow-sm"
-                  title="Email: contact@irstaxfiler.com"
-                >
-                  <EnvelopeIcon className="w-5 h-5" />
-                </a>
-              </div>
-
-              <div className="w-6 h-[1px] bg-white/20 my-0.5" />
-
-       
-              <div className="relative group/tip flex items-center">
-                <div className="absolute right-full mr-3 pointer-events-none opacity-0 group-hover/tip:opacity-100 transition-all duration-200 bg-gray-900 text-white text-xs font-semibold py-1.5 px-3 rounded-lg shadow-xl whitespace-nowrap z-50">
-                  Schedule Free Consultation
-                </div>
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="w-10 h-10 rounded-xl bg-gradient-to-r from-[#749220] to-[#5e7719] hover:from-[#84a724] hover:to-[#749220] text-white font-semibold flex items-center justify-center shadow-md transition-all duration-200"
-                  title="Schedule Free Consultation"
-                >
-                  <CalendarDaysIcon className="w-5 h-5" />
-                </button>
-              </div>
-
-     
-              <div className="relative group/tip flex items-center">
-                <div className="absolute right-full mr-3 pointer-events-none opacity-0 group-hover/tip:opacity-100 transition-all duration-200 bg-gray-900 text-white text-xs font-semibold py-1.5 px-3 rounded-lg shadow-xl whitespace-nowrap z-50">
-                  PayPal Payments
-                </div>
-                <button
-                  onClick={() => window.open('https://www.paypal.com/ncp/payment/9AWG5USG2AUDU', '_blank')}
-                  className="w-10 h-10 rounded-xl bg-[#0070ba] hover:bg-[#005ea6] text-white flex items-center justify-center shadow-md transition-all duration-200"
-                  title="Make Payment"
-                >
-                  <CreditCardIcon className="w-5 h-5" />
-                </button>
-              </div>
-
             </motion.div>
           ) : (
-            <motion.button
-              key="contact-strip-collapsed"
-              initial={{ x: 40, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 40, opacity: 0 }}
+            <motion.div
+              key="contact-bar-collapsed"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 20, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              onClick={() => setIsContactStripOpen(true)}
-              className="bg-gradient-to-r from-[#165479] to-[#749220] hover:from-[#0A4973] hover:to-[#637D1A] text-white py-2.5 px-3 rounded-l-2xl shadow-[-4px_4px_20px_rgba(22,84,121,0.35)] border-y border-l border-white/20 transition-all flex items-center gap-2 group cursor-pointer"
-              title="Open Quick Contact & Payments"
-              aria-label="Open Quick Contact & Payments"
+              className="pb-3 flex justify-center"
             >
-              <div className="relative flex items-center">
-                <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+              <div className="bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] text-white p-1.5 sm:p-2 pl-3 pr-4 rounded-full shadow-[0_8px_30px_rgba(10,73,115,0.45)] border border-white/25 transition-all flex items-center gap-3">
+                <a
+                  href="tel:+14044244191"
+                  className="flex items-center gap-2 group/us cursor-pointer"
+                  title="Call US: +1 (404) 424-4191"
+                >
+                  <div className="w-7 h-7 rounded-full bg-[#749220] group-hover/us:bg-[#84a724] text-white flex items-center justify-center transition-all group-hover/us:scale-110 shadow-sm">
+                    <PhoneIcon className="w-3.5 h-3.5" />
+                  </div>
+                  <UsFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" />
+                  <span className="text-xs sm:text-sm font-bold tracking-tight text-white whitespace-nowrap">
+                    US: +1 (404) 424-4191
+                  </span>
+                </a>
+
+                <div className="h-4 w-[1px] bg-white/25 hidden sm:block" />
+
+                <a
+                  href="tel:+919052333667"
+                  className="hidden sm:flex items-center gap-2 group/in cursor-pointer"
+                  title="Call India: +91 9052 333 667/668"
+                >
+                  <InFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" />
+                  <span className="text-xs font-semibold text-lime-200 whitespace-nowrap">
+                    India: +91 9052 333 667/668
+                  </span>
+                </a>
+
+                <button
+                  type="button"
+                  onClick={() => setIsContactStripOpen(true)}
+                  className="text-[11px] font-semibold bg-white/20 hover:bg-white/30 px-2.5 py-1 rounded-full text-white transition-all cursor-pointer whitespace-nowrap ml-1 flex items-center gap-1"
+                >
+                  <span>Quick Bar</span>
+                  <span>&uarr;</span>
+                </button>
               </div>
-              <PhoneIcon className="w-4 h-4 text-white group-hover:scale-110 transition-transform" />
-              <span className="text-xs font-medium tracking-wide hidden group-hover:inline transition-all">
-                Quick Contact
-              </span>
-            </motion.button>
+            </motion.div>
           )}
         </AnimatePresence>
-      </div> */}
+      </div>
 
       <LeadModal open={isModalOpen} onClose={() => setIsModalOpen(false)} />
       {/* Main Header */}

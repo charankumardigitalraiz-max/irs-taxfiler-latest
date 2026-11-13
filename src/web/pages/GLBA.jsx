@@ -140,7 +140,7 @@ const GLBA = () => {
         'If you have questions about this GLBA Privacy Notice or wish to exercise your privacy rights, please contact us:',
         'Email: contact@irstaxfiler.com',
         'Phone: +1 (415) 2231315',
-        'Mail: IRS Tax Filer Privacy Office, [Your Business Address]',
+        'Mail: IRS Tax Filer Privacy Office, 12600 Deerfield Parkway Suite 2096, Alpharetta 30004, USA',
         'We will respond to your inquiries and requests within a reasonable time, typically within 30 days.',
       ],
     },

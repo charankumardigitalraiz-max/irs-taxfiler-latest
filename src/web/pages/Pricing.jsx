@@ -31,6 +31,7 @@ const Pricing = () => {
       icon: DocumentTextIcon,
       isFree: true,
       category: 'free',
+      description: 'Form W-7 preparation and document verification for non-residents and dependents.',
     },
     {
       name: 'Federal & State Filing Extensions',
@@ -39,6 +40,7 @@ const Pricing = () => {
       icon: CalendarDaysIcon,
       isFree: true,
       category: 'free',
+      description: 'Automatic 6-month extension with the IRS to avoid costly late-filing penalties.',
     },
     {
       name: 'W4 Assistance Throughout the Year',
@@ -46,6 +48,7 @@ const Pricing = () => {
       icon: UserGroupIcon,
       isFree: true,
       category: 'free',
+      description: 'Year-round withholding adjustments to optimize your payroll take-home pay.',
     },
     {
       name: 'FBAR Filing',
@@ -53,6 +56,7 @@ const Pricing = () => {
       icon: BanknotesIcon,
       isFree: true,
       category: 'free',
+      description: 'FinCEN Form 114 reporting for foreign bank and financial asset compliance.',
     },
     {
       name: 'Non Resident Tax Return (1040NR)',
@@ -60,6 +64,7 @@ const Pricing = () => {
       icon: DocumentTextIcon,
       isFree: false,
       category: 'returns',
+      description: 'Specialized U.S. return for non-residents, international students, and OPT/CPT filers.',
     },
     {
       name: 'Federal Tax Return',
@@ -68,6 +73,7 @@ const Pricing = () => {
       icon: DocumentTextIcon,
       isFree: false,
       category: 'returns',
+      description: 'Complete Form 1040 preparation with exhaustive deduction discovery and direct e-file.',
     },
     {
       name: 'State/Local Tax Return',
@@ -75,6 +81,7 @@ const Pricing = () => {
       icon: BuildingOfficeIcon,
       isFree: false,
       category: 'returns',
+      description: 'Individual income tax preparation across all 50 states and local jurisdictions.',
     },
     {
       name: 'Schedule A (Itemized Deductions)',
@@ -82,6 +89,7 @@ const Pricing = () => {
       icon: ChartBarIcon,
       isFree: false,
       category: 'schedules',
+      description: 'Maximize write-offs for medical costs, mortgage interest, state taxes, and charity.',
     },
     {
       name: 'Schedule E (US Rental Home)',
@@ -89,6 +97,7 @@ const Pricing = () => {
       icon: ChartBarIcon,
       isFree: false,
       category: 'schedules',
+      description: 'Rental real estate income, depreciation schedules, and operational expense write-offs.',
     },
     {
       name: 'Schedule C',
@@ -96,6 +105,7 @@ const Pricing = () => {
       icon: ChartBarIcon,
       isFree: false,
       category: 'schedules',
+      description: 'Self-employed, 1099 contractor, and sole proprietor business expense deductions.',
     },
     {
       name: 'Stock Transactions (Schedule D)',
@@ -103,6 +113,7 @@ const Pricing = () => {
       icon: CurrencyDollarIcon,
       isFree: false,
       category: 'schedules',
+      description: 'Capital gains and loss calculations for stocks, crypto, RSUs, and investment sales.',
     },
     {
       name: 'Education Credit (Form 8863)',
@@ -110,6 +121,7 @@ const Pricing = () => {
       icon: AcademicCapIcon,
       isFree: false,
       category: 'schedules',
+      description: 'Claim American Opportunity or Lifetime Learning credits for tuition and course fees.',
     },
     {
       name: 'Foreign Tax Credit (Form 1116)',
@@ -117,6 +129,7 @@ const Pricing = () => {
       icon: GlobeAltIcon,
       isFree: false,
       category: 'schedules',
+      description: 'Double taxation relief on income earned abroad and taxes paid to foreign tax authorities.',
     },
   ];
 
@@ -293,80 +306,108 @@ const Pricing = () => {
                 </span>
               </div>
 
-              {/* Modern Symmetrical 3-Column Services Grid (3 Cards Per Row) */}
+              {/* Clean Symmetrical 3-Column Services Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
                 {services.map((service, index) => {
                   const IconComponent = service.icon;
                   return (
                     <motion.div
                       key={service.name}
-                      initial={{ opacity: 0, y: 16 }}
+                      initial={{ opacity: 0, y: 12 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-30px" }}
-                      transition={{ duration: 0.3, delay: index * 0.03 }}
-                      className="group bg-white rounded-2xl p-5 border border-slate-200/90 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.08)] hover:border-[#165479]/35 hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between h-full"
+                      transition={{ duration: 0.25, delay: index * 0.02 }}
+                      className="group bg-white rounded-xl p-5 border border-slate-200 hover:border-[#165479]/40 hover:shadow-sm transition-all duration-200 flex flex-col justify-between text-left"
                     >
                       <div>
-                        {/* Top Row: Icon + Price Tag */}
+                        {/* Header: Icon + Category/Status Pill */}
                         <div className="flex items-center justify-between mb-3.5">
                           <div
-                            className={`w-11 h-11 rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-105 ${service.isFree
-                              ? 'bg-[#F6F9EE] border border-[#749220]/25 text-[#749220]'
-                              : 'bg-sky-50/80 border border-sky-100 text-[#165479]'
+                            className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${service.isFree
+                              ? 'bg-[#F6F9EE] text-[#749220] border border-[#749220]/25'
+                              : 'bg-sky-50 text-[#165479] border border-sky-100'
                               }`}
                           >
-                            <IconComponent className="w-5.5 h-5.5" />
+                            <IconComponent className="w-5 h-5 stroke-[1.75]" />
                           </div>
 
                           <div>
                             {service.isFree ? (
-                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/70 text-xs sm:text-sm font-semibold text-emerald-700 shadow-2xs">
-                                <GiftIcon className="w-3.5 h-3.5 text-[#749220]" />
-                                <span>{service.price}</span>
-                              </span>
+                              <div className="flex items-baseline gap-1.5">
+                                <span className="text-2xl font-bold text-[#749220] tracking-tight">
+                                  $0
+                                </span>
+                                <span className="text-xs font-bold text-[#749220] uppercase tracking-wide">
+                                  Free
+                                </span>
+                              </div>
                             ) : (
-                              <span className="inline-flex items-center px-3.5 py-1 rounded-full bg-slate-50 border border-slate-200/80 text-sm sm:text-base font-semibold text-[#165479]">
-                                {service.price}
-                              </span>
+                              <div className="flex items-baseline gap-1">
+                                <span className="text-2xl font-bold text-[#0A4973] tracking-tight">
+                                  {service.price}
+                                </span>
+                                <span className="text-xs font-normal text-slate-400">
+                                  / filing
+                                </span>
+                              </div>
                             )}
                           </div>
+
                         </div>
 
                         {/* Service Title */}
-                        <h3 className="text-sm sm:text-[15px] font-medium text-gray-900 group-hover:text-[#165479] transition-colors leading-snug mb-1">
+                        <h3 className="text-[15px] font-semibold text-gray-900 group-hover:text-[#165479] transition-colors leading-snug min-h-[42px] flex items-center">
                           {service.name}
                         </h3>
 
-                        {/* Worth Tag */}
-                        {service.worth && (
-                          <div className="text-xs text-slate-400 font-normal flex items-center gap-1.5 mt-1">
-                            <span>
-                              Worth <span className="line-through">{service.worth}</span>
-                            </span>
-                            <span className="text-[10px] font-medium text-[#749220] bg-[#F6F9EE] px-1.5 py-0.2 rounded border border-[#749220]/20">
-                              100% Free
-                            </span>
+                        {/* Clean 1-Line Description */}
+                        <p className="text-xs text-gray-500 leading-relaxed mt-1.5 mb-3 line-clamp-2 min-h-[34px]">
+                          {service.description}
+                        </p>
+
+                        {/* Price Note (if applicable) */}
+                        {service.priceNote && (
+                          <div className="text-[11px] text-[#165479] bg-sky-50/70 px-2.5 py-1.5 rounded-md border border-sky-100 mb-3">
+                            {service.priceNote}
                           </div>
                         )}
+                      </div>
 
-                        {/* Price Note */}
-                        {service.priceNote && (
-                          <p className="text-xs text-slate-500 font-normal mt-1.5 italic leading-relaxed">
-                            {service.priceNote}
-                          </p>
+                      {/* Bottom Row: Prominent Price & Clean Action */}
+                      {/* <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <div>
+                          {service.isFree ? (
+                            <div className="flex items-baseline gap-1.5">
+                              <span className="text-2xl font-bold text-[#749220] tracking-tight">
+                                $0
+                              </span>
+                              <span className="text-xs font-bold text-[#749220] uppercase tracking-wide">
+                                Free
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="flex items-baseline gap-1">
+                              <span className="text-2xl font-bold text-[#0A4973] tracking-tight">
+                                {service.price}
+                              </span>
+                              <span className="text-xs font-normal text-slate-400">
+                                / filing
+                              </span>
+                            </div>
+                          )}
+                        </div>
+
+                        {service.worth ? (
+                          <span className="text-xs text-slate-400">
+                            Worth <span className="line-through">{service.worth}</span>
+                          </span>
+                        ) : (
+                          <span className="text-xs font-medium text-[#165479] group-hover:text-[#0A4973] flex items-center gap-1 transition-colors">
+                            <span>Get Started</span>
+                            <span className="text-xs group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+                          </span>
                         )}
-                      </div>
-
-                      {/* Bottom Clean Footer Indicator */}
-                      <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-gray-500 font-medium select-none">
-                        <span className="flex items-center gap-1 text-[#749220]">
-                          <CheckCircleIcon className="w-3.5 h-3.5" />
-                          E-File Included
-                        </span>
-                        <span className="text-slate-400">
-                          {service.isFree ? '$0 Fee' : 'Fixed Rate'}
-                        </span>
-                      </div>
+                      </div> */}
                     </motion.div>
                   );
                 })}

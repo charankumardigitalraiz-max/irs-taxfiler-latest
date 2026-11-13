@@ -61,10 +61,10 @@ const Footer = () => {
                   <PhoneIcon className="w-3.5 h-3.5" />
                 </div>
                 <a
-                  href="tel:+14157876190"
+                  href="tel:+14044244191"
                   className="hover:text-[#165479] font-medium transition-colors"
                 >
-                  +1 (415) 787-6190
+                  +1 (404) 424-4191
                 </a>
               </div>
 
@@ -321,39 +321,22 @@ const Footer = () => {
             </div>
 
             <div className="space-y-3.5 text-[13px]">
-              {/* Dallas Office */}
+              {/* Alpharetta Office */}
               <div className="group">
                 <div className="font-semibold text-gray-900 flex items-center gap-1.5 mb-1 text-xs">
                   <MapPinIcon className="w-3.5 h-3.5 text-rose-500 shrink-0" />
-                  <span>Dallas, USA</span>
+                  <span>Alpharetta, USA</span>
                 </div>
                 <a
-                  href="https://www.google.com/maps/place/13610+Floyd+Cir,+Dallas,+TX+75243"
+                  href="https://www.google.com/maps/place/12600+Deerfield+Parkway+Suite+2096,+Alpharetta,+GA+30004"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-[#165479] font-medium transition-colors block pl-5 leading-relaxed text-xs"
                 >
-                  13610 Floyd Cir, Dallas,<br />
-                  TX 75243
+                  12600 Deerfield Parkway Suite 2096,<br />
+                  Alpharetta 30004
                 </a>
               </div>
-
-              {/* Hyderabad Office */}
-              {/* <div className="group pt-2 border-t border-gray-100/80">
-                <div className="font-semibold text-gray-900 flex items-center gap-1.5 mb-1 text-xs">
-                  <BuildingOffice2Icon className="w-3.5 h-3.5 text-[#749220] shrink-0" />
-                  <span>Hyderabad, India</span>
-                </div>
-                <a
-                  href="https://www.google.com/maps/place/Manjeera+Majestic+Commercial,+803,+JNTU+-+Hitech+City+Rd,+K+P+H+B+Phase+1,+Kukatpally,+Hyderabad,+Telangana+500072"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 hover:text-[#165479] font-medium transition-colors block pl-5 leading-relaxed text-xs"
-                >
-                  # 801, Manjeera Majestic Commercial,<br />
-                  Hitech City Rd, Hyderabad 500072
-                </a>
-              </div> */}
             </div>
           </div>
 

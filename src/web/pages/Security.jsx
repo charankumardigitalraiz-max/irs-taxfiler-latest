@@ -165,7 +165,7 @@ const Security = () => {
         'If you have questions or concerns about our security practices, please contact our security team:',
         'Email: contact@irstaxfiler.com',
         'Phone: +1 (415) 7876190 (ask for the security team)',
-        'Mail: TaxFiling Security Office, [Your Business Address]',
+        'Mail: TaxFiling Security Office, 12600 Deerfield Parkway Suite 2096, Alpharetta 30004, USA',
         'For general privacy questions, please see our Privacy Policy or contact contact@irstaxfiler.com.',
         'For urgent security issues, please call our security hotline immediately.',
       ],

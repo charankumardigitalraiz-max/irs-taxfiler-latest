@@ -9,7 +9,7 @@ import {
 import { submitWebsiteForm } from "../services/formApi";
 
 const ContactForm = () => {
-  
+
   const [contactFormError, setContactFormError] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
@@ -50,7 +50,7 @@ const ContactForm = () => {
     return Object.keys(newError).length === 0;
   };
 
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -72,7 +72,7 @@ const ContactForm = () => {
         formType: "contactusform",
       });
       setContactFormError({});
-      
+
       // Reset success message after 5 seconds
       setTimeout(() => {
         setSubmitSuccess(false);
@@ -113,104 +113,96 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="w-full h-full">
-      {/* Contact Form */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="bg-white p-5 lg:p-6 rounded-xl shadow-md border border-gray-100 h-full flex flex-col"
+    <div className="w-full">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-3"
       >
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-4 flex-1 flex flex-col"
-        >
-          <div>
-            <label
-              htmlFor="name"
-              className="block text-xs font-medium text-gray-700 mb-1.5"
-            >
-              Full Name <span className="text-red-500">*</span>
-            </label>
-            <div className="relative">
-              <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#165479] focus:border-[#165479] focus:bg-white focus:outline-none transition-all"
-                placeholder="John Doe"
-              />
-             
-            </div>
-             {contactFormError.name && (
-                <span className="text-red-500 text-xs">
+        <div className="space-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-xs font-semibold text-slate-700 mb-1"
+              >
+                Full Name <span className="text-red-500">*</span>
+              </label>
+              <div className="relative">
+                <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl bg-slate-50/70 hover:bg-white focus:ring-2 focus:ring-[#165479]/15 focus:border-[#165479] focus:bg-white focus:outline-none transition-all placeholder:text-slate-400 font-medium"
+                  placeholder="John Doe"
+                />
+              </div>
+              {contactFormError.name && (
+                <span className="text-red-500 text-[11px] mt-0.5 block">
                   {contactFormError.name}
                 </span>
               )}
-          </div>
-
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-xs font-medium text-gray-700 mb-1.5"
-            >
-              Email Address <span className="text-red-500">*</span>
-            </label>
-            <div className="relative">
-              <EnvelopeIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#165479] focus:border-[#165479] focus:bg-white focus:outline-none transition-all"
-                placeholder="john@example.com"
-              />
-              
             </div>
-            {contactFormError.email && (
-                <span className="text-red-500 text-xs">
+
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-xs font-semibold text-slate-700 mb-1"
+              >
+                Email Address <span className="text-red-500">*</span>
+              </label>
+              <div className="relative">
+                <EnvelopeIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl bg-slate-50/70 hover:bg-white focus:ring-2 focus:ring-[#165479]/15 focus:border-[#165479] focus:bg-white focus:outline-none transition-all placeholder:text-slate-400 font-medium"
+                  placeholder="john@example.com"
+                />
+              </div>
+              {contactFormError.email && (
+                <span className="text-red-500 text-[11px] mt-0.5 block">
                   {contactFormError.email}
                 </span>
               )}
+            </div>
           </div>
 
           <div>
             <label
               htmlFor="phone"
-              className="block text-xs font-medium text-gray-700 mb-1.5"
+              className="block text-xs font-semibold text-slate-700 mb-1"
             >
               Phone Number
             </label>
             <div className="relative">
-              <PhoneIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <PhoneIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
               <input
                 type="tel"
                 id="phone"
                 name="phone"
                 value={formData.phone}
                 onChange={handleNumber}
-                className="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#165479] focus:border-[#165479] focus:bg-white focus:outline-none transition-all"
-                placeholder="+1 (234) 567-8900"
+                className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl bg-slate-50/70 hover:bg-white focus:ring-2 focus:ring-[#165479]/15 focus:border-[#165479] focus:bg-white focus:outline-none transition-all placeholder:text-slate-400 font-medium"
+                placeholder="+1 (404) 424-4191"
               />
-              
             </div>
             {contactFormError.phone && (
-                <span className="text-red-500 text-xs">
-                  {contactFormError.phone}
-                </span>
-              )}
+              <span className="text-red-500 text-[11px] mt-0.5 block">
+                {contactFormError.phone}
+              </span>
+            )}
           </div>
 
           <div>
             <label
               htmlFor="subject"
-              className="block text-xs font-medium text-gray-700 mb-1.5"
+              className="block text-xs font-semibold text-slate-700 mb-1"
             >
               Subject <span className="text-red-500">*</span>
             </label>
@@ -220,11 +212,11 @@ const ContactForm = () => {
               name="subject"
               value={formData.subject}
               onChange={handleChange}
-              className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#165479] focus:border-[#165479] focus:bg-white focus:outline-none transition-all"
+              className="w-full px-3.5 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl bg-slate-50/70 hover:bg-white focus:ring-2 focus:ring-[#165479]/15 focus:border-[#165479] focus:bg-white focus:outline-none transition-all placeholder:text-slate-400 font-medium"
               placeholder="How can we help?"
             />
             {contactFormError.subject && (
-              <span className="text-red-500 text-xs">
+              <span className="text-red-500 text-[11px] mt-0.5 block">
                 {contactFormError.subject}
               </span>
             )}
@@ -233,7 +225,7 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="message"
-              className="block text-xs font-medium text-gray-700 mb-1.5"
+              className="block text-xs font-semibold text-slate-700 mb-1"
             >
               Message <span className="text-red-500">*</span>
             </label>
@@ -242,38 +234,39 @@ const ContactForm = () => {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              rows={4}
-              className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:ring-2 focus:ring-[#165479] focus:border-[#165479] focus:bg-white focus:outline-none transition-all resize-none"
-              placeholder="Tell us more about your requirements..."
+              rows={2}
+              className="w-full px-3.5 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl bg-slate-50/70 hover:bg-white focus:ring-2 focus:ring-[#165479]/15 focus:border-[#165479] focus:bg-white focus:outline-none transition-all placeholder:text-slate-400 font-medium resize-none"
+              placeholder="Tell us more about your tax requirements..."
             />
             {contactFormError.message && (
-              <span className="text-red-500 text-xs">
+              <span className="text-red-500 text-[11px] mt-0.5 block">
                 {contactFormError.message}
               </span>
             )}
           </div>
 
           {submitError && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+            <div className="p-2.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs">
               {submitError}
             </div>
           )}
           {submitSuccess && (
-            <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm">
+            <div className="p-2.5 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs font-medium">
               Message sent successfully! We'll get back to you soon.
             </div>
           )}
-          <div className="pt-2">
-            <button
-              type="submit"
-              disabled={submitting}
-              className="w-full text-white py-2.5 px-4 rounded-xl font-medium text-sm transition-all duration-200 hover:shadow-md hover:opacity-95 bg-gradient-to-r from-[#0A4973] to-[#165479] hover:from-[#083b5d] hover:to-[#124563] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-            >
-              {submitting ? 'Sending...' : 'Send Message'}
-            </button>
-          </div>
-        </form>
-      </motion.div>
+        </div>
+
+        <div className="pt-2">
+          <button
+            type="submit"
+            disabled={submitting}
+            className="w-full text-white py-2.5 px-5 rounded-xl font-bold text-sm sm:text-base transition-all duration-200 shadow-md hover:shadow-lg bg-gradient-to-r from-[#165479] via-[#1b5e85] to-[#749220] hover:from-[#114261] hover:to-[#5e7719] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer block text-center"
+          >
+            {submitting ? 'Sending Message...' : 'Send Message'}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

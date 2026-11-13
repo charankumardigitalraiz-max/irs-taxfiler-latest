@@ -179,7 +179,7 @@ const Privacy = () => {
         'If you have questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us:',
         'Email: contact@irstaxfiler.com',
         'Phone: +1 (415) 2231315',
-        'Mail: IRS Tax Filer Privacy Office, 123 Tax Street, Suite 100, New York, NY 10001',
+        'Mail: IRS Tax Filer Privacy Office, 12600 Deerfield Parkway Suite 2096, Alpharetta 30004, USA',
         'We will respond to your privacy inquiries within 30 days of receipt.',
         'For general customer service inquiries, please visit our Contact Us page or call our customer support line.',
       ],
@@ -194,313 +194,310 @@ const Privacy = () => {
 
   return (
     <>
-    <SEO
-      title={title}
-      description={description}
-      canonical={canonical}
-      image={image}
-      keywords={keywords}
-    />
-    <div className="min-h-screen bg-white font-sans text-gray-900 antialiased">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-12 sm:pt-16 pb-14 sm:pb-16 bg-white border-b border-slate-100">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden">
-          <div className="absolute -top-24 left-1/4 w-96 h-96 bg-sky-100/50 rounded-full blur-3xl opacity-60" />
-          <div className="absolute -top-20 right-1/4 w-80 h-80 bg-lime-100/40 rounded-full blur-3xl opacity-50" />
-        </div>
+      <SEO
+        title={title}
+        description={description}
+        canonical={canonical}
+        image={image}
+        keywords={keywords}
+      />
+      <div className="min-h-screen bg-white font-sans text-gray-900 antialiased">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden pt-12 sm:pt-16 pb-14 sm:pb-16 bg-white border-b border-slate-100">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden">
+            <div className="absolute -top-24 left-1/4 w-96 h-96 bg-sky-100/50 rounded-full blur-3xl opacity-60" />
+            <div className="absolute -top-20 right-1/4 w-80 h-80 bg-lime-100/40 rounded-full blur-3xl opacity-50" />
+          </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6F9EE] border border-[#749220]/30 shadow-sm mb-4 text-xs font-medium text-[#749220]">
-              <ShieldCheckIcon className="h-3.5 w-3.5 text-[#749220]" />
-              <span>Your Privacy Matters</span>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-gray-900 tracking-tight leading-[1.2] mb-3.5">
-              Privacy{" "}
-              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
-                Policy
-              </span>
-            </h1>
-
-            <p className="text-sm sm:text-base lg:text-[17px] text-gray-600 font-normal max-w-2xl mx-auto leading-[30px] sm:leading-[32px] lg:leading-[34px]">
-              We are committed to protecting your privacy and securing your sensitive tax information. 
-              Learn how we collect, use, and safeguard your data.
-            </p>
-
-            <div className="mt-5 inline-flex items-center px-3 py-1 rounded-full bg-slate-50 border border-slate-200/80 text-xs font-medium text-gray-500">
-              <p>Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Privacy Content */}
-      <section className="py-12 sm:py-16 bg-slate-50/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Top Intro & Commitment Split Banner */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45 }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-10"
-          >
-            <div className="lg:col-span-7 bg-gradient-to-br from-[#0A3D5C] via-[#124C6F] to-[#165479] rounded-2xl p-6 sm:p-8 text-white shadow-sm relative overflow-hidden flex items-center">
-              <div className="absolute -top-12 -right-12 w-44 h-44 bg-[#749220]/30 rounded-full blur-3xl pointer-events-none" />
-              <div className="relative z-10 flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 border border-white/20 text-[#C5DF7B] flex items-center justify-center backdrop-blur-sm">
-                  <LockClosedIcon className="h-6 w-6" />
-                </div>
-                <div>
-                  <h2 className="text-lg sm:text-xl font-semibold text-white mb-2">
-                    Our Commitment to Your Privacy
-                  </h2>
-                  <p className="text-sm sm:text-[15px] text-sky-100/95 leading-relaxed">
-                    At IRS Tax Filer, we understand that your tax information is highly sensitive and personal. 
-                    We are committed to maintaining the highest standards of data protection and privacy. 
-                    This Privacy Policy explains our practices regarding the collection, use, and protection of your information.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 sm:p-8 flex flex-col justify-center">
-              <p className="text-sm sm:text-[15px] text-gray-700 leading-relaxed mb-3.5">
-                This Privacy Policy describes how IRS Tax Filer collects, uses, shares, and protects your personal 
-                and financial information when you use our tax preparation and filing services.
-              </p>
-              <p className="text-sm sm:text-[15px] text-gray-700 leading-relaxed pt-3.5 border-t border-slate-100">
-                If you have any questions about this Privacy Policy, please contact us at{' '}
-                <a href="mailto:contact@irstaxfiler.com" className="text-[#165479] hover:text-[#0A4973] hover:underline font-semibold transition-colors">
-                  contact@irstaxfiler.com
-                </a>
-                {' '}or call us at{' '}
-                <a href="tel:++1 (415) 2231315" className="text-[#165479] hover:text-[#0A4973] hover:underline font-semibold transition-colors">
-                  +1 (415) 2231315
-                </a>.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Privacy Sections */}
-          {loading ? (
-            <div className="text-center py-12 bg-white rounded-2xl border border-slate-200/80">
-              <p className="text-sm text-gray-500">Loading privacy policy...</p>
-            </div>
-          ) : dynamicContent ? (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45 }}
-              className="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-6 sm:p-10"
+              className="text-center max-w-3xl mx-auto"
             >
-              <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6">{dynamicContent.title}</h2>
-              <div
-                className="prose prose-base sm:prose-lg max-w-none text-gray-700"
-                dangerouslySetInnerHTML={{ __html: dynamicContent.content }}
-              />
-            </motion.div>
-          ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* Left Sticky Section Index */}
-              <aside className="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
-                <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-6">
-                  <div className="flex items-center gap-2.5 pb-3.5 mb-3.5 border-b border-slate-100">
-                    <span className="w-2 h-2 rounded-full bg-[#749220]" />
-                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-                      Policy Sections
-                    </span>
-                  </div>
-                  <nav className="space-y-1">
-                    {defaultSections.map((section, idx) => {
-                      const NavIcon = section.icon;
-                      return (
-                        <a
-                          key={section.id}
-                          href={`#${section.id}`}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            document.getElementById(section.id)?.scrollIntoView({
-                              behavior: 'smooth',
-                              block: 'start',
-                            });
-                          }}
-                          className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs sm:text-[13px] font-medium text-gray-700 hover:text-[#0A4973] hover:bg-sky-50/80 transition-colors group"
-                        >
-                          <NavIcon className={`w-4 h-4 shrink-0 ${idx % 2 === 1 ? 'text-[#749220]' : 'text-[#165479]'}`} />
-                          <span className="truncate">{section.title}</span>
-                        </a>
-                      );
-                    })}
-                  </nav>
-                </div>
-              </aside>
-
-              {/* Right Content Cards */}
-              <div className="lg:col-span-8 space-y-5">
-                {defaultSections.map((section, index) => {
-                  const IconComponent = section.icon;
-                  const isLime = index % 2 === 1;
-                  return (
-                    <motion.div
-                      id={section.id}
-                      key={section.id}
-                      initial={{ opacity: 0, y: 16 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-40px" }}
-                      transition={{ duration: 0.3 }}
-                      className="scroll-mt-24 bg-white rounded-2xl shadow-sm border border-slate-200/90 p-6 sm:p-7 hover:border-[#165479]/35 transition-all duration-200 relative overflow-hidden group"
-                    >
-                      <div
-                        className={`absolute top-0 inset-x-0 h-0.5 ${
-                          isLime
-                            ? "bg-gradient-to-r from-[#749220]/70 via-[#749220]/25 to-transparent"
-                            : "bg-gradient-to-r from-[#165479]/70 via-[#165479]/25 to-transparent"
-                        }`}
-                      />
-                      <div className="flex items-center gap-3.5 pb-4 mb-4 border-b border-slate-100">
-                        <div
-                          className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${
-                            isLime
-                              ? "bg-[#F6F9EE] border border-[#749220]/25 text-[#749220]"
-                              : "bg-sky-50 border border-sky-100 text-[#165479]"
-                          }`}
-                        >
-                          <IconComponent className="h-5 w-5" />
-                        </div>
-                        <h2 className="text-base sm:text-lg font-semibold text-gray-900 leading-snug">
-                          {section.title}
-                        </h2>
-                      </div>
-                      <ul className="space-y-3">
-                        {section.content.map((item, itemIndex) => {
-                          const colonIdx = item.indexOf(':');
-                          const hasLabel =
-                            colonIdx > 0 &&
-                            colonIdx <= 30 &&
-                            !item.slice(0, colonIdx).includes('http');
-                          return (
-                            <li key={itemIndex} className="flex items-start gap-3">
-                              <span
-                                className={`flex-shrink-0 w-1.5 h-1.5 rounded-full mt-2 ${
-                                  isLime ? "bg-[#749220]" : "bg-[#165479]"
-                                }`}
-                              />
-                              <p className="text-sm sm:text-[15px] text-gray-600 leading-relaxed">
-                                {hasLabel ? (
-                                  <>
-                                    <span className="font-semibold text-gray-900">
-                                      {item.slice(0, colonIdx + 1)}
-                                    </span>
-                                    {item.slice(colonIdx + 1)}
-                                  </>
-                                ) : (
-                                  item
-                                )}
-                              </p>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </motion.div>
-                  );
-                })}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6F9EE] border border-[#749220]/30 shadow-sm mb-4 text-xs font-medium text-[#749220]">
+                <ShieldCheckIcon className="h-3.5 w-3.5 text-[#749220]" />
+                <span>Your Privacy Matters</span>
               </div>
-            </div>
-          )}
 
-          {/* Security Highlights & Contact Section */}
-          <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-            {/* Security Highlights */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45 }}
-              className="lg:col-span-6 bg-gradient-to-br from-[#0A3D5C] via-[#124C6F] to-[#165479] rounded-2xl p-6 sm:p-8 text-white shadow-sm relative overflow-hidden flex flex-col justify-center"
-            >
-              <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-[#749220]/30 rounded-full blur-3xl pointer-events-none" />
-              <div className="relative z-10">
-                <div className="flex items-center gap-3.5 pb-4 mb-5 border-b border-white/15">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center bg-white/10 border border-white/20 text-[#C5DF7B]">
-                    <ShieldCheckIcon className="h-5 w-5" />
-                  </div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-white">
-                    Security Measures We Implement
-                  </h3>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {[
-                    'Bank-level encryption (SSL/TLS)',
-                    'Secure document storage',
-                    'Regular security audits',
-                    'Access controls and authentication',
-                    'Employee confidentiality agreements',
-                    'Compliance with industry standards',
-                  ].map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-2.5 bg-white/10 border border-white/15 px-3.5 py-2.5 rounded-lg backdrop-blur-sm"
-                    >
-                      <CheckCircleIcon className="h-5 w-5 text-[#C5DF7B] flex-shrink-0" />
-                      <span className="text-xs sm:text-sm text-white font-medium leading-snug">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Contact Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45 }}
-              className="lg:col-span-6 bg-gradient-to-br from-[#DFEBC2]/55 via-white to-[#C3DCED]/55 rounded-2xl p-6 sm:p-8 border border-[#165479]/15 shadow-sm flex flex-col justify-center text-center"
-            >
-              <h3 className="text-xl sm:text-2xl font-normal text-gray-900 tracking-tight mb-2.5">
-                Questions About Your{" "}
+              <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-gray-900 tracking-tight leading-[1.2] mb-3.5">
+                Privacy{" "}
                 <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
-                  Privacy?
+                  Policy
                 </span>
-              </h3>
-              <p className="text-sm text-gray-700 mb-5 max-w-lg mx-auto leading-relaxed">
-                Our privacy team is here to help. Contact us if you have questions about how we handle your information 
-                or if you want to exercise your privacy rights.
+              </h1>
+
+              <p className="text-sm sm:text-base lg:text-[17px] text-gray-600 font-normal max-w-2xl mx-auto leading-[30px] sm:leading-[32px] lg:leading-[34px]">
+                We are committed to protecting your privacy and securing your sensitive tax information.
+                Learn how we collect, use, and safeguard your data.
               </p>
-              <div className="flex flex-wrap gap-2.5 justify-center">
-                <a
-                  href="mailto:contact@irstaxfiler.com"
-                  className="inline-flex items-center justify-center h-10 px-5 rounded-lg font-medium text-xs sm:text-sm text-white bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] shadow-sm transition-all"
-                >
-                  Email Privacy Team
-                </a>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center h-10 px-5 rounded-lg font-medium text-xs sm:text-sm text-gray-800 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"
-                >
-                  Contact Us
-                </Link>
-                <Link
-                  to="/terms"
-                  className="inline-flex items-center justify-center h-10 px-5 rounded-lg font-medium text-xs sm:text-sm text-gray-800 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"
-                >
-                  Terms & Conditions
-                </Link>
+
+              <div className="mt-5 inline-flex items-center px-3 py-1 rounded-full bg-slate-50 border border-slate-200/80 text-xs font-medium text-gray-500">
+                <p>Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        {/* Privacy Content */}
+        <section className="py-12 sm:py-16 bg-slate-50/70">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Top Intro & Commitment Split Banner */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45 }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-10"
+            >
+              <div className="lg:col-span-7 bg-gradient-to-br from-[#0A3D5C] via-[#124C6F] to-[#165479] rounded-2xl p-6 sm:p-8 text-white shadow-sm relative overflow-hidden flex items-center">
+                <div className="absolute -top-12 -right-12 w-44 h-44 bg-[#749220]/30 rounded-full blur-3xl pointer-events-none" />
+                <div className="relative z-10 flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 border border-white/20 text-[#C5DF7B] flex items-center justify-center backdrop-blur-sm">
+                    <LockClosedIcon className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h2 className="text-lg sm:text-xl font-semibold text-white mb-2">
+                      Our Commitment to Your Privacy
+                    </h2>
+                    <p className="text-sm sm:text-[15px] text-sky-100/95 leading-relaxed">
+                      At IRS Tax Filer, we understand that your tax information is highly sensitive and personal.
+                      We are committed to maintaining the highest standards of data protection and privacy.
+                      This Privacy Policy explains our practices regarding the collection, use, and protection of your information.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 sm:p-8 flex flex-col justify-center">
+                <p className="text-sm sm:text-[15px] text-gray-700 leading-relaxed mb-3.5">
+                  This Privacy Policy describes how IRS Tax Filer collects, uses, shares, and protects your personal
+                  and financial information when you use our tax preparation and filing services.
+                </p>
+                <p className="text-sm sm:text-[15px] text-gray-700 leading-relaxed pt-3.5 border-t border-slate-100">
+                  If you have any questions about this Privacy Policy, please contact us at{' '}
+                  <a href="mailto:contact@irstaxfiler.com" className="text-[#165479] hover:text-[#0A4973] hover:underline font-semibold transition-colors">
+                    contact@irstaxfiler.com
+                  </a>
+                  {' '}or call us at{' '}
+                  <a href="tel:++1 (415) 2231315" className="text-[#165479] hover:text-[#0A4973] hover:underline font-semibold transition-colors">
+                    +1 (415) 2231315
+                  </a>.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Privacy Sections */}
+            {loading ? (
+              <div className="text-center py-12 bg-white rounded-2xl border border-slate-200/80">
+                <p className="text-sm text-gray-500">Loading privacy policy...</p>
+              </div>
+            ) : dynamicContent ? (
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45 }}
+                className="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-6 sm:p-10"
+              >
+                <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6">{dynamicContent.title}</h2>
+                <div
+                  className="prose prose-base sm:prose-lg max-w-none text-gray-700"
+                  dangerouslySetInnerHTML={{ __html: dynamicContent.content }}
+                />
+              </motion.div>
+            ) : (
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                {/* Left Sticky Section Index */}
+                <aside className="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
+                  <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-6">
+                    <div className="flex items-center gap-2.5 pb-3.5 mb-3.5 border-b border-slate-100">
+                      <span className="w-2 h-2 rounded-full bg-[#749220]" />
+                      <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                        Policy Sections
+                      </span>
+                    </div>
+                    <nav className="space-y-1">
+                      {defaultSections.map((section, idx) => {
+                        const NavIcon = section.icon;
+                        return (
+                          <a
+                            key={section.id}
+                            href={`#${section.id}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              document.getElementById(section.id)?.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start',
+                              });
+                            }}
+                            className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs sm:text-[13px] font-medium text-gray-700 hover:text-[#0A4973] hover:bg-sky-50/80 transition-colors group"
+                          >
+                            <NavIcon className={`w-4 h-4 shrink-0 ${idx % 2 === 1 ? 'text-[#749220]' : 'text-[#165479]'}`} />
+                            <span className="truncate">{section.title}</span>
+                          </a>
+                        );
+                      })}
+                    </nav>
+                  </div>
+                </aside>
+
+                {/* Right Content Cards */}
+                <div className="lg:col-span-8 space-y-5">
+                  {defaultSections.map((section, index) => {
+                    const IconComponent = section.icon;
+                    const isLime = index % 2 === 1;
+                    return (
+                      <motion.div
+                        id={section.id}
+                        key={section.id}
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-40px" }}
+                        transition={{ duration: 0.3 }}
+                        className="scroll-mt-24 bg-white rounded-2xl shadow-sm border border-slate-200/90 p-6 sm:p-7 hover:border-[#165479]/35 transition-all duration-200 relative overflow-hidden group"
+                      >
+                        <div
+                          className={`absolute top-0 inset-x-0 h-0.5 ${isLime
+                              ? "bg-gradient-to-r from-[#749220]/70 via-[#749220]/25 to-transparent"
+                              : "bg-gradient-to-r from-[#165479]/70 via-[#165479]/25 to-transparent"
+                            }`}
+                        />
+                        <div className="flex items-center gap-3.5 pb-4 mb-4 border-b border-slate-100">
+                          <div
+                            className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${isLime
+                                ? "bg-[#F6F9EE] border border-[#749220]/25 text-[#749220]"
+                                : "bg-sky-50 border border-sky-100 text-[#165479]"
+                              }`}
+                          >
+                            <IconComponent className="h-5 w-5" />
+                          </div>
+                          <h2 className="text-base sm:text-lg font-semibold text-gray-900 leading-snug">
+                            {section.title}
+                          </h2>
+                        </div>
+                        <ul className="space-y-3">
+                          {section.content.map((item, itemIndex) => {
+                            const colonIdx = item.indexOf(':');
+                            const hasLabel =
+                              colonIdx > 0 &&
+                              colonIdx <= 30 &&
+                              !item.slice(0, colonIdx).includes('http');
+                            return (
+                              <li key={itemIndex} className="flex items-start gap-3">
+                                <span
+                                  className={`flex-shrink-0 w-1.5 h-1.5 rounded-full mt-2 ${isLime ? "bg-[#749220]" : "bg-[#165479]"
+                                    }`}
+                                />
+                                <p className="text-sm sm:text-[15px] text-gray-600 leading-relaxed">
+                                  {hasLabel ? (
+                                    <>
+                                      <span className="font-semibold text-gray-900">
+                                        {item.slice(0, colonIdx + 1)}
+                                      </span>
+                                      {item.slice(colonIdx + 1)}
+                                    </>
+                                  ) : (
+                                    item
+                                  )}
+                                </p>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Security Highlights & Contact Section */}
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+              {/* Security Highlights */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45 }}
+                className="lg:col-span-6 bg-gradient-to-br from-[#0A3D5C] via-[#124C6F] to-[#165479] rounded-2xl p-6 sm:p-8 text-white shadow-sm relative overflow-hidden flex flex-col justify-center"
+              >
+                <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-[#749220]/30 rounded-full blur-3xl pointer-events-none" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3.5 pb-4 mb-5 border-b border-white/15">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center bg-white/10 border border-white/20 text-[#C5DF7B]">
+                      <ShieldCheckIcon className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-semibold text-white">
+                      Security Measures We Implement
+                    </h3>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {[
+                      'Bank-level encryption (SSL/TLS)',
+                      'Secure document storage',
+                      'Regular security audits',
+                      'Access controls and authentication',
+                      'Employee confidentiality agreements',
+                      'Compliance with industry standards',
+                    ].map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-2.5 bg-white/10 border border-white/15 px-3.5 py-2.5 rounded-lg backdrop-blur-sm"
+                      >
+                        <CheckCircleIcon className="h-5 w-5 text-[#C5DF7B] flex-shrink-0" />
+                        <span className="text-xs sm:text-sm text-white font-medium leading-snug">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Contact Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45 }}
+                className="lg:col-span-6 bg-gradient-to-br from-[#DFEBC2]/55 via-white to-[#C3DCED]/55 rounded-2xl p-6 sm:p-8 border border-[#165479]/15 shadow-sm flex flex-col justify-center text-center"
+              >
+                <h3 className="text-xl sm:text-2xl font-normal text-gray-900 tracking-tight mb-2.5">
+                  Questions About Your{" "}
+                  <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                    Privacy?
+                  </span>
+                </h3>
+                <p className="text-sm text-gray-700 mb-5 max-w-lg mx-auto leading-relaxed">
+                  Our privacy team is here to help. Contact us if you have questions about how we handle your information
+                  or if you want to exercise your privacy rights.
+                </p>
+                <div className="flex flex-wrap gap-2.5 justify-center">
+                  <a
+                    href="mailto:contact@irstaxfiler.com"
+                    className="inline-flex items-center justify-center h-10 px-5 rounded-lg font-medium text-xs sm:text-sm text-white bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] shadow-sm transition-all"
+                  >
+                    Email Privacy Team
+                  </a>
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center justify-center h-10 px-5 rounded-lg font-medium text-xs sm:text-sm text-gray-800 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"
+                  >
+                    Contact Us
+                  </Link>
+                  <Link
+                    to="/terms"
+                    className="inline-flex items-center justify-center h-10 px-5 rounded-lg font-medium text-xs sm:text-sm text-gray-800 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"
+                  >
+                    Terms & Conditions
+                  </Link>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   );
 };

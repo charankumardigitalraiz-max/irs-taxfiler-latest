@@ -15,7 +15,7 @@ const MainLayout = () => {
       </main>
       <Footer />
       <WelcomeDialog />
-      <FloatingWhatsApp />
+      {/* <FloatingWhatsApp /> */}
     </div>
   );
 };
