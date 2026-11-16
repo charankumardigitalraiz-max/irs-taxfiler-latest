@@ -3,19 +3,51 @@
 @tailwind utilities;
 
 :root {
-  --color-primary-rgb: 116, 146, 32;
-  
-  /* UpTik Design Tokens */
-  --PrimaryColor: #749220;
-  --PrimaryHover: #637D1A;
-  --SecondaryNavy: #165479;
-  --DarkNavy: #0A4973;
-  --DeepDark: #0a2d41;
-  --DarkTeal: #142a2b;
-  --EmeraldDark: #0c513f;
-  --AccentGreen: #6ABB57;
-  --SubtleGreenBg: #F6F9EE;
-  --SubtleNavyBg: #F0F6FA;
+  --color-primary: #1F4264;
+  --color-primary-dark: #1E4162;
+
+  --color-teal: #127EAB;
+  --color-teal-soft: #37899B;
+
+  --color-coral: #EE6450;
+  --color-coral-muted: #CC8B72;
+
+  --color-background: #FDF8F2;
+  --color-background-blue: #EFF9FB;
+  --color-background-aqua: #E9F7FA;
+
+  --color-surface: #FDFDFD;
+  --color-border: #CCDCE1;
+
+  --color-text: #1F4264;
+  --color-text-muted: #6F7F8E;
+
+  --color-footer: #1F4264;
+  --color-action-blue: #0777CB;
+
+  /* Aliases for semantic mapping */
+  --color-secondary: var(--color-teal);
+  --color-secondary-soft: var(--color-teal-soft);
+  --color-secondary-light: var(--color-background-aqua);
+  --color-accent: var(--color-coral);
+  --color-accent-muted: var(--color-coral-muted);
+  --color-accent-light: #FEF4F2;
+  --color-bar: var(--color-primary);
+  --color-paypal: var(--color-action-blue);
+  --color-body: var(--color-text-muted);
+  --color-heading: var(--color-text);
+
+  /* Legacy Design Token Fallbacks */
+  --PrimaryColor: #1F4264;
+  --PrimaryHover: #1E4162;
+  --SecondaryNavy: #1F4264;
+  --DarkNavy: #1F4264;
+  --DeepDark: #1E4162;
+  --DarkTeal: #127EAB;
+  --EmeraldDark: #127EAB;
+  --AccentGreen: #127EAB;
+  --SubtleGreenBg: #E9F7FA;
+  --SubtleNavyBg: #FDF8F2;
 
   --FontFamily: 'Montserrat', sans-serif;
   --HeadingFont: 'Montserrat', sans-serif;
@@ -38,48 +70,208 @@
   }
 
   body {
-    @apply bg-white text-gray-900;
+    background-color: var(--color-background, #FDF8F2);
+    color: var(--color-text-muted, #6F7F8E);
     font-family: 'Montserrat', 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-text, #1F4264);
     font-family: 'Montserrat', sans-serif;
   }
 }
 
+@layer components {
+
+  /* GLOBAL REUSABLE BUTTON & COMPONENT CLASSES (Pure CSS to avoid PostCSS @apply token mismatches) */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    background-color: var(--color-primary, #1F4264);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-dark, #1E4162);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    height: 3rem;
+    padding: 0 1.5rem;
+    border-radius: 0.75rem;
+    background-color: #FFFFFF;
+    color: var(--color-teal, #127EAB);
+    border: 1px solid var(--color-border, #CCDCE1);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-background-blue, #EFF9FB);
+    border-color: var(--color-teal, #127EAB);
+    color: var(--color-teal, #127EAB);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+  }
+
+  .btn-accent {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    background-color: var(--color-coral, #EE6450);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+  }
+
+  .btn-accent:hover {
+    background-color: var(--color-coral-muted, #CC8B72);
+  }
+
+  .pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: 9999px;
+    background-color: var(--color-background-aqua, #E9F7FA);
+    border: 1px solid var(--color-border, #CCDCE1);
+    color: var(--color-teal, #127EAB);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .pill-badge-accent {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: 9999px;
+    background-color: #FEF4F2;
+    border: 1px solid rgba(238, 100, 80, 0.25);
+    color: var(--color-coral, #EE6450);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .card-standard {
+    background-color: var(--color-surface, #FDFDFD);
+    border-radius: 1rem;
+    border: 1px solid var(--color-border, #CCDCE1);
+    padding: 1.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+  }
+
+  .card-standard:hover {
+    border-color: var(--color-teal, #127EAB);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+}
+
 @layer utilities {
+  .btn-teal {
+    background-color: var(--color-teal, #127EAB);
+    color: #FFFFFF;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .btn-teal:hover {
+    background-color: var(--color-primary-dark, #1E4162);
+  }
+
+  .btn-consultation {
+    background-color: var(--color-coral, #EE6450);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.2s ease;
+  }
+
+  .btn-consultation:hover {
+    background-color: var(--color-coral-muted, #CC8B72);
+  }
+
+  .card-styled {
+    background-color: var(--color-surface, #FDFDFD);
+    border: 1px solid var(--color-border, #CCDCE1);
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(31, 66, 100, 0.06);
+    transition: all 0.25s ease;
+  }
+
+  .card-styled:hover {
+    border-color: var(--color-teal, #127EAB);
+    box-shadow: 0 8px 30px rgba(31, 66, 100, 0.12);
+  }
+
   .btn-uptik-gradient {
-    background: linear-gradient(90deg, #165479 0%, #749220 100%);
+    background: linear-gradient(90deg, #1F4264 0%, #127EAB 100%);
     color: white;
     font-weight: 700;
     transition: all 0.3s ease;
   }
+
   .btn-uptik-gradient:hover {
-    box-shadow: 0 8px 24px rgba(116, 146, 32, 0.35);
+    box-shadow: 0 8px 24px rgba(18, 126, 171, 0.35);
     transform: translateY(-1px);
   }
 
   .btn-uptik-hero {
-    background: linear-gradient(to right, #0A4973, #6A9113);
+    background: linear-gradient(to right, #1F4264, #127EAB);
     color: white;
     font-weight: 700;
     transition: all 0.3s ease;
   }
+
   .btn-uptik-hero:hover {
-    box-shadow: 0 8px 24px rgba(10, 73, 115, 0.4);
+    box-shadow: 0 8px 24px rgba(18, 126, 171, 0.4);
     transform: translateY(-1px);
   }
 
   .btn-uptik-outline {
-    border: 2px solid #749220;
-    color: #749220;
+    border: 2px solid var(--color-teal, #127EAB);
+    color: var(--color-teal, #127EAB);
     font-weight: 700;
     transition: all 0.2s ease;
   }
+
   .btn-uptik-outline:hover {
-    background-color: #749220;
+    background-color: var(--color-teal, #127EAB);
     color: white;
   }
 
@@ -88,13 +280,11 @@
   }
 
   .gradient-primary {
-    background-color: #2B547E;
-    /* Primary color - solid, no gradient */
+    background-color: var(--color-primary, #1F4264);
   }
 
   .gradient-hero {
-    background-color: #2B547E;
-    /* Primary color - solid, no gradient */
+    background-color: var(--color-primary, #1F4264);
   }
 
   /* .input-field {
@@ -116,7 +306,7 @@
 } */
 
   .input-field {
-    @apply w-full px-4 py-2 border border-[#D3E2F5] rounded-lg bg-[#F5F9FF] text-[#1F3B53] placeholder-[#6B879C] focus:ring-2 focus:ring-[#2B547E] focus:border-[#2B547E] outline-none transition shadow-sm hover:shadow-md;
+    @apply w-full px-4 py-2 border border-border rounded-lg bg-surface text-primary placeholder-slateText focus:ring-2 focus:ring-teal focus:border-teal outline-none transition shadow-sm hover:shadow-md;
   }
 
 
@@ -211,6 +401,7 @@
     0% {
       transform: translateX(0%);
     }
+
     100% {
       transform: translateX(-50%);
     }

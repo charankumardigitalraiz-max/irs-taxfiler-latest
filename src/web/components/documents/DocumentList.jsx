@@ -30,7 +30,7 @@ const DocumentList = ({
 }) => {
   if (!documents || documents.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-500">
+      <div className="text-center py-12 text-slateText">
         No documents found
       </div>
     );
@@ -60,8 +60,8 @@ const DocumentList = ({
                       <FileText className="w-5 h-5 text-blue-600" />
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">{doc.fileName}</p>
-                      <p className="text-xs text-gray-500">
+                      <p className="font-medium text-primary">{doc.fileName}</p>
+                      <p className="text-xs text-slateText">
                         {(doc.fileSize / 1024).toFixed(1)} KB
                       </p>
                     </div>
@@ -69,11 +69,11 @@ const DocumentList = ({
                 </td>
                 {showUserColumn && (
                   <td className="table-cell">
-                    <span className="text-gray-900">{doc.user?.fullName || '-'}</span>
+                    <span className="text-primary">{doc.user?.fullName || '-'}</span>
                   </td>
                 )}
                 <td className="table-cell">
-                  <span className="text-gray-600">
+                  <span className="text-slateText">
                     {DOCUMENT_TYPES[doc.documentType] || doc.documentType}
                   </span>
                 </td>
@@ -86,7 +86,7 @@ const DocumentList = ({
                   )}
                 </td>
                 <td className="table-cell">
-                  <span className="text-gray-500">
+                  <span className="text-slateText">
                     {format(new Date(doc.createdAt), 'MMM d, yyyy')}
                   </span>
                 </td>

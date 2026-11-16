@@ -85,8 +85,8 @@
 // //   return (
 // //     <div className="space-y-6">
 // //       <div>
-// //         <h1 className="text-2xl font-bold text-gray-900 mb-2">Schedule Consultation</h1>
-// //         <p className="text-gray-600">
+// //         <h1 className="text-2xl font-bold text-primary mb-2">Schedule Consultation</h1>
+// //         <p className="text-slateText">
 // //           View available schedules, request a consultation, or contact admin on scheduled days.
 // //         </p>
 // //       </div>
@@ -99,7 +99,7 @@
 // //           className="lg:col-span-2 bg-white rounded-lg shadow-sm border border-gray-200 p-6"
 // //         >
 // //           <div className="flex items-center justify-between mb-6">
-// //             <h2 className="text-xl font-semibold text-gray-900">Available Schedules</h2>
+// //             <h2 className="text-xl font-semibold text-primary">Available Schedules</h2>
 // //             <button
 // //               onClick={() => setShowRequestForm(!showRequestForm)}
 // //               className="px-4 py-2 bg-primary-blue text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors flex items-center space-x-2"
@@ -125,8 +125,8 @@
 // //                   <div className="flex items-start justify-between">
 // //                     <div className="flex-1">
 // //                       <div className="flex items-center space-x-2 mb-2">
-// //                         <CalendarIcon className="h-5 w-5 text-gray-600" />
-// //                         <h3 className="text-base font-semibold text-gray-900">
+// //                         <CalendarIcon className="h-5 w-5 text-slateText" />
+// //                         <h3 className="text-base font-semibold text-primary">
 // //                           {formatDate(schedule.date)}
 // //                         </h3>
 // //                         {schedule.status === 'available' ? (
@@ -134,16 +134,16 @@
 // //                             Available
 // //                           </span>
 // //                         ) : (
-// //                           <span className="px-2 py-1 bg-gray-200 text-gray-700 rounded-full text-xs font-medium">
+// //                           <span className="px-2 py-1 bg-gray-200 text-slateText rounded-full text-xs font-medium">
 // //                             Booked
 // //                           </span>
 // //                         )}
 // //                       </div>
 // //                       <div className="flex items-center space-x-2 mb-3">
-// //                         <ClockIcon className="h-4 w-4 text-gray-500" />
-// //                         <span className="text-sm text-gray-600">{schedule.time}</span>
+// //                         <ClockIcon className="h-4 w-4 text-slateText" />
+// //                         <span className="text-sm text-slateText">{schedule.time}</span>
 // //                       </div>
-// //                       <p className="text-sm text-gray-600 mb-3">
+// //                       <p className="text-sm text-slateText mb-3">
 // //                         Admin: <span className="font-medium">{schedule.adminName}</span>
 // //                       </p>
 // //                       {schedule.status === 'available' && (
@@ -162,9 +162,9 @@
 // //             </div>
 // //           ) : (
 // //             <div className="text-center py-12">
-// //               <CalendarIcon className="mx-auto h-12 w-12 text-gray-300 mb-4" />
-// //               <p className="text-gray-600 mb-2">No available schedules</p>
-// //               <p className="text-sm text-gray-400">
+// //               <CalendarIcon className="mx-auto h-12 w-12 text-border mb-4" />
+// //               <p className="text-slateText mb-2">No available schedules</p>
+// //               <p className="text-sm text-slateText/70">
 // //                 Request a schedule and admin will add available time slots.
 // //               </p>
 // //             </div>
@@ -181,17 +181,17 @@
 // //               className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
 // //             >
 // //               <div className="flex items-center justify-between mb-4">
-// //                 <h3 className="text-lg font-semibold text-gray-900">Request Schedule</h3>
+// //                 <h3 className="text-lg font-semibold text-primary">Request Schedule</h3>
 // //                 <button
 // //                   onClick={() => setShowRequestForm(false)}
-// //                   className="text-gray-400 hover:text-gray-600"
+// //                   className="text-slateText/70 hover:text-slateText"
 // //                 >
 // //                   <XCircleIcon className="h-5 w-5" />
 // //                 </button>
 // //               </div>
 // //               <form onSubmit={handleRequestSubmit} className="space-y-4">
 // //                 <div>
-// //                   <label className="block text-sm font-medium text-gray-700 mb-2">
+// //                   <label className="block text-sm font-medium text-slateText mb-2">
 // //                     Preferred Date
 // //                   </label>
 // //                   <input
@@ -206,7 +206,7 @@
 // //                   />
 // //                 </div>
 // //                 <div>
-// //                   <label className="block text-sm font-medium text-gray-700 mb-2">
+// //                   <label className="block text-sm font-medium text-slateText mb-2">
 // //                     Preferred Time
 // //                   </label>
 // //                   <input
@@ -220,7 +220,7 @@
 // //                   />
 // //                 </div>
 // //                 <div>
-// //                   <label className="block text-sm font-medium text-gray-700 mb-2">
+// //                   <label className="block text-sm font-medium text-slateText mb-2">
 // //                     Reason for Consultation
 // //                   </label>
 // //                   <textarea
@@ -235,7 +235,7 @@
 // //                   />
 // //                 </div>
 // //                 <div>
-// //                   <label className="block text-sm font-medium text-gray-700 mb-2">
+// //                   <label className="block text-sm font-medium text-slateText mb-2">
 // //                     Preferred Contact Method
 // //                   </label>
 // //                   <select
@@ -267,7 +267,7 @@
 // //             transition={{ delay: 0.1 }}
 // //             className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
 // //           >
-// //             <h3 className="text-lg font-semibold text-gray-900 mb-4">My Appointments</h3>
+// //             <h3 className="text-lg font-semibold text-primary mb-4">My Appointments</h3>
 // //             {userScheduledAppointments.length > 0 ? (
 // //               <div className="space-y-4">
 // //                 {userScheduledAppointments.map((appointment) => (
@@ -281,14 +281,14 @@
 // //                         <span className="text-sm font-medium text-teal-700">Confirmed</span>
 // //                       </div>
 // //                     </div>
-// //                     <h4 className="text-base font-semibold text-gray-900 mb-1">
+// //                     <h4 className="text-base font-semibold text-primary mb-1">
 // //                       {formatDate(appointment.date)}
 // //                     </h4>
 // //                     <div className="flex items-center space-x-2 mb-2">
-// //                       <ClockIcon className="h-4 w-4 text-gray-500" />
-// //                       <span className="text-sm text-gray-600">{appointment.time}</span>
+// //                       <ClockIcon className="h-4 w-4 text-slateText" />
+// //                       <span className="text-sm text-slateText">{appointment.time}</span>
 // //                     </div>
-// //                     <p className="text-sm text-gray-600 mb-3">
+// //                     <p className="text-sm text-slateText mb-3">
 // //                       <span className="font-medium">Reason:</span> {appointment.reason}
 // //                     </p>
 // //                     <div className="flex items-center space-x-2">
@@ -305,8 +305,8 @@
 // //               </div>
 // //             ) : (
 // //               <div className="text-center py-8">
-// //                 <CalendarIcon className="mx-auto h-10 w-10 text-gray-300 mb-3" />
-// //                 <p className="text-sm text-gray-500">No scheduled appointments</p>
+// //                 <CalendarIcon className="mx-auto h-10 w-10 text-border mb-3" />
+// //                 <p className="text-sm text-slateText">No scheduled appointments</p>
 // //               </div>
 // //             )}
 // //           </motion.div>
@@ -441,7 +441,7 @@
 
 //   return (
 //     <div className="space-y-6">
-//       <h1 className="text-2xl font-bold text-gray-900">Schedule Consultation</h1>
+//       <h1 className="text-2xl font-bold text-primary">Schedule Consultation</h1>
 
 //       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
@@ -464,7 +464,7 @@
 //           </div>
 
 //           {error && <p className="text-red-500 text-center">{error}</p>}
-//           {loading && <p className="text-center text-gray-500">Loading...</p>}
+//           {loading && <p className="text-center text-slateText">Loading...</p>}
 
        
 //           <div className="space-y-4">
@@ -473,7 +473,7 @@
 //                 {/* DATE & STATUS */}
 //                 <div className="flex items-center space-x-2">
 //                   <CalendarIcon className="h-5 w-5 text-teal-700" />
-//                   <h3 className="font-semibold text-gray-900">
+//                   <h3 className="font-semibold text-primary">
 //                     {formatDate(slot.date)}
 //                   </h3>
 
@@ -483,7 +483,7 @@
 //                 </div>
 
 //                 {/* TIME */}
-//                 <div className="flex items-center text-gray-700 space-x-2">
+//                 <div className="flex items-center text-slateText space-x-2">
 //                   <ClockIcon className="h-4 w-4" />
 //                   <span>
 //                     {slot.startTime} – {slot.endTime}
@@ -509,17 +509,17 @@
 //                 {/* DATE & STATUS */}
 //                 <div className="flex items-center space-x-2">
 //                   <CalendarIcon className="h-5 w-5 text-teal-700" />
-//                   <h3 className="font-semibold text-gray-900">
+//                   <h3 className="font-semibold text-primary">
 //                     {formatDate(req.date)}
 //                   </h3>
 
-//                   <span className="ml-2 px-2 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">
+//                   <span className="ml-2 px-2 py-1 bg-gray-200 text-slateText rounded-full text-xs">
 //                     {req.status}
 //                   </span>
 //                 </div>
 
 //                 {/* TIME */}
-//                 <div className="flex items-center text-gray-700 space-x-2">
+//                 <div className="flex items-center text-slateText space-x-2">
 //                   <ClockIcon className="h-4 w-4" />
 //                   <span>
 //                     {req.startTime} – {req.endTime}
@@ -569,7 +569,7 @@
 //               <div className="flex justify-between mb-4">
 //                 <h3 className="text-lg font-semibold">Request Schedule</h3>
 //                 <button onClick={() => setShowRequestForm(false)}>
-//                   <XCircleIcon className="h-5 w-5 text-gray-400" />
+//                   <XCircleIcon className="h-5 w-5 text-slateText/70" />
 //                 </button>
 //               </div>
 
@@ -687,7 +687,7 @@
 //                 </button>
 //               </div>
 //             ) : (
-//               <p className="text-gray-500 text-center">No appointment found</p>
+//               <p className="text-slateText text-center">No appointment found</p>
 //             )}
 //           </motion.div>
 //         </div>
@@ -795,7 +795,7 @@ const Scheduling = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">
+      <h1 className="text-2xl font-bold text-primary">
         Schedule Consultation
       </h1>
 
@@ -819,7 +819,7 @@ const Scheduling = () => {
           </div>
 
           {error && <p className="text-red-500 text-center">{error}</p>}
-          {loading && <p className="text-center text-gray-500">Loading...</p>}
+          {loading && <p className="text-center text-slateText">Loading...</p>}
 
           <div className="space-y-4">
             {available?.map((slot) => (
@@ -854,7 +854,7 @@ const Scheduling = () => {
               <div className="flex justify-between mb-4">
                 <h3 className="text-lg font-semibold">Request Schedule</h3>
                 <button onClick={() => setShowRequestForm(false)}>
-                  <XCircleIcon className="h-5 w-5 text-gray-400" />
+                  <XCircleIcon className="h-5 w-5 text-slateText/70" />
                 </button>
               </div>
 
@@ -958,7 +958,7 @@ const Scheduling = () => {
                 <p>{myAppointment.time}</p>
               </div>
             ) : (
-              <p className="text-gray-500 text-center">
+              <p className="text-slateText text-center">
                 No appointment found
               </p>
             )}

@@ -16,8 +16,8 @@ const Pricing = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Pricing & Payment</h1>
-        <p className="text-gray-600">
+        <h1 className="text-2xl font-bold text-primary mb-2">Pricing & Payment</h1>
+        <p className="text-slateText">
           View your tax filing pricing breakdown and payment status.
         </p>
       </div>
@@ -30,7 +30,7 @@ const Pricing = () => {
           className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-8"
         >
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-gray-900">Pricing Details</h2>
+            <h2 className="text-xl font-semibold text-primary">Pricing Details</h2>
             <span className="px-4 py-1.5 bg-green-100 text-green-700 rounded-full text-sm font-medium">
               {pricingDetails.status}
             </span>
@@ -44,21 +44,21 @@ const Pricing = () => {
               >
                 <div className="flex items-center space-x-3">
                   <CheckIcon className="h-5 w-5 text-green-500" />
-                  <span className="text-gray-900 font-medium">{item.item}</span>
+                  <span className="text-primary font-medium">{item.item}</span>
                 </div>
-                <span className="text-gray-900 font-semibold">${item.amount}</span>
+                <span className="text-primary font-semibold">${item.amount}</span>
               </div>
             ))}
           </div>
 
           <div className="border-t border-gray-200 pt-6">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-lg font-semibold text-gray-900">Total Amount</span>
+              <span className="text-lg font-semibold text-primary">Total Amount</span>
               <span className="text-3xl font-bold text-primary-blue">
                 ${pricingDetails.totalAmount}
               </span>
             </div>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-slateText">
               All prices are final and include tax preparation and e-filing services.
             </p>
           </div>
@@ -76,14 +76,14 @@ const Pricing = () => {
               <CreditCardIcon className="h-6 w-6 text-blue-600" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-gray-900">Payment</h3>
-              <p className="text-sm text-gray-500">Status</p>
+              <h3 className="text-lg font-semibold text-primary">Payment</h3>
+              <p className="text-sm text-slateText">Status</p>
             </div>
           </div>
 
           <div className="space-y-4">
             <div>
-              <p className="text-sm text-gray-600 mb-2">Payment Status</p>
+              <p className="text-sm text-slateText mb-2">Payment Status</p>
               <span
                 className={`inline-block px-4 py-2 rounded-lg text-sm font-medium ${
                   pricingDetails.paymentStatus === 'Paid'
@@ -103,7 +103,7 @@ const Pricing = () => {
             )}
 
             <div className="pt-4 border-t border-gray-200">
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-slateText">
                 Payment is required before we can proceed with filing your tax returns.
               </p>
             </div>

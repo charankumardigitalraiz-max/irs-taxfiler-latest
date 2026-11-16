@@ -89,7 +89,7 @@ const Incorporations = () => {
   ];
 
   return (
-    <div className="bg-white text-gray-900 font-sans antialiased">
+    <div className="bg-white text-primary font-sans antialiased">
       <SEO
         title={title}
         description={description}
@@ -100,7 +100,7 @@ const Incorporations = () => {
 
       {/* 1. HERO SECTION: MATCHES HOME HERO TYPOGRAPHY + REAL IMAGE (NO BREADCRUMBS) */}
       <section className="relative overflow-hidden pt-8 sm:pt-10 lg:pt-12 pb-12 sm:pb-16 lg:pb-20 bg-white border-b border-slate-100">
-        <div className="absolute top-1/4 right-10 w-[500px] h-[500px] bg-gradient-to-bl from-[#165479]/[0.05] via-[#749220]/[0.04] to-transparent rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/4 right-10 w-[500px] h-[500px] bg-gradient-to-bl from-[#1F4264]/[0.05] via-[#127EAB]/[0.04] to-transparent rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative max-w-7xl 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
@@ -112,10 +112,10 @@ const Incorporations = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 style={{ lineHeight: 1.18 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] 2xl:text-[52px] font-normal text-gray-900 tracking-tight mb-4 sm:mb-5"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] 2xl:text-[52px] font-normal text-primary tracking-tight mb-4 sm:mb-5"
               >
                 U.S. Business Incorporation, <br className="hidden sm:inline" />
-                <span className="font-medium bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Form Your LLC or Corporation.
                 </span>
               </motion.h1>
@@ -125,7 +125,7 @@ const Incorporations = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
-                className="text-sm sm:text-base lg:text-[17px] text-gray-600 font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
+                className="text-sm sm:text-base lg:text-[17px] text-slateText font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
               >
                 Launch your U.S. company with confidence. We handle 50-state Articles of Organization, federal EIN registration, customized Operating Agreements, and corporate tax election seamlessly.
               </motion.p>
@@ -139,7 +139,7 @@ const Incorporations = () => {
               >
                 <Link
                   to="/login"
-                  className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-6 rounded-xl bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] text-white font-medium text-sm sm:text-[15px] shadow-[0_4px_16px_rgba(22,84,121,0.25)] border border-white/20 transition-all duration-200 group shrink-0"
+                  className="relative inline-flex items-center justify-center gap-2.5 h-11 sm:h-12 px-6 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold text-sm sm:text-[15px] shadow-sm hover:shadow-md transition-all duration-200 group overflow-hidden shrink-0"
                 >
                   <span>Incorporate My Business</span>
                   <ArrowRightIcon className="w-4 h-4 stroke-[2.2] group-hover:translate-x-1 transition-transform" />
@@ -148,18 +148,18 @@ const Incorporations = () => {
                 <button
                   type="button"
                   onClick={handleOpenModal}
-                  className="inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-5 sm:px-6 rounded-xl bg-white hover:bg-[#F6F9EE] text-[#165479] border-2 border-[#165479]/15 hover:border-[#749220] font-medium text-sm sm:text-[15px] transition-all duration-200 group cursor-pointer shrink-0"
+                  className="relative inline-flex items-center justify-center gap-2.5 h-11 sm:h-12 px-6 rounded-xl bg-white hover:bg-background-blue text-teal hover:text-teal border border-border hover:border-teal font-semibold text-sm sm:text-[15px] shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 group cursor-pointer shrink-0"
                 >
-                  <CalendarDaysIcon className="w-4 h-4 text-[#749220] group-hover:scale-110 transition-transform stroke-[2.2]" />
+                  <CalendarDaysIcon className="w-4 h-4 text-teal group-hover:scale-110 transition-transform stroke-[2.2]" />
                   <span>Talk to Formation CPA</span>
                 </button>
               </motion.div>
 
               {/* Trust Tag */}
-              <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-gray-500">
-                <ShieldCheckIcon className="w-4 h-4 text-[#749220]" />
-                <span className="font-medium text-gray-800">100% State Acceptance Guarantee</span>
-                <span className="text-gray-300">•</span>
+              <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slateText">
+                <ShieldCheckIcon className="w-4 h-4 text-teal" />
+                <span className="font-medium text-primary">100% State Acceptance Guarantee</span>
+                <span className="text-border">•</span>
                 <span>Domestic & Foreign Founder Support</span>
               </div>
             </div>
@@ -171,8 +171,8 @@ const Incorporations = () => {
                 <div className="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-[0_16px_40px_rgba(22,84,121,0.08)] bg-white group">
                   {/* Subtle Header Bar */}
                   <div className="px-4 py-2.5 bg-slate-50/90 border-b border-slate-100 flex items-center justify-between text-xs">
-                    <span className="font-semibold text-gray-800 flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-[#749220]" />
+                    <span className="font-semibold text-primary flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-[#127EAB]" />
                       Corporate Entity Formation Suite
                     </span>
                   </div>
@@ -186,12 +186,12 @@ const Incorporations = () => {
                   />
 
                   {/* Clean Bottom Caption Strip */}
-                  <div className="px-4 py-3 bg-white border-t border-slate-100 flex items-center justify-between text-xs text-gray-600">
+                  <div className="px-4 py-3 bg-white border-t border-slate-100 flex items-center justify-between text-xs text-slateText">
                     <span className="flex items-center gap-1.5">
-                      <CheckBadgeIcon className="w-4 h-4 text-[#165479]" />
+                      <CheckBadgeIcon className="w-4 h-4 text-primary" />
                       <span>EIN & Operating Agreement</span>
                     </span>
-                    <span className="font-semibold text-emerald-600">
+                    <span className="font-semibold text-teal">
                       Bank-Ready Kit
                     </span>
                   </div>
@@ -206,13 +206,13 @@ const Incorporations = () => {
       <section className="py-10 sm:py-14 bg-slate-50/60 border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-6 sm:mb-8">
-            <h2 className="text-xl sm:text-2xl lg:text-[28px] font-normal text-gray-900 tracking-tight leading-tight">
+            <h2 className="text-xl sm:text-2xl lg:text-[28px] font-normal text-primary tracking-tight leading-tight">
               Compare U.S. Business{" "}
-              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+              <span className="font-normal text-teal">
                 Structures
               </span>
             </h2>
-            <p className="text-xs sm:text-sm text-gray-600 font-normal mt-1.5 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slateText font-normal mt-1.5 leading-relaxed">
               Choose the entity that provides optimal liability shield and tax savings.
             </p>
           </div>
@@ -224,17 +224,17 @@ const Incorporations = () => {
               return (
                 <div
                   key={idx}
-                  className="p-4 sm:p-5 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-[#165479]/30 hover:shadow-sm transition-all duration-200 text-left flex flex-col justify-between"
+                  className="p-4 sm:p-5 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-[#1F4264]/30 hover:shadow-sm transition-all duration-200 text-left flex flex-col justify-between"
                 >
                   <div>
                     {/* Top Row: Icon + Tag */}
                     <div className="flex items-center justify-between gap-2 mb-3">
                       <div
                         className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${idx === 0
-                          ? "bg-sky-50 border border-sky-100 text-[#165479]"
+                          ? "bg-sky-50 border border-sky-100 text-primary"
                           : idx === 1
-                            ? "bg-[#F6F9EE] border border-[#749220]/25 text-[#749220]"
-                            : "bg-slate-100/80 border border-slate-200 text-slate-700"
+                            ? "bg-background-aqua border border-border text-teal text-teal"
+                            : "bg-slate-100/80 border border-slate-200 text-slateText"
                           }`}
                       >
                         <Icon className="w-4 h-4" />
@@ -242,10 +242,10 @@ const Incorporations = () => {
 
                       <span
                         className={`text-[10.5px] font-medium px-2 py-0.5 rounded-md border ${idx === 0
-                          ? "bg-emerald-50 text-emerald-700 border-emerald-200/60"
+                          ? "bg-background-aqua text-teal border-border/60"
                           : idx === 1
-                            ? "bg-sky-50 text-[#165479] border-sky-100"
-                            : "bg-slate-100 text-slate-700 border-slate-200/80"
+                            ? "bg-sky-50 text-primary border-sky-100"
+                            : "bg-slate-100 text-slateText border-slate-200/80"
                           }`}
                       >
                         {ent.tag}
@@ -253,13 +253,13 @@ const Incorporations = () => {
                     </div>
 
                     {/* Entity Name */}
-                    <h3 className="text-base font-semibold text-gray-900 mb-1.5 leading-snug">
+                    <h3 className="text-base font-semibold text-primary mb-1.5 leading-snug">
                       {ent.name}
                     </h3>
 
                     {/* Best For */}
-                    <p className="text-xs sm:text-[13px] text-gray-600 font-semibold leading-relaxed mb-3">
-                      <span className="font-semibold text-gray-900">Best for: </span>
+                    <p className="text-xs sm:text-[13px] text-slateText font-semibold leading-relaxed mb-3">
+                      <span className="font-semibold text-primary">Best for: </span>
                       {ent.bestFor}
                     </p>
 
@@ -268,9 +268,9 @@ const Incorporations = () => {
                       {ent.benefits.map((b, bIdx) => (
                         <li
                           key={bIdx}
-                          className="flex items-start gap-2 text-xs sm:text-[13px] text-slate-600 font-semibold leading-relaxed"
+                          className="flex items-start gap-2 text-xs sm:text-[13px] text-slateText font-semibold leading-relaxed"
                         >
-                          <CheckCircleIcon className="w-4 h-4 text-[#749220] shrink-0 mt-0.5 stroke-[2]" />
+                          <CheckCircleIcon className="w-4 h-4 text-teal shrink-0 mt-0.5 stroke-[2]" />
                           <span>{b}</span>
                         </li>
                       ))}
@@ -300,7 +300,7 @@ const Incorporations = () => {
             {/* Right Steps */}
             <div className="lg:col-span-7 space-y-6 text-left">
               <div>
-                <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
+                <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
                   3 Steps to Launch Your Company
                 </h2>
               </div>
@@ -308,14 +308,14 @@ const Incorporations = () => {
               <div className="space-y-5">
                 {steps.map((step, sIdx) => (
                   <div key={sIdx} className="flex items-start gap-3.5">
-                    <div className="w-8 h-8 rounded-lg bg-[#F6F9EE] text-[#749220] font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 border border-[#749220]/25">
+                    <div className="w-8 h-8 rounded-lg bg-[#EFF9FB] text-teal font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 border border-[#127EAB]/25">
                       {step.num}
                     </div>
                     <div>
-                      <h3 className="text-sm sm:text-base font-normal text-gray-900 leading-snug">
+                      <h3 className="text-sm sm:text-base font-normal text-primary leading-snug">
                         {step.title}
                       </h3>
-                      <p className="text-xs sm:text-[13px] text-gray-800 font-normal leading-relaxed mt-1">
+                      <p className="text-xs sm:text-[13px] text-primary font-normal leading-relaxed mt-1">
                         {step.detail}
                       </p>
                     </div>
@@ -328,7 +328,7 @@ const Incorporations = () => {
       </section>
 
       {/* 4. CLEAN CTA BANNER */}
-      <section className="py-12 sm:py-16 bg-[#0A4973] text-white">
+      <section className="py-12 sm:py-16 bg-[#1F4264] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-normal tracking-tight text-white mb-2">
             Ready to Form Your U.S. Company?
@@ -340,7 +340,7 @@ const Incorporations = () => {
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link
               to="/login"
-              className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-[#749220] hover:bg-[#637d1b] text-white font-medium text-xs sm:text-sm transition-all shadow-md group"
+              className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-[#127EAB] hover:bg-teal-soft text-white font-medium text-xs sm:text-sm transition-all shadow-md group"
             >
               <span>Start Incorporation</span>
               <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

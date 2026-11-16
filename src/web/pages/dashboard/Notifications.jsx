@@ -82,8 +82,8 @@ const Notifications = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Notifications</h1>
-          <p className="text-gray-600">
+          <h1 className="text-2xl font-bold text-primary mb-2">Notifications</h1>
+          <p className="text-slateText">
             Stay updated with your tax filing progress and important updates.
           </p>
         </div>
@@ -115,18 +115,18 @@ const Notifications = () => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex items-center space-x-2">
-                      <h3 className="text-base font-semibold text-gray-900">
+                      <h3 className="text-base font-semibold text-primary">
                         {notification.title}
                       </h3>
                       {!notification.read && (
                         <span className="h-2 w-2 bg-blue-500 rounded-full"></span>
                       )}
                     </div>
-                    <span className="text-xs text-gray-500 whitespace-nowrap ml-4">
+                    <span className="text-xs text-slateText whitespace-nowrap ml-4">
                       {notification.time}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-600">{notification.message}</p>
+                  <p className="text-sm text-slateText">{notification.message}</p>
                 </div>
               </div>
             </motion.div>
@@ -136,9 +136,9 @@ const Notifications = () => {
 
       {notifications.length === 0 && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-          <BellIcon className="mx-auto h-16 w-16 text-gray-300 mb-4" />
-          <p className="text-gray-600 mb-2">No notifications</p>
-          <p className="text-sm text-gray-400">
+          <BellIcon className="mx-auto h-16 w-16 text-border mb-4" />
+          <p className="text-slateText mb-2">No notifications</p>
+          <p className="text-sm text-slateText/70">
             You're all caught up! New notifications will appear here.
           </p>
         </div>

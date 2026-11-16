@@ -344,12 +344,12 @@ const TaxPreparation = () => {
               ${stats.totalRefunds.toLocaleString()}
             </p>
           </Card>
-          <Card className="p-4 bg-purple-50 border-purple-200">
-            <p className="text-sm text-purple-600">Client Reviews</p>
-            <p className="text-2xl font-bold text-purple-700">
+          <Card className="p-4 bg-background-aqua border-border">
+            <p className="text-sm text-teal">Client Reviews</p>
+            <p className="text-2xl font-bold text-primary">
               {stats.phase1AwaitingReview + stats.phase2AwaitingReview}
             </p>
-            <p className="text-xs text-purple-500 mt-1">Awaiting approval</p>
+            <p className="text-xs text-teal mt-1">Awaiting approval</p>
           </Card>
         </div>
 

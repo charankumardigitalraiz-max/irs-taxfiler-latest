@@ -110,7 +110,7 @@
 //       case 'pending':
 //         return 'bg-yellow-100 text-yellow-700';
 //       default:
-//         return 'bg-gray-100 text-gray-700';
+//         return 'bg-gray-100 text-slateText';
 //     }
 //   };
 
@@ -121,15 +121,15 @@
 //       case 'pending':
 //         return 'bg-yellow-100 text-yellow-700';
 //       default:
-//         return 'bg-gray-100 text-gray-700';
+//         return 'bg-gray-100 text-slateText';
 //     }
 //   };
 
 //   return (
 //     <div className="space-y-6">
 //       <div>
-//         <h1 className="text-2xl font-bold text-gray-900 mb-2">Referral Program</h1>
-//         <p className="text-gray-600">
+//         <h1 className="text-2xl font-bold text-primary mb-2">Referral Program</h1>
+//         <p className="text-slateText">
 //           Refer friends and earn rewards when they complete their tax filing.
 //         </p>
 //       </div>
@@ -143,10 +143,10 @@
 //         >
 //           <div className="flex items-center justify-between mb-2">
 //             <UserPlusIcon className="h-5 w-5 text-primary-blue" />
-//             <span className="text-xs text-gray-500">Total</span>
+//             <span className="text-xs text-slateText">Total</span>
 //           </div>
-//           <p className="text-2xl font-bold text-gray-900">{referralStats.totalReferrals}</p>
-//           <p className="text-xs text-gray-500 mt-1">Referrals</p>
+//           <p className="text-2xl font-bold text-primary">{referralStats.totalReferrals}</p>
+//           <p className="text-xs text-slateText mt-1">Referrals</p>
 //         </motion.div>
 
 //         <motion.div
@@ -157,10 +157,10 @@
 //         >
 //           <div className="flex items-center justify-between mb-2">
 //             <CheckCircleIcon className="h-5 w-5 text-teal-500" />
-//             <span className="text-xs text-gray-500">Completed</span>
+//             <span className="text-xs text-slateText">Completed</span>
 //           </div>
-//           <p className="text-2xl font-bold text-gray-900">{referralStats.completedReferrals}</p>
-//           <p className="text-xs text-gray-500 mt-1">Filed Taxes</p>
+//           <p className="text-2xl font-bold text-primary">{referralStats.completedReferrals}</p>
+//           <p className="text-xs text-slateText mt-1">Filed Taxes</p>
 //         </motion.div>
 
 //         <motion.div
@@ -170,11 +170,11 @@
 //           className="bg-white rounded-lg shadow-sm p-4 border border-gray-200"
 //         >
 //           <div className="flex items-center justify-between mb-2">
-//             <GiftIcon className="h-5 w-5 text-purple-500" />
-//             <span className="text-xs text-gray-500">Earned</span>
+//             <GiftIcon className="h-5 w-5 text-teal" />
+//             <span className="text-xs text-slateText">Earned</span>
 //           </div>
-//           <p className="text-2xl font-bold text-gray-900">{referralStats.totalRewards}</p>
-//           <p className="text-xs text-gray-500 mt-1">Total Rewards</p>
+//           <p className="text-2xl font-bold text-primary">{referralStats.totalRewards}</p>
+//           <p className="text-xs text-slateText mt-1">Total Rewards</p>
 //         </motion.div>
 
 //         <motion.div
@@ -185,10 +185,10 @@
 //         >
 //           <div className="flex items-center justify-between mb-2">
 //             <ClockIcon className="h-5 w-5 text-yellow-500" />
-//             <span className="text-xs text-gray-500">Pending</span>
+//             <span className="text-xs text-slateText">Pending</span>
 //           </div>
-//           <p className="text-2xl font-bold text-gray-900">{referralStats.pendingRewards}</p>
-//           <p className="text-xs text-gray-500 mt-1">Awaiting Payment</p>
+//           <p className="text-2xl font-bold text-primary">{referralStats.pendingRewards}</p>
+//           <p className="text-xs text-slateText mt-1">Awaiting Payment</p>
 //         </motion.div>
 //       </div>
 
@@ -205,14 +205,14 @@
 //               <ShareIcon className="h-6 w-6 text-primary-blue" />
 //             </div>
 //             <div>
-//               <h2 className="text-xl font-semibold text-gray-900">Your Referral Code</h2>
-//               <p className="text-sm text-gray-500">Share this code with friends to earn rewards</p>
+//               <h2 className="text-xl font-semibold text-primary">Your Referral Code</h2>
+//               <p className="text-sm text-slateText">Share this code with friends to earn rewards</p>
 //             </div>
 //           </div>
 
 //           <div className="space-y-4">
 //             <div>
-//               <label className="block text-sm font-medium text-gray-700 mb-2">
+//               <label className="block text-sm font-medium text-slateText mb-2">
 //                 Referral Code
 //               </label>
 //               <div className="flex items-center space-x-2">
@@ -220,7 +220,7 @@
 //                   type="text"
 //                   value={referralCode}
 //                   readOnly
-//                   className="flex-1 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 font-mono text-lg font-semibold text-gray-900"
+//                   className="flex-1 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 font-mono text-lg font-semibold text-primary"
 //                 />
 //                 <button
 //                   onClick={handleCopyCode}
@@ -233,7 +233,7 @@
 //             </div>
 
 //             <div>
-//               <label className="block text-sm font-medium text-gray-700 mb-2">
+//               <label className="block text-sm font-medium text-slateText mb-2">
 //                 Referral Link
 //               </label>
 //               <div className="flex items-center space-x-2">
@@ -241,11 +241,11 @@
 //                   type="text"
 //                   value={`https://taxfiling.com/register?ref=${referralCode}`}
 //                   readOnly
-//                   className="flex-1 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-sm text-gray-600"
+//                   className="flex-1 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-sm text-slateText"
 //                 />
 //                 <button
 //                   onClick={handleCopyCode}
-//                   className="px-4 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition-colors"
+//                   className="px-4 py-3 bg-gray-100 text-slateText rounded-lg font-medium hover:bg-gray-200 transition-colors"
 //                 >
 //                   <LinkIcon className="h-5 w-5" />
 //                 </button>
@@ -316,8 +316,8 @@
 //               <UserPlusIcon className="h-6 w-6 text-primary-blue" />
 //             </div>
 //             <div>
-//               <h2 className="text-xl font-semibold text-gray-900">Referral History</h2>
-//               <p className="text-sm text-gray-500">Track your referrals and rewards</p>
+//               <h2 className="text-xl font-semibold text-primary">Referral History</h2>
+//               <p className="text-sm text-slateText">Track your referrals and rewards</p>
 //             </div>
 //           </div>
 //         </div>
@@ -327,22 +327,22 @@
 //             <table className="w-full">
 //               <thead className="bg-gray-50 border-b border-gray-200">
 //                 <tr>
-//                   <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+//                   <th className="px-4 py-3 text-left text-xs font-semibold text-slateText uppercase tracking-wider">
 //                     Referred Friend
 //                   </th>
-//                   <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+//                   <th className="px-4 py-3 text-left text-xs font-semibold text-slateText uppercase tracking-wider">
 //                     Status
 //                   </th>
-//                   <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+//                   <th className="px-4 py-3 text-left text-xs font-semibold text-slateText uppercase tracking-wider">
 //                     Joined Date
 //                   </th>
-//                   <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+//                   <th className="px-4 py-3 text-left text-xs font-semibold text-slateText uppercase tracking-wider">
 //                     Completed Date
 //                   </th>
-//                   <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+//                   <th className="px-4 py-3 text-left text-xs font-semibold text-slateText uppercase tracking-wider">
 //                     Reward
 //                   </th>
-//                   <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+//                   <th className="px-4 py-3 text-left text-xs font-semibold text-slateText uppercase tracking-wider">
 //                     Reward Status
 //                   </th>
 //                 </tr>
@@ -352,8 +352,8 @@
 //                   <tr key={referral.id} className="hover:bg-gray-50 transition-colors">
 //                     <td className="px-4 py-4">
 //                       <div>
-//                         <p className="text-sm font-medium text-gray-900">{referral.name}</p>
-//                         <p className="text-xs text-gray-500">{referral.email}</p>
+//                         <p className="text-sm font-medium text-primary">{referral.name}</p>
+//                         <p className="text-xs text-slateText">{referral.email}</p>
 //                       </div>
 //                     </td>
 //                     <td className="px-4 py-4">
@@ -361,14 +361,14 @@
 //                         {referral.status}
 //                       </span>
 //                     </td>
-//                     <td className="px-4 py-4 text-sm text-gray-600">
+//                     <td className="px-4 py-4 text-sm text-slateText">
 //                       {referral.joinedDate}
 //                     </td>
-//                     <td className="px-4 py-4 text-sm text-gray-600">
+//                     <td className="px-4 py-4 text-sm text-slateText">
 //                       {referral.completedDate || '-'}
 //                     </td>
 //                     <td className="px-4 py-4">
-//                       <p className="text-sm font-semibold text-gray-900">{referral.reward}</p>
+//                       <p className="text-sm font-semibold text-primary">{referral.reward}</p>
 //                     </td>
 //                     <td className="px-4 py-4">
 //                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${getRewardStatusColor(referral.rewardStatus)}`}>
@@ -382,9 +382,9 @@
 //           </div>
 //         ) : (
 //           <div className="text-center py-12">
-//             <UserPlusIcon className="mx-auto h-12 w-12 text-gray-300 mb-4" />
-//             <p className="text-gray-600 mb-2">No referrals yet</p>
-//             <p className="text-sm text-gray-400">
+//             <UserPlusIcon className="mx-auto h-12 w-12 text-border mb-4" />
+//             <p className="text-slateText mb-2">No referrals yet</p>
+//             <p className="text-sm text-slateText/70">
 //               Start referring friends using your referral code above
 //             </p>
 //           </div>
@@ -487,7 +487,7 @@ const Referrals = () => {
       case "pending":
         return "bg-yellow-100 text-yellow-700";
       default:
-        return "bg-gray-100 text-gray-700";
+        return "bg-gray-100 text-slateText";
     }
   };
 
@@ -498,7 +498,7 @@ const Referrals = () => {
       case "pending":
         return "bg-yellow-100 text-yellow-700";
       default:
-        return "bg-gray-100 text-gray-700";
+        return "bg-gray-100 text-slateText";
     }
   };
 
@@ -506,10 +506,10 @@ const Referrals = () => {
     <div className="space-y-6">
       {/* -------------------- Heading -------------------- */}
       <div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">
+        <h1 className="text-2xl font-bold text-primary mb-2">
           Referral Program
         </h1>
-        <p className="text-gray-600">
+        <p className="text-slateText">
           Refer friends and earn rewards when they complete tax filing.
         </p>
       </div>
@@ -519,45 +519,45 @@ const Referrals = () => {
         <motion.div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <UserPlusIcon className="h-5 w-5 text-primary-blue" />
-            <span className="text-xs text-gray-500">Total</span>
+            <span className="text-xs text-slateText">Total</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">
+          <p className="text-2xl font-bold text-primary">
             {referralStats.totalReferrals}
           </p>
-          <p className="text-xs text-gray-500 mt-1">Referrals</p>
+          <p className="text-xs text-slateText mt-1">Referrals</p>
         </motion.div>
 
         <motion.div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <CheckCircleIcon className="h-5 w-5 text-teal-500" />
-            <span className="text-xs text-gray-500">Completed</span>
+            <span className="text-xs text-slateText">Completed</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">
+          <p className="text-2xl font-bold text-primary">
             {referralStats.completedReferrals}
           </p>
-          <p className="text-xs text-gray-500 mt-1">Filed Taxes</p>
+          <p className="text-xs text-slateText mt-1">Filed Taxes</p>
         </motion.div>
 
         <motion.div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
           <div className="flex items-center justify-between mb-2">
-            <GiftIcon className="h-5 w-5 text-purple-500" />
-            <span className="text-xs text-gray-500">Earned</span>
+            <GiftIcon className="h-5 w-5 text-teal" />
+            <span className="text-xs text-slateText">Earned</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">
+          <p className="text-2xl font-bold text-primary">
             ${referralStats.totalRewards}
           </p>
-          <p className="text-xs text-gray-500 mt-1">Total Rewards</p>
+          <p className="text-xs text-slateText mt-1">Total Rewards</p>
         </motion.div>
 
         <motion.div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
           <div className="flex items-center justify-between mb-2">
             <ClockIcon className="h-5 w-5 text-yellow-500" />
-            <span className="text-xs text-gray-500">Pending</span>
+            <span className="text-xs text-slateText">Pending</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">
+          <p className="text-2xl font-bold text-primary">
             ${referralStats.pendingRewards}
           </p>
-          <p className="text-xs text-gray-500 mt-1">Awaiting Payment</p>
+          <p className="text-xs text-slateText mt-1">Awaiting Payment</p>
         </motion.div>
       </div>
 
@@ -569,10 +569,10 @@ const Referrals = () => {
               <ShareIcon className="h-6 w-6 text-primary-blue" />
             </div>
             <div>
-              <h2 className="text-xl font-semibold text-gray-900">
+              <h2 className="text-xl font-semibold text-primary">
                 Your Referral Code
               </h2>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-slateText">
                 Share this code to earn rewards
               </p>
             </div>
@@ -581,14 +581,14 @@ const Referrals = () => {
           <div className="space-y-4">
             {/* Code */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-slateText mb-2">
                 Referral Code
               </label>
               <div className="flex items-center space-x-2">
                 <input
                   value={referralId}
                   readOnly
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 font-mono text-lg font-semibold text-gray-900"
+                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 font-mono text-lg font-semibold text-primary"
                 />
                 <button
                   onClick={handleCopyCode}
@@ -602,14 +602,14 @@ const Referrals = () => {
 
             {/* Link */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-slateText mb-2">
                 Referral Link
               </label>
               <div className="flex items-center space-x-2">
                 <input
                   value={`${currentURL}/register?ref=${referralId}`}
                   readOnly
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-sm text-gray-600"
+                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-sm text-slateText"
                 />
                 <button
                   onClick={handleCopyCode}
@@ -648,7 +648,7 @@ const Referrals = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold">Referral History</h2>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-slateText">
                 Track your referrals & rewards
               </p>
             </div>
@@ -656,7 +656,7 @@ const Referrals = () => {
         </div>
 
         {loading ? (
-          <p className="text-center py-10 text-gray-600">
+          <p className="text-center py-10 text-slateText">
             Loading referrals...
           </p>
         ) : referrals.length > 0 ? (
@@ -664,10 +664,10 @@ const Referrals = () => {
             <table className="w-full">
               <thead className="bg-gray-50 border-b">
                 <tr>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-slateText uppercase tracking-wider">
                     Referred Friend
                   </th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-slateText uppercase tracking-wider">
                     Status
                   </th>
                   <th className="px-4 py-3">Joined Date</th>
@@ -682,7 +682,7 @@ const Referrals = () => {
                   <tr key={ref._id} className="hover:bg-gray-50">
                     <td className="px-4 py-4">
                       <p className="font-medium">{ref.referredName}</p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-slateText">
                         {ref.referredEmail}
                       </p>
                     </td>
@@ -729,9 +729,9 @@ const Referrals = () => {
           </div>
         ) : (
           <div className="text-center py-12">
-            <UserPlusIcon className="mx-auto h-12 w-12 text-gray-300 mb-4" />
-            <p className="text-gray-600 mb-2">No referrals yet</p>
-            <p className="text-sm text-gray-400">
+            <UserPlusIcon className="mx-auto h-12 w-12 text-border mb-4" />
+            <p className="text-slateText mb-2">No referrals yet</p>
+            <p className="text-sm text-slateText/70">
               Start referring friends using your referral code above
             </p>
           </div>

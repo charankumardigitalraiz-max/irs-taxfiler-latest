@@ -49,7 +49,7 @@ const TestimonialsCarousel = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-primary-blue/5 to-purple-500/5">
+    <section className="py-24 bg-gradient-to-br from-primary-blue/5 to-teal/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -58,10 +58,10 @@ const TestimonialsCarousel = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-primary-navy mb-4">
+          <h2 className="text-4xl md:text-5xl font-normal text-primary-navy mb-4">
             What Our Clients Say
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-slateText max-w-2xl mx-auto">
             Trusted by thousands of global Indians for their tax filing needs
           </p>
         </motion.div>
@@ -84,14 +84,14 @@ const TestimonialsCarousel = () => {
                   />
                 ))}
               </div>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+              <p className="text-xl text-slateText mb-8 leading-relaxed">
                 "{testimonials[currentIndex].content}"
               </p>
               <div>
                 <p className="font-bold text-primary-navy text-lg">
                   {testimonials[currentIndex].name}
                 </p>
-                <p className="text-gray-500">
+                <p className="text-slateText">
                   {testimonials[currentIndex].role}
                 </p>
               </div>

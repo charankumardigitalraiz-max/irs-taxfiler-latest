@@ -215,7 +215,7 @@ const DoNotSell = () => {
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <section className="relative overflow-hidden py-28" style={{ backgroundColor: '#EB4149' }}>
+        <section className="relative overflow-hidden py-28" style={{ backgroundColor: '#1F4264' }}>
           {/* Animated Background Elements */}
           <div className="absolute inset-0">
             <motion.div
@@ -229,7 +229,7 @@ const DoNotSell = () => {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute top-20 left-10 w-72 h-72 bg-purple-400/30 rounded-full blur-3xl"
+              className="absolute top-20 left-10 w-72 h-72 bg-teal/20 rounded-full blur-3xl"
             ></motion.div>
             <motion.div
               animate={{
@@ -242,7 +242,7 @@ const DoNotSell = () => {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl"
+              className="absolute bottom-20 right-10 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
             ></motion.div>
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
           </div>
@@ -264,7 +264,7 @@ const DoNotSell = () => {
                 <span className="text-white font-semibold text-xs md:text-sm">Your Privacy Rights</span>
               </motion.div>
 
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal mb-4 leading-tight">
                 <span className="block text-white drop-shadow-lg">Do Not Sell My Personal Information</span>
               </h1>
 
@@ -302,16 +302,16 @@ const DoNotSell = () => {
               transition={{ duration: 0.6 }}
               className="mb-12"
             >
-              <div className="bg-gradient-to-br from-purple-50 to-white rounded-2xl p-8 border border-purple-100 mb-8">
+              <div className="bg-gradient-to-br from-background-aqua/40 to-white rounded-2xl p-8 border border-border mb-8">
                 <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#EB4149' }}>
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center bg-primary">
                     <LockClosedIcon className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold mb-3" style={{ color: '#EB4149' }}>
+                    <h2 className="text-xl font-normal mb-3 text-primary">
                       Exercise Your Opt-Out Right
                     </h2>
-                    <p className="text-base text-gray-700 leading-relaxed">
+                    <p className="text-base text-slateText leading-relaxed">
                       Use the form below to opt-out of the sale of your personal information. We will process your request
                       within 15 business days and confirm receipt. Your opt-out will remain in effect until you notify us
                       that you wish to opt back in.
@@ -330,7 +330,7 @@ const DoNotSell = () => {
                 transition={{ duration: 0.6 }}
                 className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-12"
               >
-                <h3 className="text-2xl font-bold mb-6" style={{ color: '#EB4149' }}>
+                <h3 className="text-2xl font-normal mb-6" style={{ color: '#1F4264' }}>
                   Opt-Out Request Form
                 </h3>
                 {error && (
@@ -341,7 +341,7 @@ const DoNotSell = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-slateText mb-2">
                         Full Name <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -350,13 +350,13 @@ const DoNotSell = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-4 py-3 rounded-lg border border-border focus:ring-2 focus:ring-teal focus:border-transparent text-primary"
                         placeholder="John Doe"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Email Address <span className="text-red-500">*</span>
+                      <label className="block text-sm font-semibold text-primary mb-2">
+                        Email Address <span className="text-coral">*</span>
                       </label>
                       <input
                         type="email"
@@ -364,14 +364,14 @@ const DoNotSell = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-4 py-3 rounded-lg border border-border focus:ring-2 focus:ring-teal focus:border-transparent text-primary"
                         placeholder="john@example.com"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label className="block text-sm font-semibold text-primary mb-2">
                       Phone Number
                     </label>
                     <input
@@ -379,13 +379,13 @@ const DoNotSell = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full px-4 py-3 rounded-lg border border-border focus:ring-2 focus:ring-teal focus:border-transparent text-primary"
                       placeholder="(555) 123-4567"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label className="block text-sm font-semibold text-primary mb-2">
                       Street Address
                     </label>
                     <input
@@ -393,14 +393,14 @@ const DoNotSell = () => {
                       name="address"
                       value={formData.address}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full px-4 py-3 rounded-lg border border-border focus:ring-2 focus:ring-teal focus:border-transparent text-primary"
                       placeholder="123 Main Street"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-primary mb-2">
                         City
                       </label>
                       <input
@@ -408,12 +408,12 @@ const DoNotSell = () => {
                         name="city"
                         value={formData.city}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-4 py-3 rounded-lg border border-border focus:ring-2 focus:ring-teal focus:border-transparent text-primary"
                         placeholder="Los Angeles"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-primary mb-2">
                         State
                       </label>
                       <input
@@ -421,12 +421,12 @@ const DoNotSell = () => {
                         name="state"
                         value={formData.state}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-4 py-3 rounded-lg border border-border focus:ring-2 focus:ring-teal focus:border-transparent text-primary"
                         placeholder="CA"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-primary mb-2">
                         ZIP Code
                       </label>
                       <input
@@ -434,14 +434,14 @@ const DoNotSell = () => {
                         name="zipCode"
                         value={formData.zipCode}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-4 py-3 rounded-lg border border-border focus:ring-2 focus:ring-teal focus:border-transparent text-primary"
                         placeholder="90001"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    <label className="block text-sm font-semibold text-primary mb-2">
                       Additional Information (Optional)
                     </label>
                     <textarea
@@ -449,13 +449,13 @@ const DoNotSell = () => {
                       value={formData.additionalInfo}
                       onChange={handleChange}
                       rows="4"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full px-4 py-3 rounded-lg border border-border focus:ring-2 focus:ring-teal focus:border-transparent text-primary"
                       placeholder="Any additional information you'd like to provide..."
                     />
                   </div>
 
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <p className="text-sm text-gray-700">
+                    <p className="text-sm text-slateText">
                       <strong>Note:</strong> We may need to verify your identity before processing your request.
                       We will only use the information provided to process your opt-out request and will not use
                       it for any other purpose.
@@ -465,7 +465,7 @@ const DoNotSell = () => {
                   <button
                     type="submit"
                     className="w-full py-4 rounded-lg font-semibold text-white transition-all duration-300 hover:shadow-lg"
-                    style={{ backgroundColor: '#EB4149' }}
+                    style={{ backgroundColor: '#1F4264' }}
                   >
                     Submit Opt-Out Request
                   </button>
@@ -478,10 +478,10 @@ const DoNotSell = () => {
                 className="bg-green-50 border-2 border-green-200 rounded-2xl p-8 mb-12 text-center"
               >
                 <CheckCircleIcon className="h-16 w-16 text-green-600 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-green-800 mb-2">
+                <h3 className="text-2xl font-normal text-green-800 mb-2">
                   Request Submitted Successfully
                 </h3>
-                <p className="text-gray-700">
+                <p className="text-slateText">
                   We have received your opt-out request. We will process it within 15 business days and send
                   a confirmation to the email address you provided.
                 </p>
@@ -502,18 +502,18 @@ const DoNotSell = () => {
                     className="bg-white rounded-2xl shadow-md border border-gray-200 p-8 hover:shadow-lg transition-all duration-300"
                   >
                     <div className="flex items-start space-x-4 mb-6">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#EB4149' }}>
+                      <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#1F4264' }}>
                         <IconComponent className="h-6 w-6 text-white" />
                       </div>
-                      <h2 className="text-2xl font-bold text-gray-900 pt-2">
+                      <h2 className="text-2xl font-normal text-primary pt-2">
                         {section.title}
                       </h2>
                     </div>
                     <ul className="space-y-4">
                       {section.content.map((item, itemIndex) => (
                         <li key={itemIndex} className="flex items-start space-x-3">
-                          <div className="flex-shrink-0 w-2 h-2 rounded-full mt-2" style={{ backgroundColor: '#EB4149' }}></div>
-                          <p className="text-base text-gray-700 leading-relaxed">
+                          <div className="flex-shrink-0 w-2 h-2 rounded-full mt-2" style={{ backgroundColor: '#1F4264' }}></div>
+                          <p className="text-base text-slateText leading-relaxed">
                             {item}
                           </p>
                         </li>
@@ -530,20 +530,20 @@ const DoNotSell = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="mt-16 bg-gradient-to-br from-purple-50 to-white rounded-2xl p-8 border border-purple-100"
+              className="mt-16 bg-gradient-to-br from-background-aqua/40 to-white rounded-2xl p-8 border border-border"
             >
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4" style={{ color: '#EB4149' }}>
+                <h3 className="text-2xl font-normal mb-4 text-primary">
                   Need Help with Your Opt-Out Request?
                 </h3>
-                <p className="text-gray-700 mb-6">
+                <p className="text-slateText mb-6">
                   If you have questions about opting out or need assistance with your request, our privacy team is here to help.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
                     href="mailto:contact@irstaxfiler.com"
                     className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300 hover:shadow-lg"
-                    style={{ backgroundColor: '#EB4149' }}
+                    style={{ backgroundColor: '#1F4264' }}
                   >
                     <EnvelopeIcon className="h-5 w-5 mr-2" />
                     Email Us
@@ -551,7 +551,7 @@ const DoNotSell = () => {
                   <a
                     href="tel:++1 (415) 7876190"
                     className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border-2 transition-all duration-300 hover:bg-gray-50"
-                    style={{ borderColor: '#EB4149', color: '#EB4149' }}
+                    style={{ borderColor: '#127EAB', color: '#1F4264' }}
                   >
                     <PhoneIcon className="h-5 w-5 mr-2" />
                     Call Us
@@ -559,7 +559,7 @@ const DoNotSell = () => {
                   <Link
                     to="/privacy"
                     className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border-2 transition-all duration-300 hover:bg-gray-50"
-                    style={{ borderColor: '#EB4149', color: '#EB4149' }}
+                    style={{ borderColor: '#127EAB', color: '#1F4264' }}
                   >
                     Privacy Policy
                   </Link>

@@ -175,7 +175,7 @@ const GLBA = () => {
       />
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-28" style={{ backgroundColor: '#EB4149' }}>
+      <section className="relative overflow-hidden py-28" style={{ backgroundColor: '#1F4264' }}>
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
           <motion.div
@@ -189,7 +189,7 @@ const GLBA = () => {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute top-20 left-10 w-72 h-72 bg-purple-400/30 rounded-full blur-3xl"
+            className="absolute top-20 left-10 w-72 h-72 bg-teal/20 rounded-full blur-3xl"
           ></motion.div>
           <motion.div
             animate={{
@@ -202,7 +202,7 @@ const GLBA = () => {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl"
+            className="absolute bottom-20 right-10 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
           ></motion.div>
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
         </div>
@@ -224,7 +224,7 @@ const GLBA = () => {
               <span className="text-white font-semibold text-xs md:text-sm">Financial Privacy Protection</span>
             </motion.div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal mb-4 leading-tight">
               <span className="block text-white drop-shadow-lg">GLBA Privacy Notice</span>
             </h1>
 
@@ -263,16 +263,16 @@ const GLBA = () => {
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <div className="bg-gradient-to-br from-purple-50 to-white rounded-2xl p-8 border border-purple-100 mb-8">
+            <div className="bg-gradient-to-br from-background-aqua/40 to-white rounded-2xl p-8 border border-border mb-8">
               <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#EB4149' }}>
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center bg-primary">
                   <LockClosedIcon className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold mb-3" style={{ color: '#EB4149' }}>
+                  <h2 className="text-xl font-normal mb-3 text-primary">
                     Our Commitment to Financial Privacy
                   </h2>
-                  <p className="text-base text-gray-700 leading-relaxed">
+                  <p className="text-base text-slateText leading-relaxed">
                     IRS Tax Filer is committed to protecting your nonpublic personal information in accordance with the 
                     Gramm-Leach-Bliley Act (GLBA). This notice explains our information-sharing practices and your rights 
                     regarding the protection of your financial information. We take your privacy seriously and implement 
@@ -282,17 +282,17 @@ const GLBA = () => {
               </div>
             </div>
 
-            <p className="text-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-base text-slateText leading-relaxed mb-4">
               The Gramm-Leach-Bliley Act (GLBA) requires financial institutions, including tax preparation service providers 
               like IRS Tax Filer, to inform customers about their information-sharing practices and to safeguard sensitive financial data.
             </p>
-            <p className="text-base text-gray-700 leading-relaxed">
+            <p className="text-base text-slateText leading-relaxed">
               If you have any questions about this GLBA Privacy Notice, please contact us at{' '}
-              <a href="mailto:contact@irstaxfiler.com" className="text-[#EB4149] hover:underline font-semibold">
+              <a href="mailto:contact@irstaxfiler.com" className="text-teal hover:underline font-semibold">
                 contact@irstaxfiler.com
               </a>
               {' '}or call us at{' '}
-              <a href="tel:++1 (415) 2231315" className="text-[#EB4149] hover:underline font-semibold">
+              <a href="tel:++1 (415) 2231315" className="text-teal hover:underline font-semibold">
                 +1 (415) 2231315
               </a>.
             </p>
@@ -312,18 +312,18 @@ const GLBA = () => {
                   className="bg-white rounded-2xl shadow-md border border-gray-200 p-8 hover:shadow-lg transition-all duration-300"
                 >
                   <div className="flex items-start space-x-4 mb-6">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#EB4149' }}>
+                    <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#1F4264' }}>
                       <IconComponent className="h-6 w-6 text-white" />
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900 pt-2">
+                    <h2 className="text-2xl font-normal text-primary pt-2">
                       {section.title}
                     </h2>
                   </div>
                   <ul className="space-y-4">
                     {section.content.map((item, itemIndex) => (
                       <li key={itemIndex} className="flex items-start space-x-3">
-                        <div className="flex-shrink-0 w-2 h-2 rounded-full mt-2" style={{ backgroundColor: '#EB4149' }}></div>
-                        <p className="text-base text-gray-700 leading-relaxed">
+                        <div className="flex-shrink-0 w-2 h-2 rounded-full mt-2" style={{ backgroundColor: '#1F4264' }}></div>
+                        <p className="text-base text-slateText leading-relaxed">
                           {item}
                         </p>
                       </li>
@@ -340,13 +340,13 @@ const GLBA = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mt-16 bg-gradient-to-br from-purple-50 to-white rounded-2xl p-8 border border-purple-100"
+            className="mt-16 bg-gradient-to-br from-background-aqua/40 to-white rounded-2xl p-8 border border-border"
           >
             <div className="text-center">
-              <h3 className="text-2xl font-bold mb-4" style={{ color: '#EB4149' }}>
+              <h3 className="text-2xl font-normal mb-4 text-primary">
                 Questions About GLBA Privacy?
               </h3>
-              <p className="text-gray-700 mb-6">
+              <p className="text-slateText mb-6">
                 If you have questions about this GLBA Privacy Notice or wish to exercise your privacy rights, 
                 including your right to opt-out of certain information sharing, our privacy team is here to help.
               </p>
@@ -354,21 +354,21 @@ const GLBA = () => {
                 <Link
                   to="/contact"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300 hover:shadow-lg"
-                  style={{ backgroundColor: '#EB4149' }}
+                  style={{ backgroundColor: '#1F4264' }}
                 >
                   Contact Us
                 </Link>
                 <Link
                   to="/privacy"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border-2 transition-all duration-300 hover:bg-gray-50"
-                  style={{ borderColor: '#EB4149', color: '#EB4149' }}
+                  style={{ borderColor: '#127EAB', color: '#1F4264' }}
                 >
                   Privacy Policy
                 </Link>
                 <Link
                   to="/terms"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border-2 transition-all duration-300 hover:bg-gray-50"
-                  style={{ borderColor: '#EB4149', color: '#EB4149' }}
+                  style={{ borderColor: '#127EAB', color: '#1F4264' }}
                 >
                   Terms & Conditions
                 </Link>

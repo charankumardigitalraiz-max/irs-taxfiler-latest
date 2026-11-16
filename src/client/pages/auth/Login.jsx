@@ -73,8 +73,8 @@ const Login = () => {
   return (
     <div className="min-h-screen flex flex-col justify-between bg-slate-50/70 text-gray-900 font-sans antialiased relative overflow-hidden py-6 px-4 sm:px-6">
       {/* Background Ambient Glows */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-80 bg-gradient-to-b from-[#165479]/[0.08] via-[#749220]/[0.05] to-transparent blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-20 right-0 w-80 h-80 bg-[#749220]/[0.04] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-80 bg-gradient-to-b from-[#165479]/[0.08] via-[#127EAB]/[0.05] to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-20 right-0 w-80 h-80 bg-[#127EAB]/[0.04] rounded-full blur-3xl pointer-events-none" />
 
       {/* Top Header Bar */}
       {/* <header className="relative z-10 w-full max-w-[840px] mx-auto flex items-center justify-between mb-5">
@@ -100,8 +100,8 @@ const Login = () => {
           <div className="w-full p-7 sm:p-10 flex flex-col justify-between text-left bg-white">
             <div className="w-full max-w-[275px] mx-auto">
               {/* Eyebrow Badge */}
-              {/* <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F6F9EE] border border-[#749220]/30 shadow-2xs mb-3 text-xs font-medium text-[#749220]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#749220]" />
+              {/* <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F6F9EE] border border-[#127EAB]/30 shadow-2xs mb-3 text-xs font-medium text-[#127EAB]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#127EAB]" />
                 <span>IRS e-File & Licensed CPAs</span>
               </div> */}
 
@@ -112,7 +112,7 @@ const Login = () => {
               {/* Title & Subtitle */}
               <h1 className="text-xl sm:text-2xl font-normal text-gray-900 tracking-tight leading-tight">
                 Client Portal{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#127EAB] bg-clip-text text-transparent">
                   Login
                 </span>
               </h1>
@@ -184,7 +184,7 @@ const Login = () => {
             {/* Bottom Security Row */}
             <div className="w-full max-w-[275px] mx-auto mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-gray-500 font-medium">
               <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#749220]" />
+                <ShieldCheck className="w-4 h-4 text-[#127EAB]" />
                 <span>256-Bit SSL</span>
               </span>
               <span className="text-slate-200">•</span>
@@ -200,13 +200,13 @@ const Login = () => {
               ========================================================================= */}
           <div className="hidden md:flex bg-gradient-to-b from-[#F6F9EE]/90 via-slate-50 to-[#EBF3F8]/80 md:border-l border-slate-200/80 p-7 sm:p-10 flex-col justify-between items-center text-center relative overflow-hidden">
             {/* Ambient Background Glows */}
-            <div className="absolute -top-12 -right-12 w-44 h-44 bg-[#749220]/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -top-12 -right-12 w-44 h-44 bg-[#127EAB]/20 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute -bottom-12 -left-12 w-44 h-44 bg-[#165479]/15 rounded-full blur-3xl pointer-events-none" />
 
             {/* Top Badge */}
             <div className="relative z-10 w-full flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#165479] bg-white/90 px-3 py-1 rounded-full border border-slate-200 shadow-2xs">
-                <Sparkles className="w-3.5 h-3.5 text-[#749220]" />
+                <Sparkles className="w-3.5 h-3.5 text-[#127EAB]" />
                 <span>Tax Year 2025-2026</span>
               </span>
               <span className="text-xs font-medium text-gray-500">
@@ -245,7 +245,7 @@ const Login = () => {
                     transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
                     className="absolute -bottom-1 -right-2 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-xl border border-slate-200/90 shadow-xs flex items-center gap-1.5 text-[11px] font-bold text-gray-900"
                   >
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#749220] stroke-[2.2]" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#127EAB] stroke-[2.2]" />
                     <span>CPA Verified</span>
                   </motion.div>
                 </motion.div>
@@ -255,7 +255,7 @@ const Login = () => {
               <div className="mt-3.5 max-w-[250px]">
                 <h3 className="text-sm sm:text-base font-semibold text-gray-900 leading-snug">
                   Fast, Accurate &{' '}
-                  <span className="bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#127EAB] bg-clip-text text-transparent">
                     CPA-Certified
                   </span>
                 </h3>

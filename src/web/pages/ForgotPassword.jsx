@@ -60,10 +60,10 @@ export default function ForgotPassword() {
               className="bg-white shadow-xl p-6 rounded-2xl space-y-4"
             >
               <div className="text-center mb-3">
-                <h2 className="text-2xl font-bold text-[#EB4149]">
+                <h2 className="text-2xl font-normal text-primary">
                   Forgot Password
                 </h2>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-slateText">
                   Enter your email to reset password
                 </p>
               </div>
@@ -74,17 +74,16 @@ export default function ForgotPassword() {
                 whileTap={{ scale: 0.95 }}
                 type="submit"
                 disabled={loading}
-                style={{ backgroundColor: "#EB4149" }}
-                className="w-full py-2 mt-2 text-white rounded-xl font-bold disabled:opacity-60"
+                className="w-full py-2.5 mt-2 text-white bg-primary hover:bg-primary-dark rounded-xl font-semibold transition-colors disabled:opacity-60 cursor-pointer shadow-sm hover:shadow-md"
               >
                 {loading ? "Submitting..." : "Submit"}
               </motion.button>
 
-              <p className="text-center text-xs text-gray-500 mt-4">
+              <p className="text-center text-xs text-slateText mt-4">
                 Remember your password?
                 <Link
                   to="/login"
-                  className="ms-1 text-[#EB4149] font-semibold hover:underline"
+                  className="ms-1 text-teal font-semibold hover:underline"
                 >
                   Login
                 </Link>
@@ -100,7 +99,7 @@ export default function ForgotPassword() {
 
 const Input = ({ label, name, type = "text", formik }) => (
   <div>
-    <label className="text-sm font-medium block mb-1 text-gray-700">
+    <label className="text-sm font-medium block mb-1 text-primary">
       {label}
     </label>
 
@@ -108,16 +107,16 @@ const Input = ({ label, name, type = "text", formik }) => (
       type={type}
       {...formik.getFieldProps(name)}
       className={`
-        w-full px-2 py-2 border rounded-xl
-        focus:ring-2 focus:ring-[#EB4149] outline-none
+        w-full px-3 py-2 border rounded-xl
+        focus:ring-2 focus:ring-teal outline-none
         ${formik.touched[name] && formik.errors[name]
-          ? "border-red-500"
-          : "border-gray-200"}
+          ? "border-coral text-coral"
+          : "border-border text-primary"}
       `}
     />
 
     {formik.touched[name] && formik.errors[name] && (
-      <p className="text-xs mt-1 text-red-500">{formik.errors[name]}</p>
+      <p className="text-xs mt-1 text-coral">{formik.errors[name]}</p>
     )}
   </div>
 );

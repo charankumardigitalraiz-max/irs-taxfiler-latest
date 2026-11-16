@@ -30,7 +30,7 @@ const AdminContactLeads = () => {
 
       {/* Loading */}
       {leadsLoading && (
-        <div className="text-gray-500">Loading Schedule a Meet...</div>
+        <div className="text-slateText">Loading Schedule a Meet...</div>
       )}
 
       {/* Error */}
@@ -38,7 +38,7 @@ const AdminContactLeads = () => {
 
       {/* Empty State */}
       {/* {!leadsLoading && contactLeads.length === 0 && (
-        <div className="text-gray-500">No contact leads found.</div>
+        <div className="text-slateText">No contact leads found.</div>
       )} */}
 
       {/* TABLE */}
@@ -84,14 +84,14 @@ const AdminContactLeads = () => {
 
                       <td className="p-3 truncate">{lead.message || "-"}</td> */}
 
-                      <td className="p-3 text-gray-500">
+                      <td className="p-3 text-slateText">
                         {new Date(lead.createdAt).toLocaleDateString()}
                       </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="6" className="p-3 text-center text-gray-500">
+                    <td colSpan="6" className="p-3 text-center text-slateText">
                       No data found
                     </td>
                   </tr>
@@ -102,7 +102,7 @@ const AdminContactLeads = () => {
 
           {/* Pagination */}
           <div className="flex justify-between items-center px-4 py-3 border-t bg-gray-50">
-            <span className="text-sm text-gray-600">
+            <span className="text-sm text-slateText">
               Page {currentPage} of {totalPages}
             </span>
 

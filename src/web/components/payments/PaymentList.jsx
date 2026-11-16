@@ -21,7 +21,7 @@ const statusConfig = {
 const PaymentList = ({ payments, onConfirm, onViewUser }) => {
   if (!payments || payments.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-500">
+      <div className="text-center py-12 text-slateText">
         No payments found
       </div>
     );
@@ -51,26 +51,26 @@ const PaymentList = ({ payments, onConfirm, onViewUser }) => {
                       <CreditCard className="w-5 h-5 text-green-600" />
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">
+                      <p className="font-medium text-primary">
                         {payment.transactionId || 'N/A'}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-slateText">
                         {payment.paymentMethod || 'Not specified'}
                       </p>
                     </div>
                   </div>
                 </td>
                 <td className="table-cell">
-                  <p className="font-medium text-gray-900">{payment.user?.fullName}</p>
-                  <p className="text-xs text-gray-500">{payment.user?.email}</p>
+                  <p className="font-medium text-primary">{payment.user?.fullName}</p>
+                  <p className="text-xs text-slateText">{payment.user?.email}</p>
                 </td>
                 <td className="table-cell">
                   <div className="flex items-center gap-1">
-                    <DollarSign className="w-4 h-4 text-gray-400" />
-                    <span className="font-semibold text-gray-900">
+                    <DollarSign className="w-4 h-4 text-slateText/70" />
+                    <span className="font-semibold text-primary">
                       {payment.amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}
                     </span>
-                    <span className="text-gray-500">{payment.currency}</span>
+                    <span className="text-slateText">{payment.currency}</span>
                   </div>
                 </td>
                 <td className="table-cell">
@@ -82,7 +82,7 @@ const PaymentList = ({ payments, onConfirm, onViewUser }) => {
                   )}
                 </td>
                 <td className="table-cell">
-                  <span className="text-gray-500">
+                  <span className="text-slateText">
                     {payment.paymentDate
                       ? format(new Date(payment.paymentDate), 'MMM d, yyyy')
                       : '-'}

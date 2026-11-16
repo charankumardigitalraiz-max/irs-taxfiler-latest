@@ -135,7 +135,7 @@ const UserInfoSidebar = ({ user, onSave, disabled = false }) => {
                 className={`w-full flex items-center gap-2 px-4 py-2.5 text-left text-sm transition-colors ${
                   isActive
                     ? 'bg-primary-50 text-primary-700 border-r-2 border-primary-500'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                    : 'text-slateText hover:bg-gray-100 hover:text-primary'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -151,7 +151,7 @@ const UserInfoSidebar = ({ user, onSave, disabled = false }) => {
       <div className="flex-1 p-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-200">
-          <h3 className="text-sm font-semibold text-gray-900">
+          <h3 className="text-sm font-semibold text-primary">
             {sections.find((s) => s.id === activeSection)?.label}
           </h3>
           {!disabled && (
@@ -252,12 +252,12 @@ const UserInfoSidebar = ({ user, onSave, disabled = false }) => {
         {activeSection === 'dependents' && (
           <div className="space-y-3">
             {formData.dependents.length === 0 ? (
-              <p className="text-sm text-gray-500 text-center py-4">No dependents added</p>
+              <p className="text-sm text-slateText text-center py-4">No dependents added</p>
             ) : (
               formData.dependents.map((dep, index) => (
                 <div key={dep.id} className="p-3 bg-gray-50 rounded-lg border border-gray-200">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-medium text-gray-700">Dependent {index + 1}</span>
+                    <span className="text-xs font-medium text-slateText">Dependent {index + 1}</span>
                     {isEditing && (
                       <Button size="sm" variant="ghost" className="text-red-600 hover:bg-red-50 text-xs" onClick={() => removeDependent(dep.id)}>
                         Remove

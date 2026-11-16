@@ -139,8 +139,8 @@ const About = () => {
         <section className="relative overflow-hidden pt-12 pb-14 sm:pt-16 sm:pb-10 bg-white">
           {/* Subtle Ambient Background Gradients */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden -z-10">
-            <div className="absolute -top-24 left-1/4 w-96 h-96 bg-sky-100/50 rounded-full blur-3xl opacity-60" />
-            <div className="absolute -top-20 right-1/4 w-80 h-80 bg-lime-100/40 rounded-full blur-3xl opacity-50" />
+            <div className="absolute -top-24 left-1/4 w-96 h-96 bg-slate-100/40 rounded-full blur-3xl opacity-40" />
+            <div className="absolute -top-20 right-1/4 w-80 h-80 bg-slate-100/40 rounded-full blur-3xl opacity-40" />
           </div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -151,21 +151,21 @@ const About = () => {
               className="text-center"
             >
               {/* Tag Pill */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100/80 border border-slate-200/80 mb-4 select-none">
-                <StarIcon className="w-3.5 h-3.5 text-[#749220]" />
-                <span className="text-xs font-medium text-slate-700">Your Trusted Tax Partner</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E9F7FA] border border-[#127EAB]/30 mb-4 select-none text-xs font-medium text-teal">
+                <StarIcon className="w-3.5 h-3.5 text-[#EE6450]" />
+                <span>Your Trusted Tax Partner</span>
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-gray-900 tracking-tight leading-[1.25] mb-3.5 max-w-3xl mx-auto">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-primary tracking-tight leading-[1.25] mb-3.5 max-w-3xl mx-auto">
                 About TaxFiling —{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Simplifying Tax Filing for Everyone
                 </span>
               </h1>
 
               {/* Subheading */}
-              <p className="text-sm sm:text-base lg:text-[17px] text-gray-600 font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl mx-auto text-center">
+              <p className="text-sm sm:text-base lg:text-[17px] text-[#6F7F8E] font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl mx-auto text-center">
                 Simplifying U.S. tax compliance for global Indians with professionalism, expertise, and care.
                 We combine deep tax knowledge with cutting-edge technology to make tax filing stress-free.
               </p>
@@ -176,7 +176,7 @@ const About = () => {
         {/* ========================================================================= */}
         {/* 2. OUR MISSION SECTION                                                    */}
         {/* ========================================================================= */}
-        <section className="py-16 sm:py-10 bg-white border-b border-slate-100">
+        <section className="py-16 sm:py-10 bg-white border-b border-[#CCDCE1]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
@@ -188,19 +188,19 @@ const About = () => {
                 transition={{ duration: 0.5 }}
                 className="lg:col-span-7"
               >
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100/80 border border-slate-200/80 mb-3 select-none">
-                  <span className="w-2 h-2 rounded-full bg-[#749220]" />
-                  <span className="text-xs font-medium text-slate-700">Our Purpose</span>
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E9F7FA] border border-[#127EAB]/30 mb-3 select-none text-xs font-medium text-teal">
+                  <span className="w-2 h-2 rounded-full bg-[#127EAB]" />
+                  <span>Our Purpose</span>
                 </div>
 
-                <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25] mb-5">
+                <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-5">
                   Our{" "}
-                  <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                  <span className="font-normal text-teal">
                     Mission
                   </span>
                 </h2>
 
-                <div className="space-y-4 text-sm sm:text-base lg:text-[17px] text-gray-600 font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl">
+                <div className="space-y-4 text-sm sm:text-base lg:text-[17px] text-[#6F7F8E] font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl">
                   <p>
                     At TaxFiling, we understand the unique challenges faced by Indians living and working in the United States.
                     Navigating the complex U.S. tax system while maintaining compliance with both U.S. and Indian tax laws can be overwhelming.
@@ -224,7 +224,7 @@ const About = () => {
                 transition={{ duration: 0.5 }}
                 className="lg:col-span-5 flex justify-center"
               >
-                <div className="relative w-full max-w-[460px] rounded-2xl overflow-hidden border border-slate-200/90 shadow-[0_14px_38px_rgba(22,84,121,0.08)] bg-white group">
+                <div className="relative w-full max-w-[460px] rounded-2xl overflow-hidden border border-[#CCDCE1] shadow-[0_14px_38px_rgba(23,50,77,0.06)] bg-white group">
                   <img
                     src={teamVisual}
                     alt="Professional tax team"
@@ -233,14 +233,14 @@ const About = () => {
                   />
 
                   {/* Floating Glass Badge */}
-                  <div className="absolute bottom-3.5 left-3.5 right-3.5 bg-white/95 backdrop-blur-md rounded-xl p-3 shadow-md border border-gray-200/80 flex items-center justify-between z-10 select-none">
+                  <div className="absolute bottom-3.5 left-3.5 right-3.5 bg-white/95 backdrop-blur-md rounded-xl p-3 shadow-md border border-[#CCDCE1] flex items-center justify-between z-10 select-none">
                     <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#749220] animate-pulse" />
-                      <span className="text-xs font-semibold text-gray-900">
+                      <span className="w-2 h-2 rounded-full bg-[#127EAB] animate-pulse" />
+                      <span className="text-xs font-semibold text-primary">
                         Professional Tax Team
                       </span>
                     </div>
-                    <span className="text-[11px] text-[#165479] font-medium bg-sky-50 px-2 py-0.5 rounded-md border border-sky-100">
+                    <span className="text-[11px] text-teal font-medium bg-[#E9F7FA] px-2 py-0.5 rounded-md border border-[#127EAB]/30">
                       100% Compliant
                     </span>
                   </div>
@@ -254,7 +254,7 @@ const About = () => {
         {/* ========================================================================= */}
         {/* 3. WHY CHOOSE TAXFILING? SECTION                                         */}
         {/* ========================================================================= */}
-        <section className="py-16 sm:py-10 bg-slate-50/60 border-b border-slate-100">
+        <section className="py-16 sm:py-10 bg-[#FDF8F2] border-b border-[#CCDCE1]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -263,13 +263,13 @@ const About = () => {
               transition={{ duration: 0.5 }}
               className="text-center mb-12 sm:mb-16"
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25] mb-2.5">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-2.5">
                 Why Choose{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   TaxFiling?
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 font-normal max-w-2xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base text-[#6F7F8E] font-normal max-w-2xl mx-auto leading-relaxed">
                 We combine expertise, technology, and personalized service to deliver exceptional results
               </p>
             </motion.div>
@@ -277,7 +277,6 @@ const About = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
               {whyChooseUs.map((item, index) => {
                 const Icon = item.icon;
-                const isLime = index % 2 === 0;
                 return (
                   <motion.div
                     key={index}
@@ -285,32 +284,27 @@ const About = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.35, delay: index * 0.05 }}
-                    className="relative bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-2xs hover:shadow-[0_14px_30px_rgba(22,84,121,0.08)] hover:border-[#165479]/30 transition-all duration-200 flex items-start gap-4 sm:gap-5 group overflow-hidden"
+                    className="relative bg-white rounded-2xl p-6 sm:p-7 border border-[#CCDCE1] shadow-2xs hover:shadow-[0_14px_30px_rgba(23,50,77,0.08)] hover:border-[#127EAB]/50 transition-all duration-200 flex items-start gap-4 sm:gap-5 group overflow-hidden"
                   >
                     {/* Top Accent Line */}
-                    <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#749220]/0 to-transparent group-hover:via-[#749220] transition-all duration-300" />
+                    <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#127EAB]/0 to-transparent group-hover:via-[#127EAB] transition-all duration-300" />
 
                     {/* Icon Container */}
-                    <div
-                      className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-105 ${isLime
-                        ? 'bg-[#F6F9EE] border border-[#749220]/25 text-[#749220]'
-                        : 'bg-sky-50 border border-sky-100 text-[#165479]'
-                        }`}
-                    >
+                    <div className="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-105 bg-[#E9F7FA] border border-[#127EAB]/25 text-teal">
                       <Icon className="w-5.5 h-5.5" />
                     </div>
 
                     {/* Content */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-2 mb-2">
-                        <h3 className="text-base sm:text-[17px] font-medium text-gray-900 group-hover:text-[#165479] transition-colors leading-snug">
+                        <h3 className="text-base sm:text-[17px] font-semibold text-primary group-hover:text-teal transition-colors leading-snug">
                           {item.title}
                         </h3>
-                        <span className="text-xs font-mono font-semibold text-slate-300 group-hover:text-[#165479]/50 transition-colors select-none shrink-0">
+                        <span className="text-xs font-mono font-semibold text-[#EE6450] transition-colors select-none shrink-0">
                           0{index + 1}
                         </span>
                       </div>
-                      <p className="text-xs sm:text-[13.5px] text-gray-600 font-normal leading-relaxed">
+                      <p className="text-xs sm:text-[13.5px] text-[#6F7F8E] font-normal leading-relaxed">
                         {item.description}
                       </p>
                     </div>
@@ -324,7 +318,7 @@ const About = () => {
         {/* ========================================================================= */}
         {/* 4. CORE VALUES SECTION                                                    */}
         {/* ========================================================================= */}
-        <section className="py-16 sm:py-24 bg-white border-b border-slate-100">
+        <section className="py-16 sm:py-24 bg-white border-b border-[#CCDCE1]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -333,13 +327,13 @@ const About = () => {
               transition={{ duration: 0.5 }}
               className="text-center mb-12 sm:mb-16"
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25] mb-2.5">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-2.5">
                 Our Core{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Values
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 font-normal max-w-2xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base text-[#6F7F8E] font-normal max-w-2xl mx-auto leading-relaxed">
                 The principles that guide everything we do
               </p>
             </motion.div>
@@ -354,15 +348,15 @@ const About = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.35, delay: index * 0.06 }}
-                    className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.06)] hover:border-[#165479]/30 transition-all duration-200 text-center flex flex-col items-center"
+                    className="bg-white rounded-2xl p-6 border border-[#CCDCE1] shadow-2xs hover:shadow-[0_12px_28px_rgba(23,50,77,0.06)] hover:border-[#127EAB]/50 transition-all duration-200 text-center flex flex-col items-center group"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-sky-50 border border-sky-100 text-[#165479] flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-105">
+                    <div className="w-12 h-12 rounded-xl bg-[#E9F7FA] border border-[#127EAB]/30 text-teal flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-105">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <h3 className="text-base font-medium text-gray-900 leading-snug mb-2">
+                    <h3 className="text-base font-semibold text-primary leading-snug mb-2">
                       {value.title}
                     </h3>
-                    <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed">
+                    <p className="text-xs sm:text-[13px] text-[#6F7F8E] font-normal leading-relaxed">
                       {value.description}
                     </p>
                   </motion.div>
@@ -375,7 +369,7 @@ const About = () => {
         {/* ========================================================================= */}
         {/* 5. WHY EXPATRIATES NEED PROFESSIONAL TAX FILING                           */}
         {/* ========================================================================= */}
-        <section className="py-16 sm:py-10 bg-slate-50/60 border-b border-slate-100">
+        <section className="py-16 sm:py-10 bg-[#FDF8F2] border-b border-[#CCDCE1]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -384,13 +378,13 @@ const About = () => {
               transition={{ duration: 0.5 }}
               className="text-center mb-12 sm:mb-16"
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25] mb-2.5">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-2.5">
                 Why Expatriates Need{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Professional Tax Filing
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 font-normal max-w-2xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base text-[#6F7F8E] font-normal max-w-2xl mx-auto leading-relaxed">
                 Understanding the complexities of cross-border taxation
               </p>
             </motion.div>
@@ -430,17 +424,17 @@ const About = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.35, delay: index * 0.07 }}
-                    className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.06)] hover:border-[#165479]/30 transition-all duration-200 flex flex-col justify-start"
+                    className="bg-white rounded-2xl p-6 sm:p-7 border border-[#CCDCE1] shadow-2xs hover:shadow-[0_12px_28px_rgba(23,50,77,0.06)] hover:border-[#127EAB]/50 transition-all duration-200 flex flex-col justify-start"
                   >
                     <div className="flex items-center space-x-3.5 mb-3.5">
-                      <div className="w-10 h-10 rounded-xl bg-[#F6F9EE] border border-[#749220]/25 flex items-center justify-center text-[#749220] shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-[#E9F7FA] border border-[#127EAB]/25 flex items-center justify-center text-teal shrink-0">
                         <Icon className="w-5 h-5" />
                       </div>
-                      <h3 className="text-base sm:text-lg font-medium text-gray-900 leading-snug">
+                      <h3 className="text-base sm:text-lg font-semibold text-primary leading-snug">
                         {item.title}
                       </h3>
                     </div>
-                    <p className="text-xs sm:text-sm text-gray-700 font-normal leading-[30px] sm:leading-[32px] lg:leading-[25px]">
+                    <p className="text-xs sm:text-sm text-[#6F7F8E] font-normal leading-[30px] sm:leading-[32px] lg:leading-[25px]">
                       {item.description}
                     </p>
                   </motion.div>
@@ -466,20 +460,20 @@ const About = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.35, delay: index * 0.08 }}
-                    className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.06)] hover:border-[#165479]/30 transition-all duration-200 text-center"
+                    className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.06)] hover:border-[#1F4264]/30 transition-all duration-200 text-center"
                   >
                     <div
                       className={`w-11 h-11 rounded-xl flex items-center justify-center mx-auto mb-3.5 transition-transform duration-200 ${isLime
-                        ? 'bg-[#F6F9EE] border border-[#749220]/25 text-[#749220]'
-                        : 'bg-sky-50 border border-sky-100 text-[#165479]'
+                        ? 'bg-background-aqua border border-border text-teal text-teal'
+                        : 'bg-sky-50 border border-sky-100 text-primary'
                         }`}
                     >
                       <Icon className="w-5 h-5" />
                     </div>
-                    <p className="text-3xl sm:text-4xl font-normal text-gray-900 tracking-tight mb-1">
+                    <p className="text-3xl sm:text-4xl font-normal text-primary tracking-tight mb-1">
                       {stat.number}
                     </p>
-                    <p className="text-xs sm:text-sm font-medium text-slate-500">
+                    <p className="text-xs sm:text-sm font-medium text-slateText">
                       {stat.label}
                     </p>
                   </motion.div>
@@ -492,11 +486,11 @@ const About = () => {
         {/* ========================================================================= */}
         {/* 7. FULL-WIDTH CTA SECTION WITH BRAND BACKGROUND                           */}
         {/* ========================================================================= */}
-        <section className="w-full relative py-16 sm:py-10 bg-gradient-to-br from-[#0A4973] via-[#165479] to-[#0A2D41] text-white overflow-hidden">
+        <section className="w-full relative py-16 sm:py-10 bg-gradient-to-br from-[#1F4264] via-[#1F4264] to-[#1E4162] text-white overflow-hidden">
           {/* Subtle Ambient Background Gradients */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden -z-10">
-            <div className="absolute -top-24 left-1/4 w-96 h-96 bg-[#749220]/20 rounded-full blur-3xl opacity-60" />
-            <div className="absolute -bottom-24 right-1/4 w-96 h-96 bg-sky-400/15 rounded-full blur-3xl opacity-50" />
+            <div className="absolute -top-24 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl opacity-40" />
+            <div className="absolute -bottom-24 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl opacity-30" />
           </div>
 
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -507,7 +501,7 @@ const About = () => {
               transition={{ duration: 0.5 }}
             >
               {/* Star Icon Badge */}
-              {/* <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-[#CBF056] flex items-center justify-center mx-auto mb-4 shadow-sm">
+              {/* <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-teal flex items-center justify-center mx-auto mb-4 shadow-sm">
                 <StarIcon className="w-6 h-6" />
               </div> */}
 
@@ -523,7 +517,7 @@ const About = () => {
               <div className="flex flex-col sm:flex-row gap-3.5 justify-center">
                 <Link
                   to="/contact"
-                  className="px-7 py-3 rounded-full font-medium text-sm sm:text-base text-[#0A4973] bg-[#CBF056] hover:bg-[#b8dd42] shadow-md hover:shadow-lg transition-all duration-200"
+                  className="px-7 py-3 rounded-full font-medium text-sm sm:text-base text-primary bg-[#127EAB] hover:bg-[#b8dd42] shadow-md hover:shadow-lg transition-all duration-200"
                 >
                   Contact Us
                 </Link>

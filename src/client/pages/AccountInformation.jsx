@@ -233,7 +233,7 @@ const AccountInformation = () => {
   const getColorClasses = (color, isActive) => {
     const colors = {
       blue: isActive ? 'bg-blue-600 text-white' : 'bg-blue-50 text-blue-600',
-      purple: isActive ? 'bg-purple-600 text-white' : 'bg-purple-50 text-purple-600',
+      purple: isActive ? 'bg-teal text-white' : 'bg-background-aqua text-teal',
       green: isActive ? 'bg-green-600 text-white' : 'bg-green-50 text-green-600',
       orange: isActive ? 'bg-orange-600 text-white' : 'bg-orange-50 text-orange-600',
       indigo: isActive ? 'bg-indigo-600 text-white' : 'bg-indigo-50 text-indigo-600',
@@ -646,8 +646,8 @@ const SpouseDetailsForm = ({ userData, setUserData, saving, setSaving, onSaveSuc
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
-        <div className="p-3 bg-purple-100 rounded-xl">
-          <Users className="h-7 w-7 text-purple-600" />
+        <div className="p-3 bg-background-aqua rounded-xl">
+          <Users className="h-7 w-7 text-teal" />
         </div>
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Spouse Details</h2>

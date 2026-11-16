@@ -539,7 +539,7 @@ const TaxSummaryForm = ({ initialData, onSave, onSubmit, disabled = false }) => 
             <div>
               <label className="label">Total Pay Amount</label>
               <div className="relative">
-                <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slateText/70" />
                 <input
                   type="number"
                   value={formData.totalPayAmount}

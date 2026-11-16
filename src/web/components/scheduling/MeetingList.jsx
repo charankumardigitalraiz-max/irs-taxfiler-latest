@@ -15,7 +15,7 @@ const statusColors = {
 const MeetingList = ({ meetings, onUpdate, onViewUser }) => {
   if (!meetings || meetings.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-500">
+      <div className="text-center py-12 text-slateText">
         No meetings scheduled
       </div>
     );
@@ -35,17 +35,17 @@ const MeetingList = ({ meetings, onUpdate, onViewUser }) => {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h4 className="font-medium text-gray-900">
+                  <h4 className="font-medium text-primary">
                     {meeting.user?.fullName || 'Unknown User'}
                   </h4>
                   <Badge color={statusColors[meeting.status]} size="sm">
                     {meeting.status}
                   </Badge>
                 </div>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-slateText mt-1">
                   {meeting.meetingType || 'Consultation'}
                 </p>
-                <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+                <div className="flex items-center gap-4 mt-2 text-sm text-slateText">
                   <div className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
                     {format(new Date(meeting.scheduledAt), 'MMM d, yyyy')}
@@ -60,7 +60,7 @@ const MeetingList = ({ meetings, onUpdate, onViewUser }) => {
                   </div>
                 </div>
                 {meeting.notes && (
-                  <p className="text-sm text-gray-600 mt-2 bg-gray-50 p-2 rounded">
+                  <p className="text-sm text-slateText mt-2 bg-gray-50 p-2 rounded">
                     {meeting.notes}
                   </p>
                 )}

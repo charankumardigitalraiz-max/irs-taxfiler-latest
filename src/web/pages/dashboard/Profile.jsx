@@ -74,13 +74,13 @@
 
 //   if (!user) {
 //     return (
-//       <div className="text-center py-10 text-gray-500">User not logged in.</div>
+//       <div className="text-center py-10 text-slateText">User not logged in.</div>
 //     );
 //   }
 
 //   return (
 //     <div className="space-y-6">
-//       <h1 className="text-2xl font-bold text-gray-900">Profile Settings</h1>
+//       <h1 className="text-2xl font-bold text-primary">Profile Settings</h1>
 
 //       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 //         {/* ================= PHOTO ================= */}
@@ -107,7 +107,7 @@
 
 //               {isEditing && (
 //                 <label className="absolute bottom-0 right-0 p-2 bg-white cursor-pointer rounded-full shadow-lg border hover:bg-gray-100">
-//                   <CameraIcon className="h-5 w-5 text-gray-600" />
+//                   <CameraIcon className="h-5 w-5 text-slateText" />
 //                   <input
 //                     hidden
 //                     type="file"
@@ -119,7 +119,7 @@
 //             </div>
 
 //             <h3 className="text-lg font-semibold">{user.name}</h3>
-//             <p className="text-sm text-gray-500">{user.email}</p>
+//             <p className="text-sm text-slateText">{user.email}</p>
 //           </div>
 //         </motion.div>
 
@@ -221,15 +221,15 @@
 // /* ---------- REUSABLE INPUT ---------- */
 // const Field = ({ icon: Icon, label, value, ...props }) => (
 //   <div>
-//     <label className="text-sm font-medium text-gray-700">{label}</label>
+//     <label className="text-sm font-medium text-slateText">{label}</label>
 //     <div className="relative mt-1">
-//       <Icon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 text-gray-400" />
+//       <Icon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 text-slateText/70" />
 //       <input
 //         {...props}
 //         value={value}
 //         className="w-full pl-10 pr-4 py-2.5 border rounded-lg
 //                   focus:ring-2 focus:ring-blue-500
-//                   disabled:bg-gray-50 disabled:text-gray-400"
+//                   disabled:bg-gray-50 disabled:text-slateText/70"
 //       />
 //     </div>
 //   </div>
@@ -238,16 +238,16 @@
 // /* ---------- REUSABLE TEXTAREA ---------- */
 // const TextAreaField = ({ icon: Icon, label, value, ...props }) => (
 //   <div>
-//     <label className="text-sm font-medium text-gray-700">{label}</label>
+//     <label className="text-sm font-medium text-slateText">{label}</label>
 //     <div className="relative mt-1">
-//       <Icon className="absolute left-3 top-4 h-5 text-gray-400" />
+//       <Icon className="absolute left-3 top-4 h-5 text-slateText/70" />
 //       <textarea
 //         {...props}
 //         value={value}
 //         rows="3"
 //         className="w-full pl-10 pr-4 py-2.5 border rounded-lg
 //                   focus:ring-2 focus:ring-blue-500
-//                   disabled:bg-gray-50 disabled:text-gray-400"
+//                   disabled:bg-gray-50 disabled:text-slateText/70"
 //       />
 //     </div>
 //   </div>
@@ -345,13 +345,13 @@ const Profile = () => {
 
   if (!user) {
     return (
-      <div className="text-center py-10 text-gray-500">User not logged in.</div>
+      <div className="text-center py-10 text-slateText">User not logged in.</div>
     );
   }
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Profile Settings</h1>
+      <h1 className="text-2xl font-bold text-primary">Profile Settings</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* ================= PHOTO ================= */}
@@ -388,7 +388,7 @@ const Profile = () => {
               {/* ✅ IMAGE PICKER BUTTON */}
               {isEditing && (
                 <label className="absolute bottom-0 right-0 p-2 bg-white cursor-pointer rounded-full shadow-lg border hover:bg-gray-100">
-                  <CameraIcon className="h-5 w-5 text-gray-600" />
+                  <CameraIcon className="h-5 w-5 text-slateText" />
 
                   <input
                     hidden
@@ -402,11 +402,11 @@ const Profile = () => {
 
             <h3 className="text-lg font-semibold">{user.name}</h3>
 
-            <p className="text-sm text-gray-500">{user.email}</p>
-            {/* <p className="text-sm text-gray-500 mt-3">Referral id: {user.referralId}</p> */}
+            <p className="text-sm text-slateText">{user.email}</p>
+            {/* <p className="text-sm text-slateText mt-3">Referral id: {user.referralId}</p> */}
 
             <div className="mt-4 w-full flex justify-center">
-              <div className="px-4 py-1.5 rounded-full bg-purple-100 text-[#3C6AA3] shadow-sm">
+              <div className="px-4 py-1.5 rounded-full bg-background-aqua text-[#3C6AA3] shadow-sm">
                 <span className="text-xs font-semibold uppercase tracking-wide">
                   Referral ID:
                 </span>
@@ -527,16 +527,16 @@ export default Profile;
 /* ---------- REUSABLE INPUT ---------- */
 const Field = ({ icon: Icon, label, value, ...props }) => (
   <div>
-    <label className="text-sm font-medium text-gray-700">{label}</label>
+    <label className="text-sm font-medium text-slateText">{label}</label>
     <div className="relative mt-1">
-      <Icon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 text-gray-400" />
+      <Icon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 text-slateText/70" />
       <input
         {...props}
         value={value}
         className="
           w-full pl-10 pr-4 py-2.5 border rounded-lg
           focus:ring-2 focus:ring-blue-500
-          disabled:bg-gray-50 disabled:text-gray-400
+          disabled:bg-gray-50 disabled:text-slateText/70
         "
       />
     </div>
@@ -546,9 +546,9 @@ const Field = ({ icon: Icon, label, value, ...props }) => (
 /* ---------- REUSABLE TEXTAREA ---------- */
 const TextAreaField = ({ icon: Icon, label, value, ...props }) => (
   <div>
-    <label className="text-sm font-medium text-gray-700">{label}</label>
+    <label className="text-sm font-medium text-slateText">{label}</label>
     <div className="relative mt-1">
-      <Icon className="absolute left-3 top-4 h-5 text-gray-400" />
+      <Icon className="absolute left-3 top-4 h-5 text-slateText/70" />
       <textarea
         {...props}
         value={value}
@@ -556,7 +556,7 @@ const TextAreaField = ({ icon: Icon, label, value, ...props }) => (
         className="
           w-full pl-10 pr-4 py-2.5 border rounded-lg
           focus:ring-2 focus:ring-blue-500
-          disabled:bg-gray-50 disabled:text-gray-400
+          disabled:bg-gray-50 disabled:text-slateText/70
         "
       />
     </div>

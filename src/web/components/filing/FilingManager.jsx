@@ -40,11 +40,11 @@ const FilingManager = ({
               <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-200">
                 <Upload className="w-6 h-6 text-blue-600" />
               </div>
-              <h3 className="font-semibold text-gray-900">E-Filing</h3>
-              <p className="text-sm text-gray-500 mt-1">
+              <h3 className="font-semibold text-primary">E-Filing</h3>
+              <p className="text-sm text-slateText mt-1">
                 Submit electronically to the IRS. Faster processing and confirmation.
               </p>
-              <ul className="mt-3 space-y-1 text-xs text-gray-500">
+              <ul className="mt-3 space-y-1 text-xs text-slateText">
                 <li>• Faster processing (24-48 hours)</li>
                 <li>• Electronic confirmation</li>
                 <li>• Automatic status tracking</li>
@@ -58,11 +58,11 @@ const FilingManager = ({
               <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange-200">
                 <Printer className="w-6 h-6 text-orange-600" />
               </div>
-              <h3 className="font-semibold text-gray-900">Paper Filing</h3>
-              <p className="text-sm text-gray-500 mt-1">
+              <h3 className="font-semibold text-primary">Paper Filing</h3>
+              <p className="text-sm text-slateText mt-1">
                 Print and mail to the IRS. Traditional filing method.
               </p>
-              <ul className="mt-3 space-y-1 text-xs text-gray-500">
+              <ul className="mt-3 space-y-1 text-xs text-slateText">
                 <li>• Manual submission required</li>
                 <li>• 4-6 weeks processing</li>
                 <li>• Client mails documents</li>
@@ -119,27 +119,27 @@ const FilingManager = ({
               <div className="space-y-4">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="p-4 bg-gray-50 rounded-lg">
-                    <p className="text-sm text-gray-500">Submission Date</p>
-                    <p className="font-semibold text-gray-900">
+                    <p className="text-sm text-slateText">Submission Date</p>
+                    <p className="font-semibold text-primary">
                       {new Date(filing.submissionDate).toLocaleDateString()}
                     </p>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-lg">
-                    <p className="text-sm text-gray-500">Confirmation #</p>
-                    <p className="font-semibold text-gray-900">
+                    <p className="text-sm text-slateText">Confirmation #</p>
+                    <p className="font-semibold text-primary">
                       {filing.confirmationNumber || 'Pending'}
                     </p>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-lg">
-                    <p className="text-sm text-gray-500">Status</p>
-                    <p className="font-semibold text-gray-900">
+                    <p className="text-sm text-slateText">Status</p>
+                    <p className="font-semibold text-primary">
                       {filing.acceptanceStatus || 'Processing'}
                     </p>
                   </div>
                   {filing.acceptanceDate && (
                     <div className="p-4 bg-gray-50 rounded-lg">
-                      <p className="text-sm text-gray-500">Acceptance Date</p>
-                      <p className="font-semibold text-gray-900">
+                      <p className="text-sm text-slateText">Acceptance Date</p>
+                      <p className="font-semibold text-primary">
                         {new Date(filing.acceptanceDate).toLocaleDateString()}
                       </p>
                     </div>
@@ -200,7 +200,7 @@ const FilingManager = ({
         <div className="space-y-6">
           {/* Instructions Checklist */}
           <div className="space-y-3">
-            <h4 className="font-medium text-gray-900">Paper Filing Steps:</h4>
+            <h4 className="font-medium text-primary">Paper Filing Steps:</h4>
             <div className="space-y-2">
               {[
                 { step: 1, text: 'Print all tax forms (1040, W-2, etc.)' },
@@ -216,7 +216,7 @@ const FilingManager = ({
                   <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center text-xs font-bold text-primary-600">
                     {item.step}
                   </div>
-                  <span className="text-sm text-gray-700">{item.text}</span>
+                  <span className="text-sm text-slateText">{item.text}</span>
                 </div>
               ))}
             </div>

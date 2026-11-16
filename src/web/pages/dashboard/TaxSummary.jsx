@@ -103,7 +103,7 @@ const TaxSummary = () => {
       case 'pending':
         return 'bg-yellow-100 text-yellow-700';
       default:
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-gray-100 text-slateText';
     }
   };
 
@@ -125,8 +125,8 @@ const TaxSummary = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Tax Summary & History</h1>
-        <p className="text-gray-600">
+        <h1 className="text-2xl font-bold text-primary mb-2">Tax Summary & History</h1>
+        <p className="text-slateText">
           View your complete tax filing history, summaries, and download past returns.
         </p>
       </div>
@@ -140,10 +140,10 @@ const TaxSummary = () => {
         >
           <div className="flex items-center justify-between mb-2">
             <DocumentTextIcon className="h-5 w-5 text-primary-blue" />
-            <span className="text-xs text-gray-500">Total Returns</span>
+            <span className="text-xs text-slateText">Total Returns</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">{summaryStats.totalReturns}</p>
-          <p className="text-xs text-gray-500 mt-1">Tax Years Filed</p>
+          <p className="text-2xl font-bold text-primary">{summaryStats.totalReturns}</p>
+          <p className="text-xs text-slateText mt-1">Tax Years Filed</p>
         </motion.div>
 
         <motion.div
@@ -154,10 +154,10 @@ const TaxSummary = () => {
         >
           <div className="flex items-center justify-between mb-2">
             <CurrencyDollarIcon className="h-5 w-5 text-teal-500" />
-            <span className="text-xs text-gray-500">Total Refunds</span>
+            <span className="text-xs text-slateText">Total Refunds</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">{summaryStats.totalRefunds}</p>
-          <p className="text-xs text-gray-500 mt-1">All Time</p>
+          <p className="text-2xl font-bold text-primary">{summaryStats.totalRefunds}</p>
+          <p className="text-xs text-slateText mt-1">All Time</p>
         </motion.div>
 
         <motion.div
@@ -167,11 +167,11 @@ const TaxSummary = () => {
           className="bg-white rounded-lg shadow-sm p-4 border border-gray-200"
         >
           <div className="flex items-center justify-between mb-2">
-            <ChartBarIcon className="h-5 w-5 text-purple-500" />
-            <span className="text-xs text-gray-500">Tax Paid</span>
+            <ChartBarIcon className="h-5 w-5 text-teal" />
+            <span className="text-xs text-slateText">Tax Paid</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">{summaryStats.totalTaxPaid}</p>
-          <p className="text-xs text-gray-500 mt-1">Federal & State</p>
+          <p className="text-2xl font-bold text-primary">{summaryStats.totalTaxPaid}</p>
+          <p className="text-xs text-slateText mt-1">Federal & State</p>
         </motion.div>
 
         <motion.div
@@ -182,10 +182,10 @@ const TaxSummary = () => {
         >
           <div className="flex items-center justify-between mb-2">
             <CurrencyDollarIcon className="h-5 w-5 text-indigo-500" />
-            <span className="text-xs text-gray-500">Avg Refund</span>
+            <span className="text-xs text-slateText">Avg Refund</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">{summaryStats.averageRefund}</p>
-          <p className="text-xs text-gray-500 mt-1">Per Return</p>
+          <p className="text-2xl font-bold text-primary">{summaryStats.averageRefund}</p>
+          <p className="text-xs text-slateText mt-1">Per Return</p>
         </motion.div>
       </div>
 
@@ -198,8 +198,8 @@ const TaxSummary = () => {
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <CalendarIcon className="h-5 w-5 text-gray-500" />
-            <label className="text-sm font-medium text-gray-700">Filter by Tax Year:</label>
+            <CalendarIcon className="h-5 w-5 text-slateText" />
+            <label className="text-sm font-medium text-slateText">Filter by Tax Year:</label>
           </div>
           <div className="flex space-x-2">
             <button
@@ -207,7 +207,7 @@ const TaxSummary = () => {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 selectedYear === 'All'
                   ? 'bg-primary-blue text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  : 'bg-gray-100 text-slateText hover:bg-gray-200'
               }`}
             >
               All Years
@@ -219,7 +219,7 @@ const TaxSummary = () => {
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   selectedYear === year
                     ? 'bg-primary-blue text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-gray-100 text-slateText hover:bg-gray-200'
                 }`}
               >
                 {year}
@@ -245,7 +245,7 @@ const TaxSummary = () => {
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-2">
-                      <h3 className="text-xl font-semibold text-gray-900">
+                      <h3 className="text-xl font-semibold text-primary">
                         Tax Year {returnItem.taxYear}
                       </h3>
                       <span className={`px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1 ${getStatusColor(returnItem.status)}`}>
@@ -253,8 +253,8 @@ const TaxSummary = () => {
                         <span className="capitalize">{returnItem.status.replace('-', ' ')}</span>
                       </span>
                     </div>
-                    <div className="flex items-center space-x-4 text-sm text-gray-600">
-                      <span>Filing Status: <span className="font-medium text-gray-900">{returnItem.filingStatus}</span></span>
+                    <div className="flex items-center space-x-4 text-sm text-slateText">
+                      <span>Filing Status: <span className="font-medium text-primary">{returnItem.filingStatus}</span></span>
                       <span>•</span>
                       <span>Filed: {returnItem.filedDate}</span>
                       {returnItem.receivedDate && (
@@ -268,7 +268,7 @@ const TaxSummary = () => {
                   <div className="flex items-center space-x-2">
                     <button
                       onClick={() => setSelectedReturn(selectedReturn === returnItem.id ? null : returnItem.id)}
-                      className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors flex items-center space-x-2"
+                      className="px-4 py-2 bg-gray-100 text-slateText rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors flex items-center space-x-2"
                     >
                       <EyeIcon className="h-4 w-4" />
                       <span>{selectedReturn === returnItem.id ? 'Hide' : 'View'} Details</span>
@@ -285,7 +285,7 @@ const TaxSummary = () => {
                 {/* Quick Summary */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-gray-50 rounded-lg mb-4">
                   <div>
-                    <p className="text-xs text-gray-500 mb-1">Refund / Tax Owed</p>
+                    <p className="text-xs text-slateText mb-1">Refund / Tax Owed</p>
                     {returnItem.refundAmount ? (
                       <p className="text-lg font-semibold text-teal-600">{returnItem.refundAmount}</p>
                     ) : (
@@ -293,16 +293,16 @@ const TaxSummary = () => {
                     )}
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 mb-1">AGI</p>
-                    <p className="text-sm font-medium text-gray-900">{returnItem.agi}</p>
+                    <p className="text-xs text-slateText mb-1">AGI</p>
+                    <p className="text-sm font-medium text-primary">{returnItem.agi}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 mb-1">Taxable Income</p>
-                    <p className="text-sm font-medium text-gray-900">{returnItem.taxableIncome}</p>
+                    <p className="text-xs text-slateText mb-1">Taxable Income</p>
+                    <p className="text-sm font-medium text-primary">{returnItem.taxableIncome}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 mb-1">Documents</p>
-                    <p className="text-sm font-medium text-gray-900">{returnItem.documents} files</p>
+                    <p className="text-xs text-slateText mb-1">Documents</p>
+                    <p className="text-sm font-medium text-primary">{returnItem.documents} files</p>
                   </div>
                 </div>
 
@@ -314,26 +314,26 @@ const TaxSummary = () => {
                     exit={{ opacity: 0, height: 0 }}
                     className="border-t border-gray-200 pt-4 mt-4"
                   >
-                    <h4 className="text-sm font-semibold text-gray-900 mb-4">Tax Return Summary</h4>
+                    <h4 className="text-sm font-semibold text-primary mb-4">Tax Return Summary</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-4">
                         <div>
-                          <p className="text-xs text-gray-500 mb-1">Total Deductions</p>
-                          <p className="text-base font-semibold text-gray-900">{returnItem.totalDeductions}</p>
+                          <p className="text-xs text-slateText mb-1">Total Deductions</p>
+                          <p className="text-base font-semibold text-primary">{returnItem.totalDeductions}</p>
                         </div>
                         <div>
-                          <p className="text-xs text-gray-500 mb-1">Federal Tax</p>
-                          <p className="text-base font-semibold text-gray-900">{returnItem.federalTax}</p>
+                          <p className="text-xs text-slateText mb-1">Federal Tax</p>
+                          <p className="text-base font-semibold text-primary">{returnItem.federalTax}</p>
                         </div>
                       </div>
                       <div className="space-y-4">
                         <div>
-                          <p className="text-xs text-gray-500 mb-1">State Tax</p>
-                          <p className="text-base font-semibold text-gray-900">{returnItem.stateTax}</p>
+                          <p className="text-xs text-slateText mb-1">State Tax</p>
+                          <p className="text-base font-semibold text-primary">{returnItem.stateTax}</p>
                         </div>
                         <div>
-                          <p className="text-xs text-gray-500 mb-1">Due Date</p>
-                          <p className="text-base font-semibold text-gray-900">{returnItem.dueDate}</p>
+                          <p className="text-xs text-slateText mb-1">Due Date</p>
+                          <p className="text-base font-semibold text-primary">{returnItem.dueDate}</p>
                         </div>
                       </div>
                     </div>
@@ -358,9 +358,9 @@ const TaxSummary = () => {
           animate={{ opacity: 1 }}
           className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center"
         >
-          <DocumentTextIcon className="mx-auto h-16 w-16 text-gray-300 mb-4" />
-          <p className="text-gray-600 mb-2">No tax returns found for {selectedYear}</p>
-          <p className="text-sm text-gray-400">
+          <DocumentTextIcon className="mx-auto h-16 w-16 text-border mb-4" />
+          <p className="text-slateText mb-2">No tax returns found for {selectedYear}</p>
+          <p className="text-sm text-slateText/70">
             Your tax filing history will appear here once you file your taxes.
           </p>
         </motion.div>

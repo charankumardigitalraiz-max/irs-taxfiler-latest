@@ -83,7 +83,7 @@ const WorkflowActions = ({ userId }) => {
       {/* Current status */}
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm text-gray-500">Current Status</p>
+          <p className="text-sm text-slateText">Current Status</p>
           <p className={clsx('font-semibold', currentStage?.textColor)}>
             {currentStage?.label || currentStatus}
           </p>
@@ -97,7 +97,7 @@ const WorkflowActions = ({ userId }) => {
       
       {/* Notes input */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-slateText mb-1">
           Notes (optional)
         </label>
         <textarea
@@ -112,7 +112,7 @@ const WorkflowActions = ({ userId }) => {
       {/* Next stage buttons */}
       {nextStages.length > 0 && (
         <div>
-          <p className="text-sm font-medium text-gray-700 mb-2">
+          <p className="text-sm font-medium text-slateText mb-2">
             Advance to:
           </p>
           <div className="flex flex-wrap gap-2">
@@ -140,7 +140,7 @@ const WorkflowActions = ({ userId }) => {
       >
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-slateText mb-1">
               New Status
             </label>
             <select
@@ -158,7 +158,7 @@ const WorkflowActions = ({ userId }) => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-slateText mb-1">
               Reason for Override *
             </label>
             <textarea

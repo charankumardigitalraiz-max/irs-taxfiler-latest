@@ -60,10 +60,10 @@ const ServicesSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-primary-navy mb-4">
+          <h2 className="text-4xl md:text-5xl font-normal text-primary-navy mb-4">
             Our Services
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-slateText max-w-2xl mx-auto">
             Comprehensive tax filing solutions tailored for global Indians
           </p>
         </motion.div>
@@ -86,7 +86,7 @@ const ServicesSection = () => {
                 <h3 className="text-xl font-bold text-primary-navy mb-3">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-slateText leading-relaxed">
                   {service.description}
                 </p>
               </motion.div>

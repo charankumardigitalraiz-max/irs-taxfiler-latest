@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --color-primary-rgb: 76, 38, 145;
+  --color-primary-rgb: 37, 99, 235;
 }
 
 @layer base {

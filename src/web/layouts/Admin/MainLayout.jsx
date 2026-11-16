@@ -207,7 +207,7 @@ const AdminDashboardLayout = () => {
               return (
                 <div key={index}>
                   {sidebarOpen && (
-                    <div className="mt-4 mb-2 px-3 text-xs font-semibold uppercase text-gray-500">
+                    <div className="mt-4 mb-2 px-3 text-xs font-semibold uppercase text-slateText">
                       {block.section}
                     </div>
                   )}
@@ -232,7 +232,7 @@ const AdminDashboardLayout = () => {
             //         className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-100"
             //       >
             //         <div className="flex items-center gap-3">
-            //           <block.icon className="h-5 w-5 text-gray-600" />
+            //           <block.icon className="h-5 w-5 text-slateText" />
             //           {sidebarOpen && (
             //             <span className="text-sm font-semibold uppercase">
             //               {block.name}
@@ -257,7 +257,7 @@ const AdminDashboardLayout = () => {
             //               className={`flex justify-between px-3 py-2 rounded-md text-sm ${
             //                 isActive(sub.path)
             //                   ? "bg-gray-200 font-medium"
-            //                   : "text-gray-600 hover:bg-gray-100"
+            //                   : "text-slateText hover:bg-gray-100"
             //               }`}
             //             >
             //               <span>{sub.name}</span>
@@ -279,7 +279,7 @@ const AdminDashboardLayout = () => {
             //         className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-100"
             //       >
             //         <div className="flex items-center gap-3">
-            //           <block.icon className="h-5 w-5 text-gray-600" />
+            //           <block.icon className="h-5 w-5 text-slateText" />
             //           {sidebarOpen && (
             //             <span className="text-sm font-semibold uppercase">
             //               {block.name}
@@ -304,7 +304,7 @@ const AdminDashboardLayout = () => {
             //               className={`flex justify-between px-3 py-2 rounded-md text-sm ${
             //                 isActive(sub.path)
             //                   ? "bg-gray-200 font-medium"
-            //                   : "text-gray-600 hover:bg-gray-100"
+            //                   : "text-slateText hover:bg-gray-100"
             //               }`}
             //             >
             //               <span>{sub.name}</span>
@@ -335,7 +335,7 @@ const AdminDashboardLayout = () => {
           <h1 className="text-xl font-semibold">Admin Dashboard</h1>
 
           <div className="flex items-center space-x-4">
-            {/* <button className="relative p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+            {/* <button className="relative p-2 text-slateText hover:text-slateText hover:bg-gray-100 rounded-lg transition-colors">
               <BellIcon className="h-5 w-5" />
               <span className="absolute top-1.5 right-1.5 h-2 w-2 bg-red-500 rounded-full border border-white"></span>
             </button> */}
@@ -374,10 +374,10 @@ const NavItem = ({ item, active, sidebarOpen }) => {
     <Link
       to={item.path}
       className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition ${
-        active ? "bg-gray-200 font-medium" : "text-gray-700 hover:bg-gray-100"
+        active ? "bg-gray-200 font-medium" : "text-slateText hover:bg-gray-100"
       }`}
     >
-      <Icon className="h-5 w-5 text-gray-600" />
+      <Icon className="h-5 w-5 text-slateText" />
       {sidebarOpen && <span>{item.name}</span>}
     </Link>
   );

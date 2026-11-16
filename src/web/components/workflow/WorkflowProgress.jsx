@@ -22,7 +22,7 @@ const WorkflowProgress = ({ currentStatus, compact = false }) => {
             style={{ width: `${progress}%` }}
           />
         </div>
-        <div className="mt-1 flex justify-between text-xs text-gray-500">
+        <div className="mt-1 flex justify-between text-xs text-slateText">
           <span>Registration</span>
           <span>{progress}% Complete</span>
           <span>Filing Complete</span>
@@ -75,7 +75,7 @@ const WorkflowProgress = ({ currentStatus, compact = false }) => {
                     <span
                       className={clsx(
                         'text-xs font-medium',
-                        isCurrent ? 'text-primary-600' : 'text-gray-400'
+                        isCurrent ? 'text-primary-600' : 'text-slateText/70'
                       )}
                     >
                       {stage.order}
@@ -88,7 +88,7 @@ const WorkflowProgress = ({ currentStatus, compact = false }) => {
                   <span
                     className={clsx(
                       'mt-2 text-xs font-medium text-center max-w-[80px]',
-                      isCurrent ? 'text-primary-600' : 'text-gray-500'
+                      isCurrent ? 'text-primary-600' : 'text-slateText'
                     )}
                   >
                     {stage.label}

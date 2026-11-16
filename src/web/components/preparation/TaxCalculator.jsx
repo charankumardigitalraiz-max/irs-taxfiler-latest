@@ -77,7 +77,7 @@ const TaxCalculator = ({ initialData, onSave, onSendSummary, isLocked = false })
             <div>
               <label className="label">Gross Income ($)</label>
               <div className="relative">
-                <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slateText/70" />
                 <input
                   type="number"
                   value={formData.grossIncome}
@@ -91,7 +91,7 @@ const TaxCalculator = ({ initialData, onSave, onSendSummary, isLocked = false })
             <div>
               <label className="label">Total Deductions ($)</label>
               <div className="relative">
-                <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slateText/70" />
                 <input
                   type="number"
                   value={formData.deductions}
@@ -105,7 +105,7 @@ const TaxCalculator = ({ initialData, onSave, onSendSummary, isLocked = false })
             <div>
               <label className="label">Tax Already Paid ($)</label>
               <div className="relative">
-                <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slateText/70" />
                 <input
                   type="number"
                   value={formData.taxPaid}
@@ -139,14 +139,14 @@ const TaxCalculator = ({ initialData, onSave, onSendSummary, isLocked = false })
         <Card.Content>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="p-4 bg-gray-50 rounded-xl">
-              <p className="text-sm text-gray-500">Taxable Income</p>
-              <p className="text-2xl font-bold text-gray-900 mt-1">
+              <p className="text-sm text-slateText">Taxable Income</p>
+              <p className="text-2xl font-bold text-primary mt-1">
                 ${calculations.taxableIncome.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </p>
             </div>
             <div className="p-4 bg-gray-50 rounded-xl">
-              <p className="text-sm text-gray-500">Tax Liability</p>
-              <p className="text-2xl font-bold text-gray-900 mt-1">
+              <p className="text-sm text-slateText">Tax Liability</p>
+              <p className="text-2xl font-bold text-primary mt-1">
                 ${calculations.taxLiability.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </p>
             </div>

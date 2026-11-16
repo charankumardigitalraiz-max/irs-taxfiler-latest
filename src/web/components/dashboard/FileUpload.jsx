@@ -126,10 +126,10 @@
 //         animate={{ opacity: 1, y: 0 }}
 //         className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
 //       >
-//         <h3 className="text-lg font-semibold text-gray-900 mb-4">Select Document Type</h3>
+//         <h3 className="text-lg font-semibold text-primary mb-4">Select Document Type</h3>
 //         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 //           <div>
-//             <label className="block text-sm font-medium text-gray-700 mb-2">
+//             <label className="block text-sm font-medium text-slateText mb-2">
 //               Document Type <span className="text-red-500">*</span>
 //             </label>
 //             <select
@@ -146,7 +146,7 @@
 //             </select>
 //           </div>
 //           <div>
-//             <label className="block text-sm font-medium text-gray-700 mb-2">
+//             <label className="block text-sm font-medium text-slateText mb-2">
 //               For
 //             </label>
 //             <select
@@ -164,11 +164,11 @@
 //           </div>
 //         </div>
 //         {selectedDocumentType && (
-//           <p className="mt-3 text-sm text-gray-600">
-//             Selected: <span className="font-medium text-gray-900">{selectedDocumentType}</span>
+//           <p className="mt-3 text-sm text-slateText">
+//             Selected: <span className="font-medium text-primary">{selectedDocumentType}</span>
 //             {selectedPerson && (
 //               <span className="ml-2">
-//                 for <span className="font-medium text-gray-900">{selectedPerson}</span>
+//                 for <span className="font-medium text-primary">{selectedPerson}</span>
 //               </span>
 //             )}
 //           </p>
@@ -202,11 +202,11 @@
 //             disabled={!selectedDocumentType}
 //           />
 //           <div className="text-center">
-//             <CloudArrowUpIcon className={`mx-auto h-12 w-12 mb-4 ${selectedDocumentType ? 'text-primary-blue' : 'text-gray-400'}`} />
-//             <p className="text-lg font-semibold text-gray-900 mb-2">
+//             <CloudArrowUpIcon className={`mx-auto h-12 w-12 mb-4 ${selectedDocumentType ? 'text-primary-blue' : 'text-slateText/70'}`} />
+//             <p className="text-lg font-semibold text-primary mb-2">
 //               {selectedDocumentType ? `Upload ${selectedDocumentType}` : 'Drag and drop files here'}
 //             </p>
-//             <p className="text-sm text-gray-500 mb-4">
+//             <p className="text-sm text-slateText mb-4">
 //               {selectedDocumentType ? 'Select files to upload for this document type' : 'Please select a document type first'}
 //             </p>
 //             <button
@@ -221,12 +221,12 @@
 //               className={`px-6 py-2.5 rounded-lg font-medium transition-colors ${
 //                 selectedDocumentType
 //                   ? 'bg-primary-blue text-white hover:bg-blue-700'
-//                   : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+//                   : 'bg-gray-300 text-slateText cursor-not-allowed'
 //               }`}
 //             >
 //               Select Files
 //             </button>
-//             <p className="text-xs text-gray-400 mt-4">
+//             <p className="text-xs text-slateText/70 mt-4">
 //               Supported formats: PDF, DOC, DOCX, XLS, XLSX, JPG, PNG (Max 10MB per file)
 //             </p>
 //           </div>
@@ -240,7 +240,7 @@
 //           animate={{ opacity: 1, y: 0 }}
 //           className="bg-white rounded-xl shadow-sm border border-gray-200 p-6"
 //         >
-//           <h3 className="text-lg font-semibold text-gray-900 mb-6">
+//           <h3 className="text-lg font-semibold text-primary mb-6">
 //             Uploaded Files ({files.length})
 //           </h3>
 
@@ -251,7 +251,7 @@
 
 //               return (
 //                 <div key={category}>
-//                   <h4 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
+//                   <h4 className="text-sm font-semibold text-slateText mb-3 uppercase tracking-wide">
 //                     {category}
 //                   </h4>
 //                   <div className="space-y-2">
@@ -269,19 +269,19 @@
 //                               <DocumentIcon className="h-5 w-5 text-blue-600" />
 //                             </div>
 //                             <div className="flex-1 min-w-0">
-//                               <p className="text-sm font-medium text-gray-900 truncate">
+//                               <p className="text-sm font-medium text-primary truncate">
 //                                 {file.name}
 //                               </p>
 //                               <div className="flex items-center space-x-4 mt-1 flex-wrap">
-//                                 <p className="text-xs text-gray-500">
+//                                 <p className="text-xs text-slateText">
 //                                   {formatFileSize(file.size)}
 //                                 </p>
-//                                 <p className="text-xs text-gray-500">
+//                                 <p className="text-xs text-slateText">
 //                                   Uploaded: {file.uploadedDate}
 //                                 </p>
 //                                 {file.documentType && (
 //                                   <>
-//                                     <span className="text-xs text-gray-400">•</span>
+//                                     <span className="text-xs text-slateText/70">•</span>
 //                                     <p className="text-xs font-medium text-primary-blue">
 //                                       {file.documentType}
 //                                     </p>
@@ -289,8 +289,8 @@
 //                                 )}
 //                                 {file.personType && (
 //                                   <>
-//                                     <span className="text-xs text-gray-400">•</span>
-//                                     <p className="text-xs text-gray-500">
+//                                     <span className="text-xs text-slateText/70">•</span>
+//                                     <p className="text-xs text-slateText">
 //                                       {file.personType}
 //                                     </p>
 //                                   </>
@@ -324,9 +324,9 @@
 //           animate={{ opacity: 1 }}
 //           className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center"
 //         >
-//           <DocumentIcon className="mx-auto h-16 w-16 text-gray-300 mb-4" />
-//           <p className="text-gray-600 mb-2">No files uploaded yet</p>
-//           <p className="text-sm text-gray-400">
+//           <DocumentIcon className="mx-auto h-16 w-16 text-border mb-4" />
+//           <p className="text-slateText mb-2">No files uploaded yet</p>
+//           <p className="text-sm text-slateText/70">
 //             Start by uploading your tax documents above
 //           </p>
 //         </motion.div>
@@ -418,7 +418,7 @@ export default function FileUpload() {
 
       {/* ================= SELECTION PANEL ================= */}
       <div className="bg-white p-6 rounded-xl shadow border">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">
+        <h2 className="text-lg font-semibold text-primary mb-4">
           Select Document Type
         </h2>
 
@@ -426,7 +426,7 @@ export default function FileUpload() {
 
           {/* Document Type */}
           <div>
-            <label className="block text-gray-700 mb-1">Document Type</label>
+            <label className="block text-slateText mb-1">Document Type</label>
             <select
               value={documentType}
               onChange={(e) => setDocumentType(e.target.value)}
@@ -446,7 +446,7 @@ export default function FileUpload() {
 
           {/* Person */}
           <div>
-            <label className="block text-gray-700 mb-1">For</label>
+            <label className="block text-slateText mb-1">For</label>
             <select
               value={person}
               onChange={(e) => setPerson(e.target.value)}
@@ -468,8 +468,8 @@ export default function FileUpload() {
 
       {/* ================= UPLOAD BOX ================= */}
       <div className="bg-white border-2 border-dashed rounded-xl p-10 text-center">
-        <div className="text-gray-500">Drag and drop files here</div>
-        <div className="text-sm text-gray-400 mb-4">Or select file</div>
+        <div className="text-slateText">Drag and drop files here</div>
+        <div className="text-sm text-slateText/70 mb-4">Or select file</div>
 
         <input
           type="file"
@@ -479,13 +479,13 @@ export default function FileUpload() {
         />
         <label
           htmlFor="file-upload"
-          className="px-6 py-2 bg-gray-200 rounded cursor-pointer text-gray-800"
+          className="px-6 py-2 bg-gray-200 rounded cursor-pointer text-primary"
         >
           Select File
         </label>
 
         {selectedFile && (
-          <div className="mt-3 text-gray-700">
+          <div className="mt-3 text-slateText">
             Selected: <strong>{selectedFile.name}</strong>
           </div>
         )}
@@ -504,12 +504,12 @@ export default function FileUpload() {
 
       {/* ================= DOCUMENT LIST ================= */}
       <div className="bg-white p-6 rounded-xl shadow border">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">
+        <h2 className="text-lg font-semibold text-primary mb-4">
           Uploaded Files
         </h2>
 
         {documents.length === 0 ? (
-          <p className="text-gray-500">No files uploaded yet.</p>
+          <p className="text-slateText">No files uploaded yet.</p>
         ) : (
           <ul className="space-y-3">
             {documents.map((doc) => (
@@ -519,7 +519,7 @@ export default function FileUpload() {
               >
                 <div>
                   <div className="font-medium">{doc.fileName}</div>
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-slateText">
                     {doc.documentType} — {doc.person}
                   </div>
                 </div>

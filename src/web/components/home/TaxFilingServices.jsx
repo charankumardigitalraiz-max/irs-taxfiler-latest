@@ -200,31 +200,27 @@ const TaxFilingServices = ({ onOpenModal }) => {
   const activeData = services[selectedCategory];
 
   return (
-    <section className="relative py-16 sm:py-20 lg:py-24 bg-white border-y border-slate-100 font-sans overflow-hidden">
-      {/* Ambient Subtle Background Auras matching Hero & WhyChoose */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[720px] h-[360px] bg-gradient-to-b from-[#165479]/[0.04] via-[#749220]/[0.03] to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-20 right-0 w-[420px] h-[420px] bg-[#749220]/[0.03] rounded-full blur-3xl pointer-events-none" />
-
+    <section className="relative py-16 sm:py-20 lg:py-24 bg-white  font-sans overflow-hidden">
       <div className="relative max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header Fold */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           {/* Eyebrow Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F6F9EE] border border-[#749220]/30 shadow-2xs mb-4 text-xs font-medium text-[#749220] uppercase tracking-wider">
-            <span className="w-2 h-2 rounded-full bg-[#749220] animate-pulse" />
+          <div className="pill-badge mb-4">
+            <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
             <span>Full-Service Tax Preparation</span>
           </div>
 
           {/* Display Headline */}
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-gray-900 tracking-tight leading-[1.2]">
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.2]">
             Explore Our{" "}
-            <span className="font-medium bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+            <span className="font-normal text-teal">
               Filing Services
             </span>
           </h2>
 
           {/* Subtitle */}
-          <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-3.5 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-3.5 max-w-2xl mx-auto">
             Certified CPA preparation, dual-status compliance, and guaranteed maximum refunds tailored for US individuals, expats, corporations, and NRI taxpayers.
           </p>
 
@@ -233,7 +229,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
             <div
               role="tablist"
               aria-label="Tax filing categories"
-              className="p-1.5 rounded-2xl bg-slate-100/90 border border-slate-200/80 inline-flex flex-wrap sm:flex-nowrap justify-center gap-1.5 sm:gap-2 shadow-inner max-w-full"
+              className="p-1.5 rounded-2xl bg-surface border border-border inline-flex flex-wrap sm:flex-nowrap justify-center gap-1.5 sm:gap-2 shadow-xs max-w-full"
             >
               {serviceCategories.map((cat) => {
                 const isActive = selectedCategory === cat.id;
@@ -248,8 +244,8 @@ const TaxFilingServices = ({ onOpenModal }) => {
                     type="button"
                     onClick={() => setSelectedCategory(cat.id)}
                     className={`relative px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 flex items-center gap-2 sm:gap-2.5 cursor-pointer select-none shrink-0 ${isActive
-                      ? "text-white shadow-[0_4px_16px_rgba(22,84,121,0.22)]"
-                      : "text-slate-600 hover:text-gray-900 hover:bg-white/60"
+                      ? "text-white shadow-sm"
+                      : "text-slateText hover:text-primary hover:bg-background-aqua/60"
                       }`}
                   >
                     {/* Active Pill Background with Layout Animation */}
@@ -257,11 +253,11 @@ const TaxFilingServices = ({ onOpenModal }) => {
                       <motion.div
                         layoutId="activeCategoryPill"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] border border-white/20"
+                        className="absolute inset-0 rounded-xl bg-primary border border-primary/20"
                       />
                     )}
 
-                    <span className={`relative z-10 ${isActive ? "text-[#CBF056]" : "text-slate-500"}`}>
+                    <span className={`relative z-10 ${isActive ? "text-coral" : "text-slateText"}`}>
                       {cat.icon}
                     </span>
                     <span className="relative z-10 tracking-tight">
@@ -270,8 +266,8 @@ const TaxFilingServices = ({ onOpenModal }) => {
                     </span>
                     <span
                       className={`relative z-10 text-[11px] px-2 py-0.5 rounded-full font-medium transition-colors ${isActive
-                        ? "bg-white/15 text-[#CBF056] border border-white/20"
-                        : "bg-white text-slate-500 border border-slate-200/80"
+                        ? "bg-white/20 text-white border border-white/25"
+                        : "bg-surface text-slateText border border-border"
                         }`}
                     >
                       {count}
@@ -302,56 +298,46 @@ const TaxFilingServices = ({ onOpenModal }) => {
                 <Link
                   key={`${selectedCategory}-${idx}`}
                   to={item.route || "/login"}
-                  className="group relative bg-white hover:bg-[#FAFCFE] rounded-2xl p-5 sm:p-6 border border-slate-200/90 hover:border-[#165479]/40 shadow-[0_2px_12px_rgba(22,84,121,0.03)] hover:shadow-[0_16px_36px_rgba(22,84,121,0.09)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between text-left overflow-hidden"
+                  className="group relative bg-surface hover:bg-white rounded-2xl p-5 sm:p-6 border border-border hover:border-teal/40 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left overflow-hidden"
                 >
-                  {/* Subtle Gradient Accent Line on Hover */}
-                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* Subtle Accent Line on Hover */}
+                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-teal opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                   <div>
                     {/* Header Row: Icon Badge + Category Tag Pill */}
                     <div className="flex items-center justify-between mb-4">
-                      <div className="w-11 h-11 rounded-xl bg-[#F6F9EE] text-[#749220] border border-[#749220]/30 flex items-center justify-center shrink-0 group-hover:bg-[#165479] group-hover:text-white group-hover:border-[#165479] transition-all duration-300 shadow-2xs">
+                      <div className="w-11 h-11 rounded-xl bg-background-aqua text-teal border border-border flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300 shadow-2xs">
                         {item.icon}
                       </div>
 
                       {item.tag && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F6F9EE] text-[#749220] border border-[#749220]/25 text-[11px] font-medium tracking-tight">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#749220]" />
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-background-aqua text-teal border border-border text-[11px] font-medium tracking-tight">
+                          <span className="w-1.5 h-1.5 rounded-full bg-teal" />
                           <span>{item.tag}</span>
                         </span>
                       )}
                     </div>
 
                     {/* Card Title */}
-                    <h3 className="text-[16px] sm:text-[17px] font-semibold text-gray-900 group-hover:text-[#165479] transition-colors leading-snug">
+                    <h3 className="text-[16px] sm:text-[17px] font-semibold text-primary group-hover:text-teal transition-colors leading-snug">
                       {item.title}
                     </h3>
 
                     {/* Card Description */}
-                    <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed mt-2 line-clamp-2">
+                    <p className="text-xs sm:text-[13px] text-slateText font-normal leading-relaxed mt-2 line-clamp-2">
                       {item.description}
                     </p>
-
-                    {/* Key Feature Bullets */}
-                    {/* <ul className="mt-4 pt-3.5 border-t border-slate-100/90 space-y-2">
-                      {item.features?.map((feat, fIdx) => (
-                        <li key={fIdx} className="flex items-center gap-2 text-[12px] text-gray-600 font-normal">
-                          <CheckCircleIcon className="w-3.5 h-3.5 text-[#749220] stroke-[2.2] shrink-0" />
-                          <span className="truncate">{feat}</span>
-                        </li>
-                      ))}
-                    </ul> */}
                   </div>
 
                   {/* Card Footer Action */}
-                  <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#165479] group-hover:text-[#749220] transition-colors">
+                  <div className="mt-5 pt-3.5 border-t border-border flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary group-hover:text-teal transition-colors">
                       <span>Start Filing</span>
                       <ArrowRightIcon className="w-3.5 h-3.5 stroke-[2.2] group-hover:translate-x-1 transition-transform" />
                     </span>
 
-                    <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-600">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium text-teal bg-background-aqua border border-border">
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal" />
                       <span>{item.complianceText}</span>
                     </span>
                   </div>

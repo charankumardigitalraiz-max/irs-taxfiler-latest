@@ -4,11 +4,11 @@ import { Loader2 } from 'lucide-react';
 
 const variants = {
   primary: 'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500',
-  secondary: 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 focus:ring-primary-500',
+  secondary: 'bg-white text-slateText border border-gray-300 hover:bg-gray-50 focus:ring-primary-500',
   success: 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500',
   danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
   warning: 'bg-yellow-500 text-white hover:bg-yellow-600 focus:ring-yellow-500',
-  ghost: 'text-gray-700 hover:bg-gray-100 focus:ring-gray-500',
+  ghost: 'text-slateText hover:bg-gray-100 focus:ring-gray-500',
 };
 
 const sizes = {

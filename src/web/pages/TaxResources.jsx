@@ -171,7 +171,7 @@ const TaxResources = () => {
         keywords={keywords}
       />
 
-      <div className="min-h-screen bg-white font-sans text-gray-900">
+      <div className="min-h-screen bg-white font-sans text-primary">
 
         {/* ========================================================================= */}
         {/* 1. HERO SECTION (CLEAN, AIRY & MINIMAL)                                   */}
@@ -184,10 +184,10 @@ const TaxResources = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.08 }}
-              className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-gray-900 tracking-tight leading-[1.25] mb-3.5"
+              className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.25] mb-3.5"
             >
               Essential Tax Resources &{' '}
-              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+              <span className="font-normal text-teal">
                 Official Forms
               </span>
             </motion.h1>
@@ -197,7 +197,7 @@ const TaxResources = () => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.12 }}
-              className="text-sm sm:text-base lg:text-[17px] text-gray-600 font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl mx-auto"
+              className="text-sm sm:text-base lg:text-[17px] text-slateText font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl mx-auto"
             >
               Verified IRS downloads, critical 2025–2026 filing dates, and standard deduction guidelines for taxpayers, expats, and small businesses.
             </motion.p>
@@ -207,20 +207,20 @@ const TaxResources = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.16 }}
-              className="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-500 font-normal"
+              className="flex flex-wrap items-center justify-center gap-4 text-xs text-slateText font-normal"
             >
-              <span className="inline-flex text-gray-600 font-normal items-center gap-1.5">
-                <CheckCircleIcon className="w-4 h-4 text-[#749220]" />
+              <span className="inline-flex text-slateText font-normal items-center gap-1.5">
+                <CheckCircleIcon className="w-4 h-4 text-teal" />
                 Direct IRS.gov Links
               </span>
-              <span className="text-gray-300">•</span>
-              <span className="inline-flex text-gray-600 font-normal items-center gap-1.5">
-                <CheckCircleIcon className="w-4 h-4 text-[#749220]" />
+              <span className="text-border">•</span>
+              <span className="inline-flex text-slateText font-normal items-center gap-1.5">
+                <CheckCircleIcon className="w-4 h-4 text-teal" />
                 Updated for 2025–2026
               </span>
-              <span className="text-gray-300">•</span>
-              <span className="inline-flex text-gray-600 font-normal items-center gap-1.5">
-                <CheckCircleIcon className="w-4 h-4 text-[#749220]" />
+              <span className="text-border">•</span>
+              <span className="inline-flex text-slateText font-normal items-center gap-1.5">
+                <CheckCircleIcon className="w-4 h-4 text-teal" />
                 CPA Reviewed
               </span>
             </motion.div>
@@ -229,19 +229,19 @@ const TaxResources = () => {
             <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5">
               <a
                 href="#forms"
-                className="px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium text-[#165479] bg-sky-50/80 hover:bg-sky-100/80 border border-sky-200/70 transition-colors"
+                className="px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium text-primary bg-sky-50/80 hover:bg-sky-100/80 border border-sky-200/70 transition-colors"
               >
                 Official Forms
               </a>
               <a
                 href="#deadlines"
-                className="px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium text-gray-700 bg-slate-50 hover:bg-slate-100 border border-slate-200/80 transition-colors"
+                className="px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium text-slateText bg-slate-50 hover:bg-slate-100 border border-slate-200/80 transition-colors"
               >
                 2026 Deadlines
               </a>
               <a
                 href="#deductions"
-                className="px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium text-gray-700 bg-slate-50 hover:bg-slate-100 border border-slate-200/80 transition-colors"
+                className="px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium text-slateText bg-slate-50 hover:bg-slate-100 border border-slate-200/80 transition-colors"
               >
                 Deductions & Credits
               </a>
@@ -258,13 +258,13 @@ const TaxResources = () => {
 
             {/* Section Header */}
             <div className="text-left mb-8 sm:mb-10">
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25]">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
                 Commonly Used Forms &{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Instructions
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2 max-w-2xl">
+              <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-2 max-w-2xl">
                 Official PDF downloads hosted directly by the IRS and FinCEN.
               </p>
             </div>
@@ -278,26 +278,26 @@ const TaxResources = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: idx * 0.04 }}
-                  className="group bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.07)] hover:border-[#165479]/30 transition-all duration-200 flex flex-col justify-between"
+                  className="group bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.07)] hover:border-[#1F4264]/30 transition-all duration-200 flex flex-col justify-between"
                 >
                   <div>
                     {/* Top Row: Form Code & Simple Category */}
                     <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="font-mono text-xs font-semibold text-[#165479] bg-sky-50/90 px-3 py-1 rounded-lg border border-sky-100">
+                      <span className="font-mono text-xs font-semibold text-primary bg-sky-50/90 px-3 py-1 rounded-lg border border-sky-100">
                         {item.code}
                       </span>
-                      <span className="text-xs font-medium text-[#749220]">
+                      <span className="text-xs font-medium text-teal">
                         {item.tag}
                       </span>
                     </div>
 
                     {/* Clear Form Title */}
-                    <h3 className="text-base sm:text-[17px] font-semibold text-gray-900 group-hover:text-[#165479] transition-colors leading-snug mb-2">
+                    <h3 className="text-base sm:text-[17px] font-semibold text-primary group-hover:text-primary transition-colors leading-snug mb-2">
                       {item.name}
                     </h3>
 
                     {/* Readable Summary */}
-                    <p className="text-sm text-gray-600 font-normal leading-relaxed mb-6">
+                    <p className="text-sm text-slateText font-normal leading-relaxed mb-6">
                       {item.summary}
                     </p>
                   </div>
@@ -308,7 +308,7 @@ const TaxResources = () => {
                       href={item.formUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-[#165479] hover:text-[#0A4973] transition-colors"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary transition-colors"
                       title="Open official PDF in new tab"
                     >
                       <span>Download PDF</span>
@@ -319,7 +319,7 @@ const TaxResources = () => {
                       href={item.instructionsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs sm:text-[13px] font-normal text-gray-500 hover:text-gray-900 transition-colors"
+                      className="inline-flex items-center gap-1 text-xs sm:text-[13px] font-normal text-slateText hover:text-primary transition-colors"
                       title="Open official instructions in new tab"
                     >
                       <span>Instructions</span>
@@ -341,13 +341,13 @@ const TaxResources = () => {
 
             {/* Section Header */}
             <div className="text-left mb-8 sm:mb-10">
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25]">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
                 Important Filing{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Deadlines
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2 max-w-2xl">
+              <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-2 max-w-2xl">
                 Key federal dates to keep your filing on track and avoid IRS late penalties.
               </p>
             </div>
@@ -366,19 +366,19 @@ const TaxResources = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: idx * 0.06 }}
                       className={`flex items-start gap-4 sm:gap-5 py-4 sm:py-5 px-3 sm:px-4 rounded-2xl transition-all ${item.highlight
-                        ? 'bg-[#F6F9EE]/80'
+                        ? 'bg-[#EFF9FB]/80'
                         : 'hover:bg-slate-50/80'
                         }`}
                     >
                       {/* Clean Calendar Date Tile */}
                       <div
                         className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex flex-col items-center justify-center shrink-0 border transition-all ${item.highlight
-                          ? 'bg-[#165479] border-[#165479] text-white shadow-sm'
-                          : 'bg-white border-slate-200/90 text-gray-900 shadow-2xs'
+                          ? 'bg-[#1F4264] border-[#1F4264] text-white shadow-sm'
+                          : 'bg-white border-slate-200/90 text-primary shadow-2xs'
                           }`}
                       >
                         <span
-                          className={`text-[11px] font-medium uppercase tracking-wider leading-none ${item.highlight ? 'text-[#CBF056]' : 'text-[#749220]'
+                          className={`text-[11px] font-medium uppercase tracking-wider leading-none ${item.highlight ? 'text-teal' : 'text-teal'
                             }`}
                         >
                           {item.month}
@@ -391,17 +391,17 @@ const TaxResources = () => {
                       {/* Readable Content */}
                       <div className="flex-1 min-w-0 pt-0.5">
                         <div className="flex flex-wrap items-center gap-2 mb-1">
-                          <h3 className="text-base font-semibold text-gray-900 leading-snug">
+                          <h3 className="text-base font-semibold text-primary leading-snug">
                             {item.title}
                           </h3>
                           {item.highlight && (
-                            <span className="text-[11px] font-medium text-[#165479] bg-white px-2.5 py-0.5 rounded-full border border-[#165479]/20">
+                            <span className="text-[11px] font-medium text-primary bg-white px-2.5 py-0.5 rounded-full border border-[#1F4264]/20">
                               {item.tag}
                             </span>
                           )}
                         </div>
 
-                        <p className="text-sm text-gray-600 font-normal leading-relaxed">
+                        <p className="text-sm text-slateText font-normal leading-relaxed">
                           {item.note}
                         </p>
                       </div>
@@ -429,8 +429,8 @@ const TaxResources = () => {
                   {/* Subtle Bottom Caption Pill */}
                   <div className="absolute bottom-3.5 left-3.5 right-3.5 bg-white/95 backdrop-blur-md rounded-xl p-3 shadow-md border border-gray-200/80 flex items-center justify-between z-10 select-none">
                     <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                      <span className="text-xs font-medium text-gray-900">
+                      <span className="w-2 h-2 rounded-full bg-background-aqua0 animate-pulse" />
+                      <span className="text-xs font-medium text-primary">
                         April 15 Primary Due Date
                       </span>
                     </div>
@@ -451,13 +451,13 @@ const TaxResources = () => {
 
             {/* Section Header */}
             <div className="text-left mb-8 sm:mb-10">
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25]">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
                 Common Tax Deductions &{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Credits
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2 max-w-2xl">
+              <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-2 max-w-2xl">
                 Maximize your tax savings by reviewing eligible federal deductions and credits.
               </p>
             </div>
@@ -473,14 +473,14 @@ const TaxResources = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: idx * 0.05 }}
-                    className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.06)] hover:border-[#165479]/30 transition-all duration-200 flex flex-col justify-start"
+                    className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.06)] hover:border-[#1F4264]/30 transition-all duration-200 flex flex-col justify-start"
                   >
                     {/* Clean Category Header */}
                     <div className="flex items-center gap-3 mb-4 pb-3 border-b border-slate-100">
-                      <div className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-center text-[#165479] shrink-0">
+                      <div className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-center text-primary shrink-0">
                         <IconComp className="w-5 h-5" />
                       </div>
-                      <h3 className="text-base font-semibold text-gray-900 leading-snug">
+                      <h3 className="text-base font-semibold text-primary leading-snug">
                         {col.category}
                       </h3>
                     </div>
@@ -490,9 +490,9 @@ const TaxResources = () => {
                       {col.items.map((point, pIdx) => (
                         <li
                           key={pIdx}
-                          className="flex items-start gap-2.5 text-sm text-gray-600 font-normal leading-relaxed"
+                          className="flex items-start gap-2.5 text-sm text-slateText font-normal leading-relaxed"
                         >
-                          <CheckCircleIcon className="w-4 h-4 text-[#749220] shrink-0 mt-0.5" />
+                          <CheckCircleIcon className="w-4 h-4 text-teal shrink-0 mt-0.5" />
                           <span>{point}</span>
                         </li>
                       ))}
@@ -513,18 +513,18 @@ const TaxResources = () => {
 
             <div className="rounded-2xl p-8 sm:p-10 bg-slate-50 border border-slate-200/90 shadow-2xs">
 
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-normal text-gray-900 tracking-tight mb-2.5">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-normal text-primary tracking-tight mb-2.5">
                 Need Help Selecting Forms or Maximizing Deductions?
               </h2>
 
-              <p className="text-xs sm:text-sm text-gray-600 font-normal max-w-lg mx-auto mb-6 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slateText font-normal max-w-lg mx-auto mb-6 leading-relaxed">
                 Our licensed CPAs review every return to ensure 100% IRS accuracy, audit protection, and your maximum legal refund.
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <Link
                   to="/login"
-                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-5 rounded-xl bg-[#165479] hover:bg-[#0A4973] text-white font-medium text-xs sm:text-sm shadow-sm transition-all"
+                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-5 rounded-xl bg-[#1F4264] hover:bg-[#1F4264] text-white font-medium text-xs sm:text-sm shadow-sm transition-all"
                 >
                   <span>Start Filing Online</span>
                   <ArrowRightIcon className="w-3.5 h-3.5" />
@@ -532,25 +532,25 @@ const TaxResources = () => {
 
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-5 rounded-xl bg-white hover:bg-slate-50 text-gray-800 font-medium text-xs sm:text-sm border border-slate-300 shadow-2xs transition-all"
+                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-5 rounded-xl bg-white hover:bg-slate-50 text-primary font-medium text-xs sm:text-sm border border-slate-300 shadow-2xs transition-all"
                 >
                   <span>Talk to a CPA</span>
                 </Link>
               </div>
 
-              <div className="mt-6 pt-5 border-t border-slate-200/60 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-[11px] text-gray-500 font-normal">
+              <div className="mt-6 pt-5 border-t border-slate-200/60 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-[11px] text-slateText font-normal">
                 <span className="flex items-center gap-1">
-                  <CheckBadgeIcon className="w-3.5 h-3.5 text-[#749220]" />
+                  <CheckBadgeIcon className="w-3.5 h-3.5 text-teal" />
                   IRS Authorized e-File
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
-                  <CheckCircleIcon className="w-3.5 h-3.5 text-[#749220]" />
+                  <CheckCircleIcon className="w-3.5 h-3.5 text-teal" />
                   All 50 States
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
-                  <ShieldCheckIcon className="w-3.5 h-3.5 text-[#749220]" />
+                  <ShieldCheckIcon className="w-3.5 h-3.5 text-teal" />
                   100% Accuracy Guarantee
                 </span>
               </div>

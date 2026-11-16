@@ -127,16 +127,16 @@ export default function UserLogin() {
           transition={{ duration: 0.6 }}
           className="w-full max-w-md"
         >
-          <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 border border-gray-100 overflow-hidden relative">
+          <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 border border-border overflow-hidden relative">
             {/* Decorative Background Elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#2B547E]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#EB4149]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-coral/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
 
             <div className="relative z-10">
               {/* BACK BUTTON */}
               <Link
                 to="/"
-                className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-[#2B547E] transition-colors mb-6 group"
+                className="inline-flex items-center gap-2 text-sm text-slateText hover:text-primary transition-colors mb-6 group"
               >
                 <ArrowLeftIcon className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                 <span>Back to Home</span>
@@ -165,7 +165,7 @@ export default function UserLogin() {
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                       >
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl flex items-center justify-center shadow-lg border-2 border-gray-100">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-background-aqua rounded-2xl flex items-center justify-center shadow-md border border-border">
                           <img
                             src={Logo}
                             alt="Logo"
@@ -178,7 +178,7 @@ export default function UserLogin() {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 0.3 }}
-                          className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2"
+                          className="text-2xl sm:text-3xl font-normal text-primary mb-2"
                         >
                           Welcome Back
                         </motion.h2>
@@ -186,7 +186,7 @@ export default function UserLogin() {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 0.4 }}
-                          className="text-sm sm:text-base text-gray-600"
+                          className="text-sm sm:text-base text-slateText"
                         >
                           Sign in to your account to continue
                         </motion.p>
@@ -223,13 +223,13 @@ export default function UserLogin() {
                     {/* Remember Me + Forgot Password */}
                     <div className="flex justify-between items-center">
                       {/* Remember Me Checkbox */}
-                      <label className="flex items-center gap-2 text-xs text-gray-700 cursor-pointer">
+                      <label className="flex items-center gap-2 text-xs text-slateText cursor-pointer">
                         <input
                           type="checkbox"
                           name="rememberMe"
                           checked={formik.values.rememberMe}
                           onChange={formik.handleChange}
-                          className="w-4 h-4 accent-[#2B547E] border-gray-300 rounded focus:ring-2 focus:ring-[#2B547E] cursor-pointer"
+                          className="w-4 h-4 accent-primary border-border rounded focus:ring-2 focus:ring-teal cursor-pointer"
                         />
                         Remember me
                       </label>
@@ -237,7 +237,7 @@ export default function UserLogin() {
                       {/* Forgot Password */}
                       <Link
                         to="/forgot-password"
-                        className="text-xs text-[#2B547E] font-semibold hover:underline transition-colors"
+                        className="text-xs text-teal font-semibold hover:underline transition-colors"
                       >
                         Forgot Password?
                       </Link>
@@ -251,13 +251,12 @@ export default function UserLogin() {
                       disabled={loading}
                       className="
                       w-full py-3 flex justify-center items-center gap-2
-                      bg-gradient-to-r from-[#2B547E] to-[#1E3A5F]
-                      hover:from-[#1E3A5F] hover:to-[#2B547E]
-                      text-white font-semibold text-sm rounded-lg
-                      shadow-lg hover:shadow-xl
+                      bg-primary hover:bg-primary-dark
+                      text-white font-semibold text-sm rounded-xl
+                      shadow-md hover:shadow-lg
                       transition-all duration-200
                       disabled:opacity-50 disabled:cursor-not-allowed
-                      disabled:hover:scale-100
+                      disabled:hover:scale-100 cursor-pointer
                     "
                     >
                       {loading ? (
@@ -293,12 +292,12 @@ export default function UserLogin() {
                     </motion.button>
 
                     {/* FOOTER */}
-                    <div className="mt-6 pt-6 border-t border-gray-200 text-center">
-                      <p className="text-sm text-gray-600">
+                    <div className="mt-6 pt-6 border-t border-border text-center">
+                      <p className="text-sm text-slateText">
                         Don't have an account?{" "}
                         <Link
                           to="/register"
-                          className="text-[#2B547E] font-semibold hover:underline transition-colors"
+                          className="text-teal font-semibold hover:underline transition-colors"
                         >
                           Create Account
                         </Link>
@@ -319,7 +318,7 @@ export default function UserLogin() {
 
 const Input = ({ label, type = "text", value, onChange, error }) => (
   <div>
-    <label className="text-sm font-medium block mb-1 text-gray-700">
+    <label className="text-sm font-medium block mb-1 text-primary">
       {label}
     </label>
 
@@ -328,12 +327,12 @@ const Input = ({ label, type = "text", value, onChange, error }) => (
       value={value}
       onChange={onChange}
       className={`
-        w-full px-2 py-2 border rounded-xl
-        focus:ring-2 focus:ring-[#540863] outline-none
-        ${error ? "border-red-500" : "border-gray-200"}
+        w-full px-3 py-2 border rounded-xl
+        focus:ring-2 focus:ring-teal outline-none
+        ${error ? "border-coral text-coral" : "border-border text-primary"}
       `}
     />
 
-    {error && <p className="text-xs mt-1 text-red-500">{error}</p>}
+    {error && <p className="text-xs mt-1 text-coral">{error}</p>}
   </div>
 );

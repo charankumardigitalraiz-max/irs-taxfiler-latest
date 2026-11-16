@@ -29,13 +29,13 @@ const CardHeader = ({ children, className }) => (
 );
 
 const CardTitle = ({ children, className }) => (
-  <h3 className={clsx('text-base font-semibold text-gray-900', className)}>
+  <h3 className={clsx('text-base font-semibold text-primary', className)}>
     {children}
   </h3>
 );
 
 const CardDescription = ({ children, className }) => (
-  <p className={clsx('mt-0.5 text-xs text-gray-500', className)}>
+  <p className={clsx('mt-0.5 text-xs text-slateText', className)}>
     {children}
   </p>
 );

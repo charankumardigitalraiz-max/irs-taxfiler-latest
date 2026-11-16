@@ -51,9 +51,9 @@ const TaxRefund = () => {
       title: 'Amended Tax Returns',
       description: 'File or track amended tax returns (1040-X)',
       icon: DocumentTextIcon,
-      color: 'bg-purple-500',
-      bgColor: 'bg-purple-50',
-      borderColor: 'border-purple-200',
+      color: 'bg-teal',
+      bgColor: 'bg-background-aqua',
+      borderColor: 'border-border',
       features: [
         'File amended return',
         'Track amendment status',
@@ -103,7 +103,7 @@ const TaxRefund = () => {
       case 'completed':
         return 'bg-teal-100 text-teal-700';
       default:
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-gray-100 text-slateText';
     }
   };
 
@@ -123,8 +123,8 @@ const TaxRefund = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Tax Refund</h1>
-        <p className="text-gray-600">
+        <h1 className="text-2xl font-bold text-primary mb-2">Tax Refund</h1>
+        <p className="text-slateText">
           Track your tax refunds, view state and federal tax information, and manage amended returns.
         </p>
       </div>
@@ -154,11 +154,11 @@ const TaxRefund = () => {
                   </span>
                 )}
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{type.title}</h3>
-              <p className="text-sm text-gray-600 mb-4">{type.description}</p>
+              <h3 className="text-lg font-semibold text-primary mb-2">{type.title}</h3>
+              <p className="text-sm text-slateText mb-4">{type.description}</p>
               <ul className="space-y-2 mb-4">
                 {type.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center text-xs text-gray-600">
+                  <li key={idx} className="flex items-center text-xs text-slateText">
                     <CheckCircleIcon className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
                     {feature}
                   </li>
@@ -188,8 +188,8 @@ const TaxRefund = () => {
               <CurrencyDollarIcon className="h-6 w-6 text-primary-blue" />
             </div>
             <div>
-              <h2 className="text-xl font-semibold text-gray-900">Refund History</h2>
-              <p className="text-sm text-gray-500">Track your tax refund status</p>
+              <h2 className="text-xl font-semibold text-primary">Refund History</h2>
+              <p className="text-sm text-slateText">Track your tax refund status</p>
             </div>
           </div>
         </div>
@@ -206,7 +206,7 @@ const TaxRefund = () => {
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
                       <div className="flex items-center space-x-3 mb-2">
-                        <h3 className="text-lg font-semibold text-gray-900">
+                        <h3 className="text-lg font-semibold text-primary">
                           {refund.type} Tax Refund - {refund.taxYear}
                         </h3>
                         <span className={`px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1 ${getStatusColor(refund.status)}`}>
@@ -216,22 +216,22 @@ const TaxRefund = () => {
                       </div>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                         <div>
-                          <p className="text-gray-500 mb-1">Refund Amount</p>
-                          <p className="font-semibold text-gray-900 text-lg">{refund.refundAmount}</p>
+                          <p className="text-slateText mb-1">Refund Amount</p>
+                          <p className="font-semibold text-primary text-lg">{refund.refundAmount}</p>
                         </div>
                         <div>
-                          <p className="text-gray-500 mb-1">Filed Date</p>
-                          <p className="font-medium text-gray-900">{refund.filedDate}</p>
+                          <p className="text-slateText mb-1">Filed Date</p>
+                          <p className="font-medium text-primary">{refund.filedDate}</p>
                         </div>
                         {refund.status === 'completed' && refund.receivedDate ? (
                           <div>
-                            <p className="text-gray-500 mb-1">Received Date</p>
+                            <p className="text-slateText mb-1">Received Date</p>
                             <p className="font-medium text-teal-600">{refund.receivedDate}</p>
                           </div>
                         ) : (
                           <div>
-                            <p className="text-gray-500 mb-1">Estimated Date</p>
-                            <p className="font-medium text-gray-900">{refund.estimatedDate}</p>
+                            <p className="text-slateText mb-1">Estimated Date</p>
+                            <p className="font-medium text-primary">{refund.estimatedDate}</p>
                           </div>
                         )}
                         <div>
@@ -248,9 +248,9 @@ const TaxRefund = () => {
           </div>
         ) : (
           <div className="text-center py-12">
-            <CurrencyDollarIcon className="mx-auto h-12 w-12 text-gray-300 mb-4" />
-            <p className="text-gray-600 mb-2">No refund history available</p>
-            <p className="text-sm text-gray-400">
+            <CurrencyDollarIcon className="mx-auto h-12 w-12 text-border mb-4" />
+            <p className="text-slateText mb-2">No refund history available</p>
+            <p className="text-sm text-slateText/70">
               Your tax refund information will appear here once filing is complete.
             </p>
           </div>
@@ -265,8 +265,8 @@ const TaxRefund = () => {
           transition={{ delay: 0.5 }}
           className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg border border-blue-200 p-6"
         >
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">IRS Where's My Refund?</h3>
-          <p className="text-sm text-gray-600 mb-4">
+          <h3 className="text-lg font-semibold text-primary mb-2">IRS Where's My Refund?</h3>
+          <p className="text-sm text-slateText mb-4">
             Check the status of your federal tax refund directly with the IRS.
           </p>
           <button className="px-4 py-2 bg-primary-blue text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors flex items-center space-x-2">
@@ -279,13 +279,13 @@ const TaxRefund = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg border border-purple-200 p-6"
+          className="bg-gradient-to-br from-background-aqua to-background-blue rounded-lg border border-border p-6"
         >
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">File Amended Return</h3>
-          <p className="text-sm text-gray-600 mb-4">
+          <h3 className="text-lg font-semibold text-primary mb-2">File Amended Return</h3>
+          <p className="text-sm text-slateText mb-4">
             Need to correct your tax return? File an amended return (1040-X) here.
           </p>
-          <button className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors flex items-center space-x-2">
+          <button className="px-4 py-2 bg-teal text-white rounded-lg text-sm font-medium hover:bg-teal-soft transition-colors flex items-center space-x-2">
             <span>Start Amendment</span>
             <ArrowRightIcon className="h-4 w-4" />
           </button>

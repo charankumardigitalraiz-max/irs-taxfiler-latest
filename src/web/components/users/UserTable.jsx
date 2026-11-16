@@ -22,8 +22,8 @@ const UserTable = ({ users, isLoading, pagination }) => {
             </span>
           </div>
           <div>
-            <p className="font-medium text-gray-900">{value}</p>
-            <p className="text-sm text-gray-500">{row.email}</p>
+            <p className="font-medium text-primary">{value}</p>
+            <p className="text-sm text-slateText">{row.email}</p>
           </div>
         </div>
       ),
@@ -32,7 +32,7 @@ const UserTable = ({ users, isLoading, pagination }) => {
       key: 'phone',
       header: 'Phone',
       render: (value) => (
-        <span className="text-gray-600">{value || '-'}</span>
+        <span className="text-slateText">{value || '-'}</span>
       ),
     },
     {
@@ -48,7 +48,7 @@ const UserTable = ({ users, isLoading, pagination }) => {
         return (
           <div className="w-32">
             <ProgressBar value={progress} size="sm" />
-            <p className="mt-1 text-xs text-gray-500">{progress}%</p>
+            <p className="mt-1 text-xs text-slateText">{progress}%</p>
           </div>
         );
       },
@@ -57,7 +57,7 @@ const UserTable = ({ users, isLoading, pagination }) => {
       key: 'assignedStaff',
       header: 'Assigned To',
       render: (value) => (
-        <span className="text-gray-600">
+        <span className="text-slateText">
           {value?.fullName || 'Unassigned'}
         </span>
       ),
@@ -66,7 +66,7 @@ const UserTable = ({ users, isLoading, pagination }) => {
       key: 'createdAt',
       header: 'Registered',
       render: (value) => (
-        <span className="text-gray-600">
+        <span className="text-slateText">
           {format(new Date(value), 'MMM d, yyyy')}
         </span>
       ),

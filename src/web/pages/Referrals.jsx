@@ -43,11 +43,11 @@ const Referrals = () => {
   const [loadingReferral, setLoadingReferral] = useState(false);
 
   const labelClass =
-    "block text-xs font-semibold text-gray-800 mb-1.5 whitespace-nowrap";
+    "block text-xs font-semibold text-primary mb-1.5 whitespace-nowrap";
   const getInputClass = (hasError = false) =>
-    `w-full h-10 sm:h-11 px-3.5 text-[13px] sm:text-sm text-gray-900 bg-white rounded-lg border shadow-sm placeholder:text-slate-400 focus:outline-none transition-all duration-150 ${hasError
+    `w-full h-10 sm:h-11 px-3.5 text-[13px] sm:text-sm text-primary bg-white rounded-lg border shadow-sm placeholder:text-slateText focus:outline-none transition-all duration-150 ${hasError
       ? "border-rose-400 hover:border-rose-500 focus:border-rose-500 focus:ring-2 focus:ring-rose-500/15"
-      : "border-slate-300 hover:border-slate-400 focus:border-[#165479] focus:ring-2 focus:ring-[#165479]/15"
+      : "border-slate-300 hover:border-slate-400 focus:border-[#1F4264] focus:ring-2 focus:ring-[#1F4264]/15"
     }`;
 
   // Load referral code when user is logged in
@@ -288,7 +288,7 @@ ${yourName || 'Your Friend'}`;
         keywords={keywords}
       />
 
-      <div className="min-h-screen bg-white font-sans text-gray-900 antialiased">
+      <div className="min-h-screen bg-white font-sans text-primary antialiased">
 
         {/* ========================================================================= */}
         {/* 1. HERO & REFERRAL INVITATION WORKSPACE                                   */}
@@ -302,9 +302,9 @@ ${yourName || 'Your Friend'}`;
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35 }}
-                className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6F9EE] border border-[#749220]/30 shadow-2xs mb-4 text-xs font-medium text-[#749220]"
+                className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#EFF9FB] border border-[#127EAB]/30 shadow-2xs mb-4 text-xs font-medium text-teal"
               >
-                <span className="w-2 h-2 rounded-full bg-[#749220]" />
+                <span className="w-2 h-2 rounded-full bg-[#127EAB]" />
                 <span>Refer Friends • Earn US$ 15 Credit Each</span>
               </motion.div>
 
@@ -312,10 +312,10 @@ ${yourName || 'Your Friend'}`;
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.06 }}
-                className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-gray-900 tracking-tight leading-[1.2] mb-3.5"
+                className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.2] mb-3.5"
               >
                 Refer & Earn with{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   IRS Tax Filer
                 </span>
               </motion.h1>
@@ -324,11 +324,11 @@ ${yourName || 'Your Friend'}`;
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="text-sm sm:text-base lg:text-[17px] text-gray-600 font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl mx-auto"
+                className="text-sm sm:text-base lg:text-[17px] text-slateText font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl mx-auto"
               >
                 Invite friends and colleagues to file with our licensed CPAs. They receive{" "}
-                <span className="font-medium text-gray-900">US$ 5 off</span> their first return, and you earn{" "}
-                <span className="font-medium text-gray-900">US$ 15 credit</span> when they file.
+                <span className="font-medium text-primary">US$ 5 off</span> their first return, and you earn{" "}
+                <span className="font-medium text-primary">US$ 15 credit</span> when they file.
               </motion.p>
             </div>
 
@@ -346,14 +346,14 @@ ${yourName || 'Your Friend'}`;
                   {/* Card Header */}
                   <div className="flex flex-wrap items-center justify-between gap-4 pb-5 mb-6 border-b border-slate-100">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-[#F6F9EE] border border-[#749220]/25 flex items-center justify-center text-[#749220] shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-background-aqua border border-border text-teal flex items-center justify-center text-teal shrink-0">
                         <UserPlusIcon className="w-5 h-5" />
                       </div>
                       <div>
-                        <h2 className="text-base sm:text-lg font-semibold text-gray-900 leading-snug">
+                        <h2 className="text-base sm:text-lg font-normal text-primary leading-snug">
                           Invite a Friend
                         </h2>
-                        <p className="text-xs sm:text-sm text-gray-500">
+                        <p className="text-xs sm:text-sm text-slateText">
                           Enter your details and the friends you'd like to invite.
                         </p>
                       </div>
@@ -362,7 +362,7 @@ ${yourName || 'Your Friend'}`;
                     {!isLoggedIn && (
                       <Link
                         to="/login"
-                        className="inline-flex items-center gap-1.5 text-xs font-medium text-[#165479] hover:text-[#0A4973] bg-sky-50/80 px-3 py-1.5 rounded-full border border-sky-200/70 transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary bg-sky-50/80 px-3 py-1.5 rounded-full border border-sky-200/70 transition-colors"
                       >
                         <span>Sign in for your personal link</span>
                         <ArrowRightIcon className="w-3.5 h-3.5" />
@@ -377,7 +377,7 @@ ${yourName || 'Your Friend'}`;
                     </div>
                   )}
                   {submitSuccess && (
-                    <div className="mb-5 px-4 py-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700 text-xs sm:text-sm flex items-center gap-2">
+                    <div className="mb-5 px-4 py-3 bg-background-aqua border border-border rounded-xl text-teal text-xs sm:text-sm flex items-center gap-2">
                       <CheckCircleIcon className="w-4 h-4 shrink-0" />
                       <span>Referral invitation submitted successfully! We'll process it shortly.</span>
                     </div>
@@ -429,13 +429,13 @@ ${yourName || 'Your Friend'}`;
 
                     {/* Friends Section Header */}
                     <div className="flex items-center justify-between pt-5 border-t border-slate-100">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-slateText">
                         Friends to Invite ({friends.length})
                       </span>
                       <button
                         type="button"
                         onClick={addFriend}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-[#165479] bg-sky-50 hover:bg-sky-100 border border-sky-200/80 transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-primary bg-sky-50 hover:bg-sky-100 border border-sky-200/80 transition-colors cursor-pointer"
                       >
                         <PlusIcon className="w-3.5 h-3.5 stroke-[2.2]" />
                         <span>Add Friend</span>
@@ -451,14 +451,14 @@ ${yourName || 'Your Friend'}`;
                         >
                           {friends.length > 1 && (
                             <div className="flex items-center justify-between mb-2.5">
-                              <span className="text-[11px] font-semibold uppercase tracking-wider text-[#165479]">
+                              <span className="text-[11px] font-semibold uppercase tracking-wider text-primary">
                                 Friend #{index + 1}
                               </span>
                               <button
                                 type="button"
                                 onClick={() => removeFriend(friend.id)}
                                 title="Remove friend"
-                                className="inline-flex items-center gap-1 text-[11px] font-medium text-gray-400 hover:text-rose-600 transition-colors cursor-pointer"
+                                className="inline-flex items-center gap-1 text-[11px] font-medium text-slateText hover:text-rose-600 transition-colors cursor-pointer"
                               >
                                 <TrashIcon className="w-3.5 h-3.5" />
                                 <span>Remove</span>
@@ -512,7 +512,7 @@ ${yourName || 'Your Friend'}`;
                             <div>
                               <label htmlFor={`friend-phone-${friend.id}`} className={labelClass}>
                                 Phone{" "}
-                                <span className="text-[11px] font-normal text-gray-400">
+                                <span className="text-[11px] font-normal text-slateText">
                                   (Optional)
                                 </span>
                               </label>
@@ -538,7 +538,7 @@ ${yourName || 'Your Friend'}`;
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full h-11 sm:h-12 px-6 rounded-lg bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] text-white font-medium text-sm sm:text-[15px] shadow-sm border border-white/20 transition-all duration-200 inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer group"
+                      className="w-full h-11 sm:h-12 px-6 rounded-lg bg-gradient-to-r from-[#1F4264] via-[#1F4264] to-[#127EAB] hover:from-[#1E4162] hover:via-[#1F4264] hover:to-[#1F4264] text-white font-medium text-sm sm:text-[15px] shadow-sm border border-white/20 transition-all duration-200 inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer group"
                     >
                       <span>
                         {loading
@@ -554,18 +554,18 @@ ${yourName || 'Your Friend'}`;
               </div>
 
               {/* Right Side: Animated Contact & Referral Illustrator */}
-              <div className="lg:col-span-5 bg-gradient-to-br from-[#DFEBC2] via-[#E2EEF7] to-[#C3DCED] border-t lg:border-t-0 lg:border-l border-[#165479]/15 p-6 sm:p-8 flex flex-col justify-between items-center text-center relative overflow-hidden">
+              <div className="lg:col-span-5 bg-gradient-to-br from-[#E9F7FA] via-[#EFF9FB] to-[#CCDCE1] border-t lg:border-t-0 lg:border-l border-[#1F4264]/15 p-6 sm:p-8 flex flex-col justify-between items-center text-center relative overflow-hidden">
                 {/* Ambient Background Glows */}
-                <div className="absolute -top-12 -right-12 w-52 h-52 bg-[#749220]/30 rounded-full blur-3xl pointer-events-none" />
-                <div className="absolute -bottom-12 -left-12 w-52 h-52 bg-[#165479]/25 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -top-12 -right-12 w-52 h-52 bg-[#127EAB]/30 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-12 -left-12 w-52 h-52 bg-[#1F4264]/25 rounded-full blur-3xl pointer-events-none" />
 
                 {/* Top Status Bar */}
                 <div className="relative z-10 w-full flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A4973] bg-white/95 px-3 py-1 rounded-full border border-[#165479]/15 shadow-sm">
-                    <SparklesIcon className="w-3.5 h-3.5 text-[#749220]" />
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary bg-white/95 px-3 py-1 rounded-full border border-[#1F4264]/15 shadow-sm">
+                    <SparklesIcon className="w-3.5 h-3.5 text-teal" />
                     <span>Quick Contact & Invite</span>
                   </span>
-                  <span className="text-xs font-semibold text-[#0A4973]">
+                  <span className="text-xs font-semibold text-primary">
                     Instant Rewards
                   </span>
                 </div>
@@ -590,20 +590,20 @@ ${yourName || 'Your Friend'}`;
 
                   {/* Logged-in Controls OR Guest Summary */}
                   {isLoggedIn ? (
-                    <div className="w-full mt-5 pt-4 border-t border-[#165479]/15 space-y-3 text-left">
+                    <div className="w-full mt-5 pt-4 border-t border-[#1F4264]/15 space-y-3 text-left">
                       <div>
-                        <label className="block text-xs font-semibold text-gray-800 mb-1">
+                        <label className="block text-xs font-semibold text-primary mb-1">
                           Your Referral Code
                         </label>
                         <div className="flex items-center gap-2">
-                          <div className="flex-1 bg-white rounded-lg px-3 py-2 text-sm font-mono font-bold tracking-wider text-center text-[#0A4973] border border-slate-300/90 shadow-sm">
+                          <div className="flex-1 bg-white rounded-lg px-3 py-2 text-sm font-mono font-bold tracking-wider text-center text-primary border border-slate-300/90 shadow-sm">
                             {loadingReferral ? 'Loading...' : (referralCode || 'N/A')}
                           </div>
                           <button
                             type="button"
                             onClick={handleCopyCode}
                             disabled={!referralCode || loadingReferral}
-                            className="h-9 px-3 rounded-lg bg-[#165479] hover:bg-[#0A4973] text-white text-xs font-medium shadow-sm transition-colors flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shrink-0"
+                            className="h-9 px-3 rounded-lg bg-[#1F4264] hover:bg-[#1F4264] text-white text-xs font-medium shadow-sm transition-colors flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shrink-0"
                           >
                             <ClipboardDocumentCheckIcon className="w-3.5 h-3.5" />
                             <span>{copied ? "Copied!" : "Copy"}</span>
@@ -612,7 +612,7 @@ ${yourName || 'Your Friend'}`;
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold text-gray-800 mb-1">
+                        <label className="block text-xs font-semibold text-primary mb-1">
                           Direct Share Link
                         </label>
                         <div className="flex items-center gap-2">
@@ -620,13 +620,13 @@ ${yourName || 'Your Friend'}`;
                             type="text"
                             value={getReferralLink()}
                             readOnly
-                            className="flex-1 h-9 px-3 bg-white rounded-lg text-xs text-gray-700 border border-slate-300/90 shadow-sm focus:outline-none truncate"
+                            className="flex-1 h-9 px-3 bg-white rounded-lg text-xs text-slateText border border-slate-300/90 shadow-sm focus:outline-none truncate"
                           />
                           <button
                             type="button"
                             onClick={handleCopyLink}
                             disabled={!referralCode || loadingReferral}
-                            className="h-9 px-3 rounded-lg bg-white hover:bg-slate-50 border border-slate-300/90 shadow-sm text-[#0A4973] text-xs font-medium transition-colors flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shrink-0"
+                            className="h-9 px-3 rounded-lg bg-white hover:bg-slate-50 border border-slate-300/90 shadow-sm text-primary text-xs font-medium transition-colors flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shrink-0"
                           >
                             <LinkIcon className="w-3.5 h-3.5" />
                             <span>{copiedLink ? "Copied" : "Link"}</span>
@@ -638,21 +638,21 @@ ${yourName || 'Your Friend'}`;
                         type="button"
                         onClick={handleShareEmail}
                         disabled={!referralCode || loadingReferral}
-                        className="w-full h-9 px-4 rounded-lg bg-white hover:bg-slate-50 border border-slate-300/90 shadow-sm text-gray-800 text-xs font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                        className="w-full h-9 px-4 rounded-lg bg-white hover:bg-slate-50 border border-slate-300/90 shadow-sm text-primary text-xs font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                       >
-                        <EnvelopeIcon className="w-4 h-4 text-[#165479]" />
+                        <EnvelopeIcon className="w-4 h-4 text-primary" />
                         <span>Share via Email</span>
                       </button>
                     </div>
                   ) : (
                     <div className="mt-5 max-w-[280px]">
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 leading-snug">
+                      <h3 className="text-base sm:text-lg font-semibold text-primary leading-snug">
                         Connect, Share &{" "}
-                        <span className="bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                        <span className="font-semibold text-teal">
                           Save Together
                         </span>
                       </h3>
-                      <p className="text-xs sm:text-sm text-gray-700 font-normal mt-1.5 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-slateText font-normal mt-1.5 leading-relaxed">
                         Send a quick invitation and our team contacts your friends with your referral savings attached.
                       </p>
                     </div>
@@ -660,13 +660,13 @@ ${yourName || 'Your Friend'}`;
                 </div>
 
                 {/* Bottom Trust Bar */}
-                {/* <div className="relative z-10 w-full pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs text-gray-600">
+                {/* <div className="relative z-10 w-full pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs text-slateText">
                   <span className="flex items-center gap-1.5 font-medium">
-                    <CheckCircleIcon className="w-4 h-4 text-[#749220]" />
+                    <CheckCircleIcon className="w-4 h-4 text-teal" />
                     <span>US$ 15 Your Credit</span>
                   </span>
                   <span className="flex items-center gap-1.5 font-medium">
-                    <TagIcon className="w-4 h-4 text-[#165479]" />
+                    <TagIcon className="w-4 h-4 text-primary" />
                     <span>US$ 5 Friend Off</span>
                   </span>
                 </div> */}
@@ -683,13 +683,13 @@ ${yourName || 'Your Friend'}`;
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <div className="text-left mb-8 sm:mb-10">
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25]">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
                 Rewards for{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Both
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2 max-w-2xl">
+              <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-2 max-w-2xl">
                 Every referral unlocks meaningful savings for you and your friend.
               </p>
             </div>
@@ -704,15 +704,15 @@ ${yourName || 'Your Friend'}`;
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.06)] hover:border-[#165479]/30 transition-all duration-200"
+                    className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.06)] hover:border-[#1F4264]/30 transition-all duration-200"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-center text-[#165479] mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-center text-primary mb-4">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="text-base sm:text-[17px] font-semibold text-gray-900 mb-2 leading-snug">
+                    <h3 className="text-base sm:text-[17px] font-semibold text-primary mb-2 leading-snug">
                       {benefit.title}
                     </h3>
-                    <p className="text-sm text-gray-600 font-normal leading-relaxed">
+                    <p className="text-sm text-slateText font-normal leading-relaxed">
                       {benefit.description}
                     </p>
                   </motion.div>
@@ -730,13 +730,13 @@ ${yourName || 'Your Friend'}`;
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <div className="text-left mb-8 sm:mb-10">
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25]">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
                 How It{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Works
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 font-normal leading-relaxed mt-2 max-w-2xl">
+              <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-2 max-w-2xl">
                 Four simple steps to invite friends and earn unlimited tax filing credits.
               </p>
             </div>
@@ -749,15 +749,15 @@ ${yourName || 'Your Friend'}`;
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: idx * 0.05 }}
-                  className="bg-slate-50/70 rounded-2xl p-6 border border-slate-200/80 hover:bg-white hover:shadow-[0_10px_24px_rgba(22,84,121,0.06)] hover:border-[#165479]/30 transition-all duration-200"
+                  className="bg-slate-50/70 rounded-2xl p-6 border border-slate-200/80 hover:bg-white hover:shadow-[0_10px_24px_rgba(22,84,121,0.06)] hover:border-[#1F4264]/30 transition-all duration-200"
                 >
-                  <span className="inline-flex items-center justify-center px-2.5 py-1 rounded-lg bg-sky-50 border border-sky-100 text-xs font-mono font-semibold text-[#165479] mb-4">
+                  <span className="inline-flex items-center justify-center px-2.5 py-1 rounded-lg bg-sky-50 border border-sky-100 text-xs font-mono font-semibold text-primary mb-4">
                     Step {item.step}
                   </span>
-                  <h3 className="text-base font-semibold text-gray-900 mb-2 leading-snug">
+                  <h3 className="text-base font-semibold text-primary mb-2 leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-gray-600 font-normal leading-relaxed">
+                  <p className="text-sm text-slateText font-normal leading-relaxed">
                     {item.description}
                   </p>
                 </motion.div>
@@ -774,21 +774,21 @@ ${yourName || 'Your Friend'}`;
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
             <div className="rounded-2xl p-8 sm:p-10 bg-white border border-slate-200/90 shadow-2xs">
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-normal text-gray-900 tracking-tight mb-2.5">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-normal text-primary tracking-tight mb-2.5">
                 Ready to Start{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Earning Rewards?
                 </span>
               </h2>
 
-              <p className="text-sm sm:text-base text-gray-600 font-normal max-w-lg mx-auto mb-6 leading-relaxed">
+              <p className="text-sm sm:text-base text-slateText font-normal max-w-lg mx-auto mb-6 leading-relaxed">
                 Share your referral code today and help friends file stress-free while unlocking credits for yourself.
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <Link
                   to={isLoggedIn ? "/client/referrals" : "/login"}
-                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-5 rounded-xl bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] text-white font-medium text-xs sm:text-sm shadow-sm transition-all"
+                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-5 rounded-xl bg-gradient-to-r from-[#1F4264] via-[#1F4264] to-[#127EAB] hover:from-[#1E4162] hover:via-[#1F4264] hover:to-[#1F4264] text-white font-medium text-xs sm:text-sm shadow-sm transition-all"
                 >
                   <span>{isLoggedIn ? "Manage My Referrals" : "Sign In & Get Code"}</span>
                   <ArrowRightIcon className="w-3.5 h-3.5" />
@@ -796,25 +796,25 @@ ${yourName || 'Your Friend'}`;
 
                 <Link
                   to="/pricing"
-                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-5 rounded-xl bg-white hover:bg-slate-50 text-gray-800 font-medium text-xs sm:text-sm border border-slate-300 shadow-2xs transition-all"
+                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-5 rounded-xl bg-white hover:bg-slate-50 text-primary font-medium text-xs sm:text-sm border border-slate-300 shadow-2xs transition-all"
                 >
                   <span>View Pricing</span>
                 </Link>
               </div>
 
-              <div className="mt-6 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-[11px] sm:text-xs text-gray-500 font-normal">
+              <div className="mt-6 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-[11px] sm:text-xs text-slateText font-normal">
                 <span className="flex items-center gap-1.5">
-                  <CheckBadgeIcon className="w-4 h-4 text-[#749220]" />
+                  <CheckBadgeIcon className="w-4 h-4 text-teal" />
                   US$ 15 Credit per Referral
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircleIcon className="w-4 h-4 text-[#749220]" />
+                  <CheckCircleIcon className="w-4 h-4 text-teal" />
                   US$ 5 Off for Friends
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1.5">
-                  <ShieldCheckIcon className="w-4 h-4 text-[#749220]" />
+                  <ShieldCheckIcon className="w-4 h-4 text-teal" />
                   Unlimited Invites
                 </span>
               </div>

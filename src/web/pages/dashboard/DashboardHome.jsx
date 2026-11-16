@@ -34,7 +34,7 @@ const DashboardHome = () => {
       name: 'Final Reports',
       value: '3',
       icon: DocumentTextIcon,
-      color: 'bg-purple-500',
+      color: 'bg-teal',
       change: 'Available for download',
     },
   ];
@@ -80,8 +80,8 @@ const DashboardHome = () => {
         animate={{ opacity: 1, y: 0 }}
         className="bg-white rounded-lg shadow-sm p-4 border border-gray-200"
       >
-        <h2 className="text-lg font-semibold text-gray-900 mb-1">Dashboard</h2>
-        <p className="text-sm text-gray-600">
+        <h2 className="text-lg font-semibold text-primary mb-1">Dashboard</h2>
+        <p className="text-sm text-slateText">
           Welcome back! Here's what's happening with your tax filing system.
         </p>
       </motion.div>
@@ -102,13 +102,13 @@ const DashboardHome = () => {
                 <div className={`p-2 ${stat.color} rounded-lg`}>
                   <Icon className="h-4 w-4 text-white" />
                 </div>
-                <span className="text-xs text-gray-500">0%</span>
+                <span className="text-xs text-slateText">0%</span>
               </div>
-              <h3 className="text-xs font-medium text-gray-500 mb-1">
+              <h3 className="text-xs font-medium text-slateText mb-1">
                 {stat.name}
               </h3>
-              <p className="text-xl font-bold text-gray-900 mb-1">{stat.value}</p>
-              <p className="text-xs text-gray-500">{stat.change}</p>
+              <p className="text-xl font-bold text-primary mb-1">{stat.value}</p>
+              <p className="text-xs text-slateText">{stat.change}</p>
             </motion.div>
           );
         })}
@@ -123,7 +123,7 @@ const DashboardHome = () => {
           className="bg-white rounded-lg shadow-sm p-4 border border-gray-200"
         >
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-base font-semibold text-gray-900">
+            <h2 className="text-base font-semibold text-primary">
               Filing Progress
             </h2>
           </div>
@@ -135,7 +135,7 @@ const DashboardHome = () => {
                     className={`w-8 h-8 rounded-lg flex items-center justify-center ${
                       item.completed
                         ? 'bg-green-500 text-white'
-                        : 'bg-gray-100 text-gray-400'
+                        : 'bg-gray-100 text-slateText/70'
                     }`}
                   >
                     {item.completed ? (
@@ -155,7 +155,7 @@ const DashboardHome = () => {
                 <div className="flex-1 pt-1">
                   <p
                     className={`text-sm font-medium ${
-                      item.completed ? 'text-gray-900' : 'text-gray-400'
+                      item.completed ? 'text-primary' : 'text-slateText/70'
                     }`}
                   >
                     {item.name}
@@ -174,7 +174,7 @@ const DashboardHome = () => {
           className="bg-white rounded-lg shadow-sm p-4 border border-gray-200"
         >
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-base font-semibold text-gray-900">
+            <h2 className="text-base font-semibold text-primary">
               Latest Notifications
             </h2>
             <button className="text-xs text-primary-blue hover:text-blue-700 font-medium">
@@ -194,19 +194,19 @@ const DashboardHome = () => {
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-1">
-                      <h3 className="text-sm font-semibold text-gray-900">
+                      <h3 className="text-sm font-semibold text-primary">
                         {notification.title}
                       </h3>
                       {!notification.read && (
                         <span className="h-2 w-2 bg-blue-500 rounded-full"></span>
                       )}
                     </div>
-                    <p className="text-xs text-gray-600 mb-1">
+                    <p className="text-xs text-slateText mb-1">
                       {notification.message}
                     </p>
-                    <p className="text-xs text-gray-500">{notification.time}</p>
+                    <p className="text-xs text-slateText">{notification.time}</p>
                   </div>
-                  <BellIcon className={`h-4 w-4 flex-shrink-0 mt-0.5 ${notification.read ? 'text-gray-400' : 'text-blue-600'}`} />
+                  <BellIcon className={`h-4 w-4 flex-shrink-0 mt-0.5 ${notification.read ? 'text-slateText/70' : 'text-blue-600'}`} />
                 </div>
               </div>
             ))}

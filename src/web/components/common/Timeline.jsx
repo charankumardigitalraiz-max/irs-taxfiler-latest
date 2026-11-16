@@ -47,7 +47,7 @@ const TimelineItem = ({ item, isLast }) => {
               <span className={clsx('font-medium', fromStage.textColor)}>
                 {fromStage.label}
               </span>
-              <ArrowRight className="w-3 h-3 text-gray-400" />
+              <ArrowRight className="w-3 h-3 text-slateText/70" />
             </>
           )}
           <span className={clsx('font-medium', toStage?.textColor)}>
@@ -56,7 +56,7 @@ const TimelineItem = ({ item, isLast }) => {
         </div>
         
         {item.notes && (
-          <p className="mt-1 text-sm text-gray-600">
+          <p className="mt-1 text-sm text-slateText">
             {item.isOverride && (
               <span className="text-orange-600 font-medium">[Override] </span>
             )}
@@ -64,7 +64,7 @@ const TimelineItem = ({ item, isLast }) => {
           </p>
         )}
         
-        <div className="mt-1 flex items-center gap-2 text-xs text-gray-500">
+        <div className="mt-1 flex items-center gap-2 text-xs text-slateText">
           <span>{format(new Date(item.createdAt), 'MMM d, yyyy h:mm a')}</span>
           {item.changedBy && (
             <>
@@ -81,7 +81,7 @@ const TimelineItem = ({ item, isLast }) => {
 const Timeline = ({ items = [], emptyMessage = 'No history available' }) => {
   if (items.length === 0) {
     return (
-      <div className="text-center py-8 text-gray-500">
+      <div className="text-center py-8 text-slateText">
         {emptyMessage}
       </div>
     );

@@ -149,7 +149,7 @@ const Pricing = () => {
         keywords={keywords}
       />
 
-      <div className="min-h-screen bg-white font-sans text-gray-900 antialiased">
+      <div className="min-h-screen bg-white font-sans text-primary antialiased">
 
         {/* ========================================================================= */}
         {/* 1. HERO SECTION (SPLIT: CONTENT + CLEAN 3D FINTECH VISUAL)                */}
@@ -157,8 +157,8 @@ const Pricing = () => {
         <section className="relative overflow-hidden pt-10 pb-14 sm:pt-16 sm:pb-20 bg-white border-b border-slate-100">
           {/* Subtle Ambient Background Gradients */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden -z-10">
-            <div className="absolute -top-24 left-1/4 w-96 h-96 bg-sky-100/50 rounded-full blur-3xl opacity-60" />
-            <div className="absolute -top-20 right-1/4 w-80 h-80 bg-lime-100/40 rounded-full blur-3xl opacity-50" />
+            <div className="absolute -top-24 left-1/4 w-96 h-96 bg-slate-100/40 rounded-full blur-3xl opacity-40" />
+            <div className="absolute -top-20 right-1/4 w-80 h-80 bg-slate-100/40 rounded-full blur-3xl opacity-40" />
           </div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -172,32 +172,32 @@ const Pricing = () => {
                 className="lg:col-span-7 xl:col-span-7 text-left"
               >
                 {/* Tag Pill */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100/80 border border-slate-200/80 mb-5 select-none">
-                  <StarIcon className="w-3.5 h-3.5 text-[#749220]" />
-                  <span className="text-xs font-medium text-slate-700">Clear & Transparent</span>
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E9F7FA] border border-[#127EAB]/30 mb-5 select-none text-xs font-medium text-teal">
+                  <StarIcon className="w-3.5 h-3.5 text-[#EE6450]" />
+                  <span>Clear & Transparent</span>
                 </div>
 
                 {/* Main Headline with Generous Line-to-Line Spacing */}
-                <h1 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-normal text-gray-900 tracking-tight leading-[1.28] sm:leading-[1.22] mb-5">
+                <h1 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-normal text-primary tracking-tight leading-[1.28] sm:leading-[1.22] mb-5">
                   Transparent Pricing &{" "}
-                  <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                  <span className="font-normal text-teal">
                     No Hidden Fees
                   </span>
                 </h1>
 
                 {/* Subheading with Airy Line-to-Line Height and Comfortable Paragraph Space */}
-                <p className="text-base sm:text-[17px] lg:text-lg text-gray-600 font-normal leading-[32px] sm:leading-[34px] lg:leading-[36px] mb-7 max-w-xl">
+                <p className="text-base sm:text-[17px] lg:text-lg text-[#6F7F8E] font-normal leading-[32px] sm:leading-[34px] lg:leading-[36px] mb-7 max-w-xl">
                   Choose the services you need. All prices are clear and upfront with no hidden fees.
                 </p>
 
                 {/* Key Benefits / Trust Highlights */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 max-w-lg">
-                  <div className="flex items-center gap-2.5 text-xs sm:text-[13px] text-gray-700 font-medium bg-[#F6F9EE] px-4 py-2.5 rounded-xl border border-[#749220]/20">
-                    <CheckCircleIcon className="w-4 h-4 text-[#749220] shrink-0" />
+                  <div className="flex items-center gap-2.5 text-xs sm:text-[13px] text-primary font-medium bg-[#E9F7FA] px-4 py-2.5 rounded-xl border border-[#127EAB]/20">
+                    <CheckCircleIcon className="w-4 h-4 text-teal shrink-0" />
                     <span>4 Free Complimentary Services</span>
                   </div>
-                  <div className="flex items-center gap-2.5 text-xs sm:text-[13px] text-gray-700 font-medium bg-sky-50/80 px-4 py-2.5 rounded-xl border border-sky-100">
-                    <ShieldCheckIcon className="w-4 h-4 text-[#165479] shrink-0" />
+                  <div className="flex items-center gap-2.5 text-xs sm:text-[13px] text-primary font-medium bg-[#FDF8F2] px-4 py-2.5 rounded-xl border border-[#CCDCE1]">
+                    <ShieldCheckIcon className="w-4 h-4 text-[#EE6450] shrink-0" />
                     <span>100% Upfront Transparent Rates</span>
                   </div>
                 </div>
@@ -206,13 +206,13 @@ const Pricing = () => {
                 <div className="flex flex-wrap items-center gap-3.5">
                   <a
                     href="#pricing-table"
-                    className="px-6 py-3 rounded-full font-medium text-sm text-white bg-[#165479] hover:bg-[#0A4973] shadow-sm hover:shadow-md transition-all duration-200"
+                    className="px-6 py-3 rounded-full font-medium text-sm text-white bg-gradient-to-r from-[#1F4264] via-[#1F4264] to-[#1F4264] hover:from-[#1E4162] hover:to-[#1F4264] shadow-sm hover:shadow-md transition-all duration-200 border border-[#127EAB]/30"
                   >
                     View Service Pricing
                   </a>
                   <Link
                     to="/contact"
-                    className="px-6 py-3 rounded-full font-medium text-sm text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 hover:border-[#165479] hover:text-[#165479] transition-all duration-200"
+                    className="px-6 py-3 rounded-full font-medium text-sm text-primary bg-white hover:bg-[#FDF8F2] border border-[#CCDCE1] hover:border-[#EE6450] transition-all duration-200"
                   >
                     Get Free Consultation
                   </Link>
@@ -225,7 +225,7 @@ const Pricing = () => {
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.15 }}
-                  className="relative w-full max-w-[460px] rounded-2xl overflow-hidden border border-slate-200/90 shadow-[0_16px_40px_rgba(22,84,121,0.08)] bg-white group"
+                  className="relative w-full max-w-[460px] rounded-2xl overflow-hidden border border-[#CCDCE1] shadow-[0_16px_40px_rgba(23,50,77,0.06)] bg-white group"
                 >
                   <img
                     src={statsVisual}
@@ -235,20 +235,20 @@ const Pricing = () => {
                   />
 
                   {/* Floating Glass Pill Top */}
-                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md rounded-xl py-2 px-3.5 shadow-md border border-gray-200/80 flex items-center gap-2 select-none">
-                    <span className="w-2 h-2 rounded-full bg-[#749220] animate-pulse" />
-                    <span className="text-xs font-semibold text-gray-900">
+                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md rounded-xl py-2 px-3.5 shadow-md border border-[#CCDCE1] flex items-center gap-2 select-none">
+                    <span className="w-2 h-2 rounded-full bg-[#127EAB] animate-pulse" />
+                    <span className="text-xs font-semibold text-primary">
                       100% Upfront Transparent Rates
                     </span>
                   </div>
 
                   {/* Floating Glass Pill Bottom */}
-                  <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-xl p-3.5 shadow-md border border-gray-200/80 flex items-center justify-between select-none">
+                  <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-xl p-3.5 shadow-md border border-[#CCDCE1] flex items-center justify-between select-none">
                     <div>
-                      <div className="text-[11px] font-medium text-gray-500">Complimentary Support</div>
-                      <div className="text-xs font-semibold text-[#165479]">ITIN, Extensions & FBAR</div>
+                      <div className="text-[11px] font-medium text-[#6F7F8E]">Complimentary Support</div>
+                      <div className="text-xs font-semibold text-primary">ITIN, Extensions & FBAR</div>
                     </div>
-                    <span className="text-xs font-semibold text-[#749220] bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200/60">
+                    <span className="text-xs font-semibold text-teal bg-[#E9F7FA] px-2.5 py-1 rounded-full border border-[#127EAB]/30">
                       $0 Setup Fee
                     </span>
                   </div>
@@ -262,7 +262,7 @@ const Pricing = () => {
         {/* ========================================================================= */}
         {/* 2. PRICING TABLE SECTION                                                  */}
         {/* ========================================================================= */}
-        <section id="pricing-table" className="py-14 sm:py-20 bg-slate-50/60 border-b border-slate-100">
+        <section id="pricing-table" className="py-14 sm:py-20 bg-[#FDF8F2] border-b border-[#CCDCE1]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             {/* Section Header */}
@@ -273,13 +273,13 @@ const Pricing = () => {
               transition={{ duration: 0.4 }}
               className="mb-10 sm:mb-12 text-center"
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25]">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
                 Service{" "}
-                <span className="font-medium bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Pricing
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-500 font-normal leading-relaxed mt-1.5 max-w-2xl mx-auto">
+              <p className="text-sm sm:text-base text-[#6F7F8E] font-normal leading-relaxed mt-1.5 max-w-2xl mx-auto">
                 Select individual services or choose a complete package. All services include expert preparation and filing.
               </p>
             </motion.div>
@@ -287,21 +287,21 @@ const Pricing = () => {
             <div className="max-w-6xl 2xl:max-w-7xl mx-auto">
 
               {/* Complimentary Value Banner */}
-              <div className="mb-6 p-3.5 sm:p-4 rounded-2xl bg-[#F6F9EE] border border-[#749220]/25 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+              <div className="mb-6 p-3.5 sm:p-4 rounded-2xl bg-[#E9F7FA] border border-[#127EAB]/25 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-[#749220] text-white flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-xl bg-[#127EAB] text-white flex items-center justify-center shrink-0">
                     <GiftIcon className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="text-xs sm:text-sm font-semibold text-gray-900 leading-tight">
+                    <h3 className="text-xs sm:text-sm font-semibold text-primary leading-tight">
                       4 Complimentary Tax Services Included at $0
                     </h3>
-                    <p className="text-[11px] sm:text-xs text-gray-600 font-normal mt-0.5">
+                    <p className="text-[11px] sm:text-xs text-[#6F7F8E] font-normal mt-0.5">
                       ITIN Processing, Federal/State Extensions, W-4 Updates & FBAR included with zero preparation fees.
                     </p>
                   </div>
                 </div>
-                <span className="text-[11px] font-semibold text-[#749220] bg-white px-2.5 py-1 rounded-full border border-[#749220]/30 shrink-0">
+                <span className="text-[11px] font-semibold text-teal bg-white px-2.5 py-1 rounded-full border border-[#127EAB]/30 shrink-0">
                   $40+ Value Free
                 </span>
               </div>
@@ -317,15 +317,15 @@ const Pricing = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-30px" }}
                       transition={{ duration: 0.25, delay: index * 0.02 }}
-                      className="group bg-white rounded-xl p-5 border border-slate-200 hover:border-[#165479]/40 hover:shadow-sm transition-all duration-200 flex flex-col justify-between text-left"
+                      className="group bg-white rounded-xl p-5 border border-[#CCDCE1] hover:border-[#127EAB]/40 hover:shadow-sm transition-all duration-200 flex flex-col justify-between text-left"
                     >
                       <div>
                         {/* Header: Icon + Category/Status Pill */}
                         <div className="flex items-center justify-between mb-3.5">
                           <div
                             className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${service.isFree
-                              ? 'bg-[#F6F9EE] text-[#749220] border border-[#749220]/25'
-                              : 'bg-sky-50 text-[#165479] border border-sky-100'
+                              ? 'bg-[#E9F7FA] text-teal border border-[#127EAB]/25'
+                              : 'bg-[#FDF8F2] text-primary border border-[#CCDCE1]'
                               }`}
                           >
                             <IconComponent className="w-5 h-5 stroke-[1.75]" />
@@ -334,19 +334,19 @@ const Pricing = () => {
                           <div>
                             {service.isFree ? (
                               <div className="flex items-baseline gap-1.5">
-                                <span className="text-2xl font-bold text-[#749220] tracking-tight">
+                                <span className="text-2xl font-bold text-teal tracking-tight">
                                   $0
                                 </span>
-                                <span className="text-xs font-bold text-[#749220] uppercase tracking-wide">
+                                <span className="text-xs font-bold text-teal uppercase tracking-wide">
                                   Free
                                 </span>
                               </div>
                             ) : (
                               <div className="flex items-baseline gap-1">
-                                <span className="text-2xl font-bold text-[#0A4973] tracking-tight">
+                                <span className="text-2xl font-bold text-primary tracking-tight">
                                   {service.price}
                                 </span>
-                                <span className="text-xs font-normal text-slate-400">
+                                <span className="text-xs font-normal text-[#6F7F8E]">
                                   / filing
                                 </span>
                               </div>
@@ -356,18 +356,18 @@ const Pricing = () => {
                         </div>
 
                         {/* Service Title */}
-                        <h3 className="text-[15px] font-semibold text-gray-900 group-hover:text-[#165479] transition-colors leading-snug min-h-[42px] flex items-center">
+                        <h3 className="text-[15px] font-semibold text-primary group-hover:text-primary transition-colors leading-snug min-h-[42px] flex items-center">
                           {service.name}
                         </h3>
 
                         {/* Clean 1-Line Description */}
-                        <p className="text-xs text-gray-500 leading-relaxed mt-1.5 mb-3 line-clamp-2 min-h-[34px]">
+                        <p className="text-xs text-slateText leading-relaxed mt-1.5 mb-3 line-clamp-2 min-h-[34px]">
                           {service.description}
                         </p>
 
                         {/* Price Note (if applicable) */}
                         {service.priceNote && (
-                          <div className="text-[11px] text-[#165479] bg-sky-50/70 px-2.5 py-1.5 rounded-md border border-sky-100 mb-3">
+                          <div className="text-[11px] text-primary bg-sky-50/70 px-2.5 py-1.5 rounded-md border border-sky-100 mb-3">
                             {service.priceNote}
                           </div>
                         )}
@@ -378,19 +378,19 @@ const Pricing = () => {
                         <div>
                           {service.isFree ? (
                             <div className="flex items-baseline gap-1.5">
-                              <span className="text-2xl font-bold text-[#749220] tracking-tight">
+                              <span className="text-2xl font-bold text-teal tracking-tight">
                                 $0
                               </span>
-                              <span className="text-xs font-bold text-[#749220] uppercase tracking-wide">
+                              <span className="text-xs font-bold text-teal uppercase tracking-wide">
                                 Free
                               </span>
                             </div>
                           ) : (
                             <div className="flex items-baseline gap-1">
-                              <span className="text-2xl font-bold text-[#0A4973] tracking-tight">
+                              <span className="text-2xl font-bold text-primary tracking-tight">
                                 {service.price}
                               </span>
-                              <span className="text-xs font-normal text-slate-400">
+                              <span className="text-xs font-normal text-slateText">
                                 / filing
                               </span>
                             </div>
@@ -398,11 +398,11 @@ const Pricing = () => {
                         </div>
 
                         {service.worth ? (
-                          <span className="text-xs text-slate-400">
+                          <span className="text-xs text-slateText">
                             Worth <span className="line-through">{service.worth}</span>
                           </span>
                         ) : (
-                          <span className="text-xs font-medium text-[#165479] group-hover:text-[#0A4973] flex items-center gap-1 transition-colors">
+                          <span className="text-xs font-medium text-primary group-hover:text-primary flex items-center gap-1 transition-colors">
                             <span>Get Started</span>
                             <span className="text-xs group-hover:translate-x-0.5 transition-transform">&rarr;</span>
                           </span>
@@ -446,15 +446,15 @@ const Pricing = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-50px" }}
                       transition={{ duration: 0.35, delay: 0.08 * index }}
-                      className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-2xs hover:shadow-[0_10px_24px_rgba(22,84,121,0.06)] hover:border-[#165479]/30 transition-all duration-200 flex flex-col justify-start"
+                      className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-2xs hover:shadow-[0_10px_24px_rgba(22,84,121,0.06)] hover:border-[#1F4264]/30 transition-all duration-200 flex flex-col justify-start"
                     >
-                      <div className="w-9 h-9 rounded-xl bg-[#F6F9EE] border border-[#749220]/25 flex items-center justify-center text-[#749220] shrink-0 mb-3">
+                      <div className="w-9 h-9 rounded-xl bg-background-aqua border border-border text-teal flex items-center justify-center text-teal shrink-0 mb-3">
                         <IconComponent className="w-5 h-5" />
                       </div>
-                      <h4 className="text-sm sm:text-base font-medium text-gray-900 leading-snug mb-1.5">
+                      <h4 className="text-sm sm:text-base font-medium text-primary leading-snug mb-1.5">
                         {benefit.title}
                       </h4>
-                      <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed">
+                      <p className="text-xs sm:text-[13px] text-slateText font-normal leading-relaxed">
                         {benefit.description}
                       </p>
                     </motion.div>
@@ -469,11 +469,11 @@ const Pricing = () => {
         {/* ========================================================================= */}
         {/* 3. FULL-WIDTH CTA SECTION WITH BRAND BACKGROUND                           */}
         {/* ========================================================================= */}
-        <section className="w-full relative py-16 sm:py-10 bg-gradient-to-br from-[#0A4973] via-[#165479] to-[#0A2D41] text-white overflow-hidden">
+        <section className="w-full relative py-16 sm:py-10 bg-gradient-to-br from-[#1F4264] via-[#1F4264] to-[#1E4162] text-white overflow-hidden">
           {/* Subtle Ambient Background Gradients */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden -z-10">
-            <div className="absolute -top-24 left-1/4 w-96 h-96 bg-[#749220]/20 rounded-full blur-3xl opacity-60" />
-            <div className="absolute -bottom-24 right-1/4 w-96 h-96 bg-sky-400/15 rounded-full blur-3xl opacity-50" />
+            <div className="absolute -top-24 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl opacity-40" />
+            <div className="absolute -bottom-24 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl opacity-30" />
           </div>
 
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -484,7 +484,7 @@ const Pricing = () => {
               transition={{ duration: 0.5 }}
             >
               {/* Star Icon Badge */}
-              {/* <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-[#CBF056] flex items-center justify-center mx-auto mb-4 shadow-sm">
+              {/* <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-teal flex items-center justify-center mx-auto mb-4 shadow-sm">
                 <StarIcon className="w-6 h-6" />
               </div> */}
 
@@ -499,7 +499,7 @@ const Pricing = () => {
               <div className="flex flex-col sm:flex-row gap-3.5 justify-center">
                 <Link
                   to="/contact"
-                  className="px-7 py-3 rounded-full font-medium text-sm sm:text-base text-[#0A4973] bg-[#CBF056] hover:bg-[#b8dd42] shadow-md hover:shadow-lg transition-all duration-200"
+                  className="px-7 py-3 rounded-full font-medium text-sm sm:text-base text-primary bg-[#127EAB] hover:bg-[#b8dd42] shadow-md hover:shadow-lg transition-all duration-200"
                 >
                   Get Started Today
                 </Link>

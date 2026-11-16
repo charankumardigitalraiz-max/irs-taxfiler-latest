@@ -49,22 +49,22 @@ const FAQSection = () => {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center justify-center space-x-2 bg-[#749220]/15 px-4 py-1.5 rounded-full border border-[#749220]/30"
+              className="inline-flex items-center justify-center space-x-2 bg-[#127EAB]/15 px-4 py-1.5 rounded-full border border-[#127EAB]/30"
             >
               <motion.div
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
-                <QuestionMarkCircleIcon className="h-4 w-4 text-[#749220]" />
+                <QuestionMarkCircleIcon className="h-4 w-4 text-[#127EAB]" />
               </motion.div>
-              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#749220]">Got Questions?</span>
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#127EAB]">Got Questions?</span>
             </motion.div>
           </div>
 
           {/* Main Heading with UpTik Navy & Olive Palette */}
           <div className="relative inline-block">
-            <h2 className="text-3xl sm:text-4xl lg:text-[36px] font-bold mb-3 tracking-tight leading-snug">
-              <span className="text-gray-900">Frequently Asked </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-[36px] font-normal mb-3 tracking-tight leading-snug">
+              <span className="text-primary">Frequently Asked </span>
               <motion.span
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -82,7 +82,7 @@ const FAQSection = () => {
               whileInView={{ width: '100%' }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="h-1 bg-gradient-to-r from-[#165479] to-[#749220] rounded-full mx-auto"
+              className="h-1 bg-gradient-to-r from-[#165479] to-[#127EAB] rounded-full mx-auto"
               style={{ maxWidth: '140px' }}
             ></motion.div>
           </div>
@@ -93,7 +93,7 @@ const FAQSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-base sm:text-[17px] text-gray-600 mt-4 max-w-2xl mx-auto leading-[28px] font-normal"
+            className="text-base sm:text-[17px] text-slateText mt-4 max-w-2xl mx-auto leading-[28px] font-normal"
           >
             Find quick, transparent answers to common questions about our U.S. Federal, State, and Expat tax filing services.
           </motion.p>
@@ -112,7 +112,7 @@ const FAQSection = () => {
                   transition={{ duration: 0.4, delay: index * 0.05 }}
                   className={`rounded-2xl border transition-all duration-200 ${
                     isOpen 
-                      ? 'border-[#749220]/50 bg-[#F6F9EE]/40 shadow-sm' 
+                      ? 'border-[#127EAB]/50 bg-[#F6F9EE]/40 shadow-sm' 
                       : 'border-gray-200/80 bg-white hover:border-[#165479]/30'
                   }`}
                 >
@@ -121,7 +121,7 @@ const FAQSection = () => {
                     className="w-full flex items-center justify-between p-5 sm:p-6 text-left transition-colors group cursor-pointer"
                   >
                     <h3 className={`text-base sm:text-lg pr-6 font-bold transition-colors leading-snug ${
-                      isOpen ? 'text-[#165479]' : 'text-gray-900 group-hover:text-[#749220]'
+                      isOpen ? 'text-[#165479]' : 'text-primary group-hover:text-[#127EAB]'
                     }`}>
                       {faq.question}
                     </h3>
@@ -129,7 +129,7 @@ const FAQSection = () => {
                       animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
                       className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                        isOpen ? 'bg-[#749220] text-white' : 'bg-gray-100 text-gray-500 group-hover:bg-[#749220]/20 group-hover:text-[#749220]'
+                        isOpen ? 'bg-[#127EAB] text-white' : 'bg-gray-100 text-slateText group-hover:bg-[#127EAB]/20 group-hover:text-[#127EAB]'
                       }`}
                     >
                       <ChevronDownIcon className="h-4 w-4" />
@@ -145,8 +145,8 @@ const FAQSection = () => {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                       >
-                        <div className="px-5 sm:px-6 pb-6 pt-1 border-t border-[#749220]/15">
-                          <p className="text-sm sm:text-base leading-[28px] text-gray-600 font-normal">
+                        <div className="px-5 sm:px-6 pb-6 pt-1 border-t border-[#127EAB]/15">
+                          <p className="text-sm sm:text-base leading-[28px] text-slateText font-normal">
                             {faq.answer}
                           </p>
                         </div>

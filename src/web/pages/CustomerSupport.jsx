@@ -159,7 +159,7 @@ const CustomerSupport = () => {
         image={image}
         keywords={keywords}
       />
-      <div className="min-h-screen bg-white font-sans text-gray-900 antialiased">
+      <div className="min-h-screen bg-white font-sans text-primary antialiased">
         {/* Hero Section */}
         {/* <section className="relative overflow-hidden pt-12 sm:pt-16 pb-14 sm:pb-16 bg-white border-b border-slate-100">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden">
@@ -173,13 +173,13 @@ const CustomerSupport = () => {
               transition={{ duration: 0.45 }}
               className="text-center max-w-3xl mx-auto"
             >
-              <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-gray-900 tracking-tight leading-[1.2] mb-3.5">
+              <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.2] mb-3.5">
                 Customer{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Support
                 </span>
               </h1>
-              <p className="text-sm sm:text-base lg:text-[17px] text-gray-600 font-normal max-w-2xl mx-auto leading-[30px] sm:leading-[32px] lg:leading-[34px]">
+              <p className="text-sm sm:text-base lg:text-[17px] text-slateText font-normal max-w-2xl mx-auto leading-[30px] sm:leading-[32px] lg:leading-[34px]">
                 We're here to help you every step of the way. Get the assistance you need, when you need it.
               </p>
             </motion.div>
@@ -196,13 +196,13 @@ const CustomerSupport = () => {
               transition={{ duration: 0.45 }}
               className="mb-10 sm:mb-12 text-center"
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25] mb-3">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-3">
                 How Can We{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Help You?
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 font-normal max-w-2xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base text-slateText font-normal max-w-2xl mx-auto leading-relaxed">
                 Choose the support method that works best for you. Our team is ready to assist.
               </p>
             </motion.div>
@@ -212,7 +212,7 @@ const CustomerSupport = () => {
                 const IconComponent = option.icon;
                 const isLime = index % 2 === 1;
                 const btnClasses =
-                  "w-full inline-flex items-center justify-center gap-2 h-10 px-4 rounded-lg text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] shadow-sm transition-all duration-200 cursor-pointer group";
+                  "w-full inline-flex items-center justify-center gap-2 h-10 px-4 rounded-lg text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-[#1F4264] via-[#1F4264] to-[#127EAB] hover:from-[#1E4162] hover:via-[#1F4264] hover:to-[#1F4264] shadow-sm transition-all duration-200 cursor-pointer group";
 
                 return (
                   <motion.div
@@ -221,33 +221,33 @@ const CustomerSupport = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.35, delay: index * 0.06 }}
-                    className="relative bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-[0_12px_28px_rgba(22,84,121,0.08)] hover:border-[#165479]/35 p-6 transition-all duration-200 text-center flex flex-col justify-between overflow-hidden"
+                    className="relative bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-[0_12px_28px_rgba(22,84,121,0.08)] hover:border-[#1F4264]/35 p-6 transition-all duration-200 text-center flex flex-col justify-between overflow-hidden"
                   >
                     <div
                       className={`absolute top-0 inset-x-0 h-0.5 ${isLime
-                        ? "bg-gradient-to-r from-transparent via-[#749220]/70 to-transparent"
-                        : "bg-gradient-to-r from-transparent via-[#165479]/70 to-transparent"
+                        ? "bg-gradient-to-r from-transparent via-[#127EAB]/70 to-transparent"
+                        : "bg-gradient-to-r from-transparent via-[#1F4264]/70 to-transparent"
                         }`}
                     />
                     <div>
                       <div
                         className={`w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4 ${isLime
-                          ? "bg-[#F6F9EE] border border-[#749220]/25 text-[#749220]"
-                          : "bg-sky-50 border border-sky-100 text-[#165479]"
+                          ? "bg-background-aqua border border-border text-teal text-teal"
+                          : "bg-sky-50 border border-sky-100 text-primary"
                           }`}
                       >
                         <IconComponent className="w-6 h-6" />
                       </div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 leading-snug">
+                      <h3 className="text-base sm:text-lg font-semibold text-primary mb-2 leading-snug">
                         {option.title}
                       </h3>
-                      <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-3">
+                      <p className="text-slateText text-xs sm:text-sm leading-relaxed mb-3">
                         {option.description}
                       </p>
                       <p
                         className={`inline-block text-xs font-semibold px-2.5 py-1 rounded-full mb-5 ${isLime
-                          ? "bg-[#F6F9EE] text-[#749220] border border-[#749220]/20"
-                          : "bg-sky-50 text-[#165479] border border-sky-100"
+                          ? "bg-[#EFF9FB] text-teal border border-[#127EAB]/20"
+                          : "bg-sky-50 text-primary border border-sky-100"
                           }`}
                       >
                         {option.availability}
@@ -293,13 +293,13 @@ const CustomerSupport = () => {
               transition={{ duration: 0.45 }}
               className="mb-10 sm:mb-12 text-center"
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25] mb-3">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-3">
                 Why Choose Our{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Support?
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 font-normal max-w-2xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base text-slateText font-normal max-w-2xl mx-auto leading-relaxed">
                 We're committed to providing exceptional customer service.
               </p>
             </motion.div>
@@ -315,20 +315,20 @@ const CustomerSupport = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.35, delay: index * 0.06 }}
-                    className="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-[0_10px_24px_rgba(22,84,121,0.06)] hover:border-[#165479]/30 p-6 text-center transition-all duration-200"
+                    className="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-[0_10px_24px_rgba(22,84,121,0.06)] hover:border-[#1F4264]/30 p-6 text-center transition-all duration-200"
                   >
                     <div
                       className={`w-11 h-11 rounded-xl flex items-center justify-center mx-auto mb-4 ${isLime
-                        ? "bg-[#F6F9EE] border border-[#749220]/25 text-[#749220]"
-                        : "bg-sky-50 border border-sky-100 text-[#165479]"
+                        ? "bg-background-aqua border border-border text-teal text-teal"
+                        : "bg-sky-50 border border-sky-100 text-primary"
                         }`}
                     >
                       <IconComponent className="w-5 h-5" />
                     </div>
-                    <h3 className="text-base font-semibold text-gray-900 mb-2 leading-snug">
+                    <h3 className="text-base font-semibold text-primary mb-2 leading-snug">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                    <p className="text-slateText text-xs sm:text-sm leading-relaxed">
                       {feature.description}
                     </p>
                   </motion.div>
@@ -348,13 +348,13 @@ const CustomerSupport = () => {
               transition={{ duration: 0.45 }}
               className="mb-10 sm:mb-12 text-center"
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25] mb-3">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-3">
                 Frequently Asked{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Questions
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 font-normal max-w-2xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base text-slateText font-normal max-w-2xl mx-auto leading-relaxed">
                 Find quick answers to common questions about our services.
               </p>
             </motion.div>
@@ -370,24 +370,24 @@ const CustomerSupport = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.35, delay: categoryIndex * 0.06 }}
-                    className="relative bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 flex flex-col overflow-hidden hover:border-[#165479]/30 transition-all"
+                    className="relative bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 flex flex-col overflow-hidden hover:border-[#1F4264]/30 transition-all"
                   >
                     <div
                       className={`absolute top-0 inset-x-0 h-0.5 ${isLime
-                        ? "bg-gradient-to-r from-[#749220]/70 via-[#749220]/25 to-transparent"
-                        : "bg-gradient-to-r from-[#165479]/70 via-[#165479]/25 to-transparent"
+                        ? "bg-gradient-to-r from-[#127EAB]/70 via-[#127EAB]/25 to-transparent"
+                        : "bg-gradient-to-r from-[#1F4264]/70 via-[#1F4264]/25 to-transparent"
                         }`}
                     />
                     <div className="flex items-center gap-3 pb-4 mb-4 border-b border-slate-100">
                       <div
                         className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${isLime
-                          ? "bg-[#F6F9EE] border border-[#749220]/25 text-[#749220]"
-                          : "bg-sky-50 border border-sky-100 text-[#165479]"
+                          ? "bg-background-aqua border border-border text-teal text-teal"
+                          : "bg-sky-50 border border-sky-100 text-primary"
                           }`}
                       >
                         <IconComponent className="w-5 h-5" />
                       </div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900">
+                      <h3 className="text-base sm:text-lg font-semibold text-primary">
                         {category.category}
                       </h3>
                     </div>
@@ -395,13 +395,13 @@ const CustomerSupport = () => {
                       {category.questions.map((faq, faqIndex) => (
                         <div
                           key={faqIndex}
-                          className={`border-l-2 bg-slate-50/70 rounded-r-xl pl-3.5 pr-3.5 py-2.5 ${isLime ? "border-[#749220]/50" : "border-[#165479]/50"
+                          className={`border-l-2 bg-slate-50/70 rounded-r-xl pl-3.5 pr-3.5 py-2.5 ${isLime ? "border-[#127EAB]/50" : "border-[#1F4264]/50"
                             }`}
                         >
-                          <h4 className="text-xs sm:text-sm font-semibold text-gray-900 mb-1 leading-snug">
+                          <h4 className="text-xs sm:text-sm font-semibold text-primary mb-1 leading-snug">
                             {faq.question}
                           </h4>
-                          <p className="text-gray-600 text-xs sm:text-[13px] leading-relaxed">
+                          <p className="text-slateText text-xs sm:text-[13px] leading-relaxed">
                             {faq.answer}
                           </p>
                         </div>
@@ -424,13 +424,13 @@ const CustomerSupport = () => {
               transition={{ duration: 0.45 }}
               className="mb-10 sm:mb-12 text-center"
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-gray-900 tracking-tight leading-[1.25] mb-3">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-3">
                 Contact{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Information
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 font-normal max-w-2xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base text-slateText font-normal max-w-2xl mx-auto leading-relaxed">
                 Reach out to us through any of these channels.
               </p>
             </motion.div>
@@ -441,17 +441,17 @@ const CustomerSupport = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.35 }}
-                className="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:border-[#165479]/30 p-6 text-center transition-all"
+                className="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:border-[#1F4264]/30 p-6 text-center transition-all"
               >
-                <div className="w-11 h-11 rounded-xl bg-sky-50 border border-sky-100 text-[#165479] flex items-center justify-center mx-auto mb-4">
+                <div className="w-11 h-11 rounded-xl bg-sky-50 border border-sky-100 text-primary flex items-center justify-center mx-auto mb-4">
                   <EnvelopeIcon className="w-5 h-5" />
                 </div>
-                <h3 className="text-base font-semibold text-gray-900 mb-1.5">
+                <h3 className="text-base font-semibold text-primary mb-1.5">
                   Email
                 </h3>
                 <a
                   href="mailto:contact@irstaxfiler.com"
-                  className="text-sm font-medium text-[#165479] hover:text-[#0A4973] hover:underline transition-colors"
+                  className="text-sm font-medium text-primary hover:text-primary hover:underline transition-colors"
                 >
                   contact@irstaxfiler.com
                 </a>
@@ -462,17 +462,17 @@ const CustomerSupport = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.35, delay: 0.06 }}
-                className="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:border-[#165479]/30 p-6 text-center transition-all"
+                className="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:border-[#1F4264]/30 p-6 text-center transition-all"
               >
-                <div className="w-11 h-11 rounded-xl bg-[#F6F9EE] border border-[#749220]/25 text-[#749220] flex items-center justify-center mx-auto mb-4">
+                <div className="w-11 h-11 rounded-xl bg-background-aqua border border-border text-teal text-teal flex items-center justify-center mx-auto mb-4">
                   <PhoneIcon className="w-5 h-5" />
                 </div>
-                <h3 className="text-base font-semibold text-gray-900 mb-1.5">
+                <h3 className="text-base font-semibold text-primary mb-1.5">
                   Phone
                 </h3>
                 <a
                   href="tel:++1 (415) 7876190"
-                  className="text-sm font-medium text-[#165479] hover:text-[#0A4973] hover:underline transition-colors"
+                  className="text-sm font-medium text-primary hover:text-primary hover:underline transition-colors"
                 >
                   +1 (415) 7876190
                 </a>
@@ -483,15 +483,15 @@ const CustomerSupport = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.35, delay: 0.12 }}
-                className="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:border-[#165479]/30 p-6 text-center transition-all"
+                className="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:border-[#1F4264]/30 p-6 text-center transition-all"
               >
-                <div className="w-11 h-11 rounded-xl bg-sky-50 border border-sky-100 text-[#165479] flex items-center justify-center mx-auto mb-4">
+                <div className="w-11 h-11 rounded-xl bg-sky-50 border border-sky-100 text-primary flex items-center justify-center mx-auto mb-4">
                   <ClockIcon className="w-5 h-5" />
                 </div>
-                <h3 className="text-base font-semibold text-gray-900 mb-1.5">
+                <h3 className="text-base font-semibold text-primary mb-1.5">
                   Business Hours
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slateText leading-relaxed">
                   Mon-Fri: 9AM-6PM EST<br />
                   Sat-Sun: 10AM-4PM EST
                 </p>
@@ -508,28 +508,28 @@ const CustomerSupport = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.45 }}
-              className="rounded-2xl p-8 sm:p-10 bg-gradient-to-br from-[#DFEBC2]/55 via-white to-[#C3DCED]/55 border border-[#165479]/15 shadow-sm text-center"
+              className="rounded-2xl p-8 sm:p-10 bg-gradient-to-br from-[#E9F7FA]/55 via-white to-[#CCDCE1]/55 border border-[#1F4264]/15 shadow-sm text-center"
             >
-              <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight mb-3">
+              <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight mb-3">
                 Still Have{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Questions?
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-700 font-normal mb-6 max-w-xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base text-slateText font-normal mb-6 max-w-xl mx-auto leading-relaxed">
                 Our support team is standing by to help you with any questions or concerns. Don't hesitate to reach out!
               </p>
               <div className="flex flex-wrap gap-3 justify-center">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-6 rounded-lg font-medium text-xs sm:text-sm text-white bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] shadow-sm transition-all"
+                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-6 rounded-lg font-medium text-xs sm:text-sm text-white bg-gradient-to-r from-[#1F4264] via-[#1F4264] to-[#127EAB] hover:from-[#1E4162] hover:via-[#1F4264] hover:to-[#1F4264] shadow-sm transition-all"
                 >
                   <span>Contact Us</span>
                   <ArrowRightIcon className="w-3.5 h-3.5" />
                 </Link>
                 <Link
                   to="/tax-resources"
-                  className="inline-flex items-center justify-center h-10 sm:h-11 px-6 rounded-lg font-medium text-xs sm:text-sm text-gray-800 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"
+                  className="inline-flex items-center justify-center h-10 sm:h-11 px-6 rounded-lg font-medium text-xs sm:text-sm text-primary bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"
                 >
                   View Resources
                 </Link>

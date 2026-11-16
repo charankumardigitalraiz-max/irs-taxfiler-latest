@@ -163,7 +163,7 @@ const TeamManagement = () => {
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Super Admins</p>
-            <p className="text-2xl font-bold text-purple-600">{stats.admins}</p>
+            <p className="text-2xl font-bold text-teal">{stats.admins}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Tax Consultants</p>

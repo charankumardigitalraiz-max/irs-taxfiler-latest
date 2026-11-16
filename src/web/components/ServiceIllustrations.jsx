@@ -8,11 +8,11 @@ import React from 'react';
  * 3. Representation: Protective Amber (#D97706) & Shield Gold (#F59E0B)
  * 4. ITIN Assistance: Identity Violet (#7C3AED, #9333EA)
  * 5. Extension Filing: Deadline Sunset Coral & Orange (#EA580C, #F97316)
- * 6. US Incorporations: Corporate Sapphire (#2563EB, #1D4ED8)
+ * 6. US Incorporations: Corporate Sapphire (#127EAB, #1F4264)
  * 7. SMB Tax Filing: Financial Growth Mint & Emerald (#059669, #10B981)
  * 8. Indian Tax: Saffron (#EA580C) + Ashok Navy (#0A4973) + Emerald (#16A34A)
  * 9. Indian Representation: Legal Crimson (#991B1B) & Authority Gold (#D97706)
- * 10. CPA Advisory: Brand Olive (#749220) & Lime Accent (#CBF056)
+ * 10. CPA Advisory: Brand Olive (#127EAB) & Lime Accent (#37899B)
  */
 
 // 1. Federal, State & Local Tax Filing (Blue & Refund Emerald)
@@ -282,15 +282,15 @@ export const IllustrationIncorporation = () => (
   <svg viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full select-none">
     <defs>
       <linearGradient id="inc-bg" x1="160" y1="0" x2="160" y2="180" gradientUnits="userSpaceOnUse">
-        <stop stopColor="#EFF6FF" />
+        <stop stopColor="#EFF9FB" />
         <stop offset="1" stopColor="#DBEAFE" />
       </linearGradient>
       <linearGradient id="inc-navy" x1="0" y1="0" x2="60" y2="20" gradientUnits="userSpaceOnUse">
-        <stop stopColor="#2563EB" />
-        <stop offset="1" stopColor="#1D4ED8" />
+        <stop stopColor="#127EAB" />
+        <stop offset="1" stopColor="#1F4264" />
       </linearGradient>
       <filter id="inc-shadow" x="-8" y="-6" width="150" height="120" filterUnits="userSpaceOnUse">
-        <feDropShadow dx="0" dy="8" stdDeviation="8" floodColor="#2563EB" floodOpacity="0.15" />
+        <feDropShadow dx="0" dy="8" stdDeviation="8" floodColor="#127EAB" floodOpacity="0.15" />
       </filter>
     </defs>
     <rect width="320" height="180" fill="url(#inc-bg)" />
@@ -311,7 +311,7 @@ export const IllustrationIncorporation = () => (
         <rect x="4" y="30" width="4" height="4" rx="1" fill="#FFFFFF" opacity="0.7" />
         <rect x="14" y="30" width="4" height="4" rx="1" fill="#FFFFFF" opacity="0.7" />
 
-        <rect x="26" y="4" width="26" height="48" rx="3" fill="#2563EB" />
+        <rect x="26" y="4" width="26" height="48" rx="3" fill="#127EAB" />
         <rect x="32" y="12" width="5" height="5" rx="1" fill="#93C5FD" />
         <rect x="41" y="12" width="5" height="5" rx="1" fill="#FFFFFF" opacity="0.7" />
         <rect x="32" y="22" width="5" height="5" rx="1" fill="#FFFFFF" opacity="0.7" />
@@ -322,17 +322,17 @@ export const IllustrationIncorporation = () => (
 
       {/* Information lines */}
       <rect x="70" y="44" width="46" height="5" rx="2.5" fill="#DBEAFE" />
-      <rect x="70" y="54" width="38" height="5" rx="2.5" fill="#EFF6FF" />
+      <rect x="70" y="54" width="38" height="5" rx="2.5" fill="#EFF9FB" />
       <rect x="70" y="64" width="42" height="5" rx="2.5" fill="#DBEAFE" />
 
       {/* Federal EIN Seal */}
-      <rect x="14" y="86" width="102" height="16" rx="6" fill="#EFF6FF" stroke="#3B82F6" strokeWidth="0.8" />
-      <text x="65" y="97" fill="#1D4ED8" fontSize="7" fontWeight="600" textAnchor="middle" fontFamily="sans-serif">EIN & ARTICLES READY</text>
+      <rect x="14" y="86" width="102" height="16" rx="6" fill="#EFF9FB" stroke="#127EAB" strokeWidth="0.8" />
+      <text x="65" y="97" fill="#1F4264" fontSize="7" fontWeight="600" textAnchor="middle" fontFamily="sans-serif">EIN & ARTICLES READY</text>
     </g>
 
     {/* Sapphire Official Seal */}
     <g transform="translate(192, 78)">
-      <circle cx="22" cy="22" r="22" fill="#2563EB" stroke="#FFFFFF" strokeWidth="2.5" />
+      <circle cx="22" cy="22" r="22" fill="#127EAB" stroke="#FFFFFF" strokeWidth="2.5" />
       <circle cx="22" cy="22" r="17" fill="none" stroke="#93C5FD" strokeWidth="1.2" strokeDasharray="3 3" />
       <path d="M16 22L20 26L28 17" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
     </g>
@@ -487,15 +487,15 @@ export const IllustrationCpaAdvisory = () => (
   <svg viewBox="0 0 320 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full select-none">
     <defs>
       <linearGradient id="cpa-bg" x1="160" y1="0" x2="160" y2="180" gradientUnits="userSpaceOnUse">
-        <stop stopColor="#F6F9EE" />
+        <stop stopColor="#EFF9FB" />
         <stop offset="1" stopColor="#EEF6DC" />
       </linearGradient>
       <linearGradient id="cpa-olive" x1="0" y1="0" x2="60" y2="20" gradientUnits="userSpaceOnUse">
-        <stop stopColor="#749220" />
+        <stop stopColor="#127EAB" />
         <stop offset="1" stopColor="#5D7619" />
       </linearGradient>
       <filter id="cpa-shadow" x="-8" y="-6" width="150" height="120" filterUnits="userSpaceOnUse">
-        <feDropShadow dx="0" dy="8" stdDeviation="8" floodColor="#749220" floodOpacity="0.15" />
+        <feDropShadow dx="0" dy="8" stdDeviation="8" floodColor="#127EAB" floodOpacity="0.15" />
       </filter>
     </defs>
     <rect width="320" height="180" fill="url(#cpa-bg)" />
@@ -513,19 +513,19 @@ export const IllustrationCpaAdvisory = () => (
         <rect x="0" y="0" width="60" height="18" rx="6" fill="#0A4973" />
         <text x="30" y="12" fill="#FFFFFF" fontSize="7" fontWeight="600" textAnchor="middle" fontFamily="sans-serif">Tax Strategy</text>
 
-        <rect x="36" y="22" width="60" height="18" rx="6" fill="#F6F9EE" stroke="#749220" strokeWidth="1" />
-        <text x="66" y="34" fill="#749220" fontSize="7" fontWeight="600" textAnchor="middle" fontFamily="sans-serif">Audit Defense</text>
+        <rect x="36" y="22" width="60" height="18" rx="6" fill="#EFF9FB" stroke="#127EAB" strokeWidth="1" />
+        <text x="66" y="34" fill="#127EAB" fontSize="7" fontWeight="600" textAnchor="middle" fontFamily="sans-serif">Audit Defense</text>
       </g>
 
       {/* Free 15-Min Banner */}
-      <rect x="14" y="88" width="100" height="14" rx="5" fill="#F6F9EE" stroke="#749220" strokeWidth="0.8" />
-      <text x="64" y="98" fill="#749220" fontSize="7" fontWeight="600" textAnchor="middle" fontFamily="sans-serif">FREE 15-MIN DISCOVERY CALL</text>
+      <rect x="14" y="88" width="100" height="14" rx="5" fill="#EFF9FB" stroke="#127EAB" strokeWidth="0.8" />
+      <text x="64" y="98" fill="#127EAB" fontSize="7" fontWeight="600" textAnchor="middle" fontFamily="sans-serif">FREE 15-MIN DISCOVERY CALL</text>
     </g>
 
     {/* Verified Star Badge */}
     <g transform="translate(196, 78)">
       <circle cx="20" cy="20" r="20" fill="#0A4973" stroke="#FFFFFF" strokeWidth="2" />
-      <path d="M20 11L22.5 16.5L28.5 17.5L24 22L25 28L20 25L15 28L16 22L11.5 17.5L17.5 16.5L20 11Z" fill="#CBF056" />
+      <path d="M20 11L22.5 16.5L28.5 17.5L24 22L25 28L20 25L15 28L16 22L11.5 17.5L17.5 16.5L20 11Z" fill="#37899B" />
     </g>
   </svg>
 );

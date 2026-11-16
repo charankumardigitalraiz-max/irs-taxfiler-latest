@@ -96,10 +96,10 @@ const AccountInformation = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">
+        <h1 className="text-2xl font-bold text-primary mb-2">
           Account Information
         </h1>
-        <p className="text-gray-600">
+        <p className="text-slateText">
           Complete your account information to proceed with tax filing. All
           information is securely stored.
         </p>
@@ -109,7 +109,7 @@ const AccountInformation = () => {
         {/* Sidebar Navigation */}
         <div className="lg:col-span-1">
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
+            <h3 className="text-sm font-semibold text-slateText uppercase tracking-wider mb-4">
               Information Sections
             </h3>
             <div className="space-y-2">
@@ -125,13 +125,13 @@ const AccountInformation = () => {
                     className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 ${
                       isActive
                         ? "bg-primary-blue text-white shadow-md"
-                        : "bg-gray-50 text-gray-700 hover:bg-gray-100"
+                        : "bg-gray-50 text-slateText hover:bg-gray-100"
                     }`}
                   >
                     <div className="flex items-center space-x-3 flex-1">
                       <Icon
                         className={`h-5 w-5 flex-shrink-0 ${
-                          isActive ? "text-white" : "text-gray-500"
+                          isActive ? "text-white" : "text-slateText"
                         }`}
                       />
                       <div className="text-left flex-1">
@@ -144,7 +144,7 @@ const AccountInformation = () => {
                           )}
                         </div>
                         {!isActive && (
-                          <p className="text-xs text-gray-500 mt-0.5">
+                          <p className="text-xs text-slateText mt-0.5">
                             {section.description}
                           </p>
                         )}
@@ -277,10 +277,10 @@ const TaxpayerProfileForm = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-xl font-semibold text-gray-900">
+          <h2 className="text-xl font-semibold text-primary">
             Taxpayer Profile
           </h2>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-slateText">
             Enter your personal information
           </p>
         </div>
@@ -288,7 +288,7 @@ const TaxpayerProfileForm = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             First Name <span className="text-red-500">*</span>
           </label>
           <input
@@ -305,7 +305,7 @@ const TaxpayerProfileForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Middle Name
           </label>
           <input
@@ -319,7 +319,7 @@ const TaxpayerProfileForm = () => {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Last Name <span className="text-red-500">*</span>
           </label>
           <input
@@ -336,7 +336,7 @@ const TaxpayerProfileForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             SSN <span className="text-red-500">*</span>
           </label>
           <input
@@ -352,7 +352,7 @@ const TaxpayerProfileForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Date of Birth <span className="text-red-500">*</span>
           </label>
           <input
@@ -368,7 +368,7 @@ const TaxpayerProfileForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Filing Status <span className="text-red-500">*</span>
           </label>
           <select
@@ -393,7 +393,7 @@ const TaxpayerProfileForm = () => {
           </select>
         </div>
         <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Occupation
           </label>
           <input
@@ -409,7 +409,7 @@ const TaxpayerProfileForm = () => {
       </div>
 
       <div className="flex items-center justify-end space-x-4 pt-4 border-t border-gray-200">
-        <button className="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+        <button className="px-6 py-2.5 border border-gray-300 text-slateText rounded-lg font-medium hover:bg-gray-50 transition-colors">
           Cancel
         </button>
         <button
@@ -523,10 +523,10 @@ const SpouseDetailsForm = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-xl font-semibold text-gray-900">
+          <h2 className="text-xl font-semibold text-primary">
             Spouse Details
           </h2>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-slateText">
             Enter your spouse's information
           </p>
         </div>
@@ -534,7 +534,7 @@ const SpouseDetailsForm = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Spouse First Name <span className="text-red-500">*</span>
           </label>
           <input
@@ -551,7 +551,7 @@ const SpouseDetailsForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Spouse Last Name <span className="text-red-500">*</span>
           </label>
           <input
@@ -568,7 +568,7 @@ const SpouseDetailsForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Spouse SSN <span className="text-red-500">*</span>
           </label>
           <input
@@ -584,7 +584,7 @@ const SpouseDetailsForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Spouse Date of Birth <span className="text-red-500">*</span>
           </label>
           <input
@@ -602,7 +602,7 @@ const SpouseDetailsForm = () => {
       </div>
 
       <div className="flex items-center justify-end space-x-4 pt-4 border-t border-gray-200">
-        <button className="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+        <button className="px-6 py-2.5 border border-gray-300 text-slateText rounded-lg font-medium hover:bg-gray-50 transition-colors">
           Cancel
         </button>
         <button
@@ -697,10 +697,10 @@ const DependentDetailsForm = () => {
             <UserCircleIcon className="h-6 w-6 text-primary-blue" />
           </div>
           <div>
-            <h2 className="text-xl font-semibold text-gray-900">
+            <h2 className="text-xl font-semibold text-primary">
               Dependent Details
             </h2>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-slateText">
               Add information for your dependents
             </p>
           </div>
@@ -721,7 +721,7 @@ const DependentDetailsForm = () => {
             className="p-5 border-2 border-gray-200 rounded-lg bg-gray-50"
           >
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold text-gray-900">
+              <h3 className="font-semibold text-primary">
                 Dependent {index + 1}
               </h3>
               {dependents.length > 1 && (
@@ -735,7 +735,7 @@ const DependentDetailsForm = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-slateText mb-2">
                   Full Name <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -751,7 +751,7 @@ const DependentDetailsForm = () => {
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-slateText mb-2">
                   SSN <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -768,7 +768,7 @@ const DependentDetailsForm = () => {
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-slateText mb-2">
                   Relationship <span className="text-red-500">*</span>
                 </label>
                 <select
@@ -790,7 +790,7 @@ const DependentDetailsForm = () => {
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-slateText mb-2">
                   Date of Birth <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -810,7 +810,7 @@ const DependentDetailsForm = () => {
       </div>
 
       <div className="flex items-center justify-end space-x-4 pt-4 border-t border-gray-200">
-        <button className="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+        <button className="px-6 py-2.5 border border-gray-300 text-slateText rounded-lg font-medium hover:bg-gray-50 transition-colors">
           Cancel
         </button>
         <button
@@ -919,10 +919,10 @@ const AddressForm = () => {
           <MapPinIcon className="h-6 w-6 text-primary-blue" />
         </div>
         <div>
-          <h2 className="text-xl font-semibold text-gray-900">
+          <h2 className="text-xl font-semibold text-primary">
             Address Information
           </h2>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-slateText">
             Current and tax year addresses
           </p>
         </div>
@@ -930,10 +930,10 @@ const AddressForm = () => {
 
       {/* Current Address */}
       <div className="space-y-4 p-5 bg-blue-50 rounded-lg border border-blue-200">
-        <h3 className="font-semibold text-gray-900">Current Address</h3>
+        <h3 className="font-semibold text-primary">Current Address</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-slateText mb-2">
               Street Address <span className="text-red-500">*</span>
             </label>
             <input
@@ -950,7 +950,7 @@ const AddressForm = () => {
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-slateText mb-2">
               City <span className="text-red-500">*</span>
             </label>
             <input
@@ -967,7 +967,7 @@ const AddressForm = () => {
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-slateText mb-2">
               State <span className="text-red-500">*</span>
             </label>
             <input
@@ -984,7 +984,7 @@ const AddressForm = () => {
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-slateText mb-2">
               ZIP Code <span className="text-red-500">*</span>
             </label>
             <input
@@ -1007,10 +1007,10 @@ const AddressForm = () => {
 
       {/* Tax Year Address */}
       <div className="space-y-4 p-5 bg-gray-50 rounded-lg border border-gray-200">
-        <h3 className="font-semibold text-gray-900">Tax Year Address</h3>
+        <h3 className="font-semibold text-primary">Tax Year Address</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-slateText mb-2">
               Street Address <span className="text-red-500">*</span>
             </label>
             <input
@@ -1027,7 +1027,7 @@ const AddressForm = () => {
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-slateText mb-2">
               City <span className="text-red-500">*</span>
             </label>
             <input
@@ -1044,7 +1044,7 @@ const AddressForm = () => {
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-slateText mb-2">
               State <span className="text-red-500">*</span>
             </label>
             <input
@@ -1061,7 +1061,7 @@ const AddressForm = () => {
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-slateText mb-2">
               ZIP Code <span className="text-red-500">*</span>
             </label>
             <input
@@ -1081,7 +1081,7 @@ const AddressForm = () => {
       </div>
 
       <div className="flex items-center justify-end space-x-4 pt-4 border-t border-gray-200">
-        <button className="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+        <button className="px-6 py-2.5 border border-gray-300 text-slateText rounded-lg font-medium hover:bg-gray-50 transition-colors">
           Cancel
         </button>
         <button
@@ -1159,16 +1159,16 @@ const ContactInformationForm = () => {
           <EnvelopeIcon className="h-6 w-6 text-primary-blue" />
         </div>
         <div>
-          <h2 className="text-xl font-semibold text-gray-900">
+          <h2 className="text-xl font-semibold text-primary">
             Contact Information
           </h2>
-          <p className="text-sm text-gray-500">Update your contact details</p>
+          <p className="text-sm text-slateText">Update your contact details</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Email Address <span className="text-red-500">*</span>
           </label>
           <input
@@ -1185,7 +1185,7 @@ const ContactInformationForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Phone Number <span className="text-red-500">*</span>
           </label>
           <input
@@ -1202,7 +1202,7 @@ const ContactInformationForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Alternate Email
           </label>
           <input
@@ -1216,7 +1216,7 @@ const ContactInformationForm = () => {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Alternate Phone
           </label>
           <input
@@ -1232,7 +1232,7 @@ const ContactInformationForm = () => {
       </div>
 
       <div className="flex items-center justify-end space-x-4 pt-4 border-t border-gray-200">
-        <button className="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+        <button className="px-6 py-2.5 border border-gray-300 text-slateText rounded-lg font-medium hover:bg-gray-50 transition-colors">
           Cancel
         </button>
         <button
@@ -1324,10 +1324,10 @@ const IdentityVerificationForm = () => {
           <IdentificationIcon className="h-6 w-6 text-primary-blue" />
         </div>
         <div>
-          <h2 className="text-xl font-semibold text-gray-900">
+          <h2 className="text-xl font-semibold text-primary">
             Identity Verification
           </h2>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-slateText">
             Upload your driver's license for verification
           </p>
         </div>
@@ -1335,7 +1335,7 @@ const IdentityVerificationForm = () => {
 
       <div className="space-y-4">
         <div>
-    <label className="block text-sm font-medium text-gray-700 mb-2">
+    <label className="block text-sm font-medium text-slateText mb-2">
       Government ID Type <span className="text-red-500">*</span>
     </label>
 
@@ -1359,7 +1359,7 @@ const IdentityVerificationForm = () => {
 
   {/* ID Number */}
   <div>
-    <label className="block text-sm font-medium text-gray-700 mb-2">
+    <label className="block text-sm font-medium text-slateText mb-2">
       {formData.idType === "passport"
         ? "Passport Number"
         : "ID / License Number"}{" "}
@@ -1385,7 +1385,7 @@ const IdentityVerificationForm = () => {
   </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-slateText mb-2">
               State of Issue <span className="text-red-500">*</span>
             </label>
             <input
@@ -1401,7 +1401,7 @@ const IdentityVerificationForm = () => {
             )}
           </div>
           {/* <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-slateText mb-2">
               Expiration Date <span className="text-red-500">*</span>
             </label>
             <input
@@ -1419,7 +1419,7 @@ const IdentityVerificationForm = () => {
           </div> */}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
            Upload Government ID <span className="text-red-500">*</span>
           </label>
           <div className="mt-2 flex items-center space-x-4">
@@ -1428,21 +1428,21 @@ const IdentityVerificationForm = () => {
                 type="file"
                 accept="image/*,.pdf"
                 onChange={handleFileChange}
-                className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-blue file:text-white hover:file:bg-blue-700 file:cursor-pointer"
+                className="w-full text-sm text-slateText file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-blue file:text-white hover:file:bg-blue-700 file:cursor-pointer"
               />
               {AccountError.licenseFile && (
                 <span className="text-red-500">{AccountError.licenseFile}</span>
               )}
             </div>
           </div>
-          <p className="mt-2 text-xs text-gray-500">
+          <p className="mt-2 text-xs text-slateText">
             Upload a clear image or PDF of your document (Max 5MB)
           </p>
         </div>
       </div>
 
       <div className="flex items-center justify-end space-x-4 pt-4 border-t border-gray-200">
-        <button className="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+        <button className="px-6 py-2.5 border border-gray-300 text-slateText rounded-lg font-medium hover:bg-gray-50 transition-colors">
           Cancel
         </button>
         <button
@@ -1533,8 +1533,8 @@ const BankDetailsForm = () => {
           <CreditCardIcon className="h-6 w-6 text-primary-blue" />
         </div>
         <div>
-          <h2 className="text-xl font-semibold text-gray-900">Bank Details</h2>
-          <p className="text-sm text-gray-500">
+          <h2 className="text-xl font-semibold text-primary">Bank Details</h2>
+          <p className="text-sm text-slateText">
             Banking information for tax refund direct deposit
           </p>
         </div>
@@ -1542,7 +1542,7 @@ const BankDetailsForm = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Bank Name <span className="text-red-500">*</span>
           </label>
           <input
@@ -1558,7 +1558,7 @@ const BankDetailsForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Account Type <span className="text-red-500">*</span>
           </label>
           <select
@@ -1576,7 +1576,7 @@ const BankDetailsForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Account Number <span className="text-red-500">*</span>
           </label>
           <input
@@ -1592,7 +1592,7 @@ const BankDetailsForm = () => {
           )}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Routing Number <span className="text-red-500">*</span>
           </label>
           <input
@@ -1608,7 +1608,7 @@ const BankDetailsForm = () => {
           )}
         </div>
         <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-slateText mb-2">
             Account Holder Name <span className="text-red-500">*</span>
           </label>
           <input
@@ -1641,7 +1641,7 @@ const BankDetailsForm = () => {
       </div>
 
       <div className="flex items-center justify-end space-x-4 pt-4 border-t border-gray-200">
-        <button className="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+        <button className="px-6 py-2.5 border border-gray-300 text-slateText rounded-lg font-medium hover:bg-gray-50 transition-colors">
           Cancel
         </button>
         <button

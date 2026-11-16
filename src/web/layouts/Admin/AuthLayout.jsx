@@ -13,7 +13,7 @@ const AdminAuthLayout = () => {
       {/* <motion.div
         animate={{ x: [0, 80, 0], y: [0, 40, 0] }}
         transition={{ duration: 18, repeat: Infinity }}
-        className="absolute top-16 left-16 w-72 h-72 bg-purple-400/30 blur-3xl rounded-full"
+        className="absolute top-16 left-16 w-72 h-72 bg-teal/20 blur-3xl rounded-full"
       />
 
       <motion.div
@@ -33,7 +33,7 @@ const AdminAuthLayout = () => {
           //   w-full max-w-md 
           //   bg-white/95 backdrop-blur-xl
           //   p-8 rounded-2xl
-          //   shadow-2xl border border-purple-100
+          //   shadow-2xl border border-border
           // "
         >
           {/* Outlet renders Login or Signup here */}

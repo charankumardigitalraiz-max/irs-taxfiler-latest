@@ -111,9 +111,9 @@ export const STATUS_COLORS = {
     dot: 'bg-red-500',
   },
   purple: {
-    bg: 'bg-purple-100',
-    text: 'text-purple-700',
-    dot: 'bg-purple-500',
+    bg: 'bg-background-aqua',
+    text: 'text-primary',
+    dot: 'bg-teal',
   },
 };
 

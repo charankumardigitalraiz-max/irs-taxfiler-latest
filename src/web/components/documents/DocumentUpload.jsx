@@ -95,36 +95,36 @@ const DocumentUpload = ({ onUpload, userId }) => {
           onChange={handleFileSelect}
           accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
         />
-        <Upload className="w-10 h-10 text-gray-400 mx-auto mb-3" />
-        <p className="text-sm text-gray-600">
+        <Upload className="w-10 h-10 text-slateText/70 mx-auto mb-3" />
+        <p className="text-sm text-slateText">
           <span className="font-medium text-primary-600">Click to upload</span> or drag
           and drop
         </p>
-        <p className="text-xs text-gray-500 mt-1">
+        <p className="text-xs text-slateText mt-1">
           PDF, DOC, DOCX, JPG, PNG up to 10MB
         </p>
       </div>
 
       {files.length > 0 && (
         <div className="space-y-2">
-          <p className="text-sm font-medium text-gray-700">Selected Files:</p>
+          <p className="text-sm font-medium text-slateText">Selected Files:</p>
           {files.map((file, index) => (
             <div
               key={index}
               className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
             >
               <div className="flex items-center gap-3">
-                <FileText className="w-5 h-5 text-gray-400" />
+                <FileText className="w-5 h-5 text-slateText/70" />
                 <div>
-                  <p className="text-sm font-medium text-gray-900">{file.name}</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-sm font-medium text-primary">{file.name}</p>
+                  <p className="text-xs text-slateText">
                     {(file.size / 1024).toFixed(1)} KB
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => removeFile(index)}
-                className="p-1 text-gray-400 hover:text-red-500"
+                className="p-1 text-slateText/70 hover:text-red-500"
               >
                 <X className="w-4 h-4" />
               </button>

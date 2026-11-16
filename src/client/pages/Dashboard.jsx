@@ -367,7 +367,7 @@ const Dashboard = () => {
                 <div
                   className={`p-3 rounded-lg ${
                     stat.color === 'blue' && 'bg-blue-100'
-                  } ${stat.color === 'purple' && 'bg-purple-100'} ${
+                  } ${stat.color === 'purple' && 'bg-background-aqua'} ${
                     stat.color === 'green' && 'bg-green-100'
                   } ${stat.color === 'orange' && 'bg-orange-100'} ${
                     stat.color === 'yellow' && 'bg-yellow-100'
@@ -376,7 +376,7 @@ const Dashboard = () => {
                   <Icon
                     className={`w-6 h-6 ${
                       stat.color === 'blue' && 'text-blue-600'
-                    } ${stat.color === 'purple' && 'text-purple-600'} ${
+                    } ${stat.color === 'purple' && 'text-teal'} ${
                       stat.color === 'green' && 'text-green-600'
                     } ${stat.color === 'orange' && 'text-orange-600'} ${
                       stat.color === 'yellow' && 'text-yellow-600'
@@ -431,14 +431,14 @@ const Dashboard = () => {
                     <div
                       className={`p-2 rounded-lg ${
                         action.color === 'blue' && 'bg-blue-100 group-hover:bg-blue-200'
-                      } ${action.color === 'purple' && 'bg-purple-100 group-hover:bg-purple-200'} ${
+                      } ${action.color === 'purple' && 'bg-background-aqua group-hover:bg-purple-200'} ${
                         action.color === 'green' && 'bg-green-100 group-hover:bg-green-200'
                       } ${action.color === 'indigo' && 'bg-indigo-100 group-hover:bg-indigo-200'}`}
                     >
                       <Icon
                         className={`w-5 h-5 ${
                           action.color === 'blue' && 'text-blue-600'
-                        } ${action.color === 'purple' && 'text-purple-600'} ${
+                        } ${action.color === 'purple' && 'text-teal'} ${
                           action.color === 'green' && 'text-green-600'
                         } ${action.color === 'indigo' && 'text-indigo-600'}`}
                       />
@@ -483,7 +483,7 @@ const Dashboard = () => {
                         className={`p-2 rounded-lg ${
                           color === 'green' && 'bg-green-100'
                         } ${color === 'blue' && 'bg-blue-100'} ${
-                          color === 'purple' && 'bg-purple-100'
+                          color === 'purple' && 'bg-background-aqua'
                         } ${color === 'orange' && 'bg-orange-100'} ${
                           color === 'gray' && 'bg-gray-100'
                         }`}
@@ -492,7 +492,7 @@ const Dashboard = () => {
                           className={`w-4 h-4 ${
                             color === 'green' && 'text-green-600'
                           } ${color === 'blue' && 'text-blue-600'} ${
-                            color === 'purple' && 'text-purple-600'
+                            color === 'purple' && 'text-teal'
                           } ${color === 'orange' && 'text-orange-600'} ${
                             color === 'gray' && 'text-gray-600'
                           }`}

@@ -81,8 +81,8 @@ export const WORKFLOW_STAGES = {
     next: ['REVIEW_PENDING'],
     prev: ['DOCUMENTS_APPROVED'],
     color: 'purple',
-    bgColor: 'bg-purple-100',
-    textColor: 'text-purple-700',
+    bgColor: 'bg-background-aqua',
+    textColor: 'text-primary',
     icon: 'Calculator',
   },
   REVIEW_PENDING: {
@@ -141,8 +141,8 @@ export const WORKFLOW_STAGES = {
     next: ['FILING_READY'],
     prev: ['PAYMENT_COMPLETED'],
     color: 'purple',
-    bgColor: 'bg-purple-100',
-    textColor: 'text-purple-700',
+    bgColor: 'bg-background-aqua',
+    textColor: 'text-primary',
     icon: 'ClipboardCheck',
   },
   FILING_READY: {

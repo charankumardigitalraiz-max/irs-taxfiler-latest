@@ -200,8 +200,8 @@ const Register = () => {
   return (
     <div className="min-h-screen flex flex-col justify-between bg-white text-gray-900 font-sans antialiased relative overflow-hidden">
       {/* Ambient Brand Glow Highlights */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-96 bg-gradient-to-b from-[#165479]/[0.08] via-[#749220]/[0.05] to-transparent blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-24 right-0 w-96 h-96 bg-[#749220]/[0.04] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-96 bg-gradient-to-b from-[#165479]/[0.08] via-[#127EAB]/[0.05] to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 right-0 w-96 h-96 bg-[#127EAB]/[0.04] rounded-full blur-3xl pointer-events-none" />
 
       {/* Top Header Bar */}
       <header className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex items-center justify-between">
@@ -223,14 +223,14 @@ const Register = () => {
         <div className="w-full max-w-md">
           {/* Header Eyebrow & Title */}
           <div className="text-center mb-6 sm:mb-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F6F9EE] border border-[#749220]/30 shadow-2xs mb-3 text-xs font-medium text-[#749220]">
-              <span className="w-2 h-2 rounded-full bg-[#749220]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F6F9EE] border border-[#127EAB]/30 shadow-2xs mb-3 text-xs font-medium text-[#127EAB]">
+              <span className="w-2 h-2 rounded-full bg-[#127EAB]" />
               <span>Official IRS e-File Provider & Licensed CPAs</span>
             </div>
 
             <h1 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
               Complete{" "}
-              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#127EAB] bg-clip-text text-transparent">
                 Registration
               </span>
             </h1>
@@ -361,7 +361,7 @@ const Register = () => {
                 const Icon = benefit.icon;
                 return (
                   <div key={index} className="flex items-center gap-2 bg-white/10 rounded-lg p-2.5">
-                    <Icon className="w-4 h-4 text-[#749220] shrink-0" />
+                    <Icon className="w-4 h-4 text-[#127EAB] shrink-0" />
                     <span className="text-[11px] font-medium text-white">{benefit.title}</span>
                   </div>
                 );

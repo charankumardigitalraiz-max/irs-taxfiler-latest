@@ -48,23 +48,23 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 bg-white border-t border-slate-100 font-sans relative overflow-hidden">
+    <section className="py-12 sm:py-16 bg-white  font-sans relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Compact Section Header */}
         <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F6F9EE] border border-[#749220]/25 text-xs font-normal text-[#749220] uppercase tracking-wider mb-2.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#749220] animate-pulse" />
+          <div className="pill-badge mb-2.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
             <span>Client Experiences</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight">
             Real Clients,{" "}
-            <span className="font-medium bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+            <span className="font-normal text-teal">
               Real Tax Results
             </span>
           </h2>
-          <div className="mt-2.5 inline-flex items-center gap-2 text-xs text-gray-500 font-normal">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="mt-2.5 inline-flex items-center gap-2 text-xs text-slateText font-normal">
+            <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
             <span>Live verified client results • Hover any card to pause</span>
           </div>
         </div>
@@ -74,28 +74,28 @@ const TestimonialsSection = () => {
       {/* Infinite Seamless Scrolling Track with Soft Gradient Fade Masks */}
       <div className="relative w-full overflow-hidden py-3">
         {/* Left Gradient Edge Fade */}
-        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-28 lg:w-44 bg-gradient-to-r from-white via-white/90 to-transparent z-10" />
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-28 lg:w-44 bg-gradient-to-r from-background via-background/90 to-transparent z-10" />
         {/* Right Gradient Edge Fade */}
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-28 lg:w-44 bg-gradient-to-l from-white via-white/90 to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-28 lg:w-44 bg-gradient-to-l from-background via-background/90 to-transparent z-10" />
 
         {/* Animated Marquee Track with Smooth Pause-on-Hover */}
         <div className="animate-marquee flex items-stretch gap-3.5 sm:gap-5 select-none hover:[animation-play-state:paused] active:[animation-play-state:paused]">
           {[...clientReviews, ...clientReviews].map((item, index) => (
             <div
               key={index}
-              className="group relative w-[285px] sm:w-[340px] shrink-0 bg-white hover:bg-[#FAFCFE] rounded-2xl p-4 sm:p-5 border border-slate-200 hover:border-[#165479]/40 shadow-[0_4px_16px_rgba(22,84,121,0.06)] hover:shadow-[0_16px_36px_rgba(22,84,121,0.1)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between text-left overflow-hidden cursor-default min-h-[188px] sm:min-h-[195px]"
+              className="group relative w-[285px] sm:w-[340px] shrink-0 bg-surface hover:bg-white rounded-2xl p-4 sm:p-5 border border-border hover:border-teal/40 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left overflow-hidden cursor-default min-h-[188px] sm:min-h-[195px]"
             >
               {/* Animated Top Line on Hover */}
-              <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-teal opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div>
                 {/* Top: 5 Stars + Savings Badge */}
                 <div className="flex items-center justify-between gap-2 mb-3">
-                  <div className="flex text-amber-400 gap-0.5 shrink-0">
+                  <div className="flex text-coral gap-0.5 shrink-0">
                     {[...Array(5)].map((_, i) => (
                       <svg
                         key={i}
-                        className="w-3.5 h-3.5 fill-amber-400 transition-transform duration-200 group-hover:scale-110"
+                        className="w-3.5 h-3.5 fill-coral transition-transform duration-200 group-hover:scale-110"
                         style={{ transitionDelay: `${i * 30}ms` }}
                         viewBox="0 0 20 20"
                       >
@@ -103,35 +103,35 @@ const TestimonialsSection = () => {
                       </svg>
                     ))}
                   </div>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#F6F9EE] text-[#749220] border border-[#749220]/25 group-hover:bg-[#165479] group-hover:text-white group-hover:border-[#165479] transition-all duration-200 whitespace-nowrap shrink-0">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#749220] group-hover:bg-[#CBF056] transition-colors" />
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-background-aqua text-teal border border-border group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-200 whitespace-nowrap shrink-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal group-hover:bg-white transition-colors" />
                     <span>{item.savings}</span>
                   </span>
                 </div>
 
                 {/* Clean Punchy Quote */}
-                <p className="text-[13px] sm:text-[13.5px] text-gray-600 group-hover:text-gray-900 font-normal leading-relaxed mb-4 transition-colors line-clamp-3">
+                <p className="text-[13px] sm:text-[13.5px] text-slateText group-hover:text-primary font-normal leading-relaxed mb-4 transition-colors line-clamp-3">
                   "{item.text}"
                 </p>
               </div>
 
               {/* Footer: Author Info + Verified Badge */}
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+              <div className="pt-3 border-t border-border flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2.5 min-w-0">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#0A4973] to-[#165479] text-white flex items-center justify-center font-medium text-[11px] shrink-0 group-hover:scale-105 transition-transform">
+                  <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-[11px] shrink-0 group-hover:scale-105 transition-transform">
                     {item.initials}
                   </div>
                   <div className="min-w-0">
-                    <div className="text-[13px] font-medium text-gray-900 leading-tight truncate">
+                    <div className="text-[13px] font-semibold text-primary leading-tight truncate">
                       {item.name}
                     </div>
-                    <div className="text-[11px] text-gray-400 font-normal mt-0.5 truncate">
+                    <div className="text-[11px] text-slateText font-normal mt-0.5 truncate">
                       {item.role}
                     </div>
                   </div>
                 </div>
-                <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-600 shrink-0">
-                  <CheckCircleIcon className="w-3.5 h-3.5 stroke-[2.2]" />
+                <span className="inline-flex items-center gap-1 text-[11px] font-medium text-teal shrink-0">
+                  <CheckCircleIcon className="w-3.5 h-3.5 text-teal stroke-[2.2]" />
                   <span>Verified</span>
                 </span>
               </div>

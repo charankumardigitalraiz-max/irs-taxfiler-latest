@@ -27,7 +27,7 @@ const Home = () => {
   const image = Logo;
 
   return (
-    <div className="bg-white text-gray-900 font-sans antialiased">
+    <div className="bg-background text-text font-sans antialiased min-h-screen">
       <SEO
         title={title}
         description={description}

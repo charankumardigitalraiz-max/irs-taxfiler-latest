@@ -140,7 +140,7 @@ const TaxSummary = () => {
 
         <Card>
           <div className="flex items-center justify-between mb-2">
-            <TrendingUp className="w-5 h-5 text-purple-600" />
+            <TrendingUp className="w-5 h-5 text-teal" />
             <span className="text-xs text-gray-500">Tax Paid</span>
           </div>
           <p className="text-2xl font-bold text-gray-900">{summaryStats.totalTaxPaid}</p>

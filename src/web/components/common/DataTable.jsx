@@ -21,7 +21,7 @@ const DataTable = ({
   
   if (!data || data.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-500">
+      <div className="text-center py-12 text-slateText">
         {emptyMessage}
       </div>
     );
@@ -37,7 +37,7 @@ const DataTable = ({
                 <th
                   key={column.key}
                   className={clsx(
-                    'px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider',
+                    'px-6 py-3 text-left text-xs font-semibold text-slateText uppercase tracking-wider',
                     column.headerClassName
                   )}
                   style={{ width: column.width }}
@@ -79,7 +79,7 @@ const DataTable = ({
       {/* Pagination */}
       {pagination && (
         <div className="flex items-center justify-between px-6 py-3 bg-gray-50 border-t border-gray-200">
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-slateText">
             Showing {pagination.from} to {pagination.to} of {pagination.total} results
           </div>
           <div className="flex items-center gap-2">

@@ -146,12 +146,12 @@ const TaxPreparationPhases = ({
             {phase1Data.federalDueRefund || 'Not set'}
           </p>
         </Card>
-        <Card className="p-4 bg-purple-50 border-purple-200">
-          <p className="text-sm text-purple-600">State Total</p>
-          <p className="text-xl font-bold text-purple-700 mt-1">
+        <Card className="p-4 bg-background-aqua border-border">
+          <p className="text-sm text-teal">State Total</p>
+          <p className="text-xl font-bold text-primary mt-1">
             ${phase1Summary.stateTotal.toLocaleString('en-US', { minimumFractionDigits: 2 })}
           </p>
-          <p className="text-xs text-purple-500 mt-1">
+          <p className="text-xs text-teal mt-1">
             {phase1Data.stateEntries?.length || 0} state(s)
           </p>
         </Card>
@@ -221,9 +221,9 @@ const TaxPreparationPhases = ({
                 <Badge color="yellow" size="sm">Awaiting Client Review</Badge>
               )}
               {activePhase === 1 ? (
-                <ChevronUp className="w-5 h-5 text-gray-400" />
+                <ChevronUp className="w-5 h-5 text-slateText/70" />
               ) : (
-                <ChevronDown className="w-5 h-5 text-gray-400" />
+                <ChevronDown className="w-5 h-5 text-slateText/70" />
               )}
             </div>
           </div>
@@ -290,14 +290,14 @@ const TaxPreparationPhases = ({
             <div className="flex items-center gap-3">
               <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                 phaseStatus.phase2ClientApproved ? 'bg-green-100' : 
-                phaseStatus.phase2Enabled ? 'bg-purple-100' : 'bg-gray-100'
+                phaseStatus.phase2Enabled ? 'bg-background-aqua' : 'bg-gray-100'
               }`}>
                 {phaseStatus.phase2ClientApproved ? (
                   <CheckCircle className="w-5 h-5 text-green-600" />
                 ) : phaseStatus.isLocked ? (
-                  <Lock className="w-5 h-5 text-gray-500" />
+                  <Lock className="w-5 h-5 text-slateText" />
                 ) : (
-                  <span className={`text-lg font-bold ${phaseStatus.phase2Enabled ? 'text-purple-600' : 'text-gray-400'}`}>2</span>
+                  <span className={`text-lg font-bold ${phaseStatus.phase2Enabled ? 'text-teal' : 'text-slateText/70'}`}>2</span>
                 )}
               </div>
               <div>
@@ -323,9 +323,9 @@ const TaxPreparationPhases = ({
               )}
               {phaseStatus.phase2Enabled && (
                 activePhase === 2 ? (
-                  <ChevronUp className="w-5 h-5 text-gray-400" />
+                  <ChevronUp className="w-5 h-5 text-slateText/70" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-gray-400" />
+                  <ChevronDown className="w-5 h-5 text-slateText/70" />
                 )
               )}
             </div>
@@ -335,8 +335,8 @@ const TaxPreparationPhases = ({
         {activePhase === 2 && phaseStatus.phase2Enabled && (
           <Card.Content>
             {/* Adjustment Notes */}
-            <div className="mb-6 p-4 bg-purple-50 rounded-lg border border-purple-200">
-              <label className="label text-purple-700">Adjustment Notes</label>
+            <div className="mb-6 p-4 bg-background-aqua rounded-lg border border-border">
+              <label className="label text-primary">Adjustment Notes</label>
               <textarea
                 value={phase2Data.adjustmentNotes}
                 onChange={(e) => setPhase2Data({ ...phase2Data, adjustmentNotes: e.target.value })}

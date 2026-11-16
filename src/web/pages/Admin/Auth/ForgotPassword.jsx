@@ -18,10 +18,10 @@ export default function AdminForgotPassword() {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-6"
       >
-        <h2 className="text-2xl font-bold text-[#540863]">
+        <h2 className="text-2xl font-bold text-[#1F4264]">
           Forgot Password
         </h2>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-slateText">
           Enter your registered email and we'll send you reset instructions
         </p>
       </motion.div>
@@ -41,7 +41,7 @@ export default function AdminForgotPassword() {
 
             {/* EMAIL */}
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
+              <label className="block text-sm font-semibold text-slateText mb-1">
                 Email Address *
               </label>
               <input
@@ -49,7 +49,7 @@ export default function AdminForgotPassword() {
                 {...formik.getFieldProps("email")}
                 className={`
                   w-full px-4 py-3 rounded-xl border
-                  focus:ring-2 focus:ring-[#540863]
+                  focus:ring-2 focus:ring-[#1F4264]
                   focus:border-transparent outline-none transition
                   ${
                     formik.touched.email && formik.errors.email
@@ -77,7 +77,7 @@ export default function AdminForgotPassword() {
                 font-bold text-white tracking-wider
                 shadow-lg transition
               "
-              style={{ backgroundColor: "#540863" }}
+              style={{ backgroundColor: "#1F4264" }}
             >
               Send Reset Link
             </motion.button>

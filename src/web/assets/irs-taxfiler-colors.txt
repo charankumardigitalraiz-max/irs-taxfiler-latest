@@ -1,0 +1,255 @@
+IRS TAX FILER WEBSITE COLOR SYSTEM
+===================================
+
+Recommended visual direction:
+Clean blue, indigo, soft lavender, teal, and small amber highlights.
+Do not use dark navy as the main page color.
+Do not use pale gray text for important content.
+
+PRIMARY COLORS
+--------------
+Primary Blue: #2563EB
+Use for: primary buttons, active navigation links, links, important icons, selected tabs.
+
+Primary Blue Hover: #1D4ED8
+Use for: button hover states, active hover states, focused controls.
+
+Deep Indigo: #172554
+Use for: main headings, important titles, footer headings, strong text.
+
+Indigo Light: #E0E7FF
+Use for: selected backgrounds, soft heading highlights, active navigation backgrounds.
+
+SECONDARY COLORS
+----------------
+Teal: #0F766E
+Use for: secondary accents, service icons, verification accents, supporting buttons.
+
+Teal Hover: #115E59
+Use for: teal button hover states and active teal controls.
+
+Teal Light: #CCFBF1
+Use for: teal icon backgrounds, selected service backgrounds, soft information areas.
+
+BACKGROUND COLORS
+-----------------
+Main Page Background: #F8FAFC
+Use for: main website background and general page sections.
+
+Hero Background: #F5F7FF
+Use for: hero section only.
+
+Soft Blue Background: #EFF6FF
+Use for: service areas, trust areas, light feature sections.
+
+Soft Lavender Background: #EEF2FF
+Use for: advantage sections, CTA sections, selected content areas.
+
+Soft Mint Background: #ECFDF5
+Use for: CPA verification areas, secure filing areas, success states.
+
+White: #FFFFFF
+Use for: cards, navigation background, modal background, form background.
+
+TEXT COLORS
+-----------
+Heading Text: #172554
+Use for: H1, H2, H3, major section headings.
+
+Primary Body Text: #334155
+Use for: paragraphs, card descriptions, normal website content.
+
+Secondary Body Text: #64748B
+Use for: small descriptions, helper text, supporting labels.
+
+Muted Text: #94A3B8
+Use only for: disabled text, timestamps, very low-priority information.
+Do not use this for important content or buttons.
+
+White Text: #FFFFFF
+Use for: text on blue buttons, text on teal buttons, dark footer text.
+
+BORDER COLORS
+-------------
+Default Border: #D9E2F2
+Use for: cards, inputs, navigation bottom border, service boxes.
+
+Light Border: #E2E8F0
+Use for: subtle dividers and light card separation.
+
+Blue Border: #93C5FD
+Use for: secondary buttons, selected cards, focused inputs.
+
+Teal Border: #99F6E4
+Use for: teal cards, verification panels, selected service cards.
+
+STATUS COLORS
+-------------
+Success Green: #16A34A
+Use for: successful verification, completed steps, confirmed filing status.
+
+Success Light: #DCFCE7
+Use for: success badges and CPA verified backgrounds.
+
+Success Dark Text: #166534
+Use for: text inside success badges.
+
+Warning Amber: #F59E0B
+Use for: rating stars, offer highlights, attention indicators, limited promotional highlights.
+
+Warning Light: #FEF3C7
+Use for: light warning areas and offer backgrounds.
+
+Warning Dark Text: #92400E
+Use for: text inside warning badges.
+
+Error Red: #DC2626
+Use for: validation errors, failed actions, urgent warnings.
+
+Error Light: #FEE2E2
+Use for: error backgrounds and error messages.
+
+Error Dark Text: #991B1B
+Use for: text inside error messages.
+
+BUTTON COLORS
+-------------
+Primary Button Background: #2563EB
+Primary Button Text: #FFFFFF
+Primary Button Hover: #1D4ED8
+
+Secondary Button Background: #FFFFFF
+Secondary Button Text: #2563EB
+Secondary Button Border: #93C5FD
+Secondary Button Hover Background: #EFF6FF
+
+Teal Button Background: #0F766E
+Teal Button Text: #FFFFFF
+Teal Button Hover: #115E59
+
+Consultation Button Background: #F59E0B
+Consultation Button Text: #172554
+Consultation Button Hover: #D97706
+
+CARD DESIGN COLORS
+------------------
+Card Background: #FFFFFF
+Card Border: #D9E2F2
+Card Hover Border: #93C5FD
+Card Shadow: rgba(37, 99, 235, 0.08)
+Card Hover Shadow: rgba(37, 99, 235, 0.16)
+
+Use:
+- Border radius: 14px
+- Normal border: 1px solid #D9E2F2
+- Hover border: 1px solid #93C5FD
+- Keep shadows soft and subtle
+
+NAVIGATION COLORS
+-----------------
+Navigation Background: #FFFFFF
+Navigation Text: #334155
+Navigation Hover Text: #2563EB
+Active Navigation Text: #2563EB
+Navigation Border: #E2E8F0
+Navigation Button Background: #2563EB
+Navigation Button Text: #FFFFFF
+
+HERO COLORS
+-----------
+Hero Background: #F5F7FF
+Hero Heading: #172554
+Hero Highlight: #2563EB
+Hero Body Text: #475569
+Primary CTA: #2563EB
+Secondary CTA: #FFFFFF
+Secondary CTA Text: #2563EB
+Hero Image Border: #D9E2F2
+
+SERVICE SECTION COLORS
+----------------------
+Service Section Background: #EFF6FF
+Service Card Background: #FFFFFF
+Service Card Heading: #172554
+Service Card Description: #64748B
+Service Icon Background: #E0E7FF
+Service Icon Color: #2563EB
+Selected Service Border: #93C5FD
+
+TRUST AND VERIFICATION COLORS
+-----------------------------
+Trust Background: #ECFDF5
+Trust Icon Background: #DCFCE7
+Trust Icon Color: #16A34A
+Trust Text: #166534
+CPA Verified Badge Background: #DCFCE7
+CPA Verified Badge Text: #166534
+Rating Star Color: #F59E0B
+
+BOTTOM CONTACT BAR COLORS
+------------------------
+Bottom Bar Background: #1D4ED8
+Bottom Bar Text: #FFFFFF
+Bottom Bar Secondary Item: #DBEAFE
+WhatsApp Button Background: #0F766E
+WhatsApp Button Text: #FFFFFF
+Free Consultation Background: #F59E0B
+Free Consultation Text: #172554
+PayPal Button Background: #FFFFFF
+PayPal Button Text: #2563EB
+Close Button Background: rgba(255, 255, 255, 0.15)
+
+FOOTER COLORS
+-------------
+Footer Background: #172554
+Footer Heading: #FFFFFF
+Footer Body Text: #CBD5E1
+Footer Link Text: #E0E7FF
+Footer Link Hover: #FFFFFF
+Footer Divider: #334155
+
+CSS VARIABLES
+-------------
+:root {
+  --color-primary: #2563EB;
+  --color-primary-hover: #1D4ED8;
+  --color-indigo: #172554;
+  --color-indigo-light: #E0E7FF;
+  --color-teal: #0F766E;
+  --color-teal-hover: #115E59;
+  --color-teal-light: #CCFBF1;
+  --color-page-bg: #F8FAFC;
+  --color-hero-bg: #F5F7FF;
+  --color-soft-blue: #EFF6FF;
+  --color-soft-lavender: #EEF2FF;
+  --color-soft-mint: #ECFDF5;
+  --color-white: #FFFFFF;
+  --color-heading: #172554;
+  --color-body: #334155;
+  --color-secondary-text: #64748B;
+  --color-muted-text: #94A3B8;
+  --color-border: #D9E2F2;
+  --color-light-border: #E2E8F0;
+  --color-blue-border: #93C5FD;
+  --color-success: #16A34A;
+  --color-success-light: #DCFCE7;
+  --color-success-text: #166534;
+  --color-warning: #F59E0B;
+  --color-warning-light: #FEF3C7;
+  --color-warning-text: #92400E;
+  --color-error: #DC2626;
+  --color-error-light: #FEE2E2;
+  --color-error-text: #991B1B;
+}
+
+COLOR BALANCE
+-------------
+White and light backgrounds: 70 percent
+Blue and indigo: 20 percent
+Teal: 8 percent
+Amber: 2 percent
+
+Do not add new content.
+Do not change existing labels.
+Do not change the page sections.
+Only update colors, contrast, borders, shadows, spacing, and visual styling.

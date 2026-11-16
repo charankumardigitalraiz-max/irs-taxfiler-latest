@@ -7,7 +7,7 @@ const colorClasses = {
   yellow: 'bg-yellow-100 text-yellow-700',
   orange: 'bg-orange-100 text-orange-700',
   red: 'bg-red-100 text-red-700',
-  purple: 'bg-purple-100 text-purple-700',
+  purple: 'bg-background-aqua text-primary',
   indigo: 'bg-indigo-100 text-indigo-700',
 };
 
@@ -43,7 +43,7 @@ const Badge = ({
             color === 'yellow' && 'bg-yellow-500',
             color === 'orange' && 'bg-orange-500',
             color === 'red' && 'bg-red-500',
-            color === 'purple' && 'bg-purple-500',
+            color === 'purple' && 'bg-teal',
             color === 'indigo' && 'bg-indigo-500'
           )}
         />

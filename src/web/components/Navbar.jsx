@@ -119,12 +119,12 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Using solid primary color instead of gradient
-  const navTextColor = `text-[#165479]`; /* Primary color - solid, no gradient */
+  // Using global semantic color
+  const navTextColor = `text-primary`;
 
   return (
     <>
-      {/* Full-Width Bottom Contact & Quick Utilities Bar */}
+      {/* Full-Width Bottom Contact & Quick Utilities Bar (Exact Spec Match) */}
       <div className="fixed bottom-0 inset-x-0 w-full z-50 font-sans pointer-events-auto">
         <AnimatePresence mode="wait">
           {isContactStripOpen ? (
@@ -134,7 +134,7 @@ const Navbar = () => {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 50, opacity: 0 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="w-full bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#0A4973] text-white border-t border-white/20  py-2 px-3 sm:px-6"
+              className="w-full bg-primary text-white border-t border-white/10 py-2 px-3 sm:px-6 shadow-lg"
             >
               <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 flex-wrap">
                 {/* Left: Contact Numbers & Channels */}
@@ -142,7 +142,7 @@ const Navbar = () => {
                   {/* US Phone */}
                   <a
                     href="tel:+14044244191"
-                    className="h-9 px-3 rounded-full bg-[#749220] hover:bg-[#84a724] text-white flex items-center gap-2 transition-all duration-200 shadow-sm font-semibold text-xs sm:text-sm shrink-0 group/call cursor-pointer"
+                    className="h-9 px-3 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center gap-2 transition-all duration-200 shadow-sm font-semibold text-xs sm:text-sm shrink-0 group/call cursor-pointer"
                     title="Call US: +1 (404) 424-4191"
                   >
                     <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover/call:scale-110 transition-transform">
@@ -155,7 +155,7 @@ const Navbar = () => {
                   {/* India Phone */}
                   <a
                     href="tel:+919052333667"
-                    className="h-9 px-3 rounded-full  hover:bg-[#749220] text-white flex items-center gap-2 transition-all duration-200 shadow-sm font-semibold text-xs sm:text-sm shrink-0 group/in cursor-pointer "
+                    className="h-9 px-3 rounded-full hover:bg-white/15 text-white flex items-center gap-2 transition-all duration-200 shadow-sm font-semibold text-xs sm:text-sm shrink-0 group/in cursor-pointer "
                     title="Call India: +91 9052 333 667/668"
                   >
                     <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover/in:scale-110 transition-transform">
@@ -170,7 +170,7 @@ const Navbar = () => {
                     href="https://wa.me/919052333667?text=Hi%20IRS%20Tax%20Filer"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-9 px-3 rounded-full bg-white/10 hover:bg-[#25D366] text-white flex items-center gap-1.5 transition-all duration-200 shadow-sm font-semibold text-xs shrink-0 border border-white/15"
+                    className="h-9 px-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center gap-1.5 transition-all duration-200 shadow-sm font-semibold text-xs shrink-0 border border-white/20"
                     title="WhatsApp Support: +91 9052 333 667/668"
                   >
                     <ChatBubbleLeftRightIcon className="w-4 h-4" />
@@ -183,7 +183,7 @@ const Navbar = () => {
                     className="hidden xl:inline-flex items-center gap-1.5 text-xs text-white/90 hover:text-white font-medium transition-colors ml-1"
                     title="Email: contact@irstaxfiler.com"
                   >
-                    <EnvelopeIcon className="w-4 h-4 text-lime-300" />
+                    <EnvelopeIcon className="w-4 h-4 text-white" />
                     <span>contact@irstaxfiler.com</span>
                   </a>
                 </div>
@@ -193,25 +193,25 @@ const Navbar = () => {
                   {/* Schedule Consultation */}
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="h-9 px-3.5 sm:px-4 rounded-full bg-gradient-to-r from-[#749220] to-[#5e7719] hover:from-[#84a724] hover:to-[#749220] text-white font-semibold text-xs flex items-center gap-1.5 shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap"
+                    className="h-9 px-3.5 sm:px-4 rounded-full bg-coral hover:bg-coral-muted text-white font-bold text-xs flex items-center gap-1.5 shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap"
                   >
-                    <CalendarDaysIcon className="w-4 h-4" />
+                    <CalendarDaysIcon className="w-4 h-4 text-white" />
                     <span>Free Consultation</span>
                   </button>
 
                   {/* PayPal */}
                   <button
                     onClick={() => window.open('https://www.paypal.com/ncp/payment/9AWG5USG2AUDU', '_blank')}
-                    className="h-9 px-3 sm:px-4 rounded-full bg-[#0070ba] hover:bg-[#005ea6] text-white font-semibold text-xs flex items-center gap-1.5 shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap"
+                    className="h-9 px-3 sm:px-4 rounded-full bg-action-blue hover:bg-action-blue/90 text-white font-bold text-xs flex items-center gap-1.5 shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap"
                   >
-                    <CreditCardIcon className="w-4 h-4" />
+                    <CreditCardIcon className="w-4 h-4 text-white" />
                     <span className="hidden sm:inline">Pay with</span> PayPal
                   </button>
 
                   {/* Close Bar */}
                   <button
                     onClick={() => setIsContactStripOpen(false)}
-                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/25 text-white/80 hover:text-white flex items-center justify-center transition-all duration-150 cursor-pointer ml-1"
+                    className="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-all duration-150 cursor-pointer ml-1"
                     title="Minimize bar"
                     aria-label="Minimize bar"
                   >
@@ -229,16 +229,16 @@ const Navbar = () => {
               transition={{ duration: 0.2 }}
               className="pb-3 flex justify-center"
             >
-              <div className="bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] text-white p-1.5 sm:p-2 pl-3 pr-4 rounded-full shadow-[0_8px_30px_rgba(10,73,115,0.45)] border border-white/25 transition-all flex items-center gap-3">
+              <div className="bg-primary text-white p-1.5 sm:p-2 pl-3 pr-4 rounded-full shadow-[0_8px_30px_rgba(31,66,100,0.35)] border border-white/20 transition-all flex items-center gap-3">
                 <a
                   href="tel:+14044244191"
                   className="flex items-center gap-2 group/us cursor-pointer"
                   title="Call US: +1 (404) 424-4191"
                 >
-                  <div className="w-7 h-7 rounded-full bg-[#749220] group-hover/us:bg-[#84a724] text-white flex items-center justify-center transition-all group-hover/us:scale-110 shadow-sm">
+                  <div className="w-7 h-7 rounded-full bg-white/20 group-hover/us:bg-white/30 text-white flex items-center justify-center transition-all group-hover/us:scale-110 shadow-sm">
                     <PhoneIcon className="w-3.5 h-3.5" />
                   </div>
-                  <UsFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" />
+                  <UsFlag className="w-5 h-3.5 rounded-sm shrink-0 shadow-sm" />
                   <span className="text-xs sm:text-sm font-bold tracking-tight text-white whitespace-nowrap">
                     US: +1 (404) 424-4191
                   </span>
@@ -251,8 +251,8 @@ const Navbar = () => {
                   className="hidden sm:flex items-center gap-2 group/in cursor-pointer"
                   title="Call India: +91 9052 333 667/668"
                 >
-                  <InFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" />
-                  <span className="text-xs font-semibold text-lime-200 whitespace-nowrap">
+                  <InFlag className="w-5 h-3.5 rounded-sm shrink-0 shadow-sm" />
+                  <span className="text-xs font-semibold text-white/90 whitespace-nowrap">
                     India: +91 9052 333 667/668
                   </span>
                 </a>
@@ -318,17 +318,17 @@ const Navbar = () => {
                 <Link
                   to="/services"
                   className={`group relative inline-flex items-center gap-1.5 py-1.5 px-2 text-sm font-medium transition-colors duration-200 ${location.pathname.startsWith("/services") || showDropdown === "services"
-                    ? "text-[#749220]"
-                    : "text-gray-700 hover:text-[#749220]"
+                    ? "text-teal"
+                    : "text-primary hover:text-teal"
                     }`}
                 >
                   <span>Services</span>
                   <ChevronDownIcon
-                    className={`w-3.5 h-3.5 transition-transform duration-200 ${showDropdown === "services" ? "rotate-180 text-[#749220]" : "text-gray-400 group-hover:text-[#749220]"
+                    className={`w-3.5 h-3.5 transition-transform duration-200 ${showDropdown === "services" ? "rotate-180 text-teal" : "text-slateText group-hover:text-teal"
                       }`}
                   />
                   <span
-                    className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#749220] rounded-full transition-all duration-200 ${location.pathname.startsWith("/services") || showDropdown === "services"
+                    className={`absolute bottom-0 left-0 w-full h-[2px] bg-teal rounded-full transition-all duration-200 ${location.pathname.startsWith("/services") || showDropdown === "services"
                       ? "scale-x-100 opacity-100"
                       : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100 origin-left"
                       }`}
@@ -342,7 +342,7 @@ const Navbar = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 6, scale: 0.99 }}
                       transition={{ duration: 0.16, ease: "easeOut" }}
-                      className="absolute top-full -left-16 lg:-left-24 mt-2 bg-white rounded-2xl shadow-[0_20px_60px_rgba(22,84,121,0.12),0_4px_16px_rgba(0,0,0,0.04)] border border-gray-100 p-6 sm:p-7 z-[1100] w-[900px] lg:w-[940px]"
+                      className="absolute top-full -left-16 lg:-left-24 mt-2 bg-white rounded-2xl shadow-[0_20px_60px_rgba(31,66,100,0.12),0_4px_16px_rgba(0,0,0,0.04)] border border-border p-6 sm:p-7 z-[1100] w-[900px] lg:w-[940px]"
                       style={{ backgroundColor: "#ffffff" }}
                       onMouseEnter={() => setShowDropdown("services")}
                       onMouseLeave={() => setShowDropdown(null)}
@@ -350,28 +350,28 @@ const Navbar = () => {
                       <div className="grid grid-cols-3 gap-7 lg:gap-8">
                         {/* Column 1: US Individual Tax */}
                         <div>
-                          <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-gray-100">
-                            <span className="text-xs font-semibold text-gray-900 tracking-tight">Individual Tax</span>
-                            <span className="text-[10px] text-sky-700 bg-sky-50 border border-sky-200/60 px-2 py-0.5 rounded-full font-medium">Form 1040</span>
+                          <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-border">
+                            <span className="text-xs font-semibold text-primary tracking-tight">Individual Tax</span>
+                            <span className="text-[10px] text-teal bg-background-aqua border border-border px-2 py-0.5 rounded-full font-medium">Form 1040</span>
                           </div>
 
                           <div className="space-y-1">
                             <Link
                               to="/services/us-individual/federal-state-local"
                               onClick={() => setShowDropdown(null)}
-                              className="group flex items-center gap-3 px-2.5 py-2 rounded-xl  hover:bg-slate-50 transition-all duration-200"
+                              className="group flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-background-aqua/40 transition-all duration-200"
                             >
-                              <div className="w-8 h-8 flex items-center justify-center shrink-0 text-sky-600 group-hover:scale-110 transition-transform">
+                              <div className="w-8 h-8 flex items-center justify-center shrink-0 text-teal group-hover:scale-110 transition-transform">
                                 <svg className="w-5.5 h-5.5" viewBox="0 0 20 20" fill="none">
                                   <rect x="3" y="2.5" width="14" height="15" rx="2.5" stroke="currentColor" strokeWidth="1.4" />
                                   <rect x="5.5" y="4.5" width="4.5" height="1.8" rx="0.5" fill="currentColor" />
                                   <line x1="5.5" y1="8.5" x2="14.5" y2="8.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
                                   <line x1="5.5" y1="11.5" x2="11.5" y2="11.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-                                  <circle cx="14" cy="14" r="3" fill="#10B981" />
+                                  <circle cx="14" cy="14" r="3" fill="#127EAB" />
                                   <path d="M12.8 14L13.6 14.8L15.2 13.2" stroke="white" strokeWidth="0.9" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </div>
-                              <span className="text-[13.5px] font-medium text-gray-800 group-hover:text-sky-700 transition-colors leading-tight">
+                              <span className="text-[13.5px] font-medium text-slateText group-hover:text-primary transition-colors leading-tight">
                                 Federal, State & Local Tax Filing
                               </span>
                             </Link>
@@ -379,18 +379,18 @@ const Navbar = () => {
                             <Link
                               to="/services/us-individual/fbar-fatca"
                               onClick={() => setShowDropdown(null)}
-                              className="group flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-slate-50 transition-all duration-200"
+                              className="group flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-background-aqua/40 transition-all duration-200"
                             >
-                              <div className="w-8 h-8 flex items-center justify-center shrink-0 text-indigo-600 group-hover:scale-110 transition-transform">
+                              <div className="w-8 h-8 flex items-center justify-center shrink-0 text-teal group-hover:scale-110 transition-transform">
                                 <svg className="w-5.5 h-5.5" viewBox="0 0 20 20" fill="none">
                                   <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.4" />
                                   <ellipse cx="10" cy="10" rx="3.5" ry="7.5" stroke="currentColor" strokeWidth="1.1" strokeDasharray="1.5 1.5" />
                                   <line x1="2.5" y1="10" x2="17.5" y2="10" stroke="currentColor" strokeWidth="1.1" />
-                                  <circle cx="14" cy="6" r="2.8" fill="#06B6D4" />
+                                  <circle cx="14" cy="6" r="2.8" fill="#127EAB" />
                                   <text x="14" y="8" fill="white" fontSize="4" fontWeight="bold" textAnchor="middle" fontFamily="sans-serif">$</text>
                                 </svg>
                               </div>
-                              <span className="text-[13.5px] font-medium text-gray-800 group-hover:text-indigo-700 transition-colors leading-tight">
+                              <span className="text-[13.5px] font-medium text-slateText group-hover:text-primary transition-colors leading-tight">
                                 FBAR & FATCA Services
                               </span>
                             </Link>
@@ -398,16 +398,16 @@ const Navbar = () => {
                             <Link
                               to="/services/us-individual/representation"
                               onClick={() => setShowDropdown(null)}
-                              className="group flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-slate-50 transition-all duration-200"
+                              className="group flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-background-aqua/40 transition-all duration-200"
                             >
-                              <div className="w-8 h-8 flex items-center justify-center shrink-0 text-amber-600 group-hover:scale-110 transition-transform">
+                              <div className="w-8 h-8 flex items-center justify-center shrink-0 text-teal-soft group-hover:scale-110 transition-transform">
                                 <svg className="w-5.5 h-5.5" viewBox="0 0 20 20" fill="none">
                                   <path d="M10 2L16.5 4.5V9.5C16.5 13.5 10 17.5 10 17.5C10 17.5 3.5 13.5 3.5 9.5V4.5L10 2Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-                                  <circle cx="10" cy="9.5" r="3.2" fill="#F59E0B" />
+                                  <circle cx="10" cy="9.5" r="3.2" fill="#37899B" />
                                   <path d="M8.5 9.5L9.5 10.5L11.8 8.2" stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </div>
-                              <span className="text-[13.5px] font-medium text-gray-800 group-hover:text-amber-700 transition-colors leading-tight">
+                              <span className="text-[13.5px] font-medium text-slateText group-hover:text-primary transition-colors leading-tight">
                                 Representation Services
                               </span>
                             </Link>
@@ -415,18 +415,18 @@ const Navbar = () => {
                             <Link
                               to="/services/us-individual/itin"
                               onClick={() => setShowDropdown(null)}
-                              className="group flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-slate-50 transition-all duration-200"
+                              className="group flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-background-aqua/40 transition-all duration-200"
                             >
-                              <div className="w-8 h-8 flex items-center justify-center shrink-0 text-purple-600 group-hover:scale-110 transition-transform">
+                              <div className="w-8 h-8 flex items-center justify-center shrink-0 text-teal group-hover:scale-110 transition-transform">
                                 <svg className="w-5.5 h-5.5" viewBox="0 0 20 20" fill="none">
                                   <rect x="2.5" y="4" width="15" height="12" rx="2.5" stroke="currentColor" strokeWidth="1.4" />
                                   <circle cx="6.5" cy="8.5" r="1.8" stroke="currentColor" strokeWidth="1.2" />
                                   <path d="M4.5 13C4.5 11.8 5.4 11 6.5 11C7.6 11 8.5 11.8 8.5 13" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-                                  <rect x="11" y="7" width="4.5" height="2.5" rx="0.5" fill="#F59E0B" />
+                                  <rect x="11" y="7" width="4.5" height="2.5" rx="0.5" fill="#127EAB" />
                                   <line x1="11" y1="12" x2="15.5" y2="12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
                                 </svg>
                               </div>
-                              <span className="text-[13.5px] font-medium text-gray-800 group-hover:text-purple-700 transition-colors leading-tight">
+                              <span className="text-[13.5px] font-medium text-slateText group-hover:text-primary transition-colors leading-tight">
                                 ITIN Assistance
                               </span>
                             </Link>
@@ -446,7 +446,7 @@ const Navbar = () => {
                                   <path d="M12.5 10.5V12.5L14 12.5" stroke="white" strokeWidth="0.9" strokeLinecap="round" />
                                 </svg>
                               </div>
-                              <span className="text-[13.5px] font-medium text-gray-800 group-hover:text-orange-700 transition-colors leading-tight">
+                              <span className="text-[13.5px] font-medium text-primary group-hover:text-orange-700 transition-colors leading-tight">
                                 Extension Filing
                               </span>
                             </Link>
@@ -466,7 +466,7 @@ const Navbar = () => {
                                   <path d="M14.8 12.2L15.8 13.2" stroke="white" strokeWidth="0.8" strokeLinecap="round" />
                                 </svg>
                               </div>
-                              <span className="text-[13.5px] font-medium text-gray-800 group-hover:text-rose-700 transition-colors leading-tight">
+                              <span className="text-[13.5px] font-medium text-primary group-hover:text-rose-700 transition-colors leading-tight">
                                 Amendment Filing
                               </span>
                             </Link>
@@ -476,7 +476,7 @@ const Navbar = () => {
                         {/* Column 2: US Business Tax */}
                         <div>
                           <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-gray-100">
-                            <span className="text-xs font-semibold text-gray-900 tracking-tight">Business Tax</span>
+                            <span className="text-xs font-semibold text-primary tracking-tight">Business Tax</span>
                             <span className="text-[10px] text-blue-700 bg-blue-50 border border-blue-200/60 px-2 py-0.5 rounded-full font-medium">LLC & Corp</span>
                           </div>
 
@@ -494,11 +494,11 @@ const Navbar = () => {
                                   <rect x="12.5" y="5.5" width="1.2" height="1.2" fill="currentColor" />
                                   <rect x="10.5" y="8.5" width="1.2" height="1.2" fill="currentColor" />
                                   <rect x="12.5" y="8.5" width="1.2" height="1.2" fill="currentColor" />
-                                  <circle cx="15.5" cy="14.5" r="2.8" fill="#3B82F6" stroke="white" strokeWidth="1" />
+                                  <circle cx="15.5" cy="14.5" r="2.8" fill="#127EAB" stroke="white" strokeWidth="1" />
                                   <path d="M14.5 14.5L15.2 15.2L16.5 13.8" stroke="white" strokeWidth="0.8" strokeLinecap="round" />
                                 </svg>
                               </div>
-                              <span className="text-[13.5px] font-medium text-gray-800 group-hover:text-blue-800 transition-colors leading-tight">
+                              <span className="text-[13.5px] font-medium text-primary group-hover:text-teal transition-colors leading-tight">
                                 US Incorporations
                               </span>
                             </Link>
@@ -516,7 +516,7 @@ const Navbar = () => {
                                   <path d="M4.5 9L9 6L14 3M14 3H11M14 3V6" stroke="#059669" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </div>
-                              <span className="text-[13.5px] font-medium text-gray-800 group-hover:text-emerald-700 transition-colors leading-tight">
+                              <span className="text-[13.5px] font-medium text-primary group-hover:text-emerald-700 transition-colors leading-tight">
                                 Small & Medium Business Tax Filing
                               </span>
                             </Link>
@@ -534,17 +534,17 @@ const Navbar = () => {
                                   <path d="M14.8 5.5L15.3 6L16.2 5.1" stroke="white" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </div>
-                              <span className="text-[13.5px] font-medium text-gray-800 group-hover:text-teal-700 transition-colors leading-tight">
+                              <span className="text-[13.5px] font-medium text-primary group-hover:text-teal-700 transition-colors leading-tight">
                                 Consulting with Tax Expert (CPA)
                               </span>
                             </Link>
                           </div>
 
                           {/* Minimalist Corporate Consultation Card */}
-                          <div className="mt-4 p-3.5 rounded-xl bg-blue-50/70 border border-blue-200/60 flex items-center justify-between gap-3 shadow-2xs">
+                          <div className="mt-4 p-3.5 rounded-xl bg-background-aqua/70 border border-border flex items-center justify-between gap-3 shadow-2xs">
                             <div className="text-left">
-                              <div className="text-xs font-semibold text-gray-900 leading-tight">Corporate CPA Advisory</div>
-                              <div className="text-[11px] text-gray-500 font-normal mt-0.5">Free 15-min discovery call</div>
+                              <div className="text-xs font-semibold text-primary leading-tight">Corporate CPA Advisory</div>
+                              <div className="text-[11px] text-slateText font-normal mt-0.5">Free 15-min discovery call</div>
                             </div>
                             <button
                               type="button"
@@ -552,7 +552,7 @@ const Navbar = () => {
                                 setShowDropdown(null);
                                 setIsModalOpen(true);
                               }}
-                              className="px-3 py-1.5 rounded-lg bg-[#165479] hover:bg-[#0A4973] text-white text-[11px] font-medium transition-colors cursor-pointer shrink-0 shadow-2xs"
+                              className="px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-[11px] font-medium transition-colors cursor-pointer shrink-0 shadow-2xs"
                             >
                               Book Call
                             </button>
@@ -561,28 +561,28 @@ const Navbar = () => {
 
                         {/* Column 3: Indian Tax Services */}
                         <div>
-                          <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-gray-100">
-                            <span className="text-xs font-semibold text-gray-900 tracking-tight">Indian Tax Services</span>
-                            <span className="text-[10px] text-orange-700 bg-orange-50 border border-orange-200/60 px-2 py-0.5 rounded-full font-medium">ITR & NRI</span>
+                          <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-border">
+                            <span className="text-xs font-semibold text-primary tracking-tight">Indian Tax Services</span>
+                            <span className="text-[10px] text-teal bg-background-aqua border border-border px-2 py-0.5 rounded-full font-medium">ITR & NRI</span>
                           </div>
 
                           <div className="space-y-1">
                             <Link
                               to="/services/indian/tax-filing"
                               onClick={() => setShowDropdown(null)}
-                              className="group flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-slate-50 transition-all duration-200"
+                              className="group flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-background-aqua/40 transition-all duration-200"
                             >
-                              <div className="w-8 h-8 flex items-center justify-center shrink-0 text-orange-600 group-hover:scale-110 transition-transform">
+                              <div className="w-8 h-8 flex items-center justify-center shrink-0 text-teal group-hover:scale-110 transition-transform">
                                 <svg className="w-5.5 h-5.5" viewBox="0 0 20 20" fill="none">
                                   <rect x="3" y="2.5" width="14" height="15" rx="2.5" stroke="currentColor" strokeWidth="1.4" />
                                   <rect x="5.5" y="4.5" width="4.5" height="1.8" rx="0.5" fill="currentColor" />
                                   <line x1="5.5" y1="8.5" x2="14.5" y2="8.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
                                   <line x1="5.5" y1="11.5" x2="11.5" y2="11.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-                                  <circle cx="14" cy="14" r="3" fill="#EA580C" />
+                                  <circle cx="14" cy="14" r="3" fill="#127EAB" />
                                   <path d="M12.8 14L13.6 14.8L15.2 13.2" stroke="white" strokeWidth="0.9" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </div>
-                              <span className="text-[13.5px] font-medium text-gray-800 group-hover:text-orange-700 transition-colors leading-tight">
+                              <span className="text-[13.5px] font-medium text-slateText group-hover:text-primary transition-colors leading-tight">
                                 Indian Tax Filing
                               </span>
                             </Link>
@@ -590,26 +590,26 @@ const Navbar = () => {
                             <Link
                               to="/services/indian/representation"
                               onClick={() => setShowDropdown(null)}
-                              className="group flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-slate-50 transition-all duration-200"
+                              className="group flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-background-aqua/40 transition-all duration-200"
                             >
-                              <div className="w-8 h-8 flex items-center justify-center shrink-0 text-red-600 group-hover:scale-110 transition-transform">
+                              <div className="w-8 h-8 flex items-center justify-center shrink-0 text-teal-soft group-hover:scale-110 transition-transform">
                                 <svg className="w-5.5 h-5.5" viewBox="0 0 20 20" fill="none">
                                   <path d="M10 2L16.5 4.5V9.5C16.5 13.5 10 17.5 10 17.5C10 17.5 3.5 13.5 3.5 9.5V4.5L10 2Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-                                  <circle cx="10" cy="9.5" r="3.2" fill="#DC2626" />
+                                  <circle cx="10" cy="9.5" r="3.2" fill="#37899B" />
                                   <path d="M8.5 9.5L9.5 10.5L11.8 8.2" stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </div>
-                              <span className="text-[13.5px] font-medium text-gray-800 group-hover:text-red-700 transition-colors leading-tight">
+                              <span className="text-[13.5px] font-medium text-slateText group-hover:text-primary transition-colors leading-tight">
                                 Representation Services
                               </span>
                             </Link>
                           </div>
 
                           {/* Minimalist NRI Consultation Card */}
-                          <div className="mt-4 p-3.5 rounded-xl bg-[#F6F9EE] border border-[#749220]/25 flex items-center justify-between gap-3 shadow-2xs">
+                          <div className="mt-4 p-3.5 rounded-xl bg-background-aqua/70 border border-border flex items-center justify-between gap-3 shadow-2xs">
                             <div className="text-left">
-                              <div className="text-xs font-semibold text-gray-900 leading-tight">NRI & Tax Advisory</div>
-                              <div className="text-[11px] text-gray-500 font-normal mt-0.5">Free 15-min discovery call</div>
+                              <div className="text-xs font-semibold text-primary leading-tight">NRI & Tax Advisory</div>
+                              <div className="text-[11px] text-slateText font-normal mt-0.5">Free 15-min discovery call</div>
                             </div>
                             <button
                               type="button"
@@ -617,7 +617,7 @@ const Navbar = () => {
                                 setShowDropdown(null);
                                 setIsModalOpen(true);
                               }}
-                              className="px-3 py-1.5 rounded-lg bg-[#165479] hover:bg-[#0A4973] text-white text-[11px] font-medium transition-colors cursor-pointer shrink-0 shadow-2xs"
+                              className="px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-[11px] font-medium transition-colors cursor-pointer shrink-0 shadow-2xs"
                             >
                               Book Call
                             </button>
@@ -626,15 +626,15 @@ const Navbar = () => {
                       </div>
 
                       {/* Dropdown Bottom Bar - Clean & Minimal */}
-                      <div className="mt-5 pt-3.5 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500 font-normal">
+                      <div className="mt-5 pt-3.5 border-t border-border flex items-center justify-between text-xs text-slateText font-normal">
                         <div className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#749220]" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-teal" />
                           <span>IRS & ITD Authorized e-File Provider • 100% CPA & CA Verified</span>
                         </div>
                         <Link
                           to="/services"
                           onClick={() => setShowDropdown(null)}
-                          className="font-medium text-[#165479] hover:text-[#749220] flex items-center gap-1 transition-colors"
+                          className="font-medium text-primary hover:text-teal flex items-center gap-1 transition-colors"
                         >
                           <span>Explore All Services</span>
                           <ArrowRightIcon className="w-3.5 h-3.5 stroke-[1.8]" />
@@ -648,13 +648,13 @@ const Navbar = () => {
               <Link
                 to="/tax-resources"
                 className={`group relative py-1.5 px-2 text-sm font-medium transition-colors duration-200 ${location.pathname === "/tax-resources"
-                  ? "text-[#749220]"
-                  : "text-gray-700 hover:text-[#749220]"
+                  ? "text-secondary font-semibold"
+                  : "text-primary hover:text-secondary"
                   }`}
               >
                 <span>Tax Resources</span>
                 <span
-                  className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#749220] rounded-full transition-all duration-200 ${location.pathname === "/tax-resources"
+                  className={`absolute bottom-0 left-0 w-full h-[2px] bg-secondary rounded-full transition-all duration-200 ${location.pathname === "/tax-resources"
                     ? "scale-x-100 opacity-100"
                     : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100 origin-left"
                     }`}
@@ -665,13 +665,13 @@ const Navbar = () => {
               <Link
                 to="/pricing"
                 className={`group relative py-1.5 px-2 text-sm font-medium transition-colors duration-200 ${location.pathname === "/pricing"
-                  ? "text-[#749220]"
-                  : "text-gray-700 hover:text-[#749220]"
+                  ? "text-secondary font-semibold"
+                  : "text-primary hover:text-secondary"
                   }`}
               >
                 <span>Pricing</span>
                 <span
-                  className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#749220] rounded-full transition-all duration-200 ${location.pathname === "/pricing"
+                  className={`absolute bottom-0 left-0 w-full h-[2px] bg-secondary rounded-full transition-all duration-200 ${location.pathname === "/pricing"
                     ? "scale-x-100 opacity-100"
                     : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100 origin-left"
                     }`}
@@ -682,31 +682,31 @@ const Navbar = () => {
               <Link
                 to="/about"
                 className={`group relative py-1.5 px-2 text-sm font-medium transition-colors duration-200 ${location.pathname === "/about"
-                  ? "text-[#749220]"
-                  : "text-gray-700 hover:text-[#749220]"
+                  ? "text-secondary font-semibold"
+                  : "text-primary hover:text-secondary"
                   }`}
               >
                 <span>About Us</span>
                 <span
-                  className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#749220] rounded-full transition-all duration-200 ${location.pathname === "/about"
+                  className={`absolute bottom-0 left-0 w-full h-[2px] bg-secondary rounded-full transition-all duration-200 ${location.pathname === "/about"
                     ? "scale-x-100 opacity-100"
                     : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100 origin-left"
                     }`}
                 />
               </Link>
 
-              {/* Refer & Earn */}
+              {/* Refer & Earn (Gift icon in Coral Accent) */}
               <Link
                 to="/referrals"
                 className={`group relative inline-flex items-center gap-1.5 py-1.5 px-2 text-sm font-medium transition-colors duration-200 ${location.pathname === "/referrals"
-                  ? "text-[#749220]"
-                  : "text-gray-700 hover:text-[#749220]"
+                  ? "text-secondary font-semibold"
+                  : "text-primary hover:text-secondary"
                   }`}
               >
-                <GiftIcon className="w-4 h-4 text-[#749220]" />
+                <GiftIcon className="w-4 h-4 text-accent" />
                 <span>Refer & Earn</span>
                 <span
-                  className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#749220] rounded-full transition-all duration-200 ${location.pathname === "/referrals"
+                  className={`absolute bottom-0 left-0 w-full h-[2px] bg-secondary rounded-full transition-all duration-200 ${location.pathname === "/referrals"
                     ? "scale-x-100 opacity-100"
                     : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100 origin-left"
                     }`}
@@ -717,13 +717,13 @@ const Navbar = () => {
               <Link
                 to="/contact"
                 className={`group relative py-1.5 px-2 text-sm font-medium transition-colors duration-200 ${location.pathname === "/contact"
-                  ? "text-[#749220]"
-                  : "text-gray-700 hover:text-[#749220]"
+                  ? "text-secondary font-semibold"
+                  : "text-primary hover:text-secondary"
                   }`}
               >
                 <span>Contact Us</span>
                 <span
-                  className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#749220] rounded-full transition-all duration-200 ${location.pathname === "/contact"
+                  className={`absolute bottom-0 left-0 w-full h-[2px] bg-secondary rounded-full transition-all duration-200 ${location.pathname === "/contact"
                     ? "scale-x-100 opacity-100"
                     : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100 origin-left"
                     }`}
@@ -738,7 +738,7 @@ const Navbar = () => {
                 <div className="flex hover:underline items-center gap-1 sm:gap-2 font-sans">
                   <Link
                     to="/login"
-                    className="hidden sm:inline-flex px-3 py-1.5 text-sm font-semibold text-gray-700 hover:text-[#749220] transition-colors"
+                    className="hidden sm:inline-flex px-3 py-1.5 text-sm font-semibold text-primary hover:text-secondary transition-colors"
                   >
                     Sign In / Sign Up
                   </Link>
@@ -758,7 +758,7 @@ const Navbar = () => {
                       onClick={() => setOpen(!open)}
                       className="flex items-center gap-2 px-4 py-2"
                     >
-                      <div className="w-12 h-12 rounded-full bg-white border-2 border-[#749220] shadow-sm flex items-center justify-center overflow-hidden">
+                      <div className="w-12 h-12 rounded-full bg-white border-2 border-teal shadow-sm flex items-center justify-center overflow-hidden">
                         {getuser()?.image ? (
                           <img
                             src={baseUrl + "/" + getuser().image}
@@ -766,13 +766,13 @@ const Navbar = () => {
                             className="w-full h-full object-cover"
                           />
                         ) : (
-                          <span className="font-semibold text-[#749220] text-sm">
+                          <span className="font-semibold text-teal text-sm">
                             {getuser()?.fullName?.charAt(0).toUpperCase()}
                           </span>
                         )}
                       </div>
 
-                      <span className="text-sm font-medium text-[#EB4149]">
+                      <span className="text-sm font-medium text-primary">
                         {getuser()?.fullName}
                       </span>
                     </button>
@@ -804,7 +804,7 @@ const Navbar = () => {
             {/* Mobile Menu Button */}
             <motion.button
               whileTap={{ scale: 0.9 }}
-              className="md:hidden p-2 text-[#749220]"
+              className="md:hidden p-2 text-primary"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <AnimatePresence mode="wait">
@@ -816,7 +816,7 @@ const Navbar = () => {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <XMarkIcon className="h-6 w-6 text-[#749220]" />
+                    <XMarkIcon className="h-6 w-6 text-primary" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -826,7 +826,7 @@ const Navbar = () => {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Bars3Icon className="h-6 w-6 text-[#749220]" />
+                    <Bars3Icon className="h-6 w-6 text-primary" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -843,7 +843,7 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
             className="mobile-menu md:hidden left-0 right-0 border-t border-gray-200 z-50"
-            style={{ backgroundColor: "#eff6ff" }}
+            style={{ backgroundColor: "#ffffff" }}
           >
             <div className="px-4 pt-2 pb-4 space-y-2">
               {/* Services with Collapsible Submenu */}
@@ -913,7 +913,7 @@ const Navbar = () => {
                                   <path d="M12.8 14L13.6 14.8L15.2 13.2" stroke="white" strokeWidth="0.9" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </div>
-                              <span className="text-sm font-medium text-gray-900">
+                              <span className="text-sm font-medium text-primary">
                                 Federal, State & Local Tax Filing
                               </span>
                             </Link>
@@ -925,16 +925,16 @@ const Navbar = () => {
                               }}
                               className="flex items-center space-x-3 px-2 py-2 rounded-lg hover:bg-slate-50 transition-all duration-200"
                             >
-                              <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-indigo-600">
+                              <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-teal">
                                 <svg className="w-5.5 h-5.5" viewBox="0 0 20 20" fill="none">
                                   <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.4" />
                                   <ellipse cx="10" cy="10" rx="3.5" ry="7.5" stroke="currentColor" strokeWidth="1.1" strokeDasharray="1.5 1.5" />
                                   <line x1="2.5" y1="10" x2="17.5" y2="10" stroke="currentColor" strokeWidth="1.1" />
-                                  <circle cx="14" cy="6" r="2.8" fill="#06B6D4" />
+                                  <circle cx="14" cy="6" r="2.8" fill="#127EAB" />
                                   <text x="14" y="8" fill="white" fontSize="4" fontWeight="bold" textAnchor="middle" fontFamily="sans-serif">$</text>
                                 </svg>
                               </div>
-                              <span className="text-sm font-medium text-gray-900">
+                              <span className="text-sm font-medium text-primary">
                                 FBAR & FATCA Services
                               </span>
                             </Link>
@@ -946,14 +946,14 @@ const Navbar = () => {
                               }}
                               className="flex items-center space-x-3 px-2 py-2 rounded-lg hover:bg-slate-50 transition-all duration-200"
                             >
-                              <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-amber-600">
+                              <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-teal-soft">
                                 <svg className="w-5.5 h-5.5" viewBox="0 0 20 20" fill="none">
                                   <path d="M10 2L16.5 4.5V9.5C16.5 13.5 10 17.5 10 17.5C10 17.5 3.5 13.5 3.5 9.5V4.5L10 2Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-                                  <circle cx="10" cy="9.5" r="3.2" fill="#F59E0B" />
+                                  <circle cx="10" cy="9.5" r="3.2" fill="#37899B" />
                                   <path d="M8.5 9.5L9.5 10.5L11.8 8.2" stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </div>
-                              <span className="text-sm font-medium text-gray-900">
+                              <span className="text-sm font-medium text-primary">
                                 Representation Services
                               </span>
                             </Link>
@@ -965,16 +965,16 @@ const Navbar = () => {
                               }}
                               className="flex items-center space-x-3 px-2 py-2 rounded-lg hover:bg-slate-50 transition-all duration-200"
                             >
-                              <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-purple-600">
+                              <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-teal">
                                 <svg className="w-5.5 h-5.5" viewBox="0 0 20 20" fill="none">
                                   <rect x="2.5" y="4" width="15" height="12" rx="2.5" stroke="currentColor" strokeWidth="1.4" />
                                   <circle cx="6.5" cy="8.5" r="1.8" stroke="currentColor" strokeWidth="1.2" />
                                   <path d="M4.5 13C4.5 11.8 5.4 11 6.5 11C7.6 11 8.5 11.8 8.5 13" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-                                  <rect x="11" y="7" width="4.5" height="2.5" rx="0.5" fill="#F59E0B" />
+                                  <rect x="11" y="7" width="4.5" height="2.5" rx="0.5" fill="#127EAB" />
                                   <line x1="11" y1="12" x2="15.5" y2="12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
                                 </svg>
                               </div>
-                              <span className="text-sm font-medium text-gray-900">
+                              <span className="text-sm font-medium text-primary">
                                 ITIN Assistance
                               </span>
                             </Link>
@@ -996,7 +996,7 @@ const Navbar = () => {
                                   <path d="M12.5 10.5V12.5L14 12.5" stroke="white" strokeWidth="0.9" strokeLinecap="round" />
                                 </svg>
                               </div>
-                              <span className="text-sm font-medium text-gray-900">
+                              <span className="text-sm font-medium text-primary">
                                 Extension Filing
                               </span>
                             </Link>
@@ -1018,7 +1018,7 @@ const Navbar = () => {
                                   <path d="M14.8 12.2L15.8 13.2" stroke="white" strokeWidth="0.8" strokeLinecap="round" />
                                 </svg>
                               </div>
-                              <span className="text-sm font-medium text-gray-900">
+                              <span className="text-sm font-medium text-primary">
                                 Amendment Filing
                               </span>
                             </Link>
@@ -1050,11 +1050,11 @@ const Navbar = () => {
                                   <rect x="12.5" y="5.5" width="1.2" height="1.2" fill="currentColor" />
                                   <rect x="10.5" y="8.5" width="1.2" height="1.2" fill="currentColor" />
                                   <rect x="12.5" y="8.5" width="1.2" height="1.2" fill="currentColor" />
-                                  <circle cx="15.5" cy="14.5" r="2.8" fill="#3B82F6" stroke="white" strokeWidth="1" />
+                                  <circle cx="15.5" cy="14.5" r="2.8" fill="#127EAB" stroke="white" strokeWidth="1" />
                                   <path d="M14.5 14.5L15.2 15.2L16.5 13.8" stroke="white" strokeWidth="0.8" strokeLinecap="round" />
                                 </svg>
                               </div>
-                              <span className="text-sm font-medium text-gray-900">
+                              <span className="text-sm font-medium text-primary">
                                 US Incorporations
                               </span>
                             </Link>
@@ -1074,7 +1074,7 @@ const Navbar = () => {
                                   <path d="M4.5 9L9 6L14 3M14 3H11M14 3V6" stroke="#059669" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </div>
-                              <span className="text-sm font-medium text-gray-900">
+                              <span className="text-sm font-medium text-primary">
                                 Small & Medium Business Tax Filing
                               </span>
                             </Link>
@@ -1094,7 +1094,7 @@ const Navbar = () => {
                                   <path d="M14.8 5.5L15.3 6L16.2 5.1" stroke="white" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </div>
-                              <span className="text-sm font-medium text-gray-900">
+                              <span className="text-sm font-medium text-primary">
                                 Consulting with Tax Expert (CPA)
                               </span>
                             </Link>
@@ -1128,7 +1128,7 @@ const Navbar = () => {
                                   <path d="M12.8 14L13.6 14.8L15.2 13.2" stroke="white" strokeWidth="0.9" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </div>
-                              <span className="text-sm font-medium text-gray-900">
+                              <span className="text-sm font-medium text-primary">
                                 Indian Tax Filing
                               </span>
                             </Link>
@@ -1147,7 +1147,7 @@ const Navbar = () => {
                                   <path d="M8.5 9.5L9.5 10.5L11.8 8.2" stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </div>
-                              <span className="text-sm font-medium text-gray-900">
+                              <span className="text-sm font-medium text-primary">
                                 Representation Services
                               </span>
                             </Link>

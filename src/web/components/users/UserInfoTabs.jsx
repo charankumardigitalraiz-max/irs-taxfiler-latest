@@ -135,7 +135,7 @@ const UserInfoTabs = ({ user, onSave, disabled = false }) => {
                   className={`flex items-center gap-2 py-2 px-3 rounded-lg text-xs font-medium transition-colors text-left ${
                     activeTab === tab.id
                       ? 'bg-primary-50 text-primary-600 border-l-2 border-primary-500'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                      : 'text-slateText hover:bg-gray-50 hover:text-primary'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -150,7 +150,7 @@ const UserInfoTabs = ({ user, onSave, disabled = false }) => {
         <div className="flex-1 p-4">
           {/* Header with Edit button */}
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-gray-900">
+            <h3 className="text-sm font-semibold text-primary">
               {tabs.find((t) => t.id === activeTab)?.label}
             </h3>
             {!disabled && (
@@ -356,12 +356,12 @@ const UserInfoTabs = ({ user, onSave, disabled = false }) => {
         {activeTab === 'dependents' && (
           <div className="space-y-3">
             {formData.dependents.length === 0 ? (
-              <p className="text-sm text-gray-500 text-center py-4">No dependents added</p>
+              <p className="text-sm text-slateText text-center py-4">No dependents added</p>
             ) : (
               formData.dependents.map((dep, index) => (
                 <div key={dep.id} className="p-3 bg-gray-50 rounded-lg border border-gray-200">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-medium text-gray-700">Dependent {index + 1}</span>
+                    <span className="text-xs font-medium text-slateText">Dependent {index + 1}</span>
                     {isEditing && (
                       <Button
                         size="sm"

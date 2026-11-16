@@ -45,8 +45,8 @@ const FinalReports = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Final Reports</h1>
-        <p className="text-gray-600">
+        <h1 className="text-2xl font-bold text-primary mb-2">Final Reports</h1>
+        <p className="text-slateText">
           Download your completed tax filing documents and reports.
         </p>
       </div>
@@ -56,19 +56,19 @@ const FinalReports = () => {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slateText uppercase tracking-wider">
                   Tax Year
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slateText uppercase tracking-wider">
                   Document Type
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slateText uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-semibold text-slateText uppercase tracking-wider">
                   Filed Date
                 </th>
-                <th className="px-6 py-4 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                <th className="px-6 py-4 text-right text-xs font-semibold text-slateText uppercase tracking-wider">
                   Action
                 </th>
               </tr>
@@ -84,14 +84,14 @@ const FinalReports = () => {
                 >
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
-                      <DocumentTextIcon className="h-5 w-5 text-gray-400 mr-3" />
-                      <span className="text-sm font-medium text-gray-900">
+                      <DocumentTextIcon className="h-5 w-5 text-slateText/70 mr-3" />
+                      <span className="text-sm font-medium text-primary">
                         {report.taxYear}
                       </span>
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm text-gray-900">{report.type}</span>
+                    <span className="text-sm text-primary">{report.type}</span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span
@@ -110,7 +110,7 @@ const FinalReports = () => {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm text-gray-600">{report.filedDate}</span>
+                    <span className="text-sm text-slateText">{report.filedDate}</span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right">
                     {report.downloadUrl ? (
@@ -119,7 +119,7 @@ const FinalReports = () => {
                         Download
                       </button>
                     ) : (
-                      <span className="text-sm text-gray-400">Not Available</span>
+                      <span className="text-sm text-slateText/70">Not Available</span>
                     )}
                   </td>
                 </motion.tr>
@@ -131,9 +131,9 @@ const FinalReports = () => {
 
       {reports.length === 0 && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-          <DocumentTextIcon className="mx-auto h-16 w-16 text-gray-300 mb-4" />
-          <p className="text-gray-600 mb-2">No reports available</p>
-          <p className="text-sm text-gray-400">
+          <DocumentTextIcon className="mx-auto h-16 w-16 text-border mb-4" />
+          <p className="text-slateText mb-2">No reports available</p>
+          <p className="text-sm text-slateText/70">
             Your completed tax filing reports will appear here once filing is complete.
           </p>
         </div>

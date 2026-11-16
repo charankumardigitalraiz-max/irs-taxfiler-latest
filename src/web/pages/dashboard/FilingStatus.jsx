@@ -52,8 +52,8 @@ const FilingStatus = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Filing Status</h1>
-        <p className="text-gray-600">
+        <h1 className="text-2xl font-bold text-primary mb-2">Filing Status</h1>
+        <p className="text-slateText">
           Track the progress of your tax filing from submission to completion.
         </p>
       </div>
@@ -83,7 +83,7 @@ const FilingStatus = () => {
                   </div>
                 ) : (
                   <div className="flex items-center justify-center w-10 h-10 bg-gray-200 rounded-full">
-                    <CheckCircleOutline className="h-6 w-6 text-gray-400" />
+                    <CheckCircleOutline className="h-6 w-6 text-slateText/70" />
                   </div>
                 )}
               </div>
@@ -101,8 +101,8 @@ const FilingStatus = () => {
                   <h3
                     className={`text-lg font-semibold ${
                       step.completed || step.current
-                        ? 'text-gray-900'
-                        : 'text-gray-400'
+                        ? 'text-primary'
+                        : 'text-slateText/70'
                     }`}
                   >
                     {step.name}
@@ -113,7 +113,7 @@ const FilingStatus = () => {
                         ? 'text-green-600'
                         : step.current
                         ? 'text-primary-blue'
-                        : 'text-gray-400'
+                        : 'text-slateText/70'
                     }`}
                   >
                     {step.date}
@@ -122,8 +122,8 @@ const FilingStatus = () => {
                 <p
                   className={`text-sm ${
                     step.completed || step.current
-                      ? 'text-gray-600'
-                      : 'text-gray-400'
+                      ? 'text-slateText'
+                      : 'text-slateText/70'
                   }`}
                 >
                   {step.description}
@@ -137,7 +137,7 @@ const FilingStatus = () => {
       {/* Progress Summary */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <p className="text-sm text-gray-600 mb-2">Overall Progress</p>
+          <p className="text-sm text-slateText mb-2">Overall Progress</p>
           <div className="flex items-center space-x-4">
             <div className="flex-1 bg-gray-200 rounded-full h-3">
               <div
@@ -145,16 +145,16 @@ const FilingStatus = () => {
                 style={{ width: '66%' }}
               />
             </div>
-            <span className="text-lg font-bold text-gray-900">66%</span>
+            <span className="text-lg font-bold text-primary">66%</span>
           </div>
         </div>
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <p className="text-sm text-gray-600 mb-2">Steps Completed</p>
-          <p className="text-3xl font-bold text-gray-900">4 / 6</p>
+          <p className="text-sm text-slateText mb-2">Steps Completed</p>
+          <p className="text-3xl font-bold text-primary">4 / 6</p>
         </div>
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <p className="text-sm text-gray-600 mb-2">Estimated Completion</p>
-          <p className="text-lg font-bold text-gray-900">Feb 5, 2024</p>
+          <p className="text-sm text-slateText mb-2">Estimated Completion</p>
+          <p className="text-lg font-bold text-primary">Feb 5, 2024</p>
         </div>
       </div>
     </div>

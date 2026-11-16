@@ -262,13 +262,13 @@ const TaxRefund = () => {
           </Card.Content>
         </Card>
 
-        <Card className="bg-gradient-to-br from-purple-50 to-indigo-50 border-purple-200">
+        <Card className="bg-gradient-to-br from-purple-50 to-indigo-50 border-border">
           <Card.Content>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">File Amended Return</h3>
             <p className="text-sm text-gray-600 mb-4">
               Need to correct your tax return? File an amended return (1040-X) here.
             </p>
-            <Button variant="primary" className="bg-purple-600 hover:bg-purple-700">
+            <Button variant="primary" className="bg-teal hover:bg-purple-700">
               Start Amendment
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>

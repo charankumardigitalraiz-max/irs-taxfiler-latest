@@ -35,7 +35,7 @@ const ProgressBar = ({
         />
       </div>
       {showLabel && (
-        <p className="mt-1 text-xs text-gray-500 text-right">
+        <p className="mt-1 text-xs text-slateText text-right">
           {Math.round(percentage)}%
         </p>
       )}

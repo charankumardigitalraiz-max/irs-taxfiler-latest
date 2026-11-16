@@ -174,8 +174,8 @@ const Settings = () => {
         <Card>
           <Card.Header>
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-purple-100 rounded-lg">
-                <Globe className="w-5 h-5 text-purple-600" />
+              <div className="p-2 bg-background-aqua rounded-lg">
+                <Globe className="w-5 h-5 text-teal" />
               </div>
               <div>
                 <Card.Title>Preferences</Card.Title>

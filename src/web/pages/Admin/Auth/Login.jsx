@@ -97,12 +97,12 @@ const AdminLogin = () => {
         {/* Logo */}
         <div className="text-center">
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-indigo-600 hover:bg-indigo-700 rounded-xl flex items-center justify-center">
+            <div className="w-12 h-12 bg-teal hover:bg-primary rounded-xl flex items-center justify-center">
               <Calculator className="w-7 h-7 text-white" />
             </div>
           </div>
-          <h2 className="text-3xl font-bold text-gray-900">Tax Admin Panel</h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <h2 className="text-3xl font-bold text-primary">Tax Admin Panel</h2>
+          <p className="mt-2 text-sm text-slateText">
             Sign in to manage tax filing cases
           </p>
         </div>
@@ -113,7 +113,7 @@ const AdminLogin = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-slateText mb-1"
               >
                 Email address
               </label>
@@ -138,7 +138,7 @@ const AdminLogin = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-slateText mb-1"
               >
                 Password
               </label>
@@ -162,7 +162,7 @@ const AdminLogin = () => {
                 )}
                 <button
                   type="button"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slateText/70 hover:text-slateText"
                 >
                   {showPassword ? (
                     <EyeOff onClick={() => handleshowpassword('password')} className="w-5 h-5" />
@@ -179,7 +179,7 @@ const AdminLogin = () => {
                   type="checkbox"
                   className="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
                 />
-                <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                <span className="ml-2 text-sm text-slateText">Remember me</span>
               </label>
               <a
                 href="#"
@@ -191,7 +191,7 @@ const AdminLogin = () => {
 
             <Button
               type="submit"
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white"
+              className="w-full bg-teal hover:bg-primary text-white"
               size="lg"
               disabled={loading}
             >

@@ -149,7 +149,7 @@ const WelcomeDialog = () => {
             {/* Close Button */}
             <button
               onClick={handleClose}
-              className="absolute top-3.5 right-3.5 z-30 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-900 transition-colors cursor-pointer"
+              className="absolute top-3.5 right-3.5 z-30 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-slateText hover:text-primary transition-colors cursor-pointer"
               aria-label="Close dialog"
             >
               <XMarkIcon className="w-4 h-4 stroke-[2]" />
@@ -159,13 +159,13 @@ const WelcomeDialog = () => {
             <div className="w-full md:col-span-7 bg-white p-5 sm:p-7 md:p-8 flex flex-col justify-between text-left">
               <div>
                 {/* Mobile-Only Countdown Timer (Placed at top on mobile view, hidden on desktop) */}
-                <div className="block md:hidden mb-4 p-3 rounded-2xl bg-gradient-to-r from-[#F6F9EE] via-slate-50 to-[#F6F9EE] border border-gray-200/90 shadow-2xs">
-                  <div className="flex items-center justify-between text-xs text-gray-700 font-medium mb-2">
+                <div className="block md:hidden mb-4 p-3 rounded-2xl bg-gradient-to-r from-[#EFF9FB] via-slate-50 to-[#EFF9FB] border border-gray-200/90 shadow-2xs">
+                  <div className="flex items-center justify-between text-xs text-primary font-medium mb-2">
                     <span className="inline-flex items-center gap-1.5">
-                      <ClockIcon className="w-4 h-4 text-[#749220] stroke-[2.2]" />
+                      <ClockIcon className="w-4 h-4 text-[#127EAB] stroke-[2.2]" />
                       <span>Offer expires in:</span>
                     </span>
-                    <span className="text-[10px] font-medium uppercase px-2 py-0.5 rounded-full bg-[#749220] text-white tracking-wider">
+                    <span className="text-[10px] font-medium uppercase px-2 py-0.5 rounded-full bg-[#127EAB] text-white tracking-wider">
                       Ending Soon
                     </span>
                   </div>
@@ -173,33 +173,33 @@ const WelcomeDialog = () => {
                   {/* 4 Digital Clock Cards for Mobile */}
                   <div className="grid grid-cols-4 gap-1.5 text-center">
                     <div className="bg-white rounded-xl py-1.5 px-1 border border-gray-200/90 shadow-2xs">
-                      <span className="block text-lg font-medium text-[#165479] tracking-tight leading-none font-sans tabular-nums">
+                      <span className="block text-lg font-medium text-[#1F4264] tracking-tight leading-none font-sans tabular-nums">
                         {timeLeft.days}
                       </span>
-                      <span className="block text-[9px] uppercase font-normal text-gray-500 tracking-wider mt-0.5 font-sans">
+                      <span className="block text-[9px] uppercase font-normal text-slateText tracking-wider mt-0.5 font-sans">
                         Days
                       </span>
                     </div>
 
                     <div className="bg-white rounded-xl py-1.5 px-1 border border-gray-200/90 shadow-2xs">
-                      <span className="block text-lg font-medium text-[#165479] tracking-tight leading-none font-sans tabular-nums">
+                      <span className="block text-lg font-medium text-[#1F4264] tracking-tight leading-none font-sans tabular-nums">
                         {String(timeLeft.hours).padStart(2, "0")}
                       </span>
-                      <span className="block text-[9px] uppercase font-normal text-gray-500 tracking-wider mt-0.5 font-sans">
+                      <span className="block text-[9px] uppercase font-normal text-slateText tracking-wider mt-0.5 font-sans">
                         Hours
                       </span>
                     </div>
 
                     <div className="bg-white rounded-xl py-1.5 px-1 border border-gray-200/90 shadow-2xs">
-                      <span className="block text-lg font-medium text-[#165479] tracking-tight leading-none font-sans tabular-nums">
+                      <span className="block text-lg font-medium text-[#1F4264] tracking-tight leading-none font-sans tabular-nums">
                         {String(timeLeft.minutes).padStart(2, "0")}
                       </span>
-                      <span className="block text-[9px] uppercase font-normal text-gray-500 tracking-wider mt-0.5 font-sans">
+                      <span className="block text-[9px] uppercase font-normal text-slateText tracking-wider mt-0.5 font-sans">
                         Mins
                       </span>
                     </div>
 
-                    <div className="bg-[#749220] rounded-xl py-1.5 px-1 text-white shadow-2xs">
+                    <div className="bg-[#127EAB] rounded-xl py-1.5 px-1 text-white shadow-2xs">
                       <span className="block text-lg font-medium text-white tracking-tight leading-none font-sans tabular-nums">
                         {String(timeLeft.seconds).padStart(2, "0")}
                       </span>
@@ -211,20 +211,20 @@ const WelcomeDialog = () => {
                 </div>
 
                 {/* Eyebrow */}
-                <div className="inline-flex items-center gap-1.5 text-xs font-medium text-[#165479] uppercase tracking-wider mb-2">
-                  <SparklesIcon className="w-4 h-4 text-[#749220]" />
+                <div className="inline-flex items-center gap-1.5 text-xs font-medium text-[#1F4264] uppercase tracking-wider mb-2">
+                  <SparklesIcon className="w-4 h-4 text-[#127EAB]" />
                   <span>Early Filer Special</span>
                 </div>
 
                 {/* 20% OFF Offer Header */}
                 <div className="mt-1">
-                  <div className="text-3xl sm:text-4xl font-normal text-[#0A4973] tracking-tight leading-none flex items-baseline gap-2">
-                    20% <span className="text-xl sm:text-2xl font-medium text-[#749220]">OFF</span>
+                  <div className="text-3xl sm:text-4xl font-normal text-[#1F4264] tracking-tight leading-none flex items-baseline gap-2">
+                    20% <span className="text-xl sm:text-2xl font-medium text-[#127EAB]">OFF</span>
                   </div>
-                  <h2 className="text-xl sm:text-2xl font-normal text-gray-900 tracking-tight leading-snug mt-1.5">
+                  <h2 className="text-xl sm:text-2xl font-normal text-primary tracking-tight leading-snug mt-1.5">
                     Your CPA Tax Filing
                   </h2>
-                  <p className="text-xs sm:text-[13px] text-gray-600 font-normal leading-relaxed mt-2">
+                  <p className="text-xs sm:text-[13px] text-slateText font-normal leading-relaxed mt-2">
                     Certified CPA preparation and maximum IRS refunds for US taxpayers, expats & SMBs worldwide.
                   </p>
                 </div>
@@ -240,7 +240,7 @@ const WelcomeDialog = () => {
                 {/* Claim Form */}
                 <form className="mt-5 space-y-3" onSubmit={handleSubmit}>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slateText">
                       <EnvelopeIcon className="h-5 w-5" />
                     </div>
                     <input
@@ -250,14 +250,14 @@ const WelcomeDialog = () => {
                       placeholder="Enter your email address"
                       required
                       autoFocus
-                      className="w-full pl-11 pr-4 py-3 text-sm border border-gray-300 rounded-xl bg-gray-50/50 focus:bg-white text-gray-900 focus:ring-2 focus:ring-[#165479]/20 focus:border-[#165479] focus:outline-none transition-all placeholder:text-gray-400 font-normal"
+                      className="w-full pl-11 pr-4 py-3 text-sm border border-gray-300 rounded-xl bg-gray-50/50 focus:bg-white text-primary focus:ring-2 focus:ring-[#1F4264]/20 focus:border-[#1F4264] focus:outline-none transition-all placeholder:text-slateText font-normal"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-3 px-4 rounded-xl font-medium text-white text-sm bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#12496a] hover:from-[#09324a] hover:to-[#0f405c] shadow-sm hover:shadow-md transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full py-3 px-4 rounded-xl font-medium text-white text-sm bg-gradient-to-r from-[#1F4264] via-[#1F4264] to-[#12496a] hover:from-[#09324a] hover:to-[#0f405c] shadow-sm hover:shadow-md transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {loading ? (
                       <span className="flex items-center justify-center gap-2">
@@ -276,33 +276,33 @@ const WelcomeDialog = () => {
                   </button>
 
                   {/* Below Button Notice */}
-                  <p className="text-xs text-center text-gray-600 font-medium pt-1.5">
+                  <p className="text-xs text-center text-slateText font-medium pt-1.5">
                     🔒 Passwordless sign-in • One-time verification code sent to your email
                   </p>
                 </form>
               </div>
 
               {/* Bottom Security Row */}
-              <div className="mt-5 pt-3.5 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500 font-normal">
+              <div className="mt-5 pt-3.5 border-t border-gray-100 flex items-center justify-between text-xs text-slateText font-normal">
                 <span>Zero filing obligation</span>
-                <span className="text-[#165479] font-medium">Licensed CPAs</span>
+                <span className="text-[#1F4264] font-medium">Licensed CPAs</span>
               </div>
             </div>
 
             {/* Right Side: Digital Countdown Timer & Illustration Showcase (Hidden on Mobile) */}
-            <div className="hidden md:flex md:col-span-5 bg-gradient-to-b from-[#F6F9EE]/90 via-slate-50 to-[#F6F9EE]/60 md:border-l border-gray-100 p-6 sm:p-7 flex-col justify-between items-center text-center relative overflow-hidden">
+            <div className="hidden md:flex md:col-span-5 bg-gradient-to-b from-[#EFF9FB]/90 via-slate-50 to-[#EFF9FB]/60 md:border-l border-gray-100 p-6 sm:p-7 flex-col justify-between items-center text-center relative overflow-hidden">
               {/* Ambient Glows */}
-              <div className="absolute -top-10 -right-10 w-36 h-36 bg-[#749220]/20 rounded-full blur-2xl pointer-events-none" />
-              <div className="absolute -bottom-10 -left-10 w-36 h-36 bg-[#165479]/10 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute -top-10 -right-10 w-36 h-36 bg-[#127EAB]/20 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute -bottom-10 -left-10 w-36 h-36 bg-[#1F4264]/10 rounded-full blur-2xl pointer-events-none" />
 
               {/* Top Countdown Timer (Moved from Left Side) */}
               <div className="w-full relative z-10">
-                <div className="flex items-center justify-between text-xs text-gray-700 font-medium mb-2.5">
+                <div className="flex items-center justify-between text-xs text-primary font-medium mb-2.5">
                   <span className="inline-flex items-center gap-1.5">
-                    <ClockIcon className="w-4 h-4 text-[#749220] stroke-[2.2]" />
+                    <ClockIcon className="w-4 h-4 text-[#127EAB] stroke-[2.2]" />
                     <span>Offer expires in:</span>
                   </span>
-                  <span className="text-[10px] font-medium uppercase px-2.5 py-0.5 rounded-full bg-[#749220] text-white tracking-wider">
+                  <span className="text-[10px] font-medium uppercase px-2.5 py-0.5 rounded-full bg-[#127EAB] text-white tracking-wider">
                     Ending Soon
                   </span>
                 </div>
@@ -310,33 +310,33 @@ const WelcomeDialog = () => {
                 {/* 4 Digital Clock Cards */}
                 <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
                   <div className="bg-white rounded-xl py-2 px-1 border border-gray-200/90 text-center shadow-2xs">
-                    <span className="block text-xl sm:text-2xl font-medium text-[#165479] tracking-tight leading-none font-sans tabular-nums">
+                    <span className="block text-xl sm:text-2xl font-medium text-[#1F4264] tracking-tight leading-none font-sans tabular-nums">
                       {timeLeft.days}
                     </span>
-                    <span className="block text-[9px] uppercase font-normal text-gray-500 tracking-wider mt-1 font-sans">
+                    <span className="block text-[9px] uppercase font-normal text-slateText tracking-wider mt-1 font-sans">
                       Days
                     </span>
                   </div>
 
                   <div className="bg-white rounded-xl py-2 px-1 border border-gray-200/90 text-center shadow-2xs">
-                    <span className="block text-xl sm:text-2xl font-medium text-[#165479] tracking-tight leading-none font-sans tabular-nums">
+                    <span className="block text-xl sm:text-2xl font-medium text-[#1F4264] tracking-tight leading-none font-sans tabular-nums">
                       {String(timeLeft.hours).padStart(2, "0")}
                     </span>
-                    <span className="block text-[9px] uppercase font-normal text-gray-500 tracking-wider mt-1 font-sans">
+                    <span className="block text-[9px] uppercase font-normal text-slateText tracking-wider mt-1 font-sans">
                       Hours
                     </span>
                   </div>
 
                   <div className="bg-white rounded-xl py-2 px-1 border border-gray-200/90 text-center shadow-2xs">
-                    <span className="block text-xl sm:text-2xl font-medium text-[#165479] tracking-tight leading-none font-sans tabular-nums">
+                    <span className="block text-xl sm:text-2xl font-medium text-[#1F4264] tracking-tight leading-none font-sans tabular-nums">
                       {String(timeLeft.minutes).padStart(2, "0")}
                     </span>
-                    <span className="block text-[9px] uppercase font-normal text-gray-500 tracking-wider mt-1 font-sans">
+                    <span className="block text-[9px] uppercase font-normal text-slateText tracking-wider mt-1 font-sans">
                       Mins
                     </span>
                   </div>
 
-                  <div className="bg-[#749220] rounded-xl py-2 px-1 text-center shadow-2xs text-white">
+                  <div className="bg-[#127EAB] rounded-xl py-2 px-1 text-center shadow-2xs text-white">
                     <span className="block text-xl sm:text-2xl font-medium text-white tracking-tight leading-none font-sans tabular-nums">
                       {String(timeLeft.seconds).padStart(2, "0")}
                     </span>
@@ -358,12 +358,12 @@ const WelcomeDialog = () => {
 
                   {/* Floating Glassmorphic Refund Badge */}
                   <div className="absolute -bottom-2 -left-2 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-xl border border-gray-200/90 shadow-md flex items-center gap-1.5">
-                    <CheckCircleIcon className="w-3.5 h-3.5 text-[#749220] stroke-[2.5]" />
-                    <span className="text-[10px] font-medium text-gray-700">Max Refund</span>
+                    <CheckCircleIcon className="w-3.5 h-3.5 text-[#127EAB] stroke-[2.5]" />
+                    <span className="text-[10px] font-medium text-primary">Max Refund</span>
                   </div>
 
                   {/* Floating CPA Verified Stamp */}
-                  <div className="absolute -top-1 -right-2 bg-[#165479] text-white px-2 py-0.5 rounded-lg shadow-sm text-[9px] font-medium uppercase tracking-wider flex items-center gap-1">
+                  <div className="absolute -top-1 -right-2 bg-[#1F4264] text-white px-2 py-0.5 rounded-lg shadow-sm text-[9px] font-medium uppercase tracking-wider flex items-center gap-1">
                     <ShieldCheckIcon className="w-3 h-3 text-[#cbf056]" />
                     <span>CPA Verified</span>
                   </div>
@@ -371,18 +371,18 @@ const WelcomeDialog = () => {
 
                 {/* Caption / Voucher Tag */}
                 <div className="mt-3 text-center">
-                  <span className="text-sm font-medium text-gray-800 block">
+                  <span className="text-sm font-medium text-primary block">
                     Guaranteed 100% Accuracy
                   </span>
-                  <span className="text-[13px] text-gray-500 font-normal leading-tight block mt-0.5">
+                  <span className="text-[13px] text-slateText font-normal leading-tight block mt-0.5">
                     Certified CPAs & dual-status compliance
                   </span>
                 </div>
               </div>
 
               {/* Bottom Voucher Applied Tag */}
-              <div className="pt-2.5 border-t border-gray-200/70 w-full flex items-center justify-center gap-1.5 text-[10px] text-gray-600 font-medium z-10">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#749220]" />
+              <div className="pt-2.5 border-t border-gray-200/70 w-full flex items-center justify-center gap-1.5 text-[10px] text-slateText font-medium z-10">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#127EAB]" />
                 <span>Instant 20% discount applied at checkout</span>
               </div>
             </div>

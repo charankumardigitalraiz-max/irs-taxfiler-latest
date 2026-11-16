@@ -210,7 +210,7 @@ const Security = () => {
         image={image}
         keywords={keywords}
       />
-      <div className="min-h-screen bg-white font-sans text-gray-900 antialiased">
+      <div className="min-h-screen bg-white font-sans text-primary antialiased">
         {/* Hero Section */}
         <section className="relative overflow-hidden pt-12 sm:pt-16 pb-14 sm:pb-16 bg-white border-b border-slate-100">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden">
@@ -225,24 +225,24 @@ const Security = () => {
               transition={{ duration: 0.45 }}
               className="text-center max-w-3xl mx-auto"
             >
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6F9EE] border border-[#749220]/30 shadow-sm mb-4 text-xs font-medium text-[#749220]">
-                <ShieldCheckIcon className="h-3.5 w-3.5 text-[#749220]" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#EFF9FB] border border-[#127EAB]/30 shadow-sm mb-4 text-xs font-medium text-teal">
+                <ShieldCheckIcon className="h-3.5 w-3.5 text-teal" />
                 <span>Enterprise-Grade Security</span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-gray-900 tracking-tight leading-[1.2] mb-3.5">
+              <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.2] mb-3.5">
                 Security &{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-normal text-teal">
                   Data Protection
                 </span>
               </h1>
 
-              <p className="text-sm sm:text-base lg:text-[17px] text-gray-600 font-normal max-w-2xl mx-auto leading-[30px] sm:leading-[32px] lg:leading-[34px]">
+              <p className="text-sm sm:text-base lg:text-[17px] text-slateText font-normal max-w-2xl mx-auto leading-[30px] sm:leading-[32px] lg:leading-[34px]">
                 Learn how we protect your sensitive tax and financial information with industry-leading security measures
                 and best practices.
               </p>
 
-              <div className="mt-5 inline-flex items-center px-3 py-1 rounded-full bg-slate-50 border border-slate-200/80 text-xs font-medium text-gray-500">
+              <div className="mt-5 inline-flex items-center px-3 py-1 rounded-full bg-slate-50 border border-slate-200/80 text-xs font-medium text-slateText">
                 <p>Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
               </div>
             </motion.div>
@@ -263,26 +263,26 @@ const Security = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.35, delay: index * 0.06 }}
-                    className="relative bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-[0_12px_28px_rgba(22,84,121,0.06)] hover:border-[#165479]/30 transition-all duration-200 text-center overflow-hidden"
+                    className="relative bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-[0_12px_28px_rgba(22,84,121,0.06)] hover:border-[#1F4264]/30 transition-all duration-200 text-center overflow-hidden"
                   >
                     <div
                       className={`absolute top-0 inset-x-0 h-0.5 ${
                         isLime
-                          ? "bg-gradient-to-r from-transparent via-[#749220]/70 to-transparent"
-                          : "bg-gradient-to-r from-transparent via-[#165479]/70 to-transparent"
+                          ? "bg-gradient-to-r from-transparent via-[#127EAB]/70 to-transparent"
+                          : "bg-gradient-to-r from-transparent via-[#1F4264]/70 to-transparent"
                       }`}
                     />
                     <div
                       className={`w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4 ${
                         isLime
-                          ? "bg-[#F6F9EE] border border-[#749220]/25 text-[#749220]"
-                          : "bg-sky-50 border border-sky-100 text-[#165479]"
+                          ? "bg-background-aqua border border-border text-teal text-teal"
+                          : "bg-sky-50 border border-sky-100 text-primary"
                       }`}
                     >
                       <IconComponent className="h-6 w-6" />
                     </div>
-                    <h3 className="text-base font-semibold text-gray-900 mb-2 leading-snug">{feature.title}</h3>
-                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{feature.description}</p>
+                    <h3 className="text-base font-semibold text-primary mb-2 leading-snug">{feature.title}</h3>
+                    <p className="text-xs sm:text-sm text-slateText leading-relaxed">{feature.description}</p>
                   </motion.div>
                 );
               })}
@@ -301,14 +301,14 @@ const Security = () => {
               transition={{ duration: 0.45 }}
               className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-10"
             >
-              <div className="lg:col-span-7 bg-gradient-to-br from-[#0A3D5C] via-[#124C6F] to-[#165479] rounded-2xl p-6 sm:p-8 text-white shadow-sm relative overflow-hidden flex items-center">
-                <div className="absolute -top-12 -right-12 w-44 h-44 bg-[#749220]/30 rounded-full blur-3xl pointer-events-none" />
+              <div className="lg:col-span-7 bg-gradient-to-br from-[#1F4264] via-[#1F4264] to-[#1F4264] rounded-2xl p-6 sm:p-8 text-white shadow-sm relative overflow-hidden flex items-center">
+                <div className="absolute -top-12 -right-12 w-44 h-44 bg-[#127EAB]/30 rounded-full blur-3xl pointer-events-none" />
                 <div className="relative z-10 flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 border border-white/20 text-[#C5DF7B] flex items-center justify-center backdrop-blur-sm">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 border border-white/20 text-teal flex items-center justify-center backdrop-blur-sm">
                     <ShieldCheckIcon className="h-6 w-6" />
                   </div>
                   <div>
-                    <h2 className="text-lg sm:text-xl font-semibold text-white mb-2">
+                    <h2 className="text-lg sm:text-xl font-normal text-white mb-2">
                       Our Commitment to Security
                     </h2>
                     <p className="text-sm sm:text-[15px] text-sky-100/95 leading-relaxed">
@@ -323,17 +323,17 @@ const Security = () => {
               </div>
 
               <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 sm:p-8 flex flex-col justify-center">
-                <p className="text-sm sm:text-[15px] text-gray-700 leading-relaxed mb-3.5">
+                <p className="text-sm sm:text-[15px] text-slateText leading-relaxed mb-3.5">
                   This Security page provides detailed information about our security practices, including data encryption,
                   access controls, monitoring, and incident response procedures.
                 </p>
-                <p className="text-sm sm:text-[15px] text-gray-700 leading-relaxed pt-3.5 border-t border-slate-100">
+                <p className="text-sm sm:text-[15px] text-slateText leading-relaxed pt-3.5 border-t border-slate-100">
                   If you have questions about our security practices, please contact our security team at{' '}
-                  <a href="mailto:contact@irstaxfiler.com" className="text-[#165479] hover:text-[#0A4973] hover:underline font-semibold transition-colors">
+                  <a href="mailto:contact@irstaxfiler.com" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
                     contact@irstaxfiler.com
                   </a>
                   {' '}or call us at{' '}
-                  <a href="tel:++1 (415) 7876190" className="text-[#165479] hover:text-[#0A4973] hover:underline font-semibold transition-colors">
+                  <a href="tel:++1 (415) 7876190" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
                     +1 (415) 7876190
                   </a>.
                 </p>
@@ -346,8 +346,8 @@ const Security = () => {
               <aside className="lg:col-span-4 lg:sticky lg:top-24">
                 <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-6">
                   <div className="flex items-center gap-2.5 pb-3.5 mb-3.5 border-b border-slate-100">
-                    <span className="w-2 h-2 rounded-full bg-[#749220]" />
-                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                    <span className="w-2 h-2 rounded-full bg-[#127EAB]" />
+                    <span className="text-xs font-semibold uppercase tracking-wider text-slateText">
                       Security Sections
                     </span>
                   </div>
@@ -365,9 +365,9 @@ const Security = () => {
                               block: 'start',
                             });
                           }}
-                          className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs sm:text-[13px] font-medium text-gray-700 hover:text-[#0A4973] hover:bg-sky-50/80 transition-colors"
+                          className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs sm:text-[13px] font-medium text-slateText hover:text-primary hover:bg-sky-50/80 transition-colors"
                         >
-                          <NavIcon className={`w-4 h-4 shrink-0 ${idx % 2 === 1 ? 'text-[#749220]' : 'text-[#165479]'}`} />
+                          <NavIcon className={`w-4 h-4 shrink-0 ${idx % 2 === 1 ? 'text-teal' : 'text-primary'}`} />
                           <span className="truncate">{section.title}</span>
                         </a>
                       );
@@ -389,26 +389,26 @@ const Security = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-40px" }}
                       transition={{ duration: 0.3 }}
-                      className="scroll-mt-24 bg-white rounded-2xl shadow-sm border border-slate-200/90 p-6 sm:p-7 hover:border-[#165479]/35 transition-all duration-200 relative overflow-hidden"
+                      className="scroll-mt-24 bg-white rounded-2xl shadow-sm border border-slate-200/90 p-6 sm:p-7 hover:border-[#1F4264]/35 transition-all duration-200 relative overflow-hidden"
                     >
                       <div
                         className={`absolute top-0 inset-x-0 h-0.5 ${
                           isLime
-                            ? "bg-gradient-to-r from-[#749220]/70 via-[#749220]/25 to-transparent"
-                            : "bg-gradient-to-r from-[#165479]/70 via-[#165479]/25 to-transparent"
+                            ? "bg-gradient-to-r from-[#127EAB]/70 via-[#127EAB]/25 to-transparent"
+                            : "bg-gradient-to-r from-[#1F4264]/70 via-[#1F4264]/25 to-transparent"
                         }`}
                       />
                       <div className="flex items-center gap-3.5 pb-4 mb-4 border-b border-slate-100">
                         <div
                           className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${
                             isLime
-                              ? "bg-[#F6F9EE] border border-[#749220]/25 text-[#749220]"
-                              : "bg-sky-50 border border-sky-100 text-[#165479]"
+                              ? "bg-background-aqua border border-border text-teal text-teal"
+                              : "bg-sky-50 border border-sky-100 text-primary"
                           }`}
                         >
                           <IconComponent className="h-5 w-5" />
                         </div>
-                        <h2 className="text-base sm:text-lg font-semibold text-gray-900 leading-snug">
+                        <h2 className="text-base sm:text-lg font-normal text-primary leading-snug">
                           {section.title}
                         </h2>
                       </div>
@@ -423,13 +423,13 @@ const Security = () => {
                             <li key={itemIndex} className="flex items-start gap-3">
                               <span
                                 className={`flex-shrink-0 w-1.5 h-1.5 rounded-full mt-2 ${
-                                  isLime ? "bg-[#749220]" : "bg-[#165479]"
+                                  isLime ? "bg-[#127EAB]" : "bg-[#1F4264]"
                                 }`}
                               />
-                              <p className="text-sm sm:text-[15px] text-gray-600 leading-relaxed">
+                              <p className="text-sm sm:text-[15px] text-slateText leading-relaxed">
                                 {hasLabel ? (
                                   <>
-                                    <span className="font-semibold text-gray-900">
+                                    <span className="font-semibold text-primary">
                                       {item.slice(0, colonIdx + 1)}
                                     </span>
                                     {item.slice(colonIdx + 1)}
@@ -454,34 +454,34 @@ const Security = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45 }}
-              className="mt-12 bg-gradient-to-br from-[#DFEBC2]/55 via-white to-[#C3DCED]/55 rounded-2xl p-8 sm:p-10 border border-[#165479]/15 shadow-sm text-center"
+              className="mt-12 bg-gradient-to-br from-[#E9F7FA]/55 via-white to-[#CCDCE1]/55 rounded-2xl p-8 sm:p-10 border border-[#1F4264]/15 shadow-sm text-center"
             >
-              <h3 className="text-xl sm:text-2xl font-normal text-gray-900 tracking-tight mb-3">
+              <h3 className="text-xl sm:text-2xl font-normal text-primary tracking-tight mb-3">
                 Questions About{" "}
-                <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent">
+                <span className="font-semibold text-teal">
                   Security?
                 </span>
               </h3>
-              <p className="text-sm sm:text-base text-gray-700 mb-6 max-w-lg mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base text-slateText mb-6 max-w-lg mx-auto leading-relaxed">
                 If you have questions about our security practices or need to report a security issue,
                 our security team is here to help.
               </p>
               <div className="flex flex-wrap gap-3 justify-center">
                 <a
                   href="mailto:contact@irstaxfiler.com"
-                  className="inline-flex items-center justify-center h-10 sm:h-11 px-6 rounded-lg font-medium text-xs sm:text-sm text-white bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] shadow-sm transition-all"
+                  className="inline-flex items-center justify-center h-10 sm:h-11 px-6 rounded-lg font-medium text-xs sm:text-sm text-white bg-gradient-to-r from-[#1F4264] via-[#1F4264] to-[#127EAB] hover:from-[#1E4162] hover:via-[#1F4264] hover:to-[#1F4264] shadow-sm transition-all"
                 >
                   Contact Security Team
                 </a>
                 <Link
                   to="/privacy"
-                  className="inline-flex items-center justify-center h-10 sm:h-11 px-6 rounded-lg font-medium text-xs sm:text-sm text-gray-800 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"
+                  className="inline-flex items-center justify-center h-10 sm:h-11 px-6 rounded-lg font-medium text-xs sm:text-sm text-primary bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"
                 >
                   Privacy Policy
                 </Link>
                 <Link
                   to="/glba"
-                  className="inline-flex items-center justify-center h-10 sm:h-11 px-6 rounded-lg font-medium text-xs sm:text-sm text-gray-800 bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"
+                  className="inline-flex items-center justify-center h-10 sm:h-11 px-6 rounded-lg font-medium text-xs sm:text-sm text-primary bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"
                 >
                   GLBA Notice
                 </Link>

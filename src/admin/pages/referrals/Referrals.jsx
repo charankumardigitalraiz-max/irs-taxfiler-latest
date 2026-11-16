@@ -106,7 +106,7 @@ const Referrals = () => {
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Total Rewards Paid</p>
-            <p className="text-2xl font-bold text-purple-600">${stats.totalRewardsPaid}</p>
+            <p className="text-2xl font-bold text-teal">${stats.totalRewardsPaid}</p>
           </Card>
         </div>
 
@@ -192,8 +192,8 @@ const Referrals = () => {
                       </td>
                       <td className="table-cell">
                         <div className="flex items-center gap-2">
-                          <DollarSign className="w-4 h-4 text-purple-600" />
-                          <span className="font-semibold text-purple-600">
+                          <DollarSign className="w-4 h-4 text-teal" />
+                          <span className="font-semibold text-teal">
                             ${referral.totalRewardsEarned}
                           </span>
                         </div>
@@ -338,7 +338,7 @@ const Referrals = () => {
                 </div>
                 <div>
                   <p className="text-xs text-primary-600">Total Rewards</p>
-                  <p className="text-lg font-bold text-purple-600">
+                  <p className="text-lg font-bold text-teal">
                     ${selectedReferral.totalRewardsEarned}
                   </p>
                 </div>

@@ -76,9 +76,9 @@ const PersonalizedRecommendationBanner = () => {
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Left Side - Image */}
-            <div className="relative h-full min-h-[500px] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 hidden lg:block">
+            <div className="relative h-full min-h-[500px] bg-gradient-to-br from-primary via-primary-dark to-teal hidden lg:block">
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop')] bg-cover bg-center opacity-90"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/80 via-purple-600/80 to-pink-600/80"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary-dark/90 to-teal/80"></div>
               <div className="relative z-10 h-full flex flex-col justify-center items-center p-12 text-white">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -101,13 +101,13 @@ const PersonalizedRecommendationBanner = () => {
             <div className="p-8 lg:p-12">
               <div className="flex justify-between items-start mb-6">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-3xl md:text-4xl font-normal text-primary mb-2">
                     Get a personalized recommendation
                   </h2>
                 </div>
                 <button
                   onClick={handleSkip}
-                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                  className="text-slateText hover:text-primary transition-colors cursor-pointer"
                   aria-label="Close"
                 >
                   <XMarkIcon className="h-6 w-6" />
@@ -117,19 +117,19 @@ const PersonalizedRecommendationBanner = () => {
               {/* Progress Bar */}
               <div className="mb-8">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-gray-600">
+                  <span className="text-sm font-medium text-slateText">
                     Question {currentQuestion + 1} of {questions.length}
                   </span>
-                  <span className="text-sm font-medium text-gray-600">
+                  <span className="text-sm font-medium text-slateText">
                     {Math.round(progress)}%
                   </span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
+                <div className="w-full bg-border/40 rounded-full h-2">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${progress}%` }}
                     transition={{ duration: 0.3 }}
-                    className="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full"
+                    className="bg-gradient-to-r from-teal to-coral h-2 rounded-full"
                   ></motion.div>
                 </div>
               </div>
@@ -143,7 +143,7 @@ const PersonalizedRecommendationBanner = () => {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-8">
+                  <h3 className="text-xl md:text-2xl font-semibold text-primary mb-8">
                     {questions[currentQuestion].question}
                   </h3>
 
@@ -160,7 +160,7 @@ const PersonalizedRecommendationBanner = () => {
                           whileTap={{ scale: 0.98 }}
                           className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 ${
                             isSelected
-                              ? 'border-indigo-500 bg-indigo-50 shadow-md'
+                              ? 'border-teal bg-background-aqua shadow-md'
                               : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                           }`}
                         >
@@ -168,15 +168,15 @@ const PersonalizedRecommendationBanner = () => {
                             <div
                               className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                                 isSelected
-                                  ? 'bg-indigo-500 text-white'
-                                  : 'bg-gray-100 text-gray-600'
+                                  ? 'bg-teal text-white'
+                                  : 'bg-gray-100 text-slateText'
                               } transition-colors`}
                             >
                               <Icon className="h-5 w-5" />
                             </div>
                             <span
                               className={`font-medium ${
-                                isSelected ? 'text-indigo-900' : 'text-gray-700'
+                                isSelected ? 'text-primary' : 'text-slateText'
                               }`}
                             >
                               {option.text}
@@ -187,7 +187,7 @@ const PersonalizedRecommendationBanner = () => {
                                 animate={{ scale: 1 }}
                                 className="ml-auto"
                               >
-                                <CheckCircleIcon className="h-6 w-6 text-indigo-500" />
+                                <CheckCircleIcon className="h-6 w-6 text-teal" />
                               </motion.div>
                             )}
                           </div>
@@ -206,8 +206,8 @@ const PersonalizedRecommendationBanner = () => {
                 whileTap={selectedAnswer ? { scale: 0.98 } : {}}
                 className={`w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center space-x-2 ${
                   selectedAnswer
-                    ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg hover:shadow-xl'
-                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    ? 'bg-primary text-white hover:bg-primary-dark shadow-lg hover:shadow-xl'
+                    : 'bg-gray-200 text-slateText/70 cursor-not-allowed'
                 }`}
               >
                 <span>
@@ -220,7 +220,7 @@ const PersonalizedRecommendationBanner = () => {
               <div className="mt-4 text-center">
                 <button
                   onClick={handleSkip}
-                  className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+                  className="text-sm text-slateText hover:text-slateText transition-colors"
                 >
                   Skip and browse services
                 </button>

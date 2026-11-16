@@ -76,9 +76,9 @@ const Support = () => {
       case 'resolved':
         return 'bg-teal-100 text-teal-700';
       case 'closed':
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-gray-100 text-slateText';
       default:
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-gray-100 text-slateText';
     }
   };
 
@@ -91,15 +91,15 @@ const Support = () => {
       case 'low':
         return 'bg-green-100 text-green-700';
       default:
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-gray-100 text-slateText';
     }
   };
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Support Center</h1>
-        <p className="text-gray-600">
+        <h1 className="text-2xl font-bold text-primary mb-2">Support Center</h1>
+        <p className="text-slateText">
           Get help with your tax filing and submit support tickets.
         </p>
       </div>
@@ -116,8 +116,8 @@ const Support = () => {
               <EnvelopeIcon className="h-6 w-6 text-primary-blue" />
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900">Email Support</h3>
-              <p className="text-sm text-gray-500">contact@irstaxfiler.com</p>
+              <h3 className="font-semibold text-primary">Email Support</h3>
+              <p className="text-sm text-slateText">contact@irstaxfiler.com</p>
             </div>
           </div>
           <a
@@ -139,8 +139,8 @@ const Support = () => {
               <PhoneIcon className="h-6 w-6 text-primary-blue" />
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900">Phone Support</h3>
-              <p className="text-sm text-gray-500">+1 (555) 123-4567</p>
+              <h3 className="font-semibold text-primary">Phone Support</h3>
+              <p className="text-sm text-slateText">+1 (555) 123-4567</p>
             </div>
           </div>
           <a
@@ -162,11 +162,11 @@ const Support = () => {
               <ClockIcon className="h-6 w-6 text-primary-blue" />
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900">Business Hours</h3>
-              <p className="text-sm text-gray-500">Mon-Fri: 9 AM - 6 PM EST</p>
+              <h3 className="font-semibold text-primary">Business Hours</h3>
+              <p className="text-sm text-slateText">Mon-Fri: 9 AM - 6 PM EST</p>
             </div>
           </div>
-          <p className="text-sm text-gray-600">Available during business hours</p>
+          <p className="text-sm text-slateText">Available during business hours</p>
         </motion.div>
       </div>
 
@@ -179,7 +179,7 @@ const Support = () => {
               className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'new-ticket'
                   ? 'border-primary-blue text-primary-blue'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
+                  : 'border-transparent text-slateText hover:text-slateText'
               }`}
             >
               New Ticket
@@ -189,7 +189,7 @@ const Support = () => {
               className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === 'tickets'
                   ? 'border-primary-blue text-primary-blue'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
+                  : 'border-transparent text-slateText hover:text-slateText'
               }`}
             >
               My Tickets ({supportTickets.length})
@@ -209,15 +209,15 @@ const Support = () => {
                   <PaperAirplaneIcon className="h-6 w-6 text-primary-blue" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-900">Submit Support Ticket</h2>
-                  <p className="text-sm text-gray-500">We'll get back to you within 24 hours</p>
+                  <h2 className="text-xl font-semibold text-primary">Submit Support Ticket</h2>
+                  <p className="text-sm text-slateText">We'll get back to you within 24 hours</p>
                 </div>
               </div>
 
               <form onSubmit={handleSubmitTicket} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-slateText mb-2">
                       Subject <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -230,7 +230,7 @@ const Support = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-slateText mb-2">
                       Category <span className="text-red-500">*</span>
                     </label>
                     <select
@@ -250,7 +250,7 @@ const Support = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-slateText mb-2">
                     Priority
                   </label>
                   <div className="flex space-x-4">
@@ -264,14 +264,14 @@ const Support = () => {
                           onChange={(e) => setTicketData({ ...ticketData, priority: e.target.value })}
                           className="text-primary-blue focus:ring-primary-blue"
                         />
-                        <span className="text-sm text-gray-700 capitalize">{priority}</span>
+                        <span className="text-sm text-slateText capitalize">{priority}</span>
                       </label>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-slateText mb-2">
                     Message <span className="text-red-500">*</span>
                   </label>
                   <textarea
@@ -288,7 +288,7 @@ const Support = () => {
                   <button
                     type="button"
                     onClick={() => setTicketData({ subject: '', category: '', priority: 'medium', message: '' })}
-                    className="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                    className="px-6 py-2.5 border border-gray-300 text-slateText rounded-lg font-medium hover:bg-gray-50 transition-colors"
                   >
                     Clear
                   </button>
@@ -315,8 +315,8 @@ const Support = () => {
                   <ChatBubbleLeftRightIcon className="h-6 w-6 text-primary-blue" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-900">My Support Tickets</h2>
-                  <p className="text-sm text-gray-500">View and manage your support requests</p>
+                  <h2 className="text-xl font-semibold text-primary">My Support Tickets</h2>
+                  <p className="text-sm text-slateText">View and manage your support requests</p>
                 </div>
               </div>
 
@@ -330,7 +330,7 @@ const Support = () => {
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
                           <div className="flex items-center space-x-3 mb-2">
-                            <h3 className="text-lg font-semibold text-gray-900">{ticket.subject}</h3>
+                            <h3 className="text-lg font-semibold text-primary">{ticket.subject}</h3>
                             <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(ticket.status)}`}>
                               {ticket.status.replace('-', ' ')}
                             </span>
@@ -338,7 +338,7 @@ const Support = () => {
                               {ticket.priority}
                             </span>
                           </div>
-                          <div className="flex items-center space-x-4 text-sm text-gray-500">
+                          <div className="flex items-center space-x-4 text-sm text-slateText">
                             <span>Ticket: {ticket.ticketNumber}</span>
                             <span>•</span>
                             <span>Category: {ticket.category}</span>
@@ -350,7 +350,7 @@ const Support = () => {
                           View Details
                         </button>
                       </div>
-                      <div className="flex items-center justify-between text-sm text-gray-500">
+                      <div className="flex items-center justify-between text-sm text-slateText">
                         <span>Created: {ticket.createdAt}</span>
                         <span>Last updated: {ticket.lastUpdated}</span>
                       </div>
@@ -359,9 +359,9 @@ const Support = () => {
                 </div>
               ) : (
                 <div className="text-center py-12">
-                  <ChatBubbleLeftRightIcon className="mx-auto h-12 w-12 text-gray-300 mb-4" />
-                  <p className="text-gray-600 mb-2">No support tickets yet</p>
-                  <p className="text-sm text-gray-400">
+                  <ChatBubbleLeftRightIcon className="mx-auto h-12 w-12 text-border mb-4" />
+                  <p className="text-slateText mb-2">No support tickets yet</p>
+                  <p className="text-sm text-slateText/70">
                     Submit a new ticket to get help with your tax filing
                   </p>
                 </div>

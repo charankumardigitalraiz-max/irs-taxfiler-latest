@@ -57,10 +57,10 @@ const PricingCards = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-primary-navy mb-4">
+          <h2 className="text-4xl md:text-5xl font-normal text-primary-navy mb-4">
             Transparent Pricing
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-slateText max-w-2xl mx-auto">
             Choose the plan that fits your needs. All plans include expert
             preparation and filing.
           </p>
@@ -89,12 +89,12 @@ const PricingCards = () => {
                 <h3 className="text-2xl font-bold text-primary-navy mb-2">
                   {plan.name}
                 </h3>
-                <p className="text-gray-600 mb-6">{plan.description}</p>
+                <p className="text-slateText mb-6">{plan.description}</p>
                 <div className="mb-6">
                   <span className="text-5xl font-bold text-primary-navy">
                     {plan.price}
                   </span>
-                  <span className="text-gray-600 ml-2">per filing</span>
+                  <span className="text-slateText ml-2">per filing</span>
                 </div>
                 <ul className="space-y-4 mb-8">
                   {plan.features.map((feature, featureIndex) => (
@@ -103,7 +103,7 @@ const PricingCards = () => {
                       className="flex items-start space-x-3"
                     >
                       <CheckIcon className="h-6 w-6 text-primary-blue flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{feature}</span>
+                      <span className="text-slateText">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -129,7 +129,7 @@ const PricingCards = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-12"
         >
-          <p className="text-gray-600 mb-4">
+          <p className="text-slateText mb-4">
             Need a custom solution?{' '}
             <Link
               to="/contact"

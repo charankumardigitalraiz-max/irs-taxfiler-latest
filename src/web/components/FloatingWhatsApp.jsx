@@ -30,7 +30,7 @@ const FloatingWhatsApp = () => {
             </span>
 
             {/* Label */}
-            <div className="absolute right-full mr-4 bg-white text-gray-800 px-4 py-2 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-gray-100 font-medium text-sm">
+            <div className="absolute right-full mr-4 bg-white text-primary px-4 py-2 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-gray-100 font-medium text-sm">
                 Chat on WhatsApp
                 <div className="absolute top-1/2 -right-2 -translate-y-1/2 border-8 border-transparent border-l-white"></div>
             </div>

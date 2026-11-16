@@ -1,33 +1,58 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRightIcon, CalendarDaysIcon } from "@heroicons/react/24/outline";
+import { ArrowRightIcon, CalendarDaysIcon, SparklesIcon } from "@heroicons/react/24/outline";
+import ctaBg from "../../assets/cta-banner-bg.jpg";
 
 const CTASection = ({ onOpenModal }) => {
   return (
-    <section className="py-16 sm:py-20 bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] text-white font-sans relative overflow-hidden">
-      {/* Subtle background glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none" />
+    <section className="relative py-20 sm:py-16 text-primary font-sans overflow-hidden border-t border-border bg-background">
+      {/* Background Image Layer with Clean Light Tint & Depth */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={ctaBg}
+          alt="IRS Form 1040 Tax Filing and CPA Preparation"
+          className="w-full h-full object-cover object-center"
+        />
+        {/* Soft, translucent white overlay so tax forms/calculator are visible while text has optimal contrast */}
+        <div className="absolute inset-0 bg-background/80 sm:bg-background/40" />
+        {/* Radial highlight for text clarity */}
+        <div className="absolute inset-0 [background:radial-gradient(ellipse_at_center,_rgba(253,248,242,0.92)_0%,_rgba(253,248,242,0.72)_60%,_rgba(253,248,242,0.95)_100%)] pointer-events-none" />
+      </div>
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal mb-3 tracking-tight leading-snug">
-          Ready to file your <span className="font-medium text-[#D8EBA4]">U.S. taxes?</span>
+        {/* Eyebrow Pill */}
+        <div className="pill-badge mb-4">
+          <SparklesIcon className="w-3.5 h-3.5 text-coral" />
+          <span>2025–2026 Tax Season Ready</span>
+        </div>
+
+        {/* Display Headline */}
+        <h2 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-normal text-primary mb-3.5 tracking-tight leading-[1.25]">
+          Ready to file your{" "}
+          <span className="font-normal text-teal">
+            U.S. taxes?
+          </span>
         </h2>
-        <p className="text-sm sm:text-[15px] text-white/90 max-w-lg mx-auto mb-7 font-normal leading-relaxed">
-          Certified CPA preparation, guaranteed maximum refunds, and 100% IRS accuracy for the 2025–2026 tax season.
+
+        {/* Subtitle */}
+        <p className="text-sm sm:text-base lg:text-[17px] text-slateText max-w-xl mx-auto mb-8 font-normal leading-relaxed">
+          Certified CPA preparation, guaranteed maximum refunds, and 100% IRS accuracy for individuals, expats, and businesses worldwide.
         </p>
+
+        {/* Action Buttons */}
         <div className="flex flex-wrap sm:flex-nowrap gap-3.5 justify-center items-center">
           <Link
             to="/login"
-            className="h-11 sm:h-12 px-6 rounded-xl bg-white text-[#165479] hover:bg-gray-50 font-medium text-sm sm:text-[15px] shadow-sm hover:shadow transition-all inline-flex items-center justify-center gap-2 group"
+            className="relative inline-flex items-center justify-center gap-2.5 h-11 sm:h-12 px-6 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold text-sm sm:text-[15px] shadow-sm hover:shadow-md transition-all duration-200 group overflow-hidden"
           >
-            <span>Start Filing</span>
-            <ArrowRightIcon className="w-4 h-4 stroke-[2] group-hover:translate-x-1 transition-transform" />
+            <span className="relative z-10 tracking-tight">Start Filing</span>
+            <ArrowRightIcon className="relative z-10 w-4 h-4 stroke-[2.5] group-hover:translate-x-1 transition-transform" />
           </Link>
           <button
             onClick={() => onOpenModal && onOpenModal()}
-            className="h-11 sm:h-12 px-6 rounded-xl bg-white/10 hover:bg-white/20 border border-white/25 text-white font-medium text-sm sm:text-[15px] transition-all inline-flex items-center justify-center gap-2 cursor-pointer group"
+            className="h-11 sm:h-12 px-6 rounded-xl bg-surface hover:bg-background-blue text-teal hover:text-primary border border-border font-semibold text-sm sm:text-[15px] shadow-2xs hover:shadow-sm transition-all duration-200 inline-flex items-center justify-center gap-2 cursor-pointer group"
           >
-            <CalendarDaysIcon className="w-4 h-4 text-[#D8EBA4] stroke-[2] group-hover:scale-110 transition-transform" />
+            <CalendarDaysIcon className="w-4 h-4 text-teal stroke-[2.2] group-hover:scale-110 transition-transform" />
             <span>Talk to CPA</span>
           </button>
         </div>

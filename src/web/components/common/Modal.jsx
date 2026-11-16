@@ -42,15 +42,15 @@ const Modal = ({
           {/* Header */}
           <div className="flex items-start justify-between p-6 border-b border-gray-200">
             <div>
-              <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+              <h3 className="text-lg font-semibold text-primary">{title}</h3>
               {description && (
-                <p className="mt-1 text-sm text-gray-500">{description}</p>
+                <p className="mt-1 text-sm text-slateText">{description}</p>
               )}
             </div>
             {showClose && (
               <button
                 onClick={onClose}
-                className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                className="p-1 text-slateText/70 hover:text-slateText transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>

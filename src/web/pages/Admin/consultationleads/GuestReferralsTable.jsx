@@ -22,7 +22,7 @@
 
 //   return (
 //     <div className="p-6 bg-white rounded-xl shadow">
-//       <h2 className="text-2xl font-bold mb-6 text-gray-800">
+//       <h2 className="text-2xl font-bold mb-6 text-primary">
 //         Guest Referrals
 //       </h2>
 
@@ -103,7 +103,7 @@
 
 //       {/* PAGINATION */}
 //       <div className="flex justify-between items-center mt-6">
-//         <span className="text-sm text-gray-600">
+//         <span className="text-sm text-slateText">
 //           Page {page} of {totalPages}
 //         </span>
 
@@ -153,7 +153,7 @@ const GuestReferralsTable = () => {
 
   return (
     <div className="p-6 bg-white rounded-xl shadow">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">
+      <h2 className="text-2xl font-bold mb-6 text-primary">
         Guest Referrals
       </h2>
 
@@ -231,7 +231,7 @@ const GuestReferralsTable = () => {
 
       {/* PAGINATION */}
       <div className="flex justify-between items-center mt-6">
-        <span className="text-sm text-gray-600">
+        <span className="text-sm text-slateText">
           Page {page} of {totalPages}
         </span>
 

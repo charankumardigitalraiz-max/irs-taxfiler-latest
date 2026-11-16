@@ -60,7 +60,7 @@ const FAQAccordion = () => {
         <h3 className="text-3xl md:text-4xl font-bold text-primary-navy mb-4 tracking-[-0.02em]">
           Frequently Asked Questions
         </h3>
-        <p className="text-gray-600 text-base leading-[1.7]">
+        <p className="text-slateText text-base leading-[1.7]">
           Find answers to common questions about our tax filing services
         </p>
       </motion.div>
@@ -97,7 +97,7 @@ const FAQAccordion = () => {
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  <div className="px-6 pb-5 text-gray-600 leading-relaxed">
+                  <div className="px-6 pb-5 text-slateText leading-relaxed">
                     {faq.answer}
                   </div>
                 </motion.div>

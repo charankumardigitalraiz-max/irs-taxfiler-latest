@@ -48,7 +48,7 @@ export default function InterviewPending() {
           <button className="bg-green-600 text-white px-3 py-1.5 rounded text-sm">
             Last modified Members
           </button>
-          <span className="text-sm text-gray-600">
+          <span className="text-sm text-slateText">
             Total <span className="font-semibold">{data.length}</span>
           </span>
         </div>
@@ -77,7 +77,7 @@ export default function InterviewPending() {
                 </tr>
               ) : data.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="text-center py-16 text-gray-500">
+                  <td colSpan={8} className="text-center py-16 text-slateText">
                     No records found
                   </td>
                 </tr>

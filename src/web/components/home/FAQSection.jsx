@@ -84,7 +84,7 @@ const FAQSection = ({ onOpenModal }) => {
   return (
     <section className="bg-white py-16 sm:py-20 lg:py-24 font-sans border-t border-slate-100 relative overflow-hidden">
       {/* Subtle ambient gradient aura */}
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-gradient-to-br from-[#165479]/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-gradient-to-br from-[#1F4264]/5 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -94,73 +94,73 @@ const FAQSection = ({ onOpenModal }) => {
           {/* Left Column: Heading, Trust Points & CPA Help Desk (Sticky) */}
           <div className="lg:col-span-5 lg:sticky lg:top-28 text-left">
             {/* Eyebrow Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F6F9EE] border border-[#749220]/30 shadow-2xs mb-3.5 text-xs font-medium text-[#749220] uppercase tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-[#749220] animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-background-blue border border-border shadow-2xs mb-3.5 text-xs font-medium text-primary uppercase tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-[#1F4264] animate-pulse" />
               <span>Got Questions?</span>
             </div>
 
             {/* Display Headline */}
-            <h2 className="text-2xl sm:text-3xl lg:text-[36px] font-normal text-gray-900 tracking-tight leading-[1.25]">
+            <h2 className="text-2xl sm:text-3xl lg:text-[36px] font-normal text-primary tracking-tight leading-[1.25]">
               Frequently Asked{" "}
-              <span className="font-medium bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#749220] bg-clip-text text-transparent block mt-1">
+              <span className="font-normal text-primary block mt-1">
                 Questions
               </span>
             </h2>
 
-            <p className="text-sm text-gray-600 mt-3 font-normal leading-relaxed">
+            <p className="text-sm text-slateText mt-3 font-normal leading-relaxed">
               Clear, transparent answers from certified CPAs to help you file with complete confidence.
             </p>
 
             {/* Trust Checklist Highlights */}
-            <div className="mt-6 space-y-2.5 pt-5 border-t border-slate-100 text-xs text-gray-700">
+            <div className="mt-6 space-y-2.5 pt-5 border-t border-slate-100 text-xs text-slateText">
               <div className="flex items-center gap-2.5">
-                <CheckCircleIcon className="w-4 h-4 text-[#749220] shrink-0 stroke-[2]" />
+                <CheckCircleIcon className="w-4 h-4 text-teal shrink-0 stroke-[2]" />
                 <span className="font-medium">IRS Authorized e-File Provider & Licensed CPAs</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <CheckCircleIcon className="w-4 h-4 text-[#749220] shrink-0 stroke-[2]" />
+                <CheckCircleIcon className="w-4 h-4 text-teal shrink-0 stroke-[2]" />
                 <span className="font-medium">Maximum Legal Refund Guarantee on all 50 states</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <CheckCircleIcon className="w-4 h-4 text-[#749220] shrink-0 stroke-[2]" />
+                <CheckCircleIcon className="w-4 h-4 text-teal shrink-0 stroke-[2]" />
                 <span className="font-medium">100% CPA Accuracy with comprehensive audit defense</span>
               </div>
             </div>
 
             {/* Direct CPA Help Card */}
-            <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-[#FAFCFE] via-white to-[#F6F9EE] border border-slate-200/90 shadow-[0_4px_20px_rgba(22,84,121,0.04)] text-left">
-              <div className="flex items-center gap-2 mb-2 text-xs font-semibold text-[#165479] uppercase tracking-wider">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-[#EFF9FB] border border-[#EFF9FB] shadow-[0_4px_20px_rgba(37,99,235,0.04)] text-left">
+              <div className="flex items-center gap-2 mb-2 text-xs font-semibold text-primary uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-background-aqua0 animate-pulse" />
                 <span>Live CPA Assistance</span>
               </div>
-              <h4 className="text-[15px] font-semibold text-gray-900 leading-snug">
+              <h4 className="text-[15px] font-semibold text-primary leading-snug">
                 Have a specific tax situation?
               </h4>
-              <p className="text-xs text-gray-600 mt-1 leading-relaxed">
+              <p className="text-xs text-slateText mt-1 leading-relaxed">
                 Speak directly with our CPA tax experts for a free initial review of your return.
               </p>
 
               <div className="mt-4 flex flex-col sm:flex-row gap-2.5">
                 <button
                   onClick={() => onOpenModal && onOpenModal()}
-                  className="px-4 py-2.5 rounded-xl bg-[#165479] hover:bg-[#0A4973] text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-2xs cursor-pointer group"
+                  className="px-4 py-2.5 rounded-xl bg-[#1F4264] hover:bg-[#1E4162] text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-[0_4px_14px_rgba(37,99,235,0.28)] cursor-pointer group"
                 >
-                  <ChatBubbleLeftRightIcon className="w-4 h-4 text-[#CBF056]" />
+                  <ChatBubbleLeftRightIcon className="w-4 h-4 text-white" />
                   <span>Talk to a CPA</span>
                   <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </button>
 
                 <a
                   href="tel:+14157876190"
-                  className="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-gray-700 text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-2xs"
+                  className="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-[#EFF9FB] text-slateText text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-2xs"
                 >
-                  <PhoneIcon className="w-3.5 h-3.5 text-[#749220]" />
+                  <PhoneIcon className="w-3.5 h-3.5 text-teal" />
                   <span>+1 (415) 787-6190</span>
                 </a>
               </div>
 
-              <div className="mt-3 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[11px] text-gray-500">
-                <ClockIcon className="w-3.5 h-3.5 text-gray-400" />
+              <div className="mt-3 pt-3 border-t border-slate-200/80 flex items-center gap-1.5 text-[11px] text-slateText">
+                <ClockIcon className="w-3.5 h-3.5 text-slateText" />
                 <span>Mon – Sat: 8:00 AM – 9:00 PM CST</span>
               </div>
             </div>
@@ -174,8 +174,8 @@ const FAQSection = ({ onOpenModal }) => {
                 <div
                   key={faq.id}
                   className={`rounded-2xl border transition-all duration-300 overflow-hidden ${isOpen
-                    ? "border-[#165479]/40 bg-white shadow-[0_8px_24px_rgba(22,84,121,0.06)] ring-1 ring-[#165479]/10"
-                    : "border-slate-200/90 bg-white hover:border-[#165479]/30 hover:shadow-xs"
+                    ? "border-[#1F4264]/40 bg-white shadow-[0_8px_24px_rgba(37,99,235,0.06)] ring-1 ring-[#CCDCE1]"
+                    : "border-[#EFF9FB] bg-white hover:border-[#CCDCE1] hover:shadow-xs"
                     }`}
                 >
                   {/* Card Header Button */}
@@ -187,21 +187,21 @@ const FAQSection = ({ onOpenModal }) => {
                       {/* Sequential Number Pill */}
                       <span
                         className={`w-6 h-6 rounded-md text-[11px] font-mono font-semibold flex items-center justify-center shrink-0 mt-0.5 transition-colors ${isOpen
-                          ? "bg-[#165479] text-white"
-                          : "bg-slate-100 text-slate-500 group-hover:bg-[#F6F9EE] group-hover:text-[#749220]"
+                          ? "bg-[#1F4264] text-white"
+                          : "bg-slate-100 text-slateText group-hover:bg-background-blue group-hover:text-primary"
                           }`}
                       >
                         {(index + 1).toString().padStart(2, "0")}
                       </span>
 
                       <div>
-                        <span className="text-[10px] sm:text-[10.5px] font-semibold text-[#749220] uppercase tracking-wider block mb-1">
+                        <span className="text-[10px] sm:text-[10.5px] font-semibold text-primary uppercase tracking-wider block mb-1">
                           {faq.tag}
                         </span>
                         <h3
                           className={`text-sm sm:text-[14.5px] font-semibold transition-colors leading-snug ${isOpen
-                            ? "text-[#165479]"
-                            : "text-gray-900 group-hover:text-[#165479]"
+                            ? "text-primary"
+                            : "text-primary group-hover:text-primary"
                             }`}
                         >
                           {faq.question}
@@ -212,8 +212,8 @@ const FAQSection = ({ onOpenModal }) => {
                     {/* Circular Chevron Toggle Button */}
                     <div
                       className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 mt-0.5 ${isOpen
-                        ? "bg-[#749220] text-white rotate-180 shadow-2xs"
-                        : "bg-slate-100 text-slate-500 group-hover:bg-[#165479] group-hover:text-white"
+                        ? "bg-[#1F4264] text-white rotate-180 shadow-2xs"
+                        : "bg-slate-100 text-slateText group-hover:bg-[#1F4264] group-hover:text-white"
                         }`}
                     >
                       <ChevronDownIcon className="w-3.5 h-3.5 stroke-[2.2]" />
@@ -233,14 +233,14 @@ const FAQSection = ({ onOpenModal }) => {
                         <div className="px-5 sm:px-6 pb-5 pt-1 border-t border-slate-100">
                           {/* Key Takeaway Highlight Pill */}
                           {faq.takeaway && (
-                            <div className="mb-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#F6F9EE] border border-[#749220]/25 text-[11px] font-medium text-[#749220]">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#749220]" />
+                            <div className="mb-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-background-blue border border-border text-[11px] font-medium text-primary">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#1F4264]" />
                               <span>{faq.takeaway}</span>
                             </div>
                           )}
 
                           {/* Detailed Answer Paragraph */}
-                          <p className="text-xs sm:text-[13px] leading-relaxed text-gray-600 font-normal">
+                          <p className="text-xs sm:text-[13px] leading-relaxed text-slateText font-normal">
                             {faq.answer}
                           </p>
 
@@ -249,12 +249,12 @@ const FAQSection = ({ onOpenModal }) => {
                             <div className="mt-3.5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
                               <a
                                 href={faq.link}
-                                className="inline-flex items-center gap-1.5 font-semibold text-[#165479] hover:text-[#749220] transition-colors"
+                                className="inline-flex items-center gap-1.5 font-semibold text-primary hover:text-primary transition-colors"
                               >
                                 <span>{faq.linkLabel || "Learn more"}</span>
                                 <ArrowRightIcon className="w-3.5 h-3.5" />
                               </a>
-                              <span className="text-[11px] text-slate-400 font-normal">
+                              <span className="text-[11px] text-slateText font-normal">
                                 CPA Verified Guidance
                               </span>
                             </div>

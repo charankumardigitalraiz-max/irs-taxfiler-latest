@@ -112,7 +112,7 @@ const DashboardLayout = () => {
             </div>
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-600 hover:text-gray-900"
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-slateText hover:text-primary"
             >
               {sidebarOpen ? (
                 <XMarkIcon className="h-5 w-5" />
@@ -135,18 +135,18 @@ const DashboardLayout = () => {
                   className={`flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all duration-200 ${
                     active
                       ? "bg-primary-blue text-white"
-                      : "text-gray-700 hover:bg-gray-50"
+                      : "text-slateText hover:bg-gray-50"
                   }`}
                 >
                   <Icon
                     className={`h-5 w-5 ${
-                      active ? "text-white" : "text-gray-600"
+                      active ? "text-white" : "text-slateText"
                     }`}
                   />
                   {sidebarOpen && (
                     <span
                       className={`text-sm font-medium ${
-                        active ? "text-white" : "text-gray-700"
+                        active ? "text-white" : "text-slateText"
                       }`}
                     >
                       {item.name}
@@ -168,14 +168,14 @@ const DashboardLayout = () => {
         {/* Header */}
         <header className="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
           <div className="flex h-16 items-center justify-between px-8">
-            <h2 className="text-xl font-semibold text-gray-900">
+            <h2 className="text-xl font-semibold text-primary">
               {menuItems.find((item) => isActive(item.path))?.name ||
                 "Dashboard"}
             </h2>
 
             <div className="flex items-center space-x-4">
               {/* Notifications */}
-              <button className="relative p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+              <button className="relative p-2 text-slateText hover:text-slateText hover:bg-gray-100 rounded-lg transition-colors">
                 <BellIcon className="h-5 w-5" />
                 <span className="absolute top-1.5 right-1.5 h-2 w-2 bg-red-500 rounded-full border border-white"></span>
               </button>
@@ -204,7 +204,7 @@ const DashboardLayout = () => {
 
                   {/* Username */}
                   <div className="hidden md:block">
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-primary">
                       {user?.firstName} {user?.lastName}
                     </p>
                   </div>
