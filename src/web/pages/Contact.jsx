@@ -29,7 +29,7 @@ const Contact = () => {
       icon: PhoneIcon,
       title: "Call Us",
       description: "Speak directly with our tax experts for immediate assistance.",
-      contact: "+1 (404) 424-4191",
+      contact: "+1 (404) 424-4191 / 4815",
       link: "tel:+14044244191",
     },
     {
@@ -310,13 +310,21 @@ const Contact = () => {
                           <span className="text-[10px] font-bold text-slateText uppercase tracking-wider block">
                             Direct Telephone
                           </span>
-                          <a
-                            href="tel:+14044244191"
-                            className="text-xs text-primary hover:underline font-bold block truncate mt-0.5"
-                          >
-                            +1 (404) 424-4191
-                          </a>
-                          <span className="text-[10px] text-teal font-semibold block">Toll-Free Assistance</span>
+                          <div className="flex flex-col gap-0.5 mt-0.5">
+                            <a
+                              href="tel:+14044244191"
+                              className="text-xs text-primary hover:text-teal font-bold block truncate transition-colors"
+                            >
+                              +1 (404) 424-4191
+                            </a>
+                            <a
+                              href="tel:+14044244815"
+                              className="text-xs text-primary hover:text-teal font-bold block truncate transition-colors"
+                            >
+                              +1 (404) 424-4815
+                            </a>
+                          </div>
+                          <span className="text-[10px] text-teal font-semibold block mt-1">Toll-Free Assistance</span>
                         </div>
                       </div>
 
@@ -417,13 +425,12 @@ const Contact = () => {
                     className="bg-white rounded-2xl p-6 sm:p-7 border border-[#EFF9FB] shadow-[0_2px_10px_rgba(15,23,42,0.04)] hover:shadow-[0_12px_28px_rgba(37,99,235,0.08)] hover:border-[#CCDCE1] transition-all duration-200 flex flex-col justify-start group"
                   >
                     <div
-                      className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-105 ${
-                        index === 0
+                      className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-105 ${index === 0
                           ? 'bg-blue-50 border border-border text-primary'
                           : index === 1
-                          ? 'bg-teal-50 border border-teal-100 text-teal'
-                          : 'bg-coral/10 border border-coral/20 text-[#EE6450]'
-                      }`}
+                            ? 'bg-teal-50 border border-teal-100 text-teal'
+                            : 'bg-coral/10 border border-coral/20 text-[#EE6450]'
+                        }`}
                     >
                       <IconComponent className="w-5.5 h-5.5" />
                     </div>

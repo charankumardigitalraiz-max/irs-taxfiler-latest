@@ -168,13 +168,13 @@ const Navbar = () => {
                       <a
                         href="tel:+14044244191"
                         className="h-9 px-3 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center gap-2 transition-all duration-200 shadow-sm font-semibold text-xs sm:text-sm shrink-0 group/call cursor-pointer"
-                        title="Call US: +1 (404) 424-4191"
+                        title="Call US: +1 (404) 424-4191 / 4815"
                       >
                         <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover/call:scale-110 transition-transform">
                           <PhoneIcon className="w-3.5 h-3.5 group-hover/call:rotate-12 transition-transform" />
                         </div>
                         {/* <UsFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" /> */}
-                        <span className="tracking-tight whitespace-nowrap">US: +1 (404) 424-4191</span>
+                        <span className="tracking-tight whitespace-nowrap">US: +1 (404) 424-4191 / 4815</span>
                       </a>
 
                       {/* India Phone */}
@@ -187,7 +187,7 @@ const Navbar = () => {
                           <PhoneIcon className="w-3.5 h-3.5 group-hover/in:rotate-12 transition-transform" />
                         </div>
                         {/* <InFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" /> */}
-                        <span className="tracking-tight whitespace-nowrap">India: +91 9052 333 667/668</span>
+                        <span className="tracking-tight whitespace-nowrap">India: +91 9052  333  667/668</span>
                       </a>
 
                       {/* WhatsApp */}
@@ -258,14 +258,14 @@ const Navbar = () => {
                     <a
                       href="tel:+14044244191"
                       className="flex items-center gap-2 group/us cursor-pointer"
-                      title="Call US: +1 (404) 424-4191"
+                      title="Call US: +1 (404) 424-4191 / 4815"
                     >
                       <div className="w-7 h-7 rounded-full bg-white/20 group-hover/us:bg-white/30 text-white flex items-center justify-center transition-all group-hover/us:scale-110 shadow-sm">
                         <PhoneIcon className="w-3.5 h-3.5" />
                       </div>
                       <UsFlag className="w-5 h-3.5 rounded-sm shrink-0 shadow-sm" />
                       <span className="text-xs sm:text-sm font-bold tracking-tight text-white whitespace-nowrap">
-                        US: +1 (404) 424-4191
+                        US: +1 (404) 424-4191 / 4815
                       </span>
                     </a>
 
