@@ -103,6 +103,7 @@ const Navbar = () => {
   // const user = useSelector((state) => state.auth.user);
 
   const [isContactStripOpen, setIsContactStripOpen] = useState(true);
+  const [isNearFooter, setIsNearFooter] = useState(false);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -113,163 +114,189 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
+
+      const footer = document.querySelector("footer");
+      if (footer) {
+        const footerRect = footer.getBoundingClientRect();
+        // Hide contact bar as soon as the footer enters the viewport
+        setIsNearFooter(footerRect.top <= window.innerHeight);
+      } else {
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const totalHeight = document.documentElement.scrollHeight;
+        setIsNearFooter(totalHeight - scrollPosition < 150);
+      }
     };
+
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("resize", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [location.pathname]);
 
   // Using global semantic color
   const navTextColor = `text-primary`;
 
   return (
     <>
-      {/* Full-Width Bottom Contact & Quick Utilities Bar (Exact Spec Match) */}
-      <div className="fixed bottom-0 inset-x-0 w-full z-50 font-sans pointer-events-auto">
-        <AnimatePresence mode="wait">
-          {isContactStripOpen ? (
-            <motion.div
-              key="contact-bar-full"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 50, opacity: 0 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className="w-full bg-primary text-white border-t border-white/10 py-2 px-3 sm:px-6 shadow-lg"
-            >
-              <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 flex-wrap">
-                {/* Left: Contact Numbers & Channels */}
-                <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                  {/* US Phone */}
-                  <a
-                    href="tel:+14044244191"
-                    className="h-9 px-3 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center gap-2 transition-all duration-200 shadow-sm font-semibold text-xs sm:text-sm shrink-0 group/call cursor-pointer"
-                    title="Call US: +1 (404) 424-4191"
-                  >
-                    <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover/call:scale-110 transition-transform">
-                      <PhoneIcon className="w-3.5 h-3.5 group-hover/call:rotate-12 transition-transform" />
-                    </div>
-                    {/* <UsFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" /> */}
-                    <span className="tracking-tight whitespace-nowrap">US: +1 (404) 424-4191</span>
-                  </a>
-
-                  {/* India Phone */}
-                  <a
-                    href="tel:+919052333667"
-                    className="h-9 px-3 rounded-full hover:bg-white/15 text-white flex items-center gap-2 transition-all duration-200 shadow-sm font-semibold text-xs sm:text-sm shrink-0 group/in cursor-pointer "
-                    title="Call India: +91 9052 333 667/668"
-                  >
-                    <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover/in:scale-110 transition-transform">
-                      <PhoneIcon className="w-3.5 h-3.5 group-hover/in:rotate-12 transition-transform" />
-                    </div>
-                    {/* <InFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" /> */}
-                    <span className="tracking-tight whitespace-nowrap">India: +91 9052 333 667/668</span>
-                  </a>
-
-                  {/* WhatsApp */}
-                  <a
-                    href="https://wa.me/919052333667?text=Hi%20IRS%20Tax%20Filer"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="h-9 px-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center gap-1.5 transition-all duration-200 shadow-sm font-semibold text-xs shrink-0 border border-white/20"
-                    title="WhatsApp Support: +91 9052 333 667/668"
-                  >
-                    <ChatBubbleLeftRightIcon className="w-4 h-4" />
-                    <span className="hidden md:inline">WhatsApp</span>
-                  </a>
-
-                  {/* Email */}
-                  <a
-                    href="mailto:contact@irstaxfiler.com"
-                    className="hidden xl:inline-flex items-center gap-1.5 text-xs text-white/90 hover:text-white font-medium transition-colors ml-1"
-                    title="Email: contact@irstaxfiler.com"
-                  >
-                    <EnvelopeIcon className="w-4 h-4 text-white" />
-                    <span>contact@irstaxfiler.com</span>
-                  </a>
-                </div>
-
-                {/* Right: Actions & Close */}
-                <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 ml-auto">
-                  {/* Schedule Consultation */}
-                  <button
-                    onClick={() => setIsModalOpen(true)}
-                    className="h-9 px-3.5 sm:px-4 rounded-full bg-coral hover:bg-coral-muted text-white font-bold text-xs flex items-center gap-1.5 shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap"
-                  >
-                    <CalendarDaysIcon className="w-4 h-4 text-white" />
-                    <span>Free Consultation</span>
-                  </button>
-
-                  {/* PayPal */}
-                  <button
-                    onClick={() => window.open('https://www.paypal.com/ncp/payment/9AWG5USG2AUDU', '_blank')}
-                    className="h-9 px-3 sm:px-4 rounded-full bg-action-blue hover:bg-action-blue/90 text-white font-bold text-xs flex items-center gap-1.5 shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap"
-                  >
-                    <CreditCardIcon className="w-4 h-4 text-white" />
-                    <span className="hidden sm:inline">Pay with</span> PayPal
-                  </button>
-
-                  {/* Close Bar */}
-                  <button
-                    onClick={() => setIsContactStripOpen(false)}
-                    className="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-all duration-150 cursor-pointer ml-1"
-                    title="Minimize bar"
-                    aria-label="Minimize bar"
-                  >
-                    <XMarkIcon className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="contact-bar-collapsed"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 20, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="pb-3 flex justify-center"
-            >
-              <div className="bg-primary text-white p-1.5 sm:p-2 pl-3 pr-4 rounded-full shadow-[0_8px_30px_rgba(31,66,100,0.35)] border border-white/20 transition-all flex items-center gap-3">
-                <a
-                  href="tel:+14044244191"
-                  className="flex items-center gap-2 group/us cursor-pointer"
-                  title="Call US: +1 (404) 424-4191"
+      {/* Full-Width Bottom Contact & Quick Utilities Bar (Hides when scrolled to footer) */}
+      <AnimatePresence>
+        {!isNearFooter && (
+          <motion.div
+            initial={{ y: 60, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 60, opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="fixed bottom-0 inset-x-0 w-full z-50 font-sans pointer-events-auto"
+          >
+            <AnimatePresence mode="wait">
+              {isContactStripOpen ? (
+                <motion.div
+                  key="contact-bar-full"
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 50, opacity: 0 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                  className="w-full bg-primary text-white border-t border-white/10 py-2 px-3 sm:px-6 shadow-lg"
                 >
-                  <div className="w-7 h-7 rounded-full bg-white/20 group-hover/us:bg-white/30 text-white flex items-center justify-center transition-all group-hover/us:scale-110 shadow-sm">
-                    <PhoneIcon className="w-3.5 h-3.5" />
+                  <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 flex-wrap">
+                    {/* Left: Contact Numbers & Channels */}
+                    <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                      {/* US Phone */}
+                      <a
+                        href="tel:+14044244191"
+                        className="h-9 px-3 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center gap-2 transition-all duration-200 shadow-sm font-semibold text-xs sm:text-sm shrink-0 group/call cursor-pointer"
+                        title="Call US: +1 (404) 424-4191"
+                      >
+                        <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover/call:scale-110 transition-transform">
+                          <PhoneIcon className="w-3.5 h-3.5 group-hover/call:rotate-12 transition-transform" />
+                        </div>
+                        {/* <UsFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" /> */}
+                        <span className="tracking-tight whitespace-nowrap">US: +1 (404) 424-4191</span>
+                      </a>
+
+                      {/* India Phone */}
+                      <a
+                        href="tel:+919052333667"
+                        className="h-9 px-3 rounded-full hover:bg-white/15 text-white flex items-center gap-2 transition-all duration-200 shadow-sm font-semibold text-xs sm:text-sm shrink-0 group/in cursor-pointer "
+                        title="Call India: +91 9052 333 667/668"
+                      >
+                        <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover/in:scale-110 transition-transform">
+                          <PhoneIcon className="w-3.5 h-3.5 group-hover/in:rotate-12 transition-transform" />
+                        </div>
+                        {/* <InFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" /> */}
+                        <span className="tracking-tight whitespace-nowrap">India: +91 9052 333 667/668</span>
+                      </a>
+
+                      {/* WhatsApp */}
+                      <a
+                        href="https://wa.me/919052333667?text=Hi%20IRS%20Tax%20Filer"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="h-9 px-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center gap-1.5 transition-all duration-200 shadow-sm font-semibold text-xs shrink-0 border border-white/20"
+                        title="WhatsApp Support: +91 9052 333 667/668"
+                      >
+                        <ChatBubbleLeftRightIcon className="w-4 h-4" />
+                        <span className="hidden md:inline">WhatsApp</span>
+                      </a>
+
+                      {/* Email */}
+                      <a
+                        href="mailto:contact@irstaxfiler.com"
+                        className="hidden xl:inline-flex items-center gap-1.5 text-xs text-white/90 hover:text-white font-medium transition-colors ml-1"
+                        title="Email: contact@irstaxfiler.com"
+                      >
+                        <EnvelopeIcon className="w-4 h-4 text-white" />
+                        <span>contact@irstaxfiler.com</span>
+                      </a>
+                    </div>
+
+                    {/* Right: Actions & Close */}
+                    <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 ml-auto">
+                      {/* Schedule Consultation */}
+                      <button
+                        onClick={() => setIsModalOpen(true)}
+                        className="h-9 px-3.5 sm:px-4 rounded-full bg-coral hover:bg-coral-muted text-white font-bold text-xs flex items-center gap-1.5 shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap"
+                      >
+                        <CalendarDaysIcon className="w-4 h-4 text-white" />
+                        <span>Free Consultation</span>
+                      </button>
+
+                      {/* PayPal */}
+                      <button
+                        onClick={() => window.open('https://www.paypal.com/ncp/payment/9AWG5USG2AUDU', '_blank')}
+                        className="h-9 px-3 sm:px-4 rounded-full bg-action-blue hover:bg-action-blue/90 text-white font-bold text-xs flex items-center gap-1.5 shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap"
+                      >
+                        <CreditCardIcon className="w-4 h-4 text-white" />
+                        <span className="hidden sm:inline">Pay with</span> PayPal
+                      </button>
+
+                      {/* Close Bar */}
+                      <button
+                        onClick={() => setIsContactStripOpen(false)}
+                        className="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-all duration-150 cursor-pointer ml-1"
+                        title="Minimize bar"
+                        aria-label="Minimize bar"
+                      >
+                        <XMarkIcon className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
-                  <UsFlag className="w-5 h-3.5 rounded-sm shrink-0 shadow-sm" />
-                  <span className="text-xs sm:text-sm font-bold tracking-tight text-white whitespace-nowrap">
-                    US: +1 (404) 424-4191
-                  </span>
-                </a>
-
-                <div className="h-4 w-[1px] bg-white/25 hidden sm:block" />
-
-                <a
-                  href="tel:+919052333667"
-                  className="hidden sm:flex items-center gap-2 group/in cursor-pointer"
-                  title="Call India: +91 9052 333 667/668"
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="contact-bar-collapsed"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 20, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="pb-3 flex justify-center"
                 >
-                  <InFlag className="w-5 h-3.5 rounded-sm shrink-0 shadow-sm" />
-                  <span className="text-xs font-semibold text-white/90 whitespace-nowrap">
-                    India: +91 9052 333 667/668
-                  </span>
-                </a>
+                  <div className="bg-primary text-white p-1.5 sm:p-2 pl-3 pr-4 rounded-full shadow-[0_8px_30px_rgba(31,66,100,0.35)] border border-white/20 transition-all flex items-center gap-3">
+                    <a
+                      href="tel:+14044244191"
+                      className="flex items-center gap-2 group/us cursor-pointer"
+                      title="Call US: +1 (404) 424-4191"
+                    >
+                      <div className="w-7 h-7 rounded-full bg-white/20 group-hover/us:bg-white/30 text-white flex items-center justify-center transition-all group-hover/us:scale-110 shadow-sm">
+                        <PhoneIcon className="w-3.5 h-3.5" />
+                      </div>
+                      <UsFlag className="w-5 h-3.5 rounded-sm shrink-0 shadow-sm" />
+                      <span className="text-xs sm:text-sm font-bold tracking-tight text-white whitespace-nowrap">
+                        US: +1 (404) 424-4191
+                      </span>
+                    </a>
 
-                <button
-                  type="button"
-                  onClick={() => setIsContactStripOpen(true)}
-                  className="text-[11px] font-semibold bg-white/20 hover:bg-white/30 px-2.5 py-1 rounded-full text-white transition-all cursor-pointer whitespace-nowrap ml-1 flex items-center gap-1"
-                >
-                  <span>Quick Bar</span>
-                  <span>&uarr;</span>
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+                    <div className="h-4 w-[1px] bg-white/25 hidden sm:block" />
+
+                    <a
+                      href="tel:+919052333667"
+                      className="hidden sm:flex items-center gap-2 group/in cursor-pointer"
+                      title="Call India: +91 9052 333 667/668"
+                    >
+                      <InFlag className="w-5 h-3.5 rounded-sm shrink-0 shadow-sm" />
+                      <span className="text-xs font-semibold text-white/90 whitespace-nowrap">
+                        India: +91 9052 333 667/668
+                      </span>
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={() => setIsContactStripOpen(true)}
+                      className="text-[11px] font-semibold bg-white/20 hover:bg-white/30 px-2.5 py-1 rounded-full text-white transition-all cursor-pointer whitespace-nowrap ml-1 flex items-center gap-1"
+                    >
+                      <span>Quick Bar</span>
+                      <span>&uarr;</span>
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <LeadModal open={isModalOpen} onClose={() => setIsModalOpen(false)} />
       {/* Main Header */}

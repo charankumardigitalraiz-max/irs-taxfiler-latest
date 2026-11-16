@@ -100,8 +100,8 @@ const HeroBanner = ({ onOpenModal }) => {
                 >
                   U.S. Tax Filing, <br className="hidden sm:inline" />
                   done right. Maximum <br className="hidden sm:inline" />
-                  <span className="font-normal text-teal">refund</span>{" "}
-                  <span className="font-normal text-coral">guaranteed.</span>
+                  <span className="font-medium text-teal">refund</span>{" "}
+                  <span className="font-medium text-coral">guaranteed.</span>
                 </motion.h1>
 
                 {/* Subheading */}

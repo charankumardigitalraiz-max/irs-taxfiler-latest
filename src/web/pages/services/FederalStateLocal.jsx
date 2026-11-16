@@ -123,9 +123,7 @@ const FederalStateLocal = () => {
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] 2xl:text-[52px] font-normal text-primary tracking-tight mb-4 sm:mb-5"
               >
                 Federal, State & Local <br className="hidden sm:inline" />
-                <span className="font-normal text-teal">
-                  Tax Filing, Simplified.
-                </span>
+                <span className="font-medium text-teal">Tax Filing,</span> <span className="font-medium text-coral">Simplified.</span>
               </motion.h1>
 
               {/* Subheading - Matches Home Hero Typography exactly */}
@@ -216,7 +214,7 @@ const FederalStateLocal = () => {
           <div className="text-center max-w-xl mx-auto mb-10 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
               Complete Coverage for{" "}
-              <span className="font-normal text-teal">
+              <span className="font-medium text-teal">
                 Every Level
               </span>
             </h2>
@@ -295,7 +293,7 @@ const FederalStateLocal = () => {
           <div className="text-center max-w-xl mx-auto mb-10">
             <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
               How It{" "}
-              <span className="font-normal text-teal">
+              <span className="font-medium text-teal">
                 Works
               </span>
             </h2>

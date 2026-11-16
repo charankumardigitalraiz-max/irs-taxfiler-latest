@@ -114,9 +114,7 @@ const IndianRepresentation = () => {
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] 2xl:text-[52px] font-normal text-primary tracking-tight mb-4 sm:mb-5"
               >
                 Indian Tax Representation, <br className="hidden sm:inline" />
-                <span className="font-normal text-teal">
-                  Notice Defense & Appeals.
-                </span>
+                <span className="font-medium text-teal">Notice Defense</span> & <span className="font-medium text-coral">Appeals.</span>
               </motion.h1>
 
               {/* Subheading - Matches Home Hero Typography exactly */}
@@ -186,7 +184,7 @@ const IndianRepresentation = () => {
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
               Indian Tax Notices{" "}
-              <span className="font-normal text-teal">
+              <span className="font-medium text-teal">
                 Resolved & Defended
               </span>
             </h2>
@@ -255,7 +253,7 @@ const IndianRepresentation = () => {
               <div className="mb-4">
                 <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
                   3-Step Notice{" "}
-                  <span className="font-normal text-teal">
+                  <span className="font-medium text-teal">
                     Defense Protocol
                   </span>
                 </h2>

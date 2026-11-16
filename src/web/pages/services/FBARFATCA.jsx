@@ -124,9 +124,7 @@ const FBARFATCA = () => {
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] 2xl:text-[52px] font-normal text-primary tracking-tight mb-4 sm:mb-5"
               >
                 U.S. Foreign Account & Asset <br className="hidden sm:inline" />
-                <span className="font-normal text-teal">
-                  Reporting (FBAR & FATCA)
-                </span>
+                <span className="font-medium text-teal">Reporting</span> <span className="font-medium text-coral">(FBAR & FATCA)</span>
               </motion.h1>
 
               {/* Subheading - Matches Home Hero Typography exactly */}
@@ -233,7 +231,7 @@ const FBARFATCA = () => {
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
               FBAR vs. FATCA{" "}
-              <span className="font-normal text-teal">
+              <span className="font-medium text-teal">
                 Comparison
               </span>
             </h2>
@@ -439,7 +437,7 @@ const FBARFATCA = () => {
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
               Reportable Offshore{" "}
-              <span className="font-normal text-teal">
+              <span className="font-medium text-teal">
                 Assets
               </span>
             </h2>

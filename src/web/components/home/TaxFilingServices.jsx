@@ -27,6 +27,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
     {
       id: "us-individual",
       label: "US Individual Taxes",
+      mediumLabel: "US Individual",
       shortLabel: "Individual",
       countLabel: "6 Filing Services",
       icon: <DocumentTextIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />,
@@ -34,6 +35,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
     {
       id: "us-business",
       label: "US Corporate & Business",
+      mediumLabel: "US Business",
       shortLabel: "Business",
       countLabel: "3 Corporate Services",
       icon: <BuildingOffice2Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />,
@@ -41,7 +43,8 @@ const TaxFilingServices = ({ onOpenModal }) => {
     {
       id: "indian-tax",
       label: "Indian Tax & NRI Services",
-      shortLabel: "Indian & NRI",
+      mediumLabel: "Indian & NRI",
+      shortLabel: "Indian / NRI",
       countLabel: "3 NRI Services",
       icon: <GlobeAltIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />,
     },
@@ -204,7 +207,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
       <div className="relative max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header Fold */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           {/* Eyebrow Pill Badge */}
           <div className="pill-badge mb-4">
             <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
@@ -214,7 +217,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
           {/* Display Headline */}
           <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.2]">
             Explore Our{" "}
-            <span className="font-normal text-teal">
+            <span className="font-medium text-teal">
               Filing Services
             </span>
           </h2>
@@ -223,59 +226,59 @@ const TaxFilingServices = ({ onOpenModal }) => {
           <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-3.5 max-w-2xl mx-auto">
             Certified CPA preparation, dual-status compliance, and guaranteed maximum refunds tailored for US individuals, expats, corporations, and NRI taxpayers.
           </p>
+        </div>
 
-          {/* Modern Interactive Category Segmented Tabs */}
-          <div className="mt-8 flex justify-center">
-            <div
-              role="tablist"
-              aria-label="Tax filing categories"
-              className="p-1.5 rounded-2xl bg-surface border border-border inline-flex flex-wrap sm:flex-nowrap justify-center gap-1.5 sm:gap-2 shadow-xs max-w-full"
-            >
-              {serviceCategories.map((cat) => {
-                const isActive = selectedCategory === cat.id;
-                const count = services[cat.id]?.items.length || 0;
-                return (
-                  <button
-                    key={cat.id}
-                    role="tab"
-                    id={`tab-${cat.id}`}
-                    aria-selected={isActive}
-                    aria-controls={`panel-${cat.id}`}
-                    type="button"
-                    onClick={() => setSelectedCategory(cat.id)}
-                    className={`relative px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 flex items-center gap-2 sm:gap-2.5 cursor-pointer select-none shrink-0 ${isActive
-                      ? "text-white shadow-sm"
-                      : "text-slateText hover:text-primary hover:bg-background-aqua/60"
+        {/* Modern Interactive Category Segmented Tabs - Expanded tab space width without scrollbar */}
+        <div className="w-full max-w-4xl lg:max-w-5xl mx-auto mb-10 sm:mb-12 flex justify-center px-2 sm:px-4">
+          <div
+            role="tablist"
+            aria-label="Tax filing categories"
+            className="p-1.5 sm:p-2 rounded-2xl bg-surface border border-border inline-flex items-center justify-center gap-1.5 sm:gap-2.5 md:gap-3 shadow-xs"
+          >
+            {serviceCategories.map((cat) => {
+              const isActive = selectedCategory === cat.id;
+              const count = services[cat.id]?.items.length || 0;
+              return (
+                <button
+                  key={cat.id}
+                  role="tab"
+                  id={`tab-${cat.id}`}
+                  aria-selected={isActive}
+                  aria-controls={`panel-${cat.id}`}
+                  type="button"
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`relative px-3.5 sm:px-5 lg:px-6 py-2 sm:py-2.5 lg:py-3 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2.5 cursor-pointer select-none shrink-0 ${isActive
+                    ? "text-white shadow-sm"
+                    : "text-slateText hover:text-primary hover:bg-background-aqua/60"
+                    }`}
+                >
+                  {/* Active Pill Background with Layout Animation */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeCategoryPill"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      className="absolute inset-0 rounded-xl bg-primary border border-primary/20"
+                    />
+                  )}
+
+                  <span className={`relative z-10 shrink-0 ${isActive ? "text-coral" : "text-slateText"}`}>
+                    {cat.icon}
+                  </span>
+                  <span className="relative z-10 tracking-tight whitespace-nowrap">
+                    <span className="hidden sm:inline">{cat.label}</span>
+                    <span className="inline sm:hidden">{cat.shortLabel}</span>
+                  </span>
+                  <span
+                    className={`relative z-10 text-[11px] px-2 py-0.5 rounded-full font-medium transition-colors shrink-0 ${isActive
+                      ? "bg-white/20 text-white border border-white/25"
+                      : "bg-surface text-slateText border border-border"
                       }`}
                   >
-                    {/* Active Pill Background with Layout Animation */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeCategoryPill"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        className="absolute inset-0 rounded-xl bg-primary border border-primary/20"
-                      />
-                    )}
-
-                    <span className={`relative z-10 ${isActive ? "text-coral" : "text-slateText"}`}>
-                      {cat.icon}
-                    </span>
-                    <span className="relative z-10 tracking-tight">
-                      <span className="hidden sm:inline">{cat.label}</span>
-                      <span className="inline sm:hidden">{cat.shortLabel}</span>
-                    </span>
-                    <span
-                      className={`relative z-10 text-[11px] px-2 py-0.5 rounded-full font-medium transition-colors ${isActive
-                        ? "bg-white/20 text-white border border-white/25"
-                        : "bg-surface text-slateText border border-border"
-                        }`}
-                    >
-                      {count}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
 

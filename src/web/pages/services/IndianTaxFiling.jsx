@@ -116,9 +116,7 @@ const IndianTaxFiling = () => {
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] 2xl:text-[52px] font-normal text-primary tracking-tight mb-4 sm:mb-5"
               >
                 Indian & NRI Tax Filing, <br className="hidden sm:inline" />
-                <span className="font-normal text-teal">
-                  Cross-Border DTAA Treaty Relief.
-                </span>
+                <span className="font-medium text-teal">Cross-Border</span> <span className="font-medium text-coral">Treaty Relief.</span>
               </motion.h1>
 
               {/* Subheading - Matches Home Hero Typography exactly */}
@@ -209,7 +207,7 @@ const IndianTaxFiling = () => {
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
               NRI & Resident{" "}
-              <span className="font-normal text-teal">
+              <span className="font-medium text-teal">
                 Tax Filing Scopes
               </span>
             </h2>
@@ -282,7 +280,7 @@ const IndianTaxFiling = () => {
               <div className="mb-4">
                 <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
                   3-Step Indian ITR{" "}
-                  <span className="font-normal text-teal">
+                  <span className="font-medium text-teal">
                     Submission
                   </span>
                 </h2>

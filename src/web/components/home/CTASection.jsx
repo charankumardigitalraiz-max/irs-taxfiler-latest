@@ -29,7 +29,7 @@ const CTASection = ({ onOpenModal }) => {
         {/* Display Headline */}
         <h2 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-normal text-primary mb-3.5 tracking-tight leading-[1.25]">
           Ready to file your{" "}
-          <span className="font-normal text-teal">
+          <span className="font-medium text-teal">
             U.S. taxes?
           </span>
         </h2>

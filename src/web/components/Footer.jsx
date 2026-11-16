@@ -52,7 +52,7 @@ const Footer = () => {
               </div>
             </Link>
 
-            <p className="text-[13px] text-white/80 font-normal leading-relaxed mb-4">
+            <p className="text-[13px] text-white font-normal leading-relaxed mb-4">
               Your trusted partner for expert tax filing services. We help maximize refunds and ensure compliance with confidence.
             </p>
           </div>
@@ -109,7 +109,7 @@ const Footer = () => {
                 <li key={i}>
                   <Link
                     to={item.link}
-                    className="group flex items-center gap-2.5 py-1 text-[#CBD5E1] hover:text-white font-medium transition-all duration-200 hover:translate-x-1"
+                    className="group flex items-center gap-2.5 py-1 text-white hover:text-white font-medium transition-all duration-200 hover:translate-x-1"
                   >
                     <item.icon className={`w-4 h-4 ${item.color} shrink-0 transition-transform duration-200 group-hover:scale-125`} />
                     <span className="leading-snug">{item.text}</span>
@@ -165,7 +165,7 @@ const Footer = () => {
                 <li key={i}>
                   <Link
                     to={item.link}
-                    className="group flex items-center gap-2.5 py-1 text-[#CBD5E1] hover:text-white font-medium transition-all duration-200 hover:translate-x-1"
+                    className="group flex items-center gap-2.5 py-1 text-white hover:text-white font-medium transition-all duration-200 hover:translate-x-1"
                   >
                     <item.icon className={`w-4 h-4 ${item.color} shrink-0 transition-transform duration-200 group-hover:scale-125`} />
                     <span className="leading-snug">{item.text}</span>
@@ -221,7 +221,7 @@ const Footer = () => {
                 <li key={i}>
                   <Link
                     to={item.link}
-                    className="group flex items-center gap-2.5 py-1 text-[#CBD5E1] hover:text-white font-medium transition-all duration-200 hover:translate-x-1"
+                    className="group flex items-center gap-2.5 py-1 text-white hover:text-white font-medium transition-all duration-200 hover:translate-x-1"
                   >
                     <item.icon className={`w-4 h-4 ${item.color} shrink-0 transition-transform duration-200 group-hover:scale-125`} />
                     <span className="leading-snug">{item.text}</span>

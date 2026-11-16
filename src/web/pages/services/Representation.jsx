@@ -115,9 +115,7 @@ const Representation = () => {
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] 2xl:text-[52px] font-normal text-primary tracking-tight mb-4 sm:mb-5"
               >
                 Never Face the IRS Alone. <br className="hidden sm:inline" />
-                <span className="font-normal text-teal">
-                  Licensed CPA Representation
-                </span>
+                <span className="font-medium text-teal">Licensed CPA</span> <span className="font-medium text-coral">Representation</span>
               </motion.h1>
 
               {/* Subheading - Matches Home Hero Typography exactly */}
@@ -227,7 +225,7 @@ const Representation = () => {
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
               Rapid Response to{" "}
-              <span className="font-normal text-teal">
+              <span className="font-medium text-teal">
                 IRS Notices & Audits
               </span>
             </h2>
@@ -295,7 +293,7 @@ const Representation = () => {
               <div className="mb-4">
                 <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
                   3-Step Representation{" "}
-                  <span className="font-normal text-teal">
+                  <span className="font-medium text-teal">
                     Protocol
                   </span>
                 </h2>

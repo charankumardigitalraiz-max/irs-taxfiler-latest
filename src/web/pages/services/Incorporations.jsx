@@ -115,9 +115,7 @@ const Incorporations = () => {
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] 2xl:text-[52px] font-normal text-primary tracking-tight mb-4 sm:mb-5"
               >
                 U.S. Business Incorporation, <br className="hidden sm:inline" />
-                <span className="font-normal text-teal">
-                  Form Your LLC or Corporation.
-                </span>
+                <span className="font-medium text-teal">Form Your LLC</span> or <span className="font-medium text-coral">Corporation.</span>
               </motion.h1>
 
               {/* Subheading - Matches Home Hero Typography exactly */}
@@ -208,7 +206,7 @@ const Incorporations = () => {
           <div className="text-center max-w-xl mx-auto mb-6 sm:mb-8">
             <h2 className="text-xl sm:text-2xl lg:text-[28px] font-normal text-primary tracking-tight leading-tight">
               Compare U.S. Business{" "}
-              <span className="font-normal text-teal">
+              <span className="font-medium text-teal">
                 Structures
               </span>
             </h2>

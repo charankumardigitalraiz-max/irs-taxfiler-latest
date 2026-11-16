@@ -186,9 +186,12 @@ const TaxResources = () => {
               transition={{ duration: 0.4, delay: 0.08 }}
               className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.25] mb-3.5"
             >
-              Essential Tax Resources &{' '}
-              <span className="font-normal text-teal">
-                Official Forms
+              Essential Tax Resources &{" "}
+              <span className="font-medium text-teal">
+                Official
+              </span>{" "}
+              <span className="font-medium text-coral">
+                IRS Forms
               </span>
             </motion.h1>
 
@@ -260,7 +263,7 @@ const TaxResources = () => {
             <div className="text-left mb-8 sm:mb-10">
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
                 Commonly Used Forms &{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Instructions
                 </span>
               </h2>
@@ -343,7 +346,7 @@ const TaxResources = () => {
             <div className="text-left mb-8 sm:mb-10">
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
                 Important Filing{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Deadlines
                 </span>
               </h2>
@@ -453,7 +456,7 @@ const TaxResources = () => {
             <div className="text-left mb-8 sm:mb-10">
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
                 Common Tax Deductions &{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Credits
                 </span>
               </h2>

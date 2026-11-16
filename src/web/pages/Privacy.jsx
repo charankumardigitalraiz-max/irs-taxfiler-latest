@@ -223,7 +223,7 @@ const Privacy = () => {
 
               <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.2] mb-3.5">
                 Privacy{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Policy
                 </span>
               </h1>
@@ -360,15 +360,15 @@ const Privacy = () => {
                       >
                         <div
                           className={`absolute top-0 inset-x-0 h-0.5 ${isLime
-                              ? "bg-gradient-to-r from-[#127EAB]/70 via-[#127EAB]/25 to-transparent"
-                              : "bg-gradient-to-r from-[#1F4264]/70 via-[#1F4264]/25 to-transparent"
+                            ? "bg-gradient-to-r from-[#127EAB]/70 via-[#127EAB]/25 to-transparent"
+                            : "bg-gradient-to-r from-[#1F4264]/70 via-[#1F4264]/25 to-transparent"
                             }`}
                         />
                         <div className="flex items-center gap-3.5 pb-4 mb-4 border-b border-slate-100">
                           <div
                             className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${isLime
-                                ? "bg-background-aqua border border-border text-teal text-teal"
-                                : "bg-sky-50 border border-sky-100 text-primary"
+                              ? "bg-background-aqua border border-border text-teal text-teal"
+                              : "bg-sky-50 border border-sky-100 text-primary"
                               }`}
                           >
                             <IconComponent className="h-5 w-5" />
@@ -474,12 +474,12 @@ const Privacy = () => {
                   or if you want to exercise your privacy rights.
                 </p>
                 <div className="flex flex-wrap gap-2.5 justify-center">
-                  <a
+                  {/* <a
                     href="mailto:contact@irstaxfiler.com"
                     className="inline-flex items-center justify-center h-10 px-5 rounded-lg font-medium text-xs sm:text-sm text-white bg-gradient-to-r from-[#1F4264] via-[#1F4264] to-[#127EAB] hover:from-[#1E4162] hover:via-[#1F4264] hover:to-[#1F4264] shadow-sm transition-all"
                   >
                     Email Privacy Team
-                  </a>
+                  </a> */}
                   <Link
                     to="/contact"
                     className="inline-flex items-center justify-center h-10 px-5 rounded-lg font-medium text-xs sm:text-sm text-primary bg-white hover:bg-slate-50 border border-slate-300 shadow-sm transition-all"

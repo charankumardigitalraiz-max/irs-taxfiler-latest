@@ -59,7 +59,7 @@ const TestimonialsSection = () => {
           </div>
           <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight">
             Real Clients,{" "}
-            <span className="font-normal text-teal">
+            <span className="font-medium text-teal">
               Real Tax Results
             </span>
           </h2>

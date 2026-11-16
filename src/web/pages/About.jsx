@@ -159,8 +159,11 @@ const About = () => {
               {/* Main Headline */}
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-primary tracking-tight leading-[1.25] mb-3.5 max-w-3xl mx-auto">
                 About TaxFiling —{" "}
-                <span className="font-normal text-teal">
-                  Simplifying Tax Filing for Everyone
+                <span className="font-medium text-teal">
+                  Simplifying Tax Filing
+                </span>{" "}
+                <span className="font-medium text-coral">
+                  for Everyone
                 </span>
               </h1>
 
@@ -195,7 +198,7 @@ const About = () => {
 
                 <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-5">
                   Our{" "}
-                  <span className="font-normal text-teal">
+                  <span className="font-medium text-teal">
                     Mission
                   </span>
                 </h2>
@@ -265,7 +268,7 @@ const About = () => {
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-2.5">
                 Why Choose{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   TaxFiling?
                 </span>
               </h2>
@@ -329,7 +332,7 @@ const About = () => {
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-2.5">
                 Our Core{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Values
                 </span>
               </h2>
@@ -380,7 +383,7 @@ const About = () => {
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-2.5">
                 Why Expatriates Need{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Professional Tax Filing
                 </span>
               </h2>
@@ -514,16 +517,16 @@ const About = () => {
                 Get started today and experience the difference of professional tax services.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3.5 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3.5 justify-center items-center">
                 <Link
                   to="/contact"
-                  className="px-7 py-3 rounded-full font-medium text-sm sm:text-base text-primary bg-[#127EAB] hover:bg-[#b8dd42] shadow-md hover:shadow-lg transition-all duration-200"
+                  className="px-7 py-3 rounded-xl font-medium text-sm sm:text-base text-white bg-teal hover:bg-teal/90 shadow-sm hover:shadow-md transition-all duration-200"
                 >
                   Contact Us
                 </Link>
                 <Link
                   to="/pricing"
-                  className="px-7 py-3 rounded-full font-medium text-sm sm:text-base text-white bg-white/10 hover:bg-white/20 border border-white/25 transition-all duration-200"
+                  className="px-7 py-3 rounded-xl font-medium text-sm sm:text-base text-white bg-white/10 hover:bg-white/20 border border-white/25 transition-all duration-200"
                 >
                   View Pricing
                 </Link>

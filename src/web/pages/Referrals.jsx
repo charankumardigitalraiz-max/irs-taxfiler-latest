@@ -315,8 +315,11 @@ ${yourName || 'Your Friend'}`;
                 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.2] mb-3.5"
               >
                 Refer & Earn with{" "}
-                <span className="font-normal text-teal">
-                  IRS Tax Filer
+                <span className="font-medium text-teal">
+                  IRS
+                </span>{" "}
+                <span className="font-medium text-coral">
+                  Tax Filer
                 </span>
               </motion.h1>
 
@@ -685,7 +688,7 @@ ${yourName || 'Your Friend'}`;
             <div className="text-left mb-8 sm:mb-10">
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
                 Rewards for{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Both
                 </span>
               </h2>
@@ -732,7 +735,7 @@ ${yourName || 'Your Friend'}`;
             <div className="text-left mb-8 sm:mb-10">
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
                 How It{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Works
                 </span>
               </h2>
@@ -776,7 +779,7 @@ ${yourName || 'Your Friend'}`;
             <div className="rounded-2xl p-8 sm:p-10 bg-white border border-slate-200/90 shadow-2xs">
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-normal text-primary tracking-tight mb-2.5">
                 Ready to Start{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Earning Rewards?
                 </span>
               </h2>

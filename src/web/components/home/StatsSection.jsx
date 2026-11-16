@@ -213,7 +213,7 @@ const StatsSection = () => {
             {/* Display Headline */}
             <h2 className="text-2xl sm:text-3xl lg:text-[36px] font-normal text-primary tracking-tight leading-[1.25]">
               Trusted by{" "}
-              <span className="font-normal text-teal">
+              <span className="font-medium text-teal">
                 Thousands of Taxpayers
               </span>
             </h2>

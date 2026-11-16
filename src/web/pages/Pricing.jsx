@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
+  ArrowRightIcon,
   GiftIcon,
   DocumentTextIcon,
   BanknotesIcon,
@@ -179,10 +180,7 @@ const Pricing = () => {
 
                 {/* Main Headline with Generous Line-to-Line Spacing */}
                 <h1 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-normal text-primary tracking-tight leading-[1.28] sm:leading-[1.22] mb-5">
-                  Transparent Pricing &{" "}
-                  <span className="font-normal text-teal">
-                    No Hidden Fees
-                  </span>
+                  Transparent Pricing & <span className="font-medium text-teal">No Hidden</span> <span className="font-medium text-coral">Fees</span>
                 </h1>
 
                 {/* Subheading with Airy Line-to-Line Height and Comfortable Paragraph Space */}
@@ -275,7 +273,7 @@ const Pricing = () => {
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
                 Service{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Pricing
                 </span>
               </h2>
@@ -467,15 +465,9 @@ const Pricing = () => {
         </section>
 
         {/* ========================================================================= */}
-        {/* 3. FULL-WIDTH CTA SECTION WITH BRAND BACKGROUND                           */}
+        {/* 3. FULL-WIDTH CTA SECTION WITH BRAND STYLING                              */}
         {/* ========================================================================= */}
-        <section className="w-full relative py-16 sm:py-10 bg-gradient-to-br from-[#1F4264] via-[#1F4264] to-[#1E4162] text-white overflow-hidden">
-          {/* Subtle Ambient Background Gradients */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden -z-10">
-            <div className="absolute -top-24 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl opacity-40" />
-            <div className="absolute -bottom-24 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl opacity-30" />
-          </div>
-
+        <section className="w-full relative py-16 sm:py-20 bg-background-aqua/40 overflow-hidden border-t border-border">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -483,29 +475,34 @@ const Pricing = () => {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5 }}
             >
-              {/* Star Icon Badge */}
-              {/* <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-teal flex items-center justify-center mx-auto mb-4 shadow-sm">
-                <StarIcon className="w-6 h-6" />
-              </div> */}
+              {/* Eyebrow Pill */}
+              <div className="pill-badge mb-4">
+                <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
+                <span>Transparent Tax Filing</span>
+              </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-white tracking-tight mb-3">
-                Ready to Get Started?
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-primary tracking-tight mb-3">
+                Ready to Get{" "}
+                <span className="font-medium text-teal">
+                  Started?
+                </span>
               </h2>
 
-              <p className="text-sm sm:text-base text-sky-100/90 font-normal mb-8 max-w-2xl mx-auto leading-relaxed">
-                Select the services you need and our expert team will handle your tax filing with precision and care. Get started today and experience hassle-free tax preparation.
+              <p className="text-sm sm:text-base text-slateText font-normal mb-8 max-w-2xl mx-auto leading-relaxed">
+                Select the services you need and our expert CPA team will handle your tax filing with precision, maximum deductions, and total peace of mind.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3.5 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3.5 justify-center items-center">
                 <Link
                   to="/contact"
-                  className="px-7 py-3 rounded-full font-medium text-sm sm:text-base text-primary bg-[#127EAB] hover:bg-[#b8dd42] shadow-md hover:shadow-lg transition-all duration-200"
+                  className="relative inline-flex items-center justify-center gap-2 h-11 sm:h-12 px-7 rounded-xl font-medium text-sm sm:text-base text-white bg-primary hover:bg-primary-dark shadow-sm hover:shadow-md transition-all duration-200"
                 >
-                  Get Started Today
+                  <span>Get Started Today</span>
+                  <ArrowRightIcon className="w-4 h-4 stroke-[2.2]" />
                 </Link>
                 <Link
                   to="/services"
-                  className="px-7 py-3 rounded-full font-medium text-sm sm:text-base text-white bg-white/10 hover:bg-white/20 border border-white/25 transition-all duration-200"
+                  className="h-11 sm:h-12 px-7 rounded-xl font-medium text-sm sm:text-base text-teal hover:text-primary bg-surface hover:bg-background-aqua border border-border hover:border-teal/40 shadow-xs transition-all duration-200 inline-flex items-center justify-center"
                 >
                   View All Services
                 </Link>

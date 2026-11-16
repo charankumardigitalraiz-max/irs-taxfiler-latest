@@ -114,9 +114,7 @@ const ITIN = () => {
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] 2xl:text-[52px] font-normal text-primary tracking-tight mb-4 sm:mb-5"
               >
                 Fast ITIN Application, <br className="hidden sm:inline" />
-                <span className="font-normal text-teal">
-                  Without Mailing Your Passport
-                </span>
+                <span className="font-medium text-teal">Without Mailing</span> <span className="font-medium text-coral">Your Passport</span>
               </motion.h1>
 
               {/* Subheading - Matches Home Hero Typography exactly */}
@@ -223,7 +221,7 @@ const ITIN = () => {
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
               Why Filers Avoid{" "}
-              <span className="font-normal text-teal">
+              <span className="font-medium text-teal">
                 Mailing Passports
               </span>
             </h2>
@@ -292,7 +290,7 @@ const ITIN = () => {
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
               Form W-7 Application{" "}
-              <span className="font-normal text-teal">
+              <span className="font-medium text-teal">
                 Scopes
               </span>
             </h2>
@@ -338,7 +336,7 @@ const ITIN = () => {
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
               3-Step Fast Track to{" "}
-              <span className="font-normal text-teal">
+              <span className="font-medium text-teal">
                 Your ITIN
               </span>
             </h2>

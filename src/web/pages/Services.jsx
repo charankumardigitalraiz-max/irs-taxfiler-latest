@@ -217,9 +217,7 @@ const Services = () => {
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] 2xl:text-[52px] font-normal text-primary tracking-tight mb-4 sm:mb-5"
               >
                 Complete Tax Filing & Corporate Services, <br className="hidden sm:inline" />
-                <span className="font-normal text-teal">
-                  Tailored for Global Taxpayers.
-                </span>
+                <span className="font-medium text-teal">Tailored for Global</span> <span className="font-medium text-coral">Taxpayers.</span>
               </h1>
 
               {/* Subheading - Matches Home Hero Typography exactly */}

@@ -382,9 +382,7 @@ const HeroSection = () => {
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px] 2xl:text-[52px] font-normal text-primary tracking-tight mb-4 sm:mb-5"
               >
                 U.S. Tax Filing, <br className="hidden sm:inline" />
-                <span className="font-normal text-teal">
-                  simplified & optimized.
-                </span>
+                <span className="font-medium text-teal">simplified</span> & <span className="font-medium text-coral">optimized.</span>
               </motion.h1>
 
               {/* Subheading */}
@@ -814,10 +812,10 @@ const HeroSection = () => {
               {/* Display Headline */}
               <h2 className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-normal text-primary tracking-tight leading-[1.18] space-y-1 sm:space-y-2">
                 <span className="block whitespace-nowrap">Why Thousands</span>
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Choose Our
                 </span>
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Tax Team
                 </span>
               </h2>

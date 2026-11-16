@@ -232,7 +232,7 @@ const Security = () => {
 
               <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.2] mb-3.5">
                 Security &{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Data Protection
                 </span>
               </h1>

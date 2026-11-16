@@ -93,8 +93,11 @@ const Contact = () => {
               {/* Main Headline */}
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-primary tracking-tight leading-[1.25] mb-3.5 max-w-3xl mx-auto">
                 Contact Us —{" "}
-                <span className="font-normal text-teal">
-                  Get in Touch Today
+                <span className="font-medium text-teal">
+                  Get in Touch
+                </span>{" "}
+                <span className="font-medium text-coral">
+                  Today
                 </span>
               </h1>
 
@@ -210,7 +213,7 @@ const Contact = () => {
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-2.5">
                 Send Us a{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Message
                 </span>
               </h2>
@@ -373,7 +376,7 @@ const Contact = () => {
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-2.5">
                 Why Contact{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Us?
                 </span>
               </h2>

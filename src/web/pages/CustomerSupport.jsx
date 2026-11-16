@@ -175,8 +175,11 @@ const CustomerSupport = () => {
             >
               <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.2] mb-3.5">
                 Customer{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Support
+                </span>{" "}
+                & <span className="font-medium text-coral">
+                  Assistance
                 </span>
               </h1>
               <p className="text-sm sm:text-base lg:text-[17px] text-slateText font-normal max-w-2xl mx-auto leading-[30px] sm:leading-[32px] lg:leading-[34px]">
@@ -198,7 +201,7 @@ const CustomerSupport = () => {
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-3">
                 How Can We{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Help You?
                 </span>
               </h2>
@@ -295,7 +298,7 @@ const CustomerSupport = () => {
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-3">
                 Why Choose Our{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Support?
                 </span>
               </h2>
@@ -350,7 +353,7 @@ const CustomerSupport = () => {
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-3">
                 Frequently Asked{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Questions
                 </span>
               </h2>
@@ -426,7 +429,7 @@ const CustomerSupport = () => {
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-3">
                 Contact{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Information
                 </span>
               </h2>
@@ -512,7 +515,7 @@ const CustomerSupport = () => {
             >
               <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight mb-3">
                 Still Have{" "}
-                <span className="font-normal text-teal">
+                <span className="font-medium text-teal">
                   Questions?
                 </span>
               </h2>

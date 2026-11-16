@@ -214,7 +214,7 @@ const Terms = () => {
 
             <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.2] mb-3.5">
               Terms &{" "}
-              <span className="font-normal text-teal">
+              <span className="font-medium text-teal">
                 Conditions
               </span>
             </h1>
