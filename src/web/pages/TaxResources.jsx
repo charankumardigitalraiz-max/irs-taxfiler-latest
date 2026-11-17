@@ -310,7 +310,7 @@ const TaxResources = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.08 }}
-                className="text-3xl sm:text-4xl lg:text-[42px] font-semibold text-primary tracking-tight leading-[1.25] mb-3.5"
+                className="text-3xl sm:text-4xl lg:text-[42px] font-semibold text-primary tracking-tight leading-[1.35] sm:leading-[1.38] lg:leading-[1.4] mb-4"
               >
                 Essential Tax Resources &{" "}
                 <span className="text-teal">
@@ -325,7 +325,7 @@ const TaxResources = () => {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.12 }}
-                className="text-sm sm:text-base lg:text-[17px] text-[#6F7F8E] font-[500] leading-relaxed max-w-2xl mx-auto"
+                className="text-sm sm:text-base lg:text-[17px] text-[#6F7F8E] font-[500] leading-[28px] sm:leading-[30px] lg:leading-[32px] max-w-2xl mx-auto"
               >
                 Verified IRS downloads, critical 2025–2026 filing dates, and standard deduction guidelines for taxpayers, expats, and small businesses.
               </motion.p>
