@@ -242,20 +242,20 @@ const Footer = () => {
             </div>
 
             <div className="space-y-3.5 text-[13px]">
-              {/* Alpharetta Office */}
+              {/* Corporate Office */}
               <div className="group">
-                <div className="font-semibold text-white flex items-center gap-1.5 mb-1 text-xs">
+                <div className="font-semibold text-white flex items-center gap-1.5 mb-1.5 text-xs">
                   <MapPinIcon className="w-3.5 h-3.5 text-coral shrink-0" />
-                  <span>Alpharetta, USA</span>
+                  <span>IRS Tax Adviser Inc</span>
                 </div>
                 <a
                   href="https://www.google.com/maps/place/12600+Deerfield+Parkway+Suite+2096,+Alpharetta,+GA+30004"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-white font-medium transition-colors block pl-5 leading-relaxed text-xs"
+                  className="text-white/80 hover:text-white font-normal transition-colors block pl-5 leading-relaxed text-xs"
                 >
-                  12600 Deerfield Parkway Suite 2096,<br />
-                  Alpharetta 30004
+                  12600 Deerfield Parkway, Suite 2096,<br />
+                  Alpharetta, GA 30004, USA
                 </a>
               </div>
             </div>

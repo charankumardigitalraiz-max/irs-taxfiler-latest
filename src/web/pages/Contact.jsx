@@ -280,8 +280,11 @@ const Contact = () => {
                           <span className="text-[10px] font-bold text-slateText uppercase tracking-wider block">
                             Address
                           </span>
+                          <span className="text-xs text-primary font-semibold block mt-0.5">
+                            IRS Tax Adviser Inc
+                          </span>
                           <span className="text-xs text-slateText font-medium leading-relaxed block mt-0.5">
-                            12600 Deerfield Pkwy, Ste 2096<br />Alpharetta, GA 30004, USA
+                            12600 Deerfield Parkway, Suite 2096<br />Alpharetta, GA 30004, USA
                           </span>
                         </div>
                       </div>
