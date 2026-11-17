@@ -27,23 +27,9 @@ const WelcomeDialog = () => {
     seconds: 45,
   });
 
-  // Calculate live countdown timer (persists in localStorage so it ticks down accurately)
+  // Calculate live countdown timer towards fixed deadline
   useEffect(() => {
-    const getTargetTime = () => {
-      const stored = localStorage.getItem("welcomeOfferDeadline");
-      if (stored) {
-        const time = parseInt(stored, 10);
-        if (time > Date.now()) {
-          return time;
-        }
-      }
-      // Set to 14 days, 9 hours, 32 minutes from current visit
-      const newTarget = Date.now() + (14 * 24 * 3600 + 9 * 3600 + 32 * 60 + 45) * 1000;
-      localStorage.setItem("welcomeOfferDeadline", newTarget.toString());
-      return newTarget;
-    };
-
-    const targetTime = getTargetTime();
+    const targetTime = new Date('2026-12-31T23:59:59').getTime();
 
     const calculateTimeLeft = () => {
       const now = Date.now();
@@ -57,9 +43,7 @@ const WelcomeDialog = () => {
           seconds: Math.floor((difference % (1000 * 60)) / 1000),
         });
       } else {
-        // Automatically renew a 7-day grace window so it never stays at zero
-        const renewed = Date.now() + (7 * 24 * 3600 + 5 * 3600 + 15 * 60) * 1000;
-        localStorage.setItem("welcomeOfferDeadline", renewed.toString());
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       }
     };
 
@@ -160,12 +144,12 @@ const WelcomeDialog = () => {
               <div>
                 {/* Mobile-Only Countdown Timer (Placed at top on mobile view, hidden on desktop) */}
                 <div className="block md:hidden mb-4 p-3 rounded-2xl bg-gradient-to-r from-[#EFF9FB] via-slate-50 to-[#EFF9FB] border border-gray-200/90 shadow-2xs">
-                  <div className="flex items-center justify-between text-xs text-primary font-medium mb-2 pr-7 sm:pr-8">
+                  <div className="flex items-center justify-between text-xs text-primary font-medium mb-2 pr-8 sm:pr-9">
                     <span className="inline-flex items-center gap-1.5">
                       <ClockIcon className="w-4 h-4 text-[#127EAB] stroke-[2.2]" />
                       <span>Offer expires in:</span>
                     </span>
-                    <span className="text-[10px] font-medium uppercase px-2 py-0.5 rounded-full bg-[#127EAB] text-white tracking-wider shrink-0">
+                    <span className="text-[10px] font-medium uppercase px-2 py-0.5 rounded-full bg-[#127EAB] text-white tracking-wider">
                       Ending Soon
                     </span>
                   </div>
@@ -219,7 +203,7 @@ const WelcomeDialog = () => {
                 {/* 20% OFF Offer Header */}
                 <div className="mt-1">
                   <div className="text-3xl sm:text-4xl font-normal text-[#1F4264] tracking-tight leading-none flex items-baseline gap-2">
-                    20% <span className="text-xl sm:text-2xl font-medium text-[#127EAB]">OFF</span>
+                    25% <span className="text-xl sm:text-2xl font-medium text-[#127EAB]">OFF</span>
                   </div>
                   <h2 className="text-xl sm:text-2xl font-normal text-primary tracking-tight leading-snug mt-1.5">
                     Your CPA Tax Filing
@@ -269,7 +253,7 @@ const WelcomeDialog = () => {
                       </span>
                     ) : (
                       <>
-                        <span>Claim 20% Off & Start Filing</span>
+                        <span>Claim 25% Off & Start Filing</span>
                         <ArrowRightIcon className="w-4 h-4 ml-1" />
                       </>
                     )}
@@ -297,12 +281,12 @@ const WelcomeDialog = () => {
 
               {/* Top Countdown Timer (Moved from Left Side) */}
               <div className="w-full relative z-10">
-                <div className="flex items-center justify-between text-xs text-primary font-medium mb-2.5 pr-8 sm:pr-9 pt-0.5">
+                <div className="flex items-center justify-between text-xs text-primary font-medium mb-2.5 pr-8 sm:pr-9">
                   <span className="inline-flex items-center gap-1.5">
                     <ClockIcon className="w-4 h-4 text-[#127EAB] stroke-[2.2]" />
                     <span>Offer expires in:</span>
                   </span>
-                  <span className="text-[10px] font-medium uppercase px-2.5 py-0.5 rounded-full bg-[#127EAB] text-white tracking-wider shrink-0">
+                  <span className="text-[10px] font-medium uppercase px-2.5 py-0.5 rounded-full bg-[#127EAB] text-white tracking-wider">
                     Ending Soon
                   </span>
                 </div>
@@ -383,7 +367,7 @@ const WelcomeDialog = () => {
               {/* Bottom Voucher Applied Tag */}
               <div className="pt-2.5 border-t border-gray-200/70 w-full flex items-center justify-center gap-1.5 text-[10px] text-slateText font-medium z-10">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#127EAB]" />
-                <span>Instant 20% discount applied at checkout</span>
+                <span>Instant 25% discount applied at checkout</span>
               </div>
             </div>
           </motion.div>
