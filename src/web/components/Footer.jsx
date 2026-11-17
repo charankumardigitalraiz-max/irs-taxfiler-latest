@@ -236,7 +236,7 @@ const Footer = () => {
             <div className="flex items-center justify-between pb-2.5 mb-3.5 border-b border-white/15">
               <span className="text-[13px] font-semibold text-white tracking-tight uppercase tracking-wider flex items-center gap-2">
                 <MapPinIcon className="w-4 h-4 text-teal" />
-                <span>Addresses</span>
+                <span>Address</span>
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-teal" />
             </div>
@@ -252,7 +252,7 @@ const Footer = () => {
                   href="https://www.google.com/maps/place/12600+Deerfield+Parkway+Suite+2096,+Alpharetta,+GA+30004"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#CBD5E1] hover:text-white font-medium transition-colors block pl-5 leading-relaxed text-xs"
+                  className="text-white hover:text-white font-medium transition-colors block pl-5 leading-relaxed text-xs"
                 >
                   12600 Deerfield Parkway Suite 2096,<br />
                   Alpharetta 30004

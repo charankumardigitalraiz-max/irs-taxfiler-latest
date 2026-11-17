@@ -203,7 +203,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
   const activeData = services[selectedCategory];
 
   return (
-    <section className="relative py-16 sm:py-20 lg:py-24 bg-white  font-sans overflow-hidden">
+    <section id="services" className="relative py-16 sm:py-20 lg:py-24 bg-white font-sans overflow-hidden">
       <div className="relative max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header Fold */}
@@ -228,12 +228,12 @@ const TaxFilingServices = ({ onOpenModal }) => {
           </p>
         </div>
 
-        {/* Modern Interactive Category Segmented Tabs - Expanded tab space width without scrollbar */}
-        <div className="w-full max-w-4xl lg:max-w-5xl mx-auto mb-10 sm:mb-12 flex justify-center px-2 sm:px-4">
+        {/* Modern Interactive Category Segmented Tabs - Scrolling inside tabs with thin scrollbar on mobile */}
+        <div className="w-full max-w-4xl lg:max-w-5xl mx-auto mb-10 sm:mb-12 flex justify-center px-3 sm:px-4">
           <div
             role="tablist"
             aria-label="Tax filing categories"
-            className="p-1.5 sm:p-2 rounded-2xl bg-surface border border-border inline-flex items-center justify-center gap-1.5 sm:gap-2.5 md:gap-3 shadow-xs"
+            className="w-full sm:w-auto max-w-full p-1.5 pb-2.5 sm:p-2 rounded-2xl bg-surface border border-border flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2.5 md:gap-3 shadow-xs overflow-x-auto thin-scrollbar sm:no-scrollbar touch-pan-x"
           >
             {serviceCategories.map((cat) => {
               const isActive = selectedCategory === cat.id;

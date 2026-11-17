@@ -35,6 +35,7 @@ import {
 import "./Navbar.css";
 
 import { gettoken, getuser } from "../helper/Token";
+import { baseUrl } from "../../baseurl";
 
 /* ---------- CRISP SVG FLAGS ---------- */
 const UsFlag = ({ className = "w-4 h-3 rounded-xs shrink-0" }) => (
@@ -159,9 +160,66 @@ const Navbar = () => {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: 50, opacity: 0 }}
                   transition={{ duration: 0.25, ease: "easeOut" }}
-                  className="w-full bg-primary text-white border-t border-white/10 py-2 px-3 sm:px-6 shadow-lg"
+                  className="w-full bg-primary text-white border-t border-white/10 py-1.5 sm:py-2 px-3 sm:px-6 shadow-lg"
                 >
-                  <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 flex-wrap">
+                  {/* MOBILE BAR: Lightweight, single-row action bar */}
+                  <div className="flex sm:hidden items-center justify-between gap-1.5 w-full">
+                    {/* Left: Contact Channels */}
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      {/* US Phone Call */}
+                      <a
+                        href="tel:+14044244191"
+                        className="h-8 px-2.5 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center gap-1.5 text-xs font-semibold shrink-0"
+                        title="Call US: +1 (404) 424-4191 / 4815"
+                      >
+                        <PhoneIcon className="w-3.5 h-3.5" />
+                        <span>Call</span>
+                      </a>
+
+                      {/* India Call */}
+                      <a
+                        href="tel:+919052333667"
+                        className="h-8 w-8 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center shrink-0"
+                        title="Call India: +91 9052 333 667/668"
+                      >
+                        <InFlag className="w-4 h-3 rounded-xs" />
+                      </a>
+
+                      {/* WhatsApp */}
+                      <a
+                        href="https://wa.me/919052333667?text=Hi%20IRS%20Tax%20Filer"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="h-8 w-8 rounded-full bg-[#25D366]/20 hover:bg-[#25D366]/35 text-[#25D366] flex items-center justify-center shrink-0 border border-[#25D366]/30"
+                        title="WhatsApp: +91 9052 333 667/668"
+                      >
+                        <ChatBubbleLeftRightIcon className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
+
+                    {/* Right: Consultation CTA + Minimize */}
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <button
+                        onClick={() => setIsModalOpen(true)}
+                        className="h-8 px-3 rounded-full bg-coral hover:bg-coral-muted text-white font-bold text-xs flex items-center gap-1 shadow-sm cursor-pointer whitespace-nowrap"
+                      >
+                        <CalendarDaysIcon className="w-3.5 h-3.5 text-white" />
+                        <span>Consultation</span>
+                      </button>
+
+                      <button
+                        onClick={() => setIsContactStripOpen(false)}
+                        className="w-7 h-7 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center transition-all cursor-pointer"
+                        title="Minimize bar"
+                        aria-label="Minimize bar"
+                      >
+                        <XMarkIcon className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* DESKTOP & TABLET BAR: Full comprehensive row */}
+                  <div className="hidden sm:flex max-w-7xl mx-auto items-center justify-between gap-3">
                     {/* Left: Contact Numbers & Channels */}
                     <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                       {/* US Phone */}
@@ -252,20 +310,21 @@ const Navbar = () => {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: 20, opacity: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="pb-3 flex justify-center"
+                  className="pb-2.5 sm:pb-3 flex justify-center px-3"
                 >
-                  <div className="bg-primary text-white p-1.5 sm:p-2 pl-3 pr-4 rounded-full shadow-[0_8px_30px_rgba(31,66,100,0.35)] border border-white/20 transition-all flex items-center gap-3">
+                  <div className="bg-primary text-white p-1 sm:p-2 pl-2.5 sm:pl-3 pr-3 sm:pr-4 rounded-full shadow-[0_8px_30px_rgba(31,66,100,0.35)] border border-white/20 transition-all flex items-center gap-2 sm:gap-3 max-w-full">
                     <a
                       href="tel:+14044244191"
-                      className="flex items-center gap-2 group/us cursor-pointer"
+                      className="flex items-center gap-1.5 sm:gap-2 group/us cursor-pointer shrink-0"
                       title="Call US: +1 (404) 424-4191 / 4815"
                     >
-                      <div className="w-7 h-7 rounded-full bg-white/20 group-hover/us:bg-white/30 text-white flex items-center justify-center transition-all group-hover/us:scale-110 shadow-sm">
-                        <PhoneIcon className="w-3.5 h-3.5" />
+                      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/20 group-hover/us:bg-white/30 text-white flex items-center justify-center transition-all group-hover/us:scale-110 shadow-sm">
+                        <PhoneIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                       </div>
-                      <UsFlag className="w-5 h-3.5 rounded-sm shrink-0 shadow-sm" />
+                      <UsFlag className="w-4.5 h-3 sm:w-5 sm:h-3.5 rounded-sm shrink-0 shadow-sm" />
                       <span className="text-xs sm:text-sm font-bold tracking-tight text-white whitespace-nowrap">
-                        US: +1 (404) 424-4191 / 4815
+                        <span className="sm:hidden">(404) 424-4191</span>
+                        <span className="hidden sm:inline">US: +1 (404) 424-4191 / 4815</span>
                       </span>
                     </a>
 
@@ -273,7 +332,7 @@ const Navbar = () => {
 
                     <a
                       href="tel:+919052333667"
-                      className="hidden sm:flex items-center gap-2 group/in cursor-pointer"
+                      className="hidden sm:flex items-center gap-2 group/in cursor-pointer shrink-0"
                       title="Call India: +91 9052 333 667/668"
                     >
                       <InFlag className="w-5 h-3.5 rounded-sm shrink-0 shadow-sm" />
@@ -285,9 +344,10 @@ const Navbar = () => {
                     <button
                       type="button"
                       onClick={() => setIsContactStripOpen(true)}
-                      className="text-[11px] font-semibold bg-white/20 hover:bg-white/30 px-2.5 py-1 rounded-full text-white transition-all cursor-pointer whitespace-nowrap ml-1 flex items-center gap-1"
+                      className="text-[10px] sm:text-[11px] font-semibold bg-white/20 hover:bg-white/30 px-2 sm:px-2.5 py-1 rounded-full text-white transition-all cursor-pointer whitespace-nowrap ml-0.5 sm:ml-1 flex items-center gap-1 shrink-0"
                     >
-                      <span>Quick Bar</span>
+                      <span className="hidden sm:inline">Quick Bar</span>
+                      <span className="sm:hidden">More</span>
                       <span>&uarr;</span>
                     </button>
                   </div>
@@ -761,17 +821,17 @@ const Navbar = () => {
             {/* Auth Buttons */}
             <div className="flex items-center space-x-2" ref={ref}>
               {/* Logged Out UI */}
-              {gettoken() === false && (
-                <div className="flex hover:underline items-center gap-1 sm:gap-2 font-sans">
+              {/* {gettoken() === false && (
+                <div className="flex items-center gap-1 sm:gap-2 font-sans">
                   <Link
                     to="/login"
-                    className="hidden sm:inline-flex px-3 py-1.5 text-sm font-semibold text-primary hover:text-secondary transition-colors"
+                    className="inline-flex items-center px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-semibold text-primary hover:text-secondary transition-colors border border-primary/25 sm:border-transparent rounded-lg sm:rounded-none"
                   >
-                    Sign In / Sign Up
+                    <span className="sm:hidden">Sign In</span>
+                    <span className="hidden sm:inline">Sign In / Sign Up</span>
                   </Link>
-
                 </div>
-              )}
+              )} */}
 
               {/* ================= LOGGED IN UI ================= */}
               {gettoken() === true && (
@@ -783,9 +843,9 @@ const Navbar = () => {
                   >
                     <button
                       onClick={() => setOpen(!open)}
-                      className="flex items-center gap-2 px-4 py-2"
+                      className="flex items-center gap-2 px-1 sm:px-4 py-1 sm:py-2"
                     >
-                      <div className="w-12 h-12 rounded-full bg-white border-2 border-teal shadow-sm flex items-center justify-center overflow-hidden">
+                      <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-white border-2 border-teal shadow-sm flex items-center justify-center overflow-hidden">
                         {getuser()?.image ? (
                           <img
                             src={baseUrl + "/" + getuser().image}
@@ -793,13 +853,13 @@ const Navbar = () => {
                             className="w-full h-full object-cover"
                           />
                         ) : (
-                          <span className="font-semibold text-teal text-sm">
+                          <span className="font-semibold text-teal text-xs sm:text-sm">
                             {getuser()?.fullName?.charAt(0).toUpperCase()}
                           </span>
                         )}
                       </div>
 
-                      <span className="text-sm font-medium text-primary">
+                      <span className="hidden sm:inline text-sm font-medium text-primary">
                         {getuser()?.fullName}
                       </span>
                     </button>
@@ -1255,6 +1315,78 @@ const Navbar = () => {
                 >
                   Get Help
                 </Link>
+              </motion.div>
+
+              {/* Mobile Sign In / Sign Out Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45 }}
+                className="pt-4 mt-2 border-t border-gray-100"
+              >
+                {gettoken() === false ? (
+                  <Link
+                    to="/login"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-primary hover:bg-secondary text-white text-base font-semibold shadow-sm transition-all duration-200"
+                  >
+                    <span>Sign In / Sign Up</span>
+                    <ArrowRightIcon className="w-4 h-4 stroke-[2]" />
+                  </Link>
+                ) : (
+                  <div className="space-y-2">
+                    {/* Logged-in User Info */}
+                    <div className="flex items-center gap-3 px-3 py-2.5 bg-background-aqua/60 border border-border rounded-xl">
+                      <div className="w-10 h-10 rounded-full bg-white border-2 border-teal shadow-xs flex items-center justify-center overflow-hidden shrink-0">
+                        {getuser()?.image ? (
+                          <img
+                            src={baseUrl + "/" + getuser().image}
+                            alt={getuser().fullName}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <span className="font-semibold text-teal text-sm">
+                            {getuser()?.fullName?.charAt(0).toUpperCase()}
+                          </span>
+                        )}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-semibold text-primary truncate">
+                          {getuser()?.fullName}
+                        </p>
+                        <p className="text-xs text-slateText truncate">
+                          {getuser()?.email || "Client Account"}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Client Dashboard Link */}
+                    <Link
+                      to="/client/dashboard"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-primary hover:bg-background-aqua/50 transition-colors"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <ComputerDesktopIcon className="w-4 h-4 text-teal" />
+                        <span>Client Dashboard</span>
+                      </div>
+                      <ChevronRightIcon className="w-4 h-4 text-slateText" />
+                    </Link>
+
+                    {/* Sign Out Button */}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleLogout();
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors cursor-pointer text-left"
+                    >
+                      <ArrowRightIcon className="w-4 h-4 rotate-180" />
+                      <span>Sign Out</span>
+                    </button>
+                  </div>
+                )}
               </motion.div>
             </div>
           </motion.div>

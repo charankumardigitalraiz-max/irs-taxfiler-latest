@@ -160,12 +160,12 @@ const WelcomeDialog = () => {
               <div>
                 {/* Mobile-Only Countdown Timer (Placed at top on mobile view, hidden on desktop) */}
                 <div className="block md:hidden mb-4 p-3 rounded-2xl bg-gradient-to-r from-[#EFF9FB] via-slate-50 to-[#EFF9FB] border border-gray-200/90 shadow-2xs">
-                  <div className="flex items-center justify-between text-xs text-primary font-medium mb-2">
+                  <div className="flex items-center justify-between text-xs text-primary font-medium mb-2 pr-7 sm:pr-8">
                     <span className="inline-flex items-center gap-1.5">
                       <ClockIcon className="w-4 h-4 text-[#127EAB] stroke-[2.2]" />
                       <span>Offer expires in:</span>
                     </span>
-                    <span className="text-[10px] font-medium uppercase px-2 py-0.5 rounded-full bg-[#127EAB] text-white tracking-wider">
+                    <span className="text-[10px] font-medium uppercase px-2 py-0.5 rounded-full bg-[#127EAB] text-white tracking-wider shrink-0">
                       Ending Soon
                     </span>
                   </div>
@@ -297,12 +297,12 @@ const WelcomeDialog = () => {
 
               {/* Top Countdown Timer (Moved from Left Side) */}
               <div className="w-full relative z-10">
-                <div className="flex items-center justify-between text-xs text-primary font-medium mb-2.5">
+                <div className="flex items-center justify-between text-xs text-primary font-medium mb-2.5 pr-8 sm:pr-9 pt-0.5">
                   <span className="inline-flex items-center gap-1.5">
                     <ClockIcon className="w-4 h-4 text-[#127EAB] stroke-[2.2]" />
                     <span>Offer expires in:</span>
                   </span>
-                  <span className="text-[10px] font-medium uppercase px-2.5 py-0.5 rounded-full bg-[#127EAB] text-white tracking-wider">
+                  <span className="text-[10px] font-medium uppercase px-2.5 py-0.5 rounded-full bg-[#127EAB] text-white tracking-wider shrink-0">
                     Ending Soon
                   </span>
                 </div>

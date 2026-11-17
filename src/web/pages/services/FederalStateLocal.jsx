@@ -325,19 +325,21 @@ const FederalStateLocal = () => {
 
 
       {/* 5. CLEAN BOTTOM CTA BANNER */}
-      <section className="py-14 sm:py-16 bg-gradient-to-r from-[#1F4264] via-[#1F4264] to-[#127EAB] text-white font-sans relative overflow-hidden">
+      <section className="py-14 sm:py-16 bg-background-aqua/40 border-t border-border font-sans relative overflow-hidden">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-2xl sm:text-3xl font-normal mb-2 tracking-tight">
-            Ready to file your <span className="font-normal text-[#E9F7FA]">Federal & State taxes?</span>
+          <h2 className="text-2xl sm:text-3xl font-normal text-primary mb-2 tracking-tight">
+            Ready to file your{" "}
+            <span className="font-medium text-teal">Federal</span>{" "}
+            <span className="font-medium text-coral">& State taxes?</span>
           </h2>
-          <p className="text-xs sm:text-sm text-white/90 max-w-md mx-auto mb-6 font-normal">
+          <p className="text-xs sm:text-sm text-slateText max-w-md mx-auto mb-6 font-normal">
             Certified CPA preparation with guaranteed maximum refunds and 100% IRS accuracy.
           </p>
 
           <div className="flex flex-wrap sm:flex-nowrap gap-3 justify-center items-center">
             <Link
               to="/login"
-              className="h-11 px-6 rounded-xl bg-white text-primary hover:bg-gray-50 font-medium text-sm shadow-sm transition-all inline-flex items-center justify-center gap-2 group"
+              className="h-11 px-6 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium text-sm shadow-sm hover:shadow-md transition-all inline-flex items-center justify-center gap-2 group"
             >
               <span>Start Filing</span>
               <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform stroke-[2]" />
@@ -346,9 +348,9 @@ const FederalStateLocal = () => {
             <button
               type="button"
               onClick={handleOpenModal}
-              className="h-11 px-6 rounded-xl bg-white/10 hover:bg-white/20 border border-white/25 text-white font-medium text-sm transition-all inline-flex items-center justify-center gap-2 cursor-pointer group"
+              className="h-11 px-6 rounded-xl bg-surface hover:bg-background-blue text-teal hover:text-primary border border-border font-medium text-sm transition-all inline-flex items-center justify-center gap-2 cursor-pointer group shadow-2xs hover:shadow-sm"
             >
-              <CalendarDaysIcon className="w-4 h-4 text-[#E9F7FA] stroke-[2] group-hover:scale-110 transition-transform" />
+              <CalendarDaysIcon className="w-4 h-4 text-teal stroke-[2] group-hover:scale-110 transition-transform" />
               <span>Talk to CPA</span>
             </button>
           </div>

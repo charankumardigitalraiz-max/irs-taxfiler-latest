@@ -18,6 +18,15 @@ const Home = () => {
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
+  React.useEffect(() => {
+    if (window.location.hash) {
+      setTimeout(() => {
+        const el = document.querySelector(window.location.hash);
+        if (el) el.scrollIntoView();
+      }, 150);
+    }
+  }, []);
+
   const title = "U.S. Federal & State Tax Filing | CPA-Reviewed | IRS Tax Filer";
   const description =
     "File your U.S. federal and state tax returns online with certified CPA guidance. Guaranteed maximum refund, 100% IRS accuracy, Form 1040, W-2, 1099, and expat compliance.";
