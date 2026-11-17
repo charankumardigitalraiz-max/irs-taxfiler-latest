@@ -12,38 +12,100 @@ import {
   StarIcon,
   ArrowUpRightIcon,
   ArrowTopRightOnSquareIcon,
+  ShieldCheckIcon,
+  BuildingOffice2Icon,
 } from "@heroicons/react/24/outline";
 import SEO from '../components/seo/SEO';
 import Logo from '../assets/irsLogo.png';
+
+// Color themes for contact method cards
+const contactMethodThemes = [
+  {
+    iconBg: "bg-[#E9F7FA]",
+    iconBorder: "border-[#127EAB]/25",
+    iconText: "text-[#127EAB]",
+    arrowBg: "bg-[#E9F7FA]",
+    arrowBorder: "border-[#127EAB]/25",
+    arrowText: "text-[#127EAB]",
+    titleHover: "group-hover:text-[#127EAB]",
+    contactHover: "group-hover:text-[#127EAB]",
+    topLine: "group-hover:via-[#127EAB]",
+    cardBorderHover: "hover:border-[#127EAB]/50",
+    shadowHover: "hover:shadow-[0_16px_36px_rgba(18,126,171,0.12)]",
+    watermark: "text-[#127EAB]/[0.08]",
+  },
+  {
+    iconBg: "bg-[#FEF4F2]",
+    iconBorder: "border-[#EE6450]/25",
+    iconText: "text-[#EE6450]",
+    arrowBg: "bg-[#FEF4F2]",
+    arrowBorder: "border-[#EE6450]/25",
+    arrowText: "text-[#EE6450]",
+    titleHover: "group-hover:text-[#EE6450]",
+    contactHover: "group-hover:text-[#EE6450]",
+    topLine: "group-hover:via-[#EE6450]",
+    cardBorderHover: "hover:border-[#EE6450]/50",
+    shadowHover: "hover:shadow-[0_16px_36px_rgba(238,100,80,0.12)]",
+    watermark: "text-[#EE6450]/[0.08]",
+  },
+  {
+    iconBg: "bg-[#ECFDF5]",
+    iconBorder: "border-[#059669]/25",
+    iconText: "text-[#059669]",
+    arrowBg: "bg-[#ECFDF5]",
+    arrowBorder: "border-[#059669]/25",
+    arrowText: "text-[#059669]",
+    titleHover: "group-hover:text-[#059669]",
+    contactHover: "group-hover:text-[#059669]",
+    topLine: "group-hover:via-[#059669]",
+    cardBorderHover: "hover:border-[#059669]/50",
+    shadowHover: "hover:shadow-[0_16px_36px_rgba(5,150,105,0.12)]",
+    watermark: "text-[#059669]/[0.08]",
+  },
+  {
+    iconBg: "bg-[#EEF2FF]",
+    iconBorder: "border-[#4F46E5]/25",
+    iconText: "text-[#4F46E5]",
+    arrowBg: "bg-[#EEF2FF]",
+    arrowBorder: "border-[#4F46E5]/25",
+    arrowText: "text-[#4F46E5]",
+    titleHover: "group-hover:text-[#4F46E5]",
+    contactHover: "group-hover:text-[#4F46E5]",
+    topLine: "group-hover:via-[#4F46E5]",
+    cardBorderHover: "hover:border-[#4F46E5]/50",
+    shadowHover: "hover:shadow-[0_16px_36px_rgba(79,70,229,0.12)]",
+    watermark: "text-[#4F46E5]/[0.08]",
+  },
+];
 
 const Contact = () => {
   const contactMethods = [
     {
       icon: EnvelopeIcon,
       title: "Email Us",
-      description: "Send us an email and we'll respond within 24 hours.",
+      description: "Send us an email anytime and get a response within 24 hours.",
       contact: "contact@irstaxfiler.com",
       link: "mailto:contact@irstaxfiler.com",
     },
     {
       icon: PhoneIcon,
       title: "Call Us",
-      description: "Speak directly with our tax experts for immediate assistance.",
+      description: "Speak directly with our certified CPA team for quick help.",
       contact: "+1 (404) 424-4191 / 4815",
       link: "tel:+14044244191",
     },
-    {
-      icon: ChatBubbleLeftRightIcon,
-      title: "Live Chat",
-      description: "Get instant help from our support team. Available 24/7.",
-      contact: "Start Chat",
-      link: "#",
-    },
+    // {
+    //   icon: ChatBubbleLeftRightIcon,
+    //   title: "Live Chat",
+    //   description: "Get instant live assistance from our tax advisors 24/7.",
+    //   contact: "Start Chat",
+    //   link: "#",
+    // },
     {
       icon: ClockIcon,
       title: "Business Hours",
-      description: "Our team is available during these hours.",
-      contact: "Mon-Sat: 9:30AM-7:30PM CST",
+      description: "Our dedicated tax support team is available six days a week.",
+      contact: "Mon-Sat:9:30 AM - 7:30 PM (CST)",
       link: "#",
     },
   ];
@@ -108,52 +170,66 @@ const Contact = () => {
             </motion.div>
 
             {/* Contact Methods Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+            <div className={`grid grid-cols-1 sm:grid-cols-2 ${contactMethods.length === 3 ? "lg:grid-cols-3 max-w-5xl" : "lg:grid-cols-4"} gap-5 lg:gap-6 mx-auto`}>
               {contactMethods.map((method, index) => {
                 const IconComponent = method.icon;
                 const isLiveChat = method.title === "Live Chat";
                 const isBusinessHours = method.title === "Business Hours";
+                const theme = contactMethodThemes[index % contactMethodThemes.length];
+                const cardNum = String(index + 1).padStart(2, "0");
 
                 const cardContent = (
                   <>
                     {/* Top Accent Line on hover */}
-                    <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-[#127EAB]/0 to-transparent group-hover:via-[#127EAB] transition-all duration-300" />
+                    <div className={`absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-transparent to-transparent ${theme.topLine} transition-all duration-300`} />
 
-                    <div>
-                      {/* Top Row: Icon + Arrow / Indicator */}
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="w-11 h-11 rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-105 bg-[#E9F7FA] border border-[#127EAB]/30 text-teal">
-                          <IconComponent className="w-5.5 h-5.5" />
+                    {/* Large Decorative Watermark Number in Background */}
+                    <span
+                      aria-hidden="true"
+                      className={`absolute -bottom-2 -right-1 text-7xl sm:text-8xl font-black font-mono tracking-tighter ${theme.watermark} select-none pointer-events-none transition-transform duration-300 group-hover:scale-110`}
+                    >
+                      {cardNum}
+                    </span>
+
+                    {/* Top Row: (Icon + Title) on Left, Arrow on Right with justify-between */}
+                    <div className="flex items-center justify-between w-full mb-3.5 relative z-10">
+                      <div className="flex items-center gap-2.5">
+                        {/* Icon Badge */}
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110 ${theme.iconBg} border ${theme.iconBorder} ${theme.iconText} shadow-2xs`}>
+                          <IconComponent className="w-5 h-5" />
                         </div>
 
-                        {!isBusinessHours ? (
-                          <div className="w-8 h-8 rounded-lg bg-[#FDF8F2] group-hover:bg-[#E9F7FA] border border-[#CCDCE1] group-hover:border-[#127EAB]/30 flex items-center justify-center text-[#6F7F8E] group-hover:text-teal transition-all">
-                            <ArrowUpRightIcon className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                          </div>
-                        ) : (
-                          <span className="w-2 h-2 rounded-full bg-[#127EAB]" />
-                        )}
+                        {/* Title */}
+                        <h3 className="text-sm font-semibold text-primary leading-snug">
+                          {method.title}
+                        </h3>
                       </div>
 
-                      {/* Title */}
-                      <h3 className="text-base font-semibold text-primary group-hover:text-teal transition-colors mb-1.5 leading-snug">
-                        {method.title}
-                      </h3>
+                      {/* Right Arrow / Indicator */}
+                      {!isBusinessHours ? (
+                        <div className={`w-7 h-7 rounded-lg ${theme.arrowBg} border ${theme.arrowBorder} ${theme.arrowText} flex items-center justify-center shrink-0 transition-all shadow-2xs`}>
+                          <ArrowUpRightIcon className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </div>
+                      ) : (
+                        <span className="w-2 h-2 rounded-full bg-[#059669]" />
+                      )}
+                    </div>
 
-                      {/* Description */}
-                      <p className="text-xs sm:text-[13px] text-[#6F7F8E] font-normal leading-relaxed mb-4">
-                        {method.description}
+                    <div className="w-full text-left relative z-10 my-2">
+                      {/* Highlighted Value / Contact Detail */}
+                      <p className={`text-base sm:text-[17px] font-bold ${theme.iconText} tracking-tight select-all leading-snug`}>
+                        {method.contact}
                       </p>
                     </div>
 
-                    {/* Bottom Detail */}
-                    <div className="pt-3 border-t border-[#CCDCE1] flex items-center justify-between gap-2">
-                      <span className="text-xs font-semibold text-primary group-hover:text-teal transition-colors truncate">
-                        {method.contact}
-                      </span>
+                    {/* Bottom Detail - Description */}
+                    <div className="pt-3 border-t border-[#CCDCE1]/80 w-full flex items-center justify-between text-left relative z-10 min-h-[44px]">
+                      <p className="text-xs sm:text-[13px] text-slate-500 font-normal leading-relaxed">
+                        {method.description}
+                      </p>
                       {isLiveChat && (
-                        <span className="flex items-center gap-1.5 text-[11px] text-teal font-medium shrink-0">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#127EAB] animate-pulse" />
+                        <span className={`inline-flex items-center gap-1.5 text-[11px] ${theme.iconText} font-medium shrink-0 ml-2`}>
+                          <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
                           24/7
                         </span>
                       )}
@@ -162,7 +238,7 @@ const Contact = () => {
                 );
 
                 const cardClasses =
-                  "relative bg-white rounded-2xl p-6 border border-[#CCDCE1] shadow-[0_2px_10px_rgba(23,50,77,0.04)] hover:shadow-[0_12px_28px_rgba(63,124,122,0.12)] hover:border-[#127EAB]/50 transition-all duration-300 text-left flex flex-col justify-between group overflow-hidden h-full";
+                  `relative bg-white rounded-2xl p-6 border border-[#CCDCE1] shadow-2xs ${theme.shadowHover} ${theme.cardBorderHover} transition-all duration-300 text-left flex flex-col justify-between group overflow-hidden h-full`;
 
                 return (
                   <motion.div
@@ -202,15 +278,25 @@ const Contact = () => {
         {/* ========================================================================= */}
         {/* 2. CONTACT FORM & OFFICE LOCATIONS                                        */}
         {/* ========================================================================= */}
-        <section id="send-message" className="py-16 sm:py-20 bg-[#FDF8F2] border-b border-[#CCDCE1]">
+        <section id="send-message" className="relative py-14 sm:py-16 lg:py-20 bg-gradient-to-b from-[#FDF8F2] via-white to-[#FDF8F2] border-b border-[#CCDCE1] overflow-hidden">
+          {/* Subtle Ambient Background Gradients */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden -z-10">
+            <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#127EAB]/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#EE6450]/5 rounded-full blur-3xl pointer-events-none" />
+          </div>
+
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5 }}
-              className="text-center mb-10 sm:mb-14"
+              className="text-center mb-10 sm:mb-12"
             >
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E9F7FA] border border-[#127EAB]/25 text-xs font-semibold text-teal mb-3.5 shadow-2xs">
+                <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
+                Direct Communication Desk
+              </div>
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-2.5">
                 Send Us a{" "}
                 <span className="font-medium text-teal">
@@ -218,7 +304,7 @@ const Contact = () => {
                 </span>
               </h2>
               <p className="text-sm sm:text-base text-[#6F7F8E] font-normal max-w-xl mx-auto leading-relaxed">
-                Fill out the form below and we'll get back to you as soon as possible.
+                Connect directly with our CPA and IRS tax advisory team. Fill out the inquiry form below or reach our Alpharetta, GA headquarters.
               </p>
             </motion.div>
 
@@ -228,38 +314,70 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5 }}
-              className="bg-white rounded-2xl sm:rounded-3xl border border-[#CCDCE1] shadow-xl"
+              className="bg-white rounded-3xl border border-[#CCDCE1] shadow-[0_20px_50px_rgba(31,66,100,0.08)] overflow-hidden"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
                 {/* Left Side: Contact Form */}
-                <div className="lg:col-span-5 p-5 sm:p-7 lg:p-8 flex flex-col justify-between">
-                  <div className="flex items-center justify-between pb-3 mb-3.5 border-b border-slate-100">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#E9F7FA] border border-[#127EAB]/30 text-teal shrink-0">
-                        <ChatBubbleLeftRightIcon className="w-4 h-4 text-teal" />
+                <div className="lg:col-span-6 p-6 sm:p-8 lg:p-9 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-100">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-[#E9F7FA] border border-[#127EAB]/25 text-teal shrink-0 shadow-2xs">
+                          <ChatBubbleLeftRightIcon className="w-5 h-5 text-teal" />
+                        </div>
+                        <div>
+                          <h3 className="text-base sm:text-lg font-semibold text-primary leading-snug">
+                            Online Tax Inquiry
+                          </h3>
+                          <span className="text-xs text-[#6F7F8E] font-normal">
+                            Tax advisors reply within 24 business hours
+                          </span>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="text-sm sm:text-base font-semibold text-primary leading-snug">
-                          Send Us a Message
-                        </h3>
-                        <span className="text-xs text-[#6F7F8E] font-normal">
-                          We reply within 24 business hours
-                        </span>
-                      </div>
+                      <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-teal bg-[#E9F7FA] px-3 py-1 rounded-full border border-[#127EAB]/25 shrink-0">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        Fast Response
+                      </span>
                     </div>
-                    <span className="text-[11px] font-semibold text-teal bg-[#E9F7FA] px-2.5 py-0.5 rounded-full border border-[#127EAB]/30 shrink-0">
-                      Online Inquiry
-                    </span>
+
+                    <ContactForm />
                   </div>
 
-                  <ContactForm />
+                  {/* Trust Footer */}
+                  <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs text-[#6F7F8E]">
+                    <div className="flex items-center gap-1.5">
+                      <ShieldCheckIcon className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span className="font-medium text-slate-700">256-Bit SSL Encrypted & Confidential</span>
+                    </div>
+                    <span className="text-[11px] text-[#6F7F8E] hidden sm:inline">IRC § 7216 Protected</span>
+                  </div>
                 </div>
 
                 {/* Right Side: Corporate Headquarters Office & Map */}
-                <div className="lg:col-span-7 p-5 sm:p-7 lg:p-8 bg-slate-50/70 border-t lg:border-t-0 lg:border-l border-slate-200/80 flex flex-col justify-between">
+                <div className="lg:col-span-6 p-6 sm:p-8 lg:p-9 bg-slate-50/70 border-t lg:border-t-0 lg:border-l border-slate-200/80 flex flex-col justify-between">
                   <div>
+                    <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-200/80">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-white border border-[#CCDCE1] text-primary shrink-0 shadow-2xs">
+                          <BuildingOffice2Icon className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <h3 className="text-base sm:text-lg font-semibold text-primary leading-snug">
+                            Corporate Headquarters
+                          </h3>
+                          <span className="text-xs text-[#6F7F8E] font-normal">
+                            Alpharetta, GA • In-Person & Remote Support
+                          </span>
+                        </div>
+                      </div>
+                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary bg-white px-3 py-1 rounded-full border border-[#CCDCE1] shadow-2xs shrink-0">
+                        <MapPinIcon className="w-3.5 h-3.5 text-[#EE6450]" />
+                        Georgia, USA
+                      </span>
+                    </div>
+
                     {/* Interactive Google Map */}
-                    <div className="w-full h-44 sm:h-48 rounded-xl overflow-hidden border border-[#EFF9FB] bg-slate-100 shadow-inner mb-3.5">
+                    <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-slate-200/90 bg-slate-100 shadow-xs mb-4 group">
                       <iframe
                         title="Alpharetta Office Map"
                         src="https://maps.google.com/maps?q=12600+Deerfield+Parkway+Suite+2096,+Alpharetta,+GA+30004&t=&z=14&ie=UTF8&iwloc=&output=embed"
@@ -267,105 +385,135 @@ const Contact = () => {
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
                       />
+                      {/* Floating Location Pill */}
+                      <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-white/95 backdrop-blur-xs border border-slate-200 shadow-2xs flex items-center gap-1.5 text-[11px] font-semibold text-primary pointer-events-none">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>IRS Tax Adviser HQ</span>
+                      </div>
+                      {/* Floating Direct Maps Link */}
+                      <a
+                        href="https://www.google.com/maps/place/12600+Deerfield+Parkway+Suite+2096,+Alpharetta,+GA+30004"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-lg bg-white/95 hover:bg-white backdrop-blur-xs border border-slate-200 shadow-2xs flex items-center gap-1 text-[11px] font-semibold text-teal hover:text-primary transition-colors"
+                      >
+                        <span>Open Maps</span>
+                        <ArrowTopRightOnSquareIcon className="w-3 h-3" />
+                      </a>
                     </div>
 
                     {/* Smart 2x2 Content Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {/* Office Address */}
-                      <div className="p-3 rounded-xl bg-white border border-[#EFF9FB] shadow-2xs hover:border-[#CCDCE1] transition-all flex items-start gap-2.5">
-                        <div className="w-7 h-7 rounded-lg bg-blue-50 border border-border flex items-center justify-center shrink-0 text-primary mt-0.5">
-                          <MapPinIcon className="w-3.5 h-3.5" />
+                      <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:border-[#127EAB]/40 hover:shadow-xs transition-all flex items-start gap-3 group">
+                        <div className="w-8 h-8 rounded-lg bg-[#E9F7FA] border border-[#127EAB]/25 flex items-center justify-center shrink-0 text-teal mt-0.5 group-hover:scale-105 transition-transform">
+                          <MapPinIcon className="w-4 h-4" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <span className="text-[10px] font-bold text-slateText uppercase tracking-wider block">
+                          <span className="text-[10px] font-bold text-[#6F7F8E] uppercase tracking-wider block">
                             Address
                           </span>
-                          <span className="text-xs text-primary font-semibold block mt-0.5">
+                          <span className="text-xs sm:text-[13px] text-primary font-semibold block mt-0.5">
                             IRS Tax Adviser Inc
                           </span>
-                          <span className="text-xs text-slateText font-medium leading-relaxed block mt-0.5">
-                            12600 Deerfield Parkway, Suite 2096<br />Alpharetta, GA 30004, USA
+                          <span className="text-xs text-slate-600 font-normal leading-relaxed block mt-0.5">
+                            12600 Deerfield Pkwy, Ste 2096<br />Alpharetta, GA 30004, USA
                           </span>
                         </div>
                       </div>
 
                       {/* Working Hours */}
-                      <div className="p-3 rounded-xl bg-white border border-[#EFF9FB] shadow-2xs hover:border-[#CCDCE1] transition-all flex items-start gap-2.5">
-                        <div className="w-7 h-7 rounded-lg bg-teal-50 border border-teal-100 flex items-center justify-center shrink-0 text-teal mt-0.5">
-                          <ClockIcon className="w-3.5 h-3.5" />
+                      <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:border-[#127EAB]/40 hover:shadow-xs transition-all flex items-start gap-3 group">
+                        <div className="w-8 h-8 rounded-lg bg-[#E9F7FA] border border-[#127EAB]/25 flex items-center justify-center shrink-0 text-teal mt-0.5 group-hover:scale-105 transition-transform">
+                          <ClockIcon className="w-4 h-4" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <span className="text-[10px] font-bold text-slateText uppercase tracking-wider block">
+                          <span className="text-[10px] font-bold text-[#6F7F8E] uppercase tracking-wider block">
                             Hours (CST)
                           </span>
-                          <span className="text-xs text-slateText font-medium leading-relaxed block mt-0.5">
-                            Mon – Sat: 9:30 AM – 7:30 PM<br />Sunday: Closed
+                          <span className="text-xs sm:text-[13px] text-primary font-semibold block mt-0.5">
+                            Mon – Sat: 9:30 AM – 7:30 PM
+                          </span>
+                          <span className="text-xs text-slate-600 font-normal leading-relaxed block mt-0.5">
+                            Sunday: Closed
+                          </span>
+                          <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-teal mt-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                            Online Portal Open 24/7
                           </span>
                         </div>
                       </div>
 
                       {/* Direct Phone */}
-                      <div className="p-3 rounded-xl bg-white border border-[#EFF9FB] shadow-2xs hover:border-[#CCDCE1] transition-all flex items-start gap-2.5">
-                        <div className="w-7 h-7 rounded-lg bg-blue-50 border border-border flex items-center justify-center shrink-0 text-primary mt-0.5">
-                          <PhoneIcon className="w-3.5 h-3.5" />
+                      <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:border-[#EE6450]/40 hover:shadow-xs transition-all flex items-start gap-3 group">
+                        <div className="w-8 h-8 rounded-lg bg-[#FEF4F2] border border-[#EE6450]/25 flex items-center justify-center shrink-0 text-[#EE6450] mt-0.5 group-hover:scale-105 transition-transform">
+                          <PhoneIcon className="w-4 h-4" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <span className="text-[10px] font-bold text-slateText uppercase tracking-wider block">
-                            Direct Telephone
+                          <span className="text-[10px] font-bold text-[#6F7F8E] uppercase tracking-wider block">
+                            Direct Phone
                           </span>
                           <div className="flex flex-col gap-0.5 mt-0.5">
                             <a
                               href="tel:+14044244191"
-                              className="text-xs text-primary hover:text-teal font-bold block truncate transition-colors"
+                              className="text-xs sm:text-[13px] text-primary hover:text-[#EE6450] font-semibold block truncate transition-colors"
                             >
                               +1 (404) 424-4191
                             </a>
                             <a
                               href="tel:+14044244815"
-                              className="text-xs text-primary hover:text-teal font-bold block truncate transition-colors"
+                              className="text-xs sm:text-[13px] text-primary hover:text-[#EE6450] font-semibold block truncate transition-colors"
                             >
                               +1 (404) 424-4815
                             </a>
                           </div>
-                          <span className="text-[10px] text-teal font-semibold block mt-1">Toll-Free Assistance</span>
+                          <span className="text-[10px] text-[#EE6450] font-semibold block mt-1">
+                            Toll-Free Assistance
+                          </span>
                         </div>
                       </div>
 
                       {/* Email */}
-                      <div className="p-3 rounded-xl bg-white border border-[#EFF9FB] shadow-2xs hover:border-[#CCDCE1] transition-all flex items-start gap-2.5">
-                        <div className="w-7 h-7 rounded-lg bg-coral/10 border border-coral/20 flex items-center justify-center shrink-0 text-[#EE6450] mt-0.5">
-                          <EnvelopeIcon className="w-3.5 h-3.5" />
+                      <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:border-[#127EAB]/40 hover:shadow-xs transition-all flex items-start gap-3 group">
+                        <div className="w-8 h-8 rounded-lg bg-[#EFF6FF] border border-blue-200/70 flex items-center justify-center shrink-0 text-[#1F4264] mt-0.5 group-hover:scale-105 transition-transform">
+                          <EnvelopeIcon className="w-4 h-4" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <span className="text-[10px] font-bold text-slateText uppercase tracking-wider block">
+                          <span className="text-[10px] font-bold text-[#6F7F8E] uppercase tracking-wider block">
                             Official Email
                           </span>
                           <a
                             href="mailto:contact@irstaxfiler.com"
-                            className="text-xs text-primary hover:underline font-bold block truncate mt-0.5"
+                            className="text-xs sm:text-[13px] text-primary hover:text-teal font-semibold block truncate mt-0.5 transition-colors"
                           >
                             contact@irstaxfiler.com
                           </a>
-                          <span className="text-[10px] text-slateText font-normal block">Replies in 24 hours</span>
+                          <span className="text-xs text-slate-600 font-normal leading-relaxed block mt-0.5">
+                            Tax desk & document intake
+                          </span>
+                          <span className="text-[10px] text-teal font-semibold block mt-1">
+                            Replies within 2 hours
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Bottom Action & Footnote */}
-                  <div className="pt-3 mt-3 border-t border-slate-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5">
+                  <div className="pt-4 mt-4 border-t border-slate-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                     <a
                       href="https://www.google.com/maps/place/12600+Deerfield+Parkway+Suite+2096,+Alpharetta,+GA+30004"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:text-[#1E4162] transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-primary hover:text-teal transition-colors group"
                     >
                       <span>Get Directions in Google Maps</span>
-                      <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5" />
+                      <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5 text-teal group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </a>
-                    <span className="text-[11px] text-slateText font-normal italic">
-                      * All client inquiries are confidential.
-                    </span>
+                    <div className="flex items-center gap-1.5 text-[11px] text-[#6F7F8E] italic">
+                      <ShieldCheckIcon className="w-3.5 h-3.5 text-emerald-600 shrink-0 not-italic" />
+                      <span>Client consultations are strictly confidential</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -429,10 +577,10 @@ const Contact = () => {
                   >
                     <div
                       className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-105 ${index === 0
-                          ? 'bg-blue-50 border border-border text-primary'
-                          : index === 1
-                            ? 'bg-teal-50 border border-teal-100 text-teal'
-                            : 'bg-coral/10 border border-coral/20 text-[#EE6450]'
+                        ? 'bg-blue-50 border border-border text-primary'
+                        : index === 1
+                          ? 'bg-teal-50 border border-teal-100 text-teal'
+                          : 'bg-coral/10 border border-coral/20 text-[#EE6450]'
                         }`}
                     >
                       <IconComponent className="w-5.5 h-5.5" />

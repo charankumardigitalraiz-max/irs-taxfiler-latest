@@ -108,16 +108,9 @@ const CaFlag = ({ className = "w-5 h-3.5 rounded-xs shrink-0" }) => (
 // Flag Component Dispatcher
 const CountryFlag = ({ code, className = "w-5 h-3.5 rounded-xs shrink-0 shadow-2xs" }) => {
   switch (code) {
-    case "+1":
-      return <UsFlag className={className} />;
     case "+91":
       return <InFlag className={className} />;
-    case "+44":
-      return <UkFlag className={className} />;
-    case "+61":
-      return <AuFlag className={className} />;
-    case "+1-CA":
-      return <CaFlag className={className} />;
+    case "+1":
     default:
       return <UsFlag className={className} />;
   }
@@ -126,9 +119,6 @@ const CountryFlag = ({ code, className = "w-5 h-3.5 rounded-xs shrink-0 shadow-2
 const countryOptions = [
   { code: "+1", label: "+1 (US)", country: "United States" },
   { code: "+91", label: "+91 (IN)", country: "India" },
-  { code: "+44", label: "+44 (UK)", country: "United Kingdom" },
-  { code: "+61", label: "+61 (AU)", country: "Australia" },
-  { code: "+1-CA", label: "+1 (CA)", country: "Canada" },
 ];
 
 /* ---------- CLIENT TESTIMONIALS ---------- */
@@ -273,7 +263,7 @@ export default function LeadModal({ open, onClose }) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 12 }}
         transition={{ duration: 0.22, ease: "easeOut" }}
-        className="bg-white w-[94%] max-w-4xl rounded-3xl shadow-[0_25px_80px_rgba(31,66,100,0.2)] overflow-hidden flex flex-col md:flex-row relative my-auto max-h-[92vh] border border-slate-100"
+        className="bg-white w-[94%] max-w-4xl rounded-3xl shadow-[0_25px_80px_rgba(31,66,100,0.2)] overflow-hidden flex flex-col md:flex-row relative my-auto max-h-[92vh] border border-border font-sans"
       >
         {/* Sleek Floating Close Button */}
         <button
@@ -303,7 +293,7 @@ export default function LeadModal({ open, onClose }) {
               alt="IRS Tax Filer"
               className="h-8 sm:h-9 w-auto object-contain drop-shadow-md bg-white/95 backdrop-blur-md rounded-lg px-2 py-1 shadow-xs"
             />
-            <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-white bg-black/45 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20 shadow-xs">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-slate-900/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 shadow-xs tracking-tight">
               <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
               <span>Certified CPA Advisory</span>
             </span>
@@ -311,9 +301,9 @@ export default function LeadModal({ open, onClose }) {
 
           {/* Minimal Floating Trust Strip at Bottom */}
           <div className="relative z-10 p-4 sm:p-5">
-            <div className="bg-black/55 backdrop-blur-md border border-white/20 rounded-xl px-3.5 py-2.5 text-white flex items-center justify-between text-xs shadow-lg">
-              <span className="font-semibold text-teal-soft">100% Free Consultation</span>
-              <span className="text-border text-[11px]">Zero Obligation</span>
+            <div className="bg-slate-900/75 backdrop-blur-md border border-white/20 rounded-xl px-3.5 py-2.5 text-white flex items-center justify-between text-xs shadow-lg">
+              <span className="font-semibold text-teal-light">100% Free Consultation</span>
+              <span className="text-white/80 text-[11px] font-medium">Zero Obligation</span>
             </div>
           </div>
         </div>
@@ -322,16 +312,16 @@ export default function LeadModal({ open, onClose }) {
         <div className="w-full md:w-7/12 p-5 sm:p-6 lg:p-7 bg-white flex flex-col justify-between overflow-y-auto">
           <div>
             {/* Header with Brand Gradient */}
-            <div className="mb-3 pr-6">
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-background-aqua text-teal text-[11px] font-semibold mb-1 border border-border">
+            <div className="mb-3.5 pr-6">
+              <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-background-aqua text-teal text-xs font-semibold mb-2 border border-border">
                 <SparklesIcon className="w-3.5 h-3.5 text-coral" />
-                100% Free Consultation • No Obligation
+                <span>100% Free Consultation • No Obligation</span>
               </span>
-              <h2 className="text-xl sm:text-2xl font-normal text-primary tracking-tight">
-                Connect With A Tax Expert
+              <h2 className="text-2xl sm:text-[26px] font-normal text-primary tracking-tight leading-tight">
+                Connect With A <span className="font-medium text-teal">Tax Expert</span>
               </h2>
-              <p className="text-xs text-slateText mt-0.5">
-                Leave your details below and a certified CPA will reach out at your convenience.
+              <p className="text-xs sm:text-[13px] text-slateText font-normal leading-relaxed mt-1">
+                Speak with a licensed U.S. CPA or EA to evaluate your filing, discover deductions, and plan your taxes.
               </p>
             </div>
 
@@ -349,54 +339,52 @@ export default function LeadModal({ open, onClose }) {
               </div>
             )}
 
-            {/* Form with Sleek Inset Micro-Labels */}
-            <form className="space-y-2.5" onSubmit={handleSubmit}>
+            {/* Clean Form with Separate Labels & Standalone Inputs */}
+            <form className="space-y-3" onSubmit={handleSubmit}>
               {/* Full Name */}
-              <div className="border border-[#CCDCE1] rounded-xl px-3 py-1.5 bg-slate-50/70 hover:bg-white focus-within:bg-white focus-within:border-teal focus-within:ring-2 focus-within:ring-teal/20 transition-all shadow-2xs">
-                <label className="block text-[10px] font-semibold text-slateText uppercase tracking-wider leading-none mb-1">
-                  Full Name <span className="text-rose-500">*</span>
+              <div>
+                <label className="block text-xs font-semibold text-primary mb-1.5 tracking-tight">
+                  Full Name <span className="text-coral">*</span>
                 </label>
                 <input
                   name="fullName"
                   type="text"
-                  placeholder="e.g. Michael Smith"
                   value={formData.fullName}
                   onChange={handleChange}
                   required
-                  className="w-full bg-transparent text-xs sm:text-sm text-primary placeholder:text-slateText font-medium focus:outline-none"
+                  className="w-full h-10 px-3.5 rounded-xl border border-border bg-white text-xs sm:text-sm text-primary font-medium focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all shadow-2xs"
                 />
               </div>
 
               {/* Flex Row: Email Address & Mobile Number */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {/* Email Address */}
-                <div className="border border-[#CCDCE1] rounded-xl px-3 py-1.5 bg-slate-50/70 hover:bg-white focus-within:bg-white focus-within:border-teal focus-within:ring-2 focus-within:ring-teal/20 transition-all shadow-2xs">
-                  <label className="block text-[10px] font-semibold text-slateText uppercase tracking-wider leading-none mb-1">
-                    Email Address <span className="text-rose-500">*</span>
+                <div>
+                  <label className="block text-xs font-semibold text-primary mb-1.5 tracking-tight">
+                    Email Address <span className="text-coral">*</span>
                   </label>
                   <input
                     name="email"
                     type="email"
-                    placeholder="e.g. michael@example.com"
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full bg-transparent text-xs sm:text-sm text-primary placeholder:text-slateText font-medium focus:outline-none"
+                    className="w-full h-10 px-3.5 rounded-xl border border-border bg-white text-xs sm:text-sm text-primary font-medium focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all shadow-2xs"
                   />
                 </div>
 
                 {/* Mobile Number with Country Flag Selector */}
-                <div className="border border-[#CCDCE1] rounded-xl px-3 py-1.5 bg-slate-50/70 hover:bg-white focus-within:bg-white focus-within:border-teal focus-within:ring-2 focus-within:ring-teal/20 transition-all shadow-2xs">
-                  <label className="block text-[10px] font-semibold text-slateText uppercase tracking-wider leading-none mb-1">
+                <div>
+                  <label className="block text-xs font-semibold text-primary mb-1.5 tracking-tight">
                     Mobile Number
                   </label>
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center h-10 border border-border rounded-xl bg-white focus-within:border-teal focus-within:ring-2 focus-within:ring-teal/20 transition-all shadow-2xs">
                     {/* Country Code Trigger */}
-                    <div className="relative shrink-0" ref={countryDropdownRef}>
+                    <div className="relative shrink-0 h-full flex items-center" ref={countryDropdownRef}>
                       <button
                         type="button"
                         onClick={() => setIsCountryDropdownOpen((prev) => !prev)}
-                        className="flex items-center gap-1 py-0.5 pr-1.5 border-r border-slate-200 text-primary hover:text-teal transition-colors cursor-pointer select-none"
+                        className="h-full flex items-center gap-1.5 px-3 border-r border-border text-primary hover:text-teal transition-colors cursor-pointer select-none bg-slate-50/60 hover:bg-slate-100/70 rounded-l-xl text-xs font-semibold"
                         aria-haspopup="listbox"
                         aria-expanded={isCountryDropdownOpen}
                         title="Select country code"
@@ -406,10 +394,10 @@ export default function LeadModal({ open, onClose }) {
                           className="w-4 h-3 rounded-xs shrink-0 shadow-2xs"
                         />
                         <span className="text-xs font-semibold text-primary">
-                          {formData.countryCode === "+1-CA" ? "+1" : formData.countryCode}
+                          {formData.countryCode}
                         </span>
                         <ChevronDownIcon
-                          className={`w-3 h-3 text-slateText transition-transform duration-200 ${
+                          className={`w-3.5 h-3.5 text-slateText transition-transform duration-200 ${
                             isCountryDropdownOpen ? "rotate-180" : ""
                           }`}
                         />
@@ -437,7 +425,7 @@ export default function LeadModal({ open, onClose }) {
                                 className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs"
                               />
                               <span className="font-semibold text-primary">{opt.label}</span>
-                              <span className="text-[11px] text-slateText ml-auto truncate">
+                              <span className="text-[11px] text-slateText ml-auto truncate font-normal">
                                 {opt.country}
                               </span>
                             </button>
@@ -446,23 +434,22 @@ export default function LeadModal({ open, onClose }) {
                       )}
                     </div>
 
-                    {/* Phone Input */}
+                    {/* Phone Input - No placeholder */}
                     <input
                       name="mobileNumber"
                       type="tel"
-                      placeholder="Phone number"
                       value={formData.mobileNumber}
                       onChange={handleChange}
-                      className="w-full min-w-0 bg-transparent text-xs sm:text-sm text-primary placeholder:text-slateText font-medium focus:outline-none"
+                      className="w-full h-full min-w-0 px-3 bg-transparent text-xs sm:text-sm text-primary font-medium focus:outline-none"
                     />
                   </div>
                 </div>
               </div>
 
-              {/* Flex Row: Time Zone & Best Time to Connect */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                <div className="relative border border-[#CCDCE1] rounded-xl px-3 py-1.5 bg-slate-50/70 hover:bg-white focus-within:bg-white focus-within:border-teal focus-within:ring-2 focus-within:ring-teal/20 transition-all shadow-2xs">
-                  <label className="block text-[10px] font-semibold text-slateText uppercase tracking-wider leading-none mb-1">
+              {/* Flex Row: Time Zone & Preferred Time */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-semibold text-primary mb-1.5 tracking-tight">
                     Time Zone
                   </label>
                   <div className="relative">
@@ -470,36 +457,36 @@ export default function LeadModal({ open, onClose }) {
                       name="timeZone"
                       value={formData.timeZone}
                       onChange={handleChange}
-                      className="w-full appearance-none bg-transparent text-xs sm:text-sm text-primary font-medium focus:outline-none cursor-pointer pr-6"
+                      className="w-full h-10 px-3.5 pr-8 rounded-xl border border-border bg-white appearance-none text-xs sm:text-sm text-primary font-medium focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all shadow-2xs cursor-pointer"
                     >
-                      <option value="EST">EST (Eastern Time)</option>
-                      <option value="CST">CST (Central Time)</option>
-                      <option value="MST">MST (Mountain Time)</option>
-                      <option value="PST">PST (Pacific Time)</option>
-                      <option value="IST">IST (India Standard)</option>
+                      <option value="EST">EST (Eastern Time - US)</option>
+                      <option value="CST">CST (Central Time - US)</option>
+                      <option value="MST">MST (Mountain Time - US)</option>
+                      <option value="PST">PST (Pacific Time - US)</option>
+                      <option value="IST">IST (India Standard Time)</option>
                       <option value="GMT">GMT (UK / Europe)</option>
                     </select>
-                    <ChevronDownIcon className="w-3.5 h-3.5 text-slateText absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <ChevronDownIcon className="w-4 h-4 text-slateText absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                   </div>
                 </div>
 
-                <div className="relative border border-[#CCDCE1] rounded-xl px-3 py-1.5 bg-slate-50/70 hover:bg-white focus-within:bg-white focus-within:border-teal focus-within:ring-2 focus-within:ring-teal/20 transition-all shadow-2xs">
-                  <label className="block text-[10px] font-semibold text-slateText uppercase tracking-wider leading-none mb-1">
-                    Best Time
+                <div>
+                  <label className="block text-xs font-semibold text-primary mb-1.5 tracking-tight">
+                    Preferred Time
                   </label>
                   <div className="relative">
                     <select
                       name="bestTimeToConnect"
                       value={formData.bestTimeToConnect}
                       onChange={handleChange}
-                      className="w-full appearance-none bg-transparent text-xs sm:text-sm text-primary font-medium focus:outline-none cursor-pointer pr-6"
+                      className="w-full h-10 px-3.5 pr-8 rounded-xl border border-border bg-white appearance-none text-xs sm:text-sm text-primary font-medium focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all shadow-2xs cursor-pointer"
                     >
                       <option value="Morning">Morning (9 AM – 12 PM)</option>
                       <option value="Afternoon">Afternoon (12 PM – 4 PM)</option>
                       <option value="Evening">Evening (4 PM – 8 PM)</option>
                       <option value="Anytime">Anytime during hours</option>
                     </select>
-                    <ChevronDownIcon className="w-3.5 h-3.5 text-slateText absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <ChevronDownIcon className="w-4 h-4 text-slateText absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                   </div>
                 </div>
               </div>
@@ -508,7 +495,7 @@ export default function LeadModal({ open, onClose }) {
               <button
                 type="submit"
                 disabled={loading || submitSuccess}
-                className="w-full mt-1 py-2.5 sm:py-3 px-5 rounded-xl font-bold text-white text-xs sm:text-sm transition-all duration-200 shadow-md hover:shadow-lg bg-coral hover:bg-coral-muted disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2 group active:scale-[0.99]"
+                className="w-full mt-2 py-2.5 sm:py-3 px-5 rounded-xl font-bold text-white text-xs sm:text-sm tracking-tight transition-all duration-200 shadow-md hover:shadow-lg bg-coral hover:bg-coral-muted disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2 group active:scale-[0.99]"
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">
@@ -516,12 +503,12 @@ export default function LeadModal({ open, onClose }) {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                     </svg>
-                    <span>Submitting Request...</span>
+                    <span className="font-medium">Submitting Request...</span>
                   </span>
                 ) : (
                   <>
-                    <span>Get Free Consultation</span>
-                    <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <span>Book Free CPA Consultation</span>
+                    <ArrowRightIcon className="w-4 h-4 stroke-[2.2] group-hover:translate-x-1 transition-transform" />
                   </>
                 )}
               </button>
@@ -529,7 +516,7 @@ export default function LeadModal({ open, onClose }) {
           </div>
 
           {/* ROTATING CLIENT REVIEW CARD */}
-          <div className="mt-3 p-2.5 sm:p-3 bg-slate-50 border border-[#CCDCE1] rounded-2xl overflow-hidden min-h-[64px] flex items-center">
+          <div className="mt-3 p-2.5 sm:p-3 bg-surface border border-border rounded-2xl overflow-hidden min-h-[64px] flex items-center shadow-2xs">
             <AnimatePresence mode="wait">
               <motion.div
                 key={index}
@@ -539,23 +526,23 @@ export default function LeadModal({ open, onClose }) {
                 transition={{ duration: 0.2 }}
                 className="flex items-center gap-3 w-full"
               >
-                <img
-                  src={review.img}
-                  alt={review.name}
-                  className="w-9 h-9 rounded-full object-cover border-2 border-teal shrink-0 shadow-2xs"
-                />
+                <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-[11px] shrink-0 border border-teal/30 shadow-2xs">
+                  {review.name.split(" ").map((n) => n[0]).join("")}
+                </div>
                 <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-0.5 mb-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <StarIcon key={i} className="w-3 h-3 text-coral" />
-                    ))}
-                    <span className="text-[10px] text-teal font-bold ml-1.5">Verified Client</span>
+                  <div className="flex items-center gap-1 mb-0.5">
+                    <div className="flex text-coral gap-0.5">
+                      {[...Array(5)].map((_, i) => (
+                        <StarIcon key={i} className="w-3 h-3 text-coral fill-coral" />
+                      ))}
+                    </div>
+                    <span className="text-[10px] text-teal font-semibold ml-1">Verified Client</span>
                   </div>
-                  <p className="text-xs font-semibold text-primary truncate">
+                  <p className="text-xs font-semibold text-primary truncate leading-snug">
                     "{review.comment}"
                   </p>
-                  <span className="text-[11px] text-slateText block truncate">
-                    — {review.name} <span className="text-[10px] text-slateText">({review.role})</span>
+                  <span className="text-[11px] text-slateText block truncate mt-0.5">
+                    — {review.name} <span className="text-[10px] text-slateText font-normal">({review.role})</span>
                   </span>
                 </div>
               </motion.div>
@@ -563,8 +550,8 @@ export default function LeadModal({ open, onClose }) {
           </div>
 
           {/* Privacy Footnote */}
-          <div className="mt-1.5 text-center flex items-center justify-center gap-1.5 text-[10px] text-slateText">
-            <LockClosedIcon className="w-3 h-3 text-slateText shrink-0" />
+          <div className="mt-2 text-center flex items-center justify-center gap-1.5 text-[11px] text-slateText font-normal">
+            <LockClosedIcon className="w-3.5 h-3.5 text-slateText shrink-0" />
             <span>256-Bit SSL Encrypted • 100% Confidential • Privacy Protected</span>
           </div>
         </div>

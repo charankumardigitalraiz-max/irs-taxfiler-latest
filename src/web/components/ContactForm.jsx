@@ -128,14 +128,14 @@ const ContactForm = () => {
                 Full Name <span className="text-red-500">*</span>
               </label>
               <div className="relative">
-                <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slateText" />
+                <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <input
                   type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-[#EFF9FB] rounded-xl bg-slate-50/70 hover:bg-white focus:ring-2 focus:ring-[#CCDCE1] focus:border-[#1F4264] focus:bg-white focus:outline-none transition-all placeholder:text-slateText font-medium"
+                  className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-slate-400 text-slate-800 font-medium"
                   placeholder="John Doe"
                 />
               </div>
@@ -154,14 +154,14 @@ const ContactForm = () => {
                 Email Address <span className="text-red-500">*</span>
               </label>
               <div className="relative">
-                <EnvelopeIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slateText" />
+                <EnvelopeIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-[#EFF9FB] rounded-xl bg-slate-50/70 hover:bg-white focus:ring-2 focus:ring-[#CCDCE1] focus:border-[#1F4264] focus:bg-white focus:outline-none transition-all placeholder:text-slateText font-medium"
+                  className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-slate-400 text-slate-800 font-medium"
                   placeholder="john@example.com"
                 />
               </div>
@@ -181,14 +181,14 @@ const ContactForm = () => {
               Phone Number
             </label>
             <div className="relative">
-              <PhoneIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slateText" />
+              <PhoneIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
               <input
                 type="tel"
                 id="phone"
                 name="phone"
                 value={formData.phone}
                 onChange={handleNumber}
-                className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-[#EFF9FB] rounded-xl bg-slate-50/70 hover:bg-white focus:ring-2 focus:ring-[#CCDCE1] focus:border-[#1F4264] focus:bg-white focus:outline-none transition-all placeholder:text-slateText font-medium"
+                className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-slate-400 text-slate-800 font-medium"
                 placeholder="+1 (404) 424-4191"
               />
             </div>
@@ -212,7 +212,7 @@ const ContactForm = () => {
               name="subject"
               value={formData.subject}
               onChange={handleChange}
-              className="w-full px-3.5 py-2 text-xs sm:text-sm border border-[#EFF9FB] rounded-xl bg-slate-50/70 hover:bg-white focus:ring-2 focus:ring-[#CCDCE1] focus:border-[#1F4264] focus:bg-white focus:outline-none transition-all placeholder:text-slateText font-medium"
+              className="w-full px-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-slate-400 text-slate-800 font-medium"
               placeholder="How can we help?"
             />
             {contactFormError.subject && (
@@ -235,7 +235,7 @@ const ContactForm = () => {
               value={formData.message}
               onChange={handleChange}
               rows={2}
-              className="w-full px-3.5 py-2 text-xs sm:text-sm border border-[#EFF9FB] rounded-xl bg-slate-50/70 hover:bg-white focus:ring-2 focus:ring-[#CCDCE1] focus:border-[#1F4264] focus:bg-white focus:outline-none transition-all placeholder:text-slateText font-medium resize-none"
+              className="w-full px-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-slate-400 text-slate-800 font-medium resize-none"
               placeholder="Tell us more about your tax requirements..."
             />
             {contactFormError.message && (
@@ -246,13 +246,13 @@ const ContactForm = () => {
           </div>
 
           {submitError && (
-            <div className="p-2.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs">
+            <div className="p-2.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-medium">
               {submitError}
             </div>
           )}
           {submitSuccess && (
-            <div className="p-2.5 bg-background-aqua border border-border rounded-xl text-primary text-xs font-medium">
-              Message sent successfully! We'll get back to you soon.
+            <div className="p-3 bg-[#E9F7FA] border border-[#127EAB]/30 rounded-xl text-primary text-xs font-medium">
+              ✓ Message sent successfully! Our tax advisors will get back to you soon.
             </div>
           )}
         </div>
@@ -261,9 +261,19 @@ const ContactForm = () => {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full text-white py-2.5 px-5 rounded-xl font-bold text-sm sm:text-base transition-all duration-200 shadow-[0_4px_14px_rgba(37,99,235,0.28)] hover:shadow-lg bg-[#1F4264] hover:bg-[#1E4162] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer block text-center"
+            className="w-full text-white py-2.5 px-5 rounded-xl font-bold text-sm sm:text-base transition-all duration-200 shadow-md hover:shadow-lg bg-[#1F4264] hover:bg-[#1E4162] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
           >
-            {submitting ? 'Sending Message...' : 'Send Message'}
+            {submitting ? (
+              <>
+                <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                </svg>
+                <span>Sending Message...</span>
+              </>
+            ) : (
+              <span>Send Message</span>
+            )}
           </button>
         </div>
       </form>

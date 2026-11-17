@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { SITE_STATS } from '../../../constants/siteStats';
 import {
   ShieldCheck,
   Loader2,
@@ -349,7 +350,7 @@ const VerifyOTP = () => {
               <span className="flex items-center gap-1 font-semibold text-gray-800">
                 <span className="text-amber-500">★★★★★</span> 4.9/5
               </span>
-              <span>10,000+ Filers</span>
+              <span>{SITE_STATS.clientsServed} Filers</span>
             </div>
           </div>
         </div>

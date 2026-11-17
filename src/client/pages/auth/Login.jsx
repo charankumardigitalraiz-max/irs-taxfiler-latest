@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { SITE_STATS } from '../../../constants/siteStats';
 import {
   Mail,
   Loader2,
@@ -270,7 +271,7 @@ const Login = () => {
               <span className="flex items-center gap-1 font-semibold text-gray-800">
                 <span className="text-amber-500">★★★★★</span> 4.9/5
               </span>
-              <span>10,000+ Filers</span>
+              <span>{SITE_STATS.clientsServed} Filers</span>
             </div>
           </div>
         </div>

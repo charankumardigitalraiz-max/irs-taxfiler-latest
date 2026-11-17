@@ -22,6 +22,7 @@ import {
   TagIcon,
   CheckBadgeIcon,
   SparklesIcon,
+  BanknotesIcon,
 } from "@heroicons/react/24/outline";
 
 const Referrals = () => {
@@ -45,9 +46,9 @@ const Referrals = () => {
   const labelClass =
     "block text-xs font-semibold text-primary mb-1.5 whitespace-nowrap";
   const getInputClass = (hasError = false) =>
-    `w-full h-10 sm:h-11 px-3.5 text-[13px] sm:text-sm text-primary bg-white rounded-lg border shadow-sm placeholder:text-slateText focus:outline-none transition-all duration-150 ${hasError
+    `w-full h-10 sm:h-11 px-3.5 text-[13px] sm:text-sm text-primary bg-white rounded-xl border shadow-2xs placeholder:text-[#6F7F8E]/70 focus:outline-none transition-all duration-150 ${hasError
       ? "border-rose-400 hover:border-rose-500 focus:border-rose-500 focus:ring-2 focus:ring-rose-500/15"
-      : "border-slate-300 hover:border-slate-400 focus:border-[#1F4264] focus:ring-2 focus:ring-[#1F4264]/15"
+      : "border-[#CCDCE1] hover:border-[#127EAB]/50 focus:border-teal focus:ring-2 focus:ring-teal/15"
     }`;
 
   // Load referral code when user is logged in
@@ -234,18 +235,42 @@ ${yourName || 'Your Friend'}`;
       title: "US$ 15 Credit for You",
       description:
         "Receive a US$ 15 credit toward your next filing, while your friend gets US$ 5 off their first return.",
+      color: {
+        card: "bg-gradient-to-br from-[#E9F7FA]/80 via-[#E9F7FA]/25 to-white border-[#127EAB]/25 hover:border-[#127EAB]/50 hover:shadow-[0_14px_30px_rgba(18,126,171,0.08)]",
+        icon: "bg-white text-teal border-[#127EAB]/30 shadow-2xs",
+        topLine: "group-hover:via-[#127EAB]",
+        titleHover: "group-hover:text-teal",
+        tag: "bg-[#E9F7FA] text-teal border-[#127EAB]/30",
+        tagText: "Your Reward",
+      },
     },
     {
       icon: StarIcon,
       title: "Unlimited Referrals",
       description:
         "Share your referral code with as many friends, family, or colleagues as you like and stack your rewards.",
+      color: {
+        card: "bg-gradient-to-br from-emerald-50/80 via-emerald-50/25 to-white border-emerald-200/80 hover:border-emerald-400 hover:shadow-[0_14px_30px_rgba(16,185,129,0.08)]",
+        icon: "bg-white text-emerald-600 border-emerald-200/90 shadow-2xs",
+        topLine: "group-hover:via-emerald-500",
+        titleHover: "group-hover:text-emerald-700",
+        tag: "bg-emerald-50 text-emerald-700 border-emerald-200",
+        tagText: "No Cap",
+      },
     },
     {
       icon: ShieldCheckIcon,
       title: "Priority CPA Support",
       description:
         "Every referred client receives streamlined onboarding and dedicated guidance from our licensed CPAs.",
+      color: {
+        card: "bg-gradient-to-br from-blue-50/80 via-blue-50/25 to-white border-blue-200/80 hover:border-blue-400 hover:shadow-[0_14px_30px_rgba(37,99,235,0.08)]",
+        icon: "bg-white text-blue-600 border-blue-200/90 shadow-2xs",
+        topLine: "group-hover:via-blue-500",
+        titleHover: "group-hover:text-blue-700",
+        tag: "bg-blue-50 text-blue-700 border-blue-200",
+        tagText: "Certified Care",
+      },
     },
   ];
 
@@ -254,21 +279,49 @@ ${yourName || 'Your Friend'}`;
       step: "01",
       title: "Share Your Code",
       description: "Send an invitation below or copy your personal referral code and link to share directly.",
+      color: {
+        card: "bg-gradient-to-br from-blue-50/70 via-blue-50/20 to-white border-blue-200/70 hover:border-blue-300",
+        badge: "bg-white/90 text-blue-700 border-blue-200/80",
+        topLine: "group-hover:via-blue-500",
+        titleColor: "text-blue-700 group-hover:text-blue-900",
+        watermark: "text-blue-500/10",
+      },
     },
     {
       step: "02",
       title: "Friend Signs Up",
       description: "Your friend creates their IRS Tax Filer account using your referral code or invitation link.",
+      color: {
+        card: "bg-gradient-to-br from-emerald-50/70 via-emerald-50/20 to-white border-emerald-200/70 hover:border-emerald-300",
+        badge: "bg-white/90 text-emerald-700 border-emerald-200/80",
+        topLine: "group-hover:via-emerald-500",
+        titleColor: "text-emerald-700 group-hover:text-emerald-900",
+        watermark: "text-emerald-500/10",
+      },
     },
     {
       step: "03",
       title: "Both Earn Rewards",
       description: "Your friend saves US$ 5 on their first filing, and you earn US$ 15 credit once they complete filing.",
+      color: {
+        card: "bg-gradient-to-br from-amber-50/70 via-amber-50/20 to-white border-amber-200/70 hover:border-amber-300",
+        badge: "bg-white/90 text-amber-700 border-amber-200/80",
+        topLine: "group-hover:via-amber-500",
+        titleColor: "text-amber-700 group-hover:text-amber-900",
+        watermark: "text-amber-500/10",
+      },
     },
     {
       step: "04",
       title: "Stack Unlimited Credits",
       description: "There is no cap on referrals—invite as many people as you want each tax season.",
+      color: {
+        card: "bg-gradient-to-br from-[#E9F7FA]/80 via-[#E9F7FA]/25 to-white border-[#127EAB]/25 hover:border-[#127EAB]/40",
+        badge: "bg-white/90 text-teal border-[#127EAB]/25",
+        topLine: "group-hover:via-[#127EAB]",
+        titleColor: "text-teal group-hover:text-[#0C5877]",
+        watermark: "text-teal/10",
+      },
     },
   ];
 
@@ -293,7 +346,13 @@ ${yourName || 'Your Friend'}`;
         {/* ========================================================================= */}
         {/* 1. HERO & REFERRAL INVITATION WORKSPACE                                   */}
         {/* ========================================================================= */}
-        <section className="relative pt-12 sm:pt-16 pb-14 sm:pb-16 bg-white border-b border-slate-100">
+        <section className="relative pt-12 sm:pt-16 pb-14 sm:pb-16 bg-gradient-to-b from-white via-[#EFF9FB]/30 to-white border-b border-[#CCDCE1]">
+          {/* Subtle Ambient Background Gradients */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden -z-10">
+            <div className="absolute -top-24 left-1/4 w-96 h-96 bg-[#127EAB]/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -top-20 right-1/4 w-80 h-80 bg-[#EE6450]/5 rounded-full blur-3xl pointer-events-none" />
+          </div>
+
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
             {/* Clean Centered Hero Header */}
@@ -302,9 +361,9 @@ ${yourName || 'Your Friend'}`;
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35 }}
-                className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#EFF9FB] border border-[#127EAB]/30 shadow-2xs mb-4 text-xs font-medium text-teal"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E9F7FA] border border-[#127EAB]/30 shadow-2xs mb-4 text-xs font-semibold text-teal select-none"
               >
-                <span className="w-2 h-2 rounded-full bg-[#127EAB]" />
+                <StarIcon className="w-3.5 h-3.5 text-coral fill-coral/20" />
                 <span>Refer Friends • Earn US$ 15 Credit Each</span>
               </motion.div>
 
@@ -312,9 +371,9 @@ ${yourName || 'Your Friend'}`;
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.06 }}
-                className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.2] mb-3.5"
+                className="text-3xl sm:text-4xl lg:text-[40px] font-normal text-primary tracking-tight leading-[1.3] sm:leading-[1.34] lg:leading-[1.35] mb-3.5"
               >
-                Refer & Earn with{" "}
+                Refer &amp; Earn with{" "}
                 <span className="font-medium text-teal">
                   IRS
                 </span>{" "}
@@ -327,7 +386,7 @@ ${yourName || 'Your Friend'}`;
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="text-sm sm:text-base lg:text-[17px] text-slateText font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl mx-auto"
+                className="text-sm sm:text-base text-[#6F7F8E] font-normal leading-[26px] sm:leading-[28px] lg:leading-[30px] mb-6 max-w-2xl mx-auto"
               >
                 Invite friends and colleagues to file with our licensed CPAs. They receive{" "}
                 <span className="font-medium text-primary">US$ 5 off</span> their first return, and you earn{" "}
@@ -340,37 +399,27 @@ ${yourName || 'Your Friend'}`;
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.14 }}
-              className="bg-white rounded-md border border-slate-200/90 shadow-[0_2px_10px_rgba(22,84,121,0.035)] overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch"
+              className="bg-white rounded-2xl border border-[#CCDCE1] shadow-[0_16px_40px_rgba(31,66,100,0.06)] overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch"
             >
 
               {/* Left Side: Invite Friends Form */}
               <div className="lg:col-span-7 bg-white p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
                 <div>
                   {/* Card Header */}
-                  <div className="flex flex-wrap items-center justify-between gap-4 pb-5 mb-6 border-b border-slate-100">
+                  <div className="flex flex-wrap items-center justify-between gap-4 pb-5 mb-6 border-b border-[#CCDCE1]">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-background-aqua border border-border text-teal flex items-center justify-center text-teal shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-[#E9F7FA] border border-[#127EAB]/30 text-teal flex items-center justify-center shrink-0 shadow-2xs">
                         <UserPlusIcon className="w-5 h-5" />
                       </div>
                       <div>
-                        <h2 className="text-base sm:text-lg font-normal text-primary leading-snug">
+                        <h2 className="text-base sm:text-lg font-semibold text-primary leading-snug">
                           Invite a Friend
                         </h2>
-                        <p className="text-xs sm:text-sm text-slateText">
+                        <p className="text-xs sm:text-sm text-[#6F7F8E]">
                           Enter your details and the friends you'd like to invite.
                         </p>
                       </div>
                     </div>
-                    {/* 
-                    {!isLoggedIn && (
-                      <Link
-                        to="/login"
-                        className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary bg-sky-50/80 px-3 py-1.5 rounded-full border border-sky-200/70 transition-colors"
-                      >
-                        <span>Sign in for your personal link</span>
-                        <ArrowRightIcon className="w-3.5 h-3.5" />
-                      </Link>
-                    )} */}
                   </div>
 
                   {/* Error & Success Feedback */}
@@ -380,7 +429,7 @@ ${yourName || 'Your Friend'}`;
                     </div>
                   )}
                   {submitSuccess && (
-                    <div className="mb-5 px-4 py-3 bg-background-aqua border border-border rounded-xl text-teal text-xs sm:text-sm flex items-center gap-2">
+                    <div className="mb-5 px-4 py-3 bg-[#E9F7FA] border border-[#127EAB]/30 rounded-xl text-teal text-xs sm:text-sm flex items-center gap-2">
                       <CheckCircleIcon className="w-4 h-4 shrink-0" />
                       <span>Referral invitation submitted successfully! We'll process it shortly.</span>
                     </div>
@@ -431,14 +480,14 @@ ${yourName || 'Your Friend'}`;
                     </div>
 
                     {/* Friends Section Header */}
-                    <div className="flex items-center justify-between pt-5 border-t border-slate-100">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-slateText">
+                    <div className="flex items-center justify-between pt-5 border-t border-[#CCDCE1]">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-[#6F7F8E]">
                         Friends to Invite ({friends.length})
                       </span>
                       <button
                         type="button"
                         onClick={addFriend}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-primary bg-sky-50 hover:bg-sky-100 border border-sky-200/80 transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-teal bg-[#E9F7FA] hover:bg-[#EFF9FB] border border-[#127EAB]/30 transition-colors cursor-pointer shadow-2xs"
                       >
                         <PlusIcon className="w-3.5 h-3.5 stroke-[2.2]" />
                         <span>Add Friend</span>
@@ -450,7 +499,7 @@ ${yourName || 'Your Friend'}`;
                       {friends.map((friend, index) => (
                         <div
                           key={friend.id}
-                          className={index > 0 ? "pt-4 border-t border-slate-100" : ""}
+                          className={index > 0 ? "pt-4 border-t border-[#CCDCE1]" : ""}
                         >
                           {friends.length > 1 && (
                             <div className="flex items-center justify-between mb-2.5">
@@ -461,7 +510,7 @@ ${yourName || 'Your Friend'}`;
                                 type="button"
                                 onClick={() => removeFriend(friend.id)}
                                 title="Remove friend"
-                                className="inline-flex items-center gap-1 text-[11px] font-medium text-slateText hover:text-rose-600 transition-colors cursor-pointer"
+                                className="inline-flex items-center gap-1 text-[11px] font-medium text-[#6F7F8E] hover:text-rose-600 transition-colors cursor-pointer"
                               >
                                 <TrashIcon className="w-3.5 h-3.5" />
                                 <span>Remove</span>
@@ -515,7 +564,7 @@ ${yourName || 'Your Friend'}`;
                             <div>
                               <label htmlFor={`friend-phone-${friend.id}`} className={labelClass}>
                                 Phone{" "}
-                                <span className="text-[11px] font-normal text-slateText">
+                                <span className="text-[11px] font-normal text-[#6F7F8E]">
                                   (Optional)
                                 </span>
                               </label>
@@ -541,7 +590,7 @@ ${yourName || 'Your Friend'}`;
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full h-11 sm:h-12 px-6 rounded-lg bg-gradient-to-r from-[#1F4264] via-[#1F4264] to-[#127EAB] hover:from-[#1E4162] hover:via-[#1F4264] hover:to-[#1F4264] text-white font-medium text-sm sm:text-[15px] shadow-sm border border-white/20 transition-all duration-200 inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer group"
+                      className="w-full h-11 sm:h-12 px-6 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold text-sm sm:text-[15px] shadow-sm hover:shadow-md transition-all duration-200 inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer group"
                     >
                       <span>
                         {loading
@@ -549,7 +598,7 @@ ${yourName || 'Your Friend'}`;
                           : `Send Referral Invitation (${friends.length})`}
                       </span>
                       {!loading && (
-                        <ArrowRightIcon className="w-4 h-4 stroke-[2.2] group-hover:translate-x-0.5 transition-transform" />
+                        <ArrowRightIcon className="w-4 h-4 stroke-[2.2] group-hover:translate-x-1 transition-transform" />
                       )}
                     </button>
                   </form>
@@ -557,18 +606,18 @@ ${yourName || 'Your Friend'}`;
               </div>
 
               {/* Right Side: Animated Contact & Referral Illustrator */}
-              <div className="lg:col-span-5 bg-gradient-to-br from-[#E9F7FA] via-[#EFF9FB] to-[#CCDCE1] border-t lg:border-t-0 lg:border-l border-[#1F4264]/15 p-6 sm:p-8 flex flex-col justify-between items-center text-center relative overflow-hidden">
+              <div className="lg:col-span-5 bg-gradient-to-br from-[#E9F7FA] via-[#EFF9FB]/70 to-[#E9F7FA]/40 border-t lg:border-t-0 lg:border-l border-[#CCDCE1] p-6 sm:p-8 flex flex-col justify-between items-center text-center relative overflow-hidden">
                 {/* Ambient Background Glows */}
-                <div className="absolute -top-12 -right-12 w-52 h-52 bg-[#127EAB]/30 rounded-full blur-3xl pointer-events-none" />
-                <div className="absolute -bottom-12 -left-12 w-52 h-52 bg-[#1F4264]/25 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -top-12 -right-12 w-52 h-52 bg-[#127EAB]/15 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-12 -left-12 w-52 h-52 bg-[#EE6450]/10 rounded-full blur-3xl pointer-events-none" />
 
                 {/* Top Status Bar */}
                 <div className="relative z-10 w-full flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary bg-white/95 px-3 py-1 rounded-full border border-[#1F4264]/15 shadow-sm">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-[#CCDCE1] shadow-2xs">
                     <SparklesIcon className="w-3.5 h-3.5 text-teal" />
-                    <span>Quick Contact & Invite</span>
+                    <span>Quick Contact &amp; Invite</span>
                   </span>
-                  <span className="text-xs font-semibold text-primary">
+                  <span className="text-xs font-semibold text-teal bg-[#E9F7FA] px-2.5 py-1 rounded-md border border-[#127EAB]/30">
                     Instant Rewards
                   </span>
                 </div>
@@ -581,7 +630,7 @@ ${yourName || 'Your Friend'}`;
                       transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
                       className="w-full h-full flex items-center justify-center relative"
                     >
-                      <div className="w-full h-full rounded-2xl bg-white p-1.5 border border-white/90 shadow-[0_3px_12px_rgba(10,73,115,0.06)] overflow-hidden flex items-center justify-center">
+                      <div className="w-full h-full rounded-2xl bg-white p-2 border border-[#CCDCE1] shadow-[0_8px_24px_rgba(31,66,100,0.06)] overflow-hidden flex items-center justify-center">
                         <img
                           src={referralIllustration}
                           alt="Contact and Invite Friends for Tax Rewards Illustration"
@@ -593,20 +642,20 @@ ${yourName || 'Your Friend'}`;
 
                   {/* Logged-in Controls OR Guest Summary */}
                   {isLoggedIn ? (
-                    <div className="w-full mt-5 pt-4 border-t border-[#1F4264]/15 space-y-3 text-left">
+                    <div className="w-full mt-5 pt-4 border-t border-[#CCDCE1] space-y-3 text-left">
                       <div>
                         <label className="block text-xs font-semibold text-primary mb-1">
                           Your Referral Code
                         </label>
                         <div className="flex items-center gap-2">
-                          <div className="flex-1 bg-white rounded-lg px-3 py-2 text-sm font-mono font-bold tracking-wider text-center text-primary border border-slate-300/90 shadow-sm">
+                          <div className="flex-1 bg-white rounded-xl px-3.5 py-2 text-sm font-mono font-bold tracking-wider text-center text-primary border border-[#CCDCE1] shadow-2xs">
                             {loadingReferral ? 'Loading...' : (referralCode || 'N/A')}
                           </div>
                           <button
                             type="button"
                             onClick={handleCopyCode}
                             disabled={!referralCode || loadingReferral}
-                            className="h-9 px-3 rounded-lg bg-[#1F4264] hover:bg-[#1F4264] text-white text-xs font-medium shadow-sm transition-colors flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shrink-0"
+                            className="h-9 px-3.5 rounded-xl bg-primary hover:bg-primary-dark text-white text-xs font-semibold shadow-2xs transition-all flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shrink-0"
                           >
                             <ClipboardDocumentCheckIcon className="w-3.5 h-3.5" />
                             <span>{copied ? "Copied!" : "Copy"}</span>
@@ -623,13 +672,13 @@ ${yourName || 'Your Friend'}`;
                             type="text"
                             value={getReferralLink()}
                             readOnly
-                            className="flex-1 h-9 px-3 bg-white rounded-lg text-xs text-slateText border border-slate-300/90 shadow-sm focus:outline-none truncate"
+                            className="flex-1 h-9 px-3 bg-white rounded-xl text-xs text-[#6F7F8E] border border-[#CCDCE1] shadow-2xs focus:outline-none truncate"
                           />
                           <button
                             type="button"
                             onClick={handleCopyLink}
                             disabled={!referralCode || loadingReferral}
-                            className="h-9 px-3 rounded-lg bg-white hover:bg-slate-50 border border-slate-300/90 shadow-sm text-primary text-xs font-medium transition-colors flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shrink-0"
+                            className="h-9 px-3 rounded-xl bg-white hover:bg-slate-50 border border-[#CCDCE1] shadow-2xs text-teal hover:text-primary text-xs font-semibold transition-colors flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shrink-0"
                           >
                             <LinkIcon className="w-3.5 h-3.5" />
                             <span>{copiedLink ? "Copied" : "Link"}</span>
@@ -641,83 +690,88 @@ ${yourName || 'Your Friend'}`;
                         type="button"
                         onClick={handleShareEmail}
                         disabled={!referralCode || loadingReferral}
-                        className="w-full h-9 px-4 rounded-lg bg-white hover:bg-slate-50 border border-slate-300/90 shadow-sm text-primary text-xs font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                        className="w-full h-9 px-4 rounded-xl bg-white hover:bg-slate-50 border border-[#CCDCE1] shadow-2xs text-primary hover:text-teal text-xs font-semibold transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                       >
-                        <EnvelopeIcon className="w-4 h-4 text-primary" />
+                        <EnvelopeIcon className="w-4 h-4 text-teal" />
                         <span>Share via Email</span>
                       </button>
                     </div>
                   ) : (
                     <div className="mt-5 max-w-[280px]">
                       <h3 className="text-base sm:text-lg font-semibold text-primary leading-snug">
-                        Connect, Share &{" "}
+                        Connect, Share &amp;{" "}
                         <span className="font-semibold text-teal">
                           Save Together
                         </span>
                       </h3>
-                      <p className="text-xs sm:text-sm text-slateText font-normal mt-1.5 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-[#6F7F8E] font-normal mt-1.5 leading-relaxed">
                         Send a quick invitation and our team contacts your friends with your referral savings attached.
                       </p>
                     </div>
                   )}
                 </div>
-
-                {/* Bottom Trust Bar */}
-                {/* <div className="relative z-10 w-full pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs text-slateText">
-                  <span className="flex items-center gap-1.5 font-medium">
-                    <CheckCircleIcon className="w-4 h-4 text-teal" />
-                    <span>US$ 15 Your Credit</span>
-                  </span>
-                  <span className="flex items-center gap-1.5 font-medium">
-                    <TagIcon className="w-4 h-4 text-primary" />
-                    <span>US$ 5 Friend Off</span>
-                  </span>
-                </div> */}
               </div>
 
-            </motion.div >
-          </div >
-        </section >
+            </motion.div>
+          </div>
+        </section>
 
         {/* ========================================================================= */}
-        {/* 2. REWARDS FOR BOTH SECTION (CLEAN 3-COLUMN GRID)                         */}
+        {/* 2. REWARDS FOR BOTH SECTION (CLEAN 3-COLUMN PASTEL GRID)                   */}
         {/* ========================================================================= */}
-        <section className="py-14 sm:py-16 bg-slate-50/70 border-b border-slate-100">
+        <section className="py-14 sm:py-16 bg-white border-b border-[#CCDCE1]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div className="text-left mb-8 sm:mb-10">
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
+            <div className="text-center mb-10 sm:mb-12">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E9F7FA] border border-[#127EAB]/30 shadow-2xs mb-3 text-xs font-semibold text-teal select-none">
+                <GiftIcon className="w-3.5 h-3.5 text-teal" />
+                <span>Mutual Benefits</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-2">
                 Rewards for{" "}
                 <span className="font-medium text-teal">
                   Both
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-2 max-w-2xl">
-                Every referral unlocks meaningful savings for you and your friend.
+              <p className="text-sm sm:text-base text-[#6F7F8E] font-normal leading-relaxed max-w-xl mx-auto">
+                Every referral unlocks meaningful savings for you and your friend
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
               {benefits.map((benefit, index) => {
                 const Icon = benefit.icon;
+                const theme = benefit.color;
                 return (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 12 }}
+                    initial={{ opacity: 0, y: 14 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.06)] hover:border-[#1F4264]/30 transition-all duration-200"
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.35, delay: index * 0.06 }}
+                    className={`relative rounded-2xl p-6 sm:p-7 border ${theme.card} transition-all duration-300 hover:-translate-y-1 group overflow-hidden flex flex-col justify-between`}
                   >
-                    <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-center text-primary mb-4">
-                      <Icon className="w-5 h-5" />
+                    {/* Top Accent Line */}
+                    <div className={`absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-transparent to-transparent ${theme.topLine} transition-all duration-300`} />
+
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${theme.icon} transition-transform duration-200 group-hover:scale-110`}>
+                          <Icon className="w-6 h-6 stroke-[1.8]" />
+                        </div>
+                        <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-md border select-none ${theme.tag}`}>
+                          {theme.tagText}
+                        </span>
+                      </div>
+
+                      <h3 className={`text-base sm:text-lg font-semibold text-primary ${theme.titleHover} transition-colors leading-snug mb-2`}>
+                        {benefit.title}
+                      </h3>
+
+                      <p className="text-xs sm:text-[13.5px] text-[#6F7F8E] font-normal leading-relaxed">
+                        {benefit.description}
+                      </p>
                     </div>
-                    <h3 className="text-base sm:text-[17px] font-semibold text-primary mb-2 leading-snug">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-sm text-slateText font-normal leading-relaxed">
-                      {benefit.description}
-                    </p>
                   </motion.div>
                 );
               })}
@@ -729,100 +783,122 @@ ${yourName || 'Your Friend'}`;
         {/* ========================================================================= */}
         {/* 3. HOW IT WORKS SECTION (CLEAN 4-STEP HORIZONTAL FLOW)                    */}
         {/* ========================================================================= */}
-        <section className="py-14 sm:py-16 bg-white border-b border-slate-100">
+        <section className="py-14 sm:py-16 bg-white border-b border-[#CCDCE1]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div className="text-left mb-8 sm:mb-10">
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
+            <div className="text-center mb-10 sm:mb-12">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E9F7FA] border border-[#127EAB]/30 shadow-2xs mb-3 text-xs font-semibold text-teal select-none">
+                <span className="w-2 h-2 rounded-full bg-[#127EAB]" />
+                <span>Simple 4-Step Process</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-2">
                 How It{" "}
                 <span className="font-medium text-teal">
                   Works
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-2 max-w-2xl">
-                Four simple steps to invite friends and earn unlimited tax filing credits.
+              <p className="text-sm sm:text-base text-[#6F7F8E] font-normal leading-relaxed max-w-xl mx-auto">
+                Four simple steps to invite friends and earn unlimited tax filing credits
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {howItWorks.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: idx * 0.05 }}
-                  className="bg-slate-50/70 rounded-2xl p-6 border border-slate-200/80 hover:bg-white hover:shadow-[0_10px_24px_rgba(22,84,121,0.06)] hover:border-[#1F4264]/30 transition-all duration-200"
-                >
-                  <span className="inline-flex items-center justify-center px-2.5 py-1 rounded-lg bg-sky-50 border border-sky-100 text-xs font-mono font-semibold text-primary mb-4">
-                    Step {item.step}
-                  </span>
-                  <h3 className="text-base font-semibold text-primary mb-2 leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-slateText font-normal leading-relaxed">
-                    {item.description}
-                  </p>
-                </motion.div>
-              ))}
+              {howItWorks.map((item, idx) => {
+                const theme = item.color;
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.35, delay: idx * 0.05 }}
+                    className={`relative rounded-2xl p-6 border ${theme.card} transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xs group overflow-hidden flex flex-col justify-between`}
+                  >
+                    {/* Top Accent Line */}
+                    <div className={`absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-transparent to-transparent ${theme.topLine} transition-all duration-300`} />
+
+                    {/* Large Watermark Number in Background */}
+                    <span
+                      aria-hidden="true"
+                      className={`absolute -bottom-2 -right-1 text-6xl font-black font-mono tracking-tighter ${theme.watermark} select-none pointer-events-none transition-transform duration-300 group-hover:scale-105`}
+                    >
+                      {item.step}
+                    </span>
+
+                    <div className="relative z-10">
+                      <span className={`inline-flex items-center justify-center px-2.5 py-1 rounded-lg text-xs font-mono font-bold border shadow-2xs mb-3.5 ${theme.badge}`}>
+                        Step {item.step}
+                      </span>
+
+                      <h3 className={`text-base sm:text-[17px] font-bold ${theme.titleColor} transition-colors mb-2 leading-snug tracking-tight`}>
+                        {item.title}
+                      </h3>
+
+                      <p className="text-xs sm:text-[13px] text-[#6F7F8E] font-[500] leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
 
           </div>
         </section>
 
         {/* ========================================================================= */}
-        {/* 4. CLEAN, MINIMAL CTA SECTION                                             */}
+        {/* 4. COMPACT CTA SECTION                                                    */}
         {/* ========================================================================= */}
-        <section className="py-14 sm:py-16 bg-slate-50/70">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section className="py-8 sm:py-10 bg-gradient-to-b from-[#FFFDF9] via-[#FDF8F2] to-[#FAF1E6] border-t border-[#E5D7C6] relative overflow-hidden">
+          {/* Subtle Ambient Warmth */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-28 bg-[#EE6450]/8 rounded-full blur-2xl pointer-events-none" />
 
-            <div className="rounded-2xl p-8 sm:p-10 bg-white border border-slate-200/90 shadow-2xs">
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-normal text-primary tracking-tight mb-2.5">
-                Ready to Start{" "}
-                <span className="font-medium text-teal">
-                  Earning Rewards?
-                </span>
-              </h2>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 className="text-xl sm:text-2xl lg:text-[28px] font-semibold text-primary tracking-tight mb-2 sm:mb-2.5">
+              Ready to Start{" "}
+              <span className="text-teal">
+                Earning Rewards?
+              </span>
+            </h2>
 
-              <p className="text-sm sm:text-base text-slateText font-normal max-w-lg mx-auto mb-6 leading-relaxed">
-                Share your referral code today and help friends file stress-free while unlocking credits for yourself.
-              </p>
+            <p className="text-xs sm:text-sm text-[#6F7F8E] font-normal max-w-lg mx-auto mb-5 sm:mb-6 leading-relaxed">
+              Share your referral code today and help friends file stress-free while unlocking credits for yourself.
+            </p>
 
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                <Link
-                  to={isLoggedIn ? "/client/referrals" : "/login"}
-                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-5 rounded-xl bg-gradient-to-r from-[#1F4264] via-[#1F4264] to-[#127EAB] hover:from-[#1E4162] hover:via-[#1F4264] hover:to-[#1F4264] text-white font-medium text-xs sm:text-sm shadow-sm transition-all"
-                >
-                  <span>{isLoggedIn ? "Manage My Referrals" : "Sign In & Get Code"}</span>
-                  <ArrowRightIcon className="w-3.5 h-3.5" />
-                </Link>
+            <div className="flex flex-wrap items-center justify-center gap-3.5">
+              <Link
+                to={isLoggedIn ? "/client/referrals" : "/login"}
+                className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-6 sm:px-7 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold text-xs sm:text-sm shadow-sm hover:shadow-md transition-all duration-200 group"
+              >
+                <span>{isLoggedIn ? "Manage My Referrals" : "Sign In & Get Code"}</span>
+                <ArrowRightIcon className="w-4 h-4 stroke-[2.2] group-hover:translate-x-1 transition-transform" />
+              </Link>
 
-                <Link
-                  to="/pricing"
-                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-5 rounded-xl bg-white hover:bg-slate-50 text-primary font-medium text-xs sm:text-sm border border-slate-300 shadow-2xs transition-all"
-                >
-                  <span>View Pricing</span>
-                </Link>
-              </div>
-
-              <div className="mt-6 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-[11px] sm:text-xs text-slateText font-normal">
-                <span className="flex items-center gap-1.5">
-                  <CheckBadgeIcon className="w-4 h-4 text-teal" />
-                  US$ 15 Credit per Referral
-                </span>
-                <span>•</span>
-                <span className="flex items-center gap-1.5">
-                  <CheckCircleIcon className="w-4 h-4 text-teal" />
-                  US$ 5 Off for Friends
-                </span>
-                <span>•</span>
-                <span className="flex items-center gap-1.5">
-                  <ShieldCheckIcon className="w-4 h-4 text-teal" />
-                  Unlimited Invites
-                </span>
-              </div>
+              <Link
+                to="/pricing"
+                className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-6 sm:px-7 rounded-xl bg-white hover:bg-amber-50/40 text-teal hover:text-primary border border-[#E5D7C6] hover:border-teal font-semibold text-xs sm:text-sm shadow-2xs hover:shadow-sm transition-all duration-200 group"
+              >
+                <BanknotesIcon className="w-4 h-4 text-teal stroke-[2.2] group-hover:scale-110 transition-transform" />
+                <span>View Pricing</span>
+              </Link>
             </div>
 
+            <div className="mt-5 pt-4 border-t border-[#E5D7C6]/70 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-[11px] sm:text-xs text-[#6F7F8E] font-normal">
+              <span className="flex items-center gap-1.5 font-medium text-primary">
+                <CheckBadgeIcon className="w-4 h-4 text-teal" />
+                US$ 15 Credit per Referral
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1.5 font-medium text-primary">
+                <CheckCircleIcon className="w-4 h-4 text-teal" />
+                US$ 5 Off for Friends
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1.5 font-medium text-primary">
+                <ShieldCheckIcon className="w-4 h-4 text-teal" />
+                Unlimited Invites
+              </span>
+            </div>
           </div>
         </section>
 

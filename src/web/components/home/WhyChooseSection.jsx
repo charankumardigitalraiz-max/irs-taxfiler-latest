@@ -45,7 +45,7 @@ const WhyChooseSection = ({ onOpenModal }) => {
   }, []);
 
   return (
-    <section id="why-choose" className="relative py-14 sm:py-20 lg:py-24 bg-white font-sans overflow-hidden">
+    <section id="why-choose" className="relative py-10 sm:py-12 lg:py-14 bg-white font-sans overflow-hidden">
       <div className="relative z-10 max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-8 xl:gap-12">
 
@@ -72,21 +72,21 @@ const WhyChooseSection = ({ onOpenModal }) => {
             </h2>
 
             {/* Subtitle */}
-            <p className="text-sm sm:text-base text-slateText font-normal leading-[26px] xl:leading-[28px] max-w-sm mt-4">
+            <p className="text-base sm:text-lg text-slate-700 font-normal leading-relaxed max-w-md mt-4">
               A smarter way to file, plan, and keep more of what you earn — with certified CPA experts and powerful technology on your side.
             </p>
 
             {/* Trust Bullet Items */}
             <div className="mt-8 space-y-3.5 pt-6 border-t border-border">
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-primary">
+              <div className="flex items-center gap-3 font-[500] text-xs sm:text-sm text-primary">
                 <span className="w-5 h-5 rounded-full bg-background-aqua text-teal border border-border flex items-center justify-center font-bold text-xs shrink-0">✓</span>
                 <span>Licensed CPAs & Enrolled Agents in all 50 states</span>
               </div>
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-primary">
+              <div className="flex items-center font-[500] gap-3 text-xs sm:text-sm text-primary">
                 <span className="w-5 h-5 rounded-full bg-background-aqua text-teal border border-border flex items-center justify-center font-bold text-xs shrink-0">✓</span>
                 <span>Bank-level 256-bit encryption & IRS security compliance</span>
               </div>
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-primary">
+              <div className="flex items-center gap-3 font-[500] text-xs sm:text-sm text-primary">
                 <span className="w-5 h-5 rounded-full bg-background-aqua text-teal border border-border flex items-center justify-center font-bold text-xs shrink-0">✓</span>
                 <span>100% Accuracy Guarantee with comprehensive audit defense</span>
               </div>
@@ -107,7 +107,6 @@ const WhyChooseSection = ({ onOpenModal }) => {
                   height: 590,
                   transform: `translateX(-50%) scale(${scale})`,
                   transformOrigin: "top center",
-                  willChange: "transform",
                 }}
                 className="absolute top-0 left-1/2"
               >
@@ -160,17 +159,17 @@ const WhyChooseSection = ({ onOpenModal }) => {
                   </div>
 
                   <h3 className="text-2xl font-semibold text-primary tracking-tight mt-6">
-                    AI + CPA Accuracy
+                    Certified CPA Filing
                   </h3>
-                  <p className="text-xs sm:text-sm text-slateText font-normal leading-relaxed mt-2.5">
-                    Advanced AI meets licensed CPAs to deliver greater accuracy, fewer errors, and bigger opportunities for your refund.
+                  <p className="text-sm sm:text-[15px] text-slate-700 font-normal leading-relaxed mt-2.5">
+                    Every return is prepared and reviewed by a licensed CPA — not software alone. We ensure accuracy, compliance, and maximum refund on every filing.
                   </p>
 
                   <div className="mt-6 px-4 py-2.5 rounded-full bg-background-aqua border border-border shadow-2xs inline-flex items-center gap-2.5 text-xs text-primary font-medium">
                     <span className="w-4 h-4 rounded-md bg-teal text-white flex items-center justify-center text-[10px] shrink-0">
                       ✓
                     </span>
-                    <span>Human expertise. AI speed. Better results.</span>
+                    <span>Licensed CPA on every return. No exceptions.</span>
                   </div>
                 </motion.div>
 
@@ -190,10 +189,10 @@ const WhyChooseSection = ({ onOpenModal }) => {
                     </svg>
                   </div>
                   <h4 className="text-lg font-semibold text-primary tracking-tight mt-4">
-                    Anytime Expert Chat
+                    Dedicated CPA Support
                   </h4>
-                  <p className="text-xs text-slateText font-normal leading-relaxed mt-2">
-                    Get answers from real tax experts whenever you need them — not just during tax season.
+                  <p className="text-[13px] sm:text-sm text-slate-700 font-normal leading-relaxed mt-2">
+                    Reach your assigned CPA directly — by email or phone — for guidance before, during, and after filing.
                   </p>
                   <div className="flex justify-end mt-4">
                     <div className="w-10 h-10 rounded-full border border-border bg-background text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all shadow-2xs">
@@ -218,10 +217,10 @@ const WhyChooseSection = ({ onOpenModal }) => {
                     </svg>
                   </div>
                   <h4 className="text-lg font-semibold text-primary tracking-tight mt-4">
-                    Refund Accelerator
+                    Maximum Deductions
                   </h4>
-                  <p className="text-xs text-slateText font-normal leading-relaxed mt-2">
-                    Smart checks, faster filing, and proactive monitoring to help you get your refund sooner.
+                  <p className="text-[13px] sm:text-sm text-slate-700 font-normal leading-relaxed mt-2">
+                    Our CPAs review every eligible deduction and credit — foreign income, business expenses, FEIE, ITIN, and more — so you keep more of what you earn.
                   </p>
                   <div className="flex justify-end mt-4">
                     <div className="w-10 h-10 rounded-full border border-border bg-background text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all shadow-2xs">
@@ -249,10 +248,10 @@ const WhyChooseSection = ({ onOpenModal }) => {
                       </svg>
                     </div>
                     <h4 className="text-lg font-semibold text-primary tracking-tight mt-4">
-                      Global Compliance
+                      US & India Tax Filing
                     </h4>
-                    <p className="text-xs text-slateText font-normal leading-relaxed mt-2">
-                      Stay compliant across borders with up-to-date guidance for U.S. and international tax rules.
+                    <p className="text-[13px] sm:text-sm text-slate-700 font-normal leading-relaxed mt-2">
+                      Specialists in dual-country filing for NRIs and expats — IRS federal returns, Indian ITR, FBAR, and treaty benefits handled together.
                     </p>
                   </div>
                   <div className="flex justify-end mt-auto pt-2">
@@ -287,16 +286,16 @@ const WhyChooseSection = ({ onOpenModal }) => {
                   </span>
                 </div>
                 <h3 className="text-xl font-semibold text-primary tracking-tight mt-4">
-                  AI + CPA Accuracy
+                  Certified CPA Filing
                 </h3>
-                <p className="text-xs sm:text-sm text-slateText font-normal leading-relaxed mt-2">
-                  Advanced AI meets licensed CPAs to deliver greater accuracy, fewer errors, and bigger opportunities for your refund.
+                <p className="text-sm sm:text-[15px] text-slate-700 font-normal leading-relaxed mt-2">
+                  Every return is prepared and reviewed by a licensed CPA — not software alone. We ensure accuracy, compliance, and maximum refund on every filing.
                 </p>
                 <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-background-aqua border border-border shadow-2xs text-xs text-primary font-medium">
                   <span className="w-4 h-4 rounded-md bg-teal text-white flex items-center justify-center text-[10px] shrink-0">
                     ✓
                   </span>
-                  <span>Human expertise. AI speed. Better results.</span>
+                  <span>Licensed CPA on every return. No exceptions.</span>
                 </div>
               </div>
 
@@ -304,8 +303,8 @@ const WhyChooseSection = ({ onOpenModal }) => {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
                 {[
                   {
-                    title: "Anytime Expert Chat",
-                    desc: "Get answers from real tax experts whenever you need them — not just during tax season.",
+                    title: "Dedicated CPA Support",
+                    desc: "Reach your assigned CPA directly — by email or phone — for guidance before, during, and after filing.",
                     icon: (
                       <svg className="w-7 h-7 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
@@ -313,8 +312,8 @@ const WhyChooseSection = ({ onOpenModal }) => {
                     ),
                   },
                   {
-                    title: "Refund Accelerator",
-                    desc: "Smart checks, faster filing, and proactive monitoring to help you get your refund sooner.",
+                    title: "Maximum Deductions",
+                    desc: "Our CPAs review every eligible deduction and credit — foreign income, business expenses, FEIE, ITIN, and more — so you keep more of what you earn.",
                     icon: (
                       <svg className="w-7 h-7 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
@@ -322,8 +321,8 @@ const WhyChooseSection = ({ onOpenModal }) => {
                     ),
                   },
                   {
-                    title: "Global Compliance",
-                    desc: "Stay compliant across borders with up-to-date guidance for U.S. and international tax rules.",
+                    title: "US & India Tax Filing",
+                    desc: "Specialists in dual-country filing for NRIs and expats — IRS federal returns, Indian ITR, FBAR, and treaty benefits handled together.",
                     icon: (
                       <svg className="w-7 h-7 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="12" cy="12" r="10" />
@@ -345,7 +344,7 @@ const WhyChooseSection = ({ onOpenModal }) => {
                       <h4 className="text-base font-semibold text-primary tracking-tight mt-3">
                         {card.title}
                       </h4>
-                      <p className="text-xs text-slateText font-normal leading-relaxed mt-1.5">
+                      <p className="text-[13px] sm:text-sm text-slate-700 font-normal leading-relaxed mt-1.5">
                         {card.desc}
                       </p>
                     </div>

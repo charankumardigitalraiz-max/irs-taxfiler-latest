@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { SITE_STATS } from "../../constants/siteStats";
 import {
   DocumentTextIcon,
   SparklesIcon,
@@ -124,25 +125,25 @@ const AnimatedCounter = ({ value, duration = 2.2, delay = 0 }) => {
 const StatsSection = () => {
   const stats = [
     {
-      number: "10,000+",
+      number: SITE_STATS.returnsFiled,
       label: "Returns Filed Successfully",
       icon: <DocumentTextIcon className="w-5 h-5 text-teal" />,
       subtext: "IRS-accepted federal & state returns",
     },
     {
-      number: "98%",
+      number: SITE_STATS.satisfactionRate,
       label: "Client Satisfaction Rate",
       icon: <SparklesIcon className="w-5 h-5 text-teal" />,
       subtext: "Rated 5 stars by thousands of filers",
     },
     {
-      number: "$1M+",
+      number: SITE_STATS.refundsSecured,
       label: "Tax Refunds Secured",
       icon: <BanknotesIcon className="w-5 h-5 text-teal" />,
       subtext: "Eligible deductions uncovered",
     },
     {
-      number: "5+",
+      number: SITE_STATS.yearsExperience,
       label: "Years of CPA Expertise",
       icon: <ShieldCheckIcon className="w-5 h-5 text-teal" />,
       subtext: "Licensed CPAs & Enrolled Agents",
@@ -150,7 +151,7 @@ const StatsSection = () => {
   ];
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-white  font-sans relative overflow-hidden">
+    <section className="py-10 sm:py-12 lg:py-14 bg-white  font-sans relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* 2-Column Composition: Left Commercial Photo with Floating Glass Pills + Right Stats Grid */}
@@ -253,7 +254,7 @@ const StatsSection = () => {
             </div>
 
             {/* Trust Checklist Footer */}
-            <div className="mt-7 pt-5 border-t border-border flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-primary font-normal">
+            {/* <div className="mt-7 pt-5 border-t border-border flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-primary font-normal">
               <div className="flex items-center gap-2">
                 <CheckBadgeIcon className="w-4 h-4 text-teal stroke-[2]" />
                 <span>IRS Authorized e-File Transmitter</span>
@@ -266,7 +267,7 @@ const StatsSection = () => {
                 <ShieldCheckIcon className="w-4 h-4 text-teal stroke-[2]" />
                 <span>Included CPA Audit Defense</span>
               </div>
-            </div>
+            </div> */}
           </div>
 
         </div>

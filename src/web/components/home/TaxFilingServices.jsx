@@ -20,6 +20,145 @@ import {
   BanknotesIcon,
 } from "@heroicons/react/24/outline";
 
+const colorThemes = {
+  teal: {
+    iconBg: "bg-[#E9F7FA]",
+    iconText: "text-[#127EAB]",
+    iconBorder: "border-[#127EAB]/25",
+    iconHoverBg: "group-hover:bg-[#127EAB]",
+    tagBg: "bg-[#E9F7FA]",
+    tagText: "text-[#127EAB]",
+    tagBorder: "border-[#127EAB]/25",
+    dot: "bg-[#127EAB]",
+    titleHover: "group-hover:text-[#127EAB]",
+    cardBorderHover: "hover:border-[#127EAB]/40",
+    cardTopLine: "bg-[#127EAB]",
+    actionHover: "group-hover:text-[#127EAB]",
+    complianceBg: "bg-[#E9F7FA]",
+    complianceText: "text-[#127EAB]",
+    complianceBorder: "border-[#127EAB]/25",
+  },
+  coral: {
+    iconBg: "bg-[#FDF2F0]",
+    iconText: "text-[#EE6450]",
+    iconBorder: "border-[#EE6450]/25",
+    iconHoverBg: "group-hover:bg-[#EE6450]",
+    tagBg: "bg-[#FDF2F0]",
+    tagText: "text-[#EE6450]",
+    tagBorder: "border-[#EE6450]/25",
+    dot: "bg-[#EE6450]",
+    titleHover: "group-hover:text-[#EE6450]",
+    cardBorderHover: "hover:border-[#EE6450]/40",
+    cardTopLine: "bg-[#EE6450]",
+    actionHover: "group-hover:text-[#EE6450]",
+    complianceBg: "bg-[#FDF2F0]",
+    complianceText: "text-[#EE6450]",
+    complianceBorder: "border-[#EE6450]/25",
+  },
+  emerald: {
+    iconBg: "bg-[#ECFDF5]",
+    iconText: "text-[#059669]",
+    iconBorder: "border-[#059669]/25",
+    iconHoverBg: "group-hover:bg-[#059669]",
+    tagBg: "bg-[#ECFDF5]",
+    tagText: "text-[#059669]",
+    tagBorder: "border-[#059669]/25",
+    dot: "bg-[#059669]",
+    titleHover: "group-hover:text-[#059669]",
+    cardBorderHover: "hover:border-[#059669]/40",
+    cardTopLine: "bg-[#059669]",
+    actionHover: "group-hover:text-[#059669]",
+    complianceBg: "bg-[#ECFDF5]",
+    complianceText: "text-[#059669]",
+    complianceBorder: "border-[#059669]/25",
+  },
+  indigo: {
+    iconBg: "bg-[#EEF2FF]",
+    iconText: "text-[#4F46E5]",
+    iconBorder: "border-[#4F46E5]/25",
+    iconHoverBg: "group-hover:bg-[#4F46E5]",
+    tagBg: "bg-[#EEF2FF]",
+    tagText: "text-[#4F46E5]",
+    tagBorder: "border-[#4F46E5]/25",
+    dot: "bg-[#4F46E5]",
+    titleHover: "group-hover:text-[#4F46E5]",
+    cardBorderHover: "hover:border-[#4F46E5]/40",
+    cardTopLine: "bg-[#4F46E5]",
+    actionHover: "group-hover:text-[#4F46E5]",
+    complianceBg: "bg-[#EEF2FF]",
+    complianceText: "text-[#4F46E5]",
+    complianceBorder: "border-[#4F46E5]/25",
+  },
+  amber: {
+    iconBg: "bg-[#FFFBEB]",
+    iconText: "text-[#D97706]",
+    iconBorder: "border-[#D97706]/25",
+    iconHoverBg: "group-hover:bg-[#D97706]",
+    tagBg: "bg-[#FFFBEB]",
+    tagText: "text-[#D97706]",
+    tagBorder: "border-[#D97706]/25",
+    dot: "bg-[#D97706]",
+    titleHover: "group-hover:text-[#D97706]",
+    cardBorderHover: "hover:border-[#D97706]/40",
+    cardTopLine: "bg-[#D97706]",
+    actionHover: "group-hover:text-[#D97706]",
+    complianceBg: "bg-[#FFFBEB]",
+    complianceText: "text-[#D97706]",
+    complianceBorder: "border-[#D97706]/25",
+  },
+  purple: {
+    iconBg: "bg-[#F5F3FF]",
+    iconText: "text-[#7C3AED]",
+    iconBorder: "border-[#7C3AED]/25",
+    iconHoverBg: "group-hover:bg-[#7C3AED]",
+    tagBg: "bg-[#F5F3FF]",
+    tagText: "text-[#7C3AED]",
+    tagBorder: "border-[#7C3AED]/25",
+    dot: "bg-[#7C3AED]",
+    titleHover: "group-hover:text-[#7C3AED]",
+    cardBorderHover: "hover:border-[#7C3AED]/40",
+    cardTopLine: "bg-[#7C3AED]",
+    actionHover: "group-hover:text-[#7C3AED]",
+    complianceBg: "bg-[#F5F3FF]",
+    complianceText: "text-[#7C3AED]",
+    complianceBorder: "border-[#7C3AED]/25",
+  },
+  blue: {
+    iconBg: "bg-[#EFF6FF]",
+    iconText: "text-[#2563EB]",
+    iconBorder: "border-[#2563EB]/25",
+    iconHoverBg: "group-hover:bg-[#2563EB]",
+    tagBg: "bg-[#EFF6FF]",
+    tagText: "text-[#2563EB]",
+    tagBorder: "border-[#2563EB]/25",
+    dot: "bg-[#2563EB]",
+    titleHover: "group-hover:text-[#2563EB]",
+    cardBorderHover: "hover:border-[#2563EB]/40",
+    cardTopLine: "bg-[#2563EB]",
+    actionHover: "group-hover:text-[#2563EB]",
+    complianceBg: "bg-[#EFF6FF]",
+    complianceText: "text-[#2563EB]",
+    complianceBorder: "border-[#2563EB]/25",
+  },
+  orange: {
+    iconBg: "bg-[#FFF7ED]",
+    iconText: "text-[#EA580C]",
+    iconBorder: "border-[#EA580C]/25",
+    iconHoverBg: "group-hover:bg-[#EA580C]",
+    tagBg: "bg-[#FFF7ED]",
+    tagText: "text-[#EA580C]",
+    tagBorder: "border-[#EA580C]/25",
+    dot: "bg-[#EA580C]",
+    titleHover: "group-hover:text-[#EA580C]",
+    cardBorderHover: "hover:border-[#EA580C]/40",
+    cardTopLine: "bg-[#EA580C]",
+    actionHover: "group-hover:text-[#EA580C]",
+    complianceBg: "bg-[#FFF7ED]",
+    complianceText: "text-[#EA580C]",
+    complianceBorder: "border-[#EA580C]/25",
+  },
+};
+
 const TaxFilingServices = ({ onOpenModal }) => {
   const [selectedCategory, setSelectedCategory] = useState("us-individual");
 
@@ -31,6 +170,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
       shortLabel: "Individual",
       countLabel: "6 Filing Services",
       icon: <DocumentTextIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />,
+      activeColor: "text-teal",
     },
     {
       id: "us-business",
@@ -39,6 +179,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
       shortLabel: "Business",
       countLabel: "3 Corporate Services",
       icon: <BuildingOffice2Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />,
+      activeColor: "text-blue-400",
     },
     {
       id: "indian-tax",
@@ -47,6 +188,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
       shortLabel: "Indian / NRI",
       countLabel: "3 NRI Services",
       icon: <GlobeAltIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />,
+      activeColor: "text-orange-400",
     },
   ];
 
@@ -63,6 +205,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
           icon: <DocumentTextIcon className="w-6 h-6" />,
           features: ["Form 1040, 1040-SR & W-2 / 1099", "All 50 states electronic filing", "Maximum refund guarantee"],
           complianceText: "IRS Direct e-File",
+          color: "teal",
         },
         {
           title: "FBAR & FATCA Asset Reporting",
@@ -72,6 +215,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
           icon: <GlobeAltIcon className="w-6 h-6" />,
           features: ["FinCEN 114 overseas reporting", "IRS Form 8938 asset disclosure", "Streamlined filing procedures"],
           complianceText: "FinCEN & IRS e-File",
+          color: "coral",
         },
         {
           title: "IRS Representation & Audit Defense",
@@ -81,6 +225,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
           icon: <ShieldCheckIcon className="w-6 h-6" />,
           features: ["Audit notice response & defense", "Penalty abatement requests", "Direct CPA representation"],
           complianceText: "Licensed CPA Defense",
+          color: "emerald",
         },
         {
           title: "ITIN Number Application & Renewal",
@@ -90,6 +235,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
           icon: <IdentificationIcon className="w-6 h-6" />,
           features: ["IRS Form W-7 certified prep", "Document verification assistance", "Spouse & dependent support"],
           complianceText: "IRS Form W-7 Certified",
+          color: "indigo",
         },
         {
           title: "Automatic Tax Extension Filing",
@@ -99,6 +245,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
           icon: <ClockIcon className="w-6 h-6" />,
           features: ["Instant IRS electronic confirmation", "Estimated tax calculation help", "Extends filing to October 15"],
           complianceText: "Instant IRS Confirmation",
+          color: "amber",
         },
         {
           title: "Prior Year Amendment Filing",
@@ -108,6 +255,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
           icon: <ArrowPathIcon className="w-6 h-6" />,
           features: ["Prior 3 tax years reviewed", "Unclaimed tax credits recovered", "Full accuracy recalculation"],
           complianceText: "IRS Form 1040-X",
+          color: "purple",
         },
       ],
       consultation: {
@@ -130,6 +278,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
           icon: <BuildingOffice2Icon className="w-6 h-6" />,
           features: ["LLC, C-Corp & S-Corp formation", "Federal EIN in 24-48 hours", "Articles & operating agreements"],
           complianceText: "State & Federal Filing",
+          color: "teal",
         },
         {
           title: "Small & Medium Business Tax Filing",
@@ -139,6 +288,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
           icon: <BriefcaseIcon className="w-6 h-6" />,
           features: ["Form 1120, 1120-S & 1065", "Quarterly estimated tax filings", "Maximum business write-offs"],
           complianceText: "IRS Business e-File",
+          color: "blue",
         },
         {
           title: "Corporate CPA Tax Advisory",
@@ -148,6 +298,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
           icon: <UserGroupIcon className="w-6 h-6" />,
           features: ["1-on-1 corporate CPA guidance", "Year-end tax minimization", "Payroll & pass-through strategy"],
           complianceText: "Dedicated CPA Expert",
+          color: "coral",
         },
       ],
       consultation: {
@@ -170,6 +321,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
           icon: <DocumentCheckIcon className="w-6 h-6" />,
           features: ["ITR-1 through ITR-7 e-filing", "DTAA double-taxation relief", "Capital gains & NRE/NRO sync"],
           complianceText: "ITD Direct e-Filing",
+          color: "orange",
         },
         {
           title: "Indian Tax Representation",
@@ -179,6 +331,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
           icon: <ScaleIcon className="w-6 h-6" />,
           features: ["Faceless assessment hearings", "Notice 148 / 143(2) responses", "CIT(A) & ITAT dispute appeals"],
           complianceText: "Authorized Representation",
+          color: "emerald",
         },
         {
           title: "NRI Cross-Border Wealth Advisory",
@@ -188,6 +341,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
           icon: <BanknotesIcon className="w-6 h-6" />,
           features: ["FEMA & RBI regulatory guidance", "Form 15CA / 15CB certifications", "Dual-country tax optimization"],
           complianceText: "Cross-Border Certified",
+          color: "indigo",
         },
       ],
       consultation: {
@@ -203,7 +357,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
   const activeData = services[selectedCategory];
 
   return (
-    <section id="services" className="relative py-16 sm:py-20 lg:py-24 bg-white font-sans overflow-hidden">
+    <section id="services" className="relative py-10 sm:py-12 lg:py-14 bg-white font-sans overflow-hidden">
       <div className="relative max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header Fold */}
@@ -261,7 +415,7 @@ const TaxFilingServices = ({ onOpenModal }) => {
                     />
                   )}
 
-                  <span className={`relative z-10 shrink-0 ${isActive ? "text-coral" : "text-slateText"}`}>
+                  <span className={`relative z-10 shrink-0 ${isActive ? (cat.activeColor || "text-coral") : "text-slateText"}`}>
                     {cat.icon}
                   </span>
                   <span className="relative z-10 tracking-tight whitespace-nowrap">
@@ -297,55 +451,58 @@ const TaxFilingServices = ({ onOpenModal }) => {
           >
             {/* 3-Column Service Tiles Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-              {activeData.items.map((item, idx) => (
-                <Link
-                  key={`${selectedCategory}-${idx}`}
-                  to={item.route || "/login"}
-                  className="group relative bg-surface hover:bg-white rounded-2xl p-5 sm:p-6 border border-border hover:border-teal/40 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left overflow-hidden"
-                >
-                  {/* Subtle Accent Line on Hover */}
-                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-teal opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              {activeData.items.map((item, idx) => {
+                const theme = colorThemes[item.color] || colorThemes.teal;
+                return (
+                  <Link
+                    key={`${selectedCategory}-${idx}`}
+                    to={item.route || "/login"}
+                    className={`group relative bg-surface hover:bg-white rounded-2xl p-5 sm:p-6 border border-border ${theme.cardBorderHover} shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left overflow-hidden`}
+                  >
+                    {/* Subtle Accent Line on Hover */}
+                    <div className={`absolute top-0 left-0 right-0 h-[2.5px] ${theme.cardTopLine} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
-                  <div>
-                    {/* Header Row: Icon Badge + Category Tag Pill */}
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-11 h-11 rounded-xl bg-background-aqua text-teal border border-border flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300 shadow-2xs">
-                        {item.icon}
+                    <div>
+                      {/* Header Row: Icon Badge + Category Tag Pill */}
+                      <div className="flex items-center justify-between mb-4">
+                        <div className={`w-11 h-11 rounded-xl ${theme.iconBg} ${theme.iconText} border ${theme.iconBorder} flex items-center justify-center shrink-0 ${theme.iconHoverBg} group-hover:text-white group-hover:border-transparent transition-all duration-300 shadow-2xs`}>
+                          {item.icon}
+                        </div>
+
+                        {item.tag && (
+                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full ${theme.tagBg} ${theme.tagText} border ${theme.tagBorder} text-[11px] font-medium tracking-tight`}>
+                            <span className={`w-1.5 h-1.5 rounded-full ${theme.dot}`} />
+                            <span>{item.tag}</span>
+                          </span>
+                        )}
                       </div>
 
-                      {item.tag && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-background-aqua text-teal border border-border text-[11px] font-medium tracking-tight">
-                          <span className="w-1.5 h-1.5 rounded-full bg-teal" />
-                          <span>{item.tag}</span>
-                        </span>
-                      )}
+                      {/* Card Title */}
+                      <h3 className={`text-[16px] sm:text-[17px] font-semibold text-primary ${theme.titleHover} transition-colors leading-snug`}>
+                        {item.title}
+                      </h3>
+
+                      {/* Card Description */}
+                      <p className="text-xs sm:text-[13px] text-slateText font-normal leading-relaxed mt-2 line-clamp-2">
+                        {item.description}
+                      </p>
                     </div>
 
-                    {/* Card Title */}
-                    <h3 className="text-[16px] sm:text-[17px] font-semibold text-primary group-hover:text-teal transition-colors leading-snug">
-                      {item.title}
-                    </h3>
+                    {/* Card Footer Action */}
+                    <div className="mt-5 pt-3.5 border-t border-border flex items-center justify-between">
+                      <span className={`inline-flex items-center gap-1.5 text-xs font-semibold text-primary ${theme.actionHover} transition-colors`}>
+                        <span>Start Filing</span>
+                        <ArrowRightIcon className="w-3.5 h-3.5 stroke-[2.2] group-hover:translate-x-1 transition-transform" />
+                      </span>
 
-                    {/* Card Description */}
-                    <p className="text-xs sm:text-[13px] text-slateText font-normal leading-relaxed mt-2 line-clamp-2">
-                      {item.description}
-                    </p>
-                  </div>
-
-                  {/* Card Footer Action */}
-                  <div className="mt-5 pt-3.5 border-t border-border flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary group-hover:text-teal transition-colors">
-                      <span>Start Filing</span>
-                      <ArrowRightIcon className="w-3.5 h-3.5 stroke-[2.2] group-hover:translate-x-1 transition-transform" />
-                    </span>
-
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium text-teal bg-background-aqua border border-border">
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal" />
-                      <span>{item.complianceText}</span>
-                    </span>
-                  </div>
-                </Link>
-              ))}
+                      <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium ${theme.complianceText} ${theme.complianceBg} border ${theme.complianceBorder}`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${theme.dot}`} />
+                        <span>{item.complianceText}</span>
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
 
           </motion.div>

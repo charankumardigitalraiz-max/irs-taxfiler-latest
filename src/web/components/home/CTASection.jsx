@@ -5,7 +5,7 @@ import ctaBg from "../../assets/cta-banner-bg.jpg";
 
 const CTASection = ({ onOpenModal }) => {
   return (
-    <section className="relative py-20 sm:py-16 text-primary font-sans overflow-hidden border-t border-border bg-background">
+    <section className="relative py-10 sm:py-12 text-primary font-sans overflow-hidden border-t border-border bg-background">
       {/* Background Image Layer with Clean Light Tint & Depth */}
       <div className="absolute inset-0 z-0">
         <img

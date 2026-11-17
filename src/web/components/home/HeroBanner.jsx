@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { SITE_STATS } from "../../constants/siteStats";
 import usaTaxHeroPhoto from "../../assets/usa-tax-filing-hero.jpg";
 import {
   ArrowRightIcon,
@@ -105,14 +106,14 @@ const HeroBanner = ({ onOpenModal }) => {
                 </motion.h1>
 
                 {/* Subheading */}
-                <motion.p
+                {/* <motion.p
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.15 }}
                   className="text-sm sm:text-base lg:text-[17px] text-slateText font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
                 >
                   File your federal and 50-state tax returns with dedicated CPA review. We uncover every eligible deduction to maximize your refund with 100% IRS accuracy and audit protection.
-                </motion.p>
+                </motion.p> */}
 
                 {/* CTA Action Buttons */}
                 <motion.div
@@ -159,7 +160,7 @@ const HeroBanner = ({ onOpenModal }) => {
                       <span className="text-primary font-semibold ml-1 text-xs">4.9/5 Rating</span>
                     </div>
                     <p className="text-[12px] text-slateText font-normal mt-0.5">
-                      Trusted by 10,000+ U.S. taxpayers, expats & filers worldwide
+                      Trusted by {SITE_STATS.clientsServed} U.S. taxpayers, expats & filers worldwide
                     </p>
                   </div>
                 </motion.div>

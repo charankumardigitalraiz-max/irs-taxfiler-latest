@@ -30,7 +30,8 @@ import { FaInstagram, FaLinkedin, FaSlack, FaWhatsapp } from "react-icons/fa";
 import Logo from "../assets/irs-logo.png";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  // const currentYear = new Date().getFullYear();
+  const currentYear = "2027"
 
   return (
     <footer className="relative bg-footer border-t border-white/10 text-[#CBD5E1] font-sans antialiased">
@@ -241,21 +242,57 @@ const Footer = () => {
               <span className="w-1.5 h-1.5 rounded-full bg-teal" />
             </div>
 
-            <div className="space-y-3.5 text-[13px]">
+            <div className="space-y-3 text-[13px]">
               {/* Corporate Office */}
-              <div className="group">
-                <div className="font-semibold text-white flex items-center gap-1.5 mb-1.5 text-xs">
-                  <MapPinIcon className="w-3.5 h-3.5 text-coral shrink-0" />
-                  <span>IRS Tax Adviser Inc</span>
+              <div className="p-3 rounded-xl bg-white/[0.04]  hover:bg-white/[0.08] hover:border-teal/40 transition-all duration-200 group">
+                <div className="font-semibold text-white flex items-center gap-1.5 text-xs mb-1">
+                  <MapPinIcon className="w-3.5 h-3.5 text-teal shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="group-hover:text-teal transition-colors">IRS Tax Adviser Inc</span>
                 </div>
                 <a
                   href="https://www.google.com/maps/place/12600+Deerfield+Parkway+Suite+2096,+Alpharetta,+GA+30004"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/80 hover:text-white font-normal transition-colors block pl-5 leading-relaxed text-xs"
+                  className="text-white/80 hover:text-white font-normal transition-colors block leading-relaxed text-xs"
                 >
                   12600 Deerfield Parkway, Suite 2096,<br />
                   Alpharetta, GA 30004, USA
+                </a>
+              </div>
+
+              {/* Direct Telephone / Mobile */}
+              <div className="p-3 rounded-xl bg-white/[0.04]  hover:bg-white/[0.08] hover:border-coral/40 transition-all duration-200 group">
+                <div className="font-semibold text-white flex items-center gap-1.5 text-xs mb-1.5">
+                  <PhoneIcon className="w-3.5 h-3.5 text-coral shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="group-hover:text-coral transition-colors">Direct Telephone</span>
+                </div>
+                <div className="space-y-1">
+                  <a
+                    href="tel:+14044244191"
+                    className="text-white hover:text-coral font-semibold transition-colors block text-xs tracking-wide"
+                  >
+                    +1 (404) 424-4191
+                  </a>
+                  <a
+                    href="tel:+14044244815"
+                    className="text-white hover:text-coral font-semibold transition-colors block text-xs tracking-wide"
+                  >
+                    +1 (404) 424-4815
+                  </a>
+                </div>
+              </div>
+
+              {/* Email */}
+              <div className="p-3 rounded-xl bg-white/[0.04]  hover:bg-white/[0.08] hover:border-[#38BDF8]/40 transition-all duration-200 group">
+                <div className="font-semibold text-white flex items-center gap-1.5 text-xs mb-1">
+                  <EnvelopeIcon className="w-3.5 h-3.5 text-[#38BDF8] shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="group-hover:text-[#38BDF8] transition-colors">Email</span>
+                </div>
+                <a
+                  href="mailto:contact@irstaxfiler.com"
+                  className="text-white/80 hover:text-[#38BDF8] font-medium transition-colors block truncate text-xs"
+                >
+                  contact@irstaxfiler.com
                 </a>
               </div>
             </div>
@@ -272,7 +309,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="text-xs text-white/70 font-normal">
-            © {currentYear} IRSTax Filer. All Rights Reserved.
+            © {currentYear} IRS Tax Adviser Inc. All Rights Reserved.
           </div>
 
           {/* Legal Navigation Links */}

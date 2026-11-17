@@ -11,12 +11,137 @@ import {
   AcademicCapIcon,
   HeartIcon,
   GiftIcon,
+  DocumentTextIcon,
 } from '@heroicons/react/24/outline';
 import SEO from '../components/seo/SEO';
 import Logo from '../assets/irsLogo.png';
 
 // Section Visual
 import deadlinesVisual from '../assets/tax-resources-deadlines-3d.jpg';
+
+// Color themes for essential IRS forms cards
+const formThemes = [
+  {
+    codeBg: "bg-[#E9F7FA]",
+    codeText: "text-[#127EAB]",
+    codeBorder: "border-[#127EAB]/25",
+    tagText: "text-[#127EAB]",
+    tagDot: "bg-[#127EAB]",
+    titleHover: "group-hover:text-[#127EAB] text-[#127EAB]",
+    borderHover: "hover:border-[#127EAB]/40",
+    topLine: "bg-[#127EAB]",
+    actionBg: "bg-[#E9F7FA] hover:bg-[#127EAB]",
+    actionText: "text-[#127EAB] hover:text-white",
+    actionBorder: "border-[#127EAB]/30",
+    watermark: "text-[#127EAB]/[0.08]",
+  },
+  {
+    codeBg: "bg-[#FEF4F2]",
+    codeText: "text-[#EE6450]",
+    codeBorder: "border-[#EE6450]/25",
+    tagText: "text-[#EE6450]",
+    tagDot: "bg-[#EE6450]",
+    titleHover: "group-hover:text-[#EE6450] text-[#EE6450]",
+    borderHover: "hover:border-[#EE6450]/40",
+    topLine: "bg-[#EE6450]",
+    actionBg: "bg-[#FEF4F2] hover:bg-[#EE6450]",
+    actionText: "text-[#EE6450] hover:text-white",
+    actionBorder: "border-[#EE6450]/30",
+    watermark: "text-[#EE6450]/[0.08]",
+  },
+  {
+    codeBg: "bg-[#ECFDF5]",
+    codeText: "text-[#059669]",
+    codeBorder: "border-[#059669]/25",
+    tagText: "text-[#059669]",
+    tagDot: "bg-[#059669]",
+    titleHover: "group-hover:text-[#059669] text-[#059669]",
+    borderHover: "hover:border-[#059669]/40",
+    topLine: "bg-[#059669]",
+    actionBg: "bg-[#ECFDF5] hover:bg-[#059669]",
+    actionText: "text-[#059669] hover:text-white",
+    actionBorder: "border-[#059669]/30",
+    watermark: "text-[#059669]/[0.08]",
+  },
+  {
+    codeBg: "bg-[#EEF2FF]",
+    codeText: "text-[#4F46E5]",
+    codeBorder: "border-[#4F46E5]/25",
+    tagText: "text-[#4F46E5]",
+    tagDot: "bg-[#4F46E5]",
+    titleHover: "group-hover:text-[#4F46E5] text-[#4F46E5]",
+    borderHover: "hover:border-[#4F46E5]/40",
+    topLine: "bg-[#4F46E5]",
+    actionBg: "bg-[#EEF2FF] hover:bg-[#4F46E5]",
+    actionText: "text-[#4F46E5] hover:text-white",
+    actionBorder: "border-[#4F46E5]/30",
+    watermark: "text-[#4F46E5]/[0.08]",
+  },
+  {
+    codeBg: "bg-[#FFFBEB]",
+    codeText: "text-[#D97706]",
+    codeBorder: "border-[#D97706]/25",
+    tagText: "text-[#D97706]",
+    tagDot: "bg-[#D97706]",
+    titleHover: "group-hover:text-[#D97706] text-[#D97706]",
+    borderHover: "hover:border-[#D97706]/40",
+    topLine: "bg-[#D97706]",
+    actionBg: "bg-[#FFFBEB] hover:bg-[#D97706]",
+    actionText: "text-[#D97706] hover:text-white",
+    actionBorder: "border-[#D97706]/30",
+    watermark: "text-[#D97706]/[0.08]",
+  },
+  {
+    codeBg: "bg-[#F5F3FF]",
+    codeText: "text-[#7C3AED]",
+    codeBorder: "border-[#7C3AED]/25",
+    tagText: "text-[#7C3AED]",
+    tagDot: "bg-[#7C3AED]",
+    titleHover: "group-hover:text-[#7C3AED] text-[#7C3AED]",
+    borderHover: "hover:border-[#7C3AED]/40",
+    topLine: "bg-[#7C3AED]",
+    actionBg: "bg-[#F5F3FF] hover:bg-[#7C3AED]",
+    actionText: "text-[#7C3AED] hover:text-white",
+    actionBorder: "border-[#7C3AED]/30",
+    watermark: "text-[#7C3AED]/[0.08]",
+  },
+];
+
+// Color themes for Deductions & Credits cards
+const deductionThemes = [
+  {
+    iconBg: "bg-[#E9F7FA]",
+    iconColor: "text-[#127EAB]",
+    iconBorder: "border-[#127EAB]/25",
+    checkColor: "text-[#127EAB]",
+    borderHover: "hover:border-[#127EAB]/40",
+    watermark: "text-[#127EAB]/[0.08]",
+  },
+  {
+    iconBg: "bg-[#EEF2FF]",
+    iconColor: "text-[#4F46E5]",
+    iconBorder: "border-[#4F46E5]/25",
+    checkColor: "text-[#4F46E5]",
+    borderHover: "hover:border-[#4F46E5]/40",
+    watermark: "text-[#4F46E5]/[0.08]",
+  },
+  {
+    iconBg: "bg-[#FEF2F2]",
+    iconColor: "text-[#E11D48]",
+    iconBorder: "border-[#E11D48]/25",
+    checkColor: "text-[#E11D48]",
+    borderHover: "hover:border-[#E11D48]/40",
+    watermark: "text-[#E11D48]/[0.08]",
+  },
+  {
+    iconBg: "bg-[#ECFDF5]",
+    iconColor: "text-[#059669]",
+    iconBorder: "border-[#059669]/25",
+    checkColor: "text-[#059669]",
+    borderHover: "hover:border-[#059669]/40",
+    watermark: "text-[#059669]/[0.08]",
+  },
+];
 
 const TaxResources = () => {
   // 1. Essential IRS Forms (Exact concise content)
@@ -174,163 +299,104 @@ const TaxResources = () => {
       <div className="min-h-screen bg-white font-sans text-primary">
 
         {/* ========================================================================= */}
-        {/* 1. HERO SECTION (CLEAN, AIRY & MINIMAL)                                   */}
+        {/* OFFICIAL IRS FORMS & RESOURCES SECTION                                    */}
         {/* ========================================================================= */}
-        <section className="relative pt-12 sm:pt-16 pb-12 sm:pb-16 bg-white border-b border-slate-100 text-center">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-            {/* Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.08 }}
-              className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.25] mb-3.5"
-            >
-              Essential Tax Resources &{" "}
-              <span className="font-medium text-teal">
-                Official
-              </span>{" "}
-              <span className="font-medium text-coral">
-                IRS Forms
-              </span>
-            </motion.h1>
-
-            {/* Concise Subtext */}
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.12 }}
-              className="text-sm sm:text-base lg:text-[17px] text-slateText font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl mx-auto"
-            >
-              Verified IRS downloads, critical 2025–2026 filing dates, and standard deduction guidelines for taxpayers, expats, and small businesses.
-            </motion.p>
-
-            {/* Subtle Trust Indicators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: 0.16 }}
-              className="flex flex-wrap items-center justify-center gap-4 text-xs text-slateText font-normal"
-            >
-              <span className="inline-flex text-slateText font-normal items-center gap-1.5">
-                <CheckCircleIcon className="w-4 h-4 text-teal" />
-                Direct IRS.gov Links
-              </span>
-              <span className="text-border">•</span>
-              <span className="inline-flex text-slateText font-normal items-center gap-1.5">
-                <CheckCircleIcon className="w-4 h-4 text-teal" />
-                Updated for 2025–2026
-              </span>
-              <span className="text-border">•</span>
-              <span className="inline-flex text-slateText font-normal items-center gap-1.5">
-                <CheckCircleIcon className="w-4 h-4 text-teal" />
-                CPA Reviewed
-              </span>
-            </motion.div>
-
-            {/* Quick Section Jump Links */}
-            <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5">
-              <a
-                href="#forms"
-                className="px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium text-primary bg-sky-50/80 hover:bg-sky-100/80 border border-sky-200/70 transition-colors"
-              >
-                Official Forms
-              </a>
-              <a
-                href="#deadlines"
-                className="px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium text-slateText bg-slate-50 hover:bg-slate-100 border border-slate-200/80 transition-colors"
-              >
-                2026 Deadlines
-              </a>
-              <a
-                href="#deductions"
-                className="px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium text-slateText bg-slate-50 hover:bg-slate-100 border border-slate-200/80 transition-colors"
-              >
-                Deductions & Credits
-              </a>
-            </div>
-
-          </div>
-        </section>
-
-        {/* ========================================================================= */}
-        {/* 2. OFFICIAL IRS FORMS SECTION (AIRY, READABLE 3-COLUMN DIRECTORY)         */}
-        {/* ========================================================================= */}
-        <section id="forms" className="py-14 sm:py-16 bg-slate-50/70 border-b border-slate-100 scroll-mt-16">
+        <section id="forms" className="pt-12 sm:pt-16 pb-14 sm:pb-16 bg-white scroll-mt-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            {/* Section Header */}
-            <div className="text-left mb-8 sm:mb-10">
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
-                Commonly Used Forms &{" "}
-                <span className="font-medium text-teal">
-                  Instructions
+            {/* Header */}
+            <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+              <motion.h1
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.08 }}
+                className="text-3xl sm:text-4xl lg:text-[42px] font-semibold text-primary tracking-tight leading-[1.25] mb-3.5"
+              >
+                Essential Tax Resources &{" "}
+                <span className="text-teal">
+                  Official
+                </span>{" "}
+                <span className="text-coral">
+                  IRS Forms
                 </span>
-              </h2>
-              <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-2 max-w-2xl">
-                Official PDF downloads hosted directly by the IRS and FinCEN.
-              </p>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.12 }}
+                className="text-sm sm:text-base lg:text-[17px] text-[#6F7F8E] font-[500] leading-relaxed max-w-2xl mx-auto"
+              >
+                Verified IRS downloads, critical 2025–2026 filing dates, and standard deduction guidelines for taxpayers, expats, and small businesses.
+              </motion.p>
             </div>
 
-            {/* Clean 3-Column Open Card Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {essentialForms.map((item, idx) => (
-                <motion.div
-                  key={item.code}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: idx * 0.04 }}
-                  className="group bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.07)] hover:border-[#1F4264]/30 transition-all duration-200 flex flex-col justify-between"
-                >
-                  <div>
-                    {/* Top Row: Form Code & Simple Category */}
-                    <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="font-mono text-xs font-semibold text-primary bg-sky-50/90 px-3 py-1 rounded-lg border border-sky-100">
-                        {item.code}
-                      </span>
-                      <span className="text-xs font-medium text-teal">
-                        {item.tag}
-                      </span>
-                    </div>
+            {/* Official IRS Forms Table */}
+            <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-2xs">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="border-b border-slate-200/90 bg-slate-50/80 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#6F7F8E]">
+                      <th className="py-3.5 px-4 sm:px-6">Form Code</th>
+                      <th className="py-3.5 px-4 sm:px-6">Form Name & Purpose</th>
+                      <th className="py-3.5 px-4 sm:px-6">Category</th>
+                      <th className="py-3.5 px-4 sm:px-6 text-right">Official Document</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 text-sm">
+                    {essentialForms.map((item, idx) => {
+                      const theme = formThemes[idx % formThemes.length];
 
-                    {/* Clear Form Title */}
-                    <h3 className="text-base sm:text-[17px] font-semibold text-primary group-hover:text-primary transition-colors leading-snug mb-2">
-                      {item.name}
-                    </h3>
+                      return (
+                        <tr
+                          key={item.code}
+                          className="hover:bg-[#EFF9FB]/40 transition-colors group"
+                        >
+                          {/* Form Code Badge */}
+                          <td className="py-4 px-4 sm:px-6 whitespace-nowrap align-middle">
+                            <span className={`inline-block font-mono text-xs font-semibold ${theme.codeText} ${theme.codeBg} px-2.5 py-1 rounded-lg border ${theme.codeBorder}`}>
+                              {item.code}
+                            </span>
+                          </td>
 
-                    {/* Readable Summary */}
-                    <p className="text-sm text-slateText font-normal leading-relaxed mb-6">
-                      {item.summary}
-                    </p>
-                  </div>
+                          {/* Form Name & Summary */}
+                          <td className="py-4 px-4 sm:px-6 align-middle">
+                            <div className={`font-semibold text-sm sm:text-[15px] ${theme.codeText} mb-0.5 leading-snug`}>
+                              {item.name}
+                            </div>
+                            <p className="text-xs sm:text-[13px] text-slate-500 font-[500] leading-relaxed max-w-xl">
+                              {item.summary}
+                            </p>
+                          </td>
 
-                  {/* Clean Minimal Links */}
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-4">
-                    <a
-                      href={item.formUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary transition-colors"
-                      title="Open official PDF in new tab"
-                    >
-                      <span>Download PDF</span>
-                      <ArrowTopRightOnSquareIcon className="w-4 h-4 stroke-[1.8]" />
-                    </a>
+                          {/* Category Tag */}
+                          <td className="py-4 px-4 sm:px-6 whitespace-nowrap align-middle">
+                            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-700 bg-slate-100/80 px-2.5 py-1 rounded-full border border-slate-200/60">
+                              <span className={`w-1.5 h-1.5 rounded-full ${theme.tagDot}`} />
+                              <span>{item.tag}</span>
+                            </span>
+                          </td>
 
-                    <a
-                      href={item.instructionsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs sm:text-[13px] font-normal text-slateText hover:text-primary transition-colors"
-                      title="Open official instructions in new tab"
-                    >
-                      <span>Instructions</span>
-                      <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                </motion.div>
-              ))}
+                          {/* Action Button */}
+                          <td className="py-4 px-4 sm:px-6 text-right whitespace-nowrap align-middle">
+                            <a
+                              href={item.formUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`inline-flex items-center gap-1.5 text-xs font-semibold ${theme.actionText} ${theme.actionBg} ${theme.actionBorder} px-3 py-1.5 rounded-xl border transition-all duration-200 shadow-2xs hover:shadow-xs hover:scale-[1.02]`}
+                              title={`View official ${item.code} PDF in new tab`}
+                            >
+                              <DocumentTextIcon className="w-3.5 h-3.5 shrink-0" />
+                              <span>View Site</span>
+                              <ArrowTopRightOnSquareIcon className="w-3 h-3 stroke-[2] opacity-80" />
+                            </a>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
 
           </div>
@@ -460,15 +526,18 @@ const TaxResources = () => {
                   Credits
                 </span>
               </h2>
-              <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-2 max-w-2xl">
+              <p className="text-sm sm:text-base text-slate-700 font-normal leading-relaxed mt-2 max-w-2xl">
                 Maximize your tax savings by reviewing eligible federal deductions and credits.
               </p>
             </div>
 
-            {/* Clean 4-Column Category Grid */}
+            {/* Clean 4-Column Category Grid with Vivid Colors & Watermark Numbers */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {deductionCategories.map((col, idx) => {
                 const IconComp = col.icon;
+                const theme = deductionThemes[idx % deductionThemes.length];
+                const catNumber = String(idx + 1).padStart(2, "0");
+
                 return (
                   <motion.div
                     key={idx}
@@ -476,30 +545,40 @@ const TaxResources = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: idx * 0.05 }}
-                    className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.06)] hover:border-[#1F4264]/30 transition-all duration-200 flex flex-col justify-start"
+                    className={`group relative overflow-hidden bg-white rounded-2xl p-6 border border-slate-200/90 shadow-2xs hover:shadow-[0_16px_36px_rgba(22,84,121,0.08)] ${theme.borderHover} transition-all duration-300 flex flex-col justify-start`}
                   >
-                    {/* Clean Category Header */}
-                    <div className="flex items-center gap-3 mb-4 pb-3 border-b border-slate-100">
-                      <div className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center justify-center text-primary shrink-0">
-                        <IconComp className="w-5 h-5" />
-                      </div>
-                      <h3 className="text-base font-semibold text-primary leading-snug">
-                        {col.category}
-                      </h3>
-                    </div>
+                    {/* Large Decorative Watermark Number in Background */}
+                    <span
+                      aria-hidden="true"
+                      className={`absolute -bottom-2 -right-1 text-7xl font-black font-mono tracking-tighter ${theme.watermark} select-none pointer-events-none transition-transform duration-300 group-hover:scale-110`}
+                    >
+                      {catNumber}
+                    </span>
 
-                    {/* Readable Checklist */}
-                    <ul className="space-y-2.5">
-                      {col.items.map((point, pIdx) => (
-                        <li
-                          key={pIdx}
-                          className="flex items-start gap-2.5 text-sm text-slateText font-normal leading-relaxed"
-                        >
-                          <CheckCircleIcon className="w-4 h-4 text-teal shrink-0 mt-0.5" />
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="relative z-10">
+                      {/* Clean Category Header */}
+                      <div className="flex items-center gap-3 mb-4 pb-3.5 border-b border-slate-100">
+                        <div className={`w-10 h-10 rounded-xl ${theme.iconBg} ${theme.iconColor} border ${theme.iconBorder} flex items-center justify-center shrink-0 shadow-2xs`}>
+                          <IconComp className="w-5 h-5 stroke-[1.8]" />
+                        </div>
+                        <h3 className="text-base font-semibold text-primary leading-snug">
+                          {col.category}
+                        </h3>
+                      </div>
+
+                      {/* Readable High-Contrast Checklist */}
+                      <ul className="space-y-3">
+                        {col.items.map((point, pIdx) => (
+                          <li
+                            key={pIdx}
+                            className="flex items-start gap-2.5 text-xs sm:text-[13.5px] text-slate-700 font-medium leading-relaxed"
+                          >
+                            <CheckCircleIcon className={`w-4 h-4 ${theme.checkColor} shrink-0 mt-0.5 stroke-[2]`} />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </motion.div>
                 );
               })}
@@ -509,53 +588,51 @@ const TaxResources = () => {
         </section>
 
         {/* ========================================================================= */}
-        {/* 5. CLEAN, MINIMAL CTA SECTION                                             */}
+        {/* 5. CLEAN, HIGH-IMPACT BRAND CTA SECTION                                   */}
         {/* ========================================================================= */}
-        <section className="py-14 sm:py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section className="py-8 sm:py-10 bg-gradient-to-b from-white via-[#EFF9FB]/60 to-[#E9F7FA]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
-            <div className="rounded-2xl p-8 sm:p-10 bg-slate-50 border border-slate-200/90 shadow-2xs">
+            <div className="relative overflow-hidden rounded-3xl py-7 sm:py-8 lg:py-9 px-6 sm:px-12 lg:px-16 bg-gradient-to-br from-[#1F4264] via-[#1B3C5E] to-[#152F4A] border border-white/15 shadow-xl text-white">
 
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-normal text-primary tracking-tight mb-2.5">
-                Need Help Selecting Forms or Maximizing Deductions?
-              </h2>
+              {/* Decorative Ambient Background Glows */}
+              <div className="absolute -top-24 -left-24 w-72 h-72 bg-teal/25 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-coral/20 rounded-full blur-3xl pointer-events-none" />
 
-              <p className="text-xs sm:text-sm text-slateText font-normal max-w-lg mx-auto mb-6 leading-relaxed">
-                Our licensed CPAs review every return to ensure 100% IRS accuracy, audit protection, and your maximum legal refund.
-              </p>
+              <div className="relative z-10">
+                {/* Pill Badge */}
+                <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-white/90 mb-2.5 select-none">
+                  <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
+                  <span>CPA Tax Assistance</span>
+                </div>
 
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                <Link
-                  to="/login"
-                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-5 rounded-xl bg-[#1F4264] hover:bg-[#1F4264] text-white font-medium text-xs sm:text-sm shadow-sm transition-all"
-                >
-                  <span>Start Filing Online</span>
-                  <ArrowRightIcon className="w-3.5 h-3.5" />
-                </Link>
+                <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-white tracking-tight leading-snug mb-2.5 max-w-3xl mx-auto">
+                  Need Help Selecting Forms or{" "}
+                  <span className="font-medium text-teal-light">
+                    Maximizing Deductions?
+                  </span>
+                </h2>
 
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-5 rounded-xl bg-white hover:bg-slate-50 text-primary font-medium text-xs sm:text-sm border border-slate-300 shadow-2xs transition-all"
-                >
-                  <span>Talk to a CPA</span>
-                </Link>
-              </div>
+                <p className="text-xs sm:text-sm lg:text-[15px] text-white/85 font-normal max-w-2xl mx-auto mb-6 leading-relaxed">
+                  Our licensed CPAs review every return to ensure 100% IRS accuracy, audit protection, and your maximum legal refund.
+                </p>
 
-              <div className="mt-6 pt-5 border-t border-slate-200/60 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-[11px] text-slateText font-normal">
-                <span className="flex items-center gap-1">
-                  <CheckBadgeIcon className="w-3.5 h-3.5 text-teal" />
-                  IRS Authorized e-File
-                </span>
-                <span>•</span>
-                <span className="flex items-center gap-1">
-                  <CheckCircleIcon className="w-3.5 h-3.5 text-teal" />
-                  All 50 States
-                </span>
-                <span>•</span>
-                <span className="flex items-center gap-1">
-                  <ShieldCheckIcon className="w-3.5 h-3.5 text-teal" />
-                  100% Accuracy Guarantee
-                </span>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <Link
+                    to="/login"
+                    className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-6 sm:px-7 rounded-xl bg-teal hover:bg-[#0E668B] text-white font-semibold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+                  >
+                    <span>Start Filing Online</span>
+                    <ArrowRightIcon className="w-4 h-4 stroke-[2]" />
+                  </Link>
+
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center justify-center gap-2 h-10 sm:h-11 px-6 sm:px-7 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/25 backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5"
+                  >
+                    <span>Talk to a CPA</span>
+                  </Link>
+                </div>
               </div>
 
             </div>

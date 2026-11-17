@@ -818,20 +818,19 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* Auth Buttons */}
-            <div className="flex items-center space-x-2" ref={ref}>
+            {/* Auth Buttons (Desktop view only; mobile view has it inside drawer) */}
+            <div className="hidden md:flex items-center space-x-2 relative" ref={ref}>
               {/* Logged Out UI */}
-              {/* {gettoken() === false && (
-                <div className="flex items-center gap-1 sm:gap-2 font-sans">
+              {gettoken() === false && (
+                <div className="flex items-center gap-2 font-sans">
                   <Link
                     to="/login"
-                    className="inline-flex items-center px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-semibold text-primary hover:text-secondary transition-colors border border-primary/25 sm:border-transparent rounded-lg sm:rounded-none"
+                    className="inline-flex items-center px-4 py-2 text-sm font-semibold text-primary hover:text-white hover:bg-primary border border-primary/25 rounded-xl transition-all duration-200 shadow-2xs hover:shadow-xs"
                   >
-                    <span className="sm:hidden">Sign In</span>
-                    <span className="hidden sm:inline">Sign In / Sign Up</span>
+                    <span>Sign In / Sign Up</span>
                   </Link>
                 </div>
-              )} */}
+              )}
 
               {/* ================= LOGGED IN UI ================= */}
               {gettoken() === true && (

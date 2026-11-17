@@ -11,14 +11,14 @@ const TestimonialsSection = () => {
       text: "Received $3,200 more on my refund than last year. The CPA found deductions I didn't know existed, and e-filing was seamless.",
     },
     {
-      name: "David K.",
+      name: "Deepak Kumar",
       initials: "DK",
       role: "U.S. Expat (London)",
       savings: "Saved $4,150",
       text: "Filing U.S. taxes from abroad was daunting before. Their CPA handled my Foreign Earned Income Exclusion and FBAR with zero hassle.",
     },
     {
-      name: "John Smith",
+      name: "Jitendra Shah",
       initials: "JS",
       role: "US Business Owner (Texas)",
       savings: "Saved $8,500",
@@ -32,14 +32,14 @@ const TestimonialsSection = () => {
       text: "Seamless dual-country filing. They eliminated double-taxation on foreign income and filed both IRS and Indian ITR accurately.",
     },
     {
-      name: "Sarah Jenkins",
+      name: "Sneha Joshi",
       initials: "SJ",
       role: "Freelance 1099 Consultant",
       savings: "Saved $3,800",
       text: "First time filing 1099 contractor income. Their CPA maximized my business write-offs and simplified quarterly estimated taxes.",
     },
     {
-      name: "Michael Chang",
+      name: "Manish Choudhary",
       initials: "MC",
       role: "Tech LLC Co-Founder",
       savings: "Saved $6,400",
@@ -48,7 +48,7 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 bg-white  font-sans relative overflow-hidden">
+    <section className="py-8 sm:py-10 bg-white  font-sans relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Compact Section Header */}
