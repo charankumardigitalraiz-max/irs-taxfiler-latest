@@ -79,9 +79,9 @@ const TaxPreparationPhases = ({
         {/* STD DRAFT */}
         <Card className="flex flex-col h-full" padding="none">
           <div className="bg-gray-100 py-3 text-center border-b">
-            <h3 className="text-lg font-bold text-gray-900 uppercase tracking-tight">STD DRAFT</h3>
+            <h3 className="text-lg font-semibold text-gray-900 uppercase tracking-tight">STD DRAFT</h3>
           </div>
-          <div className="flex bg-gray-200 text-xs font-bold uppercase tracking-wider text-gray-700">
+          <div className="flex bg-gray-200 text-xs font-semibold uppercase tracking-wider text-gray-700">
             <div className="w-2/3 px-3 py-2 border-r border-gray-400">Description</div>
             <div className="w-1/3 px-3 py-2">Refund/(Owe)</div>
           </div>
@@ -109,7 +109,7 @@ const TaxPreparationPhases = ({
               </div>
             ))}
           </div>
-          <div className="flex bg-gray-100 font-bold border-t border-gray-300 text-sm">
+          <div className="flex bg-gray-100 font-semibold border-t border-gray-300 text-sm">
             <div className="w-2/3 px-3 py-2 border-r border-gray-400">Total</div>
             <div className="w-1/3 px-3 py-2">{calculateTotal(stdDraft)}</div>
           </div>
@@ -127,9 +127,9 @@ const TaxPreparationPhases = ({
         {/* Tax Planning */}
         <Card className="flex flex-col h-full" padding="none">
           <div className="bg-gray-100 py-3 text-center border-b">
-            <h3 className="text-lg font-bold text-gray-900 uppercase tracking-tight">Tax Planning</h3>
+            <h3 className="text-lg font-semibold text-gray-900 uppercase tracking-tight">Tax Planning</h3>
           </div>
-          <div className="flex bg-gray-200 text-xs font-bold uppercase tracking-wider text-gray-700">
+          <div className="flex bg-gray-200 text-xs font-semibold uppercase tracking-wider text-gray-700">
             <div className="w-2/3 px-3 py-2 border-r border-gray-400">Description</div>
             <div className="w-1/3 px-3 py-2">Refund</div>
           </div>
@@ -157,7 +157,7 @@ const TaxPreparationPhases = ({
               </div>
             ))}
           </div>
-          <div className="flex bg-gray-100 font-bold border-t border-gray-300 text-sm">
+          <div className="flex bg-gray-100 font-semibold border-t border-gray-300 text-sm">
             <div className="w-2/3 px-3 py-2 border-r border-gray-400">Total</div>
             <div className="w-1/3 px-3 py-2">{calculateTotal(taxPlanning)}</div>
           </div>
@@ -175,9 +175,9 @@ const TaxPreparationPhases = ({
         {/* Benefit */}
         <Card className="flex flex-col h-full" padding="none">
           <div className="bg-gray-100 py-3 text-center border-b">
-            <h3 className="text-lg font-bold text-gray-900 uppercase tracking-tight">Benefit</h3>
+            <h3 className="text-lg font-semibold text-gray-900 uppercase tracking-tight">Benefit</h3>
           </div>
-          <div className="flex bg-gray-200 text-xs font-bold uppercase tracking-wider text-gray-700">
+          <div className="flex bg-gray-200 text-xs font-semibold uppercase tracking-wider text-gray-700">
             <div className="w-2/3 px-3 py-2 border-r border-gray-400">Description</div>
             <div className="w-1/3 px-3 py-2">Refund</div>
           </div>
@@ -205,7 +205,7 @@ const TaxPreparationPhases = ({
               </div>
             ))}
           </div>
-          <div className="flex bg-gray-100 font-bold border-t border-gray-300 text-sm">
+          <div className="flex bg-gray-100 font-semibold border-t border-gray-300 text-sm">
             <div className="w-2/3 px-3 py-2 border-r border-gray-400">Total</div>
             <div className="w-1/3 px-3 py-2">{calculateTotal(benefit)}</div>
           </div>
@@ -233,17 +233,17 @@ const TaxPreparationPhases = ({
 
       {/* Uploaded Client Documents Section */}
       <div className="mt-8">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">Uploaded Client Documents</h3>
+        <h3 className="text-xl font-semibold text-gray-800 mb-4">Uploaded Client Documents</h3>
         <div className="overflow-x-auto bg-white rounded-lg shadow border border-gray-200">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-[#EBF5FF]">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider border-r border-gray-200">S.No</th>
-                <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider border-r border-gray-200">Document Type</th>
-                <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider border-r border-gray-200">Comment</th>
-                <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider border-r border-gray-200">View File</th>
-                <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider border-r border-gray-200">Action</th>
-                <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Timestamp</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider border-r border-gray-200">S.No</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider border-r border-gray-200">Document Type</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider border-r border-gray-200">Comment</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider border-r border-gray-200">View File</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider border-r border-gray-200">Action</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Timestamp</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -259,7 +259,7 @@ const TaxPreparationPhases = ({
                   <td className="px-4 py-2.5 text-sm border-r border-gray-200">
                     <button
                       onClick={() => onViewFile?.(doc)}
-                      className="bg-cyan-400 hover:bg-cyan-500 text-white text-[10px] font-bold py-1 px-2 rounded uppercase transition-colors"
+                      className="bg-cyan-400 hover:bg-cyan-500 text-white text-[10px] font-semibold py-1 px-2 rounded uppercase transition-colors"
                     >
                       View File
                     </button>
@@ -267,7 +267,7 @@ const TaxPreparationPhases = ({
                   <td className="px-4 py-2.5 text-sm border-r border-gray-200">
                     <button
                       onClick={() => onDeleteFile?.(doc.id)}
-                      className="bg-red-500 hover:bg-red-600 text-white text-[10px] font-bold py-1 px-2 rounded uppercase transition-colors"
+                      className="bg-red-500 hover:bg-red-600 text-white text-[10px] font-semibold py-1 px-2 rounded uppercase transition-colors"
                     >
                       Delete
                     </button>

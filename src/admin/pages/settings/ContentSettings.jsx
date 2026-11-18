@@ -8,6 +8,8 @@ import {
   Sparkles,
   CheckCircle2,
   XCircle,
+  Eye,
+  RotateCcw,
 } from 'lucide-react';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
@@ -16,17 +18,29 @@ import { settingsService } from '../../services/settingsService';
 import { useToast } from '../../hooks/useToast';
 
 const ADVANCED_FILING_KEY = 'advanced-tax-filing';
+const WEBSITE_TOTAL_VIEWS_KEY = 'website-total-views';
+const ORIGINAL_VISITS_STORAGE_KEY = 'irs_taxfiler_original_visits';
+const ORIGINAL_RESET_STORAGE_KEY = 'irs_taxfiler_original_reset_at';
+const VIEWS_SYNC_STORAGE_KEY = 'irs_taxfiler_views_sync_at';
 
 const ContentSettings = () => {
   const [settings, setSettings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingKey, setEditingKey] = useState(null);
   const [savingAdvanced, setSavingAdvanced] = useState(false);
+  const [savingTotalViews, setSavingTotalViews] = useState(false);
   const [advancedFiling, setAdvancedFiling] = useState({
     enabled: false,
     startDate: '',
     untilDate: '',
     offerPercentage: '',
+  });
+  const [totalViewsConfig, setTotalViewsConfig] = useState({
+    enabled: true,
+    mode: 'default', // 'default' (Default + Original) | 'original' (Original Only)
+    defaultViews: '14820',
+    originalViews: 0,
+    resetAt: null,
   });
   const [formData, setFormData] = useState({
     key: '',
@@ -38,6 +52,29 @@ const ContentSettings = () => {
 
   useEffect(() => {
     loadSettings();
+
+    // Live sync Original Website Visits if the website is opened in another tab
+    const handleLiveVisitsUpdate = (event) => {
+      if (!event || event.key === ORIGINAL_VISITS_STORAGE_KEY) {
+        const latest = parseInt(
+          localStorage.getItem(ORIGINAL_VISITS_STORAGE_KEY) || '0',
+          10
+        );
+        if (!Number.isNaN(latest) && latest >= 0) {
+          setTotalViewsConfig((prev) => ({
+            ...prev,
+            originalViews: latest,
+          }));
+        }
+      }
+    };
+
+    window.addEventListener('storage', handleLiveVisitsUpdate);
+    window.addEventListener('focus', handleLiveVisitsUpdate);
+    return () => {
+      window.removeEventListener('storage', handleLiveVisitsUpdate);
+      window.removeEventListener('focus', handleLiveVisitsUpdate);
+    };
   }, []);
 
   const loadSettings = async () => {
@@ -65,6 +102,46 @@ const ContentSettings = () => {
           } catch {
             // Keep defaults if content is not JSON
           }
+        }
+
+        // Load Website Total Views configuration if saved
+        const viewsSetting = allSettings.find((s) => s.key === WEBSITE_TOTAL_VIEWS_KEY);
+        const localOriginal = parseInt(
+          localStorage.getItem(ORIGINAL_VISITS_STORAGE_KEY) || '0',
+          10
+        );
+        const safeLocalOriginal = Number.isNaN(localOriginal) ? 0 : Math.max(0, localOriginal);
+
+        if (viewsSetting?.content) {
+          try {
+            const parsed = JSON.parse(viewsSetting.content);
+            const savedOriginal = Number(parsed.originalViews);
+            const safeSavedOriginal =
+              !Number.isNaN(savedOriginal) && savedOriginal >= 0 ? Math.floor(savedOriginal) : 0;
+            const localResetAt = localStorage.getItem(ORIGINAL_RESET_STORAGE_KEY);
+            const effectiveOriginal =
+              parsed.resetAt && localResetAt !== String(parsed.resetAt)
+                ? safeSavedOriginal
+                : Math.max(safeSavedOriginal, safeLocalOriginal);
+
+            setTotalViewsConfig({
+              enabled: parsed.enabled !== undefined ? Boolean(parsed.enabled) : true,
+              mode: parsed.mode === 'original' ? 'original' : 'default',
+              defaultViews:
+                parsed.defaultViews !== undefined && parsed.defaultViews !== null
+                  ? String(parsed.defaultViews)
+                  : '14820',
+              originalViews: effectiveOriginal,
+              resetAt: parsed.resetAt || null,
+            });
+          } catch {
+            // Keep defaults if content is not JSON
+          }
+        } else {
+          setTotalViewsConfig((prev) => ({
+            ...prev,
+            originalViews: safeLocalOriginal,
+          }));
         }
       }
     } catch (error) {
@@ -130,6 +207,79 @@ const ContentSettings = () => {
       );
     } finally {
       setSavingAdvanced(false);
+    }
+  };
+
+  const handleResetOriginalViews = () => {
+    const resetStamp = Date.now();
+    try {
+      localStorage.setItem(ORIGINAL_VISITS_STORAGE_KEY, '0');
+      localStorage.setItem(ORIGINAL_RESET_STORAGE_KEY, String(resetStamp));
+    } catch {
+      // Ignore storage errors
+    }
+    setTotalViewsConfig((prev) => ({
+      ...prev,
+      originalViews: 0,
+      resetAt: resetStamp,
+    }));
+  };
+
+  const handleSaveTotalViews = async () => {
+    const parsedViews = Number(totalViewsConfig.defaultViews);
+    if (
+      totalViewsConfig.mode === 'default' &&
+      (totalViewsConfig.defaultViews === '' ||
+        Number.isNaN(parsedViews) ||
+        !Number.isInteger(parsedViews) ||
+        parsedViews < 0)
+    ) {
+      showError('Please enter a valid non-negative whole number for Default Total Views');
+      return;
+    }
+
+    const safeDefaultViews =
+      !Number.isNaN(parsedViews) && parsedViews >= 0 ? Math.floor(parsedViews) : 0;
+
+    try {
+      setSavingTotalViews(true);
+      const payload = {
+        key: WEBSITE_TOTAL_VIEWS_KEY,
+        title: 'Website Total Views',
+        type: 'other',
+        content: JSON.stringify({
+          enabled: totalViewsConfig.enabled,
+          mode: totalViewsConfig.mode,
+          defaultViews: safeDefaultViews,
+          originalViews: totalViewsConfig.originalViews || 0,
+          resetAt: totalViewsConfig.resetAt || null,
+        }),
+      };
+
+      const response = await settingsService.saveSetting(payload);
+      if (response.success) {
+        try {
+          localStorage.setItem(VIEWS_SYNC_STORAGE_KEY, String(Date.now()));
+        } catch {
+          // Ignore storage errors
+        }
+        window.dispatchEvent(new Event('website-total-views-updated'));
+        showSuccess(
+          !totalViewsConfig.enabled
+            ? 'Website Total Views counter disabled and saved'
+            : totalViewsConfig.mode === 'original'
+              ? 'Original Website Visits mode enabled and saved'
+              : `Default + Original Visits (${safeDefaultViews.toLocaleString('en-US')} base) saved`
+        );
+        loadSettings();
+      }
+    } catch (error) {
+      console.error('Failed to save Total Views setting:', error);
+      showError(
+        error.response?.data?.message || 'Failed to save Total Views setting'
+      );
+    } finally {
+      setSavingTotalViews(false);
     }
   };
 
@@ -205,7 +355,7 @@ const ContentSettings = () => {
   ];
 
   const contentSettingsList = settings.filter(
-    (s) => s.key !== ADVANCED_FILING_KEY
+    (s) => s.key !== ADVANCED_FILING_KEY && s.key !== WEBSITE_TOTAL_VIEWS_KEY
   );
 
   if (loading) {
@@ -220,7 +370,7 @@ const ContentSettings = () => {
     <div className="space-y-6">
       <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Content Settings</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">Content Settings</h1>
           <p className="text-sm text-gray-500 mt-1">
             Manage advanced tax filing offers, terms &amp; conditions, privacy policy, and static content
           </p>
@@ -382,6 +532,227 @@ const ContentSettings = () => {
               >
                 <Save className="w-4 h-4" />
                 Save Advanced Filing Settings
+              </Button>
+            </div>
+          </div>
+        </Card.Content>
+      </Card>
+
+      {/* Website Total Views Setup (Enable / Disable + Default Starting Count) */}
+      <Card>
+        <Card.Header>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-start gap-3">
+              <div>
+                <Card.Title>Website Total Visits Setup</Card.Title>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  Configure the default starting visit count displayed in the public website footer
+                </p>
+              </div>
+            </div>
+
+            {/* Enable / Disable Toggle Switch */}
+            <div className="flex items-center gap-3 self-start sm:self-center">
+              <span
+                className={`text-xs font-semibold ${totalViewsConfig.enabled ? 'text-emerald-700' : 'text-gray-500'
+                  }`}
+              >
+                {totalViewsConfig.enabled ? 'Enabled' : 'Disabled'}
+              </span>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={totalViewsConfig.enabled}
+                aria-label="Toggle Website Total Views Counter"
+                onClick={() =>
+                  setTotalViewsConfig((prev) => ({
+                    ...prev,
+                    enabled: !prev.enabled,
+                  }))
+                }
+                className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:ring-offset-2 ${totalViewsConfig.enabled ? 'bg-emerald-600' : 'bg-gray-300'
+                  }`}
+              >
+                <span
+                  aria-hidden="true"
+                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out ${totalViewsConfig.enabled ? 'translate-x-5' : 'translate-x-0'
+                    }`}
+                />
+              </button>
+            </div>
+          </div>
+        </Card.Header>
+
+        <Card.Content>
+          <div className="space-y-4">
+            {totalViewsConfig.enabled ? (
+              <>
+                {/* Visit Count Mode: Default + Original vs Original Only */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Visit Count Mode
+                  </label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setTotalViewsConfig((prev) => ({ ...prev, mode: 'default' }))
+                      }
+                      className={`text-left p-3.5 rounded-lg border transition-all cursor-pointer ${
+                        totalViewsConfig.mode === 'default'
+                          ? 'border-[#127EAB] bg-[#E9F7FA]/60 ring-1 ring-[#127EAB]/30'
+                          : 'border-gray-200 bg-white hover:border-gray-300'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-sm font-semibold text-gray-900">
+                          Default + Original Visits
+                        </span>
+                        <span
+                          className={`h-4 w-4 rounded-full border-2 flex items-center justify-center ${
+                            totalViewsConfig.mode === 'default'
+                              ? 'border-[#127EAB]'
+                              : 'border-gray-300'
+                          }`}
+                        >
+                          {totalViewsConfig.mode === 'default' && (
+                            <span className="h-2 w-2 rounded-full bg-[#127EAB]" />
+                          )}
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Starts from your default visits count and increases every time someone opens the website.
+                      </p>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setTotalViewsConfig((prev) => ({ ...prev, mode: 'original' }))
+                      }
+                      className={`text-left p-3.5 rounded-lg border transition-all cursor-pointer ${
+                        totalViewsConfig.mode === 'original'
+                          ? 'border-[#127EAB] bg-[#E9F7FA]/60 ring-1 ring-[#127EAB]/30'
+                          : 'border-gray-200 bg-white hover:border-gray-300'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-sm font-semibold text-gray-900">
+                          Original Visits Only
+                        </span>
+                        <span
+                          className={`h-4 w-4 rounded-full border-2 flex items-center justify-center ${
+                            totalViewsConfig.mode === 'original'
+                              ? 'border-[#127EAB]'
+                              : 'border-gray-300'
+                          }`}
+                        >
+                          {totalViewsConfig.mode === 'original' && (
+                            <span className="h-2 w-2 rounded-full bg-[#127EAB]" />
+                          )}
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Counts only real website visits, increasing each time the website is opened.
+                      </p>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Default Visits Input + Original Visits Counter + Footer Preview */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+                  {totalViewsConfig.mode === 'default' && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Default Total Visits *
+                      </label>
+                      <div className="relative">
+                        <Eye className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        <input
+                          type="number"
+                          min="0"
+                          step="1"
+                          value={totalViewsConfig.defaultViews}
+                          onChange={(e) =>
+                            setTotalViewsConfig((prev) => ({
+                              ...prev,
+                              defaultViews: e.target.value,
+                            }))
+                          }
+                          placeholder="e.g., 14820"
+                          className="w-full pl-9 pr-3.5 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white"
+                          required
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Original Website Visits Count */}
+                  <div className={totalViewsConfig.mode === 'original' ? 'md:col-span-2' : ''}>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Original Website Visits
+                    </label>
+                    <div className="flex items-center justify-between gap-2 px-3.5 py-2 rounded-lg border border-gray-200 bg-gray-50">
+                      <div className="flex items-center gap-2">
+                        <span className="h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
+                        <span className="text-sm font-semibold text-gray-900 tabular-nums">
+                          {(totalViewsConfig.originalViews || 0).toLocaleString('en-US')}
+                        </span>
+                        <span className="text-xs text-gray-500">real visits</span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleResetOriginalViews}
+                        title="Reset original visit count to 0"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-gray-500 hover:text-red-600 transition-colors cursor-pointer"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                        <span>Reset</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Live Footer Badge Preview */}
+                  <div className="p-3 rounded-xl bg-[#1F4264] border border-[#16314A] flex items-center justify-between gap-2">
+                    <span className="text-xs font-medium text-sky-100/80">
+                      Preview
+                    </span>
+                    <div className="inline-flex items-center gap-2 pl-2.5 pr-1.5 py-1 rounded-full bg-[#102E4A] border border-[#38BDF8]/45 text-xs">
+                      <span className="h-2 w-2 rounded-full bg-emerald-400 shrink-0" />
+                      <Eye className="w-3.5 h-3.5 text-[#38BDF8] shrink-0" />
+                      <span className="text-sky-100/90 font-medium">Total Visits</span>
+                      <span className="px-2 py-0.5 rounded-full bg-gradient-to-r from-[#127EAB] to-[#0EA5E9] text-white text-xs font-semibold tabular-nums">
+                        {(() => {
+                          const base =
+                            totalViewsConfig.mode === 'default' &&
+                            totalViewsConfig.defaultViews !== '' &&
+                            !Number.isNaN(Number(totalViewsConfig.defaultViews)) &&
+                            Number(totalViewsConfig.defaultViews) >= 0
+                              ? Math.floor(Number(totalViewsConfig.defaultViews))
+                              : 0;
+                          const orig = totalViewsConfig.originalViews || 0;
+                          return (base + orig).toLocaleString('en-US');
+                        })()}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="p-3.5 rounded-lg bg-gray-50 border border-dashed border-gray-200 text-xs sm:text-sm text-gray-500">
+                Website Total Visits counter is currently hidden from the website footer. Switch to{' '}
+                <span className="font-semibold text-gray-700">Enable</span> above to display and configure Website Total Visits.
+              </div>
+            )}
+
+            <div className="pt-1">
+              <Button
+                onClick={handleSaveTotalViews}
+                isLoading={savingTotalViews}
+                className="flex items-center gap-2"
+              >
+                <Save className="w-4 h-4" />
+                Save Total Visits Settings
               </Button>
             </div>
           </div>

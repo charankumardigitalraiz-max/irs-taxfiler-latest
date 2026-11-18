@@ -253,9 +253,9 @@ const TaxFilingServices = () => {
               <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
               <span>Full-Service Tax Preparation</span>
             </div> */}
-            <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-semibold text-primary tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.2]">
               Explore Our{" "}
-              <span className="text-teal">Filing Services</span>
+              <span className="font-medium text-teal">Filing Services</span>
             </h2>
           </div>
 

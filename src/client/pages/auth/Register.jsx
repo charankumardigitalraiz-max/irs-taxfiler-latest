@@ -200,7 +200,7 @@ const Register = () => {
   return (
     <div className="min-h-screen flex flex-col justify-between bg-white text-gray-900 font-sans antialiased relative overflow-hidden">
       {/* Ambient Brand Glow Highlights */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-96 bg-gradient-to-b from-[#165479]/[0.08] via-[#127EAB]/[0.05] to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-96 bg-gradient-to-b from-[#1F4264]/[0.08] via-[#127EAB]/[0.05] to-transparent blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 right-0 w-96 h-96 bg-[#127EAB]/[0.04] rounded-full blur-3xl pointer-events-none" />
 
       {/* Top Header Bar */}
@@ -211,7 +211,7 @@ const Register = () => {
 
         <Link
           to="/"
-          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-gray-600 hover:text-[#165479] transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-gray-600 hover:text-[#1F4264] transition-colors"
         >
           <span>Back to Website</span>
           <ArrowRight className="w-4 h-4 stroke-[2]" />
@@ -223,14 +223,14 @@ const Register = () => {
         <div className="w-full max-w-md">
           {/* Header Eyebrow & Title */}
           <div className="text-center mb-6 sm:mb-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F6F9EE] border border-[#127EAB]/30 shadow-2xs mb-3 text-xs font-medium text-[#127EAB]">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E9F7FA] border border-[#127EAB]/30 shadow-2xs mb-3 text-xs font-medium text-[#127EAB]">
               <span className="w-2 h-2 rounded-full bg-[#127EAB]" />
               <span>Official IRS e-File Provider & Licensed CPAs</span>
             </div>
 
             <h1 className="text-2xl sm:text-3xl font-normal text-gray-900 tracking-tight leading-tight">
               Complete{" "}
-              <span className="font-semibold bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#127EAB] bg-clip-text text-transparent">
+              <span className="font-semibold bg-gradient-to-r from-[#16314A] via-[#1F4264] to-[#127EAB] bg-clip-text text-transparent">
                 Registration
               </span>
             </h1>
@@ -240,7 +240,7 @@ const Register = () => {
           </div>
 
           {/* Form Card */}
-          <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/90 shadow-[0_16px_40px_rgba(22,84,121,0.08)]">
+          <div className="bg-white p-6 sm:p-8 rounded-lg border border-slate-200/90 shadow-[0_16px_40px_rgba(22,84,121,0.08)]">
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="grid grid-cols-2 gap-3.5">
                 <Input
@@ -313,7 +313,7 @@ const Register = () => {
               />
 
               {errors.submit && (
-                <div className="bg-rose-50 border border-rose-200 text-rose-700 px-4 py-3 rounded-xl text-xs sm:text-[13px] leading-relaxed">
+                <div className="bg-rose-50 border border-rose-200 text-rose-700 px-4 py-3 rounded-lg text-xs sm:text-[13px] leading-relaxed">
                   {errors.submit}
                 </div>
               )}
@@ -321,7 +321,7 @@ const Register = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-gradient-to-r from-[#0C3D5A] via-[#165479] to-[#1A5B82] hover:from-[#09324A] hover:via-[#134969] hover:to-[#165479] text-white font-medium text-sm sm:text-[15px] shadow-[0_4px_16px_rgba(22,84,121,0.25)] border border-white/20 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed group cursor-pointer mt-2"
+                className="w-full inline-flex items-center justify-center gap-2 h-12 px-6 rounded-lg bg-gradient-to-r from-[#1F4264] via-[#1F4264] to-[#127EAB] hover:from-[#16314A] hover:via-[#1E4162] hover:to-[#1F4264] text-white font-medium text-sm sm:text-[15px] shadow-[0_4px_16px_rgba(22,84,121,0.25)] border border-white/20 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed group cursor-pointer mt-2"
               >
                 {loading ? (
                   <>
@@ -341,7 +341,7 @@ const Register = () => {
           <div className="mt-5 text-center">
             <button
               onClick={() => navigate('/login')}
-              className="inline-flex items-center gap-1.5 text-xs sm:text-[13px] text-gray-600 hover:text-[#165479] font-medium transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-[13px] text-gray-600 hover:text-[#1F4264] font-medium transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4 stroke-[2]" />
               <span>Back to Login</span>
@@ -349,7 +349,7 @@ const Register = () => {
           </div>
 
           {/* Benefits Banner */}
-          <div className="mt-6 bg-gradient-to-r from-[#0A4973] via-[#165479] to-[#134969] rounded-2xl shadow-sm p-5 text-white text-left">
+          <div className="mt-6 bg-gradient-to-r from-[#16314A] via-[#1F4264] to-[#1E4162] rounded-lg shadow-sm p-5 text-white text-left">
             <div className="mb-4">
               <h3 className="text-sm font-semibold text-white">Why Register with IRS Tax Filer?</h3>
               <p className="text-xs text-sky-100/90 mt-0.5">

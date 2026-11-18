@@ -1,6 +1,17 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { Bell, Mail, Phone, UserPlus, ChevronUp, User, LogOut, Hash } from 'lucide-react';
+import {
+  Bell,
+  Mail,
+  Phone,
+  UserPlus,
+  ChevronUp,
+  User,
+  LogOut,
+  Hash,
+  PanelLeftOpen,
+  PanelLeftClose,
+} from 'lucide-react';
 import Sidebar from '../components/layout/Sidebar';
 import FloatingButton from '../components/common/FloatingButton';
 import { getUser, clearAuth } from '../utils/auth';
@@ -11,6 +22,7 @@ const DashboardLayout = () => {
   const [user, setUser] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [desktopSidebarOpen, setDesktopSidebarOpen] = useState(true);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const profileDropdownRef = useRef(null);
   const navigate = useNavigate();
@@ -19,7 +31,7 @@ const DashboardLayout = () => {
   useEffect(() => {
     const currentUser = getUser();
     setUser(currentUser);
-    
+
     // Fetch full user profile to get userId
     const fetchUserProfile = async () => {
       try {
@@ -31,7 +43,7 @@ const DashboardLayout = () => {
         console.error('Failed to fetch user profile:', error);
       }
     };
-    
+
     fetchUserProfile();
   }, []);
 
@@ -54,7 +66,7 @@ const DashboardLayout = () => {
 
   const handleLogout = () => {
     clearAuth();
-    navigate('/client/login');
+    navigate('/login');
   };
 
   // Get user initials
@@ -112,35 +124,50 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Sidebar */}
-      <aside className="fixed left-0 top-0 z-40 h-screen w-64 bg-white border-r border-gray-200 hidden lg:block">
-        <Sidebar />
+    <div className="min-h-screen bg-[#F4F9FB] font-sans">
+      {/* Desktop Sidebar (Collapsible) */}
+      <aside
+        className={`fixed left-0 top-0 z-40 h-screen w-64 bg-[#1F4264] border-r border-[#16314A] hidden lg:block transition-transform duration-200 ease-out ${desktopSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+      >
+        <Sidebar onClose={() => setDesktopSidebarOpen(false)} />
       </aside>
 
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+            className="fixed inset-0 bg-[#152F4A]/50 backdrop-blur-xs z-40 lg:hidden"
             onClick={() => setSidebarOpen(false)}
           />
           <div className="fixed inset-y-0 left-0 z-50 lg:hidden">
-            <Sidebar />
+            <Sidebar isMobile onClose={() => setSidebarOpen(false)} />
           </div>
         </>
       )}
 
       {/* Main Content */}
-      <div className="lg:ml-64">
+      <div
+        className={`transition-[margin] duration-200 ease-out ${desktopSidebarOpen ? 'lg:ml-64' : 'lg:ml-0'
+          }`}
+      >
         {/* Header - For all pages */}
-        <header className="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
+        <header className="sticky top-0 z-30 bg-white border-b border-[#DCEAF0] shadow-[0_1px_8px_rgba(31,66,100,0.04)]">
+          {/* Route transition progress bar */}
+          <div className="absolute top-0 left-0 right-0 h-[2.5px] overflow-hidden pointer-events-none">
+            <div
+              key={location.pathname}
+              className="h-full w-full bg-gradient-to-r from-[#127EAB] via-[#22B8CF] to-[#EE6450] irs-top-progress"
+            />
+          </div>
           <div className="flex h-14 sm:h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-            {/* Left Section - only mobile menu button */}
-            <div className="flex items-center">
+            {/* Left Section - Mobile & Desktop Sidebar Toggle */}
+            <div className="flex items-center gap-2">
               <button
+                type="button"
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="lg:hidden p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                aria-label="Toggle mobile sidebar"
+                className="lg:hidden p-2 text-[#1F4264] hover:text-[#127EAB] hover:bg-[#E9F7FA] rounded-lg transition-colors cursor-pointer"
               >
                 {sidebarOpen ? (
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -152,6 +179,20 @@ const DashboardLayout = () => {
                   </svg>
                 )}
               </button>
+
+              <button
+                type="button"
+                onClick={() => setDesktopSidebarOpen((prev) => !prev)}
+                title={desktopSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+                aria-label={desktopSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+                className="hidden lg:inline-flex items-center justify-center p-2 text-[#1F4264] hover:text-[#127EAB] hover:bg-[#E9F7FA] border border-[#DCEAF0] rounded-lg transition-colors cursor-pointer"
+              >
+                {desktopSidebarOpen ? (
+                  <PanelLeftClose className="w-5 h-5" />
+                ) : (
+                  <PanelLeftOpen className="w-5 h-5" />
+                )}
+              </button>
             </div>
 
             {/* Center Section - Contact Info */}
@@ -159,36 +200,56 @@ const DashboardLayout = () => {
               {/* Email */}
               <a
                 href="mailto:info@irstaxfiler.com"
-                className="flex items-center gap-2.5 px-4 py-2 bg-white border border-gray-200 hover:border-blue-300 hover:bg-blue-50 rounded-lg transition-all group"
+                className="flex items-center gap-2.5 px-3.5 py-2 bg-white border border-[#DCEAF0] hover:border-[#127EAB]/40 hover:bg-[#E9F7FA]/50 rounded-lg transition-all group"
                 title="Email: info@irstaxfiler.com"
               >
-                <div className="p-1.5 bg-blue-50 group-hover:bg-blue-100 rounded-md transition-colors">
-                  <Mail className="w-4 h-4 text-blue-600" />
+                <div className="p-1.5 bg-[#E9F7FA] group-hover:bg-[#127EAB] rounded-lg transition-colors">
+                  <Mail className="w-4 h-4 text-[#127EAB] group-hover:text-white transition-colors" />
                 </div>
-                <span className="text-sm font-medium text-gray-700 group-hover:text-blue-700">
+                <span className="text-sm font-medium text-[#1F4264] group-hover:text-[#127EAB] transition-colors">
                   info@irstaxfiler.com
                 </span>
               </a>
 
-              {/* Phone */}
-              <div className="flex items-center gap-2.5 px-4 py-2 bg-white border border-gray-200 hover:border-green-300 hover:bg-green-50 rounded-lg transition-all group">
-                <div className="p-1.5 bg-green-50 group-hover:bg-green-100 rounded-md transition-colors">
-                  <Phone className="w-4 h-4 text-green-600" />
+              {/* Phone (US & India) */}
+              <div className="flex items-center gap-2.5 px-3.5 py-2 bg-white border border-[#DCEAF0] hover:border-[#059669]/35 hover:bg-[#ECFDF5]/40 rounded-lg transition-all group">
+                <div className="p-1.5 bg-[#ECFDF5] rounded-lg transition-colors shrink-0">
+                  <Phone className="w-4 h-4 text-[#059669]" />
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <a 
-                    href="tel:+1 (415) 223-1315" 
-                    className="text-sm font-medium text-gray-700 hover:text-green-700 transition-colors"
-                  >
-                    +1 (415) 223-1315
-                  </a>
-                  <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
-                  <a 
-                    href="tel:+91 9052 333 667/668" 
-                    className="text-sm font-medium text-gray-700 hover:text-green-700 transition-colors"
-                  >
-                    +91 9052 333 667/668
-                  </a>
+                <div className="flex items-center gap-2 text-xs xl:text-[13px] font-medium whitespace-nowrap">
+                  <div className="flex items-center gap-1">
+                    {/* <span className="text-[10px] font-semibold uppercase text-[#6F7F8E]">US:</span> */}
+                    <a
+                      href="tel:+14044244191"
+                      className="text-[#1F4264] hover:text-[#127EAB] transition-colors"
+                    >
+                      +1 (404) 424-4191
+                    </a>
+                    <span className="text-slate-300">/</span>
+                    <a
+                      href="tel:+14044244815"
+                      className="text-[#1F4264] hover:text-[#127EAB] transition-colors"
+                    >
+                      4815
+                    </a>
+                  </div>
+                  <span className="w-1 h-1 bg-[#CCDCE1] rounded-full shrink-0"></span>
+                  <div className="flex items-center gap-1">
+                    {/* <span className="text-[10px] font-semibold uppercase text-[#6F7F8E]">IN:</span> */}
+                    <a
+                      href="tel:+919052333667"
+                      className="text-[#1F4264] hover:text-[#127EAB] transition-colors"
+                    >
+                      +91 9052 333 667
+                    </a>
+                    <span className="text-slate-300">/</span>
+                    <a
+                      href="tel:+919052333668"
+                      className="text-[#1F4264] hover:text-[#127EAB] transition-colors"
+                    >
+                      668
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -199,15 +260,15 @@ const DashboardLayout = () => {
               <div className="xl:hidden flex items-center gap-2">
                 <a
                   href="mailto:info@irstaxfiler.com"
-                  className="p-2.5 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg transition-colors"
+                  className="p-2.5 bg-[#E9F7FA] hover:bg-[#D5EEF5] text-[#127EAB] rounded-lg transition-colors"
                   title="Email: info@irstaxfiler.com"
                 >
                   <Mail className="w-5 h-5" />
                 </a>
                 <a
-                  href="tel:+16692956566"
-                  className="p-2.5 bg-green-50 hover:bg-green-100 text-green-600 rounded-lg transition-colors"
-                  title="Phone: +1(669)-295-6566"
+                  href="tel:+14044244191"
+                  className="p-2.5 bg-[#ECFDF5] hover:bg-[#D1FAE5] text-[#059669] rounded-lg transition-colors"
+                  title="US: +1 (404) 424-4191 / 4815 | IN: +91 9052 333 667 / 668"
                 >
                   <Phone className="w-5 h-5" />
                 </a>
@@ -226,7 +287,7 @@ const DashboardLayout = () => {
               {/* Refer a Friend Button */}
               <button
                 onClick={() => navigate('/client/dashboard/referrals')}
-                className="hidden sm:flex items-center gap-2 px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold bg-gradient-to-r from-primary-600 to-blue-600 text-white hover:from-primary-700 hover:to-blue-700 rounded-lg transition-all shadow-md hover:shadow-lg transform hover:scale-105"
+                className="hidden sm:flex items-center gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#1F4264] to-[#127EAB] text-white hover:from-[#16314A] hover:to-[#0E668B] rounded-lg transition-all shadow-xs hover:shadow-md cursor-pointer"
               >
                 <UserPlus className="w-4 h-4" />
                 <span className="hidden md:inline">Refer a Friend</span>
@@ -234,66 +295,65 @@ const DashboardLayout = () => {
               </button>
 
               {/* Notifications */}
-              <button className="relative p-2.5 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+              {/* <button className="relative p-2.5 text-[#6F7F8E] hover:text-[#1F4264] hover:bg-[#E9F7FA]/70 rounded-lg transition-colors cursor-pointer">
                 <Bell className="h-5 w-5" />
-                <span className="absolute top-2 right-2 h-2 w-2 bg-red-500 rounded-full border-2 border-white"></span>
-              </button>
+                <span className="absolute top-2 right-2 h-2 w-2 bg-[#EE6450] rounded-full border-2 border-white"></span>
+              </button> */}
 
               {/* Profile Dropdown */}
               <div className="relative" ref={profileDropdownRef}>
                 {/* Profile Button */}
                 <button
                   onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                  className="flex items-center gap-3 pl-3 border-l border-gray-200 hover:bg-gray-50 rounded-lg px-2 py-1.5 transition-colors group"
+                  className="flex items-center gap-3 pl-3  hover:bg-[#F4F9FB] rounded-lg px-2 py-1.5 transition-colors group cursor-pointer"
                 >
-                  <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-primary-600 to-blue-600 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-                    <span className="text-white font-medium text-xs">
+                  <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-[#1F4264] to-[#127EAB] flex items-center justify-center shadow-xs group-hover:shadow-md transition-shadow">
+                    <span className="text-white font-semibold text-xs">
                       {getUserInitials()}
                     </span>
                   </div>
                   <div className="hidden md:block text-left">
-                    <p className="text-sm font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">
+                    <p className="text-sm font-semibold text-[#1F4264] group-hover:text-[#127EAB] transition-colors">
                       {getUserDisplayName()}
                     </p>
                     {(userProfile?.userId || user?.userId) && (
-                            <div className="flex items-center gap-1.5 mt-1">
-                              {/* <Hash className="w-3 h-3 text-gray-400" /> */}
-                              <p className="text-xs font-medium text-gray-600">
-                                User ID: {userProfile?.userId || user?.userId}
-                              </p>
-                            </div>
-                          )}
+                      <div className="flex items-center gap-1.5 mt-0.5">
+                        {/* <Hash className="w-3 h-3 text-gray-400" /> */}
+                        <p className="text-xs font-medium text-[#6F7F8E]">
+                          User ID: {userProfile?.userId || user?.userId}
+                        </p>
+                      </div>
+                    )}
                     {/* <p className="text-xs text-gray-500">{getUserRole()}</p> */}
                   </div>
-                  <ChevronUp 
-                    className={`w-4 h-4 text-gray-400 transition-transform ${
-                      profileDropdownOpen ? 'rotate-0' : 'rotate-180'
-                    }`} 
+                  <ChevronUp
+                    className={`w-4 h-4 text-slate-400 transition-transform ${profileDropdownOpen ? 'rotate-0' : 'rotate-180'
+                      }`}
                   />
                 </button>
 
                 {/* Dropdown Menu */}
                 {profileDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                  <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-[#DCEAF0] z-50 overflow-hidden">
                     {/* User Info Card */}
-                    <div className="p-4 border-b border-gray-200">
+                    <div className="p-4 border-b border-[#E6F0F5] bg-[#F4F9FB]/60">
                       <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary-600 to-blue-600 flex items-center justify-center">
-                          <span className="text-white font-medium text-sm">
+                        <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[#1F4264] to-[#127EAB] flex items-center justify-center">
+                          <span className="text-white font-semibold text-sm">
                             {getUserInitials()}
                           </span>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-semibold text-gray-900 truncate">
+                          <p className="text-sm font-semibold text-[#1F4264] truncate">
                             {getUserDisplayName()}
                           </p>
-                          <p className="text-xs text-gray-500 truncate">
+                          <p className="text-xs text-[#6F7F8E] truncate">
                             {user?.email || userProfile?.email || 'client@example.com'}
                           </p>
                           {(userProfile?.userId || user?.userId) && (
                             <div className="flex items-center gap-1.5 mt-1">
-                              <Hash className="w-3 h-3 text-gray-400" />
-                              <p className="text-xs font-medium text-gray-600">
+                              <Hash className="w-3 h-3 text-[#127EAB]" />
+                              <p className="text-xs font-medium text-[#1F4264]">
                                 User ID: {userProfile?.userId || user?.userId}
                               </p>
                             </div>
@@ -303,23 +363,23 @@ const DashboardLayout = () => {
                     </div>
 
                     {/* Menu Items */}
-                    <div className="py-1">
+                    <div className="py-1.5">
                       <button
                         onClick={() => {
                           setProfileDropdownOpen(false);
-                          navigate('/dashboard/profile');
+                          navigate('/client/dashboard/profile');
                         }}
-                        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-[#1F4264] hover:bg-[#E9F7FA]/60 hover:text-[#127EAB] transition-colors cursor-pointer"
                       >
-                        <User className="w-4 h-4 text-gray-500" />
+                        <User className="w-4 h-4 text-[#127EAB]" />
                         <span>Profile Settings</span>
                       </button>
-                      
-                      <div className="border-t border-gray-200 my-1"></div>
-                      
+
+                      <div className="border-t border-[#E6F0F5] my-1"></div>
+
                       <button
                         onClick={handleLogout}
-                        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-[#EE6450] hover:bg-[#FEF4F2] transition-colors cursor-pointer"
                       >
                         <LogOut className="w-4 h-4" />
                         <span>Sign Out</span>
@@ -334,7 +394,9 @@ const DashboardLayout = () => {
 
         {/* Page Content */}
         <main className="p-4 sm:p-6 lg:p-8">
-          <Outlet />
+          <div key={location.pathname} className="irs-page-enter">
+            <Outlet />
+          </div>
         </main>
       </div>
 

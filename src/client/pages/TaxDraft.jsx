@@ -8,6 +8,7 @@ import {
   File,
 } from 'lucide-react';
 import Card from '../components/common/Card';
+import { SectionSkeleton } from '../components/common/PageLoader';
 import { documentService } from '../services/documentService';
 import { userService } from '../services/userService';
 import { baseUrl } from '../../baseurl';
@@ -179,21 +180,21 @@ const TaxDraft = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary-600 via-blue-600 to-sky-500 text-white p-6 shadow-lg">
+      <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-[#1F4264] via-[#17577A] to-[#127EAB] text-white p-6 shadow-md">
         <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <div className="absolute -right-16 -top-16 w-52 h-52 rounded-full border border-white/20" />
-          <div className="absolute -right-2 top-4 w-32 h-32 rounded-full border border-white/10" />
+          <div className="absolute -right-16 -top-16 w-52 h-52 rounded-full border border-white/25" />
+          <div className="absolute -right-2 top-4 w-32 h-32 rounded-full border border-white/15" />
         </div>
 
         <div className="relative">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur text-xs font-medium mb-3">
-            <FileText className="w-3 h-3" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur text-xs font-medium text-sky-50 mb-3">
+            <FileText className="w-3.5 h-3.5 text-[#7DD3FC]" />
             <span>Tax Draft Documents</span>
           </div>
-          <h1 className="text-2xl md:text-3xl font-bold mb-2">
-            Tax Draft Summary & Documents
+          <h1 className="text-xl sm:text-[22px] font-medium text-white tracking-tight">
+            Tax Draft Summary &amp; Documents
           </h1>
-          <p className="text-sm md:text-base text-white/90 max-w-xl">
+          <p className="text-[13px] sm:text-sm text-sky-100/90 font-medium mt-1">
             Review your tax calculation summary and draft documents prepared by our team.
           </p>
         </div>
@@ -203,11 +204,11 @@ const TaxDraft = () => {
       {taxPrep && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-sans">
           {/* STD DRAFT */}
-          <div className="flex flex-col h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+          <div className="flex flex-col h-full bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
             <div className="bg-gray-100 py-3 text-center border-b">
-              <h3 className="text-lg font-bold text-gray-800 uppercase italic">STD DRAFT</h3>
+              <h3 className="text-lg font-semibold text-gray-800 uppercase italic">STD DRAFT</h3>
             </div>
-            <div className="flex bg-gray-200 text-xs font-bold uppercase tracking-wider text-gray-700">
+            <div className="flex bg-gray-200 text-xs font-semibold uppercase tracking-wider text-gray-700">
               <div className="w-2/3 px-3 py-2 border-r border-gray-300">Description</div>
               <div className="w-1/3 px-3 py-2">Refund/(Owe)</div>
             </div>
@@ -223,18 +224,18 @@ const TaxDraft = () => {
                 </div>
               ))}
             </div>
-            <div className="flex bg-gray-100 font-bold border-t border-gray-200 text-gray-900 text-sm">
+            <div className="flex bg-gray-100 font-semibold border-t border-gray-200 text-gray-900 text-sm">
               <div className="w-2/3 px-3 py-2 border-r border-gray-300">Total</div>
               <div className="w-1/3 px-3 py-2">${calculateTotal(taxPrep.stdDraft)}</div>
             </div>
           </div>
 
           {/* Tax Planning */}
-          <div className="flex flex-col h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+          <div className="flex flex-col h-full bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
             <div className="bg-gray-100 py-3 text-center border-b">
-              <h3 className="text-lg font-bold text-gray-800 uppercase italic">Tax Planning</h3>
+              <h3 className="text-lg font-semibold text-gray-800 uppercase italic">Tax Planning</h3>
             </div>
-            <div className="flex bg-gray-200 text-xs font-bold uppercase tracking-wider text-gray-700">
+            <div className="flex bg-gray-200 text-xs font-semibold uppercase tracking-wider text-gray-700">
               <div className="w-2/3 px-3 py-2 border-r border-gray-300">Description</div>
               <div className="w-1/3 px-3 py-2">Refund</div>
             </div>
@@ -250,18 +251,18 @@ const TaxDraft = () => {
                 </div>
               ))}
             </div>
-            <div className="flex bg-gray-100 font-bold border-t border-gray-200 text-gray-900 text-sm">
+            <div className="flex bg-gray-100 font-semibold border-t border-gray-200 text-gray-900 text-sm">
               <div className="w-2/3 px-3 py-2 border-r border-gray-200">Total</div>
               <div className="w-1/3 px-3 py-2">${calculateTotal(taxPrep.taxPlanning)}</div>
             </div>
           </div>
 
           {/* Benefit */}
-          <div className="flex flex-col h-full bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+          <div className="flex flex-col h-full bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
             <div className="bg-gray-100 py-3 text-center border-b">
-              <h3 className="text-lg font-bold text-gray-800 uppercase italic">Benefit</h3>
+              <h3 className="text-lg font-semibold text-gray-800 uppercase italic">Benefit</h3>
             </div>
-            <div className="flex bg-gray-200 text-xs font-bold uppercase tracking-wider text-gray-700">
+            <div className="flex bg-gray-200 text-xs font-semibold uppercase tracking-wider text-gray-700">
               <div className="w-2/3 px-3 py-2 border-r border-gray-300">Description</div>
               <div className="w-1/3 px-3 py-2">Refund</div>
             </div>
@@ -277,7 +278,7 @@ const TaxDraft = () => {
                 </div>
               ))}
             </div>
-            <div className="flex bg-gray-100 font-bold border-t border-gray-200 text-gray-900 text-sm">
+            <div className="flex bg-gray-100 font-semibold border-t border-gray-200 text-gray-900 text-sm">
               <div className="w-2/3 px-3 py-2 border-r border-gray-200">Total</div>
               <div className="w-1/3 px-3 py-2">${calculateTotal(taxPrep.benefit)}</div>
             </div>
@@ -298,7 +299,7 @@ const TaxDraft = () => {
             <select
               value={selectedYear}
               onChange={(e) => setSelectedYear(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+              className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white"
             >
               <option value="all">All Years</option>
               {getAvailableYears().map((year) => (
@@ -314,20 +315,17 @@ const TaxDraft = () => {
       {/* Documents List */}
       {loading ? (
         <Card>
-          <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto" />
-            <p className="text-gray-500 mt-4">Loading documents...</p>
-          </div>
+          <SectionSkeleton variant="documents" rows={3} />
         </Card>
       ) : filteredFiles.length > 0 ? (
-        <Card className="border-2 border-blue-200 bg-blue-50/30">
+        <Card className="border-2 border-[#127EAB]/25 bg-[#E9F7FA]/30">
           <div className="flex items-center gap-2 mb-6">
-            <div className="h-1 w-1 rounded-full bg-blue-600"></div>
+            <div className="h-1 w-1 rounded-full bg-[#127EAB]"></div>
             <h3 className="text-lg font-semibold text-gray-900">
               Tax Draft Documents ({filteredFiles.length}
               {selectedYear !== 'all' && ` for ${selectedYear}`})
             </h3>
-            <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded">
+            <span className="px-2 py-1 text-xs font-medium bg-[#E9F7FA] text-[#0E668B] rounded">
               Admin Upload
             </span>
           </div>
@@ -351,18 +349,18 @@ const TaxDraft = () => {
                       return (
                         <div
                           key={file.id}
-                          className="flex items-center justify-between p-4 bg-white rounded-lg border-2 border-blue-200 hover:bg-blue-50 transition-colors"
+                          className="flex items-center justify-between p-4 bg-white rounded-lg border-2 border-[#127EAB]/25 hover:bg-[#E9F7FA] transition-colors"
                         >
                           <div className="flex items-center gap-4 flex-1">
-                            <div className="p-2 bg-blue-100 rounded-lg">
-                              <FileIcon className="h-5 w-5 text-blue-600" />
+                            <div className="p-2 bg-[#E9F7FA] rounded-lg">
+                              <FileIcon className="h-5 w-5 text-[#127EAB]" />
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-2 mb-1">
                                 <p className="text-sm font-medium text-gray-900 truncate">
                                   {file.displayName || file.name}
                                 </p>
-                                <span className="px-2 py-0.5 text-xs font-medium bg-blue-100 text-blue-700 rounded">
+                                <span className="px-2 py-0.5 text-xs font-medium bg-[#E9F7FA] text-[#0E668B] rounded">
                                   Admin
                                 </span>
                               </div>

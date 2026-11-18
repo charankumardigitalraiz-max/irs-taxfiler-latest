@@ -124,7 +124,7 @@ const Support = () => {
             href="mailto:info@irstaxfiler.com"
             className="text-sm text-primary-blue hover:text-blue-700 font-medium"
           >
-            Send Email â†’
+            Send Email →
           </a>
         </motion.div>
 
@@ -147,7 +147,7 @@ const Support = () => {
             href="tel:+15551234567"
             className="text-sm text-primary-blue hover:text-blue-700 font-medium"
           >
-            Call Now â†’
+            Call Now →
           </a>
         </motion.div>
 
@@ -340,9 +340,9 @@ const Support = () => {
                           </div>
                           <div className="flex items-center space-x-4 text-sm text-slateText">
                             <span>Ticket: {ticket.ticketNumber}</span>
-                            <span>â€¢</span>
+                            <span>•</span>
                             <span>Category: {ticket.category}</span>
-                            <span>â€¢</span>
+                            <span>•</span>
                             <span>{ticket.messages} messages</span>
                           </div>
                         </div>

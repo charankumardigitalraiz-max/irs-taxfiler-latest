@@ -206,23 +206,23 @@ const Filing = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <Card className="p-4">
             <p className="text-sm text-gray-500">Total Filings</p>
-            <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+            <p className="text-2xl font-semibold text-gray-900">{stats.total}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Ready to File</p>
-            <p className="text-2xl font-bold text-yellow-600">{stats.readyToFile}</p>
+            <p className="text-2xl font-semibold text-yellow-600">{stats.readyToFile}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">E-Filing Pending</p>
-            <p className="text-2xl font-bold text-blue-600">{stats.efilingPending}</p>
+            <p className="text-2xl font-semibold text-blue-600">{stats.efilingPending}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Accepted</p>
-            <p className="text-2xl font-bold text-green-600">{stats.accepted}</p>
+            <p className="text-2xl font-semibold text-green-600">{stats.accepted}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Paper Completed</p>
-            <p className="text-2xl font-bold text-orange-600">{stats.paperCompleted}</p>
+            <p className="text-2xl font-semibold text-orange-600">{stats.paperCompleted}</p>
           </Card>
         </div>
 

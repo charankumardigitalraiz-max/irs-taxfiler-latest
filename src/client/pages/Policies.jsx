@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../components/common/Card';
+import PageLoader from '../components/common/PageLoader';
 import { settingsService } from '../services/settingsService';
 
 const Policies = () => {
@@ -70,21 +71,17 @@ const Policies = () => {
   ];
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-gray-500">Loading policies...</div>
-      </div>
-    );
+    return <PageLoader variant="policies" />;
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 irs-page-enter">
       {/* Intro */}
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">
+      <div className="bg-white rounded-lg shadow-[0_2px_10px_rgba(31,66,100,0.04)] px-5 py-4 border border-[#DCEAF0]">
+        <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight">
           Settings &amp; Policies
-        </h1>
-        <p className="text-gray-600 max-w-2xl text-sm">
+        </h2>
+        <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-medium mt-0.5">
           Review the key policies that govern how we handle your data, payments, and
           use of the IRS Tax Filer client portal.
         </p>
@@ -105,7 +102,7 @@ const Policies = () => {
               </Card.Header>
               <Card.Content>
                 <div
-                  className="text-sm text-gray-600 prose prose-sm max-w-none"
+                  className="text-sm font-medium text-[#4A6178] leading-7 space-y-2.5 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-2.5 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-2.5 [&_li]:leading-6 [&_p]:mb-3 [&_p:last-child]:mb-0"
                   dangerouslySetInnerHTML={{ __html: data.content }}
                 />
               </Card.Content>

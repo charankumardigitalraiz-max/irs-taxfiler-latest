@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   XMarkIcon,
-  SparklesIcon,
   CalendarDaysIcon,
   CheckCircleIcon,
-  ShieldCheckIcon,
   ArrowRightIcon,
   UserIcon,
   EnvelopeIcon,
@@ -145,7 +143,7 @@ const AdvancedFilingModal = ({ isOpen, onClose, offerData }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isExpired) {
-      setSubmitError("This early filing offer has expired.");
+      setSubmitError("This offer has expired.");
       return;
     }
     if (!validate()) return;
@@ -156,8 +154,8 @@ const AdvancedFilingModal = ({ isOpen, onClose, offerData }) => {
     try {
       const offerSummary =
         offerPercentage > 0
-          ? `${offerPercentage}% OFF Early Filing Offer`
-          : "Advanced Tax Filing Slot";
+          ? `${offerPercentage}% OFF Express Tax Filing Offer`
+          : "Express Tax Filing Slot";
       const dateRange =
         startDate || untilDate
           ? `${startDate || "Now"} to ${untilDate || "End of Season"}`
@@ -167,8 +165,8 @@ const AdvancedFilingModal = ({ isOpen, onClose, offerData }) => {
         name: formData.name.trim(),
         email: formData.email.trim(),
         phone: formData.phone.trim(),
-        subject: `Advanced Tax Filing (${offerSummary})`,
-        message: `Advanced Tax Filing Reservation — Category: ${formData.filingType} | Offer: ${offerSummary} | Window: ${dateRange}`,
+        subject: `Express Tax Filing (${offerSummary})`,
+        message: `Express Tax Filing Reservation — Category: ${formData.filingType} | Offer: ${offerSummary} | Window: ${dateRange}`,
       });
 
       setSubmitSuccess(true);
@@ -213,13 +211,13 @@ const AdvancedFilingModal = ({ isOpen, onClose, offerData }) => {
             className="fixed inset-0 bg-[#152F4A]/65 backdrop-blur-xs"
           />
 
-          {/* Horizontal Split Modal Container */}
+          {/* Compact Horizontal Split Modal */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 14 }}
+            initial={{ opacity: 0, scale: 0.95, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: 10 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="relative z-10 w-full max-w-[820px] max-h-[92vh] overflow-y-auto bg-white rounded-3xl border border-slate-200/90 shadow-[0_24px_65px_rgba(21,47,74,0.30)] grid grid-cols-1 md:grid-cols-12"
+            exit={{ opacity: 0, scale: 0.96, y: 8 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="relative z-10 w-full max-w-[740px] max-h-[92vh] overflow-y-auto bg-white rounded-3xl border border-slate-200/90 shadow-[0_24px_65px_rgba(21,47,74,0.30)] grid grid-cols-1 md:grid-cols-12"
           >
             {/* Close Button */}
             <button
@@ -231,39 +229,27 @@ const AdvancedFilingModal = ({ isOpen, onClose, offerData }) => {
               <XMarkIcon className="w-4.5 h-4.5 stroke-[2.2]" />
             </button>
 
-            {/* =============================================================== */}
-            {/* LEFT COLUMN: OFFER DETAILS, LIVE COUNTDOWN TIMER & HIGHLIGHTS   */}
-            {/* =============================================================== */}
-            <div className="md:col-span-5 relative bg-gradient-to-br from-[#16314A] via-[#1F4264] to-[#127EAB] p-6 sm:p-7 text-white flex flex-col justify-between overflow-hidden">
+            {/* LEFT COLUMN: ONLY OFFER TITLE, DISCOUNT, DATE & LIVE TIMER */}
+            <div className="md:col-span-5 relative bg-gradient-to-br from-[#16314A] via-[#1F4264] to-[#127EAB] p-6 sm:p-7 text-white flex flex-col justify-center overflow-hidden">
               <div className="absolute -top-16 -right-14 w-44 h-44 bg-white/10 rounded-full blur-2xl pointer-events-none" />
               <div className="absolute -bottom-16 -left-14 w-44 h-44 bg-[#EE6450]/20 rounded-full blur-2xl pointer-events-none" />
 
               <div className="relative z-10">
-                {/* Offer Badges */}
-                <div className="flex flex-wrap items-center gap-2 mb-3.5 pr-8 md:pr-0">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 border border-white/20 text-[11px] font-semibold text-sky-50">
-                    <SparklesIcon className="w-3.5 h-3.5 text-[#FFD1C4]" />
-                    <span>Advanced Filing</span>
+                {offerPercentage > 0 && (
+                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#EE6450] text-white text-xs font-semibold shadow-xs mb-3.5">
+                    {offerPercentage}% OFF
                   </span>
+                )}
 
-                  {offerPercentage > 0 && (
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#EE6450] text-white text-[11px] font-semibold shadow-xs">
-                      {offerPercentage}% OFF
-                    </span>
-                  )}
-                </div>
-
-                {/* Headline */}
                 <h2
                   id="advanced-filing-modal-title"
-                  className="text-xl sm:text-2xl font-semibold tracking-tight text-white leading-[1.3] mb-2"
+                  className="text-xl sm:text-2xl font-semibold tracking-tight text-white leading-snug pr-8 md:pr-0"
                 >
-                  Lock In Your Early{" "}
-                  <span className="text-[#7DD3FC]">Tax Filing Offer</span>
+                  Express Tax Filing
                 </h2>
 
                 {(startDate || untilDate) && (
-                  <div className="inline-flex items-center gap-1.5 text-xs text-sky-100/90 font-medium mb-5">
+                  <div className="inline-flex items-center gap-1.5 text-xs text-sky-100/90 font-medium mt-2">
                     <CalendarDaysIcon className="w-4 h-4 text-[#7DD3FC] shrink-0" />
                     <span>
                       {startDate ? `${startDate}` : "Now"}
@@ -274,11 +260,11 @@ const AdvancedFilingModal = ({ isOpen, onClose, offerData }) => {
 
                 {/* Live Countdown Timer */}
                 {countdown.status !== "none" && (
-                  <div className="p-3.5 rounded-2xl bg-white/[0.08] border border-white/15 backdrop-blur-xs mb-5">
+                  <div className="mt-5 p-3.5 rounded-2xl bg-white/[0.09] border border-white/15 backdrop-blur-xs">
                     {isExpired ? (
                       <div className="inline-flex items-center gap-2 text-xs font-semibold text-rose-200">
                         <ClockIcon className="w-4 h-4 shrink-0" />
-                        <span>This early filing offer has ended.</span>
+                        <span>This offer has ended.</span>
                       </div>
                     ) : (
                       <>
@@ -294,12 +280,12 @@ const AdvancedFilingModal = ({ isOpen, onClose, offerData }) => {
                           {timerUnits.map((unit) => (
                             <div
                               key={unit.label}
-                              className="py-2 px-1 rounded-xl bg-white/15 border border-white/20 text-center"
+                              className="py-2.5 px-1 rounded-xl bg-white/15 border border-white/20 text-center"
                             >
                               <div className="font-mono text-base font-semibold text-white leading-none tabular-nums">
                                 {unit.value}
                               </div>
-                              <div className="text-[9px] uppercase tracking-wider text-sky-100/80 font-medium mt-1 leading-none">
+                              <div className="text-[9.5px] uppercase tracking-wider text-sky-100/80 font-medium mt-1 leading-none">
                                 {unit.label}
                               </div>
                             </div>
@@ -309,71 +295,53 @@ const AdvancedFilingModal = ({ isOpen, onClose, offerData }) => {
                     )}
                   </div>
                 )}
-
-                {/* Compact Benefits List */}
-                <ul className="space-y-2 text-xs text-sky-50/90 font-medium">
-                  <li className="flex items-center gap-2">
-                    <CheckCircleIcon className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span>
-                      {offerPercentage > 0
-                        ? `Guaranteed ${offerPercentage}% Early-Bird Discount`
-                        : "Priority Early-Bird Tax Filing"}
-                    </span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircleIcon className="w-4 h-4 text-[#7DD3FC] shrink-0" />
-                    <span>Priority Certified CPA Queue</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircleIcon className="w-4 h-4 text-[#FFD1C4] shrink-0" />
-                    <span>Day-1 Electronic IRS Filing</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Bottom Security Badge */}
-              <div className="relative z-10 mt-6 pt-3.5 border-t border-white/15 flex items-center gap-2 text-[11px] text-sky-100/80 font-medium">
-                <ShieldCheckIcon className="w-4 h-4 text-[#7DD3FC] shrink-0" />
-                <span>256-Bit SSL Encrypted &amp; Confidential</span>
               </div>
             </div>
 
-            {/* =============================================================== */}
-            {/* RIGHT COLUMN: COMPACT CLAIM / RESERVATION FORM                  */}
-            {/* =============================================================== */}
-            <div className="md:col-span-7 p-6 sm:p-7 lg:p-8 flex flex-col justify-center bg-white">
+            {/* RIGHT COLUMN: CLEAN COMPACT FORM */}
+            <div className="md:col-span-7 p-6 sm:p-7 flex flex-col justify-center bg-white">
               {submitSuccess ? (
-                <div className="text-center py-6">
-                  <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mx-auto mb-4">
-                    <CheckCircleIcon className="w-8 h-8" />
+                <div className="text-center py-5">
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mx-auto mb-3.5">
+                    <CheckCircleIcon className="w-7 h-7" />
                   </div>
                   <h3 className="text-lg font-semibold text-[#1F4264] mb-1.5">
-                    Your Early Filing Offer Is Reserved!
+                    Slot Reserved!
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#6F7F8E] font-medium leading-relaxed max-w-sm mx-auto mb-6">
-                    Our CPA team has locked in your{" "}
+                  <p className="text-xs sm:text-sm text-[#6F7F8E] font-medium leading-relaxed max-w-xs mx-auto mb-5">
+                    Your{" "}
                     {offerPercentage > 0 ? (
                       <span className="text-[#127EAB] font-semibold">
                         {offerPercentage}% discount
                       </span>
                     ) : (
-                      "priority slot"
+                      "express filing slot"
                     )}{" "}
-                    and will reach out shortly.
+                    is locked in. Our CPA team will contact you shortly.
                   </p>
-                  <div className="flex flex-wrap items-center justify-center gap-3">
-                    <Link
-                      to={gettoken() === true ? "/client/dashboard" : "/login"}
-                      onClick={handleClose}
-                      className="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-xl bg-[#1F4264] hover:bg-[#152F4A] text-white text-xs sm:text-sm font-semibold shadow-sm transition-all"
-                    >
-                      <span>
-                        {gettoken() === true
-                          ? "Go to Dashboard"
-                          : "Sign In to Start Filing"}
-                      </span>
-                      <ArrowRightIcon className="w-4 h-4" />
-                    </Link>
+                  <div className="flex flex-wrap items-center justify-center gap-2.5">
+                    {gettoken() === true ? (
+                      <Link
+                        to="/client/dashboard"
+                        onClick={handleClose}
+                        className="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-xl bg-[#1F4264] hover:bg-[#152F4A] text-white text-xs sm:text-sm font-semibold shadow-sm transition-all"
+                      >
+                        <span>Go to Dashboard</span>
+                        <ArrowRightIcon className="w-4 h-4" />
+                      </Link>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          handleClose();
+                          window.dispatchEvent(new CustomEvent("openLoginModal"));
+                        }}
+                        className="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-xl bg-[#1F4264] hover:bg-[#152F4A] text-white text-xs sm:text-sm font-semibold shadow-sm transition-all cursor-pointer"
+                      >
+                        <span>Sign In</span>
+                        <ArrowRightIcon className="w-4 h-4" />
+                      </button>
+                    )}
                     <button
                       type="button"
                       onClick={handleClose}
@@ -384,193 +352,171 @@ const AdvancedFilingModal = ({ isOpen, onClose, offerData }) => {
                   </div>
                 </div>
               ) : (
-                <>
-                  <div className="mb-5 pr-8">
-                    <h3 className="text-lg sm:text-xl font-semibold text-[#1F4264] tracking-tight">
-                      Reserve Your Priority Slot
-                    </h3>
-                    <p className="text-xs text-[#6F7F8E] font-medium mt-0.5">
-                      Enter your details below to lock in this limited-time offer.
-                    </p>
-                  </div>
-
-                  <form onSubmit={handleSubmit} className="space-y-3.5">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {/* Full Name */}
-                      <div>
-                        <label
-                          htmlFor="adv-name"
-                          className="block text-xs font-semibold text-[#1F4264] mb-1"
-                        >
-                          Full Name <span className="text-red-500">*</span>
-                        </label>
-                        <div className="relative">
-                          <UserIcon className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-                          <input
-                            id="adv-name"
-                            type="text"
-                            disabled={isExpired}
-                            value={formData.name}
-                            onChange={(e) => {
-                              setFormData((prev) => ({
-                                ...prev,
-                                name: e.target.value,
-                              }));
-                              if (errors.name)
-                                setErrors((prev) => ({ ...prev, name: "" }));
-                            }}
-                            placeholder="Your full name"
-                            className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm text-slate-800 font-medium bg-slate-50/70 focus:bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] placeholder:text-[11px] placeholder:font-normal placeholder:text-slate-400 transition-all disabled:opacity-60"
-                          />
-                        </div>
-                        {errors.name && (
-                          <span className="text-[11px] text-red-500 mt-0.5 block">
-                            {errors.name}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Phone */}
-                      <div>
-                        <label
-                          htmlFor="adv-phone"
-                          className="block text-xs font-semibold text-[#1F4264] mb-1"
-                        >
-                          Phone Number <span className="text-red-500">*</span>
-                        </label>
-                        <div className="relative">
-                          <PhoneIcon className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-                          <input
-                            id="adv-phone"
-                            type="tel"
-                            disabled={isExpired}
-                            value={formData.phone}
-                            onChange={handlePhoneChange}
-                            placeholder="+1 (404) 424-4191"
-                            className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm text-slate-800 font-medium bg-slate-50/70 focus:bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] placeholder:text-[11px] placeholder:font-normal placeholder:text-slate-400 transition-all disabled:opacity-60"
-                          />
-                        </div>
-                        {errors.phone && (
-                          <span className="text-[11px] text-red-500 mt-0.5 block">
-                            {errors.phone}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Email */}
+                <form onSubmit={handleSubmit} className="space-y-3.5 pt-1 md:pt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {/* Full Name */}
                     <div>
                       <label
-                        htmlFor="adv-email"
+                        htmlFor="adv-name"
                         className="block text-xs font-semibold text-[#1F4264] mb-1"
                       >
-                        Email Address <span className="text-red-500">*</span>
+                        Full Name <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
-                        <EnvelopeIcon className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        <UserIcon className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                         <input
-                          id="adv-email"
-                          type="email"
+                          id="adv-name"
+                          type="text"
                           disabled={isExpired}
-                          value={formData.email}
+                          value={formData.name}
                           onChange={(e) => {
                             setFormData((prev) => ({
                               ...prev,
-                              email: e.target.value,
+                              name: e.target.value,
                             }));
-                            if (errors.email)
-                              setErrors((prev) => ({ ...prev, email: "" }));
+                            if (errors.name)
+                              setErrors((prev) => ({ ...prev, name: "" }));
                           }}
-                          placeholder="name@example.com"
+                          placeholder="Your full name"
                           className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm text-slate-800 font-medium bg-slate-50/70 focus:bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] placeholder:text-[11px] placeholder:font-normal placeholder:text-slate-400 transition-all disabled:opacity-60"
                         />
                       </div>
-                      {errors.email && (
+                      {errors.name && (
                         <span className="text-[11px] text-red-500 mt-0.5 block">
-                          {errors.email}
+                          {errors.name}
                         </span>
                       )}
                     </div>
 
-                    {/* Filing Type */}
+                    {/* Phone */}
                     <div>
                       <label
-                        htmlFor="adv-filing-type"
+                        htmlFor="adv-phone"
                         className="block text-xs font-semibold text-[#1F4264] mb-1"
                       >
-                        Filing Category
+                        Phone Number <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
-                        <DocumentTextIcon className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-                        <select
-                          id="adv-filing-type"
+                        <PhoneIcon className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        <input
+                          id="adv-phone"
+                          type="tel"
                           disabled={isExpired}
-                          value={formData.filingType}
-                          onChange={(e) =>
-                            setFormData((prev) => ({
-                              ...prev,
-                              filingType: e.target.value,
-                            }))
-                          }
-                          className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm text-slate-800 font-medium bg-slate-50/70 focus:bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] transition-all disabled:opacity-60"
-                        >
-                          <option value="Individual Tax Return (Form 1040)">
-                            Individual Tax Return (Form 1040)
-                          </option>
-                          <option value="Non-Resident Return (Form 1040-NR)">
-                            Non-Resident Return (Form 1040-NR)
-                          </option>
-                          <option value="Small Business / LLC / Corp">
-                            Small Business / LLC / Corp
-                          </option>
-                          <option value="FBAR & FATCA Compliance">
-                            FBAR &amp; FATCA Compliance
-                          </option>
-                          <option value="Indian & NRI Tax Filing">
-                            Indian &amp; NRI Tax Filing
-                          </option>
-                        </select>
+                          value={formData.phone}
+                          onChange={handlePhoneChange}
+                          placeholder="+1 (404) 424-4191"
+                          className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm text-slate-800 font-medium bg-slate-50/70 focus:bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] placeholder:text-[11px] placeholder:font-normal placeholder:text-slate-400 transition-all disabled:opacity-60"
+                        />
                       </div>
-                    </div>
-
-                    {submitError && (
-                      <div className="p-2.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium">
-                        {submitError}
-                      </div>
-                    )}
-
-                    {/* Submit CTA */}
-                    <button
-                      type="submit"
-                      disabled={submitting || isExpired}
-                      className="w-full inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-gradient-to-r from-[#1F4264] via-[#194E72] to-[#127EAB] hover:from-[#16314A] hover:to-[#0E668B] text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed group cursor-pointer"
-                    >
-                      <span>
-                        {isExpired
-                          ? "Offer Ended"
-                          : submitting
-                          ? "Reserving Your Offer..."
-                          : offerPercentage > 0
-                          ? `Claim ${offerPercentage}% Off Early Filing`
-                          : "Reserve Advanced Tax Filing"}
-                      </span>
-                      {!submitting && !isExpired && (
-                        <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                      {errors.phone && (
+                        <span className="text-[11px] text-red-500 mt-0.5 block">
+                          {errors.phone}
+                        </span>
                       )}
-                    </button>
-                  </form>
-
-                  {/* Footer Link */}
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-end text-[11px] text-[#6F7F8E] font-medium">
-                    <Link
-                      to={gettoken() === true ? "/client/dashboard" : "/login"}
-                      onClick={handleClose}
-                      className="text-[#127EAB] hover:text-[#1F4264] font-semibold transition-colors"
-                    >
-                      Already registered? Sign In →
-                    </Link>
+                    </div>
                   </div>
-                </>
+
+                  {/* Email */}
+                  <div>
+                    <label
+                      htmlFor="adv-email"
+                      className="block text-xs font-semibold text-[#1F4264] mb-1"
+                    >
+                      Email Address <span className="text-red-500">*</span>
+                    </label>
+                    <div className="relative">
+                      <EnvelopeIcon className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                      <input
+                        id="adv-email"
+                        type="email"
+                        disabled={isExpired}
+                        value={formData.email}
+                        onChange={(e) => {
+                          setFormData((prev) => ({
+                            ...prev,
+                            email: e.target.value,
+                          }));
+                          if (errors.email)
+                            setErrors((prev) => ({ ...prev, email: "" }));
+                        }}
+                        placeholder="name@example.com"
+                        className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm text-slate-800 font-medium bg-slate-50/70 focus:bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] placeholder:text-[11px] placeholder:font-normal placeholder:text-slate-400 transition-all disabled:opacity-60"
+                      />
+                    </div>
+                    {errors.email && (
+                      <span className="text-[11px] text-red-500 mt-0.5 block">
+                        {errors.email}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Filing Type */}
+                  <div>
+                    <label
+                      htmlFor="adv-filing-type"
+                      className="block text-xs font-semibold text-[#1F4264] mb-1"
+                    >
+                      Filing Category
+                    </label>
+                    <div className="relative">
+                      <DocumentTextIcon className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                      <select
+                        id="adv-filing-type"
+                        disabled={isExpired}
+                        value={formData.filingType}
+                        onChange={(e) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            filingType: e.target.value,
+                          }))
+                        }
+                        className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm text-slate-800 font-medium bg-slate-50/70 focus:bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] transition-all disabled:opacity-60"
+                      >
+                        <option value="Individual Tax Return (Form 1040)">
+                          Individual Tax Return (Form 1040)
+                        </option>
+                        <option value="Non-Resident Return (Form 1040-NR)">
+                          Non-Resident Return (Form 1040-NR)
+                        </option>
+                        <option value="Small Business / LLC / Corp">
+                          Small Business / LLC / Corp
+                        </option>
+                        <option value="FBAR & FATCA Compliance">
+                          FBAR &amp; FATCA Compliance
+                        </option>
+                        <option value="Indian & NRI Tax Filing">
+                          Indian &amp; NRI Tax Filing
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {submitError && (
+                    <div className="p-2.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium">
+                      {submitError}
+                    </div>
+                  )}
+
+                  {/* Submit CTA */}
+                  <button
+                    type="submit"
+                    disabled={submitting || isExpired}
+                    className="w-full inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-gradient-to-r from-[#1F4264] via-[#194E72] to-[#127EAB] hover:from-[#16314A] hover:to-[#0E668B] text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed group cursor-pointer"
+                  >
+                    <span>
+                      {isExpired
+                        ? "Offer Ended"
+                        : submitting
+                        ? "Reserving..."
+                        : offerPercentage > 0
+                        ? `Claim ${offerPercentage}% Off`
+                        : "Reserve Express Filing"}
+                    </span>
+                    {!submitting && !isExpired && (
+                      <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    )}
+                  </button>
+                </form>
               )}
             </div>
           </motion.div>

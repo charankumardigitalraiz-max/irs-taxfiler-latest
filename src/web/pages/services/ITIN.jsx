@@ -173,7 +173,7 @@ const ITIN = () => {
               <div className="pt-4 border-t border-slate-100 flex items-center gap-2.5 text-xs text-slateText">
                 <CheckBadgeIcon className="w-4 h-4 text-teal" />
                 <span className="font-medium text-primary">IRS Certified Acceptance Agent (CAA)</span>
-                <span className="text-border">â€¢</span>
+                <span className="text-border">•</span>
                 <span>Fast 48-Hour Package Assembly</span>
               </div>
             </div>

@@ -5,6 +5,7 @@ import Logo from "../assets/irs-logo.png";
 import { useNavigate } from "react-router-dom";
 import LeadModal from "../components/popup";
 import AdvancedFilingModal from "./AdvancedFilingModal";
+import LoginModal from "./LoginModal";
 
 import {
   Bars3Icon,
@@ -93,12 +94,49 @@ const Navbar = () => {
   //  const [openModal, setOpenModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAdvancedModalOpen, setIsAdvancedModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(null);
   const [activeServiceTab, setActiveServiceTab] = useState("individual");
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const location = useLocation();
   // const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleOpenLogin = () => {
+      if (gettoken() === true) {
+        navigate("/client/dashboard");
+      } else {
+        setIsLoginModalOpen(true);
+      }
+    };
+
+    // Intercept clicks on any public "/login" link to open LoginModal in place
+    const handleLoginLinkClick = (e) => {
+      const anchor = e.target?.closest?.("a[href]");
+      if (!anchor) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || anchor.target === "_blank") {
+        return;
+      }
+      const href = anchor.getAttribute("href");
+      if (href === "/login" || href?.startsWith("/login?")) {
+        e.preventDefault();
+        if (href.includes("?")) {
+          const params = new URLSearchParams(href.split("?")[1]);
+          const refCode = params.get("ref");
+          if (refCode) sessionStorage.setItem("pendingReferralCode", refCode);
+        }
+        handleOpenLogin();
+      }
+    };
+
+    window.addEventListener("openLoginModal", handleOpenLogin);
+    document.addEventListener("click", handleLoginLinkClick, true);
+    return () => {
+      window.removeEventListener("openLoginModal", handleOpenLogin);
+      document.removeEventListener("click", handleLoginLinkClick, true);
+    };
+  }, [navigate]);
 
   const [open, setOpen] = useState(false);
 
@@ -751,7 +789,7 @@ const Navbar = () => {
                       <div className="mt-5 pt-3.5 border-t border-border flex items-center justify-between text-xs text-slateText font-normal">
                         <div className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-teal" />
-                          <span>IRS & ITD Authorized e-File Provider â€¢ 100% CPA & CA Verified</span>
+                          <span>IRS & ITD Authorized e-File Provider • 100% CPA & CA Verified</span>
                         </div>
                         <Link
                           to="/services"
@@ -855,17 +893,17 @@ const Navbar = () => {
 
             {/* Auth Buttons (Desktop view only; mobile view has it inside drawer) */}
             <div className="hidden md:flex items-center gap-2.5 relative" ref={ref}>
-              {/* Conditional Advanced Tax Filing Button (controlled from Admin Settings) */}
+              {/* Conditional Express Filing Button (controlled from Admin Settings) */}
               {advancedFiling.enabled && (
                 <button
                   type="button"
                   onClick={() => setIsAdvancedModalOpen(true)}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs lg:text-sm font-semibold text-white bg-gradient-to-r from-[#127EAB] to-[#0E668B] hover:from-[#0E668B] hover:to-[#1F4264] rounded-md transition-all duration-200 shadow-xs hover:shadow-md whitespace-nowrap cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0E668B] bg-[#E9F7FA] hover:bg-[#D7EFF5] border border-[#127EAB]/30 rounded-full transition-colors duration-200 whitespace-nowrap cursor-pointer"
                 >
-                  <SparklesIcon className="w-4 h-4 text-[#FFD1C4] shrink-0" />
-                  <span>Advanced Tax Filing</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#EE6450] animate-pulse shrink-0" />
+                  <span>Express Filing</span>
                   {advancedFiling.offerPercentage > 0 && (
-                    <span className="ml-0.5 px-1.5 py-0.5 text-[10px] font-semibold rounded bg-[#EE6450] text-white leading-none">
+                    <span className="px-1.5 py-0.5 text-[10px] font-semibold rounded-full bg-[#EE6450] text-white leading-none">
                       {advancedFiling.offerPercentage}% OFF
                     </span>
                   )}
@@ -875,12 +913,13 @@ const Navbar = () => {
               {/* Logged Out UI */}
               {gettoken() === false && (
                 <div className="flex items-center gap-2 font-sans">
-                  <Link
-                    to="/login"
-                    className="inline-flex items-center px-4 py-2 text-sm font-semibold text-white bg-primary hover:bg-primary-dark rounded-md transition-all duration-200 shadow-xs hover:shadow-md"
+                  <button
+                    type="button"
+                    onClick={() => setIsLoginModalOpen(true)}
+                    className="inline-flex items-center px-4 py-2 text-xs font-semibold text-white bg-primary hover:bg-primary-dark rounded-full transition-all duration-200 shadow-xs hover:shadow-md cursor-pointer"
                   >
                     <span>Sign In / Sign Up</span>
-                  </Link>
+                  </button>
                 </div>
               )}
 
@@ -1375,7 +1414,7 @@ const Navbar = () => {
                 transition={{ delay: 0.45 }}
                 className="pt-4 mt-2 border-t border-gray-100 space-y-2.5"
               >
-                {/* Conditional Mobile Advanced Tax Filing Button */}
+                {/* Conditional Mobile Express Filing Button */}
                 {advancedFiling.enabled && (
                   <button
                     type="button"
@@ -1383,12 +1422,12 @@ const Navbar = () => {
                       setIsMobileMenuOpen(false);
                       setIsAdvancedModalOpen(true);
                     }}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-[#127EAB] to-[#0E668B] text-white text-sm font-semibold shadow-sm transition-all duration-200 cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#E9F7FA] hover:bg-[#D7EFF5] border border-[#127EAB]/30 text-[#0E668B] text-xs font-semibold transition-colors duration-200 cursor-pointer"
                   >
-                    <SparklesIcon className="w-4 h-4 text-[#FFD1C4] shrink-0" />
-                    <span>Advanced Tax Filing</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#EE6450] animate-pulse shrink-0" />
+                    <span>Express Filing</span>
                     {advancedFiling.offerPercentage > 0 && (
-                      <span className="px-1.5 py-0.5 text-[10px] font-semibold rounded bg-[#EE6450] text-white leading-none">
+                      <span className="px-1.5 py-0.5 text-[10px] font-semibold rounded-full bg-[#EE6450] text-white leading-none">
                         {advancedFiling.offerPercentage}% OFF
                       </span>
                     )}
@@ -1396,14 +1435,17 @@ const Navbar = () => {
                 )}
 
                 {gettoken() === false ? (
-                  <Link
-                    to="/login"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-primary hover:bg-secondary text-white text-base font-semibold shadow-sm transition-all duration-200"
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setIsLoginModalOpen(true);
+                    }}
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-primary hover:bg-secondary text-white text-base font-semibold shadow-sm transition-all duration-200 cursor-pointer"
                   >
                     <span>Sign In / Sign Up</span>
                     <ArrowRightIcon className="w-4 h-4 stroke-[2]" />
-                  </Link>
+                  </button>
                 ) : (
                   <div className="space-y-2">
                     {/* Logged-in User Info */}
@@ -1463,11 +1505,16 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* Advanced Tax Filing Offer Modal */}
+      {/* Express Tax Filing Offer Modal */}
       <AdvancedFilingModal
         isOpen={isAdvancedModalOpen}
         onClose={() => setIsAdvancedModalOpen(false)}
         offerData={advancedFiling}
+      />
+      {/* Client Portal Login Modal */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
       />
     </>
   );

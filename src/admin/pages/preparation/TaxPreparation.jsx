@@ -318,35 +318,35 @@ const TaxPreparation = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
           <Card className="p-4">
             <p className="text-sm text-gray-500">Total Cases</p>
-            <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+            <p className="text-2xl font-semibold text-gray-900">{stats.total}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Phase 1 Pending</p>
-            <p className="text-2xl font-bold text-yellow-600">{stats.phase1Pending}</p>
+            <p className="text-2xl font-semibold text-yellow-600">{stats.phase1Pending}</p>
             {stats.phase1AwaitingReview > 0 && (
               <p className="text-xs text-orange-500 mt-1">{stats.phase1AwaitingReview} awaiting review</p>
             )}
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Phase 2 Pending</p>
-            <p className="text-2xl font-bold text-blue-600">{stats.phase2Pending}</p>
+            <p className="text-2xl font-semibold text-blue-600">{stats.phase2Pending}</p>
             {stats.phase2AwaitingReview > 0 && (
               <p className="text-xs text-orange-500 mt-1">{stats.phase2AwaitingReview} awaiting review</p>
             )}
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Locked/Ready</p>
-            <p className="text-2xl font-bold text-green-600">{stats.completed}</p>
+            <p className="text-2xl font-semibold text-green-600">{stats.completed}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Total Refunds</p>
-            <p className="text-2xl font-bold text-green-600">
+            <p className="text-2xl font-semibold text-green-600">
               ${stats.totalRefunds.toLocaleString()}
             </p>
           </Card>
           <Card className="p-4 bg-background-aqua border-border">
             <p className="text-sm text-teal">Client Reviews</p>
-            <p className="text-2xl font-bold text-primary">
+            <p className="text-2xl font-semibold text-primary">
               {stats.phase1AwaitingReview + stats.phase2AwaitingReview}
             </p>
             <p className="text-xs text-teal mt-1">Awaiting approval</p>

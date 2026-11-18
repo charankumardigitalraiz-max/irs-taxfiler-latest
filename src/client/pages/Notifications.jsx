@@ -71,10 +71,10 @@ const Notifications = () => {
         iconBg: 'bg-green-100',
       },
       info: {
-        bg: 'bg-blue-50',
-        border: 'border-blue-200',
-        icon: 'text-blue-600',
-        iconBg: 'bg-blue-100',
+        bg: 'bg-[#E9F7FA]',
+        border: 'border-[#127EAB]/25',
+        icon: 'text-[#127EAB]',
+        iconBg: 'bg-[#E9F7FA]',
       },
       warning: {
         bg: 'bg-yellow-50',
@@ -98,11 +98,11 @@ const Notifications = () => {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
+      <div className="bg-white rounded-lg shadow-[0_2px_10px_rgba(31,66,100,0.04)] px-5 py-4 border border-[#DCEAF0]">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-1">Notifications</h2>
-            <p className="text-sm text-gray-600">
+            <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight">Notifications</h2>
+            <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-medium mt-0.5">
               Stay updated with your tax filing progress and important updates.
             </p>
           </div>

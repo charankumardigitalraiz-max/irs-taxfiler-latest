@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Phone,
   Clock,
@@ -9,6 +9,7 @@ import {
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Input from '../components/common/Input';
+import { SectionSkeleton } from '../components/common/PageLoader';
 import { meetingService } from '../services/meetingService';
 import { userService } from '../services/userService';
 import { getUser } from '../utils/auth';
@@ -22,6 +23,7 @@ const Schedule = () => {
     time: '',
   });
   const [previousRequests, setPreviousRequests] = useState([]);
+  const [loadingRequests, setLoadingRequests] = useState(true);
   const [toast, setToast] = useState(null);
 
   // Auto-fill user details and load previous meeting requests from backend
@@ -63,7 +65,7 @@ const Schedule = () => {
           return {
             id: m._id,
             name: 'You',
-            phone: user?.mobileNumber || 'â€”',
+            phone: user?.mobileNumber || '—',
             date: d.toISOString().split('T')[0],
             time: d.toTimeString().slice(0, 5),
             formattedDate: d.toLocaleDateString('en-US', {
@@ -81,6 +83,8 @@ const Schedule = () => {
         setPreviousRequests(mapped);
       } catch (error) {
         console.error('Failed to load your previous meetings:', error);
+      } finally {
+        setLoadingRequests(false);
       }
     };
 
@@ -185,24 +189,24 @@ const Schedule = () => {
                 className="text-xs font-semibold opacity-70 hover:opacity-100"
                 onClick={() => setToast(null)}
               >
-                âœ•
+                ✕
               </button>
             </div>
           </div>
         </div>
       )}
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+      <div className="bg-white rounded-lg shadow-[0_2px_10px_rgba(31,66,100,0.04)] px-5 py-4 border border-[#DCEAF0]">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full">
-              <Phone className="w-8 h-8 text-primary-600" />
+          <div className="flex items-center gap-3.5">
+            <div className="inline-flex items-center justify-center w-10 h-10 bg-[#E9F7FA] border border-[#127EAB]/20 rounded-lg shrink-0">
+              <Phone className="w-5 h-5 text-[#127EAB]" />
             </div>
             <div>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-1">
+              <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight">
                 Free to Call
               </h2>
-              <p className="text-gray-600 max-w-xl">
+              <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-medium mt-0.5">
                 Need help with your tax filing? Reach us quickly or request a call back at a time that works for you.
               </p>
             </div>
@@ -223,40 +227,66 @@ const Schedule = () => {
             </Card.Header>
             <Card.Content className="space-y-4">
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase mb-1">
+                <p className="text-xs font-medium text-[#6F7F8E] uppercase tracking-wider mb-1.5">
                   Phone
                 </p>
-                <div className="space-y-1 text-sm">
-                  <div className="flex items-center gap-2">
-                    <PhoneCall className="w-4 h-4 text-primary-600" />
-                    <span className="font-medium text-gray-900">US:</span>
-                    <span className="text-gray-700">+1 (415) 223-1315</span>
+                <div className="space-y-1.5">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <PhoneCall className="w-4 h-4 text-[#059669] shrink-0" />
+                    <span className="text-xs font-medium text-[#6F7F8E]">US:</span>
+                    <a
+                      href="tel:+14152231315"
+                      className="text-[15px] font-semibold text-[#059669] hover:text-[#047857] transition-colors"
+                    >
+                      +1 (415) 223-1315
+                    </a>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <PhoneCall className="w-4 h-4 text-primary-600" />
-                    <span className="font-medium text-gray-900">India:</span>
-                    <span className="text-gray-700">+91 9052 333 667/668</span>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <PhoneCall className="w-4 h-4 text-[#059669] shrink-0" />
+                    <span className="text-xs font-medium text-[#6F7F8E]">India:</span>
+                    <span className="text-[15px] font-semibold text-[#059669]">
+                      <a
+                        href="tel:+919052333667"
+                        className="hover:text-[#047857] transition-colors"
+                      >
+                        +91 9052 333 667
+                      </a>
+                      <span className="text-[#6F7F8E] font-normal">/</span>
+                      <a
+                        href="tel:+919052333668"
+                        className="hover:text-[#047857] transition-colors"
+                      >
+                        668
+                      </a>
+                    </span>
                   </div>
                 </div>
               </div>
 
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase mb-1">
+                <p className="text-xs font-medium text-[#6F7F8E] uppercase tracking-wider mb-1.5">
                   Email
                 </p>
-                <div className="flex items-center gap-2 text-sm">
-                  <Mail className="w-4 h-4 text-primary-600" />
-                  <span className="text-gray-700">info@irstaxfiler.com</span>
+                <div className="flex items-center gap-2">
+                  <Mail className="w-4 h-4 text-[#127EAB] shrink-0" />
+                  <a
+                    href="mailto:info@irstaxfiler.com"
+                    className="text-[15px] font-semibold text-[#127EAB] hover:text-[#0E668B] transition-colors break-all"
+                  >
+                    info@irstaxfiler.com
+                  </a>
                 </div>
               </div>
 
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase mb-1">
+                <p className="text-xs font-medium text-[#6F7F8E] uppercase tracking-wider mb-1.5">
                   Best time to reach us
                 </p>
-                <div className="flex items-center gap-2 text-sm text-gray-700">
-                  <Clock className="w-4 h-4 text-primary-600" />
-                  <span>CST 9:30 AM To 7:30 PM</span>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-[#1F4264] shrink-0" />
+                  <span className="text-[15px] font-semibold text-[#1F4264]">
+                    CST 9:30 AM To 7:30 PM
+                  </span>
                 </div>
               </div>
 
@@ -324,7 +354,7 @@ const Schedule = () => {
                       type="text"
                       value={callbackData.name}
                       readOnly
-                      className="w-full px-3 py-2.5 rounded-lg border border-gray-300 bg-gray-50 text-gray-700 text-sm cursor-not-allowed"
+                      className="w-full px-3 py-2.5 rounded-md border border-gray-300 bg-gray-50 text-gray-700 text-sm cursor-not-allowed"
                       placeholder="Auto-filled from your profile"
                     />
                   </div>
@@ -336,7 +366,7 @@ const Schedule = () => {
                       type="tel"
                       value={callbackData.phone}
                       readOnly
-                      className="w-full px-3 py-2.5 rounded-lg border border-gray-300 bg-gray-50 text-gray-700 text-sm cursor-not-allowed"
+                      className="w-full px-3 py-2.5 rounded-md border border-gray-300 bg-gray-50 text-gray-700 text-sm cursor-not-allowed"
                       placeholder="Auto-filled from your profile"
                     />
                   </div>
@@ -357,7 +387,7 @@ const Schedule = () => {
                           setCallbackData({ ...callbackData, date: '', time: '' });
                         }
                       }}
-                      className="w-full px-3 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm bg-white"
+                      className="w-full px-3 py-2.5 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent text-sm bg-white"
                       min={new Date().toISOString().slice(0, 16)}
                     />
                   </div>
@@ -391,7 +421,9 @@ const Schedule = () => {
               </Card.Description>
             </Card.Header>
             <Card.Content>
-              {previousRequests.length === 0 ? (
+              {loadingRequests ? (
+                <SectionSkeleton variant="list" rows={2} />
+              ) : previousRequests.length === 0 ? (
                 <p className="text-sm text-gray-500">
                   No previous requests yet. Submit a meeting request to see it here.
                 </p>

@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   EnvelopeIcon,
@@ -22,16 +22,170 @@ import {
   LifebuoyIcon,
   LockClosedIcon,
   ScaleIcon,
+  EyeIcon,
 } from "@heroicons/react/24/outline";
 
 /* Brand Social Media Icons */
 import { FaInstagram, FaLinkedin, FaSlack, FaWhatsapp } from "react-icons/fa";
 
 import Logo from "../assets/irs-logo.png";
+import { publicSettingsService } from "../../client/services/settingsService";
+
+const WEBSITE_TOTAL_VIEWS_KEY = "website-total-views";
+const ORIGINAL_VISITS_STORAGE_KEY = "irs_taxfiler_original_visits";
+const ORIGINAL_RESET_STORAGE_KEY = "irs_taxfiler_original_reset_at";
+const VIEWS_SYNC_STORAGE_KEY = "irs_taxfiler_views_sync_at";
+const FALLBACK_BASE_VISITS = 0;
+
+// Module-level guard: counts +1 each time the website is opened/loaded,
+// without double-counting when navigating between SPA pages in the same visit.
+let hasCountedVisitOnPageLoad = false;
 
 const Footer = () => {
   // const currentYear = new Date().getFullYear();
-  const currentYear = "2027"
+  const currentYear = "2027";
+  const [showTotalVisits, setShowTotalVisits] = useState(false);
+  const [totalVisits, setTotalVisits] = useState(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const syncVisits = async (shouldIncrement = false) => {
+      let enabled = true;
+      let mode = "default"; // 'default' (Default + Original) | 'original' (Original Only)
+      let baseViews = FALLBACK_BASE_VISITS;
+      let savedOriginalViews = 0;
+      let resetAt = null;
+
+      // 1. Fetch latest admin-configured Website Total Visits setting dynamically
+      try {
+        const res = await publicSettingsService.getSetting(WEBSITE_TOTAL_VIEWS_KEY);
+        if (res?.success && res?.data?.content) {
+          const parsed = JSON.parse(res.data.content);
+          if (parsed.enabled === false) {
+            enabled = false;
+          }
+          if (parsed.mode === "original" || parsed.mode === "default") {
+            mode = parsed.mode;
+          }
+          const configuredDefault = Number(parsed.defaultViews);
+          if (!Number.isNaN(configuredDefault) && configuredDefault >= 0) {
+            baseViews = Math.floor(configuredDefault);
+          }
+          const configuredOriginal = Number(parsed.originalViews);
+          if (!Number.isNaN(configuredOriginal) && configuredOriginal >= 0) {
+            savedOriginalViews = Math.floor(configuredOriginal);
+          }
+          if (parsed.resetAt) {
+            resetAt = String(parsed.resetAt);
+          }
+        }
+      } catch {
+        // Keep defaults if setting has not been created yet
+      }
+
+      if (!isMounted) return;
+      setShowTotalVisits(enabled);
+      if (!enabled) return;
+
+      // 2. Dynamically record visit via backend if endpoint exists
+      let originalVisits = savedOriginalViews;
+      let syncedWithBackend = false;
+
+      if (shouldIncrement && !hasCountedVisitOnPageLoad) {
+        try {
+          const visitRes = await publicSettingsService.recordWebsiteVisit();
+          const backendCount = Number(
+            visitRes?.data?.originalViews ??
+              visitRes?.data?.count ??
+              visitRes?.originalViews ??
+              visitRes?.count ??
+              visitRes?.totalVisits
+          );
+          if (!Number.isNaN(backendCount) && backendCount >= 0) {
+            originalVisits = Math.floor(backendCount);
+            hasCountedVisitOnPageLoad = true;
+            syncedWithBackend = true;
+            try {
+              localStorage.setItem(ORIGINAL_VISITS_STORAGE_KEY, String(originalVisits));
+            } catch {
+              // Ignore storage errors
+            }
+          }
+        } catch {
+          // Backend visit increment route not enabled yet — fall back to dynamic client tracking
+        }
+      }
+
+      // 3. Local dynamic visit tracking fallback (persists across visits & tabs)
+      if (!syncedWithBackend) {
+        try {
+          const localResetAt = localStorage.getItem(ORIGINAL_RESET_STORAGE_KEY);
+          let storedOriginal = parseInt(
+            localStorage.getItem(ORIGINAL_VISITS_STORAGE_KEY) || "0",
+            10
+          );
+          if (Number.isNaN(storedOriginal) || storedOriginal < 0) {
+            storedOriginal = 0;
+          }
+
+          if (resetAt && localResetAt !== resetAt) {
+            storedOriginal = savedOriginalViews;
+            localStorage.setItem(ORIGINAL_RESET_STORAGE_KEY, resetAt);
+          } else {
+            storedOriginal = Math.max(storedOriginal, savedOriginalViews);
+          }
+
+          if (shouldIncrement && !hasCountedVisitOnPageLoad) {
+            storedOriginal += 1;
+            hasCountedVisitOnPageLoad = true;
+          }
+
+          localStorage.setItem(ORIGINAL_VISITS_STORAGE_KEY, String(storedOriginal));
+          originalVisits = storedOriginal;
+        } catch {
+          if (shouldIncrement && !hasCountedVisitOnPageLoad) {
+            originalVisits = savedOriginalViews + 1;
+            hasCountedVisitOnPageLoad = true;
+          }
+        }
+      }
+
+      if (!isMounted) return;
+      setTotalVisits(mode === "original" ? originalVisits : baseViews + originalVisits);
+    };
+
+    // Initial load: increment once on website open
+    syncVisits(true);
+
+    // Live dynamic sync when admin updates Content Settings in same or another tab
+    const handleLiveSync = () => syncVisits(false);
+    const handleStorage = (event) => {
+      if (
+        event.key === VIEWS_SYNC_STORAGE_KEY ||
+        event.key === ORIGINAL_VISITS_STORAGE_KEY ||
+        event.key === ORIGINAL_RESET_STORAGE_KEY
+      ) {
+        syncVisits(false);
+      }
+    };
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible") {
+        syncVisits(false);
+      }
+    };
+
+    window.addEventListener("website-total-views-updated", handleLiveSync);
+    window.addEventListener("storage", handleStorage);
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      isMounted = false;
+      window.removeEventListener("website-total-views-updated", handleLiveSync);
+      window.removeEventListener("storage", handleStorage);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, []);
 
   return (
     <footer className="relative bg-footer border-t border-white/10 text-[#CBD5E1] font-sans antialiased">
@@ -309,8 +463,26 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="text-xs text-white/70 font-normal">
-            Â© {currentYear} IRS Tax Adviser Inc. All Rights Reserved.
+            © {currentYear} IRS Tax Adviser Inc. All Rights Reserved.
           </div>
+
+          {/* Total Visits Counter */}
+          {showTotalVisits && totalVisits !== null && (
+            <div
+              className="inline-flex items-center gap-2.5 pl-3.5 pr-2 py-1 rounded-full bg-[#102E4A] border border-[#38BDF8]/45 shadow-[0_0_18px_rgba(18,126,171,0.35)] text-xs"
+              aria-label={`Total website visits: ${totalVisits.toLocaleString("en-US")}`}
+            >
+              <span className="relative flex h-2 w-2 shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+              </span>
+              <EyeIcon className="w-4 h-4 text-[#38BDF8] shrink-0" />
+              <span className="text-sky-100/90 font-medium">Total Visits</span>
+              <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-[#127EAB] to-[#0EA5E9] text-white text-[13px] font-semibold tabular-nums tracking-wide shadow-sm">
+                {totalVisits.toLocaleString("en-US")}
+              </span>
+            </div>
+          )}
 
           {/* Legal Navigation Links */}
           <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-3 gap-y-1 text-xs text-white/70 font-medium">

@@ -221,23 +221,23 @@ const Documents = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <Card className="p-4">
             <p className="text-sm text-gray-500">Total Users</p>
-            <p className="text-2xl font-bold text-gray-900">{stats.totalUsers}</p>
+            <p className="text-2xl font-semibold text-gray-900">{stats.totalUsers}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Total Documents</p>
-            <p className="text-2xl font-bold text-gray-900">{stats.totalDocuments}</p>
+            <p className="text-2xl font-semibold text-gray-900">{stats.totalDocuments}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Pending Review</p>
-            <p className="text-2xl font-bold text-yellow-600">{stats.pending}</p>
+            <p className="text-2xl font-semibold text-yellow-600">{stats.pending}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Approved</p>
-            <p className="text-2xl font-bold text-green-600">{stats.approved}</p>
+            <p className="text-2xl font-semibold text-green-600">{stats.approved}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Rejected</p>
-            <p className="text-2xl font-bold text-red-600">{stats.rejected}</p>
+            <p className="text-2xl font-semibold text-red-600">{stats.rejected}</p>
           </Card>
         </div>
 

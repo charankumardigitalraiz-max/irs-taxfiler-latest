@@ -140,13 +140,13 @@ const TaxCalculator = ({ initialData, onSave, onSendSummary, isLocked = false })
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="p-4 bg-gray-50 rounded-xl">
               <p className="text-sm text-gray-500">Taxable Income</p>
-              <p className="text-2xl font-bold text-gray-900 mt-1">
+              <p className="text-2xl font-semibold text-gray-900 mt-1">
                 ${calculations.taxableIncome.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </p>
             </div>
             <div className="p-4 bg-gray-50 rounded-xl">
               <p className="text-sm text-gray-500">Tax Liability</p>
-              <p className="text-2xl font-bold text-gray-900 mt-1">
+              <p className="text-2xl font-semibold text-gray-900 mt-1">
                 ${calculations.taxLiability.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </p>
             </div>
@@ -156,7 +156,7 @@ const TaxCalculator = ({ initialData, onSave, onSendSummary, isLocked = false })
                   <TrendingUp className="w-4 h-4 text-green-600" />
                   <p className="text-sm text-green-600">Refund Amount</p>
                 </div>
-                <p className="text-2xl font-bold text-green-700 mt-1">
+                <p className="text-2xl font-semibold text-green-700 mt-1">
                   ${calculations.refundAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })}
                 </p>
               </div>
@@ -166,14 +166,14 @@ const TaxCalculator = ({ initialData, onSave, onSendSummary, isLocked = false })
                   <TrendingDown className="w-4 h-4 text-orange-600" />
                   <p className="text-sm text-orange-600">Amount Payable</p>
                 </div>
-                <p className="text-2xl font-bold text-orange-700 mt-1">
+                <p className="text-2xl font-semibold text-orange-700 mt-1">
                   ${calculations.amountPayable.toLocaleString('en-US', { minimumFractionDigits: 2 })}
                 </p>
               </div>
             )}
             <div className="p-4 bg-blue-50 rounded-xl border border-blue-200">
               <p className="text-sm text-blue-600">Tax Paid</p>
-              <p className="text-2xl font-bold text-blue-700 mt-1">
+              <p className="text-2xl font-semibold text-blue-700 mt-1">
                 ${(parseFloat(formData.taxPaid) || 0).toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </p>
             </div>

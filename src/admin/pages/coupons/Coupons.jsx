@@ -433,19 +433,19 @@ const Coupons = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Card className="p-4">
             <p className="text-sm text-gray-500">Total Coupons</p>
-            <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+            <p className="text-2xl font-semibold text-gray-900">{stats.total}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Active</p>
-            <p className="text-2xl font-bold text-green-600">{stats.active}</p>
+            <p className="text-2xl font-semibold text-green-600">{stats.active}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Expired</p>
-            <p className="text-2xl font-bold text-gray-600">{stats.expired}</p>
+            <p className="text-2xl font-semibold text-gray-600">{stats.expired}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Total Usage</p>
-            <p className="text-2xl font-bold text-blue-600">{stats.totalUsage}</p>
+            <p className="text-2xl font-semibold text-blue-600">{stats.totalUsage}</p>
           </Card>
         </div>
 

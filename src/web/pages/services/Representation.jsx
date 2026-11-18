@@ -104,7 +104,7 @@ const Representation = () => {
               {/* Eyebrow Pill */}
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-background-aqua border border-border text-teal text-xs font-medium text-teal uppercase tracking-wider mb-3.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#127EAB] animate-pulse" />
-                <span>IRS Audit & Notice Defense â€¢ Form 2848 Power of Attorney</span>
+                <span>IRS Audit & Notice Defense • Form 2848 Power of Attorney</span>
               </div>
 
               {/* Main Headline - Matches Home Hero Typography exactly */}
@@ -174,7 +174,7 @@ const Representation = () => {
               {/* <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slateText">
                 <ShieldCheckIcon className="w-4 h-4 text-teal" />
                 <span className="font-medium text-primary">Licensed CPAs & Enrolled Agents</span>
-                <span className="text-border">â€¢</span>
+                <span className="text-border">•</span>
                 <span>All 50 States & Federal Representation</span>
               </div> */}
             </div>

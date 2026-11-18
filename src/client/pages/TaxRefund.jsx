@@ -119,9 +119,9 @@ const TaxRefund = () => {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-900 mb-1">Tax Refund</h2>
-        <p className="text-sm text-gray-600">
+      <div className="bg-white rounded-lg shadow-[0_2px_10px_rgba(31,66,100,0.04)] px-5 py-4 border border-[#DCEAF0]">
+        <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight">Tax Refund</h2>
+        <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-medium mt-0.5">
           Track your tax refunds, view state and federal tax information, and manage amended returns.
         </p>
       </div>
@@ -247,7 +247,7 @@ const TaxRefund = () => {
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200">
+        <Card className="bg-gradient-to-br from-[#EFF9FB] to-[#E9F7FA] border-[#127EAB]/25">
           <Card.Content>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
               IRS Where's My Refund?

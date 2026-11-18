@@ -64,9 +64,9 @@ const Settings = () => {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-900 mb-1">Settings</h2>
-        <p className="text-sm text-gray-600">
+      <div className="bg-white rounded-lg shadow-[0_2px_10px_rgba(31,66,100,0.04)] px-5 py-4 border border-[#DCEAF0]">
+        <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight">Settings</h2>
+        <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-medium mt-0.5">
           Manage your account settings and preferences.
         </p>
       </div>
@@ -76,8 +76,8 @@ const Settings = () => {
         <Card>
           <Card.Header>
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <Bell className="w-5 h-5 text-blue-600" />
+              <div className="p-2 bg-[#E9F7FA] rounded-lg">
+                <Bell className="w-5 h-5 text-[#127EAB]" />
               </div>
               <div>
                 <Card.Title>Notifications</Card.Title>
@@ -194,7 +194,7 @@ const Settings = () => {
                   onChange={(e) =>
                     setSettings({ ...settings, language: e.target.value })
                   }
-                  className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent"
                 >
                   <option value="en">English</option>
                   <option value="es">Spanish</option>
@@ -259,7 +259,7 @@ const Settings = () => {
                     name="currentPassword"
                     value={passwordData.currentPassword}
                     onChange={handlePasswordChange}
-                    className="w-full px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent"
                     required
                   />
                   <button
@@ -290,7 +290,7 @@ const Settings = () => {
                     name="newPassword"
                     value={passwordData.newPassword}
                     onChange={handlePasswordChange}
-                    className="w-full px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent"
                     required
                   />
                   <button
@@ -321,7 +321,7 @@ const Settings = () => {
                     name="confirmPassword"
                     value={passwordData.confirmPassword}
                     onChange={handlePasswordChange}
-                    className="w-full px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    className="w-full px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent"
                     required
                   />
                   <button

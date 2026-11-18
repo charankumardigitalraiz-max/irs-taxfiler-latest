@@ -187,7 +187,7 @@ const Privacy = () => {
   ];
 
   const title = "About Us | IRS Tax Filer";
-  const description = "Learn about IRS Tax Filer â€” our mission, expertise in US & Indian tax services, and commitment to secure,Learn more.";
+  const description = "Learn about IRS Tax Filer — our mission, expertise in US & Indian tax services, and commitment to secure,Learn more.";
   const keywords = "online tax filing service,tax service provider,Internal Revenue Service,IRS Tax Filer about, US & Indian tax services, tax filing expertise, tax compliance company";
   const canonical = window.location.href;
   const image = { Logo };

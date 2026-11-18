@@ -504,7 +504,7 @@ const UserList = ({ userType }) => {
                           key={pageNum}
                           onClick={() => handlePageChange(pageNum)}
                           className={`w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md text-xs sm:text-sm transition-colors ${isCurrent
-                            ? "bg-primary-600 text-white font-bold"
+                            ? "bg-primary-600 text-white font-semibold"
                             : "text-gray-600 hover:bg-gray-200"
                             }`}
                         >

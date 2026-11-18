@@ -23,8 +23,16 @@ const getProgress = (currentStage) => {
 };
 
 const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComplete = false }) => {
-  // Map REGISTERED to Personal Info for backward compatibility
-  const mappedStatus = currentStatus === 'REGISTERED' ? 'Personal Info' : currentStatus;
+  // Map backend stage keys to display workflow names
+  const normalizedKey = typeof currentStatus === 'string'
+    ? currentStatus.trim().toUpperCase().replace(/[\s-]+/g, '_')
+    : '';
+  const mappedStatus =
+    normalizedKey === 'REGISTERED' ||
+    normalizedKey === 'REGISTRATION_COMPLETE' ||
+    normalizedKey === 'PERSONAL_INFO'
+      ? 'Personal Info'
+      : currentStatus;
   const currentStageIndex = MAIN_WORKFLOW_PATH.findIndex((stage) => 
     stage.toLowerCase() === mappedStatus?.toLowerCase()
   );
@@ -56,15 +64,15 @@ const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComple
     <div className="w-full">
       {/* Progress bar */}
       <div className="relative mb-4">
-        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+        <div className="h-2 bg-[#E6F0F5] rounded-full overflow-hidden">
           <div
-            className="h-full bg-primary-600 rounded-full transition-all duration-500"
+            className="h-full bg-gradient-to-r from-[#1F4264] to-[#127EAB] rounded-full transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>
-        <div className="mt-1 flex justify-between text-xs text-gray-500">
+        <div className="mt-1.5 flex justify-between text-xs font-medium text-[#6F7F8E]">
           <span>Personal Info</span>
-          <span>{progress}% Complete</span>
+          <span className="text-[#127EAB] font-semibold">{progress}% Complete</span>
           <span>Filing Complete</span>
         </div>
       </div>
@@ -100,8 +108,8 @@ const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComple
                         MAIN_WORKFLOW_PATH.indexOf(displayStages[index - 1]) === 0 ||
                         (currentStageIndex >= 0 && MAIN_WORKFLOW_PATH.indexOf(displayStages[index - 1]) < currentStageIndex)
                       )
-                        ? 'bg-primary-600' 
-                        : 'bg-gray-200'
+                        ? 'bg-[#127EAB]' 
+                        : 'bg-[#DCEAF0]'
                     )}
                     style={{
                       left: `${((index - 1) / (displayStages.length - 1)) * 100 + (50 / displayStages.length)}%`,
@@ -115,10 +123,10 @@ const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComple
                   className={clsx(
                     'relative z-10 w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all',
                     isCompleted
-                      ? 'bg-primary-600 border-primary-600'
+                      ? 'bg-[#127EAB] border-[#127EAB]'
                       : isCurrent
-                      ? 'bg-white border-primary-600'
-                      : 'bg-white border-gray-300'
+                      ? 'bg-[#E9F7FA] border-[#127EAB]'
+                      : 'bg-white border-[#CCDCE1]'
                   )}
                 >
                   {isCompleted ? (
@@ -126,8 +134,8 @@ const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComple
                   ) : (
                     <span
                       className={clsx(
-                        'text-xs font-medium',
-                        isCurrent ? 'text-primary-600' : 'text-gray-400'
+                        'text-xs font-semibold',
+                        isCurrent ? 'text-[#127EAB]' : 'text-slate-400'
                       )}
                     >
                       {fullIndex + 1}
@@ -140,7 +148,7 @@ const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComple
                   <span
                     className={clsx(
                       'mt-2 text-xs font-medium text-center max-w-[80px]',
-                      isCurrent ? 'text-primary-600' : 'text-gray-500'
+                      isCurrent ? 'text-[#127EAB] font-semibold' : 'text-[#6F7F8E]'
                     )}
                   >
                     {stageKey}

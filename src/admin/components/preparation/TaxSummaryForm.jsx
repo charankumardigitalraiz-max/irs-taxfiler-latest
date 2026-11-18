@@ -543,7 +543,7 @@ const TaxSummaryForm = ({ initialData, onSave, onSubmit, disabled = false }) => 
                 <input
                   type="number"
                   value={formData.totalPayAmount}
-                  className="input pl-9 bg-gray-100 font-bold text-lg"
+                  className="input pl-9 bg-gray-100 font-semibold text-lg"
                   readOnly
                 />
               </div>

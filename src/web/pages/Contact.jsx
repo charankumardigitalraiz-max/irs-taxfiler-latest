@@ -1,4 +1,4 @@
-﻿import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 import ContactForm from "../components/ContactForm";
 import {
   MapPinIcon,
@@ -91,8 +91,24 @@ const Contact = () => {
       icon: PhoneIcon,
       title: "Call Us",
       description: "Speak directly with our certified CPA team for quick help.",
-      contact: "+1 (404) 424-4191 / 4815",
-      link: "tel:+14044244191",
+      contact: (
+        <>
+          <a
+            href="tel:+14044244191"
+            className="text-[#EE6450] hover:text-[#D94F3B] hover:underline transition-colors"
+          >
+            +1 (404) 424-4191
+          </a>{" "}
+          <span className="text-slate-400 font-normal">/</span>{" "}
+          <a
+            href="tel:+14044244815"
+            className="text-[#127EAB] hover:text-[#0E668B] hover:underline transition-colors"
+          >
+            4815
+          </a>
+        </>
+      ),
+      link: "#",
     },
     // {
     //   icon: ChatBubbleLeftRightIcon,
@@ -154,7 +170,7 @@ const Contact = () => {
 
               {/* Main Headline */}
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-primary tracking-tight leading-[1.25] mb-3.5 max-w-3xl mx-auto">
-                Contact Us â€”{" "}
+                Contact Us —{" "}
                 <span className="font-medium text-teal">
                   Get in Touch
                 </span>{" "}
@@ -217,7 +233,7 @@ const Contact = () => {
 
                     <div className="w-full text-left relative z-10 my-2">
                       {/* Highlighted Value / Contact Detail */}
-                      <p className={`text-base sm:text-[17px] font-semibold ${theme.iconText} tracking-tight select-all leading-snug`}>
+                      <p className={`text-base sm:text-[17px] font-semibold ${theme.iconText} tracking-tight leading-snug`}>
                         {method.contact}
                       </p>
                     </div>
@@ -347,7 +363,7 @@ const Contact = () => {
                       <ShieldCheckIcon className="w-4 h-4 text-emerald-600 shrink-0" />
                       <span className="font-medium text-slate-700">256-Bit SSL Encrypted & Confidential</span>
                     </div>
-                    <span className="text-[11px] text-[#6F7F8E] hidden sm:inline">IRC Â§ 7216 Protected</span>
+                    <span className="text-[11px] text-[#6F7F8E] hidden sm:inline">IRC § 7216 Protected</span>
                   </div>
                 </div>
 
@@ -382,94 +398,94 @@ const Contact = () => {
 
                     {/* Smart 2x2 Content Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {/* Office Address */}
-                      <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:border-[#127EAB]/40 hover:shadow-xs transition-all flex items-start gap-3 group">
-                        <div className="w-8 h-8 rounded-lg bg-[#E9F7FA] border border-[#127EAB]/25 flex items-center justify-center shrink-0 text-teal mt-0.5 group-hover:scale-105 transition-transform">
+                      {/* Office Address — Teal Theme */}
+                      <div className="p-3.5 rounded-xl bg-white border border-slate-200/80  shadow-2xs hover:border-[#127EAB]/50 hover:shadow-xs transition-all flex items-start gap-3 group">
+                        <div className="w-8 h-8 rounded-lg bg-[#E9F7FA] border border-[#127EAB]/25 flex items-center justify-center shrink-0 text-[#127EAB] mt-0.5 group-hover:scale-105 transition-transform">
                           <MapPinIcon className="w-4 h-4" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <span className="text-[10px] font-bold text-[#6F7F8E] uppercase tracking-wider block">
+                          <span className="text-[10.5px] font-medium text-slate-400 uppercase tracking-wider block">
                             Address
                           </span>
-                          <span className="text-xs sm:text-[13px] text-primary font-semibold block mt-0.5">
-                            IRS Tax Adviser Inc
-                          </span>
-                          <span className="text-xs text-slate-600 font-normal leading-relaxed block mt-0.5">
+                          <span className="text-[13px] sm:text-[12.5px] text-[#127EAB] font-semibold leading-snug block mt-1">
                             12600 Deerfield Pkwy, Ste 2096<br />Alpharetta, GA 30004, USA
+                          </span>
+                          <span className="text-[11.5px] text-slate-500 font-medium block mt-1">
+                            IRS Tax Adviser Inc
                           </span>
                         </div>
                       </div>
 
-                      {/* Working Hours */}
-                      <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:border-[#127EAB]/40 hover:shadow-xs transition-all flex items-start gap-3 group">
-                        <div className="w-8 h-8 rounded-lg bg-[#E9F7FA] border border-[#127EAB]/25 flex items-center justify-center shrink-0 text-teal mt-0.5 group-hover:scale-105 transition-transform">
+                      {/* Working Hours — Emerald Theme */}
+                      <div className="p-3.5 rounded-xl bg-white border border-slate-200/80  shadow-2xs hover:border-[#059669]/50 hover:shadow-xs transition-all flex items-start gap-3 group">
+                        <div className="w-8 h-8 rounded-lg bg-[#ECFDF5] border border-[#059669]/25 flex items-center justify-center shrink-0 text-[#059669] mt-0.5 group-hover:scale-105 transition-transform">
                           <ClockIcon className="w-4 h-4" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <span className="text-[10px] font-bold text-[#6F7F8E] uppercase tracking-wider block">
+                          <span className="text-[10.5px] font-medium text-slate-400 uppercase tracking-wider block">
                             Hours (CST)
                           </span>
-                          <span className="text-xs sm:text-[13px] text-primary font-semibold block mt-0.5">
-                            Mon â€“ Sat: 9:30 AM â€“ 7:30 PM
+                          <span className="text-[13px] sm:text-sm text-[#059669] font-semibold leading-snug block mt-1">
+                            Mon – Sat: 9:30 AM – 7:30 PM
                           </span>
-                          <span className="text-xs text-slate-600 font-normal leading-relaxed block mt-0.5">
+                          {/* <span className="text-[11.5px] text-slate-500 font-medium leading-relaxed block mt-1">
                             Sunday: Closed
-                          </span>
-                          <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-teal mt-1">
+                          </span> */}
+                          <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-slate-500 mt-0.5">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                             Online Portal Open 24/7
                           </span>
                         </div>
                       </div>
 
-                      {/* Direct Phone */}
-                      <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:border-[#EE6450]/40 hover:shadow-xs transition-all flex items-start gap-3 group">
+                      {/* Direct Phone — Coral Theme */}
+                      <div className="p-3.5 rounded-xl bg-white border border-slate-200/80  shadow-2xs hover:border-[#EE6450]/50 hover:shadow-xs transition-all flex items-start gap-3 group">
                         <div className="w-8 h-8 rounded-lg bg-[#FEF4F2] border border-[#EE6450]/25 flex items-center justify-center shrink-0 text-[#EE6450] mt-0.5 group-hover:scale-105 transition-transform">
                           <PhoneIcon className="w-4 h-4" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <span className="text-[10px] font-bold text-[#6F7F8E] uppercase tracking-wider block">
+                          <span className="text-[10.5px] font-medium text-slate-400 uppercase tracking-wider block">
                             Direct Phone
                           </span>
-                          <div className="flex flex-col gap-0.5 mt-0.5">
+                          <div className="flex flex-col gap-0.5 mt-1">
                             <a
                               href="tel:+14044244191"
-                              className="text-xs sm:text-[13px] text-primary hover:text-[#EE6450] font-semibold block truncate transition-colors"
+                              className="text-[13.5px] sm:text-sm text-[#EE6450] hover:text-[#D94F3B] font-semibold block truncate transition-colors"
                             >
                               +1 (404) 424-4191
                             </a>
                             <a
                               href="tel:+14044244815"
-                              className="text-xs sm:text-[13px] text-primary hover:text-[#EE6450] font-semibold block truncate transition-colors"
+                              className="text-[13.5px] sm:text-sm text-[#127EAB] hover:text-[#0E668B] font-semibold block truncate transition-colors"
                             >
                               +1 (404) 424-4815
                             </a>
                           </div>
-                          <span className="text-[10px] text-[#EE6450] font-semibold block mt-1">
+                          <span className="text-[11.5px] text-slate-500 font-medium block mt-1">
                             Toll-Free Assistance
                           </span>
                         </div>
                       </div>
 
-                      {/* Email */}
-                      <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:border-[#127EAB]/40 hover:shadow-xs transition-all flex items-start gap-3 group">
-                        <div className="w-8 h-8 rounded-lg bg-[#EFF6FF] border border-blue-200/70 flex items-center justify-center shrink-0 text-[#1F4264] mt-0.5 group-hover:scale-105 transition-transform">
+                      {/* Email — Indigo Theme */}
+                      <div className="p-3.5 rounded-xl bg-white border border-slate-200/80  shadow-2xs hover:border-[#4F46E5]/50 hover:shadow-xs transition-all flex items-start gap-3 group">
+                        <div className="w-8 h-8 rounded-lg bg-[#EEF2FF] border border-[#4F46E5]/25 flex items-center justify-center shrink-0 text-[#4F46E5] mt-0.5 group-hover:scale-105 transition-transform">
                           <EnvelopeIcon className="w-4 h-4" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <span className="text-[10px] font-bold text-[#6F7F8E] uppercase tracking-wider block">
+                          <span className="text-[10.5px] font-medium text-slate-400 uppercase tracking-wider block">
                             Official Email
                           </span>
                           <a
                             href="mailto:info@irstaxfiler.com"
-                            className="text-xs sm:text-[13px] text-primary hover:text-teal font-semibold block truncate mt-0.5 transition-colors"
+                            className="text-[13.5px] sm:text-sm text-[#4F46E5] hover:text-[#4338CA] font-semibold block truncate mt-1 transition-colors"
                           >
                             info@irstaxfiler.com
                           </a>
-                          <span className="text-xs text-slate-600 font-normal leading-relaxed block mt-0.5">
+                          <span className="text-[11.5px] text-slate-500 font-medium leading-relaxed block mt-1">
                             Tax desk & document intake
                           </span>
-                          <span className="text-[10px] text-teal font-semibold block mt-1">
+                          <span className="text-[11px] text-slate-500 font-medium block mt-0.5">
                             Replies within 2 hours
                           </span>
                         </div>

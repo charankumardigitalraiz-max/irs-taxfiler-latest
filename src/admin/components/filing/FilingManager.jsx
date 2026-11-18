@@ -423,7 +423,7 @@ const FilingManager = ({
                     key={item.step}
                     className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg"
                   >
-                    <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center text-xs font-bold text-primary-600">
+                    <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center text-xs font-semibold text-primary-600">
                       {item.step}
                     </div>
                     <span className="text-sm text-gray-700">{item.text}</span>

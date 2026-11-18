@@ -67,9 +67,9 @@ const Payments = () => {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-900 mb-1">Pricing & Payment</h2>
-        <p className="text-sm text-gray-600">
+      <div className="bg-white rounded-lg shadow-[0_2px_10px_rgba(31,66,100,0.04)] px-5 py-4 border border-[#DCEAF0]">
+        <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight">Pricing &amp; Payment</h2>
+        <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-medium mt-0.5">
           View your tax filing pricing breakdown and payment status.
         </p>
       </div>
@@ -108,7 +108,7 @@ const Payments = () => {
               <div className="border-t border-gray-200 pt-4">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-lg font-semibold text-gray-900">Total Amount</span>
-                  <span className="text-3xl font-bold text-primary-600">
+                  <span className="text-3xl font-semibold text-primary-600">
                     ${pricingDetails.totalAmount}
                   </span>
                 </div>
@@ -176,7 +176,7 @@ const Payments = () => {
             <select
               value={selectedYear}
               onChange={(e) => setSelectedYear(e.target.value)}
-              className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="px-3 py-1.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB]"
             >
               <option value="2024">2024</option>
               <option value="2023">2023</option>

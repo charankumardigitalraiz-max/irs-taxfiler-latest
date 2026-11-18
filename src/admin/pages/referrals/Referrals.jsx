@@ -90,23 +90,23 @@ const Referrals = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <Card className="p-4">
             <p className="text-sm text-gray-500">Total Referrers</p>
-            <p className="text-2xl font-bold text-gray-900">{stats.totalReferrers}</p>
+            <p className="text-2xl font-semibold text-gray-900">{stats.totalReferrers}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Total Referrals</p>
-            <p className="text-2xl font-bold text-blue-600">{stats.totalReferrals}</p>
+            <p className="text-2xl font-semibold text-blue-600">{stats.totalReferrals}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Successful</p>
-            <p className="text-2xl font-bold text-green-600">{stats.successfulReferrals}</p>
+            <p className="text-2xl font-semibold text-green-600">{stats.successfulReferrals}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Pending</p>
-            <p className="text-2xl font-bold text-yellow-600">{stats.pendingReferrals}</p>
+            <p className="text-2xl font-semibold text-yellow-600">{stats.pendingReferrals}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Total Rewards Paid</p>
-            <p className="text-2xl font-bold text-teal">${stats.totalRewardsPaid}</p>
+            <p className="text-2xl font-semibold text-teal">${stats.totalRewardsPaid}</p>
           </Card>
         </div>
 
@@ -326,19 +326,19 @@ const Referrals = () => {
               <div className="grid grid-cols-3 gap-4">
                 <div>
                   <p className="text-xs text-primary-600">Total Referrals</p>
-                  <p className="text-lg font-bold text-primary-900">
+                  <p className="text-lg font-semibold text-primary-900">
                     {selectedReferral.totalReferrals}
                   </p>
                 </div>
                 <div>
                   <p className="text-xs text-primary-600">Successful</p>
-                  <p className="text-lg font-bold text-green-600">
+                  <p className="text-lg font-semibold text-green-600">
                     {selectedReferral.successfulReferrals}
                   </p>
                 </div>
                 <div>
                   <p className="text-xs text-primary-600">Total Rewards</p>
-                  <p className="text-lg font-bold text-teal">
+                  <p className="text-lg font-semibold text-teal">
                     ${selectedReferral.totalRewardsEarned}
                   </p>
                 </div>

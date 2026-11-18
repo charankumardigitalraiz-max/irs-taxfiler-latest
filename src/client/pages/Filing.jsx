@@ -64,9 +64,9 @@ const Filing = () => {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-900 mb-1">Filing Status</h2>
-        <p className="text-sm text-gray-600">
+      <div className="bg-white rounded-lg shadow-[0_2px_10px_rgba(31,66,100,0.04)] px-5 py-4 border border-[#DCEAF0]">
+        <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight">Filing Status</h2>
+        <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-medium mt-0.5">
           Track the progress of your tax filing from submission to completion.
         </p>
       </div>
@@ -85,7 +85,7 @@ const Filing = () => {
                 style={{ width: `${progressPercentage}%` }}
               />
             </div>
-            <span className="text-lg font-bold text-gray-900">{progressPercentage}%</span>
+            <span className="text-lg font-semibold text-gray-900">{progressPercentage}%</span>
           </div>
         </Card>
         <Card>
@@ -93,7 +93,7 @@ const Filing = () => {
             <p className="text-sm font-medium text-gray-500">Steps Completed</p>
             <FileCheck className="w-5 h-5 text-green-600" />
           </div>
-          <p className="text-3xl font-bold text-gray-900">
+          <p className="text-3xl font-semibold text-gray-900">
             {steps.filter((s) => s.completed).length} / {steps.length}
           </p>
         </Card>
@@ -102,7 +102,7 @@ const Filing = () => {
             <p className="text-sm font-medium text-gray-500">Estimated Completion</p>
             <Calendar className="w-5 h-5 text-orange-600" />
           </div>
-          <p className="text-lg font-bold text-gray-900">Feb 5, 2024</p>
+          <p className="text-lg font-semibold text-gray-900">Feb 5, 2024</p>
         </Card>
       </div>
 

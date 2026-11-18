@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
+import { SectionSkeleton } from '../components/common/PageLoader';
 import { documentService } from '../services/documentService';
 import { baseUrl } from '../../baseurl';
 
@@ -23,6 +24,7 @@ const Documents = () => {
   const replaceInputRefs = useRef({});
   const [toast, setToast] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const documentTypes = [
     'W2-Wage Income',
@@ -77,6 +79,8 @@ const Documents = () => {
           type: 'error',
           message: 'Failed to load your documents. Please try again.',
         });
+      } finally {
+        setLoading(false);
       }
     };
     fetchDocs();
@@ -328,38 +332,38 @@ const Documents = () => {
           </div>
         </div>
       )}
-      {/* Hero Header - unique design */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary-600 via-blue-600 to-sky-500 text-white p-6 shadow-lg">
+      {/* Hero Header */}
+      <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-[#1F4264] via-[#17577A] to-[#127EAB] text-white p-6 shadow-md">
         <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <div className="absolute -right-16 -top-16 w-52 h-52 rounded-full border border-white/20" />
-          <div className="absolute -right-2 top-4 w-32 h-32 rounded-full border border-white/10" />
+          <div className="absolute -right-16 -top-16 w-52 h-52 rounded-full border border-white/25" />
+          <div className="absolute -right-2 top-4 w-32 h-32 rounded-full border border-white/15" />
         </div>
 
         <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur text-xs font-medium mb-3">
-              <Upload className="w-3 h-3" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur text-xs font-medium text-sky-50 mb-3">
+              <Upload className="w-3.5 h-3.5 text-[#7DD3FC]" />
               <span>Step 2 of 3 &mdash; Upload your tax documents</span>
             </div>
-            <h1 className="text-2xl md:text-3xl font-bold mb-2">
+            <h1 className="text-xl sm:text-[22px] font-medium text-white tracking-tight">
               Securely upload your tax documents
             </h1>
-            <p className="text-sm md:text-base text-white/90 max-w-xl">
+            <p className="text-[13px] sm:text-sm text-sky-100/90 font-medium mt-1">
               Drag &amp; drop files, organize them by category, and let our team handle the rest.
               You can come back anytime to add more documents.
             </p>
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="hidden sm:flex flex-col text-right text-xs text-white/80">
+            <div className="hidden sm:flex flex-col text-right text-xs text-sky-100/80">
               <span>Encryption</span>
               <span className="font-semibold text-white">Bank-level security</span>
               <span className="mt-2">Max file size</span>
               <span className="font-semibold text-white">10 MB per file</span>
             </div>
-            <div className="flex flex-col items-center justify-center w-20 h-20 rounded-2xl bg-white/15 backdrop-blur">
-              <FileText className="w-7 h-7 mb-1" />
-              <span className="text-[11px] font-medium text-white/90 text-center">
+            <div className="flex flex-col items-center justify-center w-20 h-20 rounded-lg bg-white/15 border border-white/20 backdrop-blur text-white">
+              <FileText className="w-7 h-7 mb-1 text-[#7DD3FC]" />
+              <span className="text-[11px] font-medium text-white/95 text-center leading-tight px-1">
                 All docs in one place
               </span>
             </div>
@@ -380,7 +384,7 @@ const Documents = () => {
             <select
               value={selectedYear}
               onChange={(e) => setSelectedYear(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+              className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white"
             >
               <option value="all">All Years</option>
               {getAvailableYears().map((year) => (
@@ -404,7 +408,7 @@ const Documents = () => {
             <select
               value={selectedDocumentType}
               onChange={(e) => setSelectedDocumentType(e.target.value)}
-              className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all bg-white hover:border-gray-400"
+              className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-md focus:ring-2 focus:ring-[#127EAB] focus:border-[#127EAB] transition-all bg-white hover:border-gray-400"
             >
               <option value="">Select Document Type</option>
               {documentTypes.map((type) => (
@@ -421,7 +425,7 @@ const Documents = () => {
             <select
               value={selectedPerson}
               onChange={(e) => setSelectedPerson(e.target.value)}
-              className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all bg-white hover:border-gray-400"
+              className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-md focus:ring-2 focus:ring-[#127EAB] focus:border-[#127EAB] transition-all bg-white hover:border-gray-400"
             >
               <option value="">Select Person</option>
               {personTypes.map((person) => (
@@ -501,7 +505,7 @@ const Documents = () => {
               return (
                 <Card>
                   <div className="flex items-center gap-2 mb-6">
-                    <div className="h-1 w-1 rounded-full bg-blue-500"></div>
+                    <div className="h-1 w-1 rounded-full bg-[#127EAB]"></div>
                     <h3 className="text-lg font-semibold text-gray-900">
                       Documents Uploaded by You ({clientFiles.length}
                       {selectedYear !== 'all' && ` for ${selectedYear}`})
@@ -520,8 +524,8 @@ const Documents = () => {
                           className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors"
                         >
                           <div className="flex items-center gap-4 flex-1">
-                            <div className="p-2 bg-blue-100 rounded-lg">
-                              <FileIcon className="h-5 w-5 text-blue-600" />
+                            <div className="p-2 bg-[#E9F7FA] rounded-lg">
+                              <FileIcon className="h-5 w-5 text-[#127EAB]" />
                             </div>
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-medium text-gray-900 truncate">
@@ -679,8 +683,15 @@ const Documents = () => {
         </Card>
       )}
 
+      {/* Loading Skeleton for Documents */}
+      {loading && (
+        <Card>
+          <SectionSkeleton variant="documents" rows={3} />
+        </Card>
+      )}
+
       {/* Empty State */}
-      {files.length === 0 && (
+      {!loading && files.length === 0 && (
         <Card>
           <div className="text-center py-12">
             <FileText className="mx-auto h-16 w-16 text-gray-300 mb-4" />

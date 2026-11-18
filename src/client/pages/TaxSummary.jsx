@@ -111,9 +111,9 @@ const TaxSummary = () => {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-900 mb-1">Tax Summary & History</h2>
-        <p className="text-sm text-gray-600">
+      <div className="bg-white rounded-lg shadow-[0_2px_10px_rgba(31,66,100,0.04)] px-5 py-4 border border-[#DCEAF0]">
+        <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight">Tax Summary &amp; History</h2>
+        <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-medium mt-0.5">
           View your complete tax filing history, summaries, and download past returns.
         </p>
       </div>
@@ -125,7 +125,7 @@ const TaxSummary = () => {
             <FileText className="w-5 h-5 text-primary-600" />
             <span className="text-xs text-gray-500">Total Returns</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">{summaryStats.totalReturns}</p>
+          <p className="text-2xl font-semibold text-gray-900">{summaryStats.totalReturns}</p>
           <p className="text-xs text-gray-500 mt-1">Tax Years Filed</p>
         </Card>
 
@@ -134,7 +134,7 @@ const TaxSummary = () => {
             <DollarSign className="w-5 h-5 text-green-600" />
             <span className="text-xs text-gray-500">Total Refunds</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">{summaryStats.totalRefunds}</p>
+          <p className="text-2xl font-semibold text-gray-900">{summaryStats.totalRefunds}</p>
           <p className="text-xs text-gray-500 mt-1">All Time</p>
         </Card>
 
@@ -143,7 +143,7 @@ const TaxSummary = () => {
             <TrendingUp className="w-5 h-5 text-teal" />
             <span className="text-xs text-gray-500">Tax Paid</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">{summaryStats.totalTaxPaid}</p>
+          <p className="text-2xl font-semibold text-gray-900">{summaryStats.totalTaxPaid}</p>
           <p className="text-xs text-gray-500 mt-1">Federal & State</p>
         </Card>
 
@@ -152,7 +152,7 @@ const TaxSummary = () => {
             <DollarSign className="w-5 h-5 text-indigo-600" />
             <span className="text-xs text-gray-500">Avg Refund</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">{summaryStats.averageRefund}</p>
+          <p className="text-2xl font-semibold text-gray-900">{summaryStats.averageRefund}</p>
           <p className="text-xs text-gray-500 mt-1">Per Return</p>
         </Card>
       </div>

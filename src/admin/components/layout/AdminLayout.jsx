@@ -138,7 +138,7 @@ const AdminLayout = () => {
                   className="flex items-center gap-2 p-1 sm:p-1.5 hover:bg-gray-50 rounded-lg transition-all group"
                 >
                   <div className="h-8 w-8 rounded-lg bg-primary-600 flex items-center justify-center shadow-sm group-hover:shadow group-active:scale-95 transition-all">
-                    <span className="text-white font-bold text-xs uppercase">
+                    <span className="text-white font-semibold text-xs uppercase">
                       {getUserInitials()}
                     </span>
                   </div>

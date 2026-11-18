@@ -166,7 +166,7 @@ const FederalStateLocal = () => {
               <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slateText">
                 <ShieldCheckIcon className="w-4 h-4 text-teal" />
                 <span className="font-medium text-primary">Licensed CPAs & Enrolled Agents</span>
-                <span className="text-border">Ã¢â‚¬Â¢</span>
+                <span className="text-border">•</span>
                 <span>Direct Electronic Filing to IRS & State Agencies</span>
               </div>
             </div>

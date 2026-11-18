@@ -51,7 +51,7 @@ const FBARFATCA = () => {
     {
       feature: "Filing Threshold",
       fbar: "Aggregate foreign account balances > $10,000 at any time in the year",
-      fatca: "$50,000 Ã¢â‚¬â€œ $200,000+ (Depends on marital status & domestic vs. expat residence)",
+      fatca: "$50,000 – $200,000+ (Depends on marital status & domestic vs. expat residence)",
     },
     {
       feature: "Reportable Assets",
@@ -183,7 +183,7 @@ const FBARFATCA = () => {
               <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slateText">
                 <ShieldCheckIcon className="w-4 h-4 text-teal" />
                 <span className="font-medium text-primary">FinCEN Direct e-File Partner</span>
-                <span className="text-border">Ã¢â‚¬Â¢</span>
+                <span className="text-border">•</span>
                 <span>Zero-Penalty Amnesty Guidance</span>
               </div>
             </div>

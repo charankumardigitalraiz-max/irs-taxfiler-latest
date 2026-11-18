@@ -264,43 +264,45 @@ const WhyChooseSection = ({ onOpenModal }) => {
               </div>
             </div>
 
-            {/* Mobile / Tablet Responsive Fallback Layout */}
-            <div className="block lg:hidden space-y-4">
-              {/* Centerpiece Full Width */}
-              <div className="rounded-[28px] bg-surface border border-border p-6 shadow-sm text-left">
-                <div className="flex items-center justify-between">
-                  <div className="w-16 h-16 rounded-[22px] bg-background-aqua border border-border shadow-xs flex items-center justify-center">
-                    <svg className="w-8 h-8 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M9.5 4a3.5 3.5 0 0 0-3.5 3.5c0 .33.05.65.13.95A4 4 0 0 0 4 12c0 1.25.58 2.37 1.48 3.1A4.5 4.5 0 0 0 9.5 20h.5V4h-.5z" />
-                      <path d="M14.5 4a3.5 3.5 0 0 1 3.5 3.5c0 .33-.05.65-.13.95A4 4 0 0 1 20 12c0 1.25-.58 2.37-1.48 3.1A4.5 4.5 0 0 1 14.5 20h-.5V4h.5z" />
-                      <path d="M6.5 12h3" />
-                      <path d="M14.5 12h3" />
-                      <path d="M7 16h2.5" />
-                      <path d="M14.5 16H17" />
-                      <path d="M7 8h2.5" />
-                      <path d="M14.5 8H17" />
-                    </svg>
+            {/* Mobile / Tablet Responsive Horizontal Scroll Carousel */}
+            <div className="block lg:hidden">
+              <div className="flex items-stretch gap-3.5 overflow-x-auto snap-x snap-mandatory pb-3 -mx-4 px-4 sm:mx-0 sm:px-0 thin-scrollbar touch-pan-x">
+                {/* Card 1: Certified CPA Filing */}
+                <div className="w-[82vw] max-w-[310px] sm:w-[300px] shrink-0 snap-start rounded-[24px] bg-surface border border-border p-5 shadow-xs text-left flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="w-14 h-14 rounded-[18px] bg-background-aqua border border-border shadow-xs flex items-center justify-center shrink-0">
+                        <svg className="w-7 h-7 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M9.5 4a3.5 3.5 0 0 0-3.5 3.5c0 .33.05.65.13.95A4 4 0 0 0 4 12c0 1.25.58 2.37 1.48 3.1A4.5 4.5 0 0 0 9.5 20h.5V4h-.5z" />
+                          <path d="M14.5 4a3.5 3.5 0 0 1 3.5 3.5c0 .33-.05.65-.13.95A4 4 0 0 1 20 12c0 1.25-.58 2.37-1.48 3.1A4.5 4.5 0 0 1 14.5 20h-.5V4h.5z" />
+                          <path d="M6.5 12h3" />
+                          <path d="M14.5 12h3" />
+                          <path d="M7 16h2.5" />
+                          <path d="M14.5 16H17" />
+                          <path d="M7 8h2.5" />
+                          <path d="M14.5 8H17" />
+                        </svg>
+                      </div>
+                      <span className="pill-badge-accent text-[11px]">
+                        Core Advantage
+                      </span>
+                    </div>
+                    <h3 className="text-[17px] font-semibold text-primary tracking-tight mt-3.5">
+                      Certified CPA Filing
+                    </h3>
+                    <p className="text-[13px] text-slate-700 font-medium leading-relaxed mt-1.5">
+                      Every return is prepared and reviewed by a licensed CPA — not software alone. We ensure accuracy, compliance, and maximum refund.
+                    </p>
                   </div>
-                  <span className="pill-badge-accent">
-                    Our Core Advantage
-                  </span>
+                  <div className="mt-4 pt-3 border-t border-border/60 inline-flex items-center gap-2 text-[11.5px] text-primary font-medium">
+                    <span className="w-4 h-4 rounded-md bg-teal text-white flex items-center justify-center text-[10px] shrink-0">
+                      ✓
+                    </span>
+                    <span>Licensed CPA on every return.</span>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-primary tracking-tight mt-4">
-                  Certified CPA Filing
-                </h3>
-                <p className="text-sm sm:text-[15px] text-slate-700 font-normal leading-relaxed mt-2">
-                  Every return is prepared and reviewed by a licensed CPA — not software alone. We ensure accuracy, compliance, and maximum refund on every filing.
-                </p>
-                <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-background-aqua border border-border shadow-2xs text-xs text-primary font-medium">
-                  <span className="w-4 h-4 rounded-md bg-teal text-white flex items-center justify-center text-[10px] shrink-0">
-                    ✓
-                  </span>
-                  <span>Licensed CPA on every return. No exceptions.</span>
-                </div>
-              </div>
 
-              {/* 3 Secondary Cards Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                {/* Cards 2–4 */}
                 {[
                   {
                     title: "Dedicated CPA Support",
@@ -313,7 +315,7 @@ const WhyChooseSection = ({ onOpenModal }) => {
                   },
                   {
                     title: "Maximum Deductions",
-                    desc: "Our CPAs review every eligible deduction and credit — foreign income, business expenses, FEIE, ITIN, and more — so you keep more of what you earn.",
+                    desc: "Our CPAs review every eligible deduction and credit — foreign income, business expenses, FEIE, ITIN, and more — so you keep more.",
                     icon: (
                       <svg className="w-7 h-7 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
@@ -335,20 +337,20 @@ const WhyChooseSection = ({ onOpenModal }) => {
                   <div
                     key={cIdx}
                     onClick={() => onOpenModal && onOpenModal()}
-                    className="rounded-[28px] bg-surface border border-border p-5 shadow-2xs text-left flex flex-col justify-between cursor-pointer hover:shadow-md hover:border-teal/50 transition-all"
+                    className="w-[82vw] max-w-[310px] sm:w-[300px] shrink-0 snap-start rounded-[24px] bg-surface border border-border p-5 shadow-xs text-left flex flex-col justify-between cursor-pointer hover:shadow-md hover:border-teal/50 transition-all"
                   >
                     <div>
-                      <div className="w-14 h-14 rounded-[20px] bg-background-aqua text-teal flex items-center justify-center shadow-xs">
+                      <div className="w-14 h-14 rounded-[18px] bg-background-aqua text-teal flex items-center justify-center shadow-xs">
                         {card.icon}
                       </div>
-                      <h4 className="text-base font-semibold text-primary tracking-tight mt-3">
+                      <h4 className="text-[17px] font-semibold text-primary tracking-tight mt-3.5">
                         {card.title}
                       </h4>
-                      <p className="text-[13px] sm:text-sm text-slate-700 font-normal leading-relaxed mt-1.5">
+                      <p className="text-[13px] text-slate-700 font-medium leading-relaxed mt-1.5">
                         {card.desc}
                       </p>
                     </div>
-                    <div className="flex justify-end mt-3 pt-2">
+                    <div className="flex justify-end mt-4 pt-3 border-t border-border/60">
                       <div className="w-8 h-8 rounded-full border border-border bg-background text-primary flex items-center justify-center shadow-2xs">
                         <ArrowRightIcon className="w-3.5 h-3.5 stroke-[2]" />
                       </div>

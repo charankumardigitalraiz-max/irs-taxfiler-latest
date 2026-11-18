@@ -439,7 +439,7 @@ const ProfileSettings = () => {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
               <div>
-                <h3 className="text-xl font-bold text-gray-900">
+                <h3 className="text-xl font-semibold text-gray-900">
                   {tabs.find((t) => t.id === activeTab)?.label}
                 </h3>
                 <p className="text-sm text-gray-500 mt-1">Configure your personal account settings</p>

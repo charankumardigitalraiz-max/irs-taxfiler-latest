@@ -383,7 +383,7 @@ const FormsList = () => {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{formTypeLabels[formType] || 'Form Submissions'}</h1>
+          <h1 className="text-2xl font-semibold text-gray-900">{formTypeLabels[formType] || 'Form Submissions'}</h1>
           <p className="text-sm text-gray-600 mt-1">View and manage {formTypeLabels[formType]?.toLowerCase()}</p>
         </div>
       </div>
@@ -538,7 +538,7 @@ const FormsList = () => {
             </div>
 
             <div className="border-t border-gray-200 pt-4">
-              <h3 className="text-sm font-bold text-gray-900 mb-3">Form Specific Details</h3>
+              <h3 className="text-sm font-semibold text-gray-900 mb-3">Form Specific Details</h3>
               {renderFormDetails()}
             </div>
 
@@ -660,7 +660,7 @@ const FormsList = () => {
             {otpStep === 'register' && userToRegister && (
               <div className="space-y-4">
                 <div className="bg-green-50 border border-green-200 rounded-xl p-4">
-                  <p className="text-sm text-green-800 font-bold">✓ OTP Verified</p>
+                  <p className="text-sm text-green-800 font-semibold">✓ OTP Verified</p>
                 </div>
                 <Button
                   variant="success"

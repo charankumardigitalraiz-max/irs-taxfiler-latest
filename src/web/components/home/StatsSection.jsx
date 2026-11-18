@@ -245,10 +245,10 @@ const StatsSection = () => {
                   <div className="text-xs sm:text-[13.5px] font-semibold text-primary mb-1 leading-snug">
                     {stat.label}
                   </div>
-
+                  {/* 
                   <div className="text-[11px] text-slateText font-normal">
                     {stat.subtext}
-                  </div>
+                  </div> */}
                 </motion.div>
               ))}
             </div>

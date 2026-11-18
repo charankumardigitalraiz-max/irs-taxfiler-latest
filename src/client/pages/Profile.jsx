@@ -15,6 +15,7 @@ import Card from '../components/common/Card';
 import Badge from '../components/common/Badge';
 import Button from '../components/common/Button';
 import Input from '../components/common/Input';
+import PageLoader from '../components/common/PageLoader';
 import { userService } from '../services/userService';
 import { getUser, setUser } from '../utils/auth';
 import { useToast } from '../../admin/hooks/useToast';
@@ -163,12 +164,12 @@ const Profile = () => {
         if (tabId === 'contact') {
           const user = getUser();
           if (user) {
-            setUser({ 
-              ...user, 
+            setUser({
+              ...user,
               firstName: formData.firstName,
               lastName: formData.lastName,
               fullName: `${formData.firstName || ''} ${formData.lastName || ''}`.trim() || formData.fullName,
-              mobileNumber: formData.mobileNumber 
+              mobileNumber: formData.mobileNumber
             });
           }
         }
@@ -233,84 +234,89 @@ const Profile = () => {
   };
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-gray-500">Loading profile...</div>
-      </div>
-    );
+    return <PageLoader variant="profile" />;
   }
 
   const user = getUser();
-  const displayName = (formData.firstName && formData.lastName) 
+  const displayName = (formData.firstName && formData.lastName)
     ? `${formData.firstName} ${formData.lastName}`
-    : formData.fullName || user?.fullName || 
+    : formData.fullName || user?.fullName ||
     (user?.firstName && user?.lastName ? `${user.firstName} ${user.lastName}` : '') ||
     user?.email?.split('@')[0] || 'User';
   const nameParts = displayName.split(' ');
-  const initials = (formData.firstName && formData.lastName) 
+  const initials = (formData.firstName && formData.lastName)
     ? (formData.firstName[0] + formData.lastName[0]).toUpperCase()
-    : nameParts.length >= 2 
-    ? (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase()
-    : displayName.substring(0, 2).toUpperCase();
+    : nameParts.length >= 2
+      ? (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase()
+      : displayName.substring(0, 2).toUpperCase();
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 irs-page-enter">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-900 mb-1">Profile Settings</h2>
-        <p className="text-sm text-gray-600">
+      <div className="bg-white rounded-lg shadow-[0_2px_10px_rgba(31,66,100,0.04)] px-5 py-4 border border-[#DCEAF0]">
+        <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight">Profile Settings</h2>
+        <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-medium mt-0.5">
           Manage your personal information and account settings.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Profile Photo & Tabs */}
-        <div className="lg:col-span-1 space-y-4">
-          <Card>
-            <div className="text-center">
-              <div className="relative inline-block mb-4">
-                <div className="h-24 w-24 rounded-full bg-gradient-to-br from-primary-600 to-blue-600 flex items-center justify-center mx-auto">
-                  <span className="text-3xl font-bold text-white">
-                    {initials}
-                  </span>
-                </div>
-                <button className="absolute bottom-0 right-0 p-2 bg-white rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 transition-colors">
-                  <Camera className="w-4 h-4 text-gray-600" />
-                </button>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                {displayName}
-              </h3>
-              <p className="text-sm text-gray-500">{formData.email || user?.email || ''}</p>
-            </div>
-          </Card>
-
-          {/* Tabs */}
-          <Card>
-            <div className="space-y-1">
-              {tabs.map((tab) => {
-                const Icon = tab.icon;
-                return (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                      activeTab === tab.id
-                        ? 'bg-primary-600 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                  >
-                    <Icon className="w-5 h-5" />
-                    <span className="text-sm font-medium">{tab.label}</span>
+        <div className="lg:col-span-1 min-w-0">
+          <div className="lg:sticky lg:top-20 space-y-4">
+            <Card className="overflow-hidden">
+              <div className="text-center min-w-0">
+                <div className="relative inline-block mb-4">
+                  <div className="h-24 w-24 rounded-full bg-gradient-to-br from-[#1F4264] to-[#127EAB] flex items-center justify-center mx-auto">
+                    <span className="text-3xl font-semibold text-white">
+                      {initials}
+                    </span>
+                  </div>
+                  <button className="absolute bottom-0 right-0 p-2 bg-white rounded-full shadow-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+                    <Camera className="w-4 h-4 text-gray-600" />
                   </button>
-                );
-              })}
-            </div>
-          </Card>
+                </div>
+                <h3
+                  className="text-lg font-semibold text-gray-900 mb-1 break-words leading-snug"
+                  title={displayName}
+                >
+                  {displayName}
+                </h3>
+                <p
+                  className="text-sm text-gray-500 break-all leading-snug"
+                  title={formData.email || user?.email || ''}
+                >
+                  {formData.email || user?.email || ''}
+                </p>
+              </div>
+            </Card>
+
+            {/* Tabs */}
+            <Card>
+              <div className="space-y-1">
+                {tabs.map((tab) => {
+                  const Icon = tab.icon;
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors cursor-pointer ${activeTab === tab.id
+                          ? 'bg-primary-600 text-white'
+                          : 'text-gray-700 hover:bg-gray-100'
+                        }`}
+                    >
+                      <Icon className="w-5 h-5" />
+                      <span className="text-sm font-medium">{tab.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </Card>
+          </div>
         </div>
 
         {/* Form Content */}
-        <div className="lg:col-span-3">
+        <div className="lg:col-span-3 min-w-0">
           <Card>
             <Card.Header>
               <div className="flex items-center justify-between">
@@ -350,14 +356,6 @@ const Profile = () => {
                       required
                     />
                     <Input
-                      label="Middle Name"
-                      name="middleName"
-                      type="text"
-                      value={formData.middleName}
-                      onChange={handleChange}
-                      disabled={editingTab !== activeTab}
-                    />
-                    <Input
                       label="Last Name"
                       name="lastName"
                       type="text"
@@ -394,7 +392,7 @@ const Profile = () => {
                         value={formData.filingStatus}
                         onChange={handleChange}
                         disabled={editingTab !== activeTab}
-                        className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent disabled:bg-gray-100"
+                        className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent disabled:bg-gray-100"
                       >
                         <option value="">Select filing status</option>
                         <option value="single">Single</option>
@@ -413,7 +411,7 @@ const Profile = () => {
                         value={formData.maritalStatus}
                         onChange={handleChange}
                         disabled={editingTab !== activeTab}
-                        className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent disabled:bg-gray-100"
+                        className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent disabled:bg-gray-100"
                       >
                         <option value="">Select marital status</option>
                         <option value="single">Single</option>
@@ -544,7 +542,7 @@ const Profile = () => {
                           value={formData.accountType}
                           onChange={handleChange}
                           disabled={editingTab !== activeTab}
-                          className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent disabled:bg-gray-100"
+                          className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent disabled:bg-gray-100"
                         >
                           <option value="">Select account type</option>
                           <option value="checking">Checking</option>
@@ -569,14 +567,14 @@ const Profile = () => {
                         required
                       />
                     </div>
-                    <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <div className="p-4 bg-[#E9F7FA] rounded-lg border border-[#127EAB]/25">
                       <div className="flex items-start gap-3">
-                        <Shield className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                        <Shield className="w-5 h-5 text-[#127EAB] flex-shrink-0 mt-0.5" />
                         <div>
-                          <p className="text-sm font-medium text-blue-900 mb-1">
+                          <p className="text-sm font-medium text-[#1F4264] mb-1">
                             Secure & Encrypted
                           </p>
-                          <p className="text-xs text-blue-800">
+                          <p className="text-xs text-[#1F4264]">
                             Your bank details are encrypted and securely stored. This information
                             is used exclusively for tax refund direct deposit.
                           </p>

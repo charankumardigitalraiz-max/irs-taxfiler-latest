@@ -5,7 +5,6 @@ import {
   Calendar,
   User,
   HelpCircle,
-  LogOut,
   Users,
   Building,
   FileCheck,
@@ -13,9 +12,10 @@ import {
   FileEdit,
   CreditCard,
   ClipboardCheck,
+  PanelLeftClose,
+  X,
 } from 'lucide-react';
-import { getUser, clearAuth } from '../../utils/auth';
-import { useNavigate } from 'react-router-dom';
+import { getUser } from '../../utils/auth';
 import { useState, useEffect } from 'react';
 import Logo from '../../../assets/irsLogo.png';
 
@@ -80,94 +80,121 @@ const settingsNavigation = [
   },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ onClose, isMobile = false }) => {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const currentUser = getUser();
     setUser(currentUser);
   }, []);
 
-  const handleLogout = () => {
-    clearAuth();
-    navigate('/client/login');
+  const handleNavClick = () => {
+    if (isMobile && onClose) {
+      onClose();
+    }
   };
 
   return (
-    <div className="flex flex-col w-64 bg-gray-900 min-h-screen h-full">
-      {/* Logo */}
-      <div className="flex items-center h-16 px-4 sm:px-6 border-b border-gray-800">
-        <div className="flex items-center gap-3">
-          <img src={ Logo } alt="logo" className="inline-block invert brightness-0 align-middle w-9 w-auto" />
+    <div className="flex flex-col w-64 bg-[#1F4264] min-h-screen h-full text-white">
+      {/* Logo & Close/Collapse Button */}
+      <div className="flex items-center justify-between h-16 px-4 sm:px-5 border-b border-white/10">
+        <div className="flex items-center gap-3 min-w-0">
+          <img
+            src={Logo}
+            alt="IRS Tax Filer"
+            className="inline-block invert brightness-0 align-middle h-9 w-auto"
+          />
         </div>
+        {onClose && (
+          <button
+            type="button"
+            onClick={onClose}
+            title="Close sidebar"
+            aria-label="Close sidebar"
+            className="p-1.5 rounded-lg text-sky-100/75 hover:text-white hover:bg-white/10 transition-colors cursor-pointer shrink-0"
+          >
+            {isMobile ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <PanelLeftClose className="w-5 h-5" />
+            )}
+          </button>
+        )}
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-2 sm:px-3 py-4 space-y-1 overflow-y-auto">
+      <nav className="flex-1 px-2.5 sm:px-3 py-4 space-y-1 overflow-y-auto">
         <div className="space-y-1">
           {navigation.map((item) => (
             <NavLink
               key={item.name}
               to={item.href}
               end={item.href === '/client/dashboard'}
+              onClick={handleNavClick}
               className={({ isActive }) =>
                 clsx(
-                  'flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors',
+                  'flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-150',
                   isActive
-                    ? 'bg-primary-600 text-white'
-                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                    ? 'bg-[#127EAB] text-white shadow-xs'
+                    : 'text-sky-100/80 hover:bg-white/10 hover:text-white'
                 )
               }
             >
-              <item.icon className="w-5 h-5" />
-              {item.name}
+              <item.icon className="w-5 h-5 shrink-0" />
+              <span>{item.name}</span>
             </NavLink>
           ))}
         </div>
 
         {/* Settings section */}
-        <div className="pt-4 mt-4 border-t border-gray-800">
-          <p className="px-3 mb-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+        <div className="pt-4 mt-4 border-t border-white/10">
+          <p className="px-3 mb-2 text-[11px] font-semibold text-sky-200/60 uppercase tracking-wider">
             Account
           </p>
-          {settingsNavigation.map((item) => (
-            <NavLink
-              key={item.name}
-              to={item.href}
-              className={({ isActive }) =>
-                clsx(
-                  'flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors',
-                  isActive
-                    ? 'bg-primary-600 text-white'
-                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-                )
-              }
-            >
-              <item.icon className="w-5 h-5" />
-              {item.name}
-            </NavLink>
-          ))}
+          <div className="space-y-1">
+            {settingsNavigation.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.href}
+                onClick={handleNavClick}
+                className={({ isActive }) =>
+                  clsx(
+                    'flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-150',
+                    isActive
+                      ? 'bg-[#127EAB] text-white shadow-xs'
+                      : 'text-sky-100/80 hover:bg-white/10 hover:text-white'
+                  )
+                }
+              >
+                <item.icon className="w-5 h-5 shrink-0" />
+                <span>{item.name}</span>
+              </NavLink>
+            ))}
+          </div>
         </div>
       </nav>
 
       {/* PayPal Payment Button */}
-      <div className="p-3 sm:p-4 border-t border-gray-800">
+      <div className="p-3 sm:p-4 border-t border-white/10">
         <button
-          onClick={() => window.open('https://www.paypal.com/ncp/payment/9AWG5USG2AUDU', '_blank')}
-          className="w-full flex items-center justify-center gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-medium rounded-lg transition-colors"
+          onClick={() =>
+            window.open(
+              'https://www.paypal.com/ncp/payment/9AWG5USG2AUDU',
+              '_blank'
+            )
+          }
+          className="w-full flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 bg-[#EE6450] hover:bg-[#D9523E] text-white text-xs sm:text-sm font-semibold rounded-lg shadow-xs transition-colors cursor-pointer"
         >
           <CreditCard className="w-4 h-4 sm:w-5 sm:h-5" />
           <span>Payments</span>
         </button>
       </div>
-      
 
       {/* User section */}
-      <div className="p-3 sm:p-4 border-t border-gray-800">
-        <div className="flex items-center gap-2 sm:gap-3 px-2 sm:px-3 py-2">
-          <div className="w-8 h-8 sm:w-9 sm:h-9 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0">
-            <span className="text-xs sm:text-sm font-medium text-white">
+      <div className="p-3 sm:p-4 border-t border-white/10">
+        <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg bg-white/[0.08]">
+          <div className="w-8 h-8 sm:w-9 sm:h-9 bg-[#127EAB] rounded-full flex items-center justify-center flex-shrink-0 shadow-xs">
+            <span className="text-xs sm:text-sm font-semibold text-white">
               {user?.email?.charAt(0).toUpperCase() || 'U'}
             </span>
           </div>
@@ -175,7 +202,7 @@ const Sidebar = () => {
             <p className="text-xs sm:text-sm font-medium text-white truncate">
               {user?.email || 'Client User'}
             </p>
-            <p className="text-xs text-gray-400 truncate">Client Portal</p>
+            <p className="text-[11px] text-sky-200/75 truncate">Client Portal</p>
           </div>
         </div>
       </div>

@@ -21,6 +21,7 @@ import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Input from '../components/common/Input';
 import Badge from '../components/common/Badge';
+import PageLoader from '../components/common/PageLoader';
 import { userService } from '../services/userService';
 import { documentService } from '../services/documentService';
 import { useToast } from '../../admin/hooks/useToast';
@@ -232,7 +233,7 @@ const AccountInformation = () => {
   const isCompleted = (section) => completedSections.includes(section);
   const getColorClasses = (color, isActive) => {
     const colors = {
-      blue: isActive ? 'bg-blue-600 text-white' : 'bg-blue-50 text-blue-600',
+      blue: isActive ? 'bg-[#127EAB] text-white' : 'bg-[#E9F7FA] text-[#127EAB]',
       purple: isActive ? 'bg-teal text-white' : 'bg-background-aqua text-teal',
       green: isActive ? 'bg-green-600 text-white' : 'bg-green-50 text-green-600',
       orange: isActive ? 'bg-orange-600 text-white' : 'bg-orange-50 text-orange-600',
@@ -244,125 +245,121 @@ const AccountInformation = () => {
   };
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-gray-500">Loading account information...</div>
-      </div>
-    );
+    return <PageLoader variant="account" />;
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 irs-page-enter">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-900 mb-1">Account Information</h2>
-        <p className="text-sm text-gray-600">
+      <div className="bg-white rounded-lg shadow-[0_2px_10px_rgba(31,66,100,0.04)] px-5 py-4 border border-[#DCEAF0]">
+        <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight">Account Information</h2>
+        <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-medium mt-0.5">
           Complete your account information to proceed with tax filing. All information is securely stored.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {/* Sidebar Navigation */}
-        <div className="lg:col-span-1">
-          <Card className="sticky top-24">
-            <div className="p-4">
-              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">
-                Information Sections
-              </h3>
-              <div className="space-y-2">
-                {sections.map((section) => {
-                  const Icon = section.icon;
-                  const isActive = activeSection === section.id;
-                  const completed = isCompleted(section.id);
+      {/* Note: Default items-stretch gives the left column full height of the right form so lg:sticky works natively */}
+      <div className="flex flex-col lg:flex-row gap-5">
+        {/* Sidebar Navigation — Fixed 260px width on desktop so tab labels never truncate */}
+        <div className="w-full lg:w-[260px] shrink-0">
+          <Card padding="none" className="lg:sticky lg:top-20 p-2.5">
+            <h3 className="px-2 text-[11px] font-semibold text-[#6F7F8E] uppercase tracking-wider mb-2.5">
+              Information Sections
+            </h3>
+            <div className="space-y-1.5">
+              {sections.map((section) => {
+                const Icon = section.icon;
+                const isActive = activeSection === section.id;
+                const completed = isCompleted(section.id);
 
-                  // Check if section should be disabled (requires filing status but not selected)
-                  const requiresFilingStatus = section.requiresFilingStatus && !hasFilingStatus;
-                  const isDisabled = requiresFilingStatus;
+                // Check if section should be disabled (requires filing status but not selected)
+                const requiresFilingStatus = section.requiresFilingStatus && !hasFilingStatus;
+                const isDisabled = requiresFilingStatus;
 
-                  return (
-                    <button
-                      key={section.id}
-                      onClick={() => {
-                        if (!isDisabled) {
-                          setActiveSection(section.id);
-                        } else {
-                          // If trying to access spouse/dependent without filing status, show message and redirect
-                          showError('Please select your filing status in Taxpayer Profile first');
-                          setActiveSection('Taxpayer Profile');
-                        }
-                      }}
-                      disabled={isDisabled}
-                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${isDisabled
-                        ? 'bg-gray-50 text-gray-400 cursor-not-allowed opacity-60'
-                        : isActive
-                          ? `${getColorClasses(section.color, true)} shadow-lg transform scale-[1.02]`
-                          : 'bg-gray-50 text-gray-700 hover:bg-gray-100 hover:shadow-md'
+                return (
+                  <button
+                    key={section.id}
+                    onClick={() => {
+                      if (!isDisabled) {
+                        setActiveSection(section.id);
+                      } else {
+                        // If trying to access spouse/dependent without filing status, show message and redirect
+                        showError('Please select your filing status in Taxpayer Profile first');
+                        setActiveSection('Taxpayer Profile');
+                      }
+                    }}
+                    disabled={isDisabled}
+                    className={`w-full flex items-center gap-2.5 px-2.5 py-2 rounded-md border transition-colors duration-150 text-left ${isDisabled
+                      ? 'bg-slate-50 border-transparent text-slate-400 cursor-not-allowed opacity-60'
+                      : isActive
+                        ? `${getColorClasses(section.color, true)} border-transparent shadow-sm cursor-pointer`
+                        : 'bg-[#F8FBFD] border-transparent text-[#1F4264] hover:bg-[#E9F7FA]/70 hover:border-[#127EAB]/20 cursor-pointer'
+                      }`}
+                  >
+                    <div
+                      className={`w-7 h-7 rounded-md flex items-center justify-center shrink-0 transition-colors duration-150 ${isActive
+                        ? 'bg-white/20 text-white'
+                        : getColorClasses(section.color, false)
                         }`}
                     >
-                      <div className={`p-2 rounded-lg ${getColorClasses(section.color, isActive)}`}>
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <div className="flex-1 text-left">
-                        <div className="flex items-center gap-2">
-                          <span className={`text-sm font-medium ${isActive ? 'text-white' : 'text-gray-900'}`}>
-                            {section.id}
-                          </span>
-                          {completed && !isActive && (
-                            <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                          )}
-                        </div>
-                        {!isActive && (
-                          <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">{section.description}</p>
-                        )}
-                      </div>
-                      {isActive && <ChevronRight className="h-4 w-4 flex-shrink-0" />}
-                    </button>
-                  );
-                })}
-              </div>
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <span
+                        className={`block text-[13px] font-semibold leading-snug ${isActive ? 'text-white' : 'text-[#1F4264]'
+                          }`}
+                      >
+                        {section.id}
+                      </span>
+                    </div>
+                    <ChevronRight
+                      className={`h-3.5 w-3.5 shrink-0 transition-opacity duration-150 ${isActive ? 'opacity-90 text-white' : 'opacity-0'
+                        }`}
+                    />
+                  </button>
+                );
+              })}
+            </div>
 
-              {/* Progress Indicator */}
-              <div className="mt-6 pt-6 border-t border-gray-200">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-medium text-gray-700">Progress</span>
-                  <span className="text-xs font-semibold text-primary-600">
-                    {completedSections.length}/{sections.length}
-                  </span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
-                  {completedSections.length === sections.length ? (
-                    <div
-                      className="bg-green-600 h-2 rounded-full transition-all duration-300"
-                      style={{ width: '100%' }}
-                    />
-                  ) : (
-                    <div
-                      className="bg-primary-600 h-2 rounded-full transition-all duration-300"
-                      style={{ width: `${(completedSections.length / sections.length) * 100}%` }}
-                    />
-                  )}
-                </div>
+            {/* Progress Indicator */}
+            <div className="mt-4 pt-4 px-1 border-t border-[#E6F0F5]">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-xs font-semibold text-[#1F4264]">Progress</span>
+                <span className="text-xs font-semibold text-[#127EAB]">
+                  {completedSections.length}/{sections.length}
+                </span>
+              </div>
+              <div className="w-full bg-[#E6F0F5] rounded-full h-2 mb-2 overflow-hidden">
                 {completedSections.length === sections.length ? (
-                  <div className="flex items-center gap-2 text-xs text-green-600 font-medium">
-                    <CheckCircle className="w-4 h-4" />
-                    <span>All Information Complete</span>
-                  </div>
+                  <div
+                    className="bg-emerald-500 h-2 rounded-full transition-all duration-300"
+                    style={{ width: '100%' }}
+                  />
                 ) : (
-                  <div className="flex items-center gap-2 text-xs text-gray-500">
-                    <span>
-                      {completedSections.length === 0
-                        ? 'Start filling your information'
-                        : `${completedSections.length} of ${sections.length} sections completed`}
-                    </span>
-                  </div>
+                  <div
+                    className="bg-gradient-to-r from-[#1F4264] to-[#127EAB] h-2 rounded-full transition-all duration-300"
+                    style={{ width: `${(completedSections.length / sections.length) * 100}%` }}
+                  />
                 )}
               </div>
+              {completedSections.length === sections.length ? (
+                <div className="flex items-center gap-1.5 text-xs text-emerald-600 font-medium">
+                  <CheckCircle className="w-3.5 h-3.5 shrink-0" />
+                  <span>All Information Complete</span>
+                </div>
+              ) : (
+                <p className="text-[11.5px] text-[#6F7F8E] font-medium">
+                  {completedSections.length === 0
+                    ? 'Start filling your information'
+                    : `${completedSections.length} of ${sections.length} sections completed`}
+                </p>
+              )}
             </div>
           </Card>
         </div>
 
         {/* Main Content Area */}
-        <div className="lg:col-span-3">
+        <div className="flex-1 min-w-0">
           <Card>
             <Card.Content className="p-6">
               {activeSection === 'Taxpayer Profile' && <TaxpayerProfileForm userData={userData} setUserData={setUserData} saving={saving} setSaving={setSaving} onSaveSuccess={(updatedData) => { const next = getNextSection('Taxpayer Profile', updatedData); if (next) setActiveSection(next); }} />}
@@ -462,13 +459,17 @@ const TaxpayerProfileForm = ({ userData, setUserData, saving, setSaving, onSaveS
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
-        <div className="p-3 bg-blue-100 rounded-xl">
-          <UserCircle className="h-7 w-7 text-blue-600" />
+      <div className="flex items-center gap-3 pb-4 border-b border-[#E6F0F5]">
+        <div className="w-9 h-9 rounded-md bg-[#E9F7FA] border border-[#127EAB]/20 flex items-center justify-center shrink-0">
+          <UserCircle className="h-5 w-5 text-[#127EAB]" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Taxpayer Profile</h2>
-          <p className="text-sm text-gray-500 mt-1">Enter your personal information</p>
+          <h2 className="text-[17px] sm:text-lg font-medium text-[#1F4264] tracking-tight leading-snug">
+            Taxpayer Profile
+          </h2>
+          <p className="text-xs sm:text-[13px] text-[#6F7F8E] font-normal mt-0.5">
+            Enter your personal information and filing status
+          </p>
         </div>
       </div>
 
@@ -515,7 +516,7 @@ const TaxpayerProfileForm = ({ userData, setUserData, saving, setSaving, onSaveS
           <select
             value={formData.filingStatus}
             onChange={(e) => setFormData({ ...formData, filingStatus: e.target.value })}
-            className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+            className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white"
           >
             <option value="">Select filing status</option>
             <option value="single">Single</option>
@@ -645,13 +646,17 @@ const SpouseDetailsForm = ({ userData, setUserData, saving, setSaving, onSaveSuc
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
-        <div className="p-3 bg-background-aqua rounded-xl">
-          <Users className="h-7 w-7 text-teal" />
+      <div className="flex items-center gap-3 pb-4 border-b border-[#E6F0F5]">
+        <div className="w-9 h-9 rounded-md bg-[#E9F7FA] border border-[#127EAB]/20 flex items-center justify-center shrink-0">
+          <Users className="h-5 w-5 text-[#127EAB]" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Spouse Details</h2>
-          <p className="text-sm text-gray-500 mt-1">Enter your spouse's information</p>
+          <h2 className="text-[17px] sm:text-lg font-medium text-[#1F4264] tracking-tight leading-snug">
+            Spouse Details
+          </h2>
+          <p className="text-xs sm:text-[13px] text-[#6F7F8E] font-normal mt-0.5">
+            Enter your spouse's personal information
+          </p>
         </div>
       </div>
 
@@ -709,7 +714,7 @@ const SpouseDetailsForm = ({ userData, setUserData, saving, setSaving, onSaveSuc
                   type="file"
                   accept=".pdf,.jpg,.jpeg,.png"
                   onChange={(e) => handleFileChange('passport', e.target.files[0])}
-                  className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+                  className="w-full px-4 py-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white"
                 />
                 {files.passport && (
                   <div className="mt-2 flex items-center gap-2 text-sm text-green-600">
@@ -728,7 +733,7 @@ const SpouseDetailsForm = ({ userData, setUserData, saving, setSaving, onSaveSuc
                   type="file"
                   accept=".pdf,.jpg,.jpeg,.png"
                   onChange={(e) => handleFileChange('visa', e.target.files[0])}
-                  className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+                  className="w-full px-4 py-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white"
                 />
                 {files.visa && (
                   <div className="mt-2 flex items-center gap-2 text-sm text-green-600">
@@ -965,27 +970,31 @@ const DependentDetailsForm = ({ userData, setUserData, saving, setSaving, onSave
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between mb-6 pb-6 border-b border-gray-200">
-        <div className="flex items-center gap-4">
-          <div className="p-3 bg-green-100 rounded-xl">
-            <UserCircle className="h-7 w-7 text-green-600" />
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E6F0F5]">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-md bg-[#ECFDF5] border border-[#059669]/20 flex items-center justify-center shrink-0">
+            <UserCircle className="h-5 w-5 text-[#059669]" />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">Dependent Details</h2>
-            <p className="text-sm text-gray-500 mt-1">Add information for your dependents</p>
+            <h2 className="text-[17px] sm:text-lg font-medium text-[#1F4264] tracking-tight leading-snug">
+              Dependent Details
+            </h2>
+            <p className="text-xs sm:text-[13px] text-[#6F7F8E] font-normal mt-0.5">
+              Add information for your dependents
+            </p>
           </div>
         </div>
-        <Button onClick={addDependent} variant="success" leftIcon={<Users className="w-4 h-4" />}>
+        <Button onClick={addDependent} variant="success" size="sm" leftIcon={<Users className="w-4 h-4" />}>
           Add Dependent
         </Button>
       </div>
 
       <div className="space-y-4">
         {dependents.map((dependent, index) => (
-          <div key={index} className="p-6 border-2 border-gray-200 rounded-xl bg-gradient-to-br from-gray-50 to-white hover:border-primary-300 transition-all">
+          <div key={index} className="p-6 border-2 border-gray-200 rounded-md bg-gradient-to-br from-gray-50 to-white hover:border-primary-300 transition-all">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-primary-100 rounded-md flex items-center justify-center">
                   <span className="text-primary-600 font-semibold">{index + 1}</span>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900">Dependent {index + 1}</h3>
@@ -993,7 +1002,7 @@ const DependentDetailsForm = ({ userData, setUserData, saving, setSaving, onSave
               {dependents.length > 1 && (
                 <button
                   onClick={() => removeDependent(index)}
-                  className="px-3 py-1.5 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg font-medium transition-colors"
+                  className="px-3 py-1.5 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 rounded-md font-medium transition-colors"
                 >
                   <Trash2 className="w-4 h-4 inline mr-1" />
                   Remove
@@ -1023,7 +1032,7 @@ const DependentDetailsForm = ({ userData, setUserData, saving, setSaving, onSave
                 <select
                   value={dependent.relationship}
                   onChange={(e) => handleDependentChange(index, 'relationship', e.target.value)}
-                  className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+                  className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white"
                 >
                   <option value="">Select relationship</option>
                   <option value="Son">Son</option>
@@ -1060,7 +1069,7 @@ const DependentDetailsForm = ({ userData, setUserData, saving, setSaving, onSave
                         type="file"
                         accept=".pdf,.jpg,.jpeg,.png"
                         onChange={(e) => handleDependentFileChange(index, 'passport', e.target.files[0])}
-                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white"
                       />
                       {dependent.passport && (
                         <div className="mt-2 flex items-center gap-2 text-sm text-green-600">
@@ -1079,7 +1088,7 @@ const DependentDetailsForm = ({ userData, setUserData, saving, setSaving, onSave
                         type="file"
                         accept=".pdf,.jpg,.jpeg,.png"
                         onChange={(e) => handleDependentFileChange(index, 'visa', e.target.files[0])}
-                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white"
                       />
                       {dependent.visa && (
                         <div className="mt-2 flex items-center gap-2 text-sm text-green-600">
@@ -1098,7 +1107,7 @@ const DependentDetailsForm = ({ userData, setUserData, saving, setSaving, onSave
                         type="file"
                         accept=".pdf,.jpg,.jpeg,.png"
                         onChange={(e) => handleDependentFileChange(index, 'medicalRecord', e.target.files[0])}
-                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white"
                       />
                       {dependent.medicalRecord && (
                         <div className="mt-2 flex items-center gap-2 text-sm text-green-600">
@@ -1117,7 +1126,7 @@ const DependentDetailsForm = ({ userData, setUserData, saving, setSaving, onSave
                         type="file"
                         accept=".pdf,.jpg,.jpeg,.png"
                         onChange={(e) => handleDependentFileChange(index, 'schoolRecord', e.target.files[0])}
-                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white"
                       />
                       {dependent.schoolRecord && (
                         <div className="mt-2 flex items-center gap-2 text-sm text-green-600">
@@ -1160,16 +1169,30 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
   });
   const { showSuccess, showError } = useToast();
 
+  // Helper to check if an address object actually has user-entered values (ignores default { country: 'USA' })
+  const hasRealAddressData = (addr) => {
+    if (!addr || typeof addr !== 'object') return false;
+    return Boolean(
+      (addr.street && addr.street.trim()) ||
+      (addr.city && addr.city.trim()) ||
+      (addr.state && addr.state.trim()) ||
+      (addr.zipCode && addr.zipCode.trim())
+    );
+  };
+
   // Only load addresses from userData on initial mount, not on every userData change
   useEffect(() => {
     if (userData && isInitialLoad) {
       // Only load on initial mount
       setIsInitialLoad(false);
 
-      // Check if userData has addresses array or single address
-      if (userData.addresses && Array.isArray(userData.addresses) && userData.addresses.length > 0) {
-        // Multiple addresses
-        setAddresses(userData.addresses.map(addr => ({
+      const validArrayAddresses = Array.isArray(userData.addresses)
+        ? userData.addresses.filter(hasRealAddressData)
+        : [];
+
+      // Check if userData has real addresses array or real single address
+      if (validArrayAddresses.length > 0) {
+        setAddresses(validArrayAddresses.map(addr => ({
           street: addr.street || '',
           city: addr.city || '',
           state: addr.state || '',
@@ -1178,8 +1201,8 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
           addressType: addr.addressType || 'current',
           isPrimary: addr.isPrimary || false,
         })));
-      } else if (userData.address && (!userData.addresses || userData.addresses.length === 0)) {
-        // Single address (backward compatibility) - only if no addresses array
+      } else if (hasRealAddressData(userData.address)) {
+        // Single address (backward compatibility) - only when real address data exists
         setAddresses([{
           street: userData.address.street || '',
           city: userData.address.city || '',
@@ -1189,8 +1212,8 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
           addressType: 'current',
           isPrimary: true,
         }]);
-      } else if (!userData.address && (!userData.addresses || userData.addresses.length === 0)) {
-        // No addresses at all - keep empty array
+      } else {
+        // No real addresses saved yet
         setAddresses([]);
       }
     }
@@ -1528,28 +1551,33 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between mb-6 pb-6 border-b border-gray-200">
-        <div className="flex items-center gap-4">
-          <div className="p-3 bg-orange-100 rounded-xl">
-            <MapPin className="h-7 w-7 text-orange-600" />
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E6F0F5]">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-md bg-[#FEF4F2] border border-[#EE6450]/20 flex items-center justify-center shrink-0">
+            <MapPin className="h-5 w-5 text-[#EE6450]" />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">Saved Addresses</h2>
-            <p className="text-sm text-gray-500 mt-1">Manage your delivery addresses</p>
+            <h2 className="text-[17px] sm:text-lg font-medium text-[#1F4264] tracking-tight leading-snug">
+              Saved Addresses
+            </h2>
+            <p className="text-xs sm:text-[13px] text-[#6F7F8E] font-normal mt-0.5">
+              Manage your current and mailing addresses
+            </p>
           </div>
         </div>
         <div className="flex items-center gap-2">
           {addresses.length > 0 && (
             <Button
               onClick={handleDeleteAll}
-              variant="outline"
-              className="text-red-600 border-red-300 hover:bg-red-50"
+              variant="secondary"
+              size="sm"
+              className="text-rose-600 border-rose-200 hover:bg-rose-50 hover:border-rose-300"
               leftIcon={<Trash2 className="w-4 h-4" />}
             >
               Delete All
             </Button>
           )}
-          <Button onClick={handleAddNew} variant="success" leftIcon={<Plus className="w-4 h-4" />}>
+          <Button onClick={handleAddNew} variant="success" size="sm" leftIcon={<Plus className="w-4 h-4" />}>
             Add New Address
           </Button>
         </div>
@@ -1576,7 +1604,7 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
                 <Card.Content className="p-6">
                   <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
+                      <div className="w-10 h-10 bg-primary-100 rounded-md flex items-center justify-center">
                         <Edit className="w-5 h-5 text-primary-600" />
                       </div>
                       <div>
@@ -1641,7 +1669,7 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
                         <select
                           value={address.addressType}
                           onChange={(e) => handleAddressChange(index, 'addressType', e.target.value)}
-                          className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white transition-colors"
+                          className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white transition-colors"
                         >
                           <option value="current">Current Address</option>
                           <option value="previous">Previous Address</option>
@@ -1658,7 +1686,7 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
                           type="checkbox"
                           checked={address.isPrimary}
                           onChange={(e) => handleAddressChange(index, 'isPrimary', e.target.checked)}
-                          className="w-5 h-5 text-primary-600 border-gray-300 rounded focus:ring-primary-500 focus:ring-2 transition-colors cursor-pointer"
+                          className="w-5 h-5 text-primary-600 border-gray-300 rounded focus:ring-[#127EAB] focus:ring-2 transition-colors cursor-pointer"
                         />
                         <div>
                           <span className="text-sm font-medium text-gray-900 block">Set as Default Address</span>
@@ -1733,21 +1761,24 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
             </Card>
           ))}
         </div>
-      ) : (
+      ) : !showAddForm ? (
         <Card>
           <Card.Content className="p-8 text-center">
             <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-            <p className="text-gray-500">No addresses added yet. Click "Add Address" to get started.</p>
+            <p className="text-gray-500">No addresses added yet. Click "Add New Address" to get started.</p>
           </Card.Content>
         </Card>
-      )}
+      ) : null}
 
       {/* Add New Address Form */}
       {showAddForm && (
-        <Card className="border-2 border-primary-200 bg-primary-50/30">
+        <Card className="border-2 border-[#127EAB]/25 bg-[#F8FBFD]">
           <Card.Content className="p-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900">Add New Address</h3>
+              <h3 className="text-lg font-semibold text-[#1F4264]">Add New Address</h3>
+              <Button variant="secondary" size="sm" onClick={handleCancelEdit}>
+                Cancel
+              </Button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="md:col-span-2">
@@ -1793,7 +1824,7 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
                 <select
                   value={newAddress.addressType}
                   onChange={(e) => handleNewAddressChange('addressType', e.target.value)}
-                  className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+                  className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white"
                 >
                   <option value="current">Current Address</option>
                   <option value="previous">Previous Address</option>
@@ -1809,7 +1840,7 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
                     checked={newAddress.isPrimary || addresses.length === 0}
                     onChange={(e) => handleNewAddressChange('isPrimary', e.target.checked)}
                     disabled={addresses.length === 0}
-                    className="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500 disabled:opacity-50"
+                    className="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-[#127EAB] disabled:opacity-50"
                   />
                   <span className="text-sm font-medium text-gray-700">
                     Set as Default Address {addresses.length === 0 && '(First address will be default)'}
@@ -1817,7 +1848,10 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
                 </label>
               </div>
             </div>
-            <div className="flex items-center justify-end gap-3 mt-6 pt-6 border-t border-gray-200">
+            <div className="flex items-center justify-end gap-3 mt-6 pt-6 border-t border-[#E6F0F5]">
+              <Button variant="secondary" onClick={handleCancelEdit}>
+                Cancel
+              </Button>
               <Button onClick={handleSaveNew} leftIcon={<Plus className="w-4 h-4" />}>
                 Add Address
               </Button>
@@ -1892,13 +1926,17 @@ const ContactInformationForm = ({ userData, setUserData, saving, setSaving, onSa
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
-        <div className="p-3 bg-indigo-100 rounded-xl">
-          <Mail className="h-7 w-7 text-indigo-600" />
+      <div className="flex items-center gap-3 pb-4 border-b border-[#E6F0F5]">
+        <div className="w-9 h-9 rounded-md bg-[#EEF2FF] border border-[#4F46E5]/20 flex items-center justify-center shrink-0">
+          <Mail className="h-5 w-5 text-[#4F46E5]" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Contact Information</h2>
-          <p className="text-sm text-gray-500 mt-1">Update your contact details</p>
+          <h2 className="text-[17px] sm:text-lg font-medium text-[#1F4264] tracking-tight leading-snug">
+            Contact Information
+          </h2>
+          <p className="text-xs sm:text-[13px] text-[#6F7F8E] font-normal mt-0.5">
+            Update your email and phone contact details
+          </p>
         </div>
       </div>
 
@@ -2025,13 +2063,17 @@ const IdentityVerificationForm = ({ userData, setUserData, saving, setSaving, on
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
-        <div className="p-3 bg-red-100 rounded-xl">
-          <Shield className="h-7 w-7 text-red-600" />
+      <div className="flex items-center gap-3 pb-4 border-b border-[#E6F0F5]">
+        <div className="w-9 h-9 rounded-md bg-[#FEF4F2] border border-[#EE6450]/20 flex items-center justify-center shrink-0">
+          <Shield className="h-5 w-5 text-[#EE6450]" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Identity Verification</h2>
-          <p className="text-sm text-gray-500 mt-1">Upload your driver's license for verification</p>
+          <h2 className="text-[17px] sm:text-lg font-medium text-[#1F4264] tracking-tight leading-snug">
+            Identity Verification
+          </h2>
+          <p className="text-xs sm:text-[13px] text-[#6F7F8E] font-normal mt-0.5">
+            Upload your driver's license for identity verification
+          </p>
         </div>
       </div>
 
@@ -2059,7 +2101,7 @@ const IdentityVerificationForm = ({ userData, setUserData, saving, setSaving, on
             onChange={(e) => setFormData({ ...formData, expirationDate: e.target.value })}
           />
         </div>
-        <div className="p-6 bg-gray-50 rounded-xl border-2 border-dashed border-gray-300">
+        <div className="p-6 bg-gray-50 rounded-md border-2 border-dashed border-gray-300">
           <label className="block text-sm font-medium text-gray-700 mb-3">
             Upload Driver's License <span className="text-red-500">*</span>
           </label>
@@ -2068,7 +2110,7 @@ const IdentityVerificationForm = ({ userData, setUserData, saving, setSaving, on
               type="file"
               accept="image/*,.pdf"
               onChange={handleFileChange}
-              className="flex-1 text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-600 file:text-white hover:file:bg-primary-700 file:cursor-pointer file:transition-colors"
+              className="flex-1 text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary-600 file:text-white hover:file:bg-primary-700 file:cursor-pointer file:transition-colors"
             />
           </div>
           {formData.licenseDocument && (
@@ -2167,13 +2209,17 @@ const BankDetailsForm = ({ userData, setUserData, saving, setSaving, onSaveSucce
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
-        <div className="p-3 bg-teal-100 rounded-xl">
-          <Building className="h-7 w-7 text-teal-600" />
+      <div className="flex items-center gap-3 pb-4 border-b border-[#E6F0F5]">
+        <div className="w-9 h-9 rounded-md bg-[#E9F7FA] border border-[#127EAB]/20 flex items-center justify-center shrink-0">
+          <Building className="h-5 w-5 text-[#127EAB]" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Bank Details</h2>
-          <p className="text-sm text-gray-500 mt-1">Banking information for tax refund direct deposit</p>
+          <h2 className="text-[17px] sm:text-lg font-medium text-[#1F4264] tracking-tight leading-snug">
+            Bank Details
+          </h2>
+          <p className="text-xs sm:text-[13px] text-[#6F7F8E] font-normal mt-0.5">
+            Banking information for tax refund direct deposit
+          </p>
         </div>
       </div>
 
@@ -2192,7 +2238,7 @@ const BankDetailsForm = ({ userData, setUserData, saving, setSaving, onSaveSucce
           <select
             value={formData.accountType}
             onChange={(e) => setFormData({ ...formData, accountType: e.target.value })}
-            className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+            className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white"
           >
             <option value="">Select account type</option>
             <option value="checking">Checking</option>
@@ -2225,12 +2271,12 @@ const BankDetailsForm = ({ userData, setUserData, saving, setSaving, onSaveSucce
         </div>
       </div>
 
-      <div className="p-5 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+      <div className="p-5 bg-gradient-to-br from-[#EFF9FB] to-[#E9F7FA] rounded-md border border-[#127EAB]/25">
         <div className="flex items-start gap-3">
-          <Shield className="h-6 w-6 text-blue-600 flex-shrink-0 mt-0.5" />
+          <Shield className="h-6 w-6 text-[#127EAB] flex-shrink-0 mt-0.5" />
           <div>
-            <p className="text-sm font-semibold text-blue-900 mb-1">Secure & Encrypted</p>
-            <p className="text-xs text-blue-800 leading-relaxed">
+            <p className="text-sm font-semibold text-[#1F4264] mb-1">Secure & Encrypted</p>
+            <p className="text-xs text-[#1F4264] leading-relaxed">
               Your bank details are encrypted and securely stored. This information is used exclusively for tax refund direct deposit.
             </p>
           </div>

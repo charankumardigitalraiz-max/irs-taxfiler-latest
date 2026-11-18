@@ -3,7 +3,7 @@ const Header = ({ title, subtitle, actions }) => {
     <div className="mb-6 sm:mb-8">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="min-w-0">
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 truncate">
+          <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 truncate">
             {title}
           </h1>
           {subtitle && (

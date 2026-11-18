@@ -39,7 +39,7 @@ const StatCard = ({ stat }) => {
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
           <p className="text-xs sm:text-sm font-medium text-gray-500 truncate">{stat.name}</p>
-          <p className="mt-2 text-2xl sm:text-3xl font-bold text-gray-900 truncate">{stat.value}</p>
+          <p className="mt-2 text-2xl sm:text-3xl font-semibold text-gray-900 truncate">{stat.value}</p>
           {hasChange && (
             <div className="mt-2 flex items-center gap-1">
               <span
@@ -178,7 +178,7 @@ const Dashboard = () => {
                       className="flex items-start gap-4 p-3 rounded-xl hover:bg-gray-50 transition-colors group"
                     >
                       <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <span className="text-sm font-bold text-primary-700 uppercase">
+                        <span className="text-sm font-semibold text-primary-700 uppercase">
                           {activity.user?.charAt(0) || 'U'}
                         </span>
                       </div>
@@ -219,7 +219,7 @@ const Dashboard = () => {
                         <AlertTriangle className="w-5 h-5 text-yellow-600" />
                       </div>
                       <div>
-                        <p className="text-sm font-bold text-yellow-900">{pendingActions.interviews} Interviews Pending</p>
+                        <p className="text-sm font-semibold text-yellow-900">{pendingActions.interviews} Interviews Pending</p>
                         <p className="text-xs text-yellow-700">Schedule or complete interviews</p>
                       </div>
                     </div>
@@ -234,7 +234,7 @@ const Dashboard = () => {
                         <FileText className="w-5 h-5 text-primary-600" />
                       </div>
                       <div>
-                        <p className="text-sm font-bold text-primary-900">{pendingActions.documents} Documents to Review</p>
+                        <p className="text-sm font-semibold text-primary-900">{pendingActions.documents} Documents to Review</p>
                         <p className="text-xs text-primary-700">Review and approve documents</p>
                       </div>
                     </div>

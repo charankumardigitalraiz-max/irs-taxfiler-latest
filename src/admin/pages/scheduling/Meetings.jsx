@@ -215,19 +215,19 @@ const Meetings = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <Card className="p-4 rounded-xl">
             <p className="text-xs sm:text-sm font-medium text-gray-500">Total Meetings</p>
-            <p className="text-xl sm:text-2xl font-bold text-gray-900 mt-1">{stats.total}</p>
+            <p className="text-xl sm:text-2xl font-semibold text-gray-900 mt-1">{stats.total}</p>
           </Card>
           <Card className="p-4 rounded-xl">
             <p className="text-xs sm:text-sm font-medium text-gray-500">Pending</p>
-            <p className="text-xl sm:text-2xl font-bold text-yellow-600 mt-1">{stats.pending}</p>
+            <p className="text-xl sm:text-2xl font-semibold text-yellow-600 mt-1">{stats.pending}</p>
           </Card>
           <Card className="p-4 rounded-xl">
             <p className="text-xs sm:text-sm font-medium text-gray-500">Completed</p>
-            <p className="text-xl sm:text-2xl font-bold text-green-600 mt-1">{stats.completed}</p>
+            <p className="text-xl sm:text-2xl font-semibold text-green-600 mt-1">{stats.completed}</p>
           </Card>
           <Card className="p-4 rounded-xl">
             <p className="text-xs sm:text-sm font-medium text-gray-500">Today</p>
-            <p className="text-xl sm:text-2xl font-bold text-blue-600 mt-1">{stats.today}</p>
+            <p className="text-xl sm:text-2xl font-semibold text-blue-600 mt-1">{stats.today}</p>
           </Card>
         </div>
 
@@ -236,7 +236,7 @@ const Meetings = () => {
           <div className="p-4 sm:p-6 border-b border-gray-100 bg-gray-50/50">
             <div className="flex flex-col xl:flex-row gap-4 xl:items-center justify-between">
               <div>
-                <h3 className="text-lg font-bold text-gray-900">All Meetings</h3>
+                <h3 className="text-lg font-semibold text-gray-900">All Meetings</h3>
                 <p className="text-sm text-gray-500 mt-0.5">Track and manage consultation requests</p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3 w-full xl:w-auto">

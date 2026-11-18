@@ -155,23 +155,23 @@ const TeamManagement = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <Card className="p-4">
             <p className="text-sm text-gray-500">Total Members</p>
-            <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+            <p className="text-2xl font-semibold text-gray-900">{stats.total}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Active</p>
-            <p className="text-2xl font-bold text-green-600">{stats.active}</p>
+            <p className="text-2xl font-semibold text-green-600">{stats.active}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Super Admins</p>
-            <p className="text-2xl font-bold text-teal">{stats.admins}</p>
+            <p className="text-2xl font-semibold text-teal">{stats.admins}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Tax Consultants</p>
-            <p className="text-2xl font-bold text-blue-600">{stats.consultants}</p>
+            <p className="text-2xl font-semibold text-blue-600">{stats.consultants}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Support Staff</p>
-            <p className="text-2xl font-bold text-green-600">{stats.support}</p>
+            <p className="text-2xl font-semibold text-green-600">{stats.support}</p>
           </Card>
         </div>
 
@@ -182,7 +182,7 @@ const TeamManagement = () => {
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
-                    <span className="text-lg font-bold text-primary-700">
+                    <span className="text-lg font-semibold text-primary-700">
                       {member.fullName.charAt(0)}
                     </span>
                   </div>

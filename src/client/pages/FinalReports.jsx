@@ -10,6 +10,7 @@ import {
 import Card from '../components/common/Card';
 import Badge from '../components/common/Badge';
 import Button from '../components/common/Button';
+import { SectionSkeleton } from '../components/common/PageLoader';
 import { documentService } from '../services/documentService';
 import { baseUrl } from '../../baseurl';
 import { useToast } from '../../admin/hooks/useToast';
@@ -32,19 +33,19 @@ const FinalReports = () => {
             return isAdminUpload && isFinalCopy;
           }
         );
-        
+
         // Sort by creation date (newest first)
         finalCopies.sort((a, b) => {
           const dateA = new Date(a.createdAt || a.uploadedAt || 0);
           const dateB = new Date(b.createdAt || b.uploadedAt || 0);
           return dateB - dateA;
         });
-        
+
         const mappedReports = finalCopies.map((doc) => {
           // Handle status case-insensitively
           const status = (doc.status || '').toLowerCase();
           const isCompleted = status === 'approved' || status === 'completed';
-          
+
           return {
             id: doc._id || doc.id,
             taxYear: new Date(doc.createdAt || doc.uploadedAt || Date.now()).getFullYear().toString(),
@@ -93,7 +94,7 @@ const FinalReports = () => {
           }
           const blob = await response.blob();
           const blobUrl = URL.createObjectURL(blob);
-          
+
           // Create download link
           const a = document.createElement('a');
           a.href = blobUrl;
@@ -101,7 +102,7 @@ const FinalReports = () => {
           document.body.appendChild(a);
           a.click();
           document.body.removeChild(a);
-          
+
           // Clean up blob URL after a delay
           setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
         } else {
@@ -137,9 +138,9 @@ const FinalReports = () => {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-900 mb-1">Final Reports</h2>
-        <p className="text-sm text-gray-600">
+      <div className="bg-white rounded-lg shadow-[0_2px_10px_rgba(31,66,100,0.04)] px-5 py-4 border border-[#DCEAF0]">
+        <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight">Final Reports</h2>
+        <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-medium mt-0.5">
           Download your completed tax filing documents and reports.
         </p>
       </div>
@@ -147,10 +148,7 @@ const FinalReports = () => {
       {loading ? (
         <Card>
           <Card.Content>
-            <div className="text-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto" />
-              <p className="text-gray-500 mt-4">Loading final reports...</p>
-            </div>
+            <SectionSkeleton variant="table" rows={4} />
           </Card.Content>
         </Card>
       ) : reports.length > 0 ? (
@@ -217,16 +215,16 @@ const FinalReports = () => {
                       <td className="px-6 py-4 whitespace-nowrap text-right">
                         {report.filePath ? (
                           <div className="flex items-center justify-end gap-2">
-                            <Button 
-                              size="sm" 
+                            <Button
+                              size="sm"
                               variant="secondary"
                               onClick={() => handleViewFile(report)}
                             >
                               <Eye className="w-4 h-4 mr-2" />
                               View
                             </Button>
-                            <Button 
-                              size="sm" 
+                            <Button
+                              size="sm"
                               variant="primary"
                               onClick={() => handleDownload(report)}
                             >

@@ -251,23 +251,23 @@ const Support = () => {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           <Card className="p-4 rounded-xl">
             <p className="text-xs sm:text-sm font-medium text-gray-500">Total Tickets</p>
-            <p className="text-xl sm:text-2xl font-bold text-gray-900 mt-1">{stats.total}</p>
+            <p className="text-xl sm:text-2xl font-semibold text-gray-900 mt-1">{stats.total}</p>
           </Card>
           <Card className="p-4 rounded-xl">
             <p className="text-xs sm:text-sm font-medium text-gray-500">Open</p>
-            <p className="text-xl sm:text-2xl font-bold text-blue-600 mt-1">{stats.open}</p>
+            <p className="text-xl sm:text-2xl font-semibold text-blue-600 mt-1">{stats.open}</p>
           </Card>
           <Card className="p-4 rounded-xl">
             <p className="text-xs sm:text-sm font-medium text-gray-500">In Progress</p>
-            <p className="text-xl sm:text-2xl font-bold text-yellow-600 mt-1">{stats.inProgress}</p>
+            <p className="text-xl sm:text-2xl font-semibold text-yellow-600 mt-1">{stats.inProgress}</p>
           </Card>
           <Card className="p-4 rounded-xl">
             <p className="text-xs sm:text-sm font-medium text-gray-500">Resolved</p>
-            <p className="text-xl sm:text-2xl font-bold text-green-600 mt-1">{stats.resolved}</p>
+            <p className="text-xl sm:text-2xl font-semibold text-green-600 mt-1">{stats.resolved}</p>
           </Card>
           <Card className="p-4 rounded-xl col-span-2 sm:col-span-1 border-red-100 bg-red-50/10">
             <p className="text-xs sm:text-sm font-medium text-gray-500">High Priority</p>
-            <p className="text-xl sm:text-2xl font-bold text-red-600 mt-1">{stats.highPriority}</p>
+            <p className="text-xl sm:text-2xl font-semibold text-red-600 mt-1">{stats.highPriority}</p>
           </Card>
         </div>
 

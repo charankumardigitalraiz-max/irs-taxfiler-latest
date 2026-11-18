@@ -62,7 +62,7 @@ const Extension = () => {
       form: "State Specific Vouchers",
       deadline: "Coordinated with Federal",
       icon: <CalendarDaysIcon className="w-5 h-5 text-primary" />,
-      summary: "Full coordination across all 50 statesâ€”some accept federal extensions, others require separate state filings.",
+      summary: "Full coordination across all 50 states—some accept federal extensions, others require separate state filings.",
       points: [
         "State-specific extension form preparation",
         "State tax payment voucher generation",
@@ -158,7 +158,7 @@ const Extension = () => {
               <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slateText">
                 <ShieldCheckIcon className="w-4 h-4 text-teal" />
                 <span className="font-medium text-primary">Authorized IRS e-File Provider</span>
-                <span className="text-border">â€¢</span>
+                <span className="text-border">•</span>
                 <span>Immediate Electronic Receipt & Timestamp</span>
               </div>
             </div>

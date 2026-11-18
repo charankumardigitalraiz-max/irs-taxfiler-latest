@@ -1390,7 +1390,7 @@ const UserDetail = () => {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm font-medium text-gray-600 mb-1">Referral Code</p>
-                        <p className="text-2xl font-bold text-gray-900">{referralData?.referralCode || user?.userId || user?.referralCode || 'N/A'}</p>
+                        <p className="text-2xl font-semibold text-gray-900">{referralData?.referralCode || user?.userId || user?.referralCode || 'N/A'}</p>
                         {referralData && (
                           <p className="text-xs text-gray-500 mt-2">
                             Total Referrals: {referralData.totalReferrals || 0} •
@@ -1495,7 +1495,7 @@ const UserDetail = () => {
                         <div className="flex items-center justify-between">
                           <div>
                             <p className="text-sm font-medium text-gray-600 mb-1">Coupon Code</p>
-                            <p className="text-2xl font-bold text-gray-900">{user.couponCode}</p>
+                            <p className="text-2xl font-semibold text-gray-900">{user.couponCode}</p>
                           </div>
                           <div className="p-3 bg-green-100 rounded-lg">
                             <Ticket className="w-8 h-8 text-green-600" />

@@ -130,23 +130,23 @@ const Payments = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <Card className="p-4">
             <p className="text-sm text-gray-500">Total Payments</p>
-            <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+            <p className="text-2xl font-semibold text-gray-900">{stats.total}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Pending</p>
-            <p className="text-2xl font-bold text-yellow-600">{stats.pending}</p>
+            <p className="text-2xl font-semibold text-yellow-600">{stats.pending}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Completed</p>
-            <p className="text-2xl font-bold text-green-600">{stats.paid}</p>
+            <p className="text-2xl font-semibold text-green-600">{stats.paid}</p>
           </Card>
           <Card className="p-4">
             <p className="text-sm text-gray-500">Failed</p>
-            <p className="text-2xl font-bold text-red-600">{stats.failed}</p>
+            <p className="text-2xl font-semibold text-red-600">{stats.failed}</p>
           </Card>
           <Card className="p-4 bg-green-50 border-green-200">
             <p className="text-sm text-green-600">Total Revenue</p>
-            <p className="text-2xl font-bold text-green-700">
+            <p className="text-2xl font-semibold text-green-700">
               ${stats.totalRevenue.toLocaleString()}
             </p>
           </Card>
