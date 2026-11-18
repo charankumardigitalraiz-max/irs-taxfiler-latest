@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../assets/irs-logo.png";
 import { useNavigate } from "react-router-dom";
 import LeadModal from "../components/popup";
+import AdvancedFilingModal from "./AdvancedFilingModal";
 
 import {
   Bars3Icon,
@@ -36,6 +37,7 @@ import "./Navbar.css";
 
 import { gettoken, getuser } from "../helper/Token";
 import { baseUrl } from "../../baseurl";
+import { publicSettingsService } from "../../client/services/settingsService";
 
 /* ---------- CRISP SVG FLAGS ---------- */
 const UsFlag = ({ className = "w-4 h-3 rounded-xs shrink-0" }) => (
@@ -90,6 +92,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   //  const [openModal, setOpenModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAdvancedModalOpen, setIsAdvancedModalOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(null);
   const [activeServiceTab, setActiveServiceTab] = useState("individual");
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
@@ -105,6 +108,38 @@ const Navbar = () => {
 
   const [isContactStripOpen, setIsContactStripOpen] = useState(true);
   const [isNearFooter, setIsNearFooter] = useState(false);
+  const [advancedFiling, setAdvancedFiling] = useState({
+    enabled: false,
+    startDate: "",
+    untilDate: "",
+    offerPercentage: 0,
+  });
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchAdvancedFilingSetting = async () => {
+      try {
+        const response = await publicSettingsService.getSetting("advanced-tax-filing");
+        if (!isMounted || !response?.success || !response?.data?.content) return;
+        const parsed = JSON.parse(response.data.content);
+        const isNotExpired = parsed.untilDate
+          ? Date.now() <= new Date(`${parsed.untilDate}T23:59:59`).getTime()
+          : true;
+        setAdvancedFiling({
+          enabled: Boolean(parsed.enabled) && isNotExpired,
+          startDate: parsed.startDate || "",
+          untilDate: parsed.untilDate || "",
+          offerPercentage: Number(parsed.offerPercentage) || 0,
+        });
+      } catch {
+        // Silently keep disabled if setting does not exist yet
+      }
+    };
+    fetchAdvancedFilingSetting();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -262,12 +297,12 @@ const Navbar = () => {
 
                       {/* Email */}
                       <a
-                        href="mailto:contact@irstaxfiler.com"
+                        href="mailto:info@irstaxfiler.com"
                         className="hidden xl:inline-flex items-center gap-1.5 text-xs text-white/90 hover:text-white font-medium transition-colors ml-1"
-                        title="Email: contact@irstaxfiler.com"
+                        title="Email: info@irstaxfiler.com"
                       >
                         <EnvelopeIcon className="w-4 h-4 text-white" />
-                        <span>contact@irstaxfiler.com</span>
+                        <span>info@irstaxfiler.com</span>
                       </a>
                     </div>
 
@@ -716,7 +751,7 @@ const Navbar = () => {
                       <div className="mt-5 pt-3.5 border-t border-border flex items-center justify-between text-xs text-slateText font-normal">
                         <div className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-teal" />
-                          <span>IRS & ITD Authorized e-File Provider • 100% CPA & CA Verified</span>
+                          <span>IRS & ITD Authorized e-File Provider â€¢ 100% CPA & CA Verified</span>
                         </div>
                         <Link
                           to="/services"
@@ -819,7 +854,24 @@ const Navbar = () => {
             </div>
 
             {/* Auth Buttons (Desktop view only; mobile view has it inside drawer) */}
-            <div className="hidden md:flex items-center space-x-2 relative" ref={ref}>
+            <div className="hidden md:flex items-center gap-2.5 relative" ref={ref}>
+              {/* Conditional Advanced Tax Filing Button (controlled from Admin Settings) */}
+              {advancedFiling.enabled && (
+                <button
+                  type="button"
+                  onClick={() => setIsAdvancedModalOpen(true)}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs lg:text-sm font-semibold text-white bg-gradient-to-r from-[#127EAB] to-[#0E668B] hover:from-[#0E668B] hover:to-[#1F4264] rounded-md transition-all duration-200 shadow-xs hover:shadow-md whitespace-nowrap cursor-pointer"
+                >
+                  <SparklesIcon className="w-4 h-4 text-[#FFD1C4] shrink-0" />
+                  <span>Advanced Tax Filing</span>
+                  {advancedFiling.offerPercentage > 0 && (
+                    <span className="ml-0.5 px-1.5 py-0.5 text-[10px] font-semibold rounded bg-[#EE6450] text-white leading-none">
+                      {advancedFiling.offerPercentage}% OFF
+                    </span>
+                  )}
+                </button>
+              )}
+
               {/* Logged Out UI */}
               {gettoken() === false && (
                 <div className="flex items-center gap-2 font-sans">
@@ -1321,8 +1373,28 @@ const Navbar = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.45 }}
-                className="pt-4 mt-2 border-t border-gray-100"
+                className="pt-4 mt-2 border-t border-gray-100 space-y-2.5"
               >
+                {/* Conditional Mobile Advanced Tax Filing Button */}
+                {advancedFiling.enabled && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setIsAdvancedModalOpen(true);
+                    }}
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-[#127EAB] to-[#0E668B] text-white text-sm font-semibold shadow-sm transition-all duration-200 cursor-pointer"
+                  >
+                    <SparklesIcon className="w-4 h-4 text-[#FFD1C4] shrink-0" />
+                    <span>Advanced Tax Filing</span>
+                    {advancedFiling.offerPercentage > 0 && (
+                      <span className="px-1.5 py-0.5 text-[10px] font-semibold rounded bg-[#EE6450] text-white leading-none">
+                        {advancedFiling.offerPercentage}% OFF
+                      </span>
+                    )}
+                  </button>
+                )}
+
                 {gettoken() === false ? (
                   <Link
                     to="/login"
@@ -1391,6 +1463,12 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      {/* Advanced Tax Filing Offer Modal */}
+      <AdvancedFilingModal
+        isOpen={isAdvancedModalOpen}
+        onClose={() => setIsAdvancedModalOpen(false)}
+        offerData={advancedFiling}
+      />
     </>
   );
 };

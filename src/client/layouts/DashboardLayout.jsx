@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { Bell, Mail, Phone, UserPlus, ChevronUp, User, LogOut, Hash } from 'lucide-react';
 import Sidebar from '../components/layout/Sidebar';
@@ -158,15 +158,15 @@ const DashboardLayout = () => {
             <div className="hidden xl:flex items-center gap-3">
               {/* Email */}
               <a
-                href="mailto:contact@irstaxfiler.com"
+                href="mailto:info@irstaxfiler.com"
                 className="flex items-center gap-2.5 px-4 py-2 bg-white border border-gray-200 hover:border-blue-300 hover:bg-blue-50 rounded-lg transition-all group"
-                title="Email: contact@irstaxfiler.com"
+                title="Email: info@irstaxfiler.com"
               >
                 <div className="p-1.5 bg-blue-50 group-hover:bg-blue-100 rounded-md transition-colors">
                   <Mail className="w-4 h-4 text-blue-600" />
                 </div>
                 <span className="text-sm font-medium text-gray-700 group-hover:text-blue-700">
-                  contact@irstaxfiler.com
+                  info@irstaxfiler.com
                 </span>
               </a>
 
@@ -198,9 +198,9 @@ const DashboardLayout = () => {
               {/* Email & Phone - Mobile/Tablet */}
               <div className="xl:hidden flex items-center gap-2">
                 <a
-                  href="mailto:contact@irstaxfiler.com"
+                  href="mailto:info@irstaxfiler.com"
                   className="p-2.5 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-lg transition-colors"
-                  title="Email: contact@irstaxfiler.com"
+                  title="Email: info@irstaxfiler.com"
                 >
                   <Mail className="w-5 h-5" />
                 </a>

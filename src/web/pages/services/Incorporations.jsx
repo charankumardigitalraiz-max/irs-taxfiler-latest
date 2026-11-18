@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -19,6 +19,7 @@ import LeadModal from "../../components/popup";
 import Logo from "../../assets/irsLogo.png";
 import incorporationKitPhoto from "../../assets/services/incorporation-kit.jpg";
 import annualReportPhoto from "../../assets/services/annual-report.jpg";
+import { serviceCardThemes, serviceStepThemes } from "../../constants/serviceThemes";
 
 const Incorporations = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -123,7 +124,7 @@ const Incorporations = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
-                className="text-sm sm:text-base lg:text-[17px] text-slateText font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
+                className="text-sm sm:text-base lg:text-[17px] text-slateText font-medium leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
               >
                 Launch your U.S. company with confidence. We handle 50-state Articles of Organization, federal EIN registration, customized Operating Agreements, and corporate tax election seamlessly.
               </motion.p>
@@ -157,7 +158,7 @@ const Incorporations = () => {
               <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slateText">
                 <ShieldCheckIcon className="w-4 h-4 text-teal" />
                 <span className="font-medium text-primary">100% State Acceptance Guarantee</span>
-                <span className="text-border">•</span>
+                <span className="text-border">â€¢</span>
                 <span>Domestic & Foreign Founder Support</span>
               </div>
             </div>
@@ -210,65 +211,61 @@ const Incorporations = () => {
                 Structures
               </span>
             </h2>
-            <p className="text-xs sm:text-sm text-slateText font-normal mt-1.5 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slateText font-medium mt-1.5 leading-relaxed">
               Choose the entity that provides optimal liability shield and tax savings.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-stretch">
             {entityTypes.map((ent, idx) => {
               const Icon = idx === 0 ? BuildingOffice2Icon : idx === 1 ? BanknotesIcon : GlobeAltIcon;
+              const tierStyles = [
+                { topBorder: "border-t-[#127EAB]", icon: "bg-[#E9F7FA] text-[#127EAB]", tag: "bg-[#EFF9FB] text-[#127EAB]", callout: "bg-[#EFF9FB]/70 border-[#127EAB]/20", check: "text-[#127EAB]", extra: "" },
+                { topBorder: "border-t-emerald-500", icon: "bg-emerald-50 text-emerald-600", tag: "bg-emerald-50 text-emerald-700", callout: "bg-emerald-50/70 border-emerald-200/70", check: "text-emerald-600", extra: "md:-translate-y-1 shadow-md ring-1 ring-emerald-200/60" },
+                { topBorder: "border-t-[#1F4264]", icon: "bg-slate-100 text-[#1F4264]", tag: "bg-slate-100 text-[#1F4264]", callout: "bg-slate-50 border-slate-200/80", check: "text-[#1F4264]", extra: "" },
+              ];
+              const s = tierStyles[idx % tierStyles.length];
 
               return (
                 <div
                   key={idx}
-                  className="p-4 sm:p-5 rounded-xl bg-white border border-slate-200/90 shadow-2xs hover:border-[#1F4264]/30 hover:shadow-sm transition-all duration-200 text-left flex flex-col justify-between"
+                  className={`group p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 border-t-4 ${s.topBorder} shadow-2xs hover:shadow-lg transition-all duration-300 text-left flex flex-col justify-between ${s.extra}`}
                 >
                   <div>
-                    {/* Top Row: Icon + Tag */}
-                    <div className="flex items-center justify-between gap-2 mb-3">
-                      <div
-                        className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${idx === 0
-                          ? "bg-sky-50 border border-sky-100 text-primary"
-                          : idx === 1
-                            ? "bg-background-aqua border border-border text-teal text-teal"
-                            : "bg-slate-100/80 border border-slate-200 text-slateText"
-                          }`}
-                      >
-                        <Icon className="w-4 h-4" />
+                    {/* Top Row: Circle Icon + Tag */}
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <div className={`w-10 h-10 rounded-full ${s.icon} flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform`}>
+                        <Icon className="w-5 h-5" />
                       </div>
 
-                      <span
-                        className={`text-[10.5px] font-medium px-2 py-0.5 rounded-md border ${idx === 0
-                          ? "bg-background-aqua text-teal border-border/60"
-                          : idx === 1
-                            ? "bg-sky-50 text-primary border-sky-100"
-                            : "bg-slate-100 text-slateText border-slate-200/80"
-                          }`}
-                      >
+                      <span className={`text-[10.5px] font-semibold px-2.5 py-1 rounded-full ${s.tag}`}>
                         {ent.tag}
                       </span>
                     </div>
 
                     {/* Entity Name */}
-                    <h3 className="text-base font-semibold text-primary mb-1.5 leading-snug">
+                    <h3 className="text-base sm:text-[17px] font-semibold text-primary mb-3 leading-snug">
                       {ent.name}
                     </h3>
 
-                    {/* Best For */}
-                    <p className="text-xs sm:text-[13px] text-slateText font-semibold leading-relaxed mb-3">
-                      <span className="font-semibold text-primary">Best for: </span>
-                      {ent.bestFor}
-                    </p>
+                    {/* Highlighted Best For Box */}
+                    <div className={`p-3 rounded-xl border ${s.callout} mb-4`}>
+                      <span className="text-[10.5px] font-semibold uppercase tracking-wider text-primary/70 block mb-0.5">
+                        Best Suited For
+                      </span>
+                      <p className="text-xs text-primary font-medium leading-relaxed">
+                        {ent.bestFor}
+                      </p>
+                    </div>
 
                     {/* Benefits List */}
-                    <ul className="space-y-2.5 pt-3 border-t border-slate-100">
+                    <ul className="space-y-2.5">
                       {ent.benefits.map((b, bIdx) => (
                         <li
                           key={bIdx}
-                          className="flex items-start gap-2 text-xs sm:text-[13px] text-slateText font-semibold leading-relaxed"
+                          className="flex items-start gap-2.5 text-xs sm:text-[13px] text-slate-600 font-medium leading-relaxed"
                         >
-                          <CheckCircleIcon className="w-4 h-4 text-teal shrink-0 mt-0.5 stroke-[2]" />
+                          <CheckCircleIcon className={`w-4 h-4 ${s.check} shrink-0 mt-0.5 stroke-[2.2]`} />
                           <span>{b}</span>
                         </li>
                       ))}
@@ -295,30 +292,43 @@ const Incorporations = () => {
               />
             </div>
 
-            {/* Right Steps */}
-            <div className="lg:col-span-7 space-y-6 text-left">
+            {/* Right Steps - Clean Left-Accent Editorial Timeline */}
+            <div className="lg:col-span-7 space-y-5 text-left">
               <div>
                 <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
-                  3 Steps to Launch Your Company
+                  3 Steps to{" "}
+                  <span className="font-medium text-teal">Launch Your Company</span>
                 </h2>
               </div>
 
               <div className="space-y-5">
-                {steps.map((step, sIdx) => (
-                  <div key={sIdx} className="flex items-start gap-3.5">
-                    <div className="w-8 h-8 rounded-lg bg-[#EFF9FB] text-teal font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 border border-[#127EAB]/25">
-                      {step.num}
-                    </div>
-                    <div>
-                      <h3 className="text-sm sm:text-base font-normal text-primary leading-snug">
-                        {step.title}
-                      </h3>
-                      <p className="text-xs sm:text-[13px] text-primary font-normal leading-relaxed mt-1">
+                {steps.map((step, sIdx) => {
+                  const accents = [
+                    { bar: "border-l-[#127EAB]", pill: "bg-[#EFF9FB] text-[#127EAB]" },
+                    { bar: "border-l-emerald-500", pill: "bg-emerald-50 text-emerald-700" },
+                    { bar: "border-l-[#EE6450]", pill: "bg-[#FEF4F2] text-[#D9523E]" },
+                  ];
+                  const acc = accents[sIdx % 3];
+
+                  return (
+                    <div
+                      key={sIdx}
+                      className={`border-l-[3px] ${acc.bar} pl-4 py-0.5`}
+                    >
+                      <div className="flex items-center gap-2.5 mb-1">
+                        <span className={`text-[10.5px] font-mono font-semibold px-2 py-0.5 rounded-md ${acc.pill}`}>
+                          STEP {step.num}
+                        </span>
+                        <h3 className="text-sm sm:text-base font-semibold text-primary leading-snug">
+                          {step.title}
+                        </h3>
+                      </div>
+                      <p className="text-xs sm:text-[13px] text-slate-600 font-medium leading-relaxed">
                         {step.detail}
                       </p>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -326,30 +336,39 @@ const Incorporations = () => {
       </section>
 
       {/* 4. CLEAN CTA BANNER */}
-      <section className="py-12 sm:py-16 bg-[#1F4264] text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-normal tracking-tight text-white mb-2">
-            Ready to Form Your U.S. Company?
-          </h2>
-          <p className="text-xs sm:text-sm text-sky-100 max-w-xl mx-auto mb-6">
-            Get your LLC or Corporation formed by licensed CPAs with guaranteed state approval and EIN setup.
-          </p>
+      <section className="py-10 sm:py-14 bg-white font-sans">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl py-10 sm:py-12 px-6 sm:px-12 bg-gradient-to-r from-[#0D6388] via-[#127EAB] to-[#168BB8] text-white shadow-xl text-center">
+            {/* Subtle Ambient Glows */}
+            <div className="absolute -top-24 -left-16 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -right-16 w-72 h-72 bg-[#1F4264]/25 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <Link
-              to="/login"
-              className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-[#127EAB] hover:bg-teal-soft text-white font-medium text-xs sm:text-sm transition-all shadow-md group"
-            >
-              <span>Start Incorporation</span>
-              <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <button
-              type="button"
-              onClick={handleOpenModal}
-              className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-xs sm:text-sm border border-white/20 transition-all"
-            >
-              <span>Consult Formation CPA</span>
-            </button>
+            <div className="max-w-3xl mx-auto relative z-10">
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white mb-2.5">
+                Ready to Form Your{" "}
+                <span className="text-[#EE6450]">U.S. Company?</span>
+              </h2>
+              <p className="text-xs sm:text-sm text-sky-50/90 max-w-xl mx-auto mb-7 font-medium leading-relaxed">
+                Get your LLC or Corporation formed by licensed CPAs with guaranteed state approval and EIN setup.
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center gap-3.5">
+                <Link
+                  to="/login"
+                  className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-white hover:bg-[#EFF9FB] text-primary font-semibold text-xs sm:text-sm transition-all duration-200 shadow-md hover:shadow-lg group"
+                >
+                  <span>Start Incorporation</span>
+                  <ArrowRightIcon className="w-4 h-4 text-teal group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <button
+                  type="button"
+                  onClick={handleOpenModal}
+                  className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold text-xs sm:text-sm border border-white/30 backdrop-blur-xs transition-all duration-200 cursor-pointer"
+                >
+                  <span>Consult Formation CPA</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

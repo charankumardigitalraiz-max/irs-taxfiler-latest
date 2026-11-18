@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+﻿import { motion } from "framer-motion";
 import ContactForm from "../components/ContactForm";
 import {
   MapPinIcon,
@@ -84,8 +84,8 @@ const Contact = () => {
       icon: EnvelopeIcon,
       title: "Email Us",
       description: "Send us an email anytime and get a response within 24 hours.",
-      contact: "contact@irstaxfiler.com",
-      link: "mailto:contact@irstaxfiler.com",
+      contact: "info@irstaxfiler.com",
+      link: "mailto:info@irstaxfiler.com",
     },
     {
       icon: PhoneIcon,
@@ -105,7 +105,7 @@ const Contact = () => {
       icon: ClockIcon,
       title: "Business Hours",
       description: "Our dedicated tax support team is available six days a week.",
-      contact: "Mon-Sat:9:30 AM - 7:30 PM (CST)",
+      contact: "Mon-Sat: 9:30 AM - 7:30 PM (CST)",
       link: "#",
     },
   ];
@@ -131,7 +131,7 @@ const Contact = () => {
         {/* ========================================================================= */}
         {/* 1. HERO & CONTACT METHODS SECTION                                         */}
         {/* ========================================================================= */}
-        <section className="relative overflow-hidden pt-12 pb-16 sm:pt-16 sm:pb-24 bg-white border-b border-slate-100">
+        <section className="relative overflow-hidden pt-10 pb-8 sm:pt-12 sm:pb-10 bg-white ">
           {/* Subtle Ambient Background Gradients */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden -z-10">
             <div className="absolute -top-24 left-1/4 w-96 h-96 bg-slate-100/40 rounded-full blur-3xl opacity-40" />
@@ -154,7 +154,7 @@ const Contact = () => {
 
               {/* Main Headline */}
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-primary tracking-tight leading-[1.25] mb-3.5 max-w-3xl mx-auto">
-                Contact Us —{" "}
+                Contact Us â€”{" "}
                 <span className="font-medium text-teal">
                   Get in Touch
                 </span>{" "}
@@ -170,7 +170,7 @@ const Contact = () => {
             </motion.div>
 
             {/* Contact Methods Cards Grid */}
-            <div className={`grid grid-cols-1 sm:grid-cols-2 ${contactMethods.length === 3 ? "lg:grid-cols-3 max-w-5xl" : "lg:grid-cols-4"} gap-5 lg:gap-6 mx-auto`}>
+            <div className={`grid grid-cols-1 sm:grid-cols-2 ${contactMethods.length === 3 ? "lg:grid-cols-[1fr_1fr_1.25fr] max-w-5xl" : "lg:grid-cols-4"} gap-5 lg:gap-6 mx-auto`}>
               {contactMethods.map((method, index) => {
                 const IconComponent = method.icon;
                 const isLiveChat = method.title === "Live Chat";
@@ -217,7 +217,7 @@ const Contact = () => {
 
                     <div className="w-full text-left relative z-10 my-2">
                       {/* Highlighted Value / Contact Detail */}
-                      <p className={`text-base sm:text-[17px] font-bold ${theme.iconText} tracking-tight select-all leading-snug`}>
+                      <p className={`text-base sm:text-[17px] font-semibold ${theme.iconText} tracking-tight select-all leading-snug`}>
                         {method.contact}
                       </p>
                     </div>
@@ -247,7 +247,7 @@ const Contact = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.35, delay: index * 0.08 }}
-                    className="h-full"
+                    className={`h-full ${isBusinessHours && contactMethods.length === 3 ? "sm:col-span-2 lg:col-span-1" : ""}`}
                   >
                     {isLiveChat ? (
                       <button
@@ -275,10 +275,8 @@ const Contact = () => {
           </div>
         </section>
 
-        {/* ========================================================================= */}
-        {/* 2. CONTACT FORM & OFFICE LOCATIONS                                        */}
-        {/* ========================================================================= */}
-        <section id="send-message" className="relative py-14 sm:py-16 lg:py-20 bg-gradient-to-b from-[#FDF8F2] via-white to-[#FDF8F2] border-b border-[#CCDCE1] overflow-hidden">
+
+        <section id="send-message" className="relative pt-8 pb-12 sm:pt-10 sm:pb-14 lg:pt-12 lg:pb-16 bg-white  overflow-hidden">
           {/* Subtle Ambient Background Gradients */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden -z-10">
             <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#127EAB]/5 rounded-full blur-3xl pointer-events-none" />
@@ -314,7 +312,7 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5 }}
-              className="bg-white rounded-3xl border border-[#CCDCE1] shadow-[0_20px_50px_rgba(31,66,100,0.08)] overflow-hidden"
+              className="bg-white rounded-3xl  shadow-[0_20px_50px_rgba(31,66,100,0.08)] overflow-hidden"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
                 {/* Left Side: Contact Form */}
@@ -349,33 +347,13 @@ const Contact = () => {
                       <ShieldCheckIcon className="w-4 h-4 text-emerald-600 shrink-0" />
                       <span className="font-medium text-slate-700">256-Bit SSL Encrypted & Confidential</span>
                     </div>
-                    <span className="text-[11px] text-[#6F7F8E] hidden sm:inline">IRC § 7216 Protected</span>
+                    <span className="text-[11px] text-[#6F7F8E] hidden sm:inline">IRC Â§ 7216 Protected</span>
                   </div>
                 </div>
 
                 {/* Right Side: Corporate Headquarters Office & Map */}
                 <div className="lg:col-span-6 p-6 sm:p-8 lg:p-9 bg-slate-50/70 border-t lg:border-t-0 lg:border-l border-slate-200/80 flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-200/80">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-white border border-[#CCDCE1] text-primary shrink-0 shadow-2xs">
-                          <BuildingOffice2Icon className="w-5 h-5 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="text-base sm:text-lg font-semibold text-primary leading-snug">
-                            Corporate Headquarters
-                          </h3>
-                          <span className="text-xs text-[#6F7F8E] font-normal">
-                            Alpharetta, GA • In-Person & Remote Support
-                          </span>
-                        </div>
-                      </div>
-                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary bg-white px-3 py-1 rounded-full border border-[#CCDCE1] shadow-2xs shrink-0">
-                        <MapPinIcon className="w-3.5 h-3.5 text-[#EE6450]" />
-                        Georgia, USA
-                      </span>
-                    </div>
-
                     {/* Interactive Google Map */}
                     <div className="relative w-full h-44 sm:h-48 rounded-2xl overflow-hidden border border-slate-200/90 bg-slate-100 shadow-xs mb-4 group">
                       <iframe
@@ -432,7 +410,7 @@ const Contact = () => {
                             Hours (CST)
                           </span>
                           <span className="text-xs sm:text-[13px] text-primary font-semibold block mt-0.5">
-                            Mon – Sat: 9:30 AM – 7:30 PM
+                            Mon â€“ Sat: 9:30 AM â€“ 7:30 PM
                           </span>
                           <span className="text-xs text-slate-600 font-normal leading-relaxed block mt-0.5">
                             Sunday: Closed
@@ -483,10 +461,10 @@ const Contact = () => {
                             Official Email
                           </span>
                           <a
-                            href="mailto:contact@irstaxfiler.com"
+                            href="mailto:info@irstaxfiler.com"
                             className="text-xs sm:text-[13px] text-primary hover:text-teal font-semibold block truncate mt-0.5 transition-colors"
                           >
-                            contact@irstaxfiler.com
+                            info@irstaxfiler.com
                           </a>
                           <span className="text-xs text-slate-600 font-normal leading-relaxed block mt-0.5">
                             Tax desk & document intake

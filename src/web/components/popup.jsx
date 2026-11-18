@@ -313,16 +313,16 @@ export default function LeadModal({ open, onClose }) {
           <div>
             {/* Header with Brand Gradient */}
             <div className="mb-3.5 pr-6">
-              <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-background-aqua text-teal text-xs font-semibold mb-2 border border-border">
+              {/* <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-background-aqua text-teal text-xs font-semibold mb-2 border border-border">
                 <SparklesIcon className="w-3.5 h-3.5 text-coral" />
                 <span>100% Free Consultation • No Obligation</span>
-              </span>
+              </span> */}
               <h2 className="text-2xl sm:text-[26px] font-normal text-primary tracking-tight leading-tight">
                 Connect With A <span className="font-medium text-teal">Tax Expert</span>
               </h2>
-              <p className="text-xs sm:text-[13px] text-slateText font-normal leading-relaxed mt-1">
+              {/* <p className="text-xs sm:text-[13px] text-slateText font-normal leading-relaxed mt-1">
                 Speak with a licensed U.S. CPA or EA to evaluate your filing, discover deductions, and plan your taxes.
-              </p>
+              </p> */}
             </div>
 
             {/* Error & Success Feedback */}
@@ -397,9 +397,8 @@ export default function LeadModal({ open, onClose }) {
                           {formData.countryCode}
                         </span>
                         <ChevronDownIcon
-                          className={`w-3.5 h-3.5 text-slateText transition-transform duration-200 ${
-                            isCountryDropdownOpen ? "rotate-180" : ""
-                          }`}
+                          className={`w-3.5 h-3.5 text-slateText transition-transform duration-200 ${isCountryDropdownOpen ? "rotate-180" : ""
+                            }`}
                         />
                       </button>
 
@@ -414,11 +413,10 @@ export default function LeadModal({ open, onClose }) {
                                 setFormData((prev) => ({ ...prev, countryCode: opt.code }));
                                 setIsCountryDropdownOpen(false);
                               }}
-                              className={`w-full flex items-center gap-2 px-2.5 py-1.5 text-left text-xs transition-colors cursor-pointer ${
-                                formData.countryCode === opt.code
-                                  ? "bg-background-aqua text-teal font-bold"
-                                  : "hover:bg-slate-50 text-slateText"
-                              }`}
+                              className={`w-full flex items-center gap-2 px-2.5 py-1.5 text-left text-xs transition-colors cursor-pointer ${formData.countryCode === opt.code
+                                ? "bg-background-aqua text-teal font-bold"
+                                : "hover:bg-slate-50 text-slateText"
+                                }`}
                             >
                               <CountryFlag
                                 code={opt.code}
@@ -550,10 +548,10 @@ export default function LeadModal({ open, onClose }) {
           </div>
 
           {/* Privacy Footnote */}
-          <div className="mt-2 text-center flex items-center justify-center gap-1.5 text-[11px] text-slateText font-normal">
+          {/* <div className="mt-2 text-center flex items-center justify-center gap-1.5 text-[11px] text-slateText font-normal">
             <LockClosedIcon className="w-3.5 h-3.5 text-slateText shrink-0" />
             <span>256-Bit SSL Encrypted • 100% Confidential • Privacy Protected</span>
-          </div>
+          </div> */}
         </div>
       </motion.div>
     </div>

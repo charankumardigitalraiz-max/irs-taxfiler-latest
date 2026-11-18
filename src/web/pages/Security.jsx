@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ShieldCheckIcon,
@@ -129,7 +129,7 @@ const Security = () => {
         'Be cautious of phishing emails or suspicious communications. We will never ask for sensitive information via email.',
         'Keep your devices and software updated with the latest security patches and use antivirus software.',
         'Log out of your account when using shared or public computers, and avoid accessing your account on unsecured networks.',
-        'Report any suspicious activity or potential security issues to us immediately at contact@irstaxfiler.com.',
+        'Report any suspicious activity or potential security issues to us immediately at info@irstaxfiler.com.',
       ],
     },
     {
@@ -138,7 +138,7 @@ const Security = () => {
       icon: FireIcon,
       content: [
         'If you discover a security vulnerability or suspect unauthorized access to your account, please report it to us immediately.',
-        'You can report security issues by emailing contact@irstaxfiler.com or calling our security hotline at +1 (415) 7876190.',
+        'You can report security issues by emailing info@irstaxfiler.com or calling our security hotline at +1 (415) 7876190.',
         'We take all security reports seriously and will investigate them promptly. We appreciate responsible disclosure of security vulnerabilities.',
         'If you believe your account has been compromised, change your password immediately and contact us right away.',
         'We will work with you to secure your account and investigate any security incidents that may have occurred.',
@@ -163,10 +163,10 @@ const Security = () => {
       icon: DocumentTextIcon,
       content: [
         'If you have questions or concerns about our security practices, please contact our security team:',
-        'Email: contact@irstaxfiler.com',
+        'Email: info@irstaxfiler.com',
         'Phone: +1 (415) 7876190 (ask for the security team)',
         'Mail: IRS Tax Adviser Inc, 12600 Deerfield Parkway, Suite 2096, Alpharetta, GA 30004, USA',
-        'For general privacy questions, please see our Privacy Policy or contact contact@irstaxfiler.com.',
+        'For general privacy questions, please see our Privacy Policy or contact info@irstaxfiler.com.',
         'For urgent security issues, please call our security hotline immediately.',
       ],
     },
@@ -196,7 +196,7 @@ const Security = () => {
   ];
 
   const title = "About Us | IRS Tax Filer";
-  const description = "Learn about IRS Tax Filer — our mission, expertise in US & Indian tax services, and commitment to secure,Learn more.";
+  const description = "Learn about IRS Tax Filer â€” our mission, expertise in US & Indian tax services, and commitment to secure,Learn more.";
   const keywords = "online tax filing service,tax service provider,Internal Revenue Service,IRS Tax Filer about, US & Indian tax services, tax filing expertise, tax compliance company";
   const canonical = window.location.href;
   const image = { Logo };
@@ -329,8 +329,8 @@ const Security = () => {
                 </p>
                 <p className="text-sm sm:text-[15px] text-slateText leading-relaxed pt-3.5 border-t border-slate-100">
                   If you have questions about our security practices, please contact our security team at{' '}
-                  <a href="mailto:contact@irstaxfiler.com" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
-                    contact@irstaxfiler.com
+                  <a href="mailto:info@irstaxfiler.com" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
+                    info@irstaxfiler.com
                   </a>
                   {' '}or call us at{' '}
                   <a href="tel:++1 (415) 7876190" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
@@ -468,7 +468,7 @@ const Security = () => {
               </p>
               <div className="flex flex-wrap gap-3 justify-center">
                 <a
-                  href="mailto:contact@irstaxfiler.com"
+                  href="mailto:info@irstaxfiler.com"
                   className="inline-flex items-center justify-center h-10 sm:h-11 px-6 rounded-lg font-medium text-xs sm:text-sm text-white bg-gradient-to-r from-[#1F4264] via-[#1F4264] to-[#127EAB] hover:from-[#1E4162] hover:via-[#1F4264] hover:to-[#1F4264] shadow-sm transition-all"
                 >
                   Contact Security Team

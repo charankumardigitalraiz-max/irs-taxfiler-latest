@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -17,6 +17,7 @@ import LeadModal from "../../components/popup";
 import Logo from "../../assets/irsLogo.png";
 import indianTaxPhoto from "../../assets/services/indian-tax.jpg";
 import foreignIncomePhoto from "../../assets/services/foreign-income.jpg";
+import { serviceCardThemes, serviceStepThemes } from "../../constants/serviceThemes";
 
 const IndianTaxFiling = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -124,7 +125,7 @@ const IndianTaxFiling = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
-                className="text-sm sm:text-base lg:text-[17px] text-slateText font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
+                className="text-sm sm:text-base lg:text-[17px] text-slateText font-medium leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
               >
                 Specialized ITR preparation for Non-Resident Indians (NRIs), OCIs, and global tech workers. We reconcile Form 26AS, AIS/TIS, claim DTAA foreign tax credits, and eliminate double-taxation across the U.S. and India.
               </motion.p>
@@ -158,7 +159,7 @@ const IndianTaxFiling = () => {
               <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slateText">
                 <ShieldCheckIcon className="w-4 h-4 text-teal" />
                 <span className="font-medium text-primary">Licensed Indian Chartered Accountants & CPAs</span>
-                <span className="text-border">•</span>
+                <span className="text-border">â€¢</span>
                 <span>Zero Double-Taxation Guarantee</span>
               </div>
             </div>
@@ -211,52 +212,62 @@ const IndianTaxFiling = () => {
                 Tax Filing Scopes
               </span>
             </h2>
-            <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-2.5">
+            <p className="text-sm sm:text-base text-slateText font-medium leading-relaxed mt-2.5">
               Accurate reporting of Indian income and seamless credit offset in the United States.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {filingScopes.map((scope, idx) => (
-              <div
-                key={idx}
-                className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/80 shadow-2xs hover:border-[#1F4264]/30 hover:shadow-sm transition-all text-left flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3.5">
-                    <div className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200/60 flex items-center justify-center shrink-0">
-                      {scope.icon}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+            {filingScopes.map((scope, idx) => {
+              const crossBorderStyles = [
+                { icon: "bg-gradient-to-br from-[#EE6450] to-[#D9523E] text-white", tag: "text-[#D9523E]", pill: "bg-[#FEF4F2] text-[#D9523E] border-[#EE6450]/25", listBg: "bg-slate-50/80", check: "text-[#EE6450]" },
+                { icon: "bg-gradient-to-br from-[#127EAB] to-[#0D6388] text-white", tag: "text-[#127EAB]", pill: "bg-[#EFF9FB] text-[#127EAB] border-[#127EAB]/25", listBg: "bg-slate-50/80", check: "text-[#127EAB]" },
+                { icon: "bg-gradient-to-br from-emerald-600 to-emerald-700 text-white", tag: "text-emerald-700", pill: "bg-emerald-50 text-emerald-700 border-emerald-200/80", listBg: "bg-slate-50/80", check: "text-emerald-600" },
+              ];
+              const cb = crossBorderStyles[idx % crossBorderStyles.length];
+
+              return (
+                <div
+                  key={idx}
+                  className="group p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-left flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-start justify-between gap-2 mb-4">
+                      <div className={`w-11 h-11 rounded-2xl ${cb.icon} flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform`}>
+                        {React.cloneElement(scope.icon, { className: "w-5 h-5" })}
+                      </div>
+                      {scope.form && (
+                        <span className={`text-[10.5px] font-mono font-semibold px-2.5 py-1 rounded-lg border ${cb.pill}`}>
+                          {scope.form}
+                        </span>
+                      )}
                     </div>
-                    {scope.form && (
-                      <span className="text-[10.5px] font-medium px-2 py-0.5 rounded-md border bg-sky-50 text-primary border-sky-100">
-                        {scope.form}
-                      </span>
-                    )}
+
+                    <span className={`text-[11px] font-semibold uppercase tracking-wider ${cb.tag} block mb-1`}>
+                      {scope.tag}
+                    </span>
+
+                    <h3 className="text-base sm:text-[17px] font-semibold text-primary mb-2 leading-snug">
+                      {scope.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-[13px] text-slate-600 font-medium leading-relaxed mb-4">
+                      {scope.summary}
+                    </p>
                   </div>
 
-                  <h3 className="text-base font-semibold text-primary mb-1 leading-snug">
-                    {scope.title}
-                  </h3>
-
-                  <div className="text-[11px] font-bold text-teal mb-2.5">
-                    {scope.tag}
-                  </div>
-
-                  <p className="text-xs sm:text-[13px] text-slateText font-normal leading-relaxed mb-4">
-                    {scope.summary}
-                  </p>
-
-                  <ul className="space-y-2.5 pt-3.5 border-t border-slate-100">
+                  {/* Structured Soft Tinted Checklist Box */}
+                  <ul className={`space-y-2 p-3.5 rounded-xl ${cb.listBg} border border-slate-200/60`}>
                     {scope.points.map((pt, pIdx) => (
-                      <li key={pIdx} className="flex items-start gap-2.5 text-[13px] sm:text-sm text-primary font-medium leading-snug">
-                        <CheckCircleIcon className="w-4 h-4 text-teal stroke-[2.2] shrink-0 mt-0.5" />
+                      <li key={pIdx} className="flex items-start gap-2 text-xs sm:text-[13px] text-primary font-medium leading-snug">
+                        <CheckCircleIcon className={`w-4 h-4 ${cb.check} stroke-[2.2] shrink-0 mt-0.5`} />
                         <span>{pt}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -275,8 +286,8 @@ const IndianTaxFiling = () => {
               />
             </div>
 
-            {/* Right Steps */}
-            <div className="lg:col-span-7 space-y-4 text-left">
+            {/* Right Steps - Editorial Oversized Index Numbers */}
+            <div className="lg:col-span-7 space-y-5 text-left">
               <div className="mb-4">
                 <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
                   3-Step Indian ITR{" "}
@@ -286,22 +297,26 @@ const IndianTaxFiling = () => {
                 </h2>
               </div>
 
-              <div className="space-y-4">
-                {steps.map((step, sIdx) => (
-                  <div key={sIdx} className="flex items-start gap-3.5">
-                    <div className="w-8 h-8 rounded-lg bg-[#EFF9FB] text-teal font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 border border-[#127EAB]/25">
-                      {step.num}
+              <div className="divide-y divide-slate-200/70">
+                {steps.map((step, sIdx) => {
+                  const numColors = ["text-[#EE6450]/80", "text-[#127EAB]/80", "text-emerald-600/80"];
+
+                  return (
+                    <div key={sIdx} className="py-4 first:pt-0 last:pb-0 flex items-start gap-4">
+                      <span className={`font-mono text-2xl sm:text-3xl font-semibold tracking-tighter leading-none shrink-0 w-10 ${numColors[sIdx % 3]}`}>
+                        {step.num}
+                      </span>
+                      <div>
+                        <h3 className="text-sm sm:text-base font-semibold text-primary mb-1">
+                          {step.title}
+                        </h3>
+                        <p className="text-xs sm:text-[13px] text-slate-600 font-medium leading-relaxed">
+                          {step.detail}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-primary mb-0.5">
-                        {step.title}
-                      </h3>
-                      <p className="text-xs sm:text-[13px] text-slateText font-normal leading-relaxed">
-                        {step.detail}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -309,30 +324,39 @@ const IndianTaxFiling = () => {
       </section>
 
       {/* 4. CLEAN CTA BANNER */}
-      <section className="py-12 sm:py-16 bg-[#1F4264] text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-normal tracking-tight text-white mb-2">
-            Seamless Cross-Border Tax Filing
-          </h2>
-          <p className="text-xs sm:text-sm text-sky-100 max-w-xl mx-auto mb-6">
-            Get your Indian ITR filed with guaranteed DTAA foreign tax credit optimization by our Chartered Accountants.
-          </p>
+      <section className="py-10 sm:py-14 bg-white font-sans">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl py-10 sm:py-12 px-6 sm:px-12 bg-gradient-to-r from-[#0D6388] via-[#127EAB] to-[#168BB8] text-white shadow-xl text-center">
+            {/* Subtle Ambient Glows */}
+            <div className="absolute -top-24 -left-16 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -right-16 w-72 h-72 bg-[#1F4264]/25 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <Link
-              to="/login"
-              className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-[#127EAB] hover:bg-teal-soft text-white font-medium text-xs sm:text-sm transition-all shadow-md group"
-            >
-              <span>File Indian Return</span>
-              <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <button
-              type="button"
-              onClick={handleOpenModal}
-              className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-xs sm:text-sm border border-white/20 transition-all"
-            >
-              <span>Consult Indian CA</span>
-            </button>
+            <div className="max-w-3xl mx-auto relative z-10">
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white mb-2.5">
+                Seamless Cross-Border{" "}
+                <span className="text-[#EE6450]">Tax Filing</span>
+              </h2>
+              <p className="text-xs sm:text-sm text-sky-50/90 max-w-xl mx-auto mb-7 font-medium leading-relaxed">
+                Get your Indian ITR filed with guaranteed DTAA foreign tax credit optimization by our Chartered Accountants.
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center gap-3.5">
+                <Link
+                  to="/login"
+                  className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-white hover:bg-[#EFF9FB] text-primary font-semibold text-xs sm:text-sm transition-all duration-200 shadow-md hover:shadow-lg group"
+                >
+                  <span>File Indian Return</span>
+                  <ArrowRightIcon className="w-4 h-4 text-teal group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <button
+                  type="button"
+                  onClick={handleOpenModal}
+                  className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold text-xs sm:text-sm border border-white/30 backdrop-blur-xs transition-all duration-200 cursor-pointer"
+                >
+                  <span>Consult Indian CA</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

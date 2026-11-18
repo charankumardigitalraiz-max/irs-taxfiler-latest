@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -123,7 +123,7 @@ const Privacy = () => {
         'Opt-Out: You can opt out of marketing communications by clicking unsubscribe links in emails or adjusting your account preferences.',
         'Data Portability: You may request a copy of your data in a portable format, subject to applicable laws.',
         'California Privacy Rights: If you are a California resident, you have additional rights under the California Consumer Privacy Act (CCPA), including the right to know what personal information we collect and the right to opt out of the sale of personal information (we do not sell personal information).',
-        'To exercise these rights, please contact us at contact@irstaxfiler.com or use the contact information provided below.',
+        'To exercise these rights, please contact us at info@irstaxfiler.com or use the contact information provided below.',
       ],
     },
     {
@@ -177,7 +177,7 @@ const Privacy = () => {
       icon: InformationCircleIcon,
       content: [
         'If you have questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us:',
-        'Email: contact@irstaxfiler.com',
+        'Email: info@irstaxfiler.com',
         'Phone: +1 (415) 2231315',
         'Mail: IRS Tax Adviser Inc, 12600 Deerfield Parkway, Suite 2096, Alpharetta, GA 30004, USA',
         'We will respond to your privacy inquiries within 30 days of receipt.',
@@ -187,7 +187,7 @@ const Privacy = () => {
   ];
 
   const title = "About Us | IRS Tax Filer";
-  const description = "Learn about IRS Tax Filer — our mission, expertise in US & Indian tax services, and commitment to secure,Learn more.";
+  const description = "Learn about IRS Tax Filer â€” our mission, expertise in US & Indian tax services, and commitment to secure,Learn more.";
   const keywords = "online tax filing service,tax service provider,Internal Revenue Service,IRS Tax Filer about, US & Indian tax services, tax filing expertise, tax compliance company";
   const canonical = window.location.href;
   const image = { Logo };
@@ -277,8 +277,8 @@ const Privacy = () => {
                 </p>
                 <p className="text-sm sm:text-[15px] text-slateText leading-relaxed pt-3.5 border-t border-slate-100">
                   If you have any questions about this Privacy Policy, please contact us at{' '}
-                  <a href="mailto:contact@irstaxfiler.com" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
-                    contact@irstaxfiler.com
+                  <a href="mailto:info@irstaxfiler.com" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
+                    info@irstaxfiler.com
                   </a>
                   {' '}or call us at{' '}
                   <a href="tel:++1 (415) 2231315" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
@@ -475,7 +475,7 @@ const Privacy = () => {
                 </p>
                 <div className="flex flex-wrap gap-2.5 justify-center">
                   {/* <a
-                    href="mailto:contact@irstaxfiler.com"
+                    href="mailto:info@irstaxfiler.com"
                     className="inline-flex items-center justify-center h-10 px-5 rounded-lg font-medium text-xs sm:text-sm text-white bg-gradient-to-r from-[#1F4264] via-[#1F4264] to-[#127EAB] hover:from-[#1E4162] hover:via-[#1F4264] hover:to-[#1F4264] shadow-sm transition-all"
                   >
                     Email Privacy Team

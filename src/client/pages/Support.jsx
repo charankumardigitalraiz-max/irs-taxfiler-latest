@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import {
   MessageSquare,
   Send,
@@ -118,14 +118,14 @@ const Support = () => {
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">Email Support</h3>
-              <p className="text-sm text-gray-500">contact@irstaxfiler.com</p>
+              <p className="text-sm text-gray-500">info@irstaxfiler.com</p>
             </div>
           </div>
           <a
-            href="mailto:contact@irstaxfiler.com"
+            href="mailto:info@irstaxfiler.com"
             className="text-sm text-primary-600 hover:text-primary-700 font-medium"
           >
-            Send Email →
+            Send Email â†’
           </a>
         </Card>
 
@@ -143,7 +143,7 @@ const Support = () => {
             href="tel:+15551234567"
             className="text-sm text-primary-600 hover:text-primary-700 font-medium"
           >
-            Call Now →
+            Call Now â†’
           </a>
         </Card>
 
@@ -323,7 +323,7 @@ const Support = () => {
                               {ticket.subject}
                             </h4>
                             <Badge color={getStatusColor(ticket.status)} size="sm">
-                              {ticket.status ? ticket.status.replace('_', ' ') : '—'}
+                              {ticket.status ? ticket.status.replace('_', ' ') : 'â€”'}
                             </Badge>
                             <Badge color={getPriorityColor(ticket.priority)} size="sm">
                               {ticket.priority}
@@ -331,9 +331,9 @@ const Support = () => {
                           </div>
                           <div className="flex items-center gap-4 text-sm text-gray-500">
                             <span>Ticket: {ticket._id?.slice(-6) || `#${index + 1}`}</span>
-                            <span>•</span>
-                            <span>Category: {ticket.category || '—'}</span>
-                            <span>•</span>
+                            <span>â€¢</span>
+                            <span>Category: {ticket.category || 'â€”'}</span>
+                            <span>â€¢</span>
                             <span>
                               {Array.isArray(ticket.messages) ? ticket.messages.length : 0}{' '}
                               messages
@@ -353,13 +353,13 @@ const Support = () => {
                           Created:{' '}
                           {ticket.createdAt
                             ? new Date(ticket.createdAt).toLocaleString()
-                            : '—'}
+                            : 'â€”'}
                         </span>
                         <span>
                           Last updated:{' '}
                           {ticket.updatedAt
                             ? new Date(ticket.updatedAt).toLocaleString()
-                            : '—'}
+                            : 'â€”'}
                         </span>
                       </div>
                     </div>
@@ -393,7 +393,7 @@ const Support = () => {
         }
         description={
           selectedTicket
-            ? `Status: ${selectedTicket.status?.replace('_', ' ')} • Priority: ${
+            ? `Status: ${selectedTicket.status?.replace('_', ' ')} â€¢ Priority: ${
                 selectedTicket.priority
               }`
             : ''
@@ -410,7 +410,7 @@ const Support = () => {
                     Created:{' '}
                     {selectedTicket.createdAt
                       ? new Date(selectedTicket.createdAt).toLocaleString()
-                      : '—'}
+                      : 'â€”'}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">

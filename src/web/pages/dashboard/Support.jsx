@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   ChatBubbleLeftRightIcon,
@@ -117,14 +117,14 @@ const Support = () => {
             </div>
             <div>
               <h3 className="font-semibold text-primary">Email Support</h3>
-              <p className="text-sm text-slateText">contact@irstaxfiler.com</p>
+              <p className="text-sm text-slateText">info@irstaxfiler.com</p>
             </div>
           </div>
           <a
-            href="mailto:contact@irstaxfiler.com"
+            href="mailto:info@irstaxfiler.com"
             className="text-sm text-primary-blue hover:text-blue-700 font-medium"
           >
-            Send Email →
+            Send Email â†’
           </a>
         </motion.div>
 
@@ -147,7 +147,7 @@ const Support = () => {
             href="tel:+15551234567"
             className="text-sm text-primary-blue hover:text-blue-700 font-medium"
           >
-            Call Now →
+            Call Now â†’
           </a>
         </motion.div>
 
@@ -340,9 +340,9 @@ const Support = () => {
                           </div>
                           <div className="flex items-center space-x-4 text-sm text-slateText">
                             <span>Ticket: {ticket.ticketNumber}</span>
-                            <span>•</span>
+                            <span>â€¢</span>
                             <span>Category: {ticket.category}</span>
-                            <span>•</span>
+                            <span>â€¢</span>
                             <span>{ticket.messages} messages</span>
                           </div>
                         </div>

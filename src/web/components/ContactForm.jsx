@@ -135,7 +135,7 @@ const ContactForm = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-slate-400 text-slate-800 font-medium"
+                  className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-[11px] sm:placeholder:text-xs placeholder:font-normal placeholder:text-slate-400 text-slate-800 font-medium"
                   placeholder="John Doe"
                 />
               </div>
@@ -161,7 +161,7 @@ const ContactForm = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-slate-400 text-slate-800 font-medium"
+                  className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-[11px] sm:placeholder:text-xs placeholder:font-normal placeholder:text-slate-400 text-slate-800 font-medium"
                   placeholder="john@example.com"
                 />
               </div>
@@ -188,7 +188,7 @@ const ContactForm = () => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleNumber}
-                className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-slate-400 text-slate-800 font-medium"
+                className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-[11px] sm:placeholder:text-xs placeholder:font-normal placeholder:text-slate-400 text-slate-800 font-medium"
                 placeholder="+1 (404) 424-4191"
               />
             </div>
@@ -212,7 +212,7 @@ const ContactForm = () => {
               name="subject"
               value={formData.subject}
               onChange={handleChange}
-              className="w-full px-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-slate-400 text-slate-800 font-medium"
+              className="w-full px-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-[11px] sm:placeholder:text-xs placeholder:font-normal placeholder:text-slate-400 text-slate-800 font-medium"
               placeholder="How can we help?"
             />
             {contactFormError.subject && (
@@ -235,7 +235,7 @@ const ContactForm = () => {
               value={formData.message}
               onChange={handleChange}
               rows={2}
-              className="w-full px-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-slate-400 text-slate-800 font-medium resize-none"
+              className="w-full px-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-[11px] sm:placeholder:text-xs placeholder:font-normal placeholder:text-slate-400 text-slate-800 font-medium resize-none"
               placeholder="Tell us more about your tax requirements..."
             />
             {contactFormError.message && (

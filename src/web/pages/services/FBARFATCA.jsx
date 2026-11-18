@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -20,6 +20,7 @@ import LeadModal from "../../components/popup";
 import Logo from "../../assets/irsLogo.png";
 import foreignAssetPhoto from "../../assets/services/foreign-asset.jpg";
 import streamlinedPhoto from "../../assets/services/streamlined-irs.jpg";
+import { serviceCardThemes, serviceStepThemes } from "../../constants/serviceThemes";
 
 const FBARFATCA = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,7 +51,7 @@ const FBARFATCA = () => {
     {
       feature: "Filing Threshold",
       fbar: "Aggregate foreign account balances > $10,000 at any time in the year",
-      fatca: "$50,000 – $200,000+ (Depends on marital status & domestic vs. expat residence)",
+      fatca: "$50,000 Ã¢â‚¬â€œ $200,000+ (Depends on marital status & domestic vs. expat residence)",
     },
     {
       feature: "Reportable Assets",
@@ -132,24 +133,24 @@ const FBARFATCA = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
-                className="text-sm sm:text-base lg:text-[17px] text-slateText font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
+                className="text-sm sm:text-base lg:text-[17px] text-slateText font-medium leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
               >
                 Hold foreign bank accounts, mutual funds, or foreign pensions? Our cross-border CPAs audit your aggregate thresholds with official Treasury conversions and file directly with FinCEN.
               </motion.p>
 
               {/* 3 Value Pillars */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-6 text-left">
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <div className="text-[11px] font-bold text-primary uppercase tracking-wider mb-0.5">$10,000+ FBAR</div>
-                  <div className="text-xs text-slateText font-normal">Aggregate balance auditing</div>
+                <div className="p-3 rounded-xl bg-[#EFF9FB]/90 border border-[#127EAB]/25 shadow-2xs">
+                  <div className="text-[11px] font-semibold text-[#127EAB] uppercase tracking-wider mb-0.5">$10,000+ FBAR</div>
+                  <div className="text-xs text-slate-600 font-medium">Aggregate balance auditing</div>
                 </div>
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <div className="text-[11px] font-bold text-teal uppercase tracking-wider mb-0.5">FATCA 8938</div>
-                  <div className="text-xs text-slateText font-normal">Form 1040 attachment</div>
+                <div className="p-3 rounded-xl bg-emerald-50/80 border border-emerald-200/80 shadow-2xs">
+                  <div className="text-[11px] font-semibold text-emerald-700 uppercase tracking-wider mb-0.5">FATCA 8938</div>
+                  <div className="text-xs text-slate-600 font-medium">Form 1040 attachment</div>
                 </div>
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <div className="text-[11px] font-bold text-primary uppercase tracking-wider mb-0.5">Streamlined</div>
-                  <div className="text-xs text-slateText font-normal">Amnesty for back years</div>
+                <div className="p-3 rounded-xl bg-indigo-50/80 border border-indigo-200/80 shadow-2xs">
+                  <div className="text-[11px] font-semibold text-indigo-700 uppercase tracking-wider mb-0.5">Streamlined</div>
+                  <div className="text-xs text-slate-600 font-medium">Amnesty for back years</div>
                 </div>
               </div>
 
@@ -182,7 +183,7 @@ const FBARFATCA = () => {
               <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slateText">
                 <ShieldCheckIcon className="w-4 h-4 text-teal" />
                 <span className="font-medium text-primary">FinCEN Direct e-File Partner</span>
-                <span className="text-border">•</span>
+                <span className="text-border">Ã¢â‚¬Â¢</span>
                 <span>Zero-Penalty Amnesty Guidance</span>
               </div>
             </div>
@@ -235,7 +236,7 @@ const FBARFATCA = () => {
                 Comparison
               </span>
             </h2>
-            <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-2.5">
+            <p className="text-sm sm:text-base text-slateText font-medium leading-relaxed mt-2.5">
               Understand the core differences between FinCEN Form 114 and IRS Form 8938.
             </p>
           </div>
@@ -292,10 +293,10 @@ const FBARFATCA = () => {
                         <span>{row.feature}</span>
                       </div>
                     </td>
-                    <td className="py-4 px-6 text-slateText leading-relaxed bg-sky-50/15 group-hover:bg-sky-50/25 transition-colors align-top border-l border-slate-100">
+                    <td className="py-4 px-6 text-slateText font-[500] leading-relaxed bg-sky-50/15 group-hover:bg-sky-50/25 transition-colors align-top border-l border-slate-100">
                       {row.fbar}
                     </td>
-                    <td className="py-4 px-6 text-slateText leading-relaxed bg-[#EFF9FB]/20 group-hover:bg-[#EFF9FB]/35 transition-colors align-top border-l border-slate-100">
+                    <td className="py-4 px-6 text-slateText font-[500] leading-relaxed bg-[#EFF9FB]/20 group-hover:bg-[#EFF9FB]/35 transition-colors align-top border-l border-slate-100">
                       {row.fatca}
                     </td>
                   </tr>
@@ -327,7 +328,7 @@ const FBARFATCA = () => {
                       <BanknotesIcon className="w-3.5 h-3.5 shrink-0" />
                       <span>FBAR (FinCEN Form 114)</span>
                     </div>
-                    <p className="text-xs text-slateText leading-relaxed pl-5">
+                    <p className="text-xs text-slateText font-medium leading-relaxed pl-5">
                       {row.fbar}
                     </p>
                   </div>
@@ -338,7 +339,7 @@ const FBARFATCA = () => {
                       <DocumentTextIcon className="w-3.5 h-3.5 shrink-0" />
                       <span>FATCA (IRS Form 8938)</span>
                     </div>
-                    <p className="text-xs text-slateText leading-relaxed pl-5">
+                    <p className="text-xs text-slateText font-medium leading-relaxed pl-5">
                       {row.fatca}
                     </p>
                   </div>
@@ -360,18 +361,18 @@ const FBARFATCA = () => {
                 <span className="font-semibold text-teal">0% Penalty Available</span>
               </h3>
 
-              <p className="text-xs text-white/80 font-normal leading-relaxed mb-4">
+              <p className="text-xs text-white/80 font-medium leading-relaxed mb-4">
                 If your failure to file was non-willful, the IRS Streamlined Filing Procedures allow you to catch up without criminal penalties or severe willful fines.
               </p>
 
               <div className="space-y-2 pt-3 border-t border-white/15 text-xs text-white/90">
                 <div className="flex items-center justify-between bg-white/10 p-2 rounded-xl">
                   <span>Expats Living Abroad</span>
-                  <span className="font-bold text-teal">0% Penalty (Amnesty)</span>
+                  <span className="font-semibold text-teal">0% Penalty (Amnesty)</span>
                 </div>
                 <div className="flex items-center justify-between bg-white/10 p-2 rounded-xl">
                   <span>U.S. Residents</span>
-                  <span className="font-bold text-teal">5% Flat Penalty</span>
+                  <span className="font-semibold text-teal">5% Flat Penalty</span>
                 </div>
               </div>
             </div>
@@ -388,39 +389,39 @@ const FBARFATCA = () => {
                 />
               </div>
 
-              {/* 3 Streamlined Steps */}
-              <div className="sm:col-span-7 space-y-3 text-left">
-                <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-lg bg-sky-50 text-primary font-bold text-xs flex items-center justify-center shrink-0">
+              {/* 3 Streamlined Steps - Vertical Connected Timeline */}
+              <div className="sm:col-span-7 relative pl-5 space-y-4 text-left before:content-[''] before:absolute before:left-[13px] before:top-4 before:bottom-4 before:w-0.5 before:border-l-2 before:border-dashed before:border-slate-200">
+                <div className="relative pl-5">
+                  <span className="absolute -left-[20px] top-1 w-7 h-7 rounded-full bg-[#127EAB] text-white font-mono font-semibold text-xs flex items-center justify-center ring-4 ring-white shadow-xs">
                     1
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-semibold text-primary">3 Years Back Tax Returns</h4>
-                    <p className="text-xs text-slateText font-normal mt-0.5 leading-relaxed">
+                  </span>
+                  <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 hover:border-[#127EAB]/40 transition-colors shadow-2xs">
+                    <h4 className="text-xs sm:text-sm font-semibold text-primary">3 Years Back Tax Returns</h4>
+                    <p className="text-xs text-slate-600 font-medium mt-0.5 leading-relaxed">
                       Delinquent or amended Form 1040s reporting worldwide income.
                     </p>
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-lg bg-[#EFF9FB] text-teal font-bold text-xs flex items-center justify-center shrink-0">
+                <div className="relative pl-5">
+                  <span className="absolute -left-[20px] top-1 w-7 h-7 rounded-full bg-[#1F4264] text-white font-mono font-semibold text-xs flex items-center justify-center ring-4 ring-white shadow-xs">
                     2
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-semibold text-primary">6 Years Back FBAR Submissions</h4>
-                    <p className="text-xs text-slateText font-normal mt-0.5 leading-relaxed">
+                  </span>
+                  <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 hover:border-[#1F4264]/40 transition-colors shadow-2xs">
+                    <h4 className="text-xs sm:text-sm font-semibold text-primary">6 Years Back FBAR Submissions</h4>
+                    <p className="text-xs text-slate-600 font-medium mt-0.5 leading-relaxed">
                       Prior FinCEN 114 filings with Treasury currency rates.
                     </p>
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-lg bg-coral/10 text-coral font-bold text-xs flex items-center justify-center shrink-0">
+                <div className="relative pl-5">
+                  <span className="absolute -left-[20px] top-1 w-7 h-7 rounded-full bg-[#EE6450] text-white font-mono font-semibold text-xs flex items-center justify-center ring-4 ring-white shadow-xs">
                     3
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-semibold text-primary">Non-Willful Statement</h4>
-                    <p className="text-xs text-slateText font-normal mt-0.5 leading-relaxed">
+                  </span>
+                  <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 hover:border-[#EE6450]/40 transition-colors shadow-2xs">
+                    <h4 className="text-xs sm:text-sm font-semibold text-primary">Non-Willful Statement</h4>
+                    <p className="text-xs text-slate-600 font-medium mt-0.5 leading-relaxed">
                       Formal Form 14653/14654 certification drafted by CPAs.
                     </p>
                   </div>
@@ -431,7 +432,7 @@ const FBARFATCA = () => {
         </div>
       </section>
 
-      {/* 4. REPORTABLE FOREIGN ASSETS (CLEAN 4-COLUMN GRID) */}
+      {/* 4. REPORTABLE FOREIGN ASSETS (LEFT-ACCENT BANKING LEDGER CARDS) */}
       <section className="py-12 sm:py-16 bg-white border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
@@ -441,64 +442,88 @@ const FBARFATCA = () => {
                 Assets
               </span>
             </h2>
-            <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-2.5">
+            <p className="text-sm sm:text-base text-slateText font-medium leading-relaxed mt-2.5">
               Comprehensive compliance across foreign accounts, mutual funds, and overseas pension plans.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {reportableAssetCategories.map((cat, cIdx) => (
-              <div
-                key={cIdx}
-                className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs hover:border-[#1F4264]/30 hover:shadow-sm transition-all text-left flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200/60 flex items-center justify-center shrink-0">
-                      {cat.icon}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {reportableAssetCategories.map((cat, cIdx) => {
+              const ledgerAccents = [
+                { bar: "border-l-[#127EAB]", icon: "bg-[#127EAB] text-white", tag: "text-[#127EAB] bg-[#EFF9FB]", hover: "hover:border-[#127EAB]/40" },
+                { bar: "border-l-[#1F4264]", icon: "bg-[#1F4264] text-white", tag: "text-[#1F4264] bg-slate-100", hover: "hover:border-[#1F4264]/40" },
+                { bar: "border-l-emerald-600", icon: "bg-emerald-600 text-white", tag: "text-emerald-700 bg-emerald-50", hover: "hover:border-emerald-300" },
+                { bar: "border-l-[#EE6450]", icon: "bg-[#EE6450] text-white", tag: "text-[#D9523E] bg-[#FEF4F2]", hover: "hover:border-[#EE6450]/40" },
+              ];
+              const accent = ledgerAccents[cIdx % ledgerAccents.length];
+
+              return (
+                <div
+                  key={cIdx}
+                  className={`group bg-white rounded-xl border border-slate-200/90 border-l-4 ${accent.bar} ${accent.hover} p-5 shadow-2xs hover:shadow-md transition-all duration-200 text-left flex flex-col justify-between`}
+                >
+                  <div>
+                    <div className="flex items-center gap-3 mb-3.5">
+                      <div className={`w-9 h-9 rounded-lg ${accent.icon} flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform`}>
+                        {React.cloneElement(cat.icon, { className: "w-4.5 h-4.5" })}
+                      </div>
+                      <h3 className="text-sm font-semibold text-primary leading-snug">
+                        {cat.title}
+                      </h3>
                     </div>
+
+                    <p className="text-xs text-slate-600 font-medium leading-relaxed mb-4">
+                      {cat.description}
+                    </p>
                   </div>
 
-                  <h3 className="text-sm font-semibold text-primary mb-1 leading-snug">
-                    {cat.title}
-                  </h3>
-
-                  <p className="text-xs text-slateText font-normal leading-relaxed">
-                    {cat.description}
-                  </p>
+                  <div className="pt-2.5 border-t border-slate-100">
+                    <span className={`inline-block text-[10.5px] font-semibold px-2.5 py-0.5 rounded-md ${accent.tag}`}>
+                      {cat.tag}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
 
       {/* 6. CLEAN CTA BANNER */}
-      <section className="py-12 sm:py-16 bg-[#1F4264] text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-normal tracking-tight text-white mb-2">
-            Stay 100% Compliant with U.S. Expat Rules
-          </h2>
-          <p className="text-xs sm:text-sm text-sky-100 max-w-xl mx-auto mb-6">
-            Our licensed cross-border CPAs prepare your FBAR and FATCA returns with guaranteed Treasury accuracy.
-          </p>
+      <section className="py-10 sm:py-14 bg-white font-sans">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl py-10 sm:py-12 px-6 sm:px-12 bg-gradient-to-r from-[#0D6388] via-[#127EAB] to-[#168BB8] text-white shadow-xl text-center">
+            {/* Subtle Ambient Glows */}
+            <div className="absolute -top-24 -left-16 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -right-16 w-72 h-72 bg-[#1F4264]/25 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <Link
-              to="/login"
-              className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-[#127EAB] hover:bg-teal-soft text-white font-medium text-xs sm:text-sm transition-all shadow-md group"
-            >
-              <span>File Foreign Assets</span>
-              <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <button
-              type="button"
-              onClick={handleOpenModal}
-              className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-xs sm:text-sm border border-white/20 transition-all"
-            >
-              <span>Book Expat Consultation</span>
-            </button>
+            <div className="max-w-3xl mx-auto relative z-10">
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white mb-2.5">
+                Stay 100% Compliant with{" "}
+                <span className="text-[#EE6450]">U.S. Expat Rules</span>
+              </h2>
+              <p className="text-xs sm:text-sm text-sky-50/90 max-w-xl mx-auto mb-7 font-medium leading-relaxed">
+                Our licensed cross-border CPAs prepare your FBAR and FATCA returns with guaranteed Treasury accuracy.
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center gap-3.5">
+                <Link
+                  to="/login"
+                  className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-white hover:bg-[#EFF9FB] text-primary font-semibold text-xs sm:text-sm transition-all duration-200 shadow-md hover:shadow-lg group"
+                >
+                  <span>File Foreign Assets</span>
+                  <ArrowRightIcon className="w-4 h-4 text-teal group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <button
+                  type="button"
+                  onClick={handleOpenModal}
+                  className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold text-xs sm:text-sm border border-white/30 backdrop-blur-xs transition-all duration-200 cursor-pointer"
+                >
+                  <span>Book Expat Consultation</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ShieldCheckIcon,
@@ -70,7 +70,7 @@ const GLBA = () => {
       icon: UserIcon,
       content: [
         'Under GLBA, you have the right to opt-out of certain information sharing with non-affiliated third parties, except as required or permitted by law.',
-        'You may opt-out of information sharing for marketing purposes by contacting us at contact@irstaxfiler.com or by calling +1 (415) 2231315.',
+        'You may opt-out of information sharing for marketing purposes by contacting us at info@irstaxfiler.com or by calling +1 (415) 2231315.',
         'Even if you opt-out, we may still share your information as necessary to provide our services, comply with legal obligations, or as otherwise permitted by law.',
         'Your opt-out request will be processed within a reasonable time, typically within 30 days of receipt.',
         'You may change your opt-out preferences at any time by contacting us using the methods provided above.',
@@ -138,7 +138,7 @@ const GLBA = () => {
       icon: InformationCircleIcon,
       content: [
         'If you have questions about this GLBA Privacy Notice or wish to exercise your privacy rights, please contact us:',
-        'Email: contact@irstaxfiler.com',
+        'Email: info@irstaxfiler.com',
         'Phone: +1 (415) 2231315',
         'Mail: IRS Tax Adviser Inc, 12600 Deerfield Parkway, Suite 2096, Alpharetta, GA 30004, USA',
         'We will respond to your inquiries and requests within a reasonable time, typically within 30 days.',
@@ -159,7 +159,7 @@ const GLBA = () => {
   ];
 
   const title = "About Us | IRS Tax Filer";
-  const description = "Learn about IRS Tax Filer — our mission, expertise in US & Indian tax services, and commitment to secure,Learn more.";
+  const description = "Learn about IRS Tax Filer â€” our mission, expertise in US & Indian tax services, and commitment to secure,Learn more.";
   const keywords = "online tax filing service,tax service provider,Internal Revenue Service,IRS Tax Filer about, US & Indian tax services, tax filing expertise, tax compliance company";
   const canonical = window.location.href;
   const image = { Logo };
@@ -288,8 +288,8 @@ const GLBA = () => {
             </p>
             <p className="text-base text-slateText leading-relaxed">
               If you have any questions about this GLBA Privacy Notice, please contact us at{' '}
-              <a href="mailto:contact@irstaxfiler.com" className="text-teal hover:underline font-semibold">
-                contact@irstaxfiler.com
+              <a href="mailto:info@irstaxfiler.com" className="text-teal hover:underline font-semibold">
+                info@irstaxfiler.com
               </a>
               {' '}or call us at{' '}
               <a href="tel:++1 (415) 2231315" className="text-teal hover:underline font-semibold">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -19,6 +19,7 @@ import LeadModal from "../../components/popup";
 import Logo from "../../assets/irsLogo.png";
 import cpaAdvisoryPhoto from "../../assets/services/cpa-advisory.jpg";
 import noticePhoto from "../../assets/services/streamlined-irs.jpg";
+import { serviceCardThemes, serviceStepThemes } from "../../constants/serviceThemes";
 
 const Representation = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -103,7 +104,7 @@ const Representation = () => {
               {/* Eyebrow Pill */}
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-background-aqua border border-border text-teal text-xs font-medium text-teal uppercase tracking-wider mb-3.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#127EAB] animate-pulse" />
-                <span>IRS Audit & Notice Defense • Form 2848 Power of Attorney</span>
+                <span>IRS Audit & Notice Defense â€¢ Form 2848 Power of Attorney</span>
               </div>
 
               {/* Main Headline - Matches Home Hero Typography exactly */}
@@ -123,24 +124,24 @@ const Representation = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
-                className="text-sm sm:text-base lg:text-[17px] text-slateText font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
+                className="text-sm sm:text-base lg:text-[17px] text-slateText font-medium leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
               >
                 Received a CP2000 notice, audit letter, or intent to levy? We file Form 2848 to take over all IRS communications, stop collections, and resolve your tax dispute directly.
               </motion.p>
 
               {/* 3 Quick Strategic Chips */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-6 text-left">
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <div className="text-[11px] font-bold text-primary uppercase tracking-wider mb-0.5">Form 2848 POA</div>
-                  <div className="text-xs text-slateText font-normal">We speak for you</div>
+                <div className="p-3 rounded-xl bg-[#EFF9FB]/90 border border-[#127EAB]/25 shadow-2xs">
+                  <div className="text-[11px] font-semibold text-[#127EAB] uppercase tracking-wider mb-0.5">Form 2848 POA</div>
+                  <div className="text-xs text-slate-600 font-medium">We speak for you</div>
                 </div>
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <div className="text-[11px] font-bold text-coral uppercase tracking-wider mb-0.5">Stop Collections</div>
-                  <div className="text-xs text-slateText font-normal">Prevent levies & liens</div>
+                <div className="p-3 rounded-xl bg-[#FEF4F2]/90 border border-[#EE6450]/25 shadow-2xs">
+                  <div className="text-[11px] font-semibold text-[#D9523E] uppercase tracking-wider mb-0.5">Stop Collections</div>
+                  <div className="text-xs text-slate-600 font-medium">Prevent levies & liens</div>
                 </div>
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <div className="text-[11px] font-bold text-teal uppercase tracking-wider mb-0.5">Penalty Relief</div>
-                  <div className="text-xs text-slateText font-normal">First-time abatement</div>
+                <div className="p-3 rounded-xl bg-emerald-50/80 border border-emerald-200/80 shadow-2xs">
+                  <div className="text-[11px] font-semibold text-emerald-700 uppercase tracking-wider mb-0.5">Penalty Relief</div>
+                  <div className="text-xs text-slate-600 font-medium">First-time abatement</div>
                 </div>
               </div>
 
@@ -170,19 +171,19 @@ const Representation = () => {
               </motion.div>
 
               {/* Trust Tag */}
-              <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slateText">
+              {/* <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slateText">
                 <ShieldCheckIcon className="w-4 h-4 text-teal" />
                 <span className="font-medium text-primary">Licensed CPAs & Enrolled Agents</span>
-                <span className="text-border">•</span>
+                <span className="text-border">â€¢</span>
                 <span>All 50 States & Federal Representation</span>
-              </div>
+              </div> */}
             </div>
 
             {/* Right Column: Clean Image Showcase */}
             <div className="lg:col-span-5 xl:col-span-5 relative flex justify-center lg:justify-end">
               <div className="relative w-full max-w-[460px]">
                 {/* Main Card */}
-                <div className="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-[0_16px_40px_rgba(22,84,121,0.08)] bg-white group">
+                <div className="relative rounded-2xl overflow-hidden  bg-white group">
                   {/* Subtle Header Bar */}
                   <div className="px-4 py-2.5 bg-slate-50/90 border-b border-slate-100 flex items-center justify-between text-xs">
                     <span className="font-semibold text-primary flex items-center gap-1.5">
@@ -229,47 +230,65 @@ const Representation = () => {
                 IRS Notices & Audits
               </span>
             </h2>
-            <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-2.5">
+            <p className="text-sm sm:text-base text-slateText font-medium leading-relaxed mt-2.5">
               Targeted representation strategies for every stage of federal tax inquiry and examination.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {noticeTiers.map((tier, idx) => (
-              <div
-                key={idx}
-                className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/80 shadow-2xs text-left flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3.5">
-                    <div className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200/60 flex items-center justify-center shrink-0">
-                      {tier.icon}
+            {noticeTiers.map((tier, idx) => {
+              const dossierStyles = [
+                { headerBg: "bg-amber-50/90 border-amber-200/70", iconBg: "bg-white text-amber-600 border-amber-200", tag: "bg-amber-100/80 text-amber-800", title: "text-primary", defenseBg: "bg-[#EFF9FB]/70 border-[#127EAB]/20" },
+                { headerBg: "bg-rose-50/90 border-rose-200/70", iconBg: "bg-white text-[#EE6450] border-rose-200", tag: "bg-rose-100/80 text-rose-800", title: "text-primary", defenseBg: "bg-emerald-50/70 border-emerald-200/80" },
+                { headerBg: "bg-sky-50/90 border-sky-200/70", iconBg: "bg-white text-[#127EAB] border-sky-200", tag: "bg-sky-100/80 text-[#0E668B]", title: "text-primary", defenseBg: "bg-indigo-50/70 border-indigo-200/80" },
+              ];
+              const style = dossierStyles[idx % dossierStyles.length];
+
+              return (
+                <div
+                  key={idx}
+                  className="group rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-md transition-all duration-300 overflow-hidden text-left flex flex-col justify-between"
+                >
+                  {/* Tinted Case Dossier Header Strip */}
+                  <div>
+                    <div className={`px-5 py-3.5 border-b ${style.headerBg} flex items-center justify-between gap-2`}>
+                      <div className={`w-9 h-9 rounded-xl border ${style.iconBg} flex items-center justify-center shrink-0 shadow-2xs`}>
+                        {React.cloneElement(tier.icon, { className: "w-4.5 h-4.5" })}
+                      </div>
+                      <span className={`text-[10.5px] font-semibold px-2.5 py-1 rounded-full ${style.tag}`}>
+                        {tier.tag}
+                      </span>
                     </div>
-                    <span className={`text-[10px] font-semibold px-2.5 py-0.5 rounded-full border ${tier.tagColor}`}>
-                      {tier.tag}
-                    </span>
+
+                    {/* Issue Section */}
+                    <div className="p-5 pb-4">
+                      <h3 className={`text-base font-semibold ${style.title} mb-2.5 leading-snug`}>
+                        {tier.title}
+                      </h3>
+
+                      <div className="flex items-start gap-2">
+                        <span className="mt-1 w-1.5 h-1.5 rounded-full bg-[#EE6450] shrink-0" />
+                        <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                          <span className="font-semibold text-primary">Issue: </span>
+                          {tier.problem}
+                        </p>
+                      </div>
+                    </div>
                   </div>
 
-                  <h3 className="text-base font-semibold text-primary mb-2 leading-snug">
-                    {tier.title}
-                  </h3>
-
-                  <div className="mb-3">
-                    <span className="text-[11px] font-bold text-slateText uppercase tracking-wider block mb-0.5">Issue:</span>
-                    <p className="text-xs text-slateText font-normal leading-relaxed">
-                      {tier.problem}
+                  {/* Defense Resolution Panel */}
+                  <div className={`mx-4 mb-4 p-3.5 rounded-xl border ${style.defenseBg}`}>
+                    <div className="flex items-center gap-1.5 text-[11px] font-semibold text-teal uppercase tracking-wider mb-1">
+                      <ShieldCheckIcon className="w-3.5 h-3.5 shrink-0" />
+                      <span>Our CPA Defense</span>
+                    </div>
+                    <p className="text-xs text-primary/90 font-medium leading-relaxed">
+                      {tier.solution}
                     </p>
                   </div>
                 </div>
-
-                <div className="pt-3 border-t border-slate-100">
-                  <span className="text-[11px] font-bold text-teal uppercase tracking-wider block mb-0.5">Our Defense:</span>
-                  <p className="text-xs text-slateText font-medium leading-relaxed">
-                    {tier.solution}
-                  </p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -288,7 +307,7 @@ const Representation = () => {
               />
             </div>
 
-            {/* Right Steps */}
+            {/* Right Steps - Solid Numbered Pill Rows */}
             <div className="lg:col-span-7 space-y-4 text-left">
               <div className="mb-4">
                 <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
@@ -300,21 +319,26 @@ const Representation = () => {
               </div>
 
               <div className="space-y-4">
-                {defenseSteps.map((step, sIdx) => (
-                  <div key={sIdx} className="flex items-start gap-3.5">
-                    <div className="w-8 h-8 rounded-lg bg-[#EFF9FB] text-teal font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 border border-[#127EAB]/25">
-                      {step.num}
+                {defenseSteps.map((step, sIdx) => {
+                  const circleColors = ["bg-[#1F4264]", "bg-[#127EAB]", "bg-emerald-600"];
+                  const titleColors = ["text-[#1F4264]", "text-[#127EAB]", "text-emerald-700"];
+
+                  return (
+                    <div key={sIdx} className="flex items-start gap-4 group">
+                      <div className={`w-9 h-9 rounded-full ${circleColors[sIdx % 3]} text-white font-mono font-semibold text-xs flex items-center justify-center shrink-0 mt-0.5 shadow-sm group-hover:scale-105 transition-transform`}>
+                        {step.num}
+                      </div>
+                      <div className="pb-4 border-b border-slate-100 last:border-b-0 flex-1">
+                        <h3 className={`text-sm sm:text-base font-semibold ${titleColors[sIdx % 3]} mb-1`}>
+                          {step.title}
+                        </h3>
+                        <p className="text-xs sm:text-[13px] text-slate-600 font-medium leading-relaxed">
+                          {step.detail}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-primary mb-0.5">
-                        {step.title}
-                      </h3>
-                      <p className="text-xs sm:text-[13px] text-slateText font-normal leading-relaxed">
-                        {step.detail}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -323,30 +347,39 @@ const Representation = () => {
 
 
       {/* 5. URGENT ASSISTANCE ACTION BANNER */}
-      <section className="py-12 sm:py-16 bg-[#1F4264] text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-normal tracking-tight text-white mb-2">
-            Have an Approaching IRS Deadline?
-          </h2>
-          <p className="text-xs sm:text-sm text-sky-100 max-w-xl mx-auto mb-6">
-            Do not let statutory 30-day or 90-day response deadlines lapse. Get experienced CPA defense today.
-          </p>
+      <section className="py-10 sm:py-14 bg-white font-sans">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl py-10 sm:py-12 px-6 sm:px-12 bg-gradient-to-r from-[#0D6388] via-[#127EAB] to-[#168BB8] text-white shadow-xl text-center">
+            {/* Subtle Ambient Glows */}
+            <div className="absolute -top-24 -left-16 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -right-16 w-72 h-72 bg-[#1F4264]/25 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <Link
-              to="/login"
-              className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-[#127EAB] hover:bg-teal-soft text-white font-medium text-xs sm:text-sm transition-all shadow-md group"
-            >
-              <span>Get Immediate Defense</span>
-              <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <button
-              type="button"
-              onClick={handleOpenModal}
-              className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-xs sm:text-sm border border-white/20 transition-all"
-            >
-              <span>Free Notice Diagnostic</span>
-            </button>
+            <div className="max-w-3xl mx-auto relative z-10">
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white mb-2.5">
+                Have an Approaching{" "}
+                <span className="text-[#EE6450]">IRS Deadline?</span>
+              </h2>
+              <p className="text-xs sm:text-sm text-sky-50/90 max-w-xl mx-auto mb-7 font-medium leading-relaxed">
+                Do not let statutory 30-day or 90-day response deadlines lapse. Get experienced CPA defense today.
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center gap-3.5">
+                <Link
+                  to="/login"
+                  className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-white hover:bg-[#EFF9FB] text-primary font-semibold text-xs sm:text-sm transition-all duration-200 shadow-md hover:shadow-lg group"
+                >
+                  <span>Get Immediate Defense</span>
+                  <ArrowRightIcon className="w-4 h-4 text-teal group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <button
+                  type="button"
+                  onClick={handleOpenModal}
+                  className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold text-xs sm:text-sm border border-white/30 backdrop-blur-xs transition-all duration-200 cursor-pointer"
+                >
+                  <span>Free Notice Diagnostic</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

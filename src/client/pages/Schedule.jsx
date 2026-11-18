@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import {
   Phone,
   Clock,
@@ -63,7 +63,7 @@ const Schedule = () => {
           return {
             id: m._id,
             name: 'You',
-            phone: user?.mobileNumber || '—',
+            phone: user?.mobileNumber || 'â€”',
             date: d.toISOString().split('T')[0],
             time: d.toTimeString().slice(0, 5),
             formattedDate: d.toLocaleDateString('en-US', {
@@ -185,7 +185,7 @@ const Schedule = () => {
                 className="text-xs font-semibold opacity-70 hover:opacity-100"
                 onClick={() => setToast(null)}
               >
-                ✕
+                âœ•
               </button>
             </div>
           </div>
@@ -246,7 +246,7 @@ const Schedule = () => {
                 </p>
                 <div className="flex items-center gap-2 text-sm">
                   <Mail className="w-4 h-4 text-primary-600" />
-                  <span className="text-gray-700">contact@irstaxfiler.com</span>
+                  <span className="text-gray-700">info@irstaxfiler.com</span>
                 </div>
               </div>
 
@@ -275,7 +275,7 @@ const Schedule = () => {
                     WhatsApp Support
                   </a>
                   <a
-                    href="mailto:contact@irstaxfiler.com"
+                    href="mailto:info@irstaxfiler.com"
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-gray-700 border border-gray-200 hover:bg-gray-100 transition-colors cursor-pointer"
                   >
                     <Mail className="w-3.5 h-3.5" />

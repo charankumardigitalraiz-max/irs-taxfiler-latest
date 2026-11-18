@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRightIcon,
-  CalendarDaysIcon,
-  CheckCircleIcon,
-  SparklesIcon,
+  CheckIcon,
   DocumentTextIcon,
   GlobeAltIcon,
   ShieldCheckIcon,
@@ -24,487 +22,386 @@ const colorThemes = {
   teal: {
     iconBg: "bg-[#E9F7FA]",
     iconText: "text-[#127EAB]",
-    iconBorder: "border-[#127EAB]/25",
     iconHoverBg: "group-hover:bg-[#127EAB]",
+    tagText: "text-[#0F6A91]",
     tagBg: "bg-[#E9F7FA]",
-    tagText: "text-[#127EAB]",
-    tagBorder: "border-[#127EAB]/25",
-    dot: "bg-[#127EAB]",
+    topLine: "bg-[#127EAB]",
     titleHover: "group-hover:text-[#127EAB]",
-    cardBorderHover: "hover:border-[#127EAB]/40",
-    cardTopLine: "bg-[#127EAB]",
-    actionHover: "group-hover:text-[#127EAB]",
-    complianceBg: "bg-[#E9F7FA]",
-    complianceText: "text-[#127EAB]",
-    complianceBorder: "border-[#127EAB]/25",
   },
   coral: {
     iconBg: "bg-[#FDF2F0]",
     iconText: "text-[#EE6450]",
-    iconBorder: "border-[#EE6450]/25",
     iconHoverBg: "group-hover:bg-[#EE6450]",
+    tagText: "text-[#D94F3B]",
     tagBg: "bg-[#FDF2F0]",
-    tagText: "text-[#EE6450]",
-    tagBorder: "border-[#EE6450]/25",
-    dot: "bg-[#EE6450]",
+    topLine: "bg-[#EE6450]",
     titleHover: "group-hover:text-[#EE6450]",
-    cardBorderHover: "hover:border-[#EE6450]/40",
-    cardTopLine: "bg-[#EE6450]",
-    actionHover: "group-hover:text-[#EE6450]",
-    complianceBg: "bg-[#FDF2F0]",
-    complianceText: "text-[#EE6450]",
-    complianceBorder: "border-[#EE6450]/25",
   },
   emerald: {
     iconBg: "bg-[#ECFDF5]",
     iconText: "text-[#059669]",
-    iconBorder: "border-[#059669]/25",
     iconHoverBg: "group-hover:bg-[#059669]",
+    tagText: "text-[#047857]",
     tagBg: "bg-[#ECFDF5]",
-    tagText: "text-[#059669]",
-    tagBorder: "border-[#059669]/25",
-    dot: "bg-[#059669]",
+    topLine: "bg-[#059669]",
     titleHover: "group-hover:text-[#059669]",
-    cardBorderHover: "hover:border-[#059669]/40",
-    cardTopLine: "bg-[#059669]",
-    actionHover: "group-hover:text-[#059669]",
-    complianceBg: "bg-[#ECFDF5]",
-    complianceText: "text-[#059669]",
-    complianceBorder: "border-[#059669]/25",
   },
   indigo: {
     iconBg: "bg-[#EEF2FF]",
     iconText: "text-[#4F46E5]",
-    iconBorder: "border-[#4F46E5]/25",
     iconHoverBg: "group-hover:bg-[#4F46E5]",
+    tagText: "text-[#4338CA]",
     tagBg: "bg-[#EEF2FF]",
-    tagText: "text-[#4F46E5]",
-    tagBorder: "border-[#4F46E5]/25",
-    dot: "bg-[#4F46E5]",
+    topLine: "bg-[#4F46E5]",
     titleHover: "group-hover:text-[#4F46E5]",
-    cardBorderHover: "hover:border-[#4F46E5]/40",
-    cardTopLine: "bg-[#4F46E5]",
-    actionHover: "group-hover:text-[#4F46E5]",
-    complianceBg: "bg-[#EEF2FF]",
-    complianceText: "text-[#4F46E5]",
-    complianceBorder: "border-[#4F46E5]/25",
   },
   amber: {
     iconBg: "bg-[#FFFBEB]",
     iconText: "text-[#D97706]",
-    iconBorder: "border-[#D97706]/25",
     iconHoverBg: "group-hover:bg-[#D97706]",
+    tagText: "text-[#B45309]",
     tagBg: "bg-[#FFFBEB]",
-    tagText: "text-[#D97706]",
-    tagBorder: "border-[#D97706]/25",
-    dot: "bg-[#D97706]",
+    topLine: "bg-[#D97706]",
     titleHover: "group-hover:text-[#D97706]",
-    cardBorderHover: "hover:border-[#D97706]/40",
-    cardTopLine: "bg-[#D97706]",
-    actionHover: "group-hover:text-[#D97706]",
-    complianceBg: "bg-[#FFFBEB]",
-    complianceText: "text-[#D97706]",
-    complianceBorder: "border-[#D97706]/25",
   },
   purple: {
     iconBg: "bg-[#F5F3FF]",
     iconText: "text-[#7C3AED]",
-    iconBorder: "border-[#7C3AED]/25",
     iconHoverBg: "group-hover:bg-[#7C3AED]",
+    tagText: "text-[#6D28D9]",
     tagBg: "bg-[#F5F3FF]",
-    tagText: "text-[#7C3AED]",
-    tagBorder: "border-[#7C3AED]/25",
-    dot: "bg-[#7C3AED]",
+    topLine: "bg-[#7C3AED]",
     titleHover: "group-hover:text-[#7C3AED]",
-    cardBorderHover: "hover:border-[#7C3AED]/40",
-    cardTopLine: "bg-[#7C3AED]",
-    actionHover: "group-hover:text-[#7C3AED]",
-    complianceBg: "bg-[#F5F3FF]",
-    complianceText: "text-[#7C3AED]",
-    complianceBorder: "border-[#7C3AED]/25",
   },
   blue: {
     iconBg: "bg-[#EFF6FF]",
     iconText: "text-[#2563EB]",
-    iconBorder: "border-[#2563EB]/25",
     iconHoverBg: "group-hover:bg-[#2563EB]",
+    tagText: "text-[#1D4ED8]",
     tagBg: "bg-[#EFF6FF]",
-    tagText: "text-[#2563EB]",
-    tagBorder: "border-[#2563EB]/25",
-    dot: "bg-[#2563EB]",
+    topLine: "bg-[#2563EB]",
     titleHover: "group-hover:text-[#2563EB]",
-    cardBorderHover: "hover:border-[#2563EB]/40",
-    cardTopLine: "bg-[#2563EB]",
-    actionHover: "group-hover:text-[#2563EB]",
-    complianceBg: "bg-[#EFF6FF]",
-    complianceText: "text-[#2563EB]",
-    complianceBorder: "border-[#2563EB]/25",
   },
   orange: {
     iconBg: "bg-[#FFF7ED]",
     iconText: "text-[#EA580C]",
-    iconBorder: "border-[#EA580C]/25",
     iconHoverBg: "group-hover:bg-[#EA580C]",
+    tagText: "text-[#C2410C]",
     tagBg: "bg-[#FFF7ED]",
-    tagText: "text-[#EA580C]",
-    tagBorder: "border-[#EA580C]/25",
-    dot: "bg-[#EA580C]",
+    topLine: "bg-[#EA580C]",
     titleHover: "group-hover:text-[#EA580C]",
-    cardBorderHover: "hover:border-[#EA580C]/40",
-    cardTopLine: "bg-[#EA580C]",
-    actionHover: "group-hover:text-[#EA580C]",
-    complianceBg: "bg-[#FFF7ED]",
-    complianceText: "text-[#EA580C]",
-    complianceBorder: "border-[#EA580C]/25",
   },
 };
 
-const TaxFilingServices = ({ onOpenModal }) => {
+const TaxFilingServices = () => {
   const [selectedCategory, setSelectedCategory] = useState("us-individual");
 
   const serviceCategories = [
     {
       id: "us-individual",
-      label: "US Individual Taxes",
-      mediumLabel: "US Individual",
+      label: "US Individual",
       shortLabel: "Individual",
-      countLabel: "6 Filing Services",
-      icon: <DocumentTextIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />,
-      activeColor: "text-teal",
+      icon: <DocumentTextIcon className="w-3.5 h-3.5" />,
+      accentText: "text-[#127EAB]",
+      barColor: "bg-[#127EAB]",
     },
     {
       id: "us-business",
-      label: "US Corporate & Business",
-      mediumLabel: "US Business",
+      label: "US Business",
       shortLabel: "Business",
-      countLabel: "3 Corporate Services",
-      icon: <BuildingOffice2Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />,
-      activeColor: "text-blue-400",
+      icon: <BuildingOffice2Icon className="w-3.5 h-3.5" />,
+      accentText: "text-[#2563EB]",
+      barColor: "bg-[#2563EB]",
     },
     {
       id: "indian-tax",
-      label: "Indian Tax & NRI Services",
-      mediumLabel: "Indian & NRI",
+      label: "Indian & NRI",
       shortLabel: "Indian / NRI",
-      countLabel: "3 NRI Services",
-      icon: <GlobeAltIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />,
-      activeColor: "text-orange-400",
+      icon: <GlobeAltIcon className="w-3.5 h-3.5" />,
+      accentText: "text-[#EA580C]",
+      barColor: "bg-[#EA580C]",
     },
   ];
 
   const services = {
     "us-individual": {
-      title: "US Individual Tax Services",
-      subtitle: "Certified federal, 50-state, expat, and specialized compliance services for US taxpayers.",
       items: [
         {
-          title: "Federal, State & Local Tax Filing",
-          description: "Full-service federal, state, and local income tax preparation with exhaustive deduction discovery.",
+          title: "Federal, State & Local Filing",
+          description: "Complete federal and all 50-state tax filing built to maximize your refund.",
           tag: "Form 1040",
           route: "/services/us-individual/federal-state-local",
-          icon: <DocumentTextIcon className="w-6 h-6" />,
-          features: ["Form 1040, 1040-SR & W-2 / 1099", "All 50 states electronic filing", "Maximum refund guarantee"],
-          complianceText: "IRS Direct e-File",
+          icon: <DocumentTextIcon className="w-5 h-5" />,
           color: "teal",
         },
         {
-          title: "FBAR & FATCA Asset Reporting",
-          description: "Foreign bank account and financial asset compliance to protect you against severe IRS penalties.",
-          tag: "Foreign Assets",
+          title: "FBAR & FATCA Reporting",
+          description: "Report foreign bank accounts and overseas assets accurately to avoid IRS penalties.",
+          tag: "FinCEN 114",
           route: "/services/us-individual/fbar-fatca",
-          icon: <GlobeAltIcon className="w-6 h-6" />,
-          features: ["FinCEN 114 overseas reporting", "IRS Form 8938 asset disclosure", "Streamlined filing procedures"],
-          complianceText: "FinCEN & IRS e-File",
+          icon: <GlobeAltIcon className="w-5 h-5" />,
           color: "coral",
         },
         {
-          title: "IRS Representation & Audit Defense",
-          description: "Licensed CPA representation before the IRS for tax audit defense, formal appeals, and penalty relief.",
+          title: "IRS Audit & Representation",
+          description: "Direct CPA support for IRS audit notices, appeals, and penalty relief.",
           tag: "Audit Defense",
           route: "/services/us-individual/representation",
-          icon: <ShieldCheckIcon className="w-6 h-6" />,
-          features: ["Audit notice response & defense", "Penalty abatement requests", "Direct CPA representation"],
-          complianceText: "Licensed CPA Defense",
+          icon: <ShieldCheckIcon className="w-5 h-5" />,
           color: "emerald",
         },
         {
-          title: "ITIN Number Application & Renewal",
-          description: "Comprehensive assistance for non-residents, spouses, and dependents obtaining or renewing Form W-7 ITINs.",
+          title: "ITIN Application & Renewal",
+          description: "Fast Form W-7 preparation for non-residents, spouses, and dependents.",
           tag: "Form W-7",
           route: "/services/us-individual/itin",
-          icon: <IdentificationIcon className="w-6 h-6" />,
-          features: ["IRS Form W-7 certified prep", "Document verification assistance", "Spouse & dependent support"],
-          complianceText: "IRS Form W-7 Certified",
+          icon: <IdentificationIcon className="w-5 h-5" />,
           color: "indigo",
         },
         {
-          title: "Automatic Tax Extension Filing",
-          description: "Secure an automatic 6-month extension to file your return while avoiding costly late-filing penalties.",
+          title: "Tax Extension Filing",
+          description: "Get an automatic 6-month filing extension to October 15 with instant IRS confirmation.",
           tag: "Form 4868",
           route: "/services/us-individual/extension",
-          icon: <ClockIcon className="w-6 h-6" />,
-          features: ["Instant IRS electronic confirmation", "Estimated tax calculation help", "Extends filing to October 15"],
-          complianceText: "Instant IRS Confirmation",
+          icon: <ClockIcon className="w-5 h-5" />,
           color: "amber",
         },
         {
-          title: "Prior Year Amendment Filing",
-          description: "Amend prior federal and state returns to correct errors, claim missed credits, or retrieve unclaimed refunds.",
+          title: "Prior Year Amendments",
+          description: "Fix past tax returns to claim missed credits or recover unclaimed refunds.",
           tag: "Form 1040-X",
           route: "/services/us-individual/extension",
-          icon: <ArrowPathIcon className="w-6 h-6" />,
-          features: ["Prior 3 tax years reviewed", "Unclaimed tax credits recovered", "Full accuracy recalculation"],
-          complianceText: "IRS Form 1040-X",
+          icon: <ArrowPathIcon className="w-5 h-5" />,
           color: "purple",
         },
       ],
-      consultation: {
-        tag: "Free 15-Min CPA Session",
-        title: "Not sure which tax forms or deductions apply to your situation?",
-        description: "Connect 1-on-1 with a licensed U.S. CPA. We will evaluate your filing status, check for overlooked deductions, and answer all your questions with zero obligation.",
-        action: "Book Free CPA Consultation",
-        badge: "100% Free • No Credit Card Required • Licensed U.S. CPAs",
-      },
     },
     "us-business": {
-      title: "US Corporate & Business Tax Services",
-      subtitle: "Comprehensive business incorporations, bookkeeping sync, and tax return filing for companies.",
       items: [
         {
           title: "US Business Incorporations",
-          description: "Complete business formation, entity structuring, state registrations, and rapid federal EIN acquisition.",
+          description: "Form your LLC, C-Corp, or S-Corp with state filings and fast federal EIN setup.",
           tag: "Entity Setup",
           route: "/services/us-business/incorporations",
-          icon: <BuildingOffice2Icon className="w-6 h-6" />,
-          features: ["LLC, C-Corp & S-Corp formation", "Federal EIN in 24-48 hours", "Articles & operating agreements"],
-          complianceText: "State & Federal Filing",
+          icon: <BuildingOffice2Icon className="w-5 h-5" />,
+          features: ["LLC, C-Corp & S-Corp formation", "Federal EIN in 24–48 hours"],
           color: "teal",
         },
         {
-          title: "Small & Medium Business Tax Filing",
-          description: "Full corporate tax preparation, depreciation schedules, deductions, and multi-state compliance.",
-          tag: "Corporate Tax",
+          title: "Small & Medium Business Filing",
+          description: "Accurate corporate tax filing with full business deductions and multi-state support.",
+          tag: "1120 / 1065",
           route: "/services/us-business/smb-tax-filing",
-          icon: <BriefcaseIcon className="w-6 h-6" />,
-          features: ["Form 1120, 1120-S & 1065", "Quarterly estimated tax filings", "Maximum business write-offs"],
-          complianceText: "IRS Business e-File",
+          icon: <BriefcaseIcon className="w-5 h-5" />,
+          features: ["Forms 1120, 1120-S & 1065", "Quarterly estimated filings"],
           color: "blue",
         },
         {
           title: "Corporate CPA Tax Advisory",
-          description: "Proactive business tax strategy, entity classification optimization, cash-flow planning, and credits.",
+          description: "Year-round CPA planning to structure your entity and reduce business tax liability.",
           tag: "CPA Advisory",
           route: "/services/us-business/smb-tax-filing",
-          icon: <UserGroupIcon className="w-6 h-6" />,
-          features: ["1-on-1 corporate CPA guidance", "Year-end tax minimization", "Payroll & pass-through strategy"],
-          complianceText: "Dedicated CPA Expert",
+          icon: <UserGroupIcon className="w-5 h-5" />,
+          features: ["1-on-1 corporate CPA guidance", "Payroll & tax minimization"],
           color: "coral",
         },
       ],
-      consultation: {
-        tag: "Corporate Tax Advisory",
-        title: "Starting a business or need strategic corporate tax structuring?",
-        description: "Consult our licensed corporate tax specialists on LLC vs. S-Corp election, federal & multi-state compliance, payroll, and bookkeeping optimization.",
-        action: "Book Business Advisory Call",
-        badge: "Custom Tax Strategy • Licensed CPAs & Corporate Specialists",
-      },
     },
     "indian-tax": {
-      title: "Indian Tax & NRI Services",
-      subtitle: "Income tax return filing, cross-border compliance, and representation before Indian tax authorities.",
       items: [
         {
           title: "Indian Income Tax Filing",
-          description: "Comprehensive ITR filing for residents, NRIs, and foreign entities with capital gains and asset disclosures.",
-          tag: "ITR Filing",
+          description: "Complete ITR e-filing for residents and NRIs covering salary, capital gains, and DTAA.",
+          tag: "ITR-1 to 7",
           route: "/services/indian/tax-filing",
-          icon: <DocumentCheckIcon className="w-6 h-6" />,
-          features: ["ITR-1 through ITR-7 e-filing", "DTAA double-taxation relief", "Capital gains & NRE/NRO sync"],
-          complianceText: "ITD Direct e-Filing",
+          icon: <DocumentCheckIcon className="w-5 h-5" />,
+          features: ["ITR-1 through ITR-7 e-filing", "DTAA & NRE/NRO compliance"],
           color: "orange",
         },
         {
           title: "Indian Tax Representation",
-          description: "Authorized representation before Indian Income Tax authorities for scrutiny assessments and appeals.",
+          description: "Authorized defense before Indian Income Tax authorities for notices and appeals.",
           tag: "IT Authorities",
           route: "/services/indian/representation",
-          icon: <ScaleIcon className="w-6 h-6" />,
-          features: ["Faceless assessment hearings", "Notice 148 / 143(2) responses", "CIT(A) & ITAT dispute appeals"],
-          complianceText: "Authorized Representation",
+          icon: <ScaleIcon className="w-5 h-5" />,
+          features: ["Notice 148 / 143(2) responses", "Faceless hearings & appeals"],
           color: "emerald",
         },
         {
-          title: "NRI Cross-Border Wealth Advisory",
-          description: "Specialized tax advisory for Non-Resident Indians managing assets, FEMA regulations, and fund repatriation.",
-          tag: "NRI Compliance",
+          title: "NRI Cross-Border Advisory",
+          description: "Guidance on Indian assets, FEMA compliance, and smooth international fund transfers.",
+          tag: "FEMA & DTAA",
           route: "/services/indian/tax-filing",
-          icon: <BanknotesIcon className="w-6 h-6" />,
-          features: ["FEMA & RBI regulatory guidance", "Form 15CA / 15CB certifications", "Dual-country tax optimization"],
-          complianceText: "Cross-Border Certified",
+          icon: <BanknotesIcon className="w-5 h-5" />,
+          features: ["Form 15CA / 15CB certification", "Dual-country tax planning"],
           color: "indigo",
         },
       ],
-      consultation: {
-        tag: "Cross-Border NRI Advisory",
-        title: "Managing complex cross-border taxes, DTAA, or NRI assets?",
-        description: "Speak with our dual-country tax experts regarding foreign tax credit relief, FEMA guidelines, NRE/NRO accounts, and seamless repatriation.",
-        action: "Book NRI Consultation Call",
-        badge: "Dual-Qualified Tax Team • FEMA & DTAA Certified",
-      },
     },
   };
 
   const activeData = services[selectedCategory];
 
   return (
-    <section id="services" className="relative py-10 sm:py-12 lg:py-14 bg-white font-sans overflow-hidden">
+    <section id="services" className="relative py-10 sm:py-12 bg-white font-sans overflow-hidden">
       <div className="relative max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Section Header Fold */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          {/* Eyebrow Pill Badge */}
-          <div className="pill-badge mb-4">
-            <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
-            <span>Full-Service Tax Preparation</span>
+        {/* Clean Compact Header */}
+        <div className="flex flex-col items-center text-center mb-9 sm:mb-11">
+          <div>
+            {/* <div className="pill-badge mb-2.5">
+              <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
+              <span>Full-Service Tax Preparation</span>
+            </div> */}
+            <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-semibold text-primary tracking-tight leading-tight">
+              Explore Our{" "}
+              <span className="text-teal">Filing Services</span>
+            </h2>
           </div>
 
-          {/* Display Headline */}
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-primary tracking-tight leading-[1.2]">
-            Explore Our{" "}
-            <span className="font-medium text-teal">
-              Filing Services
-            </span>
-          </h2>
-
-          {/* Subtitle */}
-          <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-3.5 max-w-2xl mx-auto">
-            Certified CPA preparation, dual-status compliance, and guaranteed maximum refunds tailored for US individuals, expats, corporations, and NRI taxpayers.
-          </p>
+          {/* <p className="text-[15px] sm:text-base text-slate-600 font-medium leading-relaxed max-w-md mt-2">
+            Simple, CPA-backed tax filing for US individuals, businesses, and NRIs.
+          </p> */}
         </div>
 
-        {/* Modern Interactive Category Segmented Tabs - Scrolling inside tabs with thin scrollbar on mobile */}
-        <div className="w-full max-w-4xl lg:max-w-5xl mx-auto mb-10 sm:mb-12 flex justify-center px-3 sm:px-4">
-          <div
-            role="tablist"
-            aria-label="Tax filing categories"
-            className="w-full sm:w-auto max-w-full p-1.5 pb-2.5 sm:p-2 rounded-2xl bg-surface border border-border flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2.5 md:gap-3 shadow-xs overflow-x-auto thin-scrollbar sm:no-scrollbar touch-pan-x"
-          >
-            {serviceCategories.map((cat) => {
-              const isActive = selectedCategory === cat.id;
-              const count = services[cat.id]?.items.length || 0;
-              return (
-                <button
-                  key={cat.id}
-                  role="tab"
-                  id={`tab-${cat.id}`}
-                  aria-selected={isActive}
-                  aria-controls={`panel-${cat.id}`}
-                  type="button"
-                  onClick={() => setSelectedCategory(cat.id)}
-                  className={`relative px-3.5 sm:px-5 lg:px-6 py-2 sm:py-2.5 lg:py-3 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2.5 cursor-pointer select-none shrink-0 ${isActive
-                    ? "text-white shadow-sm"
-                    : "text-slateText hover:text-primary hover:bg-background-aqua/60"
+        {/* Clean Underline Tabs */}
+        <div
+          role="tablist"
+          aria-label="Tax filing categories"
+          className="flex items-center gap-4 sm:gap-7 border-b border-slate-200 py-3 mb-5 overflow-x-auto no-scrollbar"
+        >
+          {serviceCategories.map((cat) => {
+            const isActive = selectedCategory === cat.id;
+            const count = services[cat.id]?.items.length || 0;
+
+            return (
+              <button
+                key={cat.id}
+                role="tab"
+                id={`tab-${cat.id}`}
+                aria-selected={isActive}
+                aria-controls={`panel-${cat.id}`}
+                type="button"
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`relative pb-2.5 pt-0.5 inline-flex items-center gap-1.5 text-xs sm:text-[13.5px] font-medium whitespace-nowrap transition-colors cursor-pointer shrink-0 ${isActive
+                  ? "text-primary"
+                  : "text-slate-500 hover:text-primary"
+                  }`}
+              >
+                <span className={isActive ? cat.accentText : "text-slate-400"}>
+                  {cat.icon}
+                </span>
+                <span>
+                  <span className="hidden sm:inline">{cat.label}</span>
+                  <span className="inline sm:hidden">{cat.shortLabel}</span>
+                </span>
+                <span
+                  className={`inline-flex items-center justify-center px-1.5 py-0.5 rounded-full text-[10.5px] font-medium ${isActive
+                    ? "bg-primary text-white"
+                    : "bg-slate-100 text-slate-600"
                     }`}
                 >
-                  {/* Active Pill Background with Layout Animation */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeCategoryPill"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      className="absolute inset-0 rounded-xl bg-primary border border-primary/20"
-                    />
-                  )}
+                  {count}
+                </span>
 
-                  <span className={`relative z-10 shrink-0 ${isActive ? (cat.activeColor || "text-coral") : "text-slateText"}`}>
-                    {cat.icon}
-                  </span>
-                  <span className="relative z-10 tracking-tight whitespace-nowrap">
-                    <span className="hidden sm:inline">{cat.label}</span>
-                    <span className="inline sm:hidden">{cat.shortLabel}</span>
-                  </span>
-                  <span
-                    className={`relative z-10 text-[11px] px-2 py-0.5 rounded-full font-medium transition-colors shrink-0 ${isActive
-                      ? "bg-white/20 text-white border border-white/25"
-                      : "bg-surface text-slateText border border-border"
-                      }`}
-                  >
-                    {count}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+                {isActive && (
+                  <motion.span
+                    layoutId="serviceTabUnderline"
+                    transition={{ type: "spring", stiffness: 420, damping: 32 }}
+                    className={`absolute left-0 right-0 bottom-0 h-[2px] rounded-full ${cat.barColor}`}
+                  />
+                )}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Dynamic Cards Grid with Smooth Transition */}
+        {/* Clean Compact Hairline Grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedCategory}
             role="tabpanel"
             id={`panel-${selectedCategory}`}
             aria-labelledby={`tab-${selectedCategory}`}
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="w-full"
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-2xs"
           >
-            {/* 3-Column Service Tiles Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-slate-200/80">
               {activeData.items.map((item, idx) => {
                 const theme = colorThemes[item.color] || colorThemes.teal;
                 return (
                   <Link
                     key={`${selectedCategory}-${idx}`}
                     to={item.route || "/login"}
-                    className={`group relative bg-surface hover:bg-white rounded-2xl p-5 sm:p-6 border border-border ${theme.cardBorderHover} shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-left overflow-hidden`}
+                    className="group relative bg-white hover:bg-[#F7FBFD] px-4 py-4 sm:px-5 sm:py-4 transition-colors duration-200 flex flex-col justify-between text-left"
                   >
-                    {/* Subtle Accent Line on Hover */}
-                    <div className={`absolute top-0 left-0 right-0 h-[2.5px] ${theme.cardTopLine} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                    {/* Crisp Top Hover Accent */}
+                    <span
+                      className={`absolute top-0 left-0 right-0 h-[2.5px] ${theme.topLine} scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200`}
+                    />
 
                     <div>
-                      {/* Header Row: Icon Badge + Category Tag Pill */}
-                      <div className="flex items-center justify-between mb-4">
-                        <div className={`w-11 h-11 rounded-xl ${theme.iconBg} ${theme.iconText} border ${theme.iconBorder} flex items-center justify-center shrink-0 ${theme.iconHoverBg} group-hover:text-white group-hover:border-transparent transition-all duration-300 shadow-2xs`}>
+                      {/* Icon + Form Tag */}
+                      <div className="flex items-center justify-between gap-2.5 mb-2.5">
+                        <div
+                          className={`w-9 h-9 rounded-lg ${theme.iconBg} ${theme.iconText} ${theme.iconHoverBg} group-hover:text-white flex items-center justify-center shrink-0 transition-colors duration-200`}
+                        >
                           {item.icon}
                         </div>
 
-                        {item.tag && (
-                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full ${theme.tagBg} ${theme.tagText} border ${theme.tagBorder} text-[11px] font-medium tracking-tight`}>
-                            <span className={`w-1.5 h-1.5 rounded-full ${theme.dot}`} />
-                            <span>{item.tag}</span>
-                          </span>
-                        )}
+                        <span
+                          className={`px-2 py-0.5 rounded-md text-[11.5px] sm:text-xs font-semibold ${theme.tagBg} ${theme.tagText}`}
+                        >
+                          {item.tag}
+                        </span>
                       </div>
 
-                      {/* Card Title */}
-                      <h3 className={`text-[16px] sm:text-[17px] font-semibold text-primary ${theme.titleHover} transition-colors leading-snug`}>
+                      {/* Clear Compact Title */}
+                      <h3
+                        className={`text-[15px] sm:text-[16px] font-semibold text-primary ${theme.titleHover} transition-colors leading-snug`}
+                      >
                         {item.title}
                       </h3>
 
-                      {/* Card Description */}
-                      <p className="text-xs sm:text-[13px] text-slateText font-normal leading-relaxed mt-2 line-clamp-2">
+                      {/* Clean Compact Medium-Weight Description */}
+                      <p className="text-[13px] sm:text-[13.5px] text-slate-600 font-medium leading-relaxed mt-1.5">
                         {item.description}
                       </p>
+
+                      {/* Simple Bullet Points for 3-Item Categories */}
+                      {item.features && (
+                        <ul className="mt-2.5 space-y-1">
+                          {item.features.map((feat, fIdx) => (
+                            <li
+                              key={fIdx}
+                              className="flex items-center gap-1.5 text-[12.5px] sm:text-[13px] font-medium text-slate-700"
+                            >
+                              <CheckIcon
+                                className={`w-3.5 h-3.5 shrink-0 stroke-[2.5] ${theme.iconText}`}
+                              />
+                              <span>{feat}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
 
-                    {/* Card Footer Action */}
-                    <div className="mt-5 pt-3.5 border-t border-border flex items-center justify-between">
-                      <span className={`inline-flex items-center gap-1.5 text-xs font-semibold text-primary ${theme.actionHover} transition-colors`}>
+                    {/* Clean Minimal Link Row */}
+                    <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
+                      <span
+                        className={`inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary ${theme.titleHover} transition-colors`}
+                      >
                         <span>Start Filing</span>
                         <ArrowRightIcon className="w-3.5 h-3.5 stroke-[2.2] group-hover:translate-x-1 transition-transform" />
-                      </span>
-
-                      <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium ${theme.complianceText} ${theme.complianceBg} border ${theme.complianceBorder}`}>
-                        <span className={`w-1.5 h-1.5 rounded-full ${theme.dot}`} />
-                        <span>{item.complianceText}</span>
                       </span>
                     </div>
                   </Link>
                 );
               })}
             </div>
-
           </motion.div>
         </AnimatePresence>
 

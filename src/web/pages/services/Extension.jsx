@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -16,6 +16,7 @@ import SEO from "../../components/seo/SEO";
 import LeadModal from "../../components/popup";
 import Logo from "../../assets/irsLogo.png";
 import deadlinesPhoto from "../../assets/tax-resources-deadlines-3d.jpg";
+import { serviceCardThemes, serviceStepThemes } from "../../constants/serviceThemes";
 
 const Extension = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -61,7 +62,7 @@ const Extension = () => {
       form: "State Specific Vouchers",
       deadline: "Coordinated with Federal",
       icon: <CalendarDaysIcon className="w-5 h-5 text-primary" />,
-      summary: "Full coordination across all 50 states—some accept federal extensions, others require separate state filings.",
+      summary: "Full coordination across all 50 statesâ€”some accept federal extensions, others require separate state filings.",
       points: [
         "State-specific extension form preparation",
         "State tax payment voucher generation",
@@ -123,7 +124,7 @@ const Extension = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
-                className="text-sm sm:text-base lg:text-[17px] text-slateText font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
+                className="text-sm sm:text-base lg:text-[17px] text-slateText font-medium leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
               >
                 Need extra time to organize your documents? We electronically file Form 4868 for individuals and Form 7004 for businesses to secure an automatic 6-month extension to October 15 with zero penalty risk.
               </motion.p>
@@ -157,7 +158,7 @@ const Extension = () => {
               <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slateText">
                 <ShieldCheckIcon className="w-4 h-4 text-teal" />
                 <span className="font-medium text-primary">Authorized IRS e-File Provider</span>
-                <span className="text-border">•</span>
+                <span className="text-border">â€¢</span>
                 <span>Immediate Electronic Receipt & Timestamp</span>
               </div>
             </div>
@@ -210,75 +211,72 @@ const Extension = () => {
                 Coverage
               </span>
             </h2>
-            <p className="text-xs sm:text-sm text-slateText font-normal mt-1.5 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slateText font-medium mt-1.5 leading-relaxed">
               Whether you are an individual filer, business entity, or multi-state earner.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-stretch">
-            {extensionTypes.map((ext, idx) => (
-              <div
-                key={idx}
-                className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-[0_12px_28px_rgba(22,84,121,0.08)] hover:border-[#1F4264]/30 transition-all duration-200 text-left flex flex-col justify-between group"
-              >
-                <div>
-                  {/* Top Row: Icon + Form Badge */}
-                  <div className="flex items-center justify-between gap-2 mb-3.5">
-                    <div
-                      className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105 ${idx === 1
-                        ? "bg-background-aqua border border-border text-teal text-teal"
-                        : "bg-sky-50 border border-sky-100 text-primary"
-                        }`}
-                    >
-                      {ext.icon}
+            {extensionTypes.map((ext, idx) => {
+              const calendarBands = [
+                { ribbon: "bg-[#127EAB] text-white", formPill: "bg-white/20 text-white", icon: "bg-[#EFF9FB] text-[#127EAB]", check: "text-[#127EAB]" },
+                { ribbon: "bg-[#1F4264] text-white", formPill: "bg-white/20 text-white", icon: "bg-slate-100 text-[#1F4264]", check: "text-[#1F4264]" },
+                { ribbon: "bg-[#EE6450] text-white", formPill: "bg-white/20 text-white", icon: "bg-[#FEF4F2] text-[#EE6450]", check: "text-[#EE6450]" },
+              ];
+              const cal = calendarBands[idx % calendarBands.length];
+
+              return (
+                <div
+                  key={idx}
+                  className="group rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden text-left flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Calendar-Style Solid Colored Deadline Ribbon */}
+                    <div className={`px-5 py-3 ${cal.ribbon} flex items-center justify-between gap-2`}>
+                      <div className="inline-flex items-center gap-1.5 text-xs font-semibold">
+                        <ClockIcon className="w-3.5 h-3.5 stroke-[2.2]" />
+                        <span>{ext.deadline}</span>
+                      </div>
+                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-md ${cal.formPill}`}>
+                        {ext.form}
+                      </span>
                     </div>
 
-                    <span
-                      className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border ${idx === 1
-                        ? "bg-[#EFF9FB] text-teal border-[#127EAB]/25"
-                        : "bg-sky-50 text-primary border-sky-100"
-                        }`}
-                    >
-                      {ext.form}
-                    </span>
+                    <div className="p-5 sm:p-6">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className={`w-10 h-10 rounded-xl ${cal.icon} flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform`}>
+                          {React.cloneElement(ext.icon, { className: "w-5 h-5" })}
+                        </div>
+                        <h3 className="text-base font-semibold text-primary leading-snug">
+                          {ext.title}
+                        </h3>
+                      </div>
+
+                      <p className="text-xs sm:text-[13px] text-slate-600 font-medium leading-relaxed mb-4">
+                        {ext.summary}
+                      </p>
+
+                      <ul className="space-y-2.5 pt-3.5 border-t border-slate-100">
+                        {ext.points.map((pt, pIdx) => (
+                          <li
+                            key={pIdx}
+                            className="flex items-start gap-2.5 text-[13px] sm:text-sm text-primary font-medium leading-snug"
+                          >
+                            <CheckCircleIcon className={`w-4 h-4 ${cal.check} shrink-0 mt-0.5 stroke-[2.2]`} />
+                            <span>{pt}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-
-                  {/* Title */}
-                  <h3 className="text-base font-semibold text-primary mb-1.5 leading-snug">
-                    {ext.title}
-                  </h3>
-
-                  {/* Deadline Badge */}
-                  <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-teal bg-[#EFF9FB] px-2.5 py-1 rounded-lg border border-[#127EAB]/25 mb-3">
-                    <ClockIcon className="w-3.5 h-3.5 stroke-[2.2]" />
-                    <span>{ext.deadline}</span>
-                  </div>
-
-                  {/* Summary */}
-                  <p className="text-xs sm:text-[13px] text-slateText font-semibold leading-relaxed mb-4">
-                    {ext.summary}
-                  </p>
-
-                  {/* Points List */}
-                  <ul className="space-y-2.5 pt-3.5 border-t border-slate-100">
-                    {ext.points.map((pt, pIdx) => (
-                      <li
-                        key={pIdx}
-                        className="flex items-start gap-2.5 text-[13px] sm:text-sm text-primary font-medium leading-snug"
-                      >
-                        <CheckCircleIcon className="w-4 h-4 text-teal shrink-0 mt-0.5 stroke-[2.2]" />
-                        <span>{pt}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* 3. FAST 3-STEP PROCESS */}
+      {/* 3. FAST 3-STEP OPEN TIMELINE */}
       <section className="py-12 sm:py-16 bg-white border-b border-slate-100">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-10 sm:mb-12">
@@ -291,55 +289,68 @@ const Extension = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 relative text-left">
-            {steps.map((st, sIdx) => (
-              <div key={sIdx} className="relative flex flex-col justify-start">
-                {/* Step Header: Number Badge with connecting line */}
-                <div className="flex items-center gap-3 mb-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-background-aqua border border-border text-teal text-teal font-mono font-bold text-xs flex items-center justify-center shrink-0 shadow-2xs">
-                    {st.num}
-                  </div>
-                  {sIdx < steps.length - 1 && (
-                    <div className="hidden md:block flex-1 h-[2px] bg-gradient-to-r from-[#127EAB]/30 to-slate-200" />
-                  )}
-                </div>
+            {steps.map((st, sIdx) => {
+              const badgeColors = ["bg-[#127EAB]", "bg-[#1F4264]", "bg-[#EE6450]"];
+              const titleColors = ["text-[#127EAB]", "text-[#1F4264]", "text-[#D9523E]"];
 
-                <h3 className="text-base font-semibold text-primary mb-1.5 leading-snug">
-                  {st.title}
-                </h3>
-                <p className="text-xs sm:text-[13px] text-slateText font-normal leading-relaxed">
-                  {st.detail}
-                </p>
-              </div>
-            ))}
+              return (
+                <div key={sIdx} className="relative flex flex-col justify-start">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className={`w-10 h-10 rounded-full ${badgeColors[sIdx % 3]} text-white font-mono font-semibold text-xs flex items-center justify-center shrink-0 shadow-sm`}>
+                      {st.num}
+                    </div>
+                    {sIdx < steps.length - 1 && (
+                      <div className="hidden md:block flex-1 h-[2px] bg-gradient-to-r from-slate-300 to-slate-100" />
+                    )}
+                  </div>
+
+                  <h3 className={`text-base font-semibold ${titleColors[sIdx % 3]} mb-1.5 leading-snug`}>
+                    {st.title}
+                  </h3>
+                  <p className="text-xs sm:text-[13px] text-slate-600 font-medium leading-relaxed">
+                    {st.detail}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* 4. CLEAN CTA BANNER */}
-      <section className="py-12 sm:py-16 bg-[#1F4264] text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-normal tracking-tight text-white mb-2">
-            Do Not Miss the Filing Deadline
-          </h2>
-          <p className="text-xs sm:text-sm text-sky-100 max-w-xl mx-auto mb-6">
-            Get your official IRS Form 4868 extension submitted electronically today in just a few minutes.
-          </p>
+      <section className="py-10 sm:py-14 bg-white font-sans">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl py-10 sm:py-12 px-6 sm:px-12 bg-gradient-to-r from-[#0D6388] via-[#127EAB] to-[#168BB8] text-white shadow-xl text-center">
+            {/* Subtle Ambient Glows */}
+            <div className="absolute -top-24 -left-16 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -right-16 w-72 h-72 bg-[#1F4264]/25 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <Link
-              to="/login"
-              className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-[#127EAB] hover:bg-teal-soft text-white font-medium text-xs sm:text-sm transition-all shadow-md group"
-            >
-              <span>File Extension Today</span>
-              <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <button
-              type="button"
-              onClick={handleOpenModal}
-              className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-xs sm:text-sm border border-white/20 transition-all"
-            >
-              <span>Talk to CPA</span>
-            </button>
+            <div className="max-w-3xl mx-auto relative z-10">
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white mb-2.5">
+                Do Not Miss the{" "}
+                <span className="text-[#EE6450]">Filing Deadline</span>
+              </h2>
+              <p className="text-xs sm:text-sm text-sky-50/90 max-w-xl mx-auto mb-7 font-medium leading-relaxed">
+                Get your official IRS Form 4868 extension submitted electronically today in just a few minutes.
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center gap-3.5">
+                <Link
+                  to="/login"
+                  className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-white hover:bg-[#EFF9FB] text-primary font-semibold text-xs sm:text-sm transition-all duration-200 shadow-md hover:shadow-lg group"
+                >
+                  <span>File Extension Today</span>
+                  <ArrowRightIcon className="w-4 h-4 text-teal group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <button
+                  type="button"
+                  onClick={handleOpenModal}
+                  className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold text-xs sm:text-sm border border-white/30 backdrop-blur-xs transition-all duration-200 cursor-pointer"
+                >
+                  <span>Talk to CPA</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

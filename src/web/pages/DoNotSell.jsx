@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import {
@@ -120,7 +120,7 @@ const DoNotSell = () => {
       icon: CheckCircleIcon,
       content: [
         'You can opt-out of the sale of your personal information by submitting the form below on this page.',
-        'You can also opt-out by emailing us at contact@irstaxfiler.com with the subject line "Do Not Sell My Personal Information".',
+        'You can also opt-out by emailing us at info@irstaxfiler.com with the subject line "Do Not Sell My Personal Information".',
         'You can call us at +1 (415) 7876190 and request to opt-out of the sale of your personal information.',
         'We will process your opt-out request within 15 business days and confirm receipt of your request.',
         'Your opt-out request will remain in effect until you notify us that you wish to opt back in.',
@@ -198,7 +198,7 @@ const DoNotSell = () => {
   ];
 
   const title = "About Us | IRS Tax Filer";
-  const description = "Learn about IRS Tax Filer — our mission, expertise in US & Indian tax services, and commitment to secure,Learn more.";
+  const description = "Learn about IRS Tax Filer â€” our mission, expertise in US & Indian tax services, and commitment to secure,Learn more.";
   const keywords = "online tax filing service,tax service provider,Internal Revenue Service,IRS Tax Filer about, US & Indian tax services, tax filing expertise, tax compliance company";
   const canonical = window.location.href;
   const image = { Logo };
@@ -541,7 +541,7 @@ const DoNotSell = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
-                    href="mailto:contact@irstaxfiler.com"
+                    href="mailto:info@irstaxfiler.com"
                     className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300 hover:shadow-lg"
                     style={{ backgroundColor: '#1F4264' }}
                   >

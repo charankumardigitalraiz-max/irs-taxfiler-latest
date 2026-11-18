@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -18,6 +18,7 @@ import LeadModal from "../../components/popup";
 import Logo from "../../assets/irsLogo.png";
 import individualPhoto from "../../assets/services/individual-1040.jpg";
 import multiStatePhoto from "../../assets/services/multi-state.jpg";
+import { serviceCardThemes, serviceStepThemes } from "../../constants/serviceThemes";
 
 const FederalStateLocal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -131,7 +132,7 @@ const FederalStateLocal = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.15 }}
-                className="text-sm sm:text-base lg:text-[17px] text-slateText font-normal leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
+                className="text-sm sm:text-base lg:text-[17px] text-slateText font-medium leading-[30px] sm:leading-[32px] lg:leading-[34px] mb-6 max-w-2xl"
               >
                 Complete CPA preparation for your Form 1040, multi-state allocations, and city taxes with guaranteed maximum refunds and 100% IRS accuracy.
               </motion.p>
@@ -165,7 +166,7 @@ const FederalStateLocal = () => {
               <div className="pt-4 border-t border-slate-100 flex items-center gap-2 text-xs text-slateText">
                 <ShieldCheckIcon className="w-4 h-4 text-teal" />
                 <span className="font-medium text-primary">Licensed CPAs & Enrolled Agents</span>
-                <span className="text-border">•</span>
+                <span className="text-border">Ã¢â‚¬Â¢</span>
                 <span>Direct Electronic Filing to IRS & State Agencies</span>
               </div>
             </div>
@@ -218,7 +219,7 @@ const FederalStateLocal = () => {
                 Every Level
               </span>
             </h2>
-            <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-2.5">
+            <p className="text-sm sm:text-base text-slateText font-medium leading-relaxed mt-2.5">
               From federal Form 1040 to multi-state SALT allocations and city taxes.
             </p>
           </div>
@@ -237,7 +238,7 @@ const FederalStateLocal = () => {
                 <h3 className="text-base font-semibold text-white leading-snug">
                   Multi-State & Remote Worker Tax Returns
                 </h3>
-                <p className="text-xs text-white/80 mt-1 leading-relaxed">
+                <p className="text-xs text-white/80 font-medium mt-1 leading-relaxed">
                   We calculate out-of-state credits so you never get double-taxed.
                 </p>
               </div>
@@ -245,43 +246,56 @@ const FederalStateLocal = () => {
 
             {/* 3 Jurisdiction Cards */}
             <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-              {filingJurisdictions.map((tier, idx) => (
-                <div
-                  key={idx}
-                  className="group bg-white hover:bg-[#FDFDFD] rounded-2xl p-5 border border-slate-200/90 hover:border-[#1F4264]/40 shadow-2xs hover:shadow-sm transition-all duration-300 flex flex-col justify-between text-left"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="w-9 h-9 rounded-xl bg-background-aqua border border-border text-teal flex items-center justify-center shrink-0">
-                        {tier.icon}
-                      </div>
-                    </div>
+              {filingJurisdictions.map((tier, idx) => {
+                const theme = serviceCardThemes[idx % serviceCardThemes.length];
+                const cardNum = String(idx + 1).padStart(2, "0");
 
-                    <h3 className="text-sm font-semibold text-primary group-hover:text-primary transition-colors">
-                      {tier.title}
-                    </h3>
+                return (
+                  <div
+                    key={idx}
+                    className={`group relative overflow-hidden ${theme.cardBg} rounded-2xl p-5 border ${theme.cardBorder} shadow-2xs ${theme.shadowHover} hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between text-left`}
+                  >
+                    {/* Top Accent Strip */}
+                    <div className={`absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent ${theme.topLine} to-transparent transition-all duration-300`} />
 
-                    <p className="text-xs sm:text-[13px] text-slateText font-normal leading-relaxed mt-1 mb-3">
-                      {tier.description}
-                    </p>
-
-                    <ul className="space-y-2.5 pt-3 border-t border-slate-100">
-                      {tier.points.map((pt, pIdx) => (
-                        <li key={pIdx} className="flex items-start gap-2 text-xs sm:text-[13px] text-primary font-medium leading-snug">
-                          <CheckCircleIcon className="w-4 h-4 text-teal stroke-[2.2] shrink-0 mt-0.5" />
-                          <span>{pt}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="mt-4 pt-2.5 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-[10px] text-teal font-medium">
-                      {tier.compliance}
+                    {/* Watermark Number */}
+                    <span
+                      aria-hidden="true"
+                      className={`absolute -bottom-2 -right-1 text-6xl font-semibold font-mono tracking-tighter ${theme.watermark} select-none pointer-events-none transition-transform duration-300 group-hover:scale-110`}
+                    >
+                      {cardNum}
                     </span>
+
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between gap-2 mb-3.5">
+                        <div className={`w-10 h-10 rounded-xl border ${theme.iconBox} flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform`}>
+                          {React.cloneElement(tier.icon, { className: "w-5 h-5" })}
+                        </div>
+                        <span className={`text-[10.5px] font-semibold px-2.5 py-0.5 rounded-full border ${theme.badge}`}>
+                          {tier.tag}
+                        </span>
+                      </div>
+
+                      <h3 className={`text-base font-semibold ${theme.titleColor} leading-snug`}>
+                        {tier.title}
+                      </h3>
+
+                      <p className="text-xs sm:text-[13px] text-slateText font-[500] leading-relaxed mt-1.5 mb-3.5">
+                        {tier.description}
+                      </p>
+
+                      <ul className="space-y-2.5 pt-3 border-t border-slate-200/60">
+                        {tier.points.map((pt, pIdx) => (
+                          <li key={pIdx} className="flex items-start gap-2 text-xs sm:text-[13px] text-primary font-medium leading-snug">
+                            <CheckCircleIcon className={`w-4 h-4 ${theme.checkColor} stroke-[2.2] shrink-0 mt-0.5`} />
+                            <span>{pt}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -297,62 +311,85 @@ const FederalStateLocal = () => {
                 Works
               </span>
             </h2>
-            <p className="text-sm sm:text-base text-slateText font-normal leading-relaxed mt-2.5">
+            <p className="text-sm sm:text-base text-slateText font-[500] leading-relaxed mt-2.5">
               4 simple steps to your complete CPA-prepared tax return.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {processSteps.map((step, sIdx) => (
-              <div
-                key={sIdx}
-                className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-2xs text-left"
-              >
-                <div className="w-8 h-8 rounded-lg bg-[#EFF9FB] text-teal flex items-center justify-center font-bold text-xs mb-3 font-mono border border-[#127EAB]/25">
-                  {step.step}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {processSteps.map((step, sIdx) => {
+              const stepTheme = serviceStepThemes[sIdx % serviceStepThemes.length];
+
+              return (
+                <div
+                  key={sIdx}
+                  className={`group relative overflow-hidden ${stepTheme.cardBg} rounded-2xl p-5 border ${stepTheme.cardBorder} shadow-2xs hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200 text-left`}
+                >
+                  {/* Top Accent Line */}
+                  <div className={`absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent ${stepTheme.topLine} to-transparent transition-all duration-300`} />
+
+                  {/* Watermark Step Number */}
+                  <span
+                    aria-hidden="true"
+                    className={`absolute -bottom-2 -right-1 text-6xl font-semibold font-mono tracking-tighter ${stepTheme.watermark} select-none pointer-events-none transition-transform duration-300 group-hover:scale-105`}
+                  >
+                    {step.step}
+                  </span>
+
+                  <div className="relative z-10">
+                    <div className={`inline-flex items-center justify-center px-2.5 h-8 rounded-lg font-semibold text-xs mb-3.5 font-mono border shadow-2xs ${stepTheme.badge}`}>
+                      STEP {step.step}
+                    </div>
+                    <h3 className={`text-base font-semibold ${stepTheme.titleColor} leading-snug`}>
+                      {step.title}
+                    </h3>
+                    <p className="text-xs sm:text-[13px] text-slateText font-[500] mt-1.5 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-sm font-semibold text-primary">
-                  {step.title}
-                </h3>
-                <p className="text-xs sm:text-[13px] text-slateText font-normal mt-1.5 leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
 
       {/* 5. CLEAN BOTTOM CTA BANNER */}
-      <section className="py-14 sm:py-16 bg-background-aqua/40 border-t border-border font-sans relative overflow-hidden">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-2xl sm:text-3xl font-normal text-primary mb-2 tracking-tight">
-            Ready to file your{" "}
-            <span className="font-medium text-teal">Federal</span>{" "}
-            <span className="font-medium text-coral">& State taxes?</span>
-          </h2>
-          <p className="text-xs sm:text-sm text-slateText max-w-md mx-auto mb-6 font-normal">
-            Certified CPA preparation with guaranteed maximum refunds and 100% IRS accuracy.
-          </p>
+      <section className="py-10 sm:py-14 bg-white font-sans">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl py-10 sm:py-12 px-6 sm:px-12 bg-gradient-to-r from-[#0D6388] via-[#127EAB] to-[#168BB8] text-white shadow-xl text-center">
+            {/* Subtle Ambient Glows */}
+            <div className="absolute -top-24 -left-16 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -right-16 w-72 h-72 bg-[#1F4264]/25 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="flex flex-wrap sm:flex-nowrap gap-3 justify-center items-center">
-            <Link
-              to="/login"
-              className="h-11 px-6 rounded-xl bg-primary hover:bg-primary-dark text-white font-medium text-sm shadow-sm hover:shadow-md transition-all inline-flex items-center justify-center gap-2 group"
-            >
-              <span>Start Filing</span>
-              <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform stroke-[2]" />
-            </Link>
+            <div className="max-w-3xl mx-auto relative z-10">
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white mb-2.5">
+                Ready to file your Federal{" "}
+                <span className="text-[#EE6450]">& State taxes?</span>
+              </h2>
+              <p className="text-xs sm:text-sm text-sky-50/90 max-w-xl mx-auto mb-7 font-medium leading-relaxed">
+                Certified CPA preparation with guaranteed maximum refunds and 100% IRS accuracy.
+              </p>
 
-            <button
-              type="button"
-              onClick={handleOpenModal}
-              className="h-11 px-6 rounded-xl bg-surface hover:bg-background-blue text-teal hover:text-primary border border-border font-medium text-sm transition-all inline-flex items-center justify-center gap-2 cursor-pointer group shadow-2xs hover:shadow-sm"
-            >
-              <CalendarDaysIcon className="w-4 h-4 text-teal stroke-[2] group-hover:scale-110 transition-transform" />
-              <span>Talk to CPA</span>
-            </button>
+              <div className="flex flex-wrap items-center justify-center gap-3.5">
+                <Link
+                  to="/login"
+                  className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-white hover:bg-[#EFF9FB] text-primary font-semibold text-xs sm:text-sm transition-all duration-200 shadow-md hover:shadow-lg group"
+                >
+                  <span>Start Filing</span>
+                  <ArrowRightIcon className="w-4 h-4 text-teal group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <button
+                  type="button"
+                  onClick={handleOpenModal}
+                  className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold text-xs sm:text-sm border border-white/30 backdrop-blur-xs transition-all duration-200 cursor-pointer group"
+                >
+                  <CalendarDaysIcon className="w-4 h-4 text-white/90 stroke-[2] group-hover:scale-110 transition-transform" />
+                  <span>Talk to CPA</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

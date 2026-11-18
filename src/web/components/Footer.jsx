@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { Link } from "react-router-dom";
 import {
   EnvelopeIcon,
@@ -289,10 +289,10 @@ const Footer = () => {
                   <span className="group-hover:text-[#38BDF8] transition-colors">Email</span>
                 </div>
                 <a
-                  href="mailto:contact@irstaxfiler.com"
+                  href="mailto:info@irstaxfiler.com"
                   className="text-white/80 hover:text-[#38BDF8] font-medium transition-colors block truncate text-xs"
                 >
-                  contact@irstaxfiler.com
+                  info@irstaxfiler.com
                 </a>
               </div>
             </div>
@@ -309,7 +309,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="text-xs text-white/70 font-normal">
-            © {currentYear} IRS Tax Adviser Inc. All Rights Reserved.
+            Â© {currentYear} IRS Tax Adviser Inc. All Rights Reserved.
           </div>
 
           {/* Legal Navigation Links */}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -178,7 +178,7 @@ const Terms = () => {
   ];
 
   const title = "About Us | IRS Tax Filer";
-  const description = "Learn about IRS Tax Filer — our mission, expertise in US & Indian tax services, and commitment to secure,Learn more.";
+  const description = "Learn about IRS Tax Filer â€” our mission, expertise in US & Indian tax services, and commitment to secure,Learn more.";
   const keywords = "online tax filing service,tax service provider,Internal Revenue Service,IRS Tax Filer about, US & Indian tax services, tax filing expertise, tax compliance company";
   const canonical = window.location.href;
   const image = { Logo };
@@ -259,8 +259,8 @@ const Terms = () => {
             <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 sm:p-8 flex flex-col justify-center">
               <p className="text-sm sm:text-[15px] text-slateText leading-relaxed">
                 If you have any questions about these Terms, please contact us at{' '}
-                <a href="mailto:contact@irstaxfiler.com" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
-                  contact@irstaxfiler.com
+                <a href="mailto:info@irstaxfiler.com" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
+                  info@irstaxfiler.com
                 </a>
                 {' '}or call us at{' '}
                 <a href="tel:++1 (415) 2231315" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">

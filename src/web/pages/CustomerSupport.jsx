@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ChatBubbleLeftRightIcon,
@@ -35,7 +35,7 @@ const CustomerSupport = () => {
       availability: 'Response within 24h',
       color: '#F0FDF4',
       action: 'Send Email',
-      link: 'mailto:contact@irstaxfiler.com',
+      link: 'mailto:info@irstaxfiler.com',
     },
     {
       icon: PhoneIcon,
@@ -453,10 +453,10 @@ const CustomerSupport = () => {
                   Email
                 </h3>
                 <a
-                  href="mailto:contact@irstaxfiler.com"
+                  href="mailto:info@irstaxfiler.com"
                   className="text-sm font-medium text-primary hover:text-primary hover:underline transition-colors"
                 >
-                  contact@irstaxfiler.com
+                  info@irstaxfiler.com
                 </a>
               </motion.div>
 
