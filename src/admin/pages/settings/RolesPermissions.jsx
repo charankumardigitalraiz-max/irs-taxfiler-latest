@@ -284,22 +284,22 @@ const RolesPermissions = () => {
       >
         <div className="space-y-4">
           {/* General Information Section */}
-          <div className="bg-gray-50 px-4 py-3 rounded-lg border border-gray-100 flex flex-col gap-3">
+          <div className="bg-[#F8FBFC] px-4 py-3 rounded-xl border border-[#DCEAF0] flex flex-col gap-3">
             <div className="w-full">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Role Name *</label>
+              <label className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1.5">Role Name *</label>
               <input
                 type="text"
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
+                className="w-full px-3.5 py-2 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2]"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="e.g., Manager, Support"
               />
             </div>
             <div className="w-full">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+              <label className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1.5">Description</label>
               <input
                 type="text"
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
+                className="w-full px-3.5 py-2 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2]"
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 placeholder="Brief description"
@@ -308,9 +308,9 @@ const RolesPermissions = () => {
           </div>
 
           {/* Permissions Section */}
-          <div className="border border-gray-200 rounded-lg overflow-hidden flex flex-col md:flex-row h-[450px]">
+          <div className="border border-[#DCEAF0] rounded-xl overflow-hidden flex flex-col md:flex-row h-[450px]">
             {/* Vertical Sidebar Tabs */}
-            <div className="w-full md:w-40 bg-gray-50 border-b md:border-b-0 md:border-r border-gray-200 overflow-y-auto">
+            <div className="w-full md:w-40 bg-[#F8FBFC] border-b md:border-b-0 md:border-r border-[#E6F0F5] overflow-y-auto">
               {Object.keys(permissionCategories).map(key => {
                 const isActive = activeTab === key;
                 const catPerms = permissionCategories[key].permissions;
@@ -321,13 +321,13 @@ const RolesPermissions = () => {
                   <button
                     key={key}
                     onClick={() => setActiveTab(key)}
-                    className={`w-full text-left px-3 py-3 text-sm font-medium transition-all border-l-4 flex flex-col ${isActive
-                      ? 'bg-white border-primary-600 text-primary-700 shadow-sm'
-                      : 'border-transparent text-gray-600 hover:bg-gray-100'
+                    className={`w-full text-left px-3.5 py-3 text-xs sm:text-sm font-medium transition-all flex flex-col cursor-pointer rounded-lg ${isActive
+                      ? 'bg-gradient-to-r from-[#127EAB] to-[#0E668B] text-white font-semibold shadow-xs'
+                      : 'text-[#6F7F8E] hover:bg-white hover:text-[#1F4264]'
                       }`}
                   >
                     <span>{permissionCategories[key].label}</span>
-                    <span className={`text-xs mt-0.5 ${isActive ? 'text-primary-500' : 'text-gray-400'}`}>
+                    <span className={`text-xs mt-0.5 ${isActive ? 'text-white/85' : 'text-[#8BA0B2]'}`}>
                       {activeCount} / {totalCount} enabled
                     </span>
                   </button>
@@ -338,15 +338,15 @@ const RolesPermissions = () => {
             {/* Content Area */}
             <div className="flex-1 flex flex-col min-w-0 bg-white">
               {/* Toolbar */}
-              <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between bg-white sticky top-0 z-10">
+              <div className="px-4 py-3 border-b border-[#E6F0F5] flex items-center justify-between bg-white sticky top-0 z-10">
                 <div>
-                  <h4 className="font-semibold text-sm text-gray-900">{permissionCategories[activeTab].label}</h4>
+                  <h4 className="font-semibold text-sm text-[#1F4264]">{permissionCategories[activeTab].label}</h4>
                 </div>
                 <Button
                   size="sm"
                   variant="secondary"
                   onClick={() => toggleCategoryAll(activeTab, !isCategoryAllSelected(activeTab))}
-                  className={`h-7 text-xs px-3 ${isCategoryAllSelected(activeTab) ? 'bg-primary-50 text-primary-700 border-primary-200' : ''}`}
+                  className={`h-7 text-xs px-3 ${isCategoryAllSelected(activeTab) ? 'bg-[#E9F7FA] text-[#127EAB] border-[#127EAB]/30' : ''}`}
                 >
                   {isCategoryAllSelected(activeTab) ? 'Uncheck All' : 'Check All'}
                 </Button>
@@ -361,20 +361,20 @@ const RolesPermissions = () => {
                       <label
                         key={perm}
                         className={`
-                          relative flex items-center px-3 py-2.5 border rounded-md cursor-pointer transition-all duration-200
+                          relative flex items-center px-3 py-2.5 border rounded-xl cursor-pointer transition-all duration-200
                           ${isChecked
-                            ? 'border-primary-500 bg-primary-50 shadow-sm ring-1 ring-primary-500/10'
-                            : 'border-gray-100 hover:border-gray-200 hover:bg-gray-50'}
+                            ? 'border-[#127EAB] bg-[#E9F7FA] shadow-xs'
+                            : 'border-[#E6F0F5] hover:border-[#DCEAF0] hover:bg-[#F8FBFC]'}
                         `}
                       >
                         <input
                           type="checkbox"
-                          className="h-4 w-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500 flex-shrink-0"
+                          className="h-4 w-4 text-[#127EAB] border-[#CCDCE1] rounded focus:ring-[#127EAB] flex-shrink-0"
                           checked={isChecked}
                           onChange={() => togglePermission(perm)}
                         />
                         <div className="ml-3 min-w-0">
-                          <span className={`text-sm font-medium block truncate ${isChecked ? 'text-primary-900' : 'text-gray-700'}`}>
+                          <span className={`text-sm font-medium block truncate ${isChecked ? 'text-[#1F4264]' : 'text-[#6F7F8E]'}`}>
                             {getPermissionLabel(perm)}
                           </span>
                         </div>
@@ -387,7 +387,7 @@ const RolesPermissions = () => {
           </div>
 
           {/* Footer Actions */}
-          <div className="flex justify-end gap-2 pt-3 border-t border-gray-200">
+          <div className="flex justify-end gap-2 pt-3 border-t border-[#E6F0F5]">
             <Button variant="secondary" size="sm" onClick={() => setShowModal(false)}>
               Cancel
             </Button>

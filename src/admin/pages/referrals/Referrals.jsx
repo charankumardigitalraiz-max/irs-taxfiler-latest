@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Search, UserPlus, Gift, Mail, Phone, CheckCircle2, Clock, DollarSign, TrendingUp, Users, Eye } from 'lucide-react';
+import { Search, UserPlus, Gift, Mail, Phone, CheckCircle2, Clock, DollarSign, TrendingUp, Users, Eye, ChevronDown } from 'lucide-react';
 import Header from '../../components/layout/Header';
 import Card from '../../components/common/Card';
+import StatCard from '../../components/common/StatCard';
 import Button from '../../components/common/Button';
 import Badge from '../../components/common/Badge';
 import Modal from '../../components/common/Modal';
@@ -85,130 +86,116 @@ const Referrals = () => {
         subtitle="Manage and track user referral program"
       />
 
-      <div className="p-6 space-y-6">
+      <div className="space-y-6">
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <Card className="p-4">
-            <p className="text-sm text-gray-500">Total Referrers</p>
-            <p className="text-2xl font-semibold text-gray-900">{stats.totalReferrers}</p>
-          </Card>
-          <Card className="p-4">
-            <p className="text-sm text-gray-500">Total Referrals</p>
-            <p className="text-2xl font-semibold text-blue-600">{stats.totalReferrals}</p>
-          </Card>
-          <Card className="p-4">
-            <p className="text-sm text-gray-500">Successful</p>
-            <p className="text-2xl font-semibold text-green-600">{stats.successfulReferrals}</p>
-          </Card>
-          <Card className="p-4">
-            <p className="text-sm text-gray-500">Pending</p>
-            <p className="text-2xl font-semibold text-yellow-600">{stats.pendingReferrals}</p>
-          </Card>
-          <Card className="p-4">
-            <p className="text-sm text-gray-500">Total Rewards Paid</p>
-            <p className="text-2xl font-semibold text-teal">${stats.totalRewardsPaid}</p>
-          </Card>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          <StatCard name="Total Referrers" value={stats.totalReferrers} />
+          <StatCard name="Total Referrals" value={stats.totalReferrals} valueColor="text-[#127EAB]" />
+          <StatCard name="Successful" value={stats.successfulReferrals} valueColor="text-[#059669]" />
+          <StatCard name="Pending" value={stats.pendingReferrals} valueColor="text-[#D97706]" />
+          <StatCard name="Total Rewards Paid" value={`$${stats.totalRewardsPaid}`} />
         </div>
 
         {/* Referrals List */}
         <Card padding="none">
-          <div className="p-4 border-b border-gray-200">
-            <div className="flex flex-col sm:flex-row gap-4">
+          <div className="p-4 sm:p-5 border-b border-[#E6F0F5] bg-white">
+            <div className="flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
               {/* Search */}
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <div className="relative w-full sm:w-64 md:w-72 shrink-0">
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2]" />
                 <input
                   type="text"
-                  placeholder="Search by referrer name, email, or referral code..."
+                  placeholder="Search by referrer name, email, or code..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="w-full h-10 pl-10 pr-4 text-sm border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2] transition-all shadow-xs"
                 />
               </div>
-              
+
               {/* Status Filter */}
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white"
-              >
-                <option value="">All Status</option>
-                <option value="registered">Registered</option>
-                <option value="converted">Converted</option>
-                <option value="pending">Pending</option>
-              </select>
+              <div className="relative w-full sm:w-48 shrink-0">
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className="w-full h-10 pl-3.5 pr-9 text-sm border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] transition-all cursor-pointer appearance-none shadow-xs"
+                >
+                  <option value="">All Status</option>
+                  <option value="registered">Registered</option>
+                  <option value="converted">Converted</option>
+                  <option value="pending">Pending</option>
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2] pointer-events-none" />
+              </div>
             </div>
           </div>
 
           {/* Referrals Table */}
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full divide-y divide-[#E6F0F5]">
+              <thead className="bg-[#F8FBFC] border-b border-[#DCEAF0]">
                 <tr>
-                  <th className="table-header">Referrer</th>
-                  <th className="table-header">Referral Code</th>
-                  <th className="table-header">Total Referrals</th>
-                  <th className="table-header">Successful</th>
-                  <th className="table-header">Rewards Earned</th>
-                  <th className="table-header">Created</th>
-                  <th className="table-header">Actions</th>
+                  <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Referrer</th>
+                  <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Referral Code</th>
+                  <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Total Referrals</th>
+                  <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Successful</th>
+                  <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Rewards Earned</th>
+                  <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Created</th>
+                  <th className="px-4 sm:px-6 py-3 text-right text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white divide-y divide-[#E6F0F5]">
                 {filteredReferrals.length === 0 ? (
                   <tr>
-                    <td colSpan="7" className="table-cell text-center py-8 text-gray-500">
+                    <td colSpan="7" className="text-center py-12 text-[#6F7F8E] font-medium text-sm">
                       No referrals found
                     </td>
                   </tr>
                 ) : (
                   filteredReferrals.map((referral) => (
-                    <tr key={referral.id} className="hover:bg-gray-50">
-                      <td className="table-cell">
+                    <tr key={referral.id} className="hover:bg-[#F4F9FB]/60 transition-colors">
+                      <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm">
                         <div>
-                          <p className="font-medium text-gray-900">{referral.referrer.fullName}</p>
-                          <p className="text-xs text-gray-500">{referral.referrer.email}</p>
-                          <p className="text-xs text-gray-400 font-mono">{referral.referrerId}</p>
+                          <p className="font-semibold text-[#1F4264]">{referral.referrer.fullName}</p>
+                          <p className="text-xs text-[#6F7F8E]">{referral.referrer.email}</p>
+                          <p className="text-xs text-[#8BA0B2] font-mono">{referral.referrerId}</p>
                         </div>
                       </td>
-                      <td className="table-cell">
-                        <span className="font-mono font-semibold text-primary-600">
+                      <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm">
+                        <span className="font-mono font-semibold text-[#127EAB]">
                           {referral.referralCode}
                         </span>
                       </td>
-                      <td className="table-cell">
+                      <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm text-[#1F4264]">
                         <div className="flex items-center gap-2">
-                          <Users className="w-4 h-4 text-gray-400" />
-                          <span className="font-medium">{referral.totalReferrals}</span>
+                          <Users className="w-4 h-4 text-[#8BA0B2]" />
+                          <span className="font-medium text-[#1F4264]">{referral.totalReferrals}</span>
                         </div>
                       </td>
-                      <td className="table-cell">
+                      <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm">
                         <div className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-green-600" />
-                          <span className="font-medium text-green-600">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                          <span className="font-medium text-emerald-600">
                             {referral.successfulReferrals}
                           </span>
                         </div>
                       </td>
-                      <td className="table-cell">
-                        <div className="flex items-center gap-2">
-                          <DollarSign className="w-4 h-4 text-teal" />
-                          <span className="font-semibold text-teal">
-                            ${referral.totalRewardsEarned}
-                          </span>
+                      <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm">
+                        <div className="flex items-center gap-1 font-semibold text-[#127EAB]">
+                          <DollarSign className="w-4 h-4" />
+                          <span>{referral.totalRewardsEarned}</span>
                         </div>
                       </td>
-                      <td className="table-cell">
-                        <span className="text-sm text-gray-500">
+                      <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm text-[#6F7F8E]">
+                        <span>
                           {format(new Date(referral.createdAt), 'MMM d, yyyy')}
                         </span>
                       </td>
-                      <td className="table-cell">
+                      <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-right">
                         <Button
                           size="sm"
                           variant="ghost"
                           onClick={() => handleViewDetails(referral)}
-                          leftIcon={<Eye className="w-4 h-4" />}
+                          leftIcon={<Eye className="w-4 h-4 text-[#127EAB]" />}
                         >
                           View Details
                         </Button>

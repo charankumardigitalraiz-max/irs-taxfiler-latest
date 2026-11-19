@@ -35,8 +35,8 @@ const Schedule = () => {
           const profileData = response.data;
           setCallbackData(prev => ({
             ...prev,
-            name: profileData.fullName || profileData.firstName && profileData.lastName 
-              ? `${profileData.firstName} ${profileData.lastName}`.trim() 
+            name: profileData.fullName || profileData.firstName && profileData.lastName
+              ? `${profileData.firstName} ${profileData.lastName}`.trim()
               : '',
             phone: profileData.mobileNumber || '',
           }));
@@ -149,7 +149,7 @@ const Schedule = () => {
         date: '',
         time: '',
       });
-      
+
       // Reload user profile to get updated workflow status
       try {
         const profileRes = await userService.getProfile();
@@ -176,11 +176,10 @@ const Schedule = () => {
       {toast && (
         <div className="fixed right-4 bottom-4 z-50">
           <div
-            className={`max-w-sm px-4 py-3 rounded-lg shadow-lg text-sm ${
-              toast.type === 'success'
-                ? 'bg-green-50 text-green-800 border border-green-200'
-                : 'bg-red-50 text-red-800 border border-red-200'
-            }`}
+            className={`max-w-sm px-4 py-3 rounded-lg shadow-lg text-sm ${toast.type === 'success'
+              ? 'bg-green-50 text-green-800 border border-green-200'
+              : 'bg-red-50 text-red-800 border border-red-200'
+              }`}
           >
             <div className="flex items-start justify-between gap-3">
               <p>{toast.message}</p>
@@ -221,11 +220,11 @@ const Schedule = () => {
           <Card>
             <Card.Header>
               <Card.Title>Contact Details</Card.Title>
-              <Card.Description>
+              {/* <Card.Description>
                 Connect with our tax experts directly
-              </Card.Description>
+              </Card.Description> */}
             </Card.Header>
-            <Card.Content className="space-y-4">
+            <Card.Content className="space-y-8">
               <div>
                 <p className="text-xs font-medium text-[#6F7F8E] uppercase tracking-wider mb-1.5">
                   Phone
@@ -234,12 +233,21 @@ const Schedule = () => {
                   <div className="flex items-center gap-2 flex-wrap">
                     <PhoneCall className="w-4 h-4 text-[#059669] shrink-0" />
                     <span className="text-xs font-medium text-[#6F7F8E]">US:</span>
-                    <a
-                      href="tel:+14152231315"
-                      className="text-[15px] font-semibold text-[#059669] hover:text-[#047857] transition-colors"
-                    >
-                      +1 (415) 223-1315
-                    </a>
+                    <span className="text-[15px] font-semibold text-[#059669]">
+                      <a
+                        href="tel:+14044244191"
+                        className="hover:text-[#047857] transition-colors"
+                      >
+                        +1 (404) 424-4191
+                      </a>
+                      <span className="text-[#6F7F8E] font-normal mx-1">/</span>
+                      <a
+                        href="tel:+14044244815"
+                        className="hover:text-[#047857] transition-colors"
+                      >
+                        4815
+                      </a>
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 flex-wrap">
                     <PhoneCall className="w-4 h-4 text-[#059669] shrink-0" />
@@ -296,7 +304,7 @@ const Schedule = () => {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <a
-                    href="https://wa.me/14152231315"
+                    href="https://wa.me/14044244191"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-primary-50 text-primary-700 border border-primary-100 hover:bg-primary-100 transition-colors cursor-pointer"
@@ -323,9 +331,9 @@ const Schedule = () => {
           <Card>
             <Card.Header>
               <Card.Title>Schedule Meeting</Card.Title>
-              <Card.Description>
+              {/* <Card.Description>
                 Share your contact and we will call you to discuss your taxes.
-              </Card.Description>
+              </Card.Description> */}
             </Card.Header>
             <Card.Content>
               {!showCallbackForm ? (
@@ -416,9 +424,9 @@ const Schedule = () => {
           <Card>
             <Card.Header>
               <Card.Title>Previous Requests</Card.Title>
-              <Card.Description>
+              {/* <Card.Description>
                 Recent callback requests submitted from your account
-              </Card.Description>
+              </Card.Description> */}
             </Card.Header>
             <Card.Content>
               {loadingRequests ? (

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Download, Upload, Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, AlignJustify, Link, Image as ImageIcon, Video, X, Code, HelpCircle, List, ListOrdered, Table } from 'lucide-react';
+import Header from '../../components/layout/Header';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
 import { api } from '../../api';
@@ -298,24 +299,29 @@ const Email = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-0">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-12 lg:col-span-6">
-            <Card className="h-fit">
-              <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-xl font-semibold text-gray-900">Send Email</h2>
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    className="border-blue-500 text-blue-500 hover:bg-blue-50"
-                    leftIcon={<Download className="w-4 h-4" />}
-                    onClick={handleSampleDownload}
-                  >
-                    Sample Download
-                  </Button>
-                </div>
+    <div className="space-y-6">
+      <Header
+        title="Email"
+        subtitle="Compose, preview and broadcast emails to individual or multiple users"
+        actions={
+          <Button
+            variant="secondary"
+            size="sm"
+            leftIcon={<Download className="w-4 h-4" />}
+            onClick={handleSampleDownload}
+          >
+            Sample Download
+          </Button>
+        }
+      />
+      <div className="grid grid-cols-12 gap-6">
+        <div className="col-span-12 lg:col-span-6">
+          <Card className="h-fit">
+            <div className="space-y-6">
+              <div className="border-b border-[#E6F0F5] pb-3.5">
+                <h2 className="text-base sm:text-lg font-semibold text-[#1F4264]">Compose Message</h2>
+                <p className="text-xs sm:text-sm text-[#6F7F8E] font-medium mt-0.5">Select recipients and configure your template</p>
+              </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -696,16 +702,17 @@ const Email = () => {
           <div className="col-span-12 lg:col-span-6">
             <Card className="h-fit">
               <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-xl font-semibold text-gray-900">Email Preview</h2>
+                <div className="border-b border-[#E6F0F5] pb-3.5">
+                  <h2 className="text-base sm:text-lg font-semibold text-[#1F4264]">Email Preview</h2>
+                  <p className="text-xs sm:text-sm text-[#6F7F8E] font-medium mt-0.5">Live rendering of the selected email template</p>
                 </div>
                 
                 {loadingTemplate ? (
                   <div className="flex items-center justify-center min-h-[400px]">
-                    <div className="text-gray-500">Loading preview...</div>
+                    <div className="text-[#6F7F8E] text-sm font-medium">Loading preview...</div>
                   </div>
                 ) : finalHTML ? (
-                  <div className="border border-gray-300 rounded-lg overflow-hidden bg-white p-0">
+                  <div className="border border-[#DCEAF0] rounded-xl overflow-hidden bg-white p-0">
                     <iframe
                       ref={previewRef}
                       srcDoc={finalHTML}
@@ -715,10 +722,10 @@ const Email = () => {
                     />
                   </div>
                 ) : (
-                  <div className="flex items-center justify-center min-h-[400px] border border-gray-300 rounded-lg bg-gray-50">
-                    <div className="text-gray-500 text-center">
-                      <p className="mb-2">No template selected</p>
-                      <p className="text-sm">Select an email template to see the preview</p>
+                  <div className="flex items-center justify-center min-h-[400px] border border-[#DCEAF0] rounded-xl bg-[#F8FBFC]">
+                    <div className="text-[#6F7F8E] text-center">
+                      <p className="mb-2 font-medium">No template selected</p>
+                      <p className="text-xs">Select an email template to see the preview</p>
                     </div>
                   </div>
                 )}
@@ -726,7 +733,6 @@ const Email = () => {
             </Card>
           </div>
         </div>
-      </div>
     </div>
   );
 };

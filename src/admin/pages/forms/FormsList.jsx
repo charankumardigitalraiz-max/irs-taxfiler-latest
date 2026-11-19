@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Search, Eye, CheckCircle, Clock, Archive, UserPlus, Mail, Trash2 } from 'lucide-react';
+import { Search, Eye, CheckCircle, Clock, Archive, UserPlus, Mail, Trash2, ChevronDown } from 'lucide-react';
+import Header from '../../components/layout/Header';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
 import Badge from '../../components/common/Badge';
@@ -270,26 +271,26 @@ const FormsList = () => {
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-sm font-medium text-gray-500">Address</label>
-              <p className="text-sm text-gray-900">{selectedSubmission.address || '—'}</p>
+              <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">Address</label>
+              <p className="text-sm text-[#1F4264] font-medium">{selectedSubmission.address || '—'}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500">City</label>
-              <p className="text-sm text-gray-900">{selectedSubmission.city || '—'}</p>
+              <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">City</label>
+              <p className="text-sm text-[#1F4264] font-medium">{selectedSubmission.city || '—'}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500">State</label>
-              <p className="text-sm text-gray-900">{selectedSubmission.state || '—'}</p>
+              <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">State</label>
+              <p className="text-sm text-[#1F4264] font-medium">{selectedSubmission.state || '—'}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500">ZIP Code</label>
-              <p className="text-sm text-gray-900">{selectedSubmission.zipCode || '—'}</p>
+              <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">ZIP Code</label>
+              <p className="text-sm text-[#1F4264] font-medium">{selectedSubmission.zipCode || '—'}</p>
             </div>
           </div>
           {selectedSubmission.additionalInfo && (
             <div>
-              <label className="text-sm font-medium text-gray-500">Additional Information</label>
-              <p className="text-sm text-gray-900">{selectedSubmission.additionalInfo}</p>
+              <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">Additional Information</label>
+              <p className="text-sm text-[#1F4264] font-medium">{selectedSubmission.additionalInfo}</p>
             </div>
           )}
         </div>
@@ -300,17 +301,17 @@ const FormsList = () => {
       return (
         <div className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-gray-500">Country Code</label>
-            <p className="text-sm text-gray-900">{selectedSubmission.countryCode || '—'}</p>
+            <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">Country Code</label>
+            <p className="text-sm text-[#1F4264] font-medium">{selectedSubmission.countryCode || '—'}</p>
           </div>
           <div>
-            <label className="text-sm font-medium text-gray-500">Preferred Time</label>
-            <p className="text-sm text-gray-900">{selectedSubmission.preferredTime || '—'}</p>
+            <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">Preferred Time</label>
+            <p className="text-sm text-[#1F4264] font-medium">{selectedSubmission.preferredTime || '—'}</p>
           </div>
           {selectedSubmission.message && (
             <div>
-              <label className="text-sm font-medium text-gray-500">Message</label>
-              <p className="text-sm text-gray-900">{selectedSubmission.message}</p>
+              <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">Message</label>
+              <p className="text-sm text-[#1F4264] font-medium">{selectedSubmission.message}</p>
             </div>
           )}
         </div>
@@ -321,13 +322,13 @@ const FormsList = () => {
       return (
         <div className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-gray-500">Subject</label>
-            <p className="text-sm text-gray-900">{selectedSubmission.subject || '—'}</p>
+            <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">Subject</label>
+            <p className="text-sm text-[#1F4264] font-medium">{selectedSubmission.subject || '—'}</p>
           </div>
           {selectedSubmission.message && (
             <div>
-              <label className="text-sm font-medium text-gray-500">Message</label>
-              <p className="text-sm text-gray-900 whitespace-pre-wrap">{selectedSubmission.message}</p>
+              <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">Message</label>
+              <p className="text-sm text-[#1F4264] font-medium whitespace-pre-wrap">{selectedSubmission.message}</p>
             </div>
           )}
         </div>
@@ -338,19 +339,19 @@ const FormsList = () => {
       return (
         <div className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-gray-500">Referral Code</label>
-            <p className="text-sm text-gray-900 font-mono">{selectedSubmission.referralCode || '—'}</p>
+            <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">Referral Code</label>
+            <p className="text-sm text-[#1F4264] font-mono font-medium">{selectedSubmission.referralCode || '—'}</p>
           </div>
           {selectedSubmission.friends && selectedSubmission.friends.length > 0 && (
             <div>
-              <label className="text-sm font-medium text-gray-500">Referred Friends</label>
+              <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">Referred Friends</label>
               <div className="mt-2 space-y-2">
                 {selectedSubmission.friends.map((friend, index) => (
-                  <div key={index} className="p-3 bg-gray-50 rounded-lg flex items-center justify-between">
+                  <div key={index} className="p-3 bg-[#F8FBFC] border border-[#DCEAF0] rounded-xl flex items-center justify-between">
                     <div className="flex-1">
-                      <p className="text-sm font-medium text-gray-900">{friend.name}</p>
-                      <p className="text-xs text-gray-600">{friend.email}</p>
-                      {friend.phone && <p className="text-xs text-gray-600">{friend.phone}</p>}
+                      <p className="text-sm font-semibold text-[#1F4264]">{friend.name}</p>
+                      <p className="text-xs text-[#6F7F8E] font-medium">{friend.email}</p>
+                      {friend.phone && <p className="text-xs text-[#6F7F8E] font-medium">{friend.phone}</p>}
                     </div>
                     <Button
                       variant="outline"
@@ -374,102 +375,112 @@ const FormsList = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-gray-500">Loading form submissions...</div>
+        <div className="text-[#6F7F8E] font-medium text-sm">Loading form submissions...</div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold text-gray-900">{formTypeLabels[formType] || 'Form Submissions'}</h1>
-          <p className="text-sm text-gray-600 mt-1">View and manage {formTypeLabels[formType]?.toLowerCase()}</p>
-        </div>
-      </div>
-
-      <Card>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Search by name, email, or phone..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            />
-          </div>
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
-          >
-            <option value="">All Status</option>
-            <option value="new">New</option>
-            <option value="in-progress">In Progress</option>
-            <option value="completed">Completed</option>
-            <option value="archived">Archived</option>
-          </select>
-          {selectedSubmissionIds.length > 0 && (
-            <Button
-              variant="danger"
-              onClick={handleBulkDelete}
-              leftIcon={<Trash2 className="w-4 h-4" />}
-            >
-              Delete Selected ({selectedSubmissionIds.length})
-            </Button>
-          )}
-        </div>
-      </Card>
+    <div className="space-y-6">
+      <Header
+        title={formTypeLabels[formType] || 'Form Submissions'}
+        subtitle={`View and manage ${formTypeLabels[formType]?.toLowerCase() || 'form submissions'}`}
+      />
 
       <Card padding="none">
+        {/* Filters */}
+        <div className="p-4 sm:p-5 border-b border-[#E6F0F5] bg-white">
+          <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 lg:items-center justify-between">
+            {/* Search */}
+            <div className="relative w-full sm:w-64 md:w-72 shrink-0">
+              <Search className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-[#8BA0B2] w-4 h-4" />
+              <input
+                type="text"
+                placeholder="Search by name, email, or phone..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full h-10 pl-10 pr-4 text-sm text-[#1F4264] placeholder-[#8BA0B2] bg-white border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] transition-all shadow-xs"
+              />
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto">
+              {/* Status filter */}
+              <div className="relative w-full sm:w-48 shrink-0">
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className="w-full h-10 pl-3.5 pr-9 text-sm text-[#1F4264] border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white transition-all cursor-pointer appearance-none shadow-xs"
+                >
+                  <option value="">All Status</option>
+                  <option value="new">New</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="completed">Completed</option>
+                  <option value="archived">Archived</option>
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2] pointer-events-none" />
+              </div>
+
+              {selectedSubmissionIds.length > 0 && (
+                <Button
+                  variant="danger"
+                  onClick={handleBulkDelete}
+                  leftIcon={<Trash2 className="w-4 h-4" />}
+                  className="h-10 px-4 text-sm min-w-[115px] justify-center shadow-xs"
+                >
+                  Delete Selected ({selectedSubmissionIds.length})
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Table */}
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="min-w-full divide-y divide-[#E6F0F5]">
             <thead>
-              <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="py-3 px-4 text-left">
+              <tr className="border-b border-[#DCEAF0] bg-[#F8FBFC]">
+                <th className="py-3 px-4 sm:px-6 text-left">
                   <input
                     type="checkbox"
                     checked={filteredSubmissions.length > 0 && selectedSubmissionIds.length === filteredSubmissions.length}
                     onChange={(e) => handleSelectAllSubmissions(e.target.checked)}
-                    className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                    className="w-4 h-4 text-[#127EAB] rounded border-[#CCDCE1] focus:ring-[#127EAB] cursor-pointer"
                   />
                 </th>
-                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Name</th>
-                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Email</th>
-                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Phone</th>
-                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Status</th>
-                <th className="text-left py-3 px-4 text-sm font-semibold text-gray-700">Submitted</th>
-                <th className="text-right py-3 px-4 text-sm font-semibold text-gray-700">Actions</th>
+                <th className="text-left py-3 px-4 sm:px-6 text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Name</th>
+                <th className="text-left py-3 px-4 sm:px-6 text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Email</th>
+                <th className="text-left py-3 px-4 sm:px-6 text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Phone</th>
+                <th className="text-left py-3 px-4 sm:px-6 text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Status</th>
+                <th className="text-left py-3 px-4 sm:px-6 text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Submitted</th>
+                <th className="text-right py-3 px-4 sm:px-6 text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="bg-white divide-y divide-[#E6F0F5]">
               {filteredSubmissions.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="text-center py-8 text-gray-500">No submissions found</td>
+                  <td colSpan={7} className="text-center py-12 text-[#6F7F8E] font-medium text-sm">No submissions found</td>
                 </tr>
               ) : (
                 filteredSubmissions.map((submission) => (
-                  <tr key={submission._id} className="border-b border-gray-100 hover:bg-gray-50">
-                    <td className="py-3 px-4">
+                  <tr key={submission._id} className="hover:bg-[#F4F9FB]/60 transition-colors">
+                    <td className="py-3.5 px-4 sm:px-6">
                       <input
                         type="checkbox"
                         checked={selectedSubmissionIds.includes(submission._id)}
                         onChange={() => handleSelectSubmission(submission._id)}
-                        className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                        className="w-4 h-4 text-[#127EAB] rounded border-[#CCDCE1] focus:ring-[#127EAB] cursor-pointer"
                       />
                     </td>
-                    <td className="py-3 px-4 text-sm text-gray-900 font-medium">{submission.name || '—'}</td>
-                    <td className="py-3 px-4 text-sm text-gray-600">{submission.email || '—'}</td>
-                    <td className="py-3 px-4 text-sm text-gray-600">{submission.phone || '—'}</td>
-                    <td className="py-3 px-4">
+                    <td className="py-3.5 px-4 sm:px-6 text-sm text-[#1F4264] font-medium">{submission.name || '—'}</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-sm text-[#6F7F8E] font-medium">{submission.email || '—'}</td>
+                    <td className="py-3.5 px-4 sm:px-6 text-sm text-[#6F7F8E] font-medium">{submission.phone || '—'}</td>
+                    <td className="py-3.5 px-4 sm:px-6">
                       <Badge color={getStatusColor(submission.status)} size="sm">{submission.status}</Badge>
                     </td>
-                    <td className="py-3 px-4 text-sm text-gray-600">
+                    <td className="py-3.5 px-4 sm:px-6 text-sm text-[#6F7F8E] font-medium">
                       {format(new Date(submission.createdAt), 'MMM d, yyyy')}
                     </td>
-                    <td className="py-3 px-4 text-right">
+                    <td className="py-3.5 px-4 sm:px-6 text-right">
                       <div className="flex items-center justify-end gap-1">
                         <Button
                           variant="ghost"
@@ -477,13 +488,13 @@ const FormsList = () => {
                           onClick={() => handleViewSubmission(submission)}
                           title="View Details"
                         >
-                          <Eye className="w-4 h-4" />
+                          <Eye className="w-4 h-4 text-[#127EAB]" />
                         </Button>
                         <Button
                           variant="ghost"
                           size="sm"
                           onClick={() => handleDeleteSubmission(submission._id)}
-                          className="text-red-500 hover:text-red-600 hover:bg-red-50"
+                          className="text-[#EE6450] hover:text-[#D94F3C] hover:bg-[#FEF4F2]"
                           title="Delete"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -512,48 +523,48 @@ const FormsList = () => {
           <div className="space-y-6">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-xs font-semibold text-gray-500 uppercase">Name</label>
-                <p className="text-sm text-gray-900 font-medium">{selectedSubmission.name || '—'}</p>
+                <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">Name</label>
+                <p className="text-sm text-[#1F4264] font-semibold">{selectedSubmission.name || '—'}</p>
               </div>
               <div>
-                <label className="text-xs font-semibold text-gray-500 uppercase">Email</label>
-                <p className="text-sm text-gray-900 font-medium">{selectedSubmission.email || '—'}</p>
+                <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">Email</label>
+                <p className="text-sm text-[#1F4264] font-semibold">{selectedSubmission.email || '—'}</p>
               </div>
               <div>
-                <label className="text-xs font-semibold text-gray-500 uppercase">Phone</label>
-                <p className="text-sm text-gray-900 font-medium">{selectedSubmission.phone || '—'}</p>
+                <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">Phone</label>
+                <p className="text-sm text-[#1F4264] font-semibold">{selectedSubmission.phone || '—'}</p>
               </div>
               <div>
-                <label className="text-xs font-semibold text-gray-500 uppercase">Status</label>
+                <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">Status</label>
                 <div className="mt-1">
                   <Badge color={getStatusColor(selectedSubmission.status)} size="sm">{selectedSubmission.status}</Badge>
                 </div>
               </div>
               <div>
-                <label className="text-xs font-semibold text-gray-500 uppercase">Submitted</label>
-                <p className="text-sm text-gray-900 font-medium">
+                <label className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider block mb-1">Submitted</label>
+                <p className="text-sm text-[#1F4264] font-semibold">
                   {format(new Date(selectedSubmission.createdAt), 'MMM d, yyyy h:mm a')}
                 </p>
               </div>
             </div>
 
-            <div className="border-t border-gray-200 pt-4">
-              <h3 className="text-sm font-semibold text-gray-900 mb-3">Form Specific Details</h3>
+            <div className="border-t border-[#E6F0F5] pt-4">
+              <h3 className="text-sm font-semibold text-[#1F4264] mb-3">Form Specific Details</h3>
               {renderFormDetails()}
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">Admin Notes</label>
+              <label className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-2">Admin Notes</label>
               <textarea
                 value={adminNotes}
                 onChange={(e) => setAdminNotes(e.target.value)}
                 rows={3}
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
+                className="w-full px-3 py-2 text-sm border border-[#DCEAF0] rounded-xl focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] resize-none"
                 placeholder="Add notes about this submission..."
               />
             </div>
 
-            <div className="flex flex-wrap items-center justify-end gap-3 pt-6 border-t border-gray-200">
+            <div className="flex flex-wrap items-center justify-end gap-3 pt-6 border-t border-[#E6F0F5]">
               <Button
                 variant="danger"
                 onClick={() => {
@@ -610,14 +621,14 @@ const FormsList = () => {
       >
         {selectedFriend && (
           <div className="space-y-4">
-            <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-              <p className="text-sm text-gray-600 font-medium">Email: {selectedFriend.email}</p>
-              {selectedFriend.phone && <p className="text-sm text-gray-600">Phone: {selectedFriend.phone}</p>}
+            <div className="bg-[#F8FBFC] p-4 rounded-xl border border-[#DCEAF0]">
+              <p className="text-sm text-[#1F4264] font-medium">Email: {selectedFriend.email}</p>
+              {selectedFriend.phone && <p className="text-sm text-[#6F7F8E] font-medium">Phone: {selectedFriend.phone}</p>}
             </div>
 
             {otpStep === 'send' && (
               <div className="space-y-4">
-                <p className="text-sm text-gray-700">
+                <p className="text-sm text-[#6F7F8E] font-medium">
                   Send an OTP to {selectedFriend.email} to verify and register this friend.
                 </p>
                 <Button
@@ -634,13 +645,13 @@ const FormsList = () => {
 
             {otpStep === 'verify' && (
               <div className="space-y-4">
-                <p className="text-sm text-gray-700">Enter the 6-digit OTP sent to the friend's email.</p>
+                <p className="text-sm text-[#6F7F8E] font-medium">Enter the 6-digit OTP sent to the friend's email.</p>
                 <input
                   type="text"
                   value={otpCode}
                   onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
                   placeholder="000000"
-                  className="w-full px-4 py-3 text-2xl text-center tracking-widest border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500"
+                  className="w-full px-4 py-3 text-2xl text-center tracking-widest border border-[#DCEAF0] rounded-xl focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264]"
                   maxLength={6}
                 />
                 <div className="flex gap-3">
@@ -659,8 +670,8 @@ const FormsList = () => {
 
             {otpStep === 'register' && userToRegister && (
               <div className="space-y-4">
-                <div className="bg-green-50 border border-green-200 rounded-xl p-4">
-                  <p className="text-sm text-green-800 font-semibold">✓ OTP Verified</p>
+                <div className="bg-[#E9F7FA] border border-[#127EAB]/20 rounded-xl p-4">
+                  <p className="text-sm text-[#127EAB] font-semibold">✓ OTP Verified</p>
                 </div>
                 <Button
                   variant="success"

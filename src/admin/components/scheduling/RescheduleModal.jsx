@@ -50,28 +50,28 @@ const RescheduleModal = ({ isOpen, onClose, onSubmit, meeting }) => {
     >
       <form onSubmit={handleSubmit} className="space-y-3">
         <div>
-          <label className="text-xs font-medium text-gray-700 mb-1 block">Date & Time *</label>
+          <label className="text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1 block">Date & Time *</label>
           <input
             type="datetime-local"
             value={formData.scheduledDateTime}
             onChange={(e) => setFormData({ ...formData, scheduledDateTime: e.target.value })}
-            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className="w-full px-3 py-2 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264]"
             required
           />
         </div>
 
         <div>
-          <label className="text-xs font-medium text-gray-700 mb-1 block">Notes</label>
+          <label className="text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1 block">Notes</label>
           <textarea
             value={formData.notes}
             onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
+            className="w-full px-3 py-2 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] resize-none"
             rows={3}
             placeholder="Reason for rescheduling..."
           />
         </div>
 
-        <div className="flex justify-end gap-2 pt-2 border-t border-gray-100">
+        <div className="flex justify-end gap-2 pt-2 border-t border-[#E6F0F5]">
           <Button type="button" variant="secondary" onClick={onClose} size="sm">
             Cancel
           </Button>

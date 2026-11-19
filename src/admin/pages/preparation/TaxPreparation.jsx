@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Calculator, DollarSign, FileText, Eye } from 'lucide-react';
+import { Search, Calculator, DollarSign, FileText, Eye, ChevronDown } from 'lucide-react';
 import Header from '../../components/layout/Header';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
@@ -355,27 +355,30 @@ const TaxPreparation = () => {
 
         {/* List */}
         <Card padding="none">
-          <div className="p-4 border-b border-gray-200 flex flex-col sm:flex-row gap-4">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <div className="p-4 sm:p-5 border-b border-[#E6F0F5] bg-white flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
+            <div className="relative w-full sm:w-64 md:w-72 shrink-0">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2]" />
               <input
                 type="text"
                 placeholder="Search by client name..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg"
+                className="w-full h-10 pl-10 pr-4 text-sm border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2] transition-all shadow-xs"
               />
             </div>
-            <select
-              value={phaseFilter}
-              onChange={(e) => setPhaseFilter(e.target.value)}
-              className="px-4 py-2 text-sm border border-gray-300 rounded-lg"
-            >
-              <option value="">All Phases</option>
-              <option value="phase1">Phase 1 Pending</option>
-              <option value="phase2">Phase 2 Pending</option>
-              <option value="completed">Completed</option>
-            </select>
+            <div className="relative w-full sm:w-52 shrink-0">
+              <select
+                value={phaseFilter}
+                onChange={(e) => setPhaseFilter(e.target.value)}
+                className="w-full h-10 pl-3.5 pr-9 text-sm border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] transition-all cursor-pointer appearance-none shadow-xs"
+              >
+                <option value="">All Phases</option>
+                <option value="phase1">Phase 1 Pending</option>
+                <option value="phase2">Phase 2 Pending</option>
+                <option value="completed">Completed</option>
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2] pointer-events-none" />
+            </div>
           </div>
           <DataTable
             columns={columns}

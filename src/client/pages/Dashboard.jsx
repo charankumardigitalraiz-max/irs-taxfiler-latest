@@ -24,6 +24,8 @@ import PageLoader from '../components/common/PageLoader';
 import WorkflowProgress from '../components/workflow/WorkflowProgress';
 import { dashboardService } from '../services/dashboardService';
 import { userService } from '../services/userService';
+import { notificationService } from '../services/notificationService';
+import { initSocket } from '../services/socketService';
 import { getUser } from '../utils/auth';
 
 const Dashboard = () => {
@@ -32,6 +34,7 @@ const Dashboard = () => {
   const [financialYear, setFinancialYear] = useState('2025');
   const [user, setUser] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
+  const [recentActivities, setRecentActivities] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,18 +42,45 @@ const Dashboard = () => {
     setUser(currentUser);
     loadDashboardData();
     loadUserProfile();
+    loadRecentActivities();
   }, []);
 
-  // Reload profile when component becomes visible (user might have updated their info)
+  // Reload profile and notifications when component becomes visible
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
         loadUserProfile();
         loadDashboardData();
+        loadRecentActivities();
       }
     };
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, []);
+
+  // Real-time listener for incoming notifications & document updates to refresh activity list
+  useEffect(() => {
+    try {
+      const s = initSocket();
+      if (!s) return;
+
+      const handleRealtimeUpdate = () => {
+        loadRecentActivities();
+        loadDashboardData();
+      };
+
+      s.on('new_notification', handleRealtimeUpdate);
+      s.on('document_status_updated', handleRealtimeUpdate);
+      s.on('workflow_updated', handleRealtimeUpdate);
+      s.on('ticket_message', handleRealtimeUpdate);
+
+      return () => {
+        s.off('new_notification', handleRealtimeUpdate);
+        s.off('document_status_updated', handleRealtimeUpdate);
+        s.off('workflow_updated', handleRealtimeUpdate);
+        s.off('ticket_message', handleRealtimeUpdate);
+      };
+    } catch (_) {}
   }, []);
 
   // Listen for workflow updates (e.g., after scheduling a meeting)
@@ -58,6 +88,7 @@ const Dashboard = () => {
     const handleWorkflowUpdate = () => {
       loadUserProfile();
       loadDashboardData();
+      loadRecentActivities();
     };
     window.addEventListener('workflowUpdated', handleWorkflowUpdate);
     return () => window.removeEventListener('workflowUpdated', handleWorkflowUpdate);
@@ -122,12 +153,61 @@ const Dashboard = () => {
       hasAddress && hasContactInfo && hasIdentityVerification && hasBankDetails;
   };
 
+  const loadRecentActivities = async () => {
+    try {
+      const res = await notificationService.getNotifications({ limit: 8 });
+      if (res.success && Array.isArray(res.notifications) && res.notifications.length > 0) {
+        setRecentActivities(
+          res.notifications.map((n) => {
+            const t = (n.type || '').toUpperCase();
+            let icon = 'Bell';
+            let color = 'blue';
+
+            if (t.includes('DOCUMENT')) {
+              icon = 'FileCheck';
+              color = n.data?.status === 'approved' ? 'green' : n.data?.status === 'rejected' ? 'orange' : 'blue';
+            } else if (t.includes('TICKET') || t.includes('SUPPORT')) {
+              icon = 'MessageSquare';
+              color = 'purple';
+            } else if (t.includes('REGISTRATION')) {
+              icon = 'CheckCircle';
+              color = 'green';
+            } else if (t.includes('FILING') || t.includes('WORKFLOW')) {
+              icon = 'TrendingUp';
+              color = 'blue';
+            } else if (t.includes('PAYMENT')) {
+              icon = 'CreditCard';
+              color = 'green';
+            }
+
+            return {
+              id: n._id,
+              type: n.type,
+              title: n.title,
+              message: n.message || n.title,
+              time: n.createdAt,
+              timestamp: n.createdAt,
+              icon,
+              color,
+              link: n.link || (t.includes('DOCUMENT') ? '/client/dashboard/documents' : t.includes('TICKET') ? '/client/dashboard/support' : '/client/dashboard'),
+            };
+          })
+        );
+      }
+    } catch (err) {
+      console.warn('Failed to load recent activity notifications:', err);
+    }
+  };
+
   const loadDashboardData = async () => {
     setLoading(true);
     try {
       const response = await dashboardService.getDashboardData();
       if (response.success) {
         setDashboardData(response.data);
+        if (Array.isArray(response.data?.recentActivities) && response.data.recentActivities.length > 0) {
+          setRecentActivities((prev) => (prev.length === 0 ? response.data.recentActivities : prev));
+        }
       } else {
         console.error('Failed to load dashboard data:', response.message);
         // Set default data on error
@@ -177,28 +257,30 @@ const Dashboard = () => {
     return 'gray';
   };
 
-  // Use real recent activities from dashboard data or empty array
-  const recentActivities = dashboardData?.recentActivities || [];
-
   // Map activity types to icons and colors
   const getActivityIcon = (type) => {
-    switch (type) {
-      case 'document': return Upload;
-      case 'payment': return CreditCard;
-      case 'notification': return Calendar;
-      case 'status': return FileCheck;
-      default: return Bell;
-    }
+    const str = String(type || '').toUpperCase();
+    if (str.includes('DOCUMENT') || str.includes('FILECHECK')) return FileCheck;
+    if (str.includes('UPLOAD')) return Upload;
+    if (str.includes('TICKET') || str.includes('SUPPORT') || str.includes('MESSAGESQUARE')) return MessageSquare;
+    if (str.includes('REGISTRATION') || str.includes('CHECKCIRCLE')) return CheckCircle;
+    if (str.includes('FILING') || str.includes('WORKFLOW') || str.includes('TRENDINGUP')) return TrendingUp;
+    if (str.includes('PAYMENT') || str.includes('CREDITCARD')) return CreditCard;
+    if (str.includes('CALENDAR') || str.includes('MEETING')) return Calendar;
+    return Bell;
   };
 
-  const getActivityColor = (type) => {
-    switch (type) {
-      case 'document': return 'green';
-      case 'payment': return 'blue';
-      case 'notification': return 'purple';
-      case 'status': return 'orange';
-      default: return 'gray';
-    }
+  const getActivityColor = (type, explicitColor) => {
+    if (explicitColor) return explicitColor;
+    const str = String(type || '').toUpperCase();
+    if (str.includes('APPROVED')) return 'green';
+    if (str.includes('REJECTED')) return 'orange';
+    if (str.includes('DOCUMENT')) return 'green';
+    if (str.includes('TICKET') || str.includes('SUPPORT')) return 'purple';
+    if (str.includes('REGISTRATION')) return 'green';
+    if (str.includes('PAYMENT')) return 'green';
+    if (str.includes('FILING') || str.includes('STATUS')) return 'blue';
+    return 'blue';
   };
 
   const formatTimeAgo = (timestamp) => {
@@ -343,14 +425,33 @@ const Dashboard = () => {
     },
   ];
 
+  // Capitalize first letter of each word in user's display name
+  const getUserDisplayName = () => {
+    const raw =
+      userProfile?.fullName ||
+      (userProfile?.firstName ? `${userProfile.firstName} ${userProfile.lastName || ''}`.trim() : null) ||
+      user?.fullName ||
+      user?.name ||
+      user?.firstName ||
+      user?.email?.split('@')[0] ||
+      'User';
+
+    return String(raw)
+      .replace(/[._]/g, ' ')
+      .trim()
+      .split(/\s+/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+  };
+
   return (
     <div className="space-y-4 sm:space-y-6 irs-page-enter">
       {/* Welcome Section - Header */}
       <div className="bg-white rounded-lg shadow-[0_2px_10px_rgba(31,66,100,0.04)] px-5 py-4 border border-[#DCEAF0]">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
           <div className="flex-1 min-w-0">
-            <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight truncate">
-              {user?.fullName || user?.name || user?.email?.split('@')[0] || 'User'}
+            <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight truncate capitalize">
+              {getUserDisplayName()}
             </h2>
             <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-medium mt-0.5">
               Welcome back! Here's what's happening with your tax filing system.
@@ -499,22 +600,23 @@ const Dashboard = () => {
               ) : (
                 recentActivities.map((activity, index) => {
                   const Icon = getActivityIcon(activity.type || activity.icon);
-                  const color = getActivityColor(activity.type || activity.icon);
+                  const color = getActivityColor(activity.type || activity.icon, activity.color);
                   return (
                     <div
                       key={activity.id || index}
-                      className="flex items-start gap-4 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                      onClick={() => activity.link && navigate(activity.link)}
+                      className={`flex items-start gap-3.5 p-3 rounded-lg hover:bg-[#F4F9FB] transition-colors ${activity.link ? 'cursor-pointer' : ''}`}
                     >
                       <div
-                        className={`p-2 rounded-lg ${color === 'green' && 'bg-[#ECFDF5]'
-                          } ${color === 'blue' && 'bg-[#E9F7FA]'} ${color === 'purple' && 'bg-[#EFF4F9]'
-                          } ${color === 'orange' && 'bg-[#FEF4F2]'} ${color === 'gray' && 'bg-slate-100'
+                        className={`p-2 rounded-lg shrink-0 ${color === 'green' ? 'bg-[#ECFDF5]' : ''
+                          } ${color === 'blue' ? 'bg-[#E9F7FA]' : ''} ${color === 'purple' ? 'bg-[#EFF4F9]' : ''
+                          } ${color === 'orange' ? 'bg-[#FEF4F2]' : ''} ${color === 'gray' ? 'bg-slate-100' : ''
                           }`}
                       >
                         <Icon
-                          className={`w-4 h-4 ${color === 'green' && 'text-[#059669]'
-                            } ${color === 'blue' && 'text-[#127EAB]'} ${color === 'purple' && 'text-[#1F4264]'
-                            } ${color === 'orange' && 'text-[#EE6450]'} ${color === 'gray' && 'text-slate-600'
+                          className={`w-4 h-4 ${color === 'green' ? 'text-[#059669]' : ''
+                            } ${color === 'blue' ? 'text-[#127EAB]' : ''} ${color === 'purple' ? 'text-[#1F4264]' : ''
+                            } ${color === 'orange' ? 'text-[#EE6450]' : ''} ${color === 'gray' ? 'text-slate-600' : ''
                             }`}
                         />
                       </div>
@@ -529,7 +631,7 @@ const Dashboard = () => {
             </div>
             <div className="mt-4 pt-4 border-t border-[#E6F0F5]">
               <button
-                onClick={() => navigate('/client/dashboard/support')}
+                onClick={() => navigate('/client/dashboard/documents')}
                 className="text-sm text-[#127EAB] hover:text-[#1F4264] font-semibold flex items-center gap-1 transition-colors cursor-pointer"
               >
                 View all notifications

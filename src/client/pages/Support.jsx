@@ -191,7 +191,7 @@ const Support = () => {
         </a>
 
         <a
-          href="tel:+14152231315"
+          href="tel:+14044244191"
           className="block group rounded-lg focus:outline-none focus:ring-2 focus:ring-[#059669]/30"
         >
           <Card className="h-full group-hover:shadow-md group-hover:border-[#059669]/40 transition-all cursor-pointer">
@@ -200,7 +200,6 @@ const Support = () => {
                 <p className="text-xs font-medium text-[#6F7F8E]">Phone Support</p>
                 <span
                   className="block text-[18px] font-semibold text-[#059669] group-hover:text-[#047857] mt-1 truncate transition-colors"
-                  title="+1 (415) 223-1315"
                 >
                   +1 (415) 223-1315
                 </span>

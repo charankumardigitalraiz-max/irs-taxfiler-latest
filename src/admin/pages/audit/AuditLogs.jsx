@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { format } from 'date-fns';
-import { Search, Filter, Download, Clock, User, FileText, RefreshCw, Trash2, AlertTriangle } from 'lucide-react';
+import { Search, Filter, Download, Clock, User, FileText, RefreshCw, Trash2, AlertTriangle, ChevronDown } from 'lucide-react';
 import Modal from '../../components/common/Modal';
 import Header from '../../components/layout/Header';
 import Card from '../../components/common/Card';
@@ -136,101 +136,109 @@ const AuditLogs = () => {
         }
       />
 
-      < div className="p-6 space-y-6" >
+      <div className="space-y-6">
         {/* Filters */}
-        < Card padding="none" >
-          <div className="p-4 border-b border-gray-200 flex flex-col sm:flex-row gap-4">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+        <Card padding="none">
+          <div className="p-4 sm:p-5 border-b border-[#E6F0F5] bg-white flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
+            <div className="relative w-full sm:w-64 md:w-72 shrink-0">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2]" />
               <input
                 type="text"
                 placeholder="Search by entity or admin..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg"
+                className="w-full h-10 pl-10 pr-4 text-sm border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2] transition-all shadow-xs"
               />
             </div>
-            <select
-              value={actionFilter}
-              onChange={(e) => setActionFilter(e.target.value)}
-              className="px-4 py-2 text-sm border border-gray-300 rounded-lg"
-            >
-              <option value="">All Actions</option>
-              {ACTIONS.map((action) => (
-                <option key={action} value={action}>
-                  {action.replace(/_/g, ' ')}
-                </option>
-              ))}
-            </select>
-            <select
-              value={entityFilter}
-              onChange={(e) => setEntityFilter(e.target.value)}
-              className="px-4 py-2 text-sm border border-gray-300 rounded-lg"
-            >
-              <option value="">All Entities</option>
-              {ENTITIES.map((entity) => (
-                <option key={entity} value={entity}>
-                  {entity}
-                </option>
-              ))}
-            </select>
+            <div className="flex flex-wrap sm:flex-nowrap gap-3 items-center">
+              <div className="relative w-full sm:w-44 shrink-0">
+                <select
+                  value={actionFilter}
+                  onChange={(e) => setActionFilter(e.target.value)}
+                  className="w-full h-10 pl-3.5 pr-9 text-sm border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] transition-all cursor-pointer appearance-none shadow-xs"
+                >
+                  <option value="">All Actions</option>
+                  {ACTIONS.map((action) => (
+                    <option key={action} value={action}>
+                      {action.replace(/_/g, ' ')}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2] pointer-events-none" />
+              </div>
+              <div className="relative w-full sm:w-44 shrink-0">
+                <select
+                  value={entityFilter}
+                  onChange={(e) => setEntityFilter(e.target.value)}
+                  className="w-full h-10 pl-3.5 pr-9 text-sm border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] transition-all cursor-pointer appearance-none shadow-xs"
+                >
+                  <option value="">All Entities</option>
+                  {ENTITIES.map((entity) => (
+                    <option key={entity} value={entity}>
+                      {entity}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2] pointer-events-none" />
+              </div>
+            </div>
           </div>
 
           {/* Logs List */}
-          <div className="divide-y divide-gray-200 min-h-[400px]">
+          <div className="divide-y divide-[#E6F0F5] min-h-[400px]">
             {logs.length > 0 && (
-              <div className="px-4 py-2 bg-gray-50 border-b border-gray-200 flex items-center gap-3">
+              <div className="px-4 py-2.5 bg-[#F8FBFC] border-b border-[#DCEAF0] flex items-center gap-3">
                 <input
                   type="checkbox"
-                  className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                  className="w-4 h-4 text-[#127EAB] rounded border-[#CCDCE1] focus:ring-[#127EAB] cursor-pointer"
                   checked={logs.length > 0 && selectedLogs.length === logs.length}
                   onChange={toggleSelectAll}
                 />
-                <span className="text-xs font-medium text-gray-500">Select All</span>
+                <span className="text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Select All</span>
               </div>
             )}
             {loading && logs.length === 0 ? (
-              <div className="flex items-center justify-center py-20 text-gray-500">
-                <RefreshCw className="w-8 h-8 animate-spin text-primary-600 mr-3" />
+              <div className="flex items-center justify-center py-20 text-[#6F7F8E]">
+                <RefreshCw className="w-8 h-8 animate-spin text-[#127EAB] mr-3" />
                 <span>Loading audit logs...</span>
               </div>
             ) : logs.length === 0 ? (
-              <div className="text-center py-12 text-gray-500">
+              <div className="text-center py-12 text-[#6F7F8E] font-medium text-sm">
                 No audit logs found
               </div>
             ) : (
               logs.map((log) => (
-                <div key={log._id} className={`p-4 hover:bg-gray-50 transition-colors flex items-start gap-3 ${loading ? 'opacity-50' : ''}`}>
+                <div key={log._id} className={`p-4 sm:p-5 hover:bg-[#F4F9FB]/60 transition-colors flex items-start gap-3.5 ${loading ? 'opacity-50' : ''}`}>
                   <input
                     type="checkbox"
-                    className="mt-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                    className="mt-1 w-4 h-4 text-[#127EAB] rounded border-[#CCDCE1] focus:ring-[#127EAB] cursor-pointer"
                     checked={selectedLogs.includes(log._id)}
                     onChange={() => toggleSelectLog(log._id)}
                   />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-4">
-                      <div className="flex items-start gap-4 flex-1">
-                        <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <FileText className="w-5 h-5 text-gray-500" />
+                      <div className="flex items-start gap-3.5 flex-1">
+                        <div className="w-10 h-10 bg-[#E9F7FA] border border-[#127EAB]/20 rounded-lg flex items-center justify-center shrink-0">
+                          <FileText className="w-5 h-5 text-[#127EAB]" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
                             <Badge color={actionColors[log.action] || 'gray'} size="sm">
                               {log.action?.replace(/_/g, ' ')}
                             </Badge>
-                            <span className="text-sm text-gray-500">on</span>
+                            <span className="text-xs text-[#8BA0B2]">on</span>
                             <Badge color="gray" size="sm">
                               {log.module}
                             </Badge>
                           </div>
-                          <p className="font-medium text-gray-900 mt-1 truncate">
+                          <p className="font-semibold text-sm sm:text-base text-[#1F4264] mt-1 truncate">
                             {log.entityName || log.details}
                           </p>
                         </div>
                       </div>
                       <button
                         onClick={() => setDeleteModal({ isOpen: true, logId: log._id, isBulk: false })}
-                        className="p-2 text-gray-400 hover:text-red-600 transition-colors"
+                        className="p-1.5 text-[#8BA0B2] hover:text-[#EE6450] hover:bg-[#FEF4F2] rounded-md transition-colors cursor-pointer"
                         title="Delete Log"
                       >
                         <Trash2 className="w-4 h-4" />

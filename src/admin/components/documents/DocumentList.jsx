@@ -34,7 +34,7 @@ const DocumentList = ({
 
   if (!documents || documents.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-500">
+      <div className="text-center py-12 text-[#6F7F8E] font-medium text-sm">
         No documents found
       </div>
     );
@@ -42,34 +42,24 @@ const DocumentList = ({
 
   return (
     <div className="overflow-x-auto">
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+      <table className="min-w-full divide-y divide-[#E6F0F5]">
+        <thead className="bg-[#F8FBFC] border-b border-[#DCEAF0]">
           <tr>
-            <th className="table-header">Actions</th>
-            <th className="table-header">Document</th>
-            {showUserColumn && <th className="table-header">User</th>}
-            <th className="table-header">Type</th>
-            <th className="table-header">Status</th>
-            <th className="table-header">Uploaded</th>
-            <th className="table-header">Actions</th>
-
+            <th className="px-4 py-3 text-left text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Actions</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Document</th>
+            {showUserColumn && <th className="px-4 py-3 text-left text-xs font-semibold text-[#1F4264] uppercase tracking-wider">User</th>}
+            <th className="px-4 py-3 text-left text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Type</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Status</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Uploaded</th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="bg-white divide-y divide-[#E6F0F5]">
           {documents.map((doc) => {
             const StatusIcon = statusConfig[doc.status]?.icon || Clock;
             return (
-              <tr key={doc.id} className="hover:bg-gray-50">
-                <td className="table-cell">
+              <tr key={doc.id} className="hover:bg-[#F8FBFC] transition-colors">
+                <td className="px-4 py-3.5 whitespace-nowrap">
                   <div className="flex items-center gap-1">
-                    {/* <Button
-                      size="sm"
-                      variant="ghost"
-                      onClick={() => onPreview?.(doc)}
-                      title="Preview"
-                    >
-                      <Eye className="w-4 h-4" />
-                    </Button> */}
                     <Button
                       size="sm"
                       variant="ghost"
@@ -79,6 +69,7 @@ const DocumentList = ({
                         if (success) setDownloadSuccessDoc(doc);
                       }}
                       title="Download"
+                      className="text-[#127EAB] hover:text-[#0E668B] hover:bg-[#E9F7FA]"
                     >
                       <Download className="w-4 h-4" />
                     </Button>
@@ -87,7 +78,7 @@ const DocumentList = ({
                         <Button
                           size="sm"
                           variant="ghost"
-                          className="text-green-600 hover:bg-green-50"
+                          className="text-emerald-600 hover:bg-emerald-50"
                           onClick={() => onApprove?.(doc.id)}
                           title="Approve"
                         >
@@ -96,7 +87,7 @@ const DocumentList = ({
                         <Button
                           size="sm"
                           variant="ghost"
-                          className="text-red-600 hover:bg-red-50"
+                          className="text-[#EE6450] hover:bg-[#FEF4F2]"
                           onClick={() => onReject?.(doc.id)}
                           title="Reject"
                         >
@@ -104,75 +95,45 @@ const DocumentList = ({
                         </Button>
                       </>
                     )}
-                    {/* <Button
-                      size="sm"
-                      variant="ghost"
-                      className="text-red-600 hover:bg-red-50"
-                      onClick={() => onDelete?.(doc.id)}
-                      title="Delete"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button> */}
                   </div>
                 </td>
-                <td className="table-cell">
+                <td className="px-4 py-3.5">
                   <div className="flex items-center gap-3" >
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <FileText className="w-5 h-5 text-blue-600" />
+                    <div className="w-9 h-9 bg-[#E9F7FA] border border-[#127EAB]/20 rounded-xl flex items-center justify-center shrink-0">
+                      <FileText className="w-4 h-4 text-[#127EAB]" />
                     </div>
                     <div>
                       <p
-                        className="font-medium text-blue-600 cursor-pointer hover:text-blue-800"
+                        className="font-medium text-xs sm:text-sm text-[#127EAB] cursor-pointer hover:underline"
                         onClick={() => onPreview?.(doc)}
                       >
                         {doc.fileName}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-[11px] text-[#8BA0B2] font-medium">
                         {(doc.fileSize / 1024).toFixed(1)} KB
                       </p>
                     </div>
                   </div>
                 </td>
                 {showUserColumn && (
-                  <td className="table-cell">
-                    <span className="text-gray-900">{doc.user?.fullName || '-'}</span>
+                  <td className="px-4 py-3.5 text-xs sm:text-sm font-semibold text-[#1F4264]">
+                    {doc.user?.fullName || '-'}
                   </td>
                 )}
-                <td className="table-cell">
-                  <span className="text-gray-600">
-                    {DOCUMENT_TYPES[doc.documentType] || doc.documentType}
-                  </span>
+                <td className="px-4 py-3.5 text-xs sm:text-sm text-[#6F7F8E] font-medium">
+                  {DOCUMENT_TYPES[doc.documentType] || doc.documentType}
                 </td>
-                <td className="table-cell">
+                <td className="px-4 py-3.5">
                   <Badge color={statusConfig[doc.status]?.color || 'gray'} dot>
                     {doc.status}
                   </Badge>
                   {doc.status === 'REJECTED' && doc.rejectionReason && (
-                    <p className="text-xs text-red-600 mt-1">{doc.rejectionReason}</p>
+                    <p className="text-xs text-[#EE6450] mt-1">{doc.rejectionReason}</p>
                   )}
                 </td>
-                <td className="table-cell">
-                  <span className="text-gray-500">
-                    {format(new Date(doc.createdAt), 'MMM d, yyyy')}
-                  </span>
+                <td className="px-4 py-3.5 text-xs sm:text-sm text-[#6F7F8E] font-medium whitespace-nowrap">
+                  {format(new Date(doc.createdAt), 'MMM d, yyyy')}
                 </td>
-
-
-                <td className="table-cell">
-                  <div className="flex items-center gap-1">
-
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      className="text-red-600 hover:bg-red-50"
-                      onClick={() => onDelete?.(doc.id)}
-                      title="Delete"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </td>
-
               </tr>
             );
           })}
@@ -188,18 +149,18 @@ const DocumentList = ({
         showClose={false}
       >
         <div className="text-center p-6">
-          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="w-10 h-10 text-green-500" />
+          <div className="w-16 h-16 bg-[#E9F7FA] border border-[#127EAB]/25 rounded-full flex items-center justify-center mx-auto mb-4 text-[#127EAB]">
+            <CheckCircle className="w-8 h-8 text-[#127EAB]" />
           </div>
-          <h3 className="text-2xl font-semibold text-gray-900 mb-2">Download Complete!</h3>
-          <p className="text-gray-500 mb-8">
-            The document <span className="font-medium text-gray-900">{downloadSuccessDoc?.fileName}</span> has been saved to your device.
+          <h3 className="text-xl font-semibold text-[#1F4264] mb-2">Download Complete!</h3>
+          <p className="text-sm text-[#6F7F8E] mb-6">
+            The document <span className="font-semibold text-[#1F4264]">{downloadSuccessDoc?.fileName}</span> has been saved to your device.
           </p>
           <Button
             className="w-full justify-center"
             onClick={() => setDownloadSuccessDoc(null)}
           >
-            Awesome!
+            Done
           </Button>
         </div>
       </Modal>

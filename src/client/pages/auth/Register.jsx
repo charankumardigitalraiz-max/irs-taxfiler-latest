@@ -4,6 +4,7 @@ import { UserPlus, ArrowLeft, ArrowRight, CheckCircle2, Shield, Clock, FileCheck
 import Input from '../../components/common/Input';
 import { authService } from '../../services/authService';
 import { setAuthToken, setUser, getUser } from '../../utils/auth';
+import { speakWelcome } from '../../utils/voiceAssistant';
 import Logo from '/irs-logo.png';
 
 const Register = () => {
@@ -156,8 +157,12 @@ const Register = () => {
       if (response.success) {
         setAuthToken(response.token);
         setUser(response.user);
+        sessionStorage.setItem('justLoggedIn', 'true');
+        sessionStorage.setItem('isNewUser', 'true');
         // Clear referral code from sessionStorage after successful registration
         sessionStorage.removeItem('pendingReferralCode');
+        const displayName = response.user?.firstName || formData.firstName || '';
+        speakWelcome(displayName, true);
         navigate('/client/dashboard');
       } else {
         setErrors({ submit: response.message || 'Registration failed. Please try again.' });

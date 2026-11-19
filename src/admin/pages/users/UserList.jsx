@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Search, Download, Eye, Phone, Mail, Send, ChevronLeft, ChevronRight, Trash2 } from 'lucide-react';
+import { Search, Download, Eye, Phone, Mail, Send, ChevronLeft, ChevronRight, ChevronDown, Trash2 } from 'lucide-react';
 import Header from '../../components/layout/Header';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
@@ -314,38 +314,39 @@ const UserList = ({ userType }) => {
           ) : (
             <Card padding="none">
               {/* Search */}
-              <div className="p-4 border-b border-gray-200">
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <div className="relative flex-1">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <div className="p-4 sm:p-5 border-b border-[#E6F0F5] bg-white">
+                <div className="flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
+                  <div className="relative w-full sm:w-64 md:w-72 shrink-0">
+                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2]" />
                     <input
                       type="text"
                       placeholder="Search by email or phone..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                      className="w-full h-10 pl-10 pr-4 text-sm border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2] transition-all shadow-xs"
                     />
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3">
                     {selectedUserIds.length > 0 && (
                       <Button
                         variant="danger"
                         size="sm"
                         onClick={handleBulkDelete}
                         leftIcon={<Trash2 className="w-4 h-4" />}
+                        className="h-10 px-4 min-w-[115px] justify-center shadow-xs"
                       >
                         Delete ({selectedUserIds.length})
                       </Button>
                     )}
                     {users.length > 0 && (
-                      <div className="flex items-center gap-2 ml-2">
+                      <div className="flex items-center gap-2">
                         <input
                           type="checkbox"
                           checked={selectedUserIds.length === users.length && users.length > 0}
                           onChange={(e) => handleSelectAll(e.target.checked)}
-                          className="w-4 h-4 text-primary-600 rounded border-gray-300 focus:ring-primary-500"
+                          className="w-4 h-4 text-[#127EAB] rounded border-[#CCDCE1] focus:ring-[#127EAB] cursor-pointer"
                         />
-                        <span className="text-sm text-gray-600">Select All</span>
+                        <span className="text-sm text-[#1F4264] font-medium">Select All</span>
                       </div>
                     )}
                   </div>
@@ -353,16 +354,16 @@ const UserList = ({ userType }) => {
               </div>
 
               {/* User List */}
-              <div className="divide-y divide-gray-200">
+              <div className="divide-y divide-[#E6F0F5]">
                 {users.length === 0 ? (
-                  <div className="p-8 text-center text-gray-500">
+                  <div className="p-8 text-center text-[#6F7F8E] font-medium text-sm">
                     No {userType} users found
                   </div>
                 ) : (
                   users.map((user) => (
                     <div
                       key={user.id}
-                      className="p-4 hover:bg-gray-50 transition-colors"
+                      className="p-4 hover:bg-[#F4F9FB]/60 transition-colors"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -371,33 +372,31 @@ const UserList = ({ userType }) => {
                             checked={selectedUserIds.includes(user.id)}
                             onChange={() => handleSelectUser(user.id)}
                             onClick={(e) => e.stopPropagation()}
-                            className="w-4 h-4 text-primary-600 rounded border-gray-300 focus:ring-primary-500 mr-2"
+                            className="w-4 h-4 text-[#127EAB] rounded border-[#CCDCE1] focus:ring-[#127EAB] mr-2 cursor-pointer"
                           />
                           <div className="flex-1">
                             <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
-                                <span className="text-sm font-semibold text-primary-700">
-                                  {user.email?.charAt(0).toUpperCase() || 'U'}
-                                </span>
+                              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#1F4264] to-[#127EAB] text-white flex items-center justify-center font-semibold text-sm shadow-xs shrink-0">
+                                {user.email?.charAt(0).toUpperCase() || 'U'}
                               </div>
                               <div>
                                 <div className="flex items-center gap-3 mb-1">
-                                  <p className="font-medium text-gray-900">
+                                  <p className="font-semibold text-sm text-[#1F4264]">
                                     {user.fullName || user.email}
                                   </p>
-                                  <span className="text-xs font-mono text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
+                                  <span className="text-xs font-mono font-medium text-[#127EAB] bg-[#E9F7FA] px-2 py-0.5 rounded">
                                     ID: {user.displayId}
                                   </span>
                                 </div>
                                 <div className="flex items-center gap-4">
                                   {user.email && (
-                                    <div className="flex items-center gap-1 text-sm text-gray-500">
-                                      <Mail className="w-3 h-3" />
+                                    <div className="flex items-center gap-1.5 text-xs text-[#6F7F8E]">
+                                      <Mail className="w-3.5 h-3.5 text-[#127EAB]" />
                                       {user.email}
                                     </div>
                                   )}
                                   {user.phone && (
-                                    <div className="flex items-center gap-1 text-sm text-gray-500">
+                                    <div className="flex items-center gap-1.5 text-xs text-[#6F7F8E]">
                                       <Phone className="w-3 h-3" />
                                       {user.phone}
                                     </div>
@@ -587,43 +586,46 @@ const UserList = ({ userType }) => {
       <div className="space-y-6">
         <Card padding="none">
           {/* Filters */}
-          <div className="p-4 sm:p-6 border-b border-gray-100 bg-gray-50/50">
-            <div className="flex flex-col xl:flex-row gap-4 xl:items-center justify-between">
+          <div className="p-4 sm:p-5 border-b border-[#E6F0F5] bg-white">
+            <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 lg:items-center justify-between">
               {/* Search */}
-              <div className="relative flex-1 sm:min-w-[400px]">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <div className="relative w-full sm:w-64 md:w-72 shrink-0">
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2]" />
                 <input
                   type="text"
-                  placeholder="Search users by name, email, or ID..."
+                  placeholder="Search users by name, email..."
                   value={searchTerm}
                   onChange={handleSearchChange}
-                  className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white transition-all shadow-sm"
+                  className="w-full h-10 pl-10 pr-4 text-sm text-[#1F4264] placeholder-[#8BA0B2] bg-white border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] transition-all shadow-xs"
                 />
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 w-full xl:w-auto">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto">
                 {/* Status filter */}
-                <select
-                  value={statusFilter}
-                  onChange={handleStatusFilterChange}
-                  className="px-4 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white transition-all shadow-sm min-w-[160px]"
-                >
-                  <option value="">All Statuses</option>
-                  {Object.values(WORKFLOW_STAGES).map((stage) => (
-                    <option key={stage.key} value={stage.key}>
-                      {stage.label}
-                    </option>
-                  ))}
-                </select>
+                <div className="relative w-full sm:w-56 shrink-0">
+                  <select
+                    value={statusFilter}
+                    onChange={handleStatusFilterChange}
+                    className="w-full h-10 pl-3.5 pr-9 text-sm text-[#1F4264] border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white transition-all cursor-pointer appearance-none shadow-xs"
+                  >
+                    <option value="">All Statuses</option>
+                    {Object.values(WORKFLOW_STAGES).map((stage) => (
+                      <option key={stage.key} value={stage.key}>
+                        {stage.label}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2] pointer-events-none" />
+                </div>
 
                 {/* Bulk Actions */}
-                <div className="flex gap-2">
+                <div className="flex items-center gap-2.5 shrink-0">
                   {selectedUserIds.length > 0 && (
                     <Button
                       variant="danger"
                       onClick={handleBulkDelete}
                       leftIcon={<Trash2 className="w-4 h-4" />}
-                      className="flex-1 sm:flex-none"
+                      className="h-10 px-4 text-sm min-w-[115px] flex-1 sm:flex-none justify-center shadow-xs"
                     >
                       Delete ({selectedUserIds.length})
                     </Button>
@@ -631,7 +633,7 @@ const UserList = ({ userType }) => {
                   <Button
                     variant="secondary"
                     leftIcon={<Download className="w-4 h-4" />}
-                    className="flex-1 sm:flex-none"
+                    className="h-10 px-4 text-sm min-w-[105px] flex-1 sm:flex-none justify-center shadow-xs"
                   >
                     Export
                   </Button>

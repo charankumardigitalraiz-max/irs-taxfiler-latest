@@ -86,38 +86,38 @@ const AdminRegister = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen flex items-center justify-center bg-[#F4F9FB] py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-6">
         {/* Logo */}
         <div className="text-center">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-primary-600 rounded-xl flex items-center justify-center">
-              <Calculator className="w-7 h-7 text-white" />
-            </div>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <img src="/irsLogo.png" alt="IRS Tax Filer" className="h-10 w-auto object-contain" />
           </div>
-          <h2 className="text-3xl font-semibold text-gray-900">Create Admin Account</h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <h1 className="text-2xl font-semibold text-[#1F4264] tracking-tight">
+            Create Admin <span className="text-[#127EAB]">Account</span>
+          </h1>
+          <p className="mt-1.5 text-xs sm:text-sm text-[#6F7F8E] font-medium">
             Register a new admin user for the Tax Admin Panel
           </p>
         </div>
 
         {/* Form */}
-        <div className="bg-white py-8 px-10 shadow-sm rounded-xl border border-gray-200">
-          <form className="space-y-6" onSubmit={handleSubmit}>
+        <div className="bg-white py-8 px-6 sm:px-8 rounded-2xl border border-[#DCEAF0] shadow-[0_4px_20px_rgba(31,66,100,0.06)]">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+              <div className="bg-rose-50 border border-rose-200 text-rose-700 px-4 py-3 rounded-xl text-xs sm:text-sm">
                 {error}
               </div>
             )}
 
             {successMessage && (
-              <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg text-sm">
+              <div className="bg-[#E9F7FA] border border-[#127EAB]/30 text-[#127EAB] px-4 py-3 rounded-xl text-xs sm:text-sm">
                 {successMessage}
               </div>
             )}
 
             <div>
-              <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="fullName" className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1.5">
                 Full Name
               </label>
               <input
@@ -127,13 +127,13 @@ const AdminRegister = () => {
                 required
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2]"
                 placeholder="John Doe"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="email" className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1.5">
                 Email address
               </label>
               <input
@@ -144,13 +144,13 @@ const AdminRegister = () => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2]"
                 placeholder="admin@example.com"
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="password" className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1.5">
                 Password
               </label>
               <div className="relative">
@@ -162,18 +162,18 @@ const AdminRegister = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full pl-3.5 pr-10 py-2.5 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2]"
                   placeholder="Enter a strong password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8BA0B2] hover:text-[#1F4264]"
                 >
                   {showPassword ? (
-                    <EyeOff className="w-5 h-5" />
+                    <EyeOff className="w-4 h-4" />
                   ) : (
-                    <Eye className="w-5 h-5" />
+                    <Eye className="w-4 h-4" />
                   )}
                 </button>
               </div>
@@ -182,7 +182,7 @@ const AdminRegister = () => {
             <div>
               <label
                 htmlFor="confirmPassword"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1.5"
               >
                 Confirm Password
               </label>
@@ -195,25 +195,25 @@ const AdminRegister = () => {
                   required
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full px-4 py-3 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="w-full pl-3.5 pr-10 py-2.5 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2]"
                   placeholder="Re-enter password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8BA0B2] hover:text-[#1F4264]"
                 >
                   {showConfirmPassword ? (
-                    <EyeOff className="w-5 h-5" />
+                    <EyeOff className="w-4 h-4" />
                   ) : (
-                    <Eye className="w-5 h-5" />
+                    <Eye className="w-4 h-4" />
                   )}
                 </button>
               </div>
             </div>
 
             <div>
-              <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="role" className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1.5">
                 Role
               </label>
               <select
@@ -221,12 +221,12 @@ const AdminRegister = () => {
                 name="role"
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+                className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264]"
               >
                 <option value="admin">Admin</option>
                 <option value="staff">Staff</option>
               </select>
-              <p className="mt-1 text-xs text-gray-500">
+              <p className="mt-1 text-xs text-[#8BA0B2]">
                 In production, only super admins should be able to assign higher roles.
               </p>
             </div>
@@ -242,10 +242,10 @@ const AdminRegister = () => {
           </form>
         </div>
 
-        <div className="text-center text-sm text-gray-500">
+        <div className="text-center text-sm text-[#6F7F8E]">
           <p>
             Already have an account?{' '}
-            <Link to="/admin/login" className="text-primary-600 hover:text-primary-500 font-medium">
+            <Link to="/admin/login" className="text-[#127EAB] hover:text-[#0E668B] font-semibold">
               Back to Login
             </Link>
           </p>

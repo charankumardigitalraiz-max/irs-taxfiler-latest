@@ -1,14 +1,18 @@
 import { clsx } from 'clsx';
 
 const colorClasses = {
-  gray: 'bg-gray-100 text-gray-700',
-  blue: 'bg-blue-100 text-blue-700',
-  green: 'bg-green-100 text-green-700',
-  yellow: 'bg-yellow-100 text-yellow-700',
-  orange: 'bg-orange-100 text-orange-700',
-  red: 'bg-red-100 text-red-700',
-  purple: 'bg-background-aqua text-primary',
-  indigo: 'bg-indigo-100 text-indigo-700',
+  gray: 'bg-slate-100 text-slate-700',
+  blue: 'bg-[#E9F7FA] text-[#127EAB]',
+  green: 'bg-[#ECFDF5] text-[#059669]',
+  yellow: 'bg-[#FFFBEB] text-[#D97706]',
+  orange: 'bg-[#FEF4F2] text-[#EE6450]',
+  red: 'bg-rose-50 text-rose-700',
+  purple: 'bg-[#E9F7FA] text-[#127EAB]',
+  indigo: 'bg-[#EFF4F9] text-[#1F4264]',
+  success: 'bg-[#ECFDF5] text-[#059669]',
+  warning: 'bg-[#FFFBEB] text-[#D97706]',
+  danger: 'bg-[#FEF4F2] text-[#EE6450]',
+  primary: 'bg-[#E9F7FA] text-[#127EAB]',
 };
 
 const sizes = {
@@ -23,12 +27,15 @@ const Badge = ({
   size = 'md',
   dot = false,
   className,
+  variant,
 }) => {
+  const badgeColor = variant || color;
+
   return (
     <span
       className={clsx(
         'inline-flex items-center font-medium rounded-full',
-        colorClasses[color],
+        colorClasses[badgeColor] || colorClasses.gray,
         sizes[size],
         className
       )}
@@ -37,14 +44,18 @@ const Badge = ({
         <span
           className={clsx(
             'w-1.5 h-1.5 rounded-full mr-1.5',
-            color === 'gray' && 'bg-gray-500',
-            color === 'blue' && 'bg-blue-500',
-            color === 'green' && 'bg-green-500',
-            color === 'yellow' && 'bg-yellow-500',
-            color === 'orange' && 'bg-orange-500',
-            color === 'red' && 'bg-red-500',
-            color === 'purple' && 'bg-teal',
-            color === 'indigo' && 'bg-indigo-500'
+            badgeColor === 'gray' && 'bg-slate-500',
+            badgeColor === 'blue' && 'bg-[#127EAB]',
+            badgeColor === 'green' && 'bg-[#059669]',
+            badgeColor === 'yellow' && 'bg-[#D97706]',
+            badgeColor === 'orange' && 'bg-[#EE6450]',
+            badgeColor === 'red' && 'bg-rose-500',
+            badgeColor === 'purple' && 'bg-[#127EAB]',
+            badgeColor === 'indigo' && 'bg-[#1F4264]',
+            badgeColor === 'success' && 'bg-[#059669]',
+            badgeColor === 'warning' && 'bg-[#D97706]',
+            badgeColor === 'danger' && 'bg-[#EE6450]',
+            badgeColor === 'primary' && 'bg-[#127EAB]'
           )}
         />
       )}
@@ -54,4 +65,3 @@ const Badge = ({
 };
 
 export default Badge;
-

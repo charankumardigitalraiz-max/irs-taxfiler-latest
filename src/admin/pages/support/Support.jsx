@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Search, MessageSquare, Send, User, Clock, Filter, Plus, Trash2 } from 'lucide-react';
+import { Search, MessageSquare, Send, User, Clock, Filter, Plus, Trash2, ChevronDown } from 'lucide-react';
 import Header from '../../components/layout/Header';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
@@ -250,93 +250,101 @@ const Support = () => {
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           <Card className="p-4 rounded-xl">
-            <p className="text-xs sm:text-sm font-medium text-gray-500">Total Tickets</p>
-            <p className="text-xl sm:text-2xl font-semibold text-gray-900 mt-1">{stats.total}</p>
+            <p className="text-xs sm:text-sm font-medium text-[#6F7F8E]">Total Tickets</p>
+            <p className="text-xl sm:text-2xl font-bold text-[#1F4264] mt-1">{stats.total}</p>
           </Card>
           <Card className="p-4 rounded-xl">
-            <p className="text-xs sm:text-sm font-medium text-gray-500">Open</p>
-            <p className="text-xl sm:text-2xl font-semibold text-blue-600 mt-1">{stats.open}</p>
+            <p className="text-xs sm:text-sm font-medium text-[#6F7F8E]">Open</p>
+            <p className="text-xl sm:text-2xl font-bold text-[#127EAB] mt-1">{stats.open}</p>
           </Card>
           <Card className="p-4 rounded-xl">
-            <p className="text-xs sm:text-sm font-medium text-gray-500">In Progress</p>
-            <p className="text-xl sm:text-2xl font-semibold text-yellow-600 mt-1">{stats.inProgress}</p>
+            <p className="text-xs sm:text-sm font-medium text-[#6F7F8E]">In Progress</p>
+            <p className="text-xl sm:text-2xl font-bold text-[#D97706] mt-1">{stats.inProgress}</p>
           </Card>
           <Card className="p-4 rounded-xl">
-            <p className="text-xs sm:text-sm font-medium text-gray-500">Resolved</p>
-            <p className="text-xl sm:text-2xl font-semibold text-green-600 mt-1">{stats.resolved}</p>
+            <p className="text-xs sm:text-sm font-medium text-[#6F7F8E]">Resolved</p>
+            <p className="text-xl sm:text-2xl font-bold text-[#059669] mt-1">{stats.resolved}</p>
           </Card>
-          <Card className="p-4 rounded-xl col-span-2 sm:col-span-1 border-red-100 bg-red-50/10">
-            <p className="text-xs sm:text-sm font-medium text-gray-500">High Priority</p>
-            <p className="text-xl sm:text-2xl font-semibold text-red-600 mt-1">{stats.highPriority}</p>
+          <Card className="p-4 rounded-xl col-span-2 sm:col-span-1 border-[#FDE8E8] bg-[#FEF4F2]/50">
+            <p className="text-xs sm:text-sm font-medium text-[#6F7F8E]">High Priority</p>
+            <p className="text-xl sm:text-2xl font-bold text-[#EE6450] mt-1">{stats.highPriority}</p>
           </Card>
         </div>
 
         {/* Tickets List */}
         <Card padding="none">
-          <div className="p-3 sm:p-4 border-b border-gray-200">
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <div className="p-4 sm:p-5 border-b border-[#E6F0F5] bg-white">
+            <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 lg:items-center justify-between">
               {/* Search */}
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <div className="relative w-full sm:w-64 md:w-72 shrink-0">
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2]" />
                 <input
                   type="text"
                   placeholder="Search by ticket ID, subject, or user..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="w-full h-10 pl-10 pr-4 text-sm border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2] transition-all shadow-xs"
                 />
               </div>
 
-              {/* Status Filter */}
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-3 sm:px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white"
-              >
-                <option value="">All Status</option>
-                <option value="open">Open</option>
-                <option value="in-progress">In Progress</option>
-                <option value="resolved">Resolved</option>
-                <option value="closed">Closed</option>
-              </select>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto">
+                {/* Status Filter */}
+                <div className="relative w-full sm:w-44 shrink-0">
+                  <select
+                    value={statusFilter}
+                    onChange={(e) => setStatusFilter(e.target.value)}
+                    className="w-full h-10 pl-3.5 pr-9 text-sm border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] transition-all cursor-pointer appearance-none shadow-xs"
+                  >
+                    <option value="">All Status</option>
+                    <option value="open">Open</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="resolved">Resolved</option>
+                    <option value="closed">Closed</option>
+                  </select>
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2] pointer-events-none" />
+                </div>
 
-              {/* Priority Filter */}
-              <select
-                value={priorityFilter}
-                onChange={(e) => setPriorityFilter(e.target.value)}
-                className="px-3 sm:px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white"
-              >
-                <option value="">All Priority</option>
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
-              </select>
+                {/* Priority Filter */}
+                <div className="relative w-full sm:w-44 shrink-0">
+                  <select
+                    value={priorityFilter}
+                    onChange={(e) => setPriorityFilter(e.target.value)}
+                    className="w-full h-10 pl-3.5 pr-9 text-sm border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] transition-all cursor-pointer appearance-none shadow-xs"
+                  >
+                    <option value="">All Priority</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                  </select>
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2] pointer-events-none" />
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Tickets */}
-          <div className="divide-y divide-gray-200">
+          <div className="divide-y divide-[#E6F0F5]">
             {filteredTickets.length === 0 ? (
-              <div className="p-8 text-center text-gray-500">
+              <div className="p-12 text-center text-[#6F7F8E] font-medium text-sm">
                 No tickets found
               </div>
             ) : (
               filteredTickets.map((ticket) => (
                 <div
                   key={ticket._id || ticket.id}
-                  className="p-3 sm:p-4 hover:bg-gray-50 transition-colors"
+                  className="p-4 sm:p-5 hover:bg-[#F4F9FB]/60 transition-colors"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4">
                     <div className="flex-1 min-w-0">
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2">
-                        <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-                          <span className="text-sm font-semibold text-primary-700">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-2">
+                        <div className="w-10 h-10 bg-[#E9F7FA] border border-[#127EAB]/20 rounded-full flex items-center justify-center shrink-0">
+                          <span className="text-sm font-semibold text-[#127EAB]">
                             {ticket.user?.fullName?.charAt(0).toUpperCase() || 'U'}
                           </span>
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-1">
-                            <h4 className="font-medium text-gray-900 truncate">{ticket.subject}</h4>
+                            <h4 className="font-semibold text-sm sm:text-base text-[#1F4264] truncate">{ticket.subject}</h4>
                             <Badge color={getStatusColor(ticket.status)} size="sm">
                               {ticket.status.replace('-', ' ')}
                             </Badge>
@@ -344,7 +352,7 @@ const Support = () => {
                               {ticket.priority}
                             </Badge>
                           </div>
-                          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500">
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-[#6F7F8E]">
                             <span className="font-mono">
                               {(ticket._id || ticket.id || '').toString().slice(-6) || '—'}
                             </span>

@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
+import Header from '../../components/layout/Header';
 import Input from '../../../shared/components/common/Input';
 import { settingsService } from '../../services/settingsService';
 import { useToast } from '../../hooks/useToast';
@@ -368,14 +369,10 @@ const ContentSettings = () => {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold text-gray-900">Content Settings</h1>
-          <p className="text-sm text-gray-500 mt-1">
-            Manage advanced tax filing offers, terms &amp; conditions, privacy policy, and static content
-          </p>
-        </div>
-      </div>
+      <Header
+        title="Content Settings"
+        subtitle="Manage advanced tax filing offers, terms & conditions, privacy policy, and static content"
+      />
 
       {/* Advanced Tax Filing Option (Enable / Disable + Date Range & Offer %) */}
       <Card>
@@ -598,22 +595,20 @@ const ContentSettings = () => {
                       onClick={() =>
                         setTotalViewsConfig((prev) => ({ ...prev, mode: 'default' }))
                       }
-                      className={`text-left p-3.5 rounded-lg border transition-all cursor-pointer ${
-                        totalViewsConfig.mode === 'default'
+                      className={`text-left p-3.5 rounded-lg border transition-all cursor-pointer ${totalViewsConfig.mode === 'default'
                           ? 'border-[#127EAB] bg-[#E9F7FA]/60 ring-1 ring-[#127EAB]/30'
                           : 'border-gray-200 bg-white hover:border-gray-300'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center justify-between gap-2">
                         <span className="text-sm font-semibold text-gray-900">
                           Default + Original Visits
                         </span>
                         <span
-                          className={`h-4 w-4 rounded-full border-2 flex items-center justify-center ${
-                            totalViewsConfig.mode === 'default'
+                          className={`h-4 w-4 rounded-full border-2 flex items-center justify-center ${totalViewsConfig.mode === 'default'
                               ? 'border-[#127EAB]'
                               : 'border-gray-300'
-                          }`}
+                            }`}
                         >
                           {totalViewsConfig.mode === 'default' && (
                             <span className="h-2 w-2 rounded-full bg-[#127EAB]" />
@@ -630,22 +625,20 @@ const ContentSettings = () => {
                       onClick={() =>
                         setTotalViewsConfig((prev) => ({ ...prev, mode: 'original' }))
                       }
-                      className={`text-left p-3.5 rounded-lg border transition-all cursor-pointer ${
-                        totalViewsConfig.mode === 'original'
+                      className={`text-left p-3.5 rounded-lg border transition-all cursor-pointer ${totalViewsConfig.mode === 'original'
                           ? 'border-[#127EAB] bg-[#E9F7FA]/60 ring-1 ring-[#127EAB]/30'
                           : 'border-gray-200 bg-white hover:border-gray-300'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center justify-between gap-2">
                         <span className="text-sm font-semibold text-gray-900">
                           Original Visits Only
                         </span>
                         <span
-                          className={`h-4 w-4 rounded-full border-2 flex items-center justify-center ${
-                            totalViewsConfig.mode === 'original'
+                          className={`h-4 w-4 rounded-full border-2 flex items-center justify-center ${totalViewsConfig.mode === 'original'
                               ? 'border-[#127EAB]'
                               : 'border-gray-300'
-                          }`}
+                            }`}
                         >
                           {totalViewsConfig.mode === 'original' && (
                             <span className="h-2 w-2 rounded-full bg-[#127EAB]" />
@@ -725,9 +718,9 @@ const ContentSettings = () => {
                         {(() => {
                           const base =
                             totalViewsConfig.mode === 'default' &&
-                            totalViewsConfig.defaultViews !== '' &&
-                            !Number.isNaN(Number(totalViewsConfig.defaultViews)) &&
-                            Number(totalViewsConfig.defaultViews) >= 0
+                              totalViewsConfig.defaultViews !== '' &&
+                              !Number.isNaN(Number(totalViewsConfig.defaultViews)) &&
+                              Number(totalViewsConfig.defaultViews) >= 0
                               ? Math.floor(Number(totalViewsConfig.defaultViews))
                               : 0;
                           const orig = totalViewsConfig.originalViews || 0;

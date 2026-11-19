@@ -238,10 +238,10 @@ ${yourName || 'Your Friend'}`;
       <div className="rounded-lg bg-gradient-to-r from-[#1F4264] via-[#17577A] to-[#127EAB] px-5 py-5 sm:px-6 sm:py-6 text-white shadow-[0_4px_16px_rgba(31,66,100,0.1)]">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div className="min-w-0">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-xs font-medium text-white mb-2.5">
+            {/* <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-xs font-medium text-white mb-2.5">
               <Star className="h-3.5 w-3.5 text-amber-300" />
               <span>Refer Friends. Earn Rewards.</span>
-            </div>
+            </div> */}
             <h1 className="text-xl sm:text-[22px] font-medium text-white tracking-tight">
               Refer &amp; Earn with IRS Tax Filer
             </h1>

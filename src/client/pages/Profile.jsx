@@ -238,12 +238,20 @@ const Profile = () => {
   }
 
   const user = getUser();
-  const displayName = (formData.firstName && formData.lastName)
+  const rawDisplayName = (formData.firstName && formData.lastName)
     ? `${formData.firstName} ${formData.lastName}`
     : formData.fullName || user?.fullName ||
     (user?.firstName && user?.lastName ? `${user.firstName} ${user.lastName}` : '') ||
     user?.email?.split('@')[0] || 'User';
-  const nameParts = displayName.split(' ');
+
+  const displayName = String(rawDisplayName)
+    .replace(/[._]/g, ' ')
+    .trim()
+    .split(/\s+/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+
+  const nameParts = displayName.split(' ').filter(Boolean);
   const initials = (formData.firstName && formData.lastName)
     ? (formData.firstName[0] + formData.lastName[0]).toUpperCase()
     : nameParts.length >= 2
@@ -277,7 +285,7 @@ const Profile = () => {
                   </button>
                 </div>
                 <h3
-                  className="text-lg font-semibold text-gray-900 mb-1 break-words leading-snug"
+                  className="text-lg font-semibold text-gray-900 mb-1 break-words leading-snug capitalize"
                   title={displayName}
                 >
                   {displayName}
@@ -300,9 +308,7 @@ const Profile = () => {
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors cursor-pointer ${activeTab === tab.id
-                          ? 'bg-primary-600 text-white'
-                          : 'text-gray-700 hover:bg-gray-100'
+                      className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all cursor-pointer ${activeTab === tab.id
                         }`}
                     >
                       <Icon className="w-5 h-5" />

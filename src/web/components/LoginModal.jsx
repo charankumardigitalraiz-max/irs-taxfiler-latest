@@ -14,6 +14,7 @@ import {
 import { Loader2, AlertCircle } from "lucide-react";
 import { authService } from "../../client/services/authService";
 import { setAuthToken, setUser } from "../../client/utils/auth";
+import { speakWelcome } from "../../client/utils/voiceAssistant";
 import Logo from "/irs-logo.webp";
 import loginAnimGif from "../../assets/admin-login-anim.gif";
 
@@ -149,7 +150,11 @@ const LoginModal = ({ isOpen, onClose }) => {
         sessionStorage.removeItem("pendingEmail");
 
         if (response.isExistingUser) {
+          sessionStorage.setItem("justLoggedIn", "true");
+          sessionStorage.removeItem("isNewUser");
           sessionStorage.removeItem("pendingReferralCode");
+          const displayName = response.user?.firstName || response.user?.fullName || response.user?.name || '';
+          speakWelcome(displayName, false);
           resetAndClose();
           navigate("/client/dashboard");
         } else {
@@ -215,7 +220,11 @@ const LoginModal = ({ isOpen, onClose }) => {
       if (response && response.success) {
         setAuthToken(response.token);
         setUser(response.user);
+        sessionStorage.setItem("justLoggedIn", "true");
+        sessionStorage.setItem("isNewUser", "true");
         sessionStorage.removeItem("pendingReferralCode");
+        const displayName = response.user?.firstName || regData.firstName || '';
+        speakWelcome(displayName, true);
         resetAndClose();
         navigate("/client/dashboard");
       } else {

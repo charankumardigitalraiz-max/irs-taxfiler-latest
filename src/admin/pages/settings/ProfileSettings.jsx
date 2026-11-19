@@ -159,8 +159,10 @@ const ProfileSettings = () => {
   };
 
   const inputClass = isEditing
-    ? 'w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500'
-    : 'w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none';
+    ? 'w-full px-3.5 py-2.5 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2] transition-all'
+    : 'w-full px-3.5 py-2.5 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl bg-[#F8FBFC] text-[#1F4264] focus:outline-none cursor-not-allowed';
+
+  const labelClass = 'block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1.5';
 
   const renderPersonalInfo = () => (
     <div className="space-y-6">
@@ -413,7 +415,7 @@ const ProfileSettings = () => {
       <div className="space-y-6">
         <Card padding="none" className="overflow-hidden">
           {/* Top Tabs */}
-          <div className="border-b border-gray-200 bg-gray-50/50">
+          <div className="border-b border-[#E6F0F5] bg-[#F8FBFC]/60">
             <nav className="flex overflow-x-auto no-scrollbar">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
@@ -422,9 +424,9 @@ const ProfileSettings = () => {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center gap-2 px-6 py-4 text-sm font-medium whitespace-nowrap transition-all border-b-2 ${isActive
-                      ? 'border-primary-500 text-primary-600 bg-white'
-                      : 'border-transparent text-gray-500 hover:text-gray-900 hover:bg-gray-100/50'
+                    className={`flex items-center gap-2 px-6 py-3.5 text-xs sm:text-sm whitespace-nowrap transition-all border-b-2 cursor-pointer ${isActive
+                        ? 'border-[#127EAB] text-[#127EAB] bg-white font-semibold'
+                        : 'border-transparent text-[#6F7F8E] hover:text-[#1F4264] hover:bg-[#E9F7FA]/40 font-medium'
                       }`}
                   >
                     <Icon className="w-4 h-4" />
@@ -439,10 +441,12 @@ const ProfileSettings = () => {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
               <div>
-                <h3 className="text-xl font-semibold text-gray-900">
+                <h3 className="text-lg sm:text-xl font-bold text-[#1F4264]">
                   {tabs.find((t) => t.id === activeTab)?.label}
                 </h3>
-                <p className="text-sm text-gray-500 mt-1">Configure your personal account settings</p>
+                <p className="text-xs sm:text-sm text-[#6F7F8E] font-medium mt-0.5">
+                  Configure your personal account settings
+                </p>
               </div>
               <div className="flex items-center gap-3">
                 {isEditing && (

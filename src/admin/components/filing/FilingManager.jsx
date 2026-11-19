@@ -43,16 +43,16 @@ const FilingManager = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <button
               onClick={() => onSelectType?.('E_FILING')}
-              className="p-6 border-2 border-gray-200 rounded-xl hover:border-primary-500 hover:bg-primary-50 transition-all text-left group"
+              className="p-6 border border-[#DCEAF0] rounded-xl hover:border-[#127EAB] hover:bg-[#E9F7FA]/30 transition-all text-left group cursor-pointer bg-white shadow-xs"
             >
-              <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-200">
-                <Upload className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 bg-[#E9F7FA] border border-[#127EAB]/25 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#D5EEF5] text-[#127EAB] transition-colors">
+                <Upload className="w-6 h-6 text-[#127EAB]" />
               </div>
-              <h3 className="font-semibold text-gray-900">E-Filing</h3>
-              <p className="text-sm text-gray-500 mt-1">
+              <h3 className="font-semibold text-base sm:text-lg text-[#1F4264]">E-Filing</h3>
+              <p className="text-xs sm:text-sm text-[#6F7F8E] mt-1 font-medium">
                 Submit electronically to the IRS. Faster processing and confirmation.
               </p>
-              <ul className="mt-3 space-y-1 text-xs text-gray-500">
+              <ul className="mt-3 space-y-1 text-xs text-[#6F7F8E] font-medium">
                 <li>• Faster processing (24-48 hours)</li>
                 <li>• Electronic confirmation</li>
                 <li>• Automatic status tracking</li>
@@ -61,16 +61,16 @@ const FilingManager = ({
 
             <button
               onClick={() => onSelectType?.('PAPER_FILING')}
-              className="p-6 border-2 border-gray-200 rounded-xl hover:border-primary-500 hover:bg-primary-50 transition-all text-left group"
+              className="p-6 border border-[#DCEAF0] rounded-xl hover:border-[#127EAB] hover:bg-[#E9F7FA]/30 transition-all text-left group cursor-pointer bg-white shadow-xs"
             >
-              <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange-200">
-                <Printer className="w-6 h-6 text-orange-600" />
+              <div className="w-12 h-12 bg-[#FEF4F2] border border-[#EE6450]/20 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#FEECE8] text-[#EE6450] transition-colors">
+                <Printer className="w-6 h-6 text-[#EE6450]" />
               </div>
-              <h3 className="font-semibold text-gray-900">Paper Filing</h3>
-              <p className="text-sm text-gray-500 mt-1">
+              <h3 className="font-semibold text-base sm:text-lg text-[#1F4264]">Paper Filing</h3>
+              <p className="text-xs sm:text-sm text-[#6F7F8E] mt-1 font-medium">
                 Print and mail to the IRS. Traditional filing method.
               </p>
-              <ul className="mt-3 space-y-1 text-xs text-gray-500">
+              <ul className="mt-3 space-y-1 text-xs text-[#6F7F8E] font-medium">
                 <li>• Manual submission required</li>
                 <li>• 4-6 weeks processing</li>
                 <li>• Client mails documents</li>
@@ -187,28 +187,28 @@ const FilingManager = ({
             ) : (
               <div className="space-y-4">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="p-4 bg-gray-50 rounded-lg">
-                    <p className="text-sm text-gray-500">Submission Date</p>
-                    <p className="font-semibold text-gray-900">
+                  <div className="p-4 bg-[#F8FBFC] border border-[#DCEAF0] rounded-xl">
+                    <p className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider">Submission Date</p>
+                    <p className="font-semibold text-sm sm:text-base text-[#1F4264] mt-1">
                       {new Date(filing.submissionDate).toLocaleDateString()}
                     </p>
                   </div>
-                  <div className="p-4 bg-gray-50 rounded-lg">
-                    <p className="text-sm text-gray-500">Confirmation #</p>
-                    <p className="font-semibold text-gray-900">
+                  <div className="p-4 bg-[#F8FBFC] border border-[#DCEAF0] rounded-xl">
+                    <p className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider">Confirmation #</p>
+                    <p className="font-semibold text-sm sm:text-base text-[#1F4264] mt-1">
                       {filing.confirmationNumber || 'Pending'}
                     </p>
                   </div>
-                  <div className="p-4 bg-gray-50 rounded-lg">
-                    <p className="text-sm text-gray-500">Status</p>
-                    <p className="font-semibold text-gray-900">
+                  <div className="p-4 bg-[#F8FBFC] border border-[#DCEAF0] rounded-xl">
+                    <p className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider">Status</p>
+                    <p className="font-semibold text-sm sm:text-base text-[#1F4264] mt-1">
                       {filing.acceptanceStatus || 'Processing'}
                     </p>
                   </div>
                   {filing.acceptanceDate && (
-                    <div className="p-4 bg-gray-50 rounded-lg">
-                      <p className="text-sm text-gray-500">Acceptance Date</p>
-                      <p className="font-semibold text-gray-900">
+                    <div className="p-4 bg-[#F8FBFC] border border-[#DCEAF0] rounded-xl">
+                      <p className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider">Acceptance Date</p>
+                      <p className="font-semibold text-sm sm:text-base text-[#1F4264] mt-1">
                         {new Date(filing.acceptanceDate).toLocaleDateString()}
                       </p>
                     </div>
@@ -235,9 +235,9 @@ const FilingManager = ({
                 )}
 
                 {filing.acceptanceStatus === 'REJECTED' && filing.rejectionReason && (
-                  <div className="p-4 bg-red-50 rounded-lg border border-red-200">
-                    <p className="font-medium text-red-700">Rejection Reason:</p>
-                    <p className="text-sm text-red-600 mt-1">{filing.rejectionReason}</p>
+                  <div className="p-4 bg-[#FEF4F2] rounded-xl border border-[#EE6450]/20">
+                    <p className="font-semibold text-[#EE6450]">Rejection Reason:</p>
+                    <p className="text-sm text-[#EE6450] mt-1">{filing.rejectionReason}</p>
                   </div>
                 )}
               </div>
@@ -256,7 +256,7 @@ const FilingManager = ({
           <Card.Content>
             <div className="space-y-4">
               <div
-                className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-primary-500 transition-colors cursor-pointer"
+                className="border border-dashed border-[#CCDCE1] hover:border-[#127EAB]/50 rounded-xl p-6 text-center transition-all cursor-pointer bg-white"
                 onClick={() => fileInputRef.current?.click()}
               >
                 <input
@@ -267,35 +267,37 @@ const FilingManager = ({
                   onChange={handleFileSelect}
                   accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
                 />
-                <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                <p className="text-sm text-gray-600">
-                  <span className="font-medium text-primary-600">Click to upload</span> or drag and drop
+                <div className="w-10 h-10 rounded-full bg-[#E9F7FA] border border-[#127EAB]/25 flex items-center justify-center mx-auto mb-2 text-[#127EAB]">
+                  <Upload className="w-5 h-5 text-[#127EAB]" />
+                </div>
+                <p className="text-sm font-semibold text-[#1F4264]">
+                  <span className="text-[#127EAB]">Click to upload</span> or drag and drop
                 </p>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-[#6F7F8E] mt-1 font-medium">
                   PDF, DOC, DOCX, JPG, PNG up to 10MB
                 </p>
               </div>
 
               {selectedFiles.length > 0 && (
                 <div className="space-y-2">
-                  <p className="text-sm font-medium text-gray-700">Selected Files:</p>
+                  <p className="text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Selected Files:</p>
                   {selectedFiles.map((file, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                      className="flex items-center justify-between p-3 bg-[#F8FBFC] border border-[#DCEAF0] rounded-xl"
                     >
                       <div className="flex items-center gap-3">
-                        <FileText className="w-5 h-5 text-gray-400" />
+                        <FileText className="w-5 h-5 text-[#127EAB]" />
                         <div>
-                          <p className="text-sm font-medium text-gray-900">{file.name}</p>
-                          <p className="text-xs text-gray-500">
+                          <p className="text-sm font-semibold text-[#1F4264]">{file.name}</p>
+                          <p className="text-xs text-[#6F7F8E] font-medium">
                             {(file.size / 1024).toFixed(1)} KB
                           </p>
                         </div>
                       </div>
                       <button
                         onClick={() => removeFile(index)}
-                        className="p-1 text-gray-400 hover:text-red-500"
+                        className="p-1 text-[#8BA0B2] hover:text-[#EE6450] transition-colors cursor-pointer"
                       >
                         <X className="w-4 h-4" />
                       </button>
@@ -339,19 +341,19 @@ const FilingManager = ({
                   return (
                     <div
                       key={doc._id || doc.id}
-                      className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200"
+                      className="flex items-center justify-between p-4 bg-[#F8FBFC] rounded-xl border border-[#DCEAF0]"
                     >
                       <div className="flex items-center gap-4 flex-1">
-                        <div className="p-2 bg-blue-100 rounded-lg">
-                          <FileText className="h-5 w-5 text-blue-600" />
+                        <div className="p-2 bg-[#E9F7FA] border border-[#127EAB]/25 rounded-xl text-[#127EAB]">
+                          <FileText className="h-5 w-5 text-[#127EAB]" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-gray-900 truncate">
+                          <p className="text-sm font-semibold text-[#1F4264] truncate">
                             {doc.fileName || doc.name || 'Unknown file'}
                           </p>
                           <div className="flex items-center gap-4 mt-1 flex-wrap">
-                            <p className="text-xs text-gray-500">{fileSize}</p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-[#6F7F8E] font-medium">{fileSize}</p>
+                            <p className="text-xs text-[#6F7F8E] font-medium">
                               Uploaded: {uploadDate}
                             </p>
                             <Badge
@@ -374,10 +376,10 @@ const FilingManager = ({
                 })}
               </div>
             ) : (
-              <div className="text-center py-8 text-gray-500">
-                <FileText className="w-12 h-12 mx-auto mb-3 text-gray-400" />
-                <p className="text-sm">No final copies uploaded yet</p>
-                <p className="text-xs text-gray-400 mt-1">
+              <div className="text-center py-8 text-[#6F7F8E]">
+                <FileText className="w-12 h-12 mx-auto mb-3 text-[#8BA0B2]" />
+                <p className="text-sm font-medium">No final copies uploaded yet</p>
+                <p className="text-xs text-[#8BA0B2] mt-1">
                   Uploaded files will appear here
                 </p>
               </div>
@@ -421,12 +423,12 @@ const FilingManager = ({
                 ].map((item) => (
                   <div
                     key={item.step}
-                    className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg"
+                    className="flex items-center gap-3 p-3 bg-[#F8FBFC] border border-[#DCEAF0] rounded-xl"
                   >
-                    <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center text-xs font-semibold text-primary-600">
+                    <div className="w-6 h-6 bg-[#E9F7FA] border border-[#127EAB]/20 rounded-full flex items-center justify-center text-xs font-semibold text-[#127EAB]">
                       {item.step}
                     </div>
-                    <span className="text-sm text-gray-700">{item.text}</span>
+                    <span className="text-sm font-medium text-[#1F4264]">{item.text}</span>
                   </div>
                 ))}
               </div>
@@ -452,12 +454,12 @@ const FilingManager = ({
             )}
 
             {filing.paperFilingConfirmed && (
-              <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-                <div className="flex items-center gap-2 text-green-700">
+              <div className="p-4 bg-[#ECFDF5] rounded-xl border border-[#059669]/20">
+                <div className="flex items-center gap-2 text-[#059669]">
                   <CheckCircle className="w-5 h-5" />
-                  <p className="font-medium">Paper Filing Completed</p>
+                  <p className="font-semibold">Paper Filing Completed</p>
                 </div>
-                <p className="text-sm text-green-600 mt-1">
+                <p className="text-sm text-[#059669] mt-1 font-medium">
                   Completed on {new Date(filing.paperFilingConfirmedAt).toLocaleDateString()}
                 </p>
               </div>
@@ -477,7 +479,7 @@ const FilingManager = ({
         <Card.Content>
           <div className="space-y-4">
             <div
-              className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-primary-500 transition-colors cursor-pointer"
+              className="border border-dashed border-[#CCDCE1] hover:border-[#127EAB]/50 rounded-xl p-6 text-center transition-all cursor-pointer bg-white"
               onClick={() => fileInputRef.current?.click()}
             >
               <input
@@ -488,35 +490,37 @@ const FilingManager = ({
                 onChange={handleFileSelect}
                 accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
               />
-              <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-              <p className="text-sm text-gray-600">
-                <span className="font-medium text-primary-600">Click to upload</span> or drag and drop
+              <div className="w-10 h-10 rounded-full bg-[#E9F7FA] border border-[#127EAB]/25 flex items-center justify-center mx-auto mb-2 text-[#127EAB]">
+                <Upload className="w-5 h-5 text-[#127EAB]" />
+              </div>
+              <p className="text-sm font-semibold text-[#1F4264]">
+                <span className="text-[#127EAB]">Click to upload</span> or drag and drop
               </p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-[#6F7F8E] mt-1 font-medium">
                 PDF, DOC, DOCX, JPG, PNG up to 10MB
               </p>
             </div>
 
             {selectedFiles.length > 0 && (
               <div className="space-y-2">
-                <p className="text-sm font-medium text-gray-700">Selected Files:</p>
+                <p className="text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Selected Files:</p>
                 {selectedFiles.map((file, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                    className="flex items-center justify-between p-3 bg-[#F8FBFC] border border-[#DCEAF0] rounded-xl"
                   >
                     <div className="flex items-center gap-3">
-                      <FileText className="w-5 h-5 text-gray-400" />
+                      <FileText className="w-5 h-5 text-[#127EAB]" />
                       <div>
-                        <p className="text-sm font-medium text-gray-900">{file.name}</p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-sm font-semibold text-[#1F4264]">{file.name}</p>
+                        <p className="text-xs text-[#6F7F8E] font-medium">
                           {(file.size / 1024).toFixed(1)} KB
                         </p>
                       </div>
                     </div>
                     <button
                       onClick={() => removeFile(index)}
-                      className="p-1 text-gray-400 hover:text-red-500"
+                      className="p-1 text-[#8BA0B2] hover:text-[#EE6450] transition-colors cursor-pointer"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -525,84 +529,84 @@ const FilingManager = ({
               </div>
             )}
 
-              <Button
-                onClick={handleUpload}
-                disabled={selectedFiles.length === 0 || isUploading}
-                isLoading={isUploading}
-                leftIcon={<Upload className="w-4 h-4" />}
-                className="w-full"
-              >
-                {isUploading ? 'Uploading...' : `Upload ${selectedFiles.length > 0 ? `${selectedFiles.length} File(s)` : 'Files'}`}
-              </Button>
-            </div>
-          </Card.Content>
-        </Card>
+            <Button
+              onClick={handleUpload}
+              disabled={selectedFiles.length === 0 || isUploading}
+              isLoading={isUploading}
+              leftIcon={<Upload className="w-4 h-4" />}
+              className="w-full"
+            >
+              {isUploading ? 'Uploading...' : `Upload ${selectedFiles.length > 0 ? `${selectedFiles.length} File(s)` : 'Files'}`}
+            </Button>
+          </div>
+        </Card.Content>
+      </Card>
 
-        {/* Uploaded Final Copies List */}
-        <Card>
-          <Card.Header>
-            <Card.Title>Uploaded Final Copies</Card.Title>
-            <Card.Description>
-              Documents uploaded in this section ({uploadedFinalCopies.length} file{uploadedFinalCopies.length !== 1 ? 's' : ''})
-            </Card.Description>
-          </Card.Header>
-          <Card.Content>
-            {uploadedFinalCopies.length > 0 ? (
-              <div className="space-y-3">
-                {uploadedFinalCopies.map((doc) => {
-                  const uploadDate = doc.createdAt 
-                    ? new Date(doc.createdAt).toLocaleDateString() 
-                    : 'Unknown';
-                  const fileSize = doc.fileSize 
-                    ? `${(doc.fileSize / 1024).toFixed(1)} KB` 
-                    : 'Unknown size';
-                  
-                  return (
-                    <div
-                      key={doc._id || doc.id}
-                      className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200"
-                    >
-                      <div className="flex items-center gap-4 flex-1">
-                        <div className="p-2 bg-blue-100 rounded-lg">
-                          <FileText className="h-5 w-5 text-blue-600" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-gray-900 truncate">
-                            {doc.fileName || doc.name || 'Unknown file'}
+      {/* Uploaded Final Copies List */}
+      <Card>
+        <Card.Header>
+          <Card.Title>Uploaded Final Copies</Card.Title>
+          <Card.Description>
+            Documents uploaded in this section ({uploadedFinalCopies.length} file{uploadedFinalCopies.length !== 1 ? 's' : ''})
+          </Card.Description>
+        </Card.Header>
+        <Card.Content>
+          {uploadedFinalCopies.length > 0 ? (
+            <div className="space-y-3">
+              {uploadedFinalCopies.map((doc) => {
+                const uploadDate = doc.createdAt 
+                  ? new Date(doc.createdAt).toLocaleDateString() 
+                  : 'Unknown';
+                const fileSize = doc.fileSize 
+                  ? `${(doc.fileSize / 1024).toFixed(1)} KB` 
+                  : 'Unknown size';
+                
+                return (
+                  <div
+                    key={doc._id || doc.id}
+                    className="flex items-center justify-between p-4 bg-[#F8FBFC] rounded-xl border border-[#DCEAF0]"
+                  >
+                    <div className="flex items-center gap-4 flex-1">
+                      <div className="p-2 bg-[#E9F7FA] border border-[#127EAB]/25 rounded-xl text-[#127EAB]">
+                        <FileText className="h-5 w-5 text-[#127EAB]" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-[#1F4264] truncate">
+                          {doc.fileName || doc.name || 'Unknown file'}
+                        </p>
+                        <div className="flex items-center gap-4 mt-1 flex-wrap">
+                          <p className="text-xs text-[#6F7F8E] font-medium">{fileSize}</p>
+                          <p className="text-xs text-[#6F7F8E] font-medium">
+                            Uploaded: {uploadDate}
                           </p>
-                          <div className="flex items-center gap-4 mt-1 flex-wrap">
-                            <p className="text-xs text-gray-500">{fileSize}</p>
-                            <p className="text-xs text-gray-500">
-                              Uploaded: {uploadDate}
-                            </p>
-                            <Badge
-                              color={
-                                doc.status === 'APPROVED' || doc.status === 'approved'
-                                  ? 'green'
-                                  : doc.status === 'REJECTED' || doc.status === 'rejected'
-                                  ? 'red'
-                                  : 'yellow'
-                              }
-                              size="sm"
-                            >
-                              {doc.status ? doc.status.toUpperCase() : 'PENDING'}
-                            </Badge>
-                          </div>
+                          <Badge
+                            color={
+                              doc.status === 'APPROVED' || doc.status === 'approved'
+                                ? 'green'
+                                : doc.status === 'REJECTED' || doc.status === 'rejected'
+                                ? 'red'
+                                : 'yellow'
+                            }
+                            size="sm"
+                          >
+                            {doc.status ? doc.status.toUpperCase() : 'PENDING'}
+                          </Badge>
                         </div>
                       </div>
                     </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="text-center py-8 text-gray-500">
-                <FileText className="w-12 h-12 mx-auto mb-3 text-gray-400" />
-                <p className="text-sm">No final copies uploaded yet</p>
-                <p className="text-xs text-gray-400 mt-1">
-                  Uploaded files will appear here
-                </p>
-              </div>
-            )}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-8 text-[#6F7F8E]">
+              <FileText className="w-12 h-12 mx-auto mb-3 text-[#8BA0B2]" />
+              <p className="text-sm font-medium">No final copies uploaded yet</p>
+              <p className="text-xs text-[#8BA0B2] mt-1">
+                Uploaded files will appear here
+              </p>
+            </div>
+          )}
           </Card.Content>
         </Card>
       </div>

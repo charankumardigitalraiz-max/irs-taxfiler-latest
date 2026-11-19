@@ -138,42 +138,42 @@ const TaxCalculator = ({ initialData, onSave, onSendSummary, isLocked = false })
         </Card.Header>
         <Card.Content>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="p-4 bg-gray-50 rounded-xl">
-              <p className="text-sm text-gray-500">Taxable Income</p>
-              <p className="text-2xl font-semibold text-gray-900 mt-1">
+            <div className="p-4 bg-[#F8FBFC] border border-[#DCEAF0] rounded-xl">
+              <p className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider">Taxable Income</p>
+              <p className="text-xl sm:text-2xl font-bold text-[#1F4264] mt-1">
                 ${calculations.taxableIncome.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </p>
             </div>
-            <div className="p-4 bg-gray-50 rounded-xl">
-              <p className="text-sm text-gray-500">Tax Liability</p>
-              <p className="text-2xl font-semibold text-gray-900 mt-1">
+            <div className="p-4 bg-[#F8FBFC] border border-[#DCEAF0] rounded-xl">
+              <p className="text-xs font-semibold text-[#6F7F8E] uppercase tracking-wider">Tax Liability</p>
+              <p className="text-xl sm:text-2xl font-bold text-[#1F4264] mt-1">
                 ${calculations.taxLiability.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </p>
             </div>
             {calculations.isRefundEligible ? (
-              <div className="p-4 bg-green-50 rounded-xl border border-green-200">
-                <div className="flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-green-600" />
-                  <p className="text-sm text-green-600">Refund Amount</p>
+              <div className="p-4 bg-[#ECFDF5] rounded-xl border border-[#059669]/20">
+                <div className="flex items-center gap-1.5">
+                  <TrendingUp className="w-4 h-4 text-[#059669]" />
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#059669]">Refund Amount</p>
                 </div>
-                <p className="text-2xl font-semibold text-green-700 mt-1">
+                <p className="text-xl sm:text-2xl font-bold text-[#059669] mt-1">
                   ${calculations.refundAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })}
                 </p>
               </div>
             ) : (
-              <div className="p-4 bg-orange-50 rounded-xl border border-orange-200">
-                <div className="flex items-center gap-2">
-                  <TrendingDown className="w-4 h-4 text-orange-600" />
-                  <p className="text-sm text-orange-600">Amount Payable</p>
+              <div className="p-4 bg-[#FEF4F2] rounded-xl border border-[#EE6450]/20">
+                <div className="flex items-center gap-1.5">
+                  <TrendingDown className="w-4 h-4 text-[#EE6450]" />
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#EE6450]">Amount Payable</p>
                 </div>
-                <p className="text-2xl font-semibold text-orange-700 mt-1">
+                <p className="text-xl sm:text-2xl font-bold text-[#EE6450] mt-1">
                   ${calculations.amountPayable.toLocaleString('en-US', { minimumFractionDigits: 2 })}
                 </p>
               </div>
             )}
-            <div className="p-4 bg-blue-50 rounded-xl border border-blue-200">
-              <p className="text-sm text-blue-600">Tax Paid</p>
-              <p className="text-2xl font-semibold text-blue-700 mt-1">
+            <div className="p-4 bg-[#E9F7FA] rounded-xl border border-[#127EAB]/20">
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#127EAB]">Tax Paid</p>
+              <p className="text-xl sm:text-2xl font-bold text-[#127EAB] mt-1">
                 ${(parseFloat(formData.taxPaid) || 0).toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </p>
             </div>

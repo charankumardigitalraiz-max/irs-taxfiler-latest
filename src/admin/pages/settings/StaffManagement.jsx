@@ -207,20 +207,20 @@ const StaffManagement = () => {
                 <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                            <label className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1.5">Full Name *</label>
                             <input
                                 type="text"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"
+                                className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2]"
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 placeholder="John Doe"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                            <label className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1.5">Email *</label>
                             <input
                                 type="email"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"
+                                className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2]"
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 placeholder="john@example.com"
@@ -229,23 +229,23 @@ const StaffManagement = () => {
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <label className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1.5">Phone Number</label>
                             <input
                                 type="tel"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"
+                                className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2]"
                                 value={formData.phone}
                                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                                 placeholder="+1 234 567 8900"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                            <label className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1.5">
                                 Password {editingStaff ? '(Leave empty to keep current)' : '*'}
                             </label>
                             <div className="relative">
                                 <input
                                     type={showPassword ? 'text' : 'password'}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 pr-10"
+                                    className="w-full pl-3.5 pr-10 py-2.5 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2]"
                                     value={formData.password}
                                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                                     placeholder="••••••••"
@@ -253,7 +253,7 @@ const StaffManagement = () => {
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8BA0B2] hover:text-[#1F4264]"
                                 >
                                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                                 </button>
@@ -261,15 +261,15 @@ const StaffManagement = () => {
                         </div>
                     </div>
                     <div>
-                        <div className="flex items-center justify-between mb-1">
-                            <label className="block text-sm font-medium text-gray-700">Role *</label>
-                            <Link to="/admin/settings/roles" className="text-xs text-primary-600 hover:text-primary-700 flex items-center gap-1">
+                        <div className="flex items-center justify-between mb-1.5">
+                            <label className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Role *</label>
+                            <Link to="/admin/settings/roles" className="text-xs text-[#127EAB] hover:text-[#0E668B] font-medium flex items-center gap-1">
                                 <Shield className="h-3 w-3" />
                                 Manage Roles
                             </Link>
                         </div>
                         <select
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"
+                            className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264]"
                             value={formData.roleId}
                             onChange={(e) => setFormData({ ...formData, roleId: e.target.value })}
                         >
@@ -282,9 +282,9 @@ const StaffManagement = () => {
                         </select>
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                        <label className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1.5">Status</label>
                         <select
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"
+                            className="w-full px-3.5 py-2.5 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264]"
                             value={formData.status}
                             onChange={(e) => setFormData({ ...formData, status: e.target.value })}
                         >
@@ -293,7 +293,7 @@ const StaffManagement = () => {
                         </select>
                     </div>
 
-                    <div className="flex justify-end gap-3 pt-4 border-t">
+                    <div className="flex justify-end gap-3 pt-4 border-t border-[#E6F0F5]">
                         <Button variant="secondary" onClick={() => setShowModal(false)}>
                             Cancel
                         </Button>

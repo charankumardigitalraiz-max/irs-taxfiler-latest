@@ -19,26 +19,26 @@ const WorkflowActions = ({ userId }) => {
     overrideStatus,
     clearError,
   } = useWorkflow();
-  
+
   const [showOverrideModal, setShowOverrideModal] = useState(false);
   const [overrideTarget, setOverrideTarget] = useState('');
   const [overrideReason, setOverrideReason] = useState('');
   const [notes, setNotes] = useState('');
-  
+
   const nextStages = getAvailableNextStages();
   const currentStage = WORKFLOW_STAGES[currentStatus];
   const canOverride = checkPermission(PERMISSIONS.OVERRIDE_WORKFLOW);
-  
+
   const handleAdvance = async (targetStatus) => {
     const result = await advanceToNextStage(targetStatus, notes);
     if (result.success) {
       setNotes('');
     }
   };
-  
+
   const handleOverride = async () => {
     if (!overrideReason.trim()) return;
-    
+
     const result = await overrideStatus(overrideTarget, overrideReason);
     if (result.success) {
       setShowOverrideModal(false);
@@ -46,12 +46,12 @@ const WorkflowActions = ({ userId }) => {
       setOverrideReason('');
     }
   };
-  
+
   const openOverrideModal = () => {
     clearError();
     setShowOverrideModal(true);
   };
-  
+
   if (currentStage?.isFinal) {
     return (
       <div className="bg-green-50 border border-green-200 rounded-lg p-4">
@@ -69,7 +69,7 @@ const WorkflowActions = ({ userId }) => {
       </div>
     );
   }
-  
+
   return (
     <div className="space-y-4">
       {/* Error message */}
@@ -79,7 +79,7 @@ const WorkflowActions = ({ userId }) => {
           <p className="text-sm text-red-700">{error}</p>
         </div>
       )}
-      
+
       {/* Current status */}
       <div className="flex items-center justify-between">
         <div>
@@ -94,7 +94,7 @@ const WorkflowActions = ({ userId }) => {
           </Button>
         )}
       </div>
-      
+
       {/* Notes input */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -108,7 +108,7 @@ const WorkflowActions = ({ userId }) => {
           rows={2}
         />
       </div>
-      
+
       {/* Next stage buttons */}
       {nextStages.length > 0 && (
         <div>
@@ -130,7 +130,7 @@ const WorkflowActions = ({ userId }) => {
           </div>
         </div>
       )}
-      
+
       {/* Override Modal */}
       <Modal
         isOpen={showOverrideModal}
@@ -156,7 +156,7 @@ const WorkflowActions = ({ userId }) => {
               ))}
             </select>
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Reason for Override *
@@ -170,14 +170,14 @@ const WorkflowActions = ({ userId }) => {
               required
             />
           </div>
-          
+
           {error && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-700">
               {error}
             </div>
           )}
         </div>
-        
+
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowOverrideModal(false)}>
             Cancel

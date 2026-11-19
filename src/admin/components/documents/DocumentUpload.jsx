@@ -77,10 +77,10 @@ const DocumentUpload = ({ onUpload, userId }) => {
 
       <div
         className={clsx(
-          'border-2 border-dashed rounded-xl p-8 text-center transition-colors cursor-pointer',
+          'border border-dashed rounded-xl p-8 text-center transition-all cursor-pointer',
           isDragging
-            ? 'border-primary-500 bg-primary-50'
-            : 'border-gray-300 hover:border-gray-400'
+            ? 'border-[#127EAB] bg-[#E9F7FA] ring-2 ring-[#127EAB]/20'
+            : 'border-[#CCDCE1] hover:border-[#127EAB]/50 bg-white'
         )}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -95,36 +95,37 @@ const DocumentUpload = ({ onUpload, userId }) => {
           onChange={handleFileSelect}
           accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
         />
-        <Upload className="w-10 h-10 text-gray-400 mx-auto mb-3" />
-        <p className="text-sm text-gray-600">
-          <span className="font-medium text-primary-600">Click to upload</span> or drag
-          and drop
+        <div className="w-11 h-11 rounded-full bg-[#E9F7FA] border border-[#127EAB]/25 flex items-center justify-center mx-auto mb-3 text-[#127EAB]">
+          <Upload className="w-5 h-5 text-[#127EAB]" />
+        </div>
+        <p className="text-sm font-semibold text-[#1F4264]">
+          <span className="text-[#127EAB]">Click to upload</span> or drag and drop
         </p>
-        <p className="text-xs text-gray-500 mt-1">
+        <p className="text-xs text-[#6F7F8E] mt-1 font-medium">
           PDF, DOC, DOCX, JPG, PNG up to 10MB
         </p>
       </div>
 
       {files.length > 0 && (
         <div className="space-y-2">
-          <p className="text-sm font-medium text-gray-700">Selected Files:</p>
+          <p className="text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Selected Files:</p>
           {files.map((file, index) => (
             <div
               key={index}
-              className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+              className="flex items-center justify-between p-3 bg-[#F8FBFC] border border-[#DCEAF0] rounded-xl"
             >
               <div className="flex items-center gap-3">
-                <FileText className="w-5 h-5 text-gray-400" />
+                <FileText className="w-5 h-5 text-[#127EAB]" />
                 <div>
-                  <p className="text-sm font-medium text-gray-900">{file.name}</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-sm font-semibold text-[#1F4264]">{file.name}</p>
+                  <p className="text-xs text-[#6F7F8E] font-medium">
                     {(file.size / 1024).toFixed(1)} KB
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => removeFile(index)}
-                className="p-1 text-gray-400 hover:text-red-500"
+                className="p-1 text-[#8BA0B2] hover:text-[#EE6450] transition-colors cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>

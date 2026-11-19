@@ -7,7 +7,7 @@ const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComple
   const mappedStatus = currentStatus === 'REGISTERED' ? 'PERSONAL_INFO' : currentStatus;
   const currentStage = WORKFLOW_STAGES[mappedStatus];
   const currentOrder = currentStage?.order || 0;
-  
+
   // Only show progress if personal info is completed
   // If personal info is complete, show progress based on current stage
   // If personal info is not complete, show 0% progress
@@ -20,12 +20,12 @@ const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComple
       progress = Math.round((1 / MAIN_WORKFLOW_PATH.length) * 100);
     }
   }
-  
+
   // For compact mode, show limited stages
   const displayStages = compact
     ? MAIN_WORKFLOW_PATH.filter((_, i) => i % 3 === 0 || i === MAIN_WORKFLOW_PATH.length - 1)
     : MAIN_WORKFLOW_PATH;
-  
+
   return (
     <div className="w-full">
       {/* Progress bar */}
@@ -42,7 +42,7 @@ const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComple
           <span>Filing Complete</span>
         </div>
       </div>
-      
+
       {/* Stage indicators */}
       <div className="relative">
         <div className="flex items-center justify-between">
@@ -52,12 +52,12 @@ const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComple
             // Other stages are completed if we've passed them
             const isPersonalInfoStage = stage.order === 1;
             const isCompleted = isPersonalInfoComplete && (
-              (isPersonalInfoStage) || 
+              (isPersonalInfoStage) ||
               (stage.order < currentOrder)
             );
             const isCurrent = isPersonalInfoComplete && stageKey === mappedStatus;
             const isPending = !isPersonalInfoComplete || (currentOrder > 0 && stage.order > currentOrder);
-            
+
             return (
               <div
                 key={stageKey}
@@ -74,7 +74,7 @@ const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComple
                         WORKFLOW_STAGES[displayStages[index - 1]]?.order === 1 ||
                         (currentOrder > 0 && WORKFLOW_STAGES[displayStages[index - 1]]?.order < currentOrder)
                       )
-                        ? 'bg-primary-600' 
+                        ? 'bg-primary-600'
                         : 'bg-gray-200'
                     )}
                     style={{
@@ -83,7 +83,7 @@ const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComple
                     }}
                   />
                 )}
-                
+
                 {/* Circle */}
                 <div
                   className={clsx(
@@ -91,8 +91,8 @@ const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComple
                     isCompleted
                       ? 'bg-primary-600 border-primary-600'
                       : isCurrent
-                      ? 'bg-white border-primary-600'
-                      : 'bg-white border-gray-300'
+                        ? 'bg-white border-primary-600'
+                        : 'bg-white border-gray-300'
                   )}
                 >
                   {isCompleted ? (
@@ -108,7 +108,7 @@ const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComple
                     </span>
                   )}
                 </div>
-                
+
                 {/* Label */}
                 {!compact && (
                   <span

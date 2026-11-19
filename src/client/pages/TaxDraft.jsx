@@ -187,10 +187,10 @@ const TaxDraft = () => {
         </div>
 
         <div className="relative">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur text-xs font-medium text-sky-50 mb-3">
+          {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur text-xs font-medium text-sky-50 mb-3">
             <FileText className="w-3.5 h-3.5 text-[#7DD3FC]" />
             <span>Tax Draft Documents</span>
-          </div>
+          </div> */}
           <h1 className="text-xl sm:text-[22px] font-medium text-white tracking-tight">
             Tax Draft Summary &amp; Documents
           </h1>

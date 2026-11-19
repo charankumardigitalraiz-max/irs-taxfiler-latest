@@ -35,7 +35,7 @@ const CardTitle = ({ children, className }) => (
 );
 
 const CardDescription = ({ children, className }) => (
-  <p className={clsx('mt-0.5 text-xs sm:text-sm text-[#6F7F8E] font-medium', className)}>
+  <p className={clsx('mt-0.5 text-xs sm:text-sm text-[#6F7F8E] font-[450]', className)}>
     {children}
   </p>
 );

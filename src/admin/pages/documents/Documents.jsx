@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { Search, Eye, FileText, Mail, Phone } from 'lucide-react';
 import Header from '../../components/layout/Header';
 import Card from '../../components/common/Card';
+import StatCard from '../../components/common/StatCard';
 import Button from '../../components/common/Button';
 import Modal from '../../components/common/Modal';
 import UserDocumentsModal from '../../components/documents/UserDocumentsModal';
@@ -70,7 +71,7 @@ const Documents = () => {
   // Group documents by user
   const usersWithDocuments = useMemo(() => {
     const userMap = new Map();
-    
+
     documents.forEach((doc) => {
       const userId = doc.userId;
       if (!userMap.has(userId)) {
@@ -93,7 +94,7 @@ const Documents = () => {
       if (doc.status === 'APPROVED') user.approvedDocuments++;
       if (doc.status === 'REJECTED') user.rejectedDocuments++;
     });
-    
+
     return Array.from(userMap.values());
   }, [documents]);
 
@@ -216,68 +217,56 @@ const Documents = () => {
         subtitle="Manage all uploaded documents by user"
       />
 
-      <div className="p-6 space-y-6">
+      <div className="space-y-6">
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <Card className="p-4">
-            <p className="text-sm text-gray-500">Total Users</p>
-            <p className="text-2xl font-semibold text-gray-900">{stats.totalUsers}</p>
-          </Card>
-          <Card className="p-4">
-            <p className="text-sm text-gray-500">Total Documents</p>
-            <p className="text-2xl font-semibold text-gray-900">{stats.totalDocuments}</p>
-          </Card>
-          <Card className="p-4">
-            <p className="text-sm text-gray-500">Pending Review</p>
-            <p className="text-2xl font-semibold text-yellow-600">{stats.pending}</p>
-          </Card>
-          <Card className="p-4">
-            <p className="text-sm text-gray-500">Approved</p>
-            <p className="text-2xl font-semibold text-green-600">{stats.approved}</p>
-          </Card>
-          <Card className="p-4">
-            <p className="text-sm text-gray-500">Rejected</p>
-            <p className="text-2xl font-semibold text-red-600">{stats.rejected}</p>
-          </Card>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          <StatCard name="Total Users" value={stats.totalUsers} />
+          <StatCard name="Total Documents" value={stats.totalDocuments} />
+          <StatCard name="Pending Review" value={stats.pending} valueColor="text-[#D97706]" />
+          <StatCard name="Approved" value={stats.approved} valueColor="text-[#059669]" />
+          <StatCard name="Rejected" value={stats.rejected} valueColor="text-[#EE6450]" />
         </div>
 
         {/* Users List */}
         <Card padding="none">
-          <div className="p-4 border-b border-gray-200">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <div className="p-4 sm:p-5 border-b border-[#E6F0F5] bg-white">
+            <div className="relative w-full sm:w-64 md:w-72">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2]" />
               <input
                 type="text"
                 placeholder="Search by user name or email..."
                 value={userSearch}
                 onChange={(e) => setUserSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full h-10 sm:h-11 pl-10 pr-4 text-sm border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2] transition-all"
               />
             </div>
           </div>
-          
+
           {/* User List */}
-          <div className="divide-y divide-gray-200">
+          <div className="divide-y divide-[#E6F0F5]">
             {filteredUsers.length === 0 ? (
-              <div className="p-8 text-center text-gray-500">
+              <div className="p-8 text-center text-[#6F7F8E] font-medium text-sm">
                 No users found
               </div>
             ) : (
               filteredUsers.map((user) => (
                 <div
                   key={user.id}
-                  className="p-4 hover:bg-gray-50 transition-colors"
+                  className="p-4 hover:bg-[#F4F9FB]/60 transition-colors"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
-                          <span className="text-sm font-semibold text-primary-700">
-                            {user.fullName?.charAt(0).toUpperCase() || 'U'}
-                          </span>
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#1F4264] to-[#127EAB] text-white flex items-center justify-center font-semibold text-sm shadow-xs shrink-0">
+                          {user.fullName?.charAt(0).toUpperCase() || 'U'}
                         </div>
                         <div>
                           <div className="flex items-center gap-3 mb-1">
+                            <p className="font-semibold text-sm text-[#1F4264]">
+                              {user.fullName}
+                            </p>
+                          </div>
+                          <div className="flex flex-wrap items-center gap-3 text-xs text-[#6F7F8E]">
                             <p className="font-medium text-gray-900">
                               {user.fullName}
                             </p>
@@ -403,7 +392,7 @@ const Documents = () => {
               const apiBase = apiUrl.replace(/\/api$/, '');
               fileUrl = `${apiBase}${fileUrl}`;
             }
-            
+
             // Fetch the file as a blob to handle CORS and ensure download works
             const response = await fetch(fileUrl);
             if (!response.ok) {
@@ -411,7 +400,7 @@ const Documents = () => {
             }
             const blob = await response.blob();
             const blobUrl = URL.createObjectURL(blob);
-            
+
             // Create download link
             const a = document.createElement('a');
             a.href = blobUrl;
@@ -419,7 +408,7 @@ const Documents = () => {
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            
+
             // Clean up blob URL after a delay
             setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
             return true;
@@ -437,7 +426,7 @@ const Documents = () => {
           // If filePath is a relative path, prefix it with backend base URL (without /api)
           let fileUrl = doc.filePath;
           if (!fileUrl.startsWith('http://') && !fileUrl.startsWith('https://')) {
-             const apiUrl = backendBaseUrl + '/api';
+            const apiUrl = backendBaseUrl + '/api';
             // const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
             // Remove /api from the end if present to get base URL
             const apiBase = apiUrl.replace(/\/api$/, '');

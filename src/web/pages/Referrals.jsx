@@ -7,6 +7,7 @@ import referralIllustration from '../assets/referral-contact-illustration.jpg';
 import { submitWebsiteForm } from '../services/formApi';
 import { getMyReferral } from '../services/referralApi';
 import { getFrontendBaseUrl } from '../../baseurl';
+import { FaWhatsapp } from "react-icons/fa";
 import {
   GiftIcon,
   UserPlusIcon,
@@ -217,6 +218,12 @@ Best regards,
 ${yourName || 'Your Friend'}`;
 
     window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  const handleShareWhatsApp = () => {
+    const referralLink = getReferralLink();
+    const text = `Hi! I use IRS Tax Filer for my U.S. tax return. Use my referral link to get US$ 5 off your filing: ${referralLink}`;
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, "_blank");
   };
 
   const handleNumber = (e, setValue) => {

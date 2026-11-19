@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { authService } from '../../services/authService';
 import { setAuthToken, setUser } from '../../utils/auth';
+import { speakWelcome } from '../../utils/voiceAssistant';
 import Logo from '/irs-logo.png';
 import featureIllustration from '../../../web/assets/uptik-feature-illustration.png';
 
@@ -93,11 +94,19 @@ const VerifyOTP = () => {
         const cameFromRegister = sessionStorage.getItem('cameFromRegister') === 'true';
         sessionStorage.removeItem('cameFromRegister');
 
+        const displayName = response.user?.firstName || response.user?.fullName || '';
+
         if (cameFromRegister) {
+          sessionStorage.setItem('justLoggedIn', 'true');
+          sessionStorage.setItem('isNewUser', 'true');
           sessionStorage.removeItem('pendingReferralCode');
+          speakWelcome(displayName, true);
           navigate('/client/dashboard');
         } else if (response.isExistingUser) {
+          sessionStorage.setItem('justLoggedIn', 'true');
+          sessionStorage.removeItem('isNewUser');
           sessionStorage.removeItem('pendingReferralCode');
+          speakWelcome(displayName, false);
           navigate('/client/dashboard');
         } else {
           const refCode = sessionStorage.getItem('pendingReferralCode');

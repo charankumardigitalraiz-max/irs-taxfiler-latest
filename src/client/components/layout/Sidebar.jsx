@@ -19,7 +19,7 @@ import { getUser } from '../../utils/auth';
 import { useState, useEffect } from 'react';
 import Logo from '../../../assets/irsLogo.png';
 
-const navigation = [
+export const navigation = [
   {
     name: 'Dashboard',
     href: '/client/dashboard',
@@ -57,7 +57,7 @@ const navigation = [
   },
 ];
 
-const settingsNavigation = [
+export const settingsNavigation = [
   {
     name: 'Profile',
     href: '/client/dashboard/profile',
@@ -95,14 +95,14 @@ const Sidebar = ({ onClose, isMobile = false }) => {
   };
 
   return (
-    <div className="flex flex-col w-64 bg-[#1F4264] min-h-screen h-full text-white">
+    <div className="flex flex-col w-64 bg-white min-h-screen h-full text-[#1F4264] border-r border-[#DCEAF0]">
       {/* Logo & Close/Collapse Button */}
-      <div className="flex items-center justify-between h-16 px-4 sm:px-5 border-b border-white/10">
+      <div className="flex items-center justify-between h-16 px-4 sm:px-5 border-b border-[#E6F0F5]">
         <div className="flex items-center gap-3 min-w-0">
           <img
-            src={Logo}
+            src="/irslogo.webp"
             alt="IRS Tax Filer"
-            className="inline-block invert brightness-0 align-middle h-9 w-auto"
+            className="inline-block align-middle h-12 w-auto object-contain"
           />
         </div>
         {onClose && (
@@ -111,7 +111,7 @@ const Sidebar = ({ onClose, isMobile = false }) => {
             onClick={onClose}
             title="Close sidebar"
             aria-label="Close sidebar"
-            className="p-1.5 rounded-lg text-sky-100/75 hover:text-white hover:bg-white/10 transition-colors cursor-pointer shrink-0"
+            className="p-1.5 rounded-lg text-[#6F7F8E] hover:text-[#1F4264] hover:bg-[#F4F9FB] transition-colors cursor-pointer shrink-0"
           >
             {isMobile ? (
               <X className="w-5 h-5" />
@@ -133,22 +133,22 @@ const Sidebar = ({ onClose, isMobile = false }) => {
               onClick={handleNavClick}
               className={({ isActive }) =>
                 clsx(
-                  'flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-150',
+                  'flex items-center gap-3 px-3 py-2.5 text-xs sm:text-sm font-medium rounded-md transition-all duration-150',
                   isActive
-                    ? 'bg-[#127EAB] text-white shadow-xs'
-                    : 'text-sky-100/80 hover:bg-white/10 hover:text-white'
+                    ? 'bg-gradient-to-r from-[#127EAB] to-[#0E668B] text-white font-semibold shadow-[0_2px_8px_rgba(18,126,171,0.22)]'
+                    : 'text-[#6F7F8E] hover:bg-[#F4F9FB] hover:text-[#1F4264]'
                 )
               }
             >
-              <item.icon className="w-5 h-5 shrink-0" />
+              <item.icon className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
               <span>{item.name}</span>
             </NavLink>
           ))}
         </div>
 
         {/* Settings section */}
-        <div className="pt-4 mt-4 border-t border-white/10">
-          <p className="px-3 mb-2 text-[11px] font-semibold text-sky-200/60 uppercase tracking-wider">
+        <div className="pt-4 mt-4 border-t border-[#E6F0F5]">
+          <p className="px-3 mb-2 text-[11px] font-bold text-[#8BA0B2] uppercase tracking-wider">
             Account
           </p>
           <div className="space-y-1">
@@ -159,14 +159,14 @@ const Sidebar = ({ onClose, isMobile = false }) => {
                 onClick={handleNavClick}
                 className={({ isActive }) =>
                   clsx(
-                    'flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-150',
+                    'flex items-center gap-3 px-3 py-2.5 text-xs sm:text-sm font-medium rounded-md transition-all duration-150',
                     isActive
-                      ? 'bg-[#127EAB] text-white shadow-xs'
-                      : 'text-sky-100/80 hover:bg-white/10 hover:text-white'
+                      ? 'bg-gradient-to-r from-[#127EAB] to-[#0E668B] text-white font-semibold shadow-[0_2px_8px_rgba(18,126,171,0.22)]'
+                      : 'text-[#6F7F8E] hover:bg-[#F4F9FB] hover:text-[#1F4264]'
                   )
                 }
               >
-                <item.icon className="w-5 h-5 shrink-0" />
+                <item.icon className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
                 <span>{item.name}</span>
               </NavLink>
             ))}
@@ -175,7 +175,7 @@ const Sidebar = ({ onClose, isMobile = false }) => {
       </nav>
 
       {/* PayPal Payment Button */}
-      <div className="p-3 sm:p-4 border-t border-white/10">
+      <div className="p-3 sm:p-4 border-t border-[#E6F0F5]">
         <button
           onClick={() =>
             window.open(
@@ -183,7 +183,7 @@ const Sidebar = ({ onClose, isMobile = false }) => {
               '_blank'
             )
           }
-          className="w-full flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 bg-[#EE6450] hover:bg-[#D9523E] text-white text-xs sm:text-sm font-semibold rounded-lg shadow-xs transition-colors cursor-pointer"
+          className="w-full flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 bg-[#EE6450] hover:bg-[#D9523E] text-white text-xs sm:text-sm font-semibold rounded-xl shadow-xs transition-colors cursor-pointer"
         >
           <CreditCard className="w-4 h-4 sm:w-5 sm:h-5" />
           <span>Payments</span>
@@ -191,21 +191,21 @@ const Sidebar = ({ onClose, isMobile = false }) => {
       </div>
 
       {/* User section */}
-      <div className="p-3 sm:p-4 border-t border-white/10">
-        <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg bg-white/[0.08]">
-          <div className="w-8 h-8 sm:w-9 sm:h-9 bg-[#127EAB] rounded-full flex items-center justify-center flex-shrink-0 shadow-xs">
-            <span className="text-xs sm:text-sm font-semibold text-white">
+      {/* <div className="p-3 sm:p-4 border-t border-[#E6F0F5] bg-[#F8FBFC]">
+        <div className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl bg-white border border-[#DCEAF0]">
+          <div className="w-8 h-8 sm:w-9 sm:h-9 bg-[#E9F7FA] border border-[#127EAB]/25 text-[#127EAB] rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xs sm:text-sm">
+            <span>
               {user?.email?.charAt(0).toUpperCase() || 'U'}
             </span>
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs sm:text-sm font-medium text-white truncate">
+            <p className="text-xs sm:text-sm font-semibold text-[#1F4264] truncate">
               {user?.email || 'Client User'}
             </p>
-            <p className="text-[11px] text-sky-200/75 truncate">Client Portal</p>
+            <p className="text-[11px] text-[#6F7F8E] font-medium truncate">Client Portal</p>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { clsx } from 'clsx';
-import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Button from './Button';
+import { InlineLoader } from './PageLoader';
 
 const DataTable = ({
   columns,
@@ -13,31 +14,31 @@ const DataTable = ({
 }) => {
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <Loader2 className="w-8 h-8 animate-spin text-primary-600" />
+      <div className="flex items-center justify-center py-14">
+        <InlineLoader label="Loading data..." />
       </div>
     );
   }
 
   if (!data || data.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-500">
+      <div className="text-center py-12 text-[#6F7F8E] font-medium text-sm">
         {emptyMessage}
       </div>
     );
   }
 
   return (
-    <div className={clsx('overflow-hidden', className)}>
+    <div className={clsx('overflow-hidden rounded-xl border border-[#DCEAF0]', className)}>
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+        <table className="min-w-full divide-y divide-[#E6F0F5]">
+          <thead className="bg-[#F8FBFC] border-b border-[#DCEAF0]">
             <tr>
               {columns.map((column) => (
                 <th
                   key={column.key}
                   className={clsx(
-                    'px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider',
+                    'px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider',
                     column.headerClassName
                   )}
                   style={{ width: column.width }}
@@ -47,21 +48,23 @@ const DataTable = ({
               ))}
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white divide-y divide-[#E6F0F5]">
             {data.map((row, rowIndex) => (
               <tr
                 key={row.id || rowIndex}
                 onClick={() => onRowClick?.(row)}
                 className={clsx(
-                  'transition-colors',
-                  onRowClick && 'cursor-pointer hover:bg-gray-50'
+                  'transition-colors duration-150',
+                  onRowClick
+                    ? 'cursor-pointer hover:bg-[#F4F9FB]/70'
+                    : 'hover:bg-[#F4F9FB]/40'
                 )}
               >
                 {columns.map((column) => (
                   <td
                     key={column.key}
                     className={clsx(
-                      'px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm',
+                      'px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm text-[#1F4264]',
                       column.cellClassName
                     )}
                   >
@@ -78,9 +81,11 @@ const DataTable = ({
 
       {/* Pagination */}
       {pagination && (
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-3 sm:px-6 py-3 bg-gray-50 border-t border-gray-200">
-          <div className="text-xs sm:text-sm text-gray-500 text-center sm:text-left">
-            Showing {pagination.from} to {pagination.to} of {pagination.total} results
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 sm:px-6 py-3 bg-[#F8FBFC] border-t border-[#DCEAF0]">
+          <div className="text-xs sm:text-sm text-[#6F7F8E] text-center sm:text-left">
+            Showing <span className="font-semibold text-[#1F4264]">{pagination.from}</span> to{' '}
+            <span className="font-semibold text-[#1F4264]">{pagination.to}</span> of{' '}
+            <span className="font-semibold text-[#1F4264]">{pagination.total}</span> results
           </div>
           <div className="flex items-center gap-1 sm:gap-2">
             <Button
@@ -90,15 +95,13 @@ const DataTable = ({
               disabled={!pagination.hasPrevious}
               className="text-xs sm:text-sm px-2 sm:px-3"
             >
-              <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4" />
+              <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span className="hidden sm:inline ml-1">Previous</span>
             </Button>
 
             {/* Page Numbers */}
             <div className="flex items-center gap-1">
               {Array.from({ length: Math.min(5, pagination.pages || 1) }, (_, i) => {
-                // Showing a maximum of 5 pages for now, simple implementation
-                // In a real-world scenario with many pages, we'd need a more complex sliding window
                 const pageNum = i + 1;
                 const isCurrent = (pagination.currentPage || 1) === pageNum;
 
@@ -107,10 +110,10 @@ const DataTable = ({
                     key={pageNum}
                     onClick={() => pagination.onPageChange?.(pageNum)}
                     className={clsx(
-                      "w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md text-xs sm:text-sm transition-colors",
+                      'w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md text-xs sm:text-sm transition-colors cursor-pointer',
                       isCurrent
-                        ? "bg-primary-600 text-white font-semibold"
-                        : "text-gray-600 hover:bg-gray-200"
+                        ? 'bg-[#127EAB] text-white font-semibold shadow-xs'
+                        : 'text-[#1F4264] hover:bg-[#E9F7FA]/70'
                     )}
                   >
                     {pageNum}
@@ -118,7 +121,7 @@ const DataTable = ({
                 );
               })}
               {(pagination.pages || 1) > 5 && (
-                <span className="text-gray-400 text-xs px-1">...</span>
+                <span className="text-[#8BA0B2] text-xs px-1">...</span>
               )}
             </div>
 
@@ -130,7 +133,7 @@ const DataTable = ({
               className="text-xs sm:text-sm px-2 sm:px-3"
             >
               <span className="hidden sm:inline mr-1">Next</span>
-              <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
+              <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </Button>
           </div>
         </div>
@@ -140,4 +143,3 @@ const DataTable = ({
 };
 
 export default DataTable;
-

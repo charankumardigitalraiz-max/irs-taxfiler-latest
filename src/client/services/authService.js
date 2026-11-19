@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import {baseUrl} from '../../baseurl';
 
 // const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
@@ -45,8 +46,18 @@ export const authService = {
   sendOTP: async (email) => {
     try {
       const response = await apiClient.post('/client/auth/send-otp', { email });
+      if (response.data?.success) {
+        toast.success(response.data?.message || 'OTP sent successfully to your email');
+      } else if (response.data?.message) {
+        toast.error(response.data.message);
+      }
       return response.data;
     } catch (error) {
+      const errorMsg =
+        error.response?.data?.message ||
+        error.message ||
+        'Failed to send OTP. Please try again.';
+      toast.error(errorMsg);
       // If error response has data, return it so components can handle it
       if (error.response?.data) {
         return error.response.data;
@@ -60,12 +71,23 @@ export const authService = {
   verifyOTP: async (email, otp) => {
     try {
       const response = await apiClient.post('/client/auth/verify-otp', { email, otp });
-      if (response.data.success && response.data.token) {
-        localStorage.setItem('authToken', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+      if (response.data.success) {
+        if (response.data.token) {
+          localStorage.setItem('authToken', response.data.token);
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          sessionStorage.setItem('justLoggedIn', 'true');
+        }
+        toast.success(response.data.message || 'OTP verified successfully!');
+      } else if (response.data.message) {
+        toast.error(response.data.message);
       }
       return response.data;
     } catch (error) {
+      const errorMsg =
+        error.response?.data?.message ||
+        error.message ||
+        'Failed to verify OTP. Please try again.';
+      toast.error(errorMsg);
       // If error response has data, return it so components can handle it
       if (error.response?.data) {
         return error.response.data;
@@ -82,6 +104,7 @@ export const authService = {
       if (response.data.success && response.data.token) {
         localStorage.setItem('authToken', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
+        sessionStorage.setItem('justLoggedIn', 'true');
       }
       return response.data;
     } catch (error) {

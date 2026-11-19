@@ -12,9 +12,11 @@ import {
   Trash2,
   Copy,
   CheckCircle2,
+  ChevronDown,
 } from 'lucide-react';
 import Header from '../../components/layout/Header';
 import Card from '../../components/common/Card';
+import StatCard from '../../components/common/StatCard';
 import Button from '../../components/common/Button';
 import Badge from '../../components/common/Badge';
 import Modal from '../../components/common/Modal';
@@ -428,173 +430,169 @@ const Coupons = () => {
         }
       />
 
-      <div className="p-6 space-y-6">
+      <div className="space-y-6">
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <Card className="p-4">
-            <p className="text-sm text-gray-500">Total Coupons</p>
-            <p className="text-2xl font-semibold text-gray-900">{stats.total}</p>
-          </Card>
-          <Card className="p-4">
-            <p className="text-sm text-gray-500">Active</p>
-            <p className="text-2xl font-semibold text-green-600">{stats.active}</p>
-          </Card>
-          <Card className="p-4">
-            <p className="text-sm text-gray-500">Expired</p>
-            <p className="text-2xl font-semibold text-gray-600">{stats.expired}</p>
-          </Card>
-          <Card className="p-4">
-            <p className="text-sm text-gray-500">Total Usage</p>
-            <p className="text-2xl font-semibold text-blue-600">{stats.totalUsage}</p>
-          </Card>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <StatCard name="Total Coupons" value={stats.total} />
+          <StatCard name="Active" value={stats.active} valueColor="text-[#059669]" />
+          <StatCard name="Expired" value={stats.expired} valueColor="text-[#8BA0B2]" />
+          <StatCard name="Total Usage" value={stats.totalUsage} valueColor="text-[#127EAB]" />
         </div>
 
         {/* Coupons List */}
         <Card padding="none">
-          <div className="p-4 border-b border-gray-200">
-            <div className="flex flex-col sm:flex-row gap-4">
+          <div className="p-4 sm:p-5 border-b border-[#E6F0F5] bg-white">
+            <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 lg:items-center justify-between">
               {/* Search */}
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <div className="relative w-full sm:w-64 md:w-72 shrink-0">
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2]" />
                 <input
                   type="text"
                   placeholder="Search by code or description..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="w-full h-10 pl-10 pr-4 text-sm border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2] transition-all shadow-xs"
                 />
               </div>
               
-              {/* Status Filter */}
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white"
-              >
-                <option value="">All Status</option>
-                <option value="active">Active</option>
-                <option value="expired">Expired</option>
-                <option value="inactive">Inactive</option>
-              </select>
-              
-              {/* Valid For Filter */}
-              <select
-                value={validForFilter}
-                onChange={(e) => setValidForFilter(e.target.value)}
-                className="px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white"
-              >
-                <option value="">All Types</option>
-                <option value="user">Users</option>
-                <option value="employee">Employees</option>
-                <option value="admin">Admins</option>
-              </select>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto">
+                {/* Status Filter */}
+                <div className="relative w-full sm:w-44 shrink-0">
+                  <select
+                    value={statusFilter}
+                    onChange={(e) => setStatusFilter(e.target.value)}
+                    className="w-full h-10 pl-3.5 pr-9 text-sm border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] transition-all cursor-pointer appearance-none shadow-xs"
+                  >
+                    <option value="">All Status</option>
+                    <option value="active">Active</option>
+                    <option value="expired">Expired</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2] pointer-events-none" />
+                </div>
+                
+                {/* Valid For Filter */}
+                <div className="relative w-full sm:w-44 shrink-0">
+                  <select
+                    value={validForFilter}
+                    onChange={(e) => setValidForFilter(e.target.value)}
+                    className="w-full h-10 pl-3.5 pr-9 text-sm border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] transition-all cursor-pointer appearance-none shadow-xs"
+                  >
+                    <option value="">All Types</option>
+                    <option value="user">Users</option>
+                    <option value="employee">Employees</option>
+                    <option value="admin">Admins</option>
+                  </select>
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8BA0B2] pointer-events-none" />
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Coupons Table */}
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full divide-y divide-[#E6F0F5]">
+              <thead className="bg-[#F8FBFC] border-b border-[#DCEAF0]">
                 <tr>
-                  <th className="table-header">Coupon Code</th>
-                  <th className="table-header">Description</th>
-                  <th className="table-header">Discount</th>
-                  <th className="table-header">Valid For</th>
-                  <th className="table-header">Usage</th>
-                  <th className="table-header">Validity</th>
-                  <th className="table-header">Status</th>
-                  <th className="table-header">Actions</th>
+                  <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Coupon Code</th>
+                  <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Description</th>
+                  <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Discount</th>
+                  <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Valid For</th>
+                  <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Usage</th>
+                  <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Validity</th>
+                  <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Status</th>
+                  <th className="px-4 sm:px-6 py-3 text-right text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white divide-y divide-[#E6F0F5]">
                 {filteredCoupons.length === 0 ? (
                   <tr>
-                    <td colSpan="8" className="table-cell text-center py-8 text-gray-500">
+                    <td colSpan="8" className="text-center py-12 text-[#6F7F8E] font-medium text-sm">
                       No coupons found
                     </td>
                   </tr>
                 ) : (
                   filteredCoupons.map((coupon) => (
-                    <tr key={coupon.id} className="hover:bg-gray-50">
-                      <td className="table-cell">
+                    <tr key={coupon.id} className="hover:bg-[#F4F9FB]/60 transition-colors">
+                      <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm">
                         <div className="flex items-center gap-2">
-                          <Tag className="w-4 h-4 text-primary-600" />
-                          <span className="font-mono font-semibold text-gray-900">{coupon.code}</span>
+                          <Tag className="w-4 h-4 text-[#127EAB]" />
+                          <span className="font-mono font-semibold text-[#1F4264]">{coupon.code}</span>
                           <button
                             onClick={() => handleCopyCode(coupon.code)}
-                            className="text-gray-400 hover:text-primary-600"
+                            className="text-[#8BA0B2] hover:text-[#127EAB] cursor-pointer"
                             title="Copy code"
                           >
                             {copiedCode === coupon.code ? (
-                              <CheckCircle2 className="w-4 h-4 text-green-600" />
+                              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                             ) : (
                               <Copy className="w-4 h-4" />
                             )}
                           </button>
                         </div>
                       </td>
-                      <td className="table-cell">
-                        <span className="text-gray-700">{coupon.description}</span>
+                      <td className="px-4 sm:px-6 py-3.5 text-xs sm:text-sm text-[#1F4264]">
+                        <span>{coupon.description}</span>
                       </td>
-                      <td className="table-cell">
+                      <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm">
                         <div>
-                          <span className="font-semibold text-gray-900">
+                          <span className="font-semibold text-[#1F4264]">
                             {coupon.discountType === 'percentage'
                               ? `${coupon.discountValue}%`
                               : `$${coupon.discountValue}`}
                           </span>
                           {coupon.minPurchaseAmount > 0 && (
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-[#6F7F8E]">
                               Min: ${coupon.minPurchaseAmount}
                             </p>
                           )}
                           {coupon.maxDiscountAmount && (
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-[#6F7F8E]">
                               Max: ${coupon.maxDiscountAmount}
                             </p>
                           )}
                         </div>
                       </td>
-                      <td className="table-cell">
+                      <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm">
                         <Badge color={getValidForColor(coupon.validFor)} size="sm">
                           {coupon.validForLabel}
                         </Badge>
                       </td>
-                      <td className="table-cell">
+                      <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm text-[#1F4264]">
                         <div>
-                          <span className="text-gray-900">
+                          <span className="font-medium text-[#1F4264]">
                             {coupon.usedCount} / {coupon.usageLimit || '∞'}
                           </span>
                         </div>
                       </td>
-                      <td className="table-cell">
-                        <div className="text-sm">
-                          <div className="flex items-center gap-1 text-gray-600">
-                            <Calendar className="w-3 h-3" />
+                      <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm">
+                        <div className="flex items-center gap-1.5 text-[#6F7F8E]">
+                          <Calendar className="w-3.5 h-3.5 text-[#8BA0B2]" />
+                          <span>
                             {format(new Date(coupon.startDate), 'MMM d, yyyy')} -{' '}
                             {format(new Date(coupon.endDate), 'MMM d, yyyy')}
-                          </div>
+                          </span>
                         </div>
                       </td>
-                      <td className="table-cell">
+                      <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm">
                         <Badge color={getStatusColor(coupon.status)} size="sm">
                           {coupon.status}
                         </Badge>
                       </td>
-                      <td className="table-cell">
-                        <div className="flex items-center gap-1">
+                      <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-right">
+                        <div className="flex items-center justify-end gap-1">
                           <Button
                             size="sm"
                             variant="ghost"
                             onClick={() => handleEdit(coupon)}
                             title="Edit"
                           >
-                            <Edit className="w-4 h-4" />
+                            <Edit className="w-4 h-4 text-[#127EAB]" />
                           </Button>
                           <Button
                             size="sm"
                             variant="ghost"
-                            className="text-red-600 hover:bg-red-50"
+                            className="text-[#EE6450] hover:text-[#D94F3C] hover:bg-[#FEF4F2]"
                             onClick={() => handleDelete(coupon.id)}
                             title="Delete"
                           >

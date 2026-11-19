@@ -713,7 +713,7 @@ const UserDetail = () => {
             <Button
               variant="secondary"
               leftIcon={<ArrowLeft className="w-4 h-4" />}
-              onClick={() => navigate('/users')}
+              onClick={() => navigate(-1)}
               className="w-full sm:w-auto"
             >
               <span className="hidden sm:inline">Back to Users</span>
@@ -733,7 +733,7 @@ const UserDetail = () => {
         }
       />
 
-      <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+      <div className="space-y-6">
         {/* Progress */}
         <Card>
           <Card.Header>
@@ -820,7 +820,7 @@ const UserDetail = () => {
         </Card>
 
         {/* Tabs */}
-        <div className="border-b border-gray-200">
+        <div className="border-b border-[#DCEAF0]">
           <nav className="flex space-x-4 sm:space-x-8 overflow-x-auto scrollbar-hide -mx-4 sm:mx-0 px-4 sm:px-0">
             {tabs.map((tab) => {
               const Icon = tab.icon;
@@ -828,16 +828,17 @@ const UserDetail = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-1.5 sm:gap-2 py-3 sm:py-4 px-1 border-b-2 font-medium text-xs sm:text-sm whitespace-nowrap transition-colors ${activeTab === tab.id
-                    ? 'border-primary-500 text-primary-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  className={`flex items-center gap-1.5 sm:gap-2 py-3 sm:py-4 px-1 border-b-2 text-xs sm:text-sm whitespace-nowrap transition-all cursor-pointer ${activeTab === tab.id
+                    ? 'border-[#127EAB] text-[#127EAB] font-semibold'
+                    : 'border-transparent text-[#6F7F8E] font-medium hover:text-[#1F4264] hover:border-[#CCDCE1]'
                     }`}
                 >
                   <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
                   <span className="hidden sm:inline">{tab.label}</span>
                   <span className="sm:hidden">{tab.label.split(' ')[0]}</span>
                   {tab.count !== undefined && (
-                    <span className="bg-gray-100 text-gray-600 px-1.5 sm:px-2 py-0.5 rounded-full text-xs">
+                    <span className={`px-1.5 sm:px-2 py-0.5 rounded-full text-xs font-semibold ${activeTab === tab.id ? 'bg-[#127EAB] text-white shadow-2xs' : 'bg-[#F4F9FB] text-[#6F7F8E]'
+                      }`}>
                       {tab.count}
                     </span>
                   )}

@@ -1,9 +1,9 @@
 import { format } from 'date-fns';
-import { 
-  CreditCard, 
-  DollarSign, 
-  CheckCircle, 
-  XCircle, 
+import {
+  CreditCard,
+  DollarSign,
+  CheckCircle,
+  XCircle,
   Clock,
   RefreshCw,
 } from 'lucide-react';
@@ -21,7 +21,7 @@ const statusConfig = {
 const PaymentList = ({ payments, onConfirm, onViewUser }) => {
   if (!payments || payments.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-500">
+      <div className="text-center py-12 text-[#6F7F8E] font-medium text-sm">
         No payments found
       </div>
     );
@@ -29,67 +29,67 @@ const PaymentList = ({ payments, onConfirm, onViewUser }) => {
 
   return (
     <div className="overflow-x-auto">
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+      <table className="min-w-full divide-y divide-[#E6F0F5]">
+        <thead className="bg-[#F8FBFC] border-b border-[#DCEAF0]">
           <tr>
-            <th className="table-header">Transaction</th>
-            <th className="table-header">User</th>
-            <th className="table-header">Amount</th>
-            <th className="table-header">Status</th>
-            <th className="table-header">Date</th>
-            <th className="table-header">Actions</th>
+            <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Transaction</th>
+            <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">User</th>
+            <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Amount</th>
+            <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Status</th>
+            <th className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Date</th>
+            <th className="px-4 sm:px-6 py-3 text-right text-[11px] sm:text-xs font-semibold text-[#1F4264] uppercase tracking-wider">Actions</th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody className="bg-white divide-y divide-[#E6F0F5]">
           {payments.map((payment) => {
             const StatusIcon = statusConfig[payment.status]?.icon || Clock;
             return (
-              <tr key={payment.id} className="hover:bg-gray-50">
-                <td className="table-cell">
+              <tr key={payment.id} className="hover:bg-[#F4F9FB]/60 transition-colors">
+                <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                      <CreditCard className="w-5 h-5 text-green-600" />
+                    <div className="w-9 h-9 bg-[#E9F7FA] border border-[#127EAB]/20 rounded-lg flex items-center justify-center shrink-0">
+                      <CreditCard className="w-4 h-4 text-[#127EAB]" />
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">
+                      <p className="font-semibold text-[#1F4264]">
                         {payment.transactionId || 'N/A'}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-[#6F7F8E]">
                         {payment.paymentMethod || 'Not specified'}
                       </p>
                     </div>
                   </div>
                 </td>
-                <td className="table-cell">
-                  <p className="font-medium text-gray-900">{payment.user?.fullName}</p>
-                  <p className="text-xs text-gray-500">{payment.user?.email}</p>
+                <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm">
+                  <p className="font-semibold text-[#1F4264]">{payment.user?.fullName}</p>
+                  <p className="text-xs text-[#6F7F8E]">{payment.user?.email}</p>
                 </td>
-                <td className="table-cell">
-                  <div className="flex items-center gap-1">
-                    <DollarSign className="w-4 h-4 text-gray-400" />
-                    <span className="font-semibold text-gray-900">
+                <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm">
+                  <div className="flex items-center gap-1 font-semibold text-[#1F4264]">
+                    <DollarSign className="w-3.5 h-3.5 text-[#8BA0B2]" />
+                    <span>
                       {payment.amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}
                     </span>
-                    <span className="text-gray-500">{payment.currency}</span>
+                    <span className="text-xs text-[#6F7F8E] ml-0.5">{payment.currency}</span>
                   </div>
                 </td>
-                <td className="table-cell">
-                  <Badge color={statusConfig[payment.status]?.color || 'gray'} dot>
+                <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm">
+                  <Badge color={statusConfig[payment.status]?.color || 'gray'} dot size="sm">
                     {payment.status}
                   </Badge>
                   {payment.isManualConfirmation && (
-                    <p className="text-xs text-blue-600 mt-1">Manually Confirmed</p>
+                    <p className="text-[11px] text-[#127EAB] font-medium mt-0.5">Manually Confirmed</p>
                   )}
                 </td>
-                <td className="table-cell">
-                  <span className="text-gray-500">
+                <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-xs sm:text-sm text-[#6F7F8E]">
+                  <span>
                     {payment.paymentDate
                       ? format(new Date(payment.paymentDate), 'MMM d, yyyy')
-                      : '-'}
+                      : '—'}
                   </span>
                 </td>
-                <td className="table-cell">
-                  <div className="flex items-center gap-2">
+                <td className="px-4 sm:px-6 py-3.5 whitespace-nowrap text-right">
+                  <div className="flex items-center justify-end gap-1.5">
                     {payment.status === 'PENDING' && (
                       <Button
                         size="sm"

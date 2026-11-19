@@ -223,13 +223,13 @@ const UserInfoSidebar = ({ user, onSave, disabled = false, documents = [] }) => 
     setIsEditing(false);
   };
 
-  const inputClass = isEditing ? 'input' : 'input bg-gray-50';
+  const inputClass = isEditing ? 'input' : 'input bg-[#F8FBFC] border-[#DCEAF0] text-[#1F4264]';
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+    <div className="bg-white rounded-xl shadow-[0_2px_10px_rgba(31,66,100,0.04)] border border-[#DCEAF0] overflow-hidden">
       {/* Top Tabs */}
       {/* Top Sections - Grid Layout */}
-      <div className="p-4 border-b border-gray-200 bg-gray-50">
+      <div className="p-4 border-b border-[#E6F0F5] bg-[#F8FBFC]">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
           {sections.map((section) => {
             const Icon = section.icon;
@@ -238,13 +238,13 @@ const UserInfoSidebar = ({ user, onSave, disabled = false, documents = [] }) => 
               <button
                 key={section.id}
                 onClick={() => setActiveSection(section.id)}
-                className={`flex items-center gap-2.5 px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${isActive
-                  ? 'bg-primary-600 text-white shadow-lg shadow-primary-200 scale-[1.02]'
-                  : 'bg-white text-gray-600 border border-gray-200 hover:border-primary-300 hover:bg-primary-50/30'
+                className={`flex items-center gap-2.5 px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 cursor-pointer ${isActive
+                  ? 'bg-[#127EAB] text-white shadow-sm shadow-[#127EAB]/25 scale-[1.01]'
+                  : 'bg-white text-[#6F7F8E] border border-[#DCEAF0] hover:border-[#127EAB]/40 hover:text-[#1F4264] hover:bg-[#E9F7FA]/30'
                   }`}
               >
-                <div className={`p-1.5 rounded-lg ${isActive ? 'bg-white/20' : 'bg-primary-50'}`}>
-                  <Icon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-white' : 'text-primary-600'}`} />
+                <div className={`p-1.5 rounded-lg ${isActive ? 'bg-white/20 text-white' : 'bg-[#E9F7FA] text-[#127EAB]'}`}>
+                  <Icon className="w-4 h-4 flex-shrink-0" />
                 </div>
                 <span className="truncate">{section.label}</span>
               </button>
@@ -257,7 +257,7 @@ const UserInfoSidebar = ({ user, onSave, disabled = false, documents = [] }) => 
       <div className="p-4 sm:p-6">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mb-4 sm:mb-6">
-          <h3 className="text-base sm:text-lg font-semibold text-gray-900">
+          <h3 className="text-base sm:text-lg font-semibold text-[#1F4264]">
             {sections.find((s) => s.id === activeSection)?.label}
           </h3>
           {!disabled && (
