@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import Logo from "../assets/irs-logo.png";
+import Logo from "/irslogo.webp";
 import { useNavigate } from "react-router-dom";
 import LeadModal from "../components/popup";
 import AdvancedFilingModal from "./AdvancedFilingModal";

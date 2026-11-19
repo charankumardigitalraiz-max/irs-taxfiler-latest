@@ -28,7 +28,7 @@ import {
 /* Brand Social Media Icons */
 import { FaInstagram, FaLinkedin, FaSlack, FaWhatsapp } from "react-icons/fa";
 
-import Logo from "../assets/irs-logo.png";
+import Logo from "/irslogo.webp";
 import { publicSettingsService } from "../../client/services/settingsService";
 
 const WEBSITE_TOTAL_VIEWS_KEY = "website-total-views";
@@ -97,10 +97,10 @@ const Footer = () => {
           const visitRes = await publicSettingsService.recordWebsiteVisit();
           const backendCount = Number(
             visitRes?.data?.originalViews ??
-              visitRes?.data?.count ??
-              visitRes?.originalViews ??
-              visitRes?.count ??
-              visitRes?.totalVisits
+            visitRes?.data?.count ??
+            visitRes?.originalViews ??
+            visitRes?.count ??
+            visitRes?.totalVisits
           );
           if (!Number.isNaN(backendCount) && backendCount >= 0) {
             originalVisits = Math.floor(backendCount);
@@ -202,7 +202,7 @@ const Footer = () => {
                 <img
                   src={Logo}
                   alt="IRS Tax Filer"
-                  className="h-9 w-auto object-contain"
+                  className="h-10 w-auto object-contain"
                 />
               </div>
             </Link>

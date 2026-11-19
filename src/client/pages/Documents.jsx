@@ -397,112 +397,117 @@ const Documents = () => {
         </Card>
       )}
 
-      {/* Document Type Selection */}
-      <Card>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Select Document Type (Optional)</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Document Selection & Upload Controls */}
+      <div className="flex flex-col lg:flex-row gap-6 items-stretch">
+        {/* Document Type Selection */}
+        <Card className="flex-1 flex flex-col justify-between">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Document Type
-            </label>
-            <select
-              value={selectedDocumentType}
-              onChange={(e) => setSelectedDocumentType(e.target.value)}
-              className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-md focus:ring-2 focus:ring-[#127EAB] focus:border-[#127EAB] transition-all bg-white hover:border-gray-400"
-            >
-              <option value="">Select Document Type</option>
-              {documentTypes.map((type) => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              ))}
-            </select>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Select Document Type (Optional)</h3>
+            <div className="grid grid-cols-1 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Document Type
+                </label>
+                <select
+                  value={selectedDocumentType}
+                  onChange={(e) => setSelectedDocumentType(e.target.value)}
+                  className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-md focus:ring-2 focus:ring-[#127EAB] focus:border-[#127EAB] transition-all bg-white hover:border-gray-400"
+                >
+                  <option value="">Select Document Type</option>
+                  {documentTypes.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  For
+                </label>
+                <select
+                  value={selectedPerson}
+                  onChange={(e) => setSelectedPerson(e.target.value)}
+                  className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-md focus:ring-2 focus:ring-[#127EAB] focus:border-[#127EAB] transition-all bg-white hover:border-gray-400"
+                >
+                  <option value="">Select Person</option>
+                  {personTypes.map((person) => (
+                    <option key={person} value={person}>
+                      {person}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              For
-            </label>
-            <select
-              value={selectedPerson}
-              onChange={(e) => setSelectedPerson(e.target.value)}
-              className="w-full px-4 py-2.5 border-2 border-gray-300 rounded-md focus:ring-2 focus:ring-[#127EAB] focus:border-[#127EAB] transition-all bg-white hover:border-gray-400"
-            >
-              <option value="">Select Person</option>
-              {personTypes.map((person) => (
-                <option key={person} value={person}>
-                  {person}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-        {selectedDocumentType ? (
-          <p className="mt-3 text-sm text-gray-600">
-            Selected: <span className="font-medium text-gray-900">{selectedDocumentType}</span>
-            {selectedPerson && (
-              <span className="ml-2">
-                for <span className="font-medium text-gray-900">{selectedPerson}</span>
-              </span>
-            )}
-          </p>
-        ) : (
-          <p className="mt-3 text-sm text-gray-500 italic">
-            No type selected. Document will be uploaded as "Others".
-          </p>
-        )}
-      </Card>
+          {selectedDocumentType ? (
+            <p className="mt-3 text-sm text-gray-600">
+              Selected: <span className="font-medium text-gray-900">{selectedDocumentType}</span>
+              {selectedPerson && (
+                <span className="ml-2">
+                  for <span className="font-medium text-gray-900">{selectedPerson}</span>
+                </span>
+              )}
+            </p>
+          ) : (
+            <p className="mt-3 text-sm text-gray-500 italic">
+              No type selected. Document will be uploaded as "Others".
+            </p>
+          )}
+        </Card>
 
-      {/* Upload Area */}
-      <Card
-        padding="none"
-        className={`border border-dashed transition-all duration-200 rounded-xl overflow-hidden ${
-          dragActive
-            ? 'border-[#127EAB] bg-[#E9F7FA] ring-2 ring-[#127EAB]/20'
-            : selectedDocumentType
-            ? 'border-[#127EAB] bg-[#F4F9FB]/60'
-            : 'border-[#CCDCE1] hover:border-[#127EAB]/50 bg-white'
-        }`}
-      >
-        <div
-          className="relative py-6 px-4 sm:py-7 sm:px-6 text-center"
-          onDragEnter={handleDrag}
-          onDragLeave={handleDrag}
-          onDragOver={handleDrag}
-          onDrop={handleDrop}
+        {/* Upload Area */}
+        <Card
+          padding="none"
+          className={`flex-1 flex flex-col justify-center border border-dashed transition-all duration-200 rounded-xl overflow-hidden ${
+            dragActive
+              ? 'border-[#127EAB] bg-[#E9F7FA] ring-2 ring-[#127EAB]/20'
+              : selectedDocumentType
+              ? 'border-[#127EAB] bg-[#F4F9FB]/60'
+              : 'border-[#CCDCE1] hover:border-[#127EAB]/50 bg-white'
+          }`}
         >
-          <input
-            ref={fileInputRef}
-            type="file"
-            multiple
-            onChange={handleChange}
-            className="hidden"
-          />
-          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#E9F7FA] border border-[#127EAB]/25 flex items-center justify-center mx-auto mb-3 text-[#127EAB] shadow-xs">
-            <Upload className="w-5 h-5 text-[#127EAB]" />
-          </div>
-          <p className="text-sm sm:text-base font-semibold text-[#1F4264] mb-1">
-            {selectedDocumentType ? `Upload ${selectedDocumentType}` : 'Drag and drop files here'}
-          </p>
-          <p className="text-xs sm:text-[13px] text-[#6F7F8E] max-w-md mx-auto mb-3.5">
-            {selectedDocumentType
-              ? 'Select files to upload for this document type'
-              : 'Click or drop files here to upload'}
-          </p>
-          <Button
-            type="button"
-            size="sm"
-            onClick={() => {
-              fileInputRef.current?.click();
-            }}
-            className="px-4 py-2 text-xs sm:text-sm font-medium"
+          <div
+            className="relative py-6 px-4 sm:py-7 sm:px-6 text-center h-full flex flex-col justify-center items-center"
+            onDragEnter={handleDrag}
+            onDragLeave={handleDrag}
+            onDragOver={handleDrag}
+            onDrop={handleDrop}
           >
-            Select Files
-          </Button>
-          <p className="text-[11px] sm:text-xs text-slate-400 mt-3">
-            Supported formats: PDF, DOC, DOCX, XLS, XLSX, JPG, PNG (Max 10MB per file)
-          </p>
-        </div>
-      </Card>
+            <input
+              ref={fileInputRef}
+              type="file"
+              multiple
+              onChange={handleChange}
+              className="hidden"
+            />
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#E9F7FA] border border-[#127EAB]/25 flex items-center justify-center mx-auto mb-3 text-[#127EAB] shadow-xs">
+              <Upload className="w-5 h-5 text-[#127EAB]" />
+            </div>
+            <p className="text-sm sm:text-base font-semibold text-[#1F4264] mb-1">
+              {selectedDocumentType ? `Upload ${selectedDocumentType}` : 'Drag and drop files here'}
+            </p>
+            <p className="text-xs sm:text-[13px] text-[#6F7F8E] max-w-md mx-auto mb-3.5">
+              {selectedDocumentType
+                ? 'Select files to upload for this document type'
+                : 'Click or drop files here to upload'}
+            </p>
+            <Button
+              type="button"
+              size="sm"
+              onClick={() => {
+                fileInputRef.current?.click();
+              }}
+              className="px-4 py-2 text-xs sm:text-sm font-medium"
+            >
+              Select Files
+            </Button>
+            <p className="text-[11px] sm:text-xs text-slate-400 mt-3">
+              Supported formats: PDF, DOC, DOCX, XLS, XLSX, JPG, PNG (Max 10MB per file)
+            </p>
+          </div>
+        </Card>
+      </div>
 
       {/* Files List */}
       {filteredFiles.length > 0 && (
