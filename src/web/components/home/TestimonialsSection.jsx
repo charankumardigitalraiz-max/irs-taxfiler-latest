@@ -48,11 +48,11 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-8 sm:py-10 bg-white  font-sans relative overflow-hidden">
+    <section className="py-7 sm:py-8 bg-white font-sans relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Compact Section Header */}
-        <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+        <div className="text-center max-w-xl mx-auto mb-5 sm:mb-6">
           <div className="pill-badge mb-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
             <span>Client Experiences</span>

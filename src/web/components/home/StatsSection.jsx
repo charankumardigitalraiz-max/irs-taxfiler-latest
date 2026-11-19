@@ -151,7 +151,7 @@ const StatsSection = () => {
   ];
 
   return (
-    <section className="py-10 sm:py-12 lg:py-14 bg-white  font-sans relative overflow-hidden">
+    <section className="py-8 sm:py-10 bg-white font-sans relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* 2-Column Composition: Left Commercial Photo with Floating Glass Pills + Right Stats Grid */}

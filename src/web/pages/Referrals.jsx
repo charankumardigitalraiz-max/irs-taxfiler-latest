@@ -346,7 +346,7 @@ ${yourName || 'Your Friend'}`;
         {/* ========================================================================= */}
         {/* 1. HERO & REFERRAL INVITATION WORKSPACE                                   */}
         {/* ========================================================================= */}
-        <section className="relative pt-12 sm:pt-16 pb-14 sm:pb-16 bg-gradient-to-b from-white via-[#EFF9FB]/30 to-white border-b border-[#CCDCE1]">
+        <section className="relative pt-10 pb-8 sm:pt-12 sm:pb-10 bg-gradient-to-b from-white via-[#EFF9FB]/30 to-white">
           {/* Subtle Ambient Background Gradients */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden -z-10">
             <div className="absolute -top-24 left-1/4 w-96 h-96 bg-[#127EAB]/5 rounded-full blur-3xl pointer-events-none" />
@@ -356,7 +356,7 @@ ${yourName || 'Your Friend'}`;
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
             {/* Clean Centered Hero Header */}
-            <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+            <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -719,10 +719,10 @@ ${yourName || 'Your Friend'}`;
         {/* ========================================================================= */}
         {/* 2. REWARDS FOR BOTH SECTION (CLEAN 3-COLUMN PASTEL GRID)                   */}
         {/* ========================================================================= */}
-        <section className="py-14 sm:py-16 bg-white border-b border-[#CCDCE1]">
+        <section className="py-8 sm:py-10 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div className="text-center mb-10 sm:mb-12">
+            <div className="text-center mb-6 sm:mb-8">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E9F7FA] border border-[#127EAB]/30 shadow-2xs mb-3 text-xs font-semibold text-teal select-none">
                 <GiftIcon className="w-3.5 h-3.5 text-teal" />
                 <span>Mutual Benefits</span>
@@ -783,10 +783,10 @@ ${yourName || 'Your Friend'}`;
         {/* ========================================================================= */}
         {/* 3. HOW IT WORKS SECTION (CLEAN 4-STEP HORIZONTAL FLOW)                    */}
         {/* ========================================================================= */}
-        <section className="py-14 sm:py-16 bg-white border-b border-[#CCDCE1]">
+        <section className="py-8 sm:py-10 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div className="text-center mb-10 sm:mb-12">
+            <div className="text-center mb-6 sm:mb-8">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E9F7FA] border border-[#127EAB]/30 shadow-2xs mb-3 text-xs font-semibold text-teal select-none">
                 <span className="w-2 h-2 rounded-full bg-[#127EAB]" />
                 <span>Simple 4-Step Process</span>
@@ -849,7 +849,7 @@ ${yourName || 'Your Friend'}`;
         {/* ========================================================================= */}
         {/* 4. COMPACT CTA SECTION                                                    */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-10 bg-gradient-to-b from-[#FFFDF9] via-[#FDF8F2] to-[#FAF1E6] border-t border-[#E5D7C6] relative overflow-hidden">
+        <section className="py-8 sm:py-10 bg-gradient-to-b from-[#FFFDF9] via-[#FDF8F2] to-[#FAF1E6] relative overflow-hidden">
           {/* Subtle Ambient Warmth */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-28 bg-[#EE6450]/8 rounded-full blur-2xl pointer-events-none" />
 

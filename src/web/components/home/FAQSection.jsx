@@ -82,7 +82,7 @@ const FAQSection = ({ onOpenModal }) => {
   };
 
   return (
-    <section className="bg-white py-10 sm:py-12 lg:py-14 font-sans border-t border-slate-100 relative overflow-hidden">
+    <section className="bg-white py-10 sm:py-12 lg:py-14 font-sans relative overflow-hidden">
       {/* Subtle ambient gradient aura */}
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-gradient-to-br from-[#1F4264]/5 to-transparent rounded-full blur-3xl pointer-events-none" />
 

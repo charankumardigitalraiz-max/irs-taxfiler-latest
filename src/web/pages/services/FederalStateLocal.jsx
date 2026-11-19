@@ -108,7 +108,7 @@ const FederalStateLocal = () => {
       />
 
       {/* 1. HERO SECTION: EXACT MATCH TYPOGRAPHY + REAL IMAGE (NO BREADCRUMBS) */}
-      <section className="relative overflow-hidden pt-8 sm:pt-10 lg:pt-12 pb-12 sm:pb-16 lg:pb-20 bg-white border-b border-slate-100">
+      <section className="relative overflow-hidden pt-8 sm:pt-10 lg:pt-12 pb-8 sm:pb-10 bg-white">
         <div className="absolute top-1/4 right-10 w-[500px] h-[500px] bg-gradient-to-bl from-[#1F4264]/[0.05] via-[#127EAB]/[0.04] to-transparent rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative max-w-7xl 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -210,7 +210,7 @@ const FederalStateLocal = () => {
       </section>
 
       {/* 2. JURISDICTION FILING TIERS WITH SECONDARY IMAGE */}
-      <section className="py-14 sm:py-18 bg-white border-b border-slate-100">
+      <section className="py-8 sm:py-10 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-10 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
@@ -302,7 +302,7 @@ const FederalStateLocal = () => {
       </section>
 
       {/* 3. SIMPLE 4-STEP WORKFLOW */}
-      <section className="py-14 sm:py-18 bg-slate-50/60 border-b border-slate-100">
+      <section className="py-8 sm:py-10 bg-slate-50/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-10">
             <h2 className="text-2xl sm:text-3xl font-normal text-primary tracking-tight leading-tight">
@@ -356,7 +356,7 @@ const FederalStateLocal = () => {
 
 
       {/* 5. CLEAN BOTTOM CTA BANNER */}
-      <section className="py-10 sm:py-14 bg-white font-sans">
+      <section className="py-8 sm:py-10 bg-white font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-3xl py-10 sm:py-12 px-6 sm:px-12 bg-gradient-to-r from-[#0D6388] via-[#127EAB] to-[#168BB8] text-white shadow-xl text-center">
             {/* Subtle Ambient Glows */}

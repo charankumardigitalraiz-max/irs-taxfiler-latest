@@ -191,7 +191,7 @@ const Pricing = () => {
         {/* ========================================================================= */}
         {/* 1. PRICING & SERVICES SECTION (CLEAN 2-COLUMN INFORMATIONAL RATE SCHEDULE) */}
         {/* ========================================================================= */}
-        <section id="pricing-table" className="relative overflow-hidden pt-10 pb-16 sm:pt-14 sm:pb-20 bg-white border-b border-[#CCDCE1]">
+        <section id="pricing-table" className="relative overflow-hidden pt-10 pb-10 sm:pt-12 sm:pb-12 bg-white">
           {/* Subtle Ambient Background Gradients */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden -z-10">
             <div className="absolute -top-24 left-1/4 w-96 h-96 bg-[#127EAB]/5 rounded-full blur-3xl pointer-events-none" />
@@ -312,7 +312,7 @@ const Pricing = () => {
         {/* ========================================================================= */}
         {/* 2. COMPACT CTA SECTION                                                    */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-10 bg-gradient-to-b from-white via-[#EFF9FB]/60 to-[#E9F7FA]/40 border-t border-[#CCDCE1] relative overflow-hidden">
+        <section className="py-6 sm:py-8 bg-gradient-to-b from-white via-[#EFF9FB]/60 to-[#E9F7FA]/40 relative overflow-hidden">
           {/* Subtle Ambient Depth */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-28 bg-[#127EAB]/5 rounded-full blur-2xl pointer-events-none" />
 

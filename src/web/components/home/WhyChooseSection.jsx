@@ -45,7 +45,7 @@ const WhyChooseSection = ({ onOpenModal }) => {
   }, []);
 
   return (
-    <section id="why-choose" className="relative py-10 sm:py-12 lg:py-14 bg-white font-sans overflow-hidden">
+    <section id="why-choose" className="relative py-8 sm:py-10 bg-white font-sans overflow-hidden">
       <div className="relative z-10 max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-8 xl:gap-12">
 

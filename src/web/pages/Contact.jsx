@@ -160,7 +160,7 @@ const Contact = () => {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-center mb-10 sm:mb-14"
+              className="text-center mb-6 sm:mb-8"
             >
               {/* Tag Pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E9F7FA] border border-[#127EAB]/30 mb-4 select-none text-xs font-medium text-teal">
@@ -292,7 +292,7 @@ const Contact = () => {
         </section>
 
 
-        <section id="send-message" className="relative pt-8 pb-12 sm:pt-10 sm:pb-14 lg:pt-12 lg:pb-16 bg-white  overflow-hidden">
+        <section id="send-message" className="relative pt-6 pb-8 sm:pt-8 sm:pb-10 bg-white overflow-hidden">
           {/* Subtle Ambient Background Gradients */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden -z-10">
             <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#127EAB]/5 rounded-full blur-3xl pointer-events-none" />
@@ -305,7 +305,7 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5 }}
-              className="text-center mb-10 sm:mb-12"
+              className="text-center mb-6 sm:mb-8"
             >
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E9F7FA] border border-[#127EAB]/25 text-xs font-semibold text-teal mb-3.5 shadow-2xs">
                 <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
@@ -518,14 +518,14 @@ const Contact = () => {
         {/* ========================================================================= */}
         {/* 3. WHY CONTACT US? SECTION                                                */}
         {/* ========================================================================= */}
-        <section className="py-16 sm:py-10 bg-white">
+        <section className="py-8 sm:py-10 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5 }}
-              className="text-center mb-12 sm:mb-16"
+              className="text-center mb-6 sm:mb-8"
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-2.5">
                 Why Contact{" "}

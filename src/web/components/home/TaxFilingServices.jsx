@@ -243,11 +243,11 @@ const TaxFilingServices = () => {
   const activeData = services[selectedCategory];
 
   return (
-    <section id="services" className="relative py-10 sm:py-12 bg-white font-sans overflow-hidden">
+    <section id="services" className="relative py-8 sm:py-10 bg-white font-sans overflow-hidden">
       <div className="relative max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Clean Compact Header */}
-        <div className="flex flex-col items-center text-center mb-9 sm:mb-11">
+        <div className="flex flex-col items-center text-center mb-6 sm:mb-8">
           <div>
             {/* <div className="pill-badge mb-2.5">
               <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />

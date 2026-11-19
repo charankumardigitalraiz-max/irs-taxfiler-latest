@@ -198,7 +198,7 @@ const Services = () => {
       />
 
       {/* 1. EDITORIAL DIRECTORY HERO: MATCHES HOME HERO EXACT TYPOGRAPHY */}
-      <section className="relative overflow-hidden pt-6 sm:pt-8 lg:pt-10 pb-12 sm:pb-16 lg:pb-14 bg-white border-b border-slate-100">
+      <section className="relative overflow-hidden pt-6 sm:pt-8 lg:pt-10 pb-8 sm:pb-10 bg-white">
         <div className="absolute top-0 right-10 w-[500px] h-[500px] bg-gradient-to-bl from-[#1F4264]/[0.05] via-[#127EAB]/[0.04] to-transparent rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative max-w-7xl 2xl:max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 w-full">
@@ -273,7 +273,7 @@ const Services = () => {
       </section>
 
       {/* 2. MASTER SERVICES GRID: COMPACT & REFINED CARDS */}
-      <section className="py-10 sm:py-14 bg-slate-50/60 border-b border-slate-100">
+      <section className="py-8 sm:py-10 bg-slate-50/60">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {allServices.map((service) => (
@@ -327,7 +327,7 @@ const Services = () => {
       </section>
 
       {/* 3. CLIENT SECURITY & CPA OPERATIONAL COMMITMENTS */}
-      <section className="py-12 sm:py-16 bg-white border-b border-slate-100">
+      <section className="py-8 sm:py-10 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Visual Team & Credential Card (Left - 5 Cols) */}
@@ -392,7 +392,7 @@ const Services = () => {
       </section>
 
       {/* 4. CONSULTATION CALL TO ACTION */}
-      <section className="py-12 sm:py-16 bg-[#1F4264] text-white">
+      <section className="py-8 sm:py-10 bg-[#1F4264] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-normal tracking-tight text-white mb-2">
             Need Guidance on the Right Filing Path?

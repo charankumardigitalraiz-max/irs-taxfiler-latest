@@ -1,4 +1,4 @@
-﻿import { motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ChatBubbleLeftRightIcon,
@@ -161,7 +161,7 @@ const CustomerSupport = () => {
       />
       <div className="min-h-screen bg-white font-sans text-primary antialiased">
         {/* Hero Section */}
-        {/* <section className="relative overflow-hidden pt-12 sm:pt-16 pb-14 sm:pb-16 bg-white border-b border-slate-100">
+        {/* <section className="relative overflow-hidden pt-12 sm:pt-16 pb-14 sm:pb-16 bg-white">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden">
             <div className="absolute -top-24 left-1/4 w-96 h-96 bg-sky-100/50 rounded-full blur-3xl opacity-60" />
             <div className="absolute -top-20 right-1/4 w-80 h-80 bg-lime-100/40 rounded-full blur-3xl opacity-50" />
@@ -190,14 +190,14 @@ const CustomerSupport = () => {
         </section> */}
 
         {/* Support Options Section */}
-        <section className="py-14 sm:py-16 bg-white border-b border-slate-100">
+        <section className="py-8 sm:py-10 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.45 }}
-              className="mb-10 sm:mb-12 text-center"
+              className="mb-6 sm:mb-8 text-center"
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-3">
                 How Can We{" "}
@@ -287,14 +287,14 @@ const CustomerSupport = () => {
         </section>
 
         {/* Support Features Section */}
-        <section className="py-14 sm:py-16 bg-slate-50/70 border-b border-slate-100">
+        <section className="py-8 sm:py-10 bg-slate-50/70">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.45 }}
-              className="mb-10 sm:mb-12 text-center"
+              className="mb-6 sm:mb-8 text-center"
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-3">
                 Why Choose Our{" "}
@@ -342,14 +342,14 @@ const CustomerSupport = () => {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-14 sm:py-16 bg-white border-b border-slate-100">
+        <section className="py-8 sm:py-10 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.45 }}
-              className="mb-10 sm:mb-12 text-center"
+              className="mb-6 sm:mb-8 text-center"
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-3">
                 Frequently Asked{" "}
@@ -418,14 +418,14 @@ const CustomerSupport = () => {
         </section>
 
         {/* Contact Information Section */}
-        <section className="py-14 sm:py-16 bg-slate-50/70 border-b border-slate-100">
+        <section className="py-8 sm:py-10 bg-slate-50/70">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.45 }}
-              className="mb-10 sm:mb-12 text-center"
+              className="mb-6 sm:mb-8 text-center"
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-3">
                 Contact{" "}
@@ -504,7 +504,7 @@ const CustomerSupport = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-14 sm:py-16 bg-white">
+        <section className="py-8 sm:py-10 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 16 }}

@@ -211,7 +211,7 @@ const About = () => {
         {/* ========================================================================= */}
         {/* 1. HERO & MISSION SECTION (UNIFIED)                                       */}
         {/* ========================================================================= */}
-        <section className="relative overflow-hidden pt-12 pb-14 sm:pt-16 sm:pb-16 bg-gradient-to-b from-white via-[#EFF9FB]/30 to-white ">
+        <section className="relative overflow-hidden pt-10 pb-8 sm:pt-12 sm:pb-10 bg-gradient-to-b from-white via-[#EFF9FB]/30 to-white ">
           {/* Subtle Ambient Background Gradients */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden -z-10">
             <div className="absolute -top-24 left-1/4 w-96 h-96 bg-[#127EAB]/5 rounded-full blur-3xl pointer-events-none" />
@@ -353,14 +353,14 @@ const About = () => {
         {/* ========================================================================= */}
         {/* 2. WHY CHOOSE TAXFILING? SECTION                                         */}
         {/* ========================================================================= */}
-        <section className="py-16 sm:py-10 bg-white ">
+        <section className="py-8 sm:py-10 bg-white ">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5 }}
-              className="text-center mb-12 sm:mb-16"
+              className="text-center mb-6 sm:mb-8"
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-2.5">
                 Why Choose{" "}
@@ -427,14 +427,14 @@ const About = () => {
         {/* ========================================================================= */}
         {/* 3. CORE VALUES SECTION                                                    */}
         {/* ========================================================================= */}
-        <section className="py-16 sm:py-10 bg-white ">
+        <section className="py-8 sm:py-10 bg-white ">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5 }}
-              className="text-center mb-12 sm:mb-16"
+              className="text-center mb-6 sm:mb-8"
             >
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25] mb-2.5">
                 Our Core{" "}
@@ -566,7 +566,7 @@ const About = () => {
         {/* ========================================================================= */}
         {/* 4. STATS SECTION                                                          */}
         {/* ========================================================================= */}
-        <section className="py-14 sm:py-18 bg-white border-b border-slate-100">
+        <section className="py-8 sm:py-10 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
               {stats.map((stat, index) => {
@@ -605,7 +605,7 @@ const About = () => {
         {/* ========================================================================= */}
         {/* 5. COMPACT CTA SECTION                                                    */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-10 bg-gradient-to-b from-white via-[#EFF9FB]/60 to-[#E9F7FA]/40 border-t border-[#CCDCE1] relative overflow-hidden">
+        <section className="py-6 sm:py-8 bg-gradient-to-b from-white via-[#EFF9FB]/60 to-[#E9F7FA]/40 relative overflow-hidden">
           {/* Subtle Ambient Depth */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-28 bg-[#127EAB]/5 rounded-full blur-2xl pointer-events-none" />
 

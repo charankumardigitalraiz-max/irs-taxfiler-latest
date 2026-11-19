@@ -1,4 +1,4 @@
-﻿import { motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ShieldCheckIcon,
@@ -212,7 +212,7 @@ const Security = () => {
       />
       <div className="min-h-screen bg-white font-sans text-primary antialiased">
         {/* Hero Section */}
-        <section className="relative overflow-hidden pt-12 sm:pt-16 pb-14 sm:pb-16 bg-white border-b border-slate-100">
+        <section className="relative overflow-hidden pt-10 pb-8 sm:pt-12 sm:pb-10 bg-white">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none overflow-hidden">
             <div className="absolute -top-24 left-1/4 w-96 h-96 bg-sky-100/50 rounded-full blur-3xl opacity-60" />
             <div className="absolute -top-20 right-1/4 w-80 h-80 bg-lime-100/40 rounded-full blur-3xl opacity-50" />
@@ -250,7 +250,7 @@ const Security = () => {
         </section>
 
         {/* Security Features Grid */}
-        <section className="py-12 sm:py-14 bg-white border-b border-slate-100">
+        <section className="py-8 sm:py-10 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
               {securityFeatures.map((feature, index) => {
@@ -291,7 +291,7 @@ const Security = () => {
         </section>
 
         {/* Security Content */}
-        <section className="py-12 sm:py-16 bg-slate-50/70">
+        <section className="py-8 sm:py-10 bg-slate-50/70">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Top Intro & Commitment Split Banner */}
             <motion.div

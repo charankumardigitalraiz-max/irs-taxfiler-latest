@@ -263,7 +263,7 @@ export default function LeadModal({ open, onClose }) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 12 }}
         transition={{ duration: 0.22, ease: "easeOut" }}
-        className="bg-white w-[94%] max-w-4xl rounded-3xl shadow-[0_25px_80px_rgba(31,66,100,0.2)] overflow-hidden flex flex-col md:flex-row relative my-auto max-h-[92vh] border border-border font-sans"
+        className="bg-white w-[94%] max-w-[540px] rounded-3xl shadow-[0_25px_80px_rgba(31,66,100,0.2)] overflow-hidden relative my-auto max-h-[92vh] border border-border font-sans flex flex-col"
       >
         {/* Sleek Floating Close Button */}
         <button
@@ -274,42 +274,8 @@ export default function LeadModal({ open, onClose }) {
           <XMarkIcon className="w-4.5 h-4.5 group-hover:rotate-90 transition-transform duration-200" />
         </button>
 
-        {/* ================= LEFT SIDE: FULL HEIGHT & WIDTH ANIMATION GIF ================= */}
-        <div className="w-full md:w-5/12 relative bg-slate-900 overflow-hidden flex flex-col justify-between shrink-0 min-h-[260px] md:min-h-full">
-          {/* Complete Height & Width Animation GIF Image */}
-          <img
-            src={taxAnimationGif}
-            alt="Tax Consultation Animation"
-            className="absolute inset-0 w-full h-full object-cover object-center"
-          />
-
-          {/* Subtle gradient vignette to blend seamlessly */}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-slate-950/35 pointer-events-none" />
-
-          {/* Minimal Floating Brand Badge at Top */}
-          <div className="relative z-10 p-4 sm:p-5 flex items-center justify-between">
-            <img
-              src={logo}
-              alt="IRS Tax Filer"
-              className="h-8 sm:h-9 w-auto object-contain drop-shadow-md bg-white/95 backdrop-blur-md rounded-lg px-2 py-1 shadow-xs"
-            />
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-slate-900/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 shadow-xs tracking-tight">
-              <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
-              <span>Certified CPA Advisory</span>
-            </span>
-          </div>
-
-          {/* Minimal Floating Trust Strip at Bottom */}
-          <div className="relative z-10 p-4 sm:p-5">
-            <div className="bg-slate-900/75 backdrop-blur-md border border-white/20 rounded-xl px-3.5 py-2.5 text-white flex items-center justify-between text-xs shadow-lg">
-              <span className="font-semibold text-teal-light">100% Free Consultation</span>
-              <span className="text-white/80 text-[11px] font-medium">Zero Obligation</span>
-            </div>
-          </div>
-        </div>
-
-        {/* ================= RIGHT SIDE: COMPACT, SLEEK FORM ================= */}
-        <div className="w-full md:w-7/12 p-5 sm:p-6 lg:p-7 bg-white flex flex-col justify-between overflow-y-auto">
+        {/* ================= COMPACT, SLEEK FORM ================= */}
+        <div className="w-full p-5 sm:p-6 lg:p-7 bg-white flex flex-col justify-between overflow-y-auto">
           <div>
             {/* Header with Brand Gradient */}
             <div className="mb-3.5 pr-6">

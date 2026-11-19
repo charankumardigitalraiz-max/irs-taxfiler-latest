@@ -301,11 +301,11 @@ const TaxResources = () => {
         {/* ========================================================================= */}
         {/* OFFICIAL IRS FORMS & RESOURCES SECTION                                    */}
         {/* ========================================================================= */}
-        <section id="forms" className="pt-12 sm:pt-16 pb-14 sm:pb-16 bg-white scroll-mt-16">
+        <section id="forms" className="pt-10 sm:pt-12 pb-8 sm:pb-10 bg-white scroll-mt-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             {/* Header */}
-            <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+            <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
               <motion.h1
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -405,11 +405,11 @@ const TaxResources = () => {
         {/* ========================================================================= */}
         {/* 3. KEY TAX DEADLINES SECTION (CLEAN BORDERLESS TIMELINE & CALENDAR)      */}
         {/* ========================================================================= */}
-        <section id="deadlines" className="py-14 sm:py-16 bg-white border-b border-slate-100 scroll-mt-16">
+        <section id="deadlines" className="py-8 sm:py-10 bg-white scroll-mt-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             {/* Section Header */}
-            <div className="text-left mb-8 sm:mb-10">
+            <div className="text-left mb-6 sm:mb-7">
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
                 Important Filing{" "}
                 <span className="font-medium text-teal">
@@ -515,11 +515,11 @@ const TaxResources = () => {
         {/* ========================================================================= */}
         {/* 4. DEDUCTIONS & CREDITS SECTION (OPEN 4-COLUMN READABLE CHECKLIST)        */}
         {/* ========================================================================= */}
-        <section id="deductions" className="py-14 sm:py-16 bg-slate-50/70 border-b border-slate-100 scroll-mt-16">
+        <section id="deductions" className="py-8 sm:py-10 bg-slate-50/70 scroll-mt-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             {/* Section Header */}
-            <div className="text-left mb-8 sm:mb-10">
+            <div className="text-left mb-6 sm:mb-7">
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal text-primary tracking-tight leading-[1.25]">
                 Common Tax Deductions &{" "}
                 <span className="font-medium text-teal">
@@ -590,7 +590,7 @@ const TaxResources = () => {
         {/* ========================================================================= */}
         {/* 5. CLEAN, HIGH-IMPACT BRAND CTA SECTION                                   */}
         {/* ========================================================================= */}
-        <section className="py-8 sm:py-10 bg-gradient-to-b from-white via-[#EFF9FB]/60 to-[#E9F7FA]">
+        <section className="py-6 sm:py-8 bg-gradient-to-b from-white via-[#EFF9FB]/60 to-[#E9F7FA]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
             <div className="relative overflow-hidden rounded-3xl py-7 sm:py-8 lg:py-9 px-6 sm:px-12 lg:px-16 bg-gradient-to-br from-[#1F4264] via-[#1B3C5E] to-[#152F4A] border border-white/15 shadow-xl text-white">
