@@ -453,11 +453,18 @@ const Documents = () => {
       </Card>
 
       {/* Upload Area */}
-      <Card className={`border-2 border-dashed ${selectedDocumentType ? 'border-primary-500' : 'border-gray-300'
-        }`}>
+      <Card
+        padding="none"
+        className={`border border-dashed transition-all duration-200 rounded-xl overflow-hidden ${
+          dragActive
+            ? 'border-[#127EAB] bg-[#E9F7FA] ring-2 ring-[#127EAB]/20'
+            : selectedDocumentType
+            ? 'border-[#127EAB] bg-[#F4F9FB]/60'
+            : 'border-[#CCDCE1] hover:border-[#127EAB]/50 bg-white'
+        }`}
+      >
         <div
-          className={`relative ${dragActive ? 'border-primary-500 bg-primary-50' : ''
-            }`}
+          className="relative py-6 px-4 sm:py-7 sm:px-6 text-center"
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
@@ -470,27 +477,30 @@ const Documents = () => {
             onChange={handleChange}
             className="hidden"
           />
-          <div className="text-center py-8">
-            <Upload className={`mx-auto h-12 w-12 mb-4 text-primary-600`} />
-            <p className="text-lg font-semibold text-gray-900 mb-2">
-              {selectedDocumentType ? `Upload ${selectedDocumentType}` : 'Drag and drop files here'}
-            </p>
-            <p className="text-sm text-gray-500 mb-4">
-              {selectedDocumentType
-                ? 'Select files to upload for this document type'
-                : 'Click or drop files here to upload'}
-            </p>
-            <Button
-              onClick={() => {
-                fileInputRef.current?.click();
-              }}
-            >
-              Select Files
-            </Button>
-            <p className="text-xs text-gray-400 mt-4">
-              Supported formats: PDF, DOC, DOCX, XLS, XLSX, JPG, PNG (Max 10MB per file)
-            </p>
+          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#E9F7FA] border border-[#127EAB]/25 flex items-center justify-center mx-auto mb-3 text-[#127EAB] shadow-xs">
+            <Upload className="w-5 h-5 text-[#127EAB]" />
           </div>
+          <p className="text-sm sm:text-base font-semibold text-[#1F4264] mb-1">
+            {selectedDocumentType ? `Upload ${selectedDocumentType}` : 'Drag and drop files here'}
+          </p>
+          <p className="text-xs sm:text-[13px] text-[#6F7F8E] max-w-md mx-auto mb-3.5">
+            {selectedDocumentType
+              ? 'Select files to upload for this document type'
+              : 'Click or drop files here to upload'}
+          </p>
+          <Button
+            type="button"
+            size="sm"
+            onClick={() => {
+              fileInputRef.current?.click();
+            }}
+            className="px-4 py-2 text-xs sm:text-sm font-medium"
+          >
+            Select Files
+          </Button>
+          <p className="text-[11px] sm:text-xs text-slate-400 mt-3">
+            Supported formats: PDF, DOC, DOCX, XLS, XLSX, JPG, PNG (Max 10MB per file)
+          </p>
         </div>
       </Card>
 
