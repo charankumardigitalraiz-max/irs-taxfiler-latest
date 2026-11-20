@@ -397,7 +397,7 @@ const Footer = () => {
             </div>
 
             {/* Unified Compact Contact Card */}
-            <div className="rounded-xl bg-white/[0.04] border border-white/10 p-3 space-y-4 shadow-sm">
+            <div className="rounded-xl  space-y-2.5 shadow-sm">
               {/* 1. Corporate Office — Yellow Theme */}
               <div className="flex items-start gap-2.5 pb-2.5 border-b border-white/10 group">
                 <div className="w-7 h-7 rounded-lg bg-amber-400/15 border border-amber-400/30 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
