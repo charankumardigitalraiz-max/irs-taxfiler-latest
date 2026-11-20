@@ -542,22 +542,22 @@ const Dashboard = () => {
       </Card>
 
       {/* Quick Actions & Recent Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-        {/* Quick Actions */}
-        <Card>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
+        {/* Quick Actions (Wider ~60%) */}
+        <Card className="lg:col-span-7 xl:col-span-7 flex flex-col justify-between">
           <Card.Header>
             <Card.Title>Quick Actions</Card.Title>
             <Card.Description>Common tasks and shortcuts</Card.Description>
           </Card.Header>
-          <Card.Content>
-            <div className="grid grid-cols-1 gap-3">
+          <Card.Content className="flex-1 flex flex-col justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3">
               {quickActions.map((action) => {
                 const Icon = action.icon;
                 return (
                   <button
                     key={action.name}
                     onClick={() => navigate(action.path)}
-                    className="flex items-start gap-3 p-4 rounded-lg border border-[#DCEAF0] hover:border-[#127EAB]/40 hover:bg-[#E9F7FA]/40 transition-all group w-full text-left cursor-pointer"
+                    className="flex items-start gap-3 p-3.5 sm:p-4 rounded-lg border border-[#DCEAF0] hover:border-[#127EAB]/40 hover:bg-[#E9F7FA]/40 transition-all group w-full text-left cursor-pointer"
                   >
                     <div
                       className={`p-2.5 rounded-lg transition-colors ${action.color === 'blue' && 'bg-[#E9F7FA] group-hover:bg-[#127EAB]'
@@ -574,7 +574,7 @@ const Dashboard = () => {
                       <p className="text-sm font-semibold text-[#1F4264] group-hover:text-[#127EAB] transition-colors">
                         {action.name}
                       </p>
-                      <p className="text-xs text-[#6F7F8E] font-medium mt-0.5">{action.description}</p>
+                      <p className="text-xs text-[#6F7F8E] font-medium mt-0.5 line-clamp-1">{action.description}</p>
                     </div>
                     <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#127EAB] group-hover:translate-x-0.5 transition-all mt-1" />
                   </button>
@@ -584,13 +584,13 @@ const Dashboard = () => {
           </Card.Content>
         </Card>
 
-        {/* Recent Activity */}
-        <Card>
+        {/* Recent Activity (Smaller ~40%) */}
+        <Card className="lg:col-span-5 xl:col-span-5 flex flex-col justify-between">
           <Card.Header>
             <Card.Title>Recent Activity</Card.Title>
             <Card.Description>Latest updates and notifications</Card.Description>
           </Card.Header>
-          <Card.Content>
+          <Card.Content className="flex-1 flex flex-col justify-between">
             <div className="space-y-4">
               {recentActivities.length === 0 ? (
                 <div className="text-center py-8 text-gray-500">
