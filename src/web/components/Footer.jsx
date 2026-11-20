@@ -389,7 +389,7 @@ const Footer = () => {
           {/* Column 5: Office Addresses & Contact */}
           <div className="text-left font-sans">
             <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-white/15">
-              <span className="text-[13px] font-semibold text-white tracking-tight uppercase tracking-wider flex items-center gap-2">
+              <span className="text-[13px] font-semibold text-[#38BDF8] tracking-tight uppercase tracking-wider flex items-center gap-2">
                 <MapPinIcon className="w-4 h-4 text-[#38BDF8]" />
                 <span>Address & Contact</span>
               </span>
@@ -398,20 +398,20 @@ const Footer = () => {
 
             <div className="space-y-2 text-[13px]">
               {/* Corporate Office */}
-              <div className="p-2.5 rounded-xl bg-gradient-to-r from-white/[0.08] to-white/[0.03] border border-[#127EAB]/40 hover:border-[#38BDF8] hover:bg-white/[0.1] transition-all duration-200 group">
+              <div className="p-2.5 rounded-xl bg-gradient-to-r from-[#127EAB]/20 to-[#127EAB]/10 border border-[#127EAB]/40 hover:border-[#38BDF8] hover:bg-[#127EAB]/25 transition-all duration-200 group">
                 <div className="flex items-start gap-2.5">
-                  <div className="w-7 h-7 rounded-lg bg-[#127EAB]/30 border border-[#38BDF8]/40 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
+                  <div className="w-7 h-7 rounded-lg bg-[#127EAB]/35 border border-[#38BDF8]/40 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
                     <MapPinIcon className="w-3.5 h-3.5 text-[#38BDF8]" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="font-semibold text-white text-xs leading-tight mb-0.5 group-hover:text-[#38BDF8] transition-colors">
+                    <p className="font-bold text-[#38BDF8] text-xs leading-tight mb-0.5 group-hover:text-[#7DD3FC] transition-colors">
                       IRS Tax Adviser Inc
                     </p>
                     <a
                       href="https://www.google.com/maps/place/12600+Deerfield+Parkway+Suite+2096,+Alpharetta,+GA+30004"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-slate-200 hover:text-white font-normal transition-colors block text-[11px] leading-snug"
+                      className="text-[#BAE6FD]/90 hover:text-white font-normal transition-colors block text-[11px] leading-snug"
                     >
                       12600 Deerfield Pkwy, Ste 2096, Alpharetta, GA 30004
                     </a>
@@ -420,26 +420,26 @@ const Footer = () => {
               </div>
 
               {/* Direct Telephone / Mobile */}
-              <div className="p-2.5 rounded-xl bg-gradient-to-r from-white/[0.08] to-white/[0.03] border border-[#EE6450]/40 hover:border-[#EE6450] hover:bg-white/[0.1] transition-all duration-200 group">
+              <div className="p-2.5 rounded-xl bg-gradient-to-r from-[#EE6450]/20 to-[#EE6450]/10 border border-[#EE6450]/40 hover:border-[#EE6450] hover:bg-[#EE6450]/25 transition-all duration-200 group">
                 <div className="flex items-center gap-2.5">
                   <div className="w-7 h-7 rounded-lg bg-[#EE6450]/25 border border-[#EE6450]/50 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                     <PhoneIcon className="w-3.5 h-3.5 text-[#EE6450]" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <span className="text-[10px] font-semibold text-coral-light/80 uppercase tracking-wider block leading-none mb-1">
+                    <span className="text-[10px] font-semibold text-[#FFA280] uppercase tracking-wider block leading-none mb-1">
                       Direct Telephone
                     </span>
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-white tracking-wide">
+                    <div className="flex items-center gap-1.5 text-xs font-bold tracking-wide">
                       <a
                         href="tel:+14044244191"
-                        className="hover:text-coral transition-colors"
+                        className="text-[#FF7A66] hover:text-[#FFA280] transition-colors"
                       >
                         +1 (404) 424-4191
                       </a>
-                      <span className="text-white/40 font-normal">/</span>
+                      <span className="text-[#FF7A66]/50 font-normal">/</span>
                       <a
                         href="tel:+14044244815"
-                        className="hover:text-coral transition-colors"
+                        className="text-[#FF7A66] hover:text-[#FFA280] transition-colors"
                       >
                         4815
                       </a>
@@ -449,18 +449,18 @@ const Footer = () => {
               </div>
 
               {/* Email */}
-              <div className="p-2.5 rounded-xl bg-gradient-to-r from-white/[0.08] to-white/[0.03] border border-[#38BDF8]/40 hover:border-[#38BDF8] hover:bg-white/[0.1] transition-all duration-200 group">
+              <div className="p-2.5 rounded-xl bg-gradient-to-r from-[#0284C7]/20 to-[#0284C7]/10 border border-[#38BDF8]/40 hover:border-[#38BDF8] hover:bg-[#0284C7]/25 transition-all duration-200 group">
                 <div className="flex items-center gap-2.5">
                   <div className="w-7 h-7 rounded-lg bg-[#0284C7]/25 border border-[#38BDF8]/50 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                     <EnvelopeIcon className="w-3.5 h-3.5 text-[#38BDF8]" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <span className="text-[10px] font-semibold text-sky-200/80 uppercase tracking-wider block leading-none mb-1">
+                    <span className="text-[10px] font-semibold text-[#7DD3FC] uppercase tracking-wider block leading-none mb-1">
                       Email Support
                     </span>
                     <a
                       href="mailto:info@irstaxfiler.com"
-                      className="text-xs font-bold text-white hover:text-[#38BDF8] transition-colors block truncate"
+                      className="text-xs font-bold text-[#38BDF8] hover:text-[#BAE6FD] transition-colors block truncate"
                     >
                       info@irstaxfiler.com
                     </a>
