@@ -390,54 +390,54 @@ const Footer = () => {
           <div className="text-left font-sans">
             <div className="flex items-center justify-between pb-2.5 mb-3.5 border-b border-white/15">
               <span className="text-[13px] font-semibold text-white tracking-tight uppercase tracking-wider flex items-center gap-2">
-                <MapPinIcon className="w-4 h-4 text-[#38BDF8]" />
+                <MapPinIcon className="w-4 h-4 text-teal" />
                 <span>Contact & Office</span>
               </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-teal" />
             </div>
 
             {/* Unified Compact Contact Card */}
-            <div className="rounded-xl bg-white/[0.04] border border-white/10 p-3 space-y-2.5 shadow-sm hover:border-[#127EAB]/40 transition-colors">
-              {/* Corporate Office */}
+            <div className="rounded-xl bg-white/[0.04] border border-white/10 p-3 space-y-2.5 shadow-sm">
+              {/* 1. Corporate Office — Yellow Theme */}
               <div className="flex items-start gap-2.5 pb-2.5 border-b border-white/10 group">
-                <div className="w-7 h-7 rounded-lg bg-[#127EAB]/20 border border-[#38BDF8]/30 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
-                  <MapPinIcon className="w-3.5 h-3.5 text-[#38BDF8]" />
+                <div className="w-7 h-7 rounded-lg bg-amber-400/15 border border-amber-400/30 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
+                  <MapPinIcon className="w-3.5 h-3.5 text-amber-400" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <span className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-wider block leading-none mb-1">
+                  <span className="text-[10px] font-semibold text-amber-300 uppercase tracking-wider block leading-none mb-1">
                     Corporate Office
                   </span>
                   <a
                     href="https://www.google.com/maps/place/12600+Deerfield+Parkway+Suite+2096,+Alpharetta,+GA+30004"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#38BDF8] hover:text-[#7DD3FC] font-medium transition-colors block text-[11px] leading-snug"
+                    className="text-amber-100/90 hover:text-amber-200 font-medium transition-colors block text-[11px] leading-snug"
                   >
                     12600 Deerfield Pkwy, Ste 2096, Alpharetta, GA 30004
                   </a>
                 </div>
               </div>
 
-              {/* Direct Telephone */}
+              {/* 2. Direct Telephone — Coral Theme */}
               <div className="flex items-center gap-2.5 pb-2.5 border-b border-white/10 group">
-                <div className="w-7 h-7 rounded-lg bg-[#127EAB]/20 border border-[#38BDF8]/30 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <PhoneIcon className="w-3.5 h-3.5 text-[#38BDF8]" />
+                <div className="w-7 h-7 rounded-lg bg-[#EE6450]/20 border border-[#EE6450]/40 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <PhoneIcon className="w-3.5 h-3.5 text-[#EE6450]" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <span className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-wider block leading-none mb-1">
+                  <span className="text-[10px] font-semibold text-[#FF8A65] uppercase tracking-wider block leading-none mb-1">
                     Direct Telephone
                   </span>
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-[#38BDF8] tracking-wide">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-[#FF7A66] tracking-wide">
                     <a
                       href="tel:+14044244191"
-                      className="hover:text-[#7DD3FC] transition-colors"
+                      className="hover:text-[#FFA280] transition-colors"
                     >
                       +1 (404) 424-4191
                     </a>
-                    <span className="text-white/30 font-normal">/</span>
+                    <span className="text-[#FF7A66]/50 font-normal">/</span>
                     <a
                       href="tel:+14044244815"
-                      className="hover:text-[#7DD3FC] transition-colors"
+                      className="hover:text-[#FFA280] transition-colors"
                     >
                       4815
                     </a>
@@ -445,18 +445,18 @@ const Footer = () => {
                 </div>
               </div>
 
-              {/* Email */}
+              {/* 3. Email — White Theme */}
               <div className="flex items-center gap-2.5 group">
-                <div className="w-7 h-7 rounded-lg bg-[#127EAB]/20 border border-[#38BDF8]/30 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <EnvelopeIcon className="w-3.5 h-3.5 text-[#38BDF8]" />
+                <div className="w-7 h-7 rounded-lg bg-white/10 border border-white/25 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <EnvelopeIcon className="w-3.5 h-3.5 text-white" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <span className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-wider block leading-none mb-1">
+                  <span className="text-[10px] font-semibold text-white/70 uppercase tracking-wider block leading-none mb-1">
                     Email Support
                   </span>
                   <a
                     href="mailto:info@irstaxfiler.com"
-                    className="text-xs font-medium text-[#38BDF8] hover:text-[#7DD3FC] transition-colors block truncate"
+                    className="text-xs font-semibold text-white hover:text-white/80 transition-colors block truncate"
                   >
                     info@irstaxfiler.com
                   </a>
