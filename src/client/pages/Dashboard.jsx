@@ -80,7 +80,7 @@ const Dashboard = () => {
         s.off('workflow_updated', handleRealtimeUpdate);
         s.off('ticket_message', handleRealtimeUpdate);
       };
-    } catch (_) {}
+    } catch (_) { }
   }, []);
 
   // Listen for workflow updates (e.g., after scheduling a meeting)
@@ -621,7 +621,7 @@ const Dashboard = () => {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-[#1F4264]">{activity.message || activity.action}</p>
+                        <p className="text-xs font-medium text-[#1F4264]">{activity.message || activity.action}</p>
                         <p className="text-xs text-[#6F7F8E] mt-0.5">{formatTimeAgo(activity.time || activity.timestamp)}</p>
                       </div>
                     </div>

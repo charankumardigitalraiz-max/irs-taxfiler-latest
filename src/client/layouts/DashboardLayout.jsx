@@ -494,19 +494,17 @@ const DashboardLayout = () => {
                       onClick={() => setNavDropdownOpen(!navDropdownOpen)}
                       aria-expanded={navDropdownOpen}
                       aria-label="Toggle all sidebar tabs"
-                      className={`inline-flex items-center gap-2 px-3.5 py-1.5 text-xs sm:text-sm font-semibold rounded-lg transition-all cursor-pointer ${
-                        navDropdownOpen
+                      className={`inline-flex items-center gap-2 px-3.5 py-1.5 text-xs sm:text-sm font-semibold rounded-lg transition-all cursor-pointer ${navDropdownOpen
                           ? 'bg-gradient-to-r from-[#0E668B] to-[#094d6a] text-white ring-2 ring-[#127EAB]/30 shadow-md'
                           : 'bg-gradient-to-r from-[#127EAB] to-[#0E668B] hover:from-[#0E668B] hover:to-[#094d6a] text-white shadow-[0_2px_6px_rgba(18,126,171,0.25)] hover:shadow-md'
-                      }`}
+                        }`}
                       title="All sidebar tabs"
                     >
                       <LayoutGrid className="w-4 h-4 text-white" />
                       <span className="text-white">Tabs</span>
                       <ChevronDown
-                        className={`w-3.5 h-3.5 text-white/80 transition-transform duration-200 ${
-                          navDropdownOpen ? 'rotate-180 text-white' : ''
-                        }`}
+                        className={`w-3.5 h-3.5 text-white/80 transition-transform duration-200 ${navDropdownOpen ? 'rotate-180 text-white' : ''
+                          }`}
                       />
                     </button>
 
@@ -564,16 +562,14 @@ const DashboardLayout = () => {
                                       setNavDropdownOpen(false);
                                       navigate(item.href);
                                     }}
-                                    className={`w-full flex items-center gap-2.5 px-2.5 py-2 text-xs font-medium rounded-lg transition-all text-left cursor-pointer ${
-                                      isActive
+                                    className={`w-full flex items-center gap-2.5 px-2.5 py-2 text-xs font-medium rounded-lg transition-all text-left cursor-pointer ${isActive
                                         ? 'bg-gradient-to-r from-[#127EAB] to-[#0E668B] text-white font-semibold shadow-[0_2px_6px_rgba(18,126,171,0.25)]'
                                         : 'text-[#526475] hover:text-[#1F4264] hover:bg-[#F4F9FB]'
-                                    }`}
+                                      }`}
                                   >
                                     <Icon
-                                      className={`w-4 h-4 shrink-0 ${
-                                        isActive ? 'text-white' : 'text-[#127EAB]'
-                                      }`}
+                                      className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : 'text-[#127EAB]'
+                                        }`}
                                     />
                                     <span className="truncate">{item.name}</span>
                                   </button>
@@ -601,16 +597,14 @@ const DashboardLayout = () => {
                                         setNavDropdownOpen(false);
                                         navigate(item.href);
                                       }}
-                                      className={`w-full flex items-center gap-2.5 px-2.5 py-2 text-xs font-medium rounded-lg transition-all text-left cursor-pointer ${
-                                        isActive
+                                      className={`w-full flex items-center gap-2.5 px-2.5 py-2 text-xs font-medium rounded-lg transition-all text-left cursor-pointer ${isActive
                                           ? 'bg-gradient-to-r from-[#127EAB] to-[#0E668B] text-white font-semibold shadow-[0_2px_6px_rgba(18,126,171,0.25)]'
                                           : 'text-[#526475] hover:text-[#1F4264] hover:bg-[#F4F9FB]'
-                                      }`}
+                                        }`}
                                     >
                                       <Icon
-                                        className={`w-4 h-4 shrink-0 ${
-                                          isActive ? 'text-white' : 'text-[#127EAB]'
-                                        }`}
+                                        className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : 'text-[#127EAB]'
+                                          }`}
                                       />
                                       <span className="truncate">{item.name}</span>
                                     </button>
