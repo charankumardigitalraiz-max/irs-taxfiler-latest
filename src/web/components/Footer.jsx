@@ -411,7 +411,7 @@ const Footer = () => {
                       href="https://www.google.com/maps/place/12600+Deerfield+Parkway+Suite+2096,+Alpharetta,+GA+30004"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#BAE6FD]/90 hover:text-white font-normal transition-colors block text-[11px] leading-snug"
+                      className="text-[#2DD4BF] hover:text-[#5EEAD4] font-medium transition-colors block text-[11px] leading-snug"
                     >
                       12600 Deerfield Pkwy, Ste 2096, Alpharetta, GA 30004
                     </a>
