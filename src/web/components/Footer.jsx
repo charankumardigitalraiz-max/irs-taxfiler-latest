@@ -193,10 +193,10 @@ const Footer = () => {
       {/* MAIN FOOTER NAVIGATION COLUMNS                            */}
       {/* ========================================================= */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-8 xl:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8">
 
           {/* Column 1: Company Profile */}
-          <div className="text-left font-sans lg:pr-2">
+          <div className="text-left font-sans lg:col-span-3 lg:pr-2">
             <Link to="/" className="inline-block mb-3.5 group">
               <div className="bg-white/95 backdrop-blur-sm rounded-lg px-2.5 py-1.5 shadow-sm inline-block transition-transform duration-200 group-hover:scale-[1.02]">
                 <img
@@ -213,7 +213,7 @@ const Footer = () => {
           </div>
 
           {/* Column 2: Services Navigation */}
-          <div className="text-left font-sans">
+          <div className="text-left font-sans lg:col-span-2">
             <div className="flex items-center justify-between pb-2.5 mb-3.5 border-b border-white/15">
               <span className="text-[13px] font-semibold text-white tracking-tight uppercase tracking-wider flex items-center gap-2">
                 <DocumentTextIcon className="w-4 h-4 text-teal" />
@@ -275,7 +275,7 @@ const Footer = () => {
           </div>
 
           {/* Column 3: Resources Navigation */}
-          <div className="text-left font-sans">
+          <div className="text-left font-sans lg:col-span-2">
             <div className="flex items-center justify-between pb-2.5 mb-3.5 border-b border-white/15">
               <span className="text-[13px] font-semibold text-white tracking-tight uppercase tracking-wider flex items-center gap-2">
                 <BookOpenIcon className="w-4 h-4 text-teal" />
@@ -331,7 +331,7 @@ const Footer = () => {
           </div>
 
           {/* Column 4: Support Navigation */}
-          <div className="text-left font-sans">
+          <div className="text-left font-sans lg:col-span-2">
             <div className="flex items-center justify-between pb-2.5 mb-3.5 border-b border-white/15">
               <span className="text-[13px] font-semibold text-white tracking-tight uppercase tracking-wider flex items-center gap-2">
                 <QuestionMarkCircleIcon className="w-4 h-4 text-teal" />
@@ -387,7 +387,7 @@ const Footer = () => {
           </div>
 
           {/* Column 5: Office Addresses & Contact */}
-          <div className="text-left font-sans">
+          <div className="text-left font-sans lg:col-span-3">
             <div className="flex items-center justify-between pb-2.5 mb-3.5 border-b border-white/15">
               <span className="text-[13px] font-semibold text-white tracking-tight uppercase tracking-wider flex items-center gap-2">
                 <MapPinIcon className="w-4 h-4 text-teal" />
@@ -397,7 +397,7 @@ const Footer = () => {
             </div>
 
             {/* Unified Compact Contact Card */}
-            <div className="rounded-xl bg-white/[0.04] border border-white/10 p-3 space-y-2.5 shadow-sm">
+            <div className="rounded-xl bg-white/[0.04] border border-white/10 p-3 space-y-4 shadow-sm">
               {/* 1. Corporate Office — Yellow Theme */}
               <div className="flex items-start gap-2.5 pb-2.5 border-b border-white/10 group">
                 <div className="w-7 h-7 rounded-lg bg-amber-400/15 border border-amber-400/30 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
