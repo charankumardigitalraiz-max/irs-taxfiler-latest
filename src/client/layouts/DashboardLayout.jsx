@@ -494,18 +494,18 @@ const DashboardLayout = () => {
                       onClick={() => setNavDropdownOpen(!navDropdownOpen)}
                       aria-expanded={navDropdownOpen}
                       aria-label="Toggle all sidebar tabs"
-                      className={`inline-flex items-center gap-2 px-3 py-1.5 text-xs sm:text-sm font-semibold rounded-lg transition-all shadow-[0_1px_2px_rgba(31,66,100,0.04)] cursor-pointer border ${
+                      className={`inline-flex items-center gap-2 px-3.5 py-1.5 text-xs sm:text-sm font-semibold rounded-lg transition-all cursor-pointer ${
                         navDropdownOpen
-                          ? 'bg-[#E9F7FA] text-[#127EAB] border-[#127EAB]/50 ring-2 ring-[#127EAB]/20'
-                          : 'text-[#1F4264] hover:text-[#127EAB] bg-[#F4F9FB] hover:bg-[#E9F7FA] border-[#DCEAF0] hover:border-[#127EAB]/40'
+                          ? 'bg-gradient-to-r from-[#0E668B] to-[#094d6a] text-white ring-2 ring-[#127EAB]/30 shadow-md'
+                          : 'bg-gradient-to-r from-[#127EAB] to-[#0E668B] hover:from-[#0E668B] hover:to-[#094d6a] text-white shadow-[0_2px_6px_rgba(18,126,171,0.25)] hover:shadow-md'
                       }`}
                       title="All sidebar tabs"
                     >
-                      <LayoutGrid className="w-4 h-4 text-[#127EAB]" />
-                      <span>Tabs</span>
+                      <LayoutGrid className="w-4 h-4 text-white" />
+                      <span className="text-white">Tabs</span>
                       <ChevronDown
-                        className={`w-3.5 h-3.5 text-[#6F7F8E] transition-transform duration-200 ${
-                          navDropdownOpen ? 'rotate-180 text-[#127EAB]' : ''
+                        className={`w-3.5 h-3.5 text-white/80 transition-transform duration-200 ${
+                          navDropdownOpen ? 'rotate-180 text-white' : ''
                         }`}
                       />
                     </button>
