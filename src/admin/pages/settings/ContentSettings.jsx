@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   Save,
   Trash2,
@@ -49,7 +49,20 @@ const ContentSettings = () => {
     content: '',
     type: 'terms',
   });
+  const textareaRef = useRef(null);
   const { showSuccess, showError } = useToast();
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${Math.max(textareaRef.current.scrollHeight, 80)}px`;
+    }
+  }, [formData.content]);
+
+  const handleContentInput = (e) => {
+    e.target.style.height = 'auto';
+    e.target.style.height = `${Math.max(e.target.scrollHeight, 80)}px`;
+  };
 
   useEffect(() => {
     loadSettings();
@@ -999,16 +1012,22 @@ const ContentSettings = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Content * (HTML supported)
-              </label>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-xs sm:text-sm font-semibold text-[#1F4264]">
+                  Content <span className="text-[#EE6450]">*</span>{' '}
+                  <span className="text-xs font-normal text-[#6F7F8E]">(HTML supported)</span>
+                </label>
+                <span className="text-[11px] text-[#8BA0B2] font-medium">Adaptive height</span>
+              </div>
               <textarea
+                ref={textareaRef}
                 value={formData.content}
                 onChange={(e) =>
                   setFormData({ ...formData, content: e.target.value })
                 }
-                rows={10}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                onInput={handleContentInput}
+                rows={3}
+                className="w-full px-3.5 py-2.5 min-h-[80px] max-h-[600px] text-xs sm:text-sm font-medium border border-[#CCDCE1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder:text-slate-400/80 placeholder:font-normal placeholder:text-xs shadow-2xs transition-all hover:border-[#127EAB]/40 resize-none overflow-y-auto leading-relaxed"
                 placeholder="Enter content here. HTML is supported."
                 required
               />
