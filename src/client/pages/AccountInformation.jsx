@@ -1167,7 +1167,16 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
     addressType: 'current',
     isPrimary: false,
   });
+  const [zipError, setZipError] = useState('');
+  const [editZipErrors, setEditZipErrors] = useState({});
   const { showSuccess, showError } = useToast();
+
+  // Validates US ZIP code (5 digits or 5+4 e.g. 12345-6789) or PIN code (6 digits e.g. 500081)
+  const isValidZipCode = (code) => {
+    if (!code) return false;
+    const trimmed = String(code).trim();
+    return /^(\d{5}(-\d{4})?|\d{6})$/.test(trimmed);
+  };
 
   // Helper to check if an address object actually has user-entered values (ignores default { country: 'USA' })
   const hasRealAddressData = (addr) => {
@@ -1228,6 +1237,8 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
   const handleCancelEdit = () => {
     setEditingIndex(null);
     setShowAddForm(false);
+    setZipError('');
+    setEditZipErrors({});
     setNewAddress({
       street: '',
       city: '',
@@ -1242,6 +1253,7 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
   const handleAddNew = () => {
     setShowAddForm(true);
     setEditingIndex(null);
+    setZipError('');
     setNewAddress({
       street: '',
       city: '',
@@ -1268,7 +1280,13 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
       return;
     }
     if (!newAddress.zipCode || !newAddress.zipCode.trim()) {
-      showError('ZIP Code is required');
+      setZipError('ZIP / PIN code is required');
+      showError('ZIP / PIN code is required');
+      return;
+    }
+    if (!isValidZipCode(newAddress.zipCode)) {
+      setZipError('Please enter a valid 5-digit ZIP code or 6-digit PIN code');
+      showError('Please enter a valid 5-digit ZIP code or 6-digit PIN code');
       return;
     }
 
@@ -1282,8 +1300,9 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
       newAddress.isPrimary = true;
     }
 
-    setAddresses([...updatedAddresses, { ...newAddress }]);
+    setAddresses([...updatedAddresses, { ...newAddress, zipCode: newAddress.zipCode.trim() }]);
     setShowAddForm(false);
+    setZipError('');
     setNewAddress({
       street: '',
       city: '',
@@ -1297,7 +1316,36 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
   };
 
   const handleUpdateAddress = (index) => {
-    // Validation is done in handleSave, but we can add here if needed
+    const addr = addresses[index];
+    if (addr) {
+      if (!addr.street || !addr.street.trim()) {
+        showError('Street Address is required');
+        return;
+      }
+      if (!addr.city || !addr.city.trim()) {
+        showError('City is required');
+        return;
+      }
+      if (!addr.state || !addr.state.trim()) {
+        showError('State is required');
+        return;
+      }
+      if (!addr.zipCode || !addr.zipCode.trim()) {
+        setEditZipErrors(prev => ({ ...prev, [index]: 'ZIP / PIN code is required' }));
+        showError('ZIP / PIN code is required');
+        return;
+      }
+      if (!isValidZipCode(addr.zipCode)) {
+        setEditZipErrors(prev => ({ ...prev, [index]: 'Please enter a valid 5-digit ZIP code or 6-digit PIN code' }));
+        showError('Please enter a valid 5-digit ZIP code or 6-digit PIN code');
+        return;
+      }
+    }
+    setEditZipErrors(prev => {
+      const copy = { ...prev };
+      delete copy[index];
+      return copy;
+    });
     setEditingIndex(null);
   };
 
@@ -1451,7 +1499,11 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
         return;
       }
       if (!addr.zipCode || !addr.zipCode.trim()) {
-        showError(`Address ${displayIndex}: ZIP Code is required`);
+        showError(`Address ${displayIndex}: ZIP / PIN code is required`);
+        return;
+      }
+      if (!isValidZipCode(addr.zipCode)) {
+        showError(`Address ${displayIndex}: Please enter a valid 5-digit ZIP code or 6-digit PIN code`);
         return;
       }
     }
@@ -1650,11 +1702,26 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
                         placeholder="Enter state"
                       />
                       <Input
-                        label="ZIP Code"
+                        label="ZIP / PIN Code"
                         required
+                        maxLength={10}
                         value={address.zipCode}
-                        onChange={(e) => handleAddressChange(index, 'zipCode', e.target.value)}
-                        placeholder="Enter ZIP code"
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/[^\d-]/g, '').slice(0, 10);
+                          handleAddressChange(index, 'zipCode', val);
+                          if (editZipErrors[index] && isValidZipCode(val)) {
+                            setEditZipErrors(prev => ({ ...prev, [index]: '' }));
+                          }
+                        }}
+                        onBlur={() => {
+                          if (address.zipCode && !isValidZipCode(address.zipCode)) {
+                            setEditZipErrors(prev => ({ ...prev, [index]: 'Enter a valid 5-digit ZIP or 6-digit PIN' }));
+                          } else {
+                            setEditZipErrors(prev => ({ ...prev, [index]: '' }));
+                          }
+                        }}
+                        error={editZipErrors[index]}
+                        placeholder="e.g. 12345 or 500081"
                       />
                       <Input
                         label="Country"
@@ -1805,11 +1872,26 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
                 placeholder="Enter state"
               />
               <Input
-                label="ZIP Code"
+                label="ZIP / PIN Code"
                 required
+                maxLength={10}
                 value={newAddress.zipCode}
-                onChange={(e) => handleNewAddressChange('zipCode', e.target.value)}
-                placeholder="Enter ZIP code"
+                onChange={(e) => {
+                  const val = e.target.value.replace(/[^\d-]/g, '').slice(0, 10);
+                  handleNewAddressChange('zipCode', val);
+                  if (zipError && isValidZipCode(val)) {
+                    setZipError('');
+                  }
+                }}
+                onBlur={() => {
+                  if (newAddress.zipCode && !isValidZipCode(newAddress.zipCode)) {
+                    setZipError('Enter a valid 5-digit ZIP or 6-digit PIN');
+                  } else {
+                    setZipError('');
+                  }
+                }}
+                error={zipError}
+                placeholder="e.g. 12345 or 500081"
               />
               <Input
                 label="Country"
