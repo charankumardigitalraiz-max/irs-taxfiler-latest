@@ -376,23 +376,28 @@ const DocumentViewerModal = ({
               </p>
             </div>
           ) : isPdf ? (
-            /* PDF Viewer via iframe */
+            /* PDF Viewer via object / iframe */
             <div className="w-full h-full relative bg-[#525659]">
-              <iframe
-                src={`${resolvedUrl}#toolbar=1&navpanes=0`}
+              <object
+                data={`${resolvedUrl}#toolbar=1&navpanes=0`}
+                type="application/pdf"
                 className="w-full h-full border-0 bg-white"
                 title={fileName}
                 onLoad={() => setLoading(false)}
-                onError={() => {
-                  setLoading(false);
-                  setError('PDF preview failed to load in browser.');
-                }}
-              />
+              >
+                <iframe
+                  src={`${resolvedUrl}#toolbar=1&navpanes=0`}
+                  className="w-full h-full border-0 bg-white"
+                  title={fileName}
+                  onLoad={() => setLoading(false)}
+                />
+              </object>
             </div>
           ) : isImage ? (
             /* Image Viewer with interactive pan/zoom */
             <div className="w-full h-full overflow-auto flex items-center justify-center p-4 bg-[#0F2236]/90 select-none">
               <img
+                key={resolvedUrl}
                 src={resolvedUrl}
                 alt={fileName}
                 className="max-w-none transition-transform duration-200 ease-out shadow-2xl rounded-lg pointer-events-auto"
@@ -402,7 +407,10 @@ const DocumentViewerModal = ({
                   maxWidth: zoom === 1 ? '90%' : 'none',
                   objectFit: 'contain',
                 }}
-                onLoad={() => setLoading(false)}
+                onLoad={() => {
+                  setLoading(false);
+                  setError(null);
+                }}
                 onError={() => {
                   setLoading(false);
                   setError('Failed to load image preview.');
