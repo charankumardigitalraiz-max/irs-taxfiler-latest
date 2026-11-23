@@ -28,39 +28,65 @@ import { notificationService } from '../services/notificationService';
 import { initSocket } from '../services/socketService';
 import { getUser } from '../utils/auth';
 
-const colorStyles = {
-  blue: { bg: 'bg-[#E9F7FA]', text: 'text-[#127EAB]' },
-  purple: { bg: 'bg-[#EFF4F9]', text: 'text-[#1F4264]' },
-  green: { bg: 'bg-[#ECFDF5]', text: 'text-[#059669]' },
-  orange: { bg: 'bg-[#FEF4F2]', text: 'text-[#EE6450]' },
-  yellow: { bg: 'bg-[#FFFBEB]', text: 'text-[#D97706]' },
-  indigo: { bg: 'bg-[#EEF2FF]', text: 'text-[#4F46E5]' },
-};
-
-const quickActionColorStyles = {
+const statCardStyles = {
   blue: {
     bg: 'bg-[#E9F7FA]',
     text: 'text-[#127EAB]',
-    hoverBg: 'group-hover:bg-[#127EAB]',
+    accent: 'from-[#127EAB] to-[#38BDF8]',
+    borderHover: 'hover:border-[#127EAB]/40',
   },
   purple: {
     bg: 'bg-[#EFF4F9]',
     text: 'text-[#1F4264]',
-    hoverBg: 'group-hover:bg-[#1F4264]',
+    accent: 'from-[#1F4264] to-[#127EAB]',
+    borderHover: 'hover:border-[#1F4264]/40',
   },
   green: {
     bg: 'bg-[#ECFDF5]',
     text: 'text-[#059669]',
-    hoverBg: 'group-hover:bg-[#059669]',
+    accent: 'from-[#059669] to-[#34D399]',
+    borderHover: 'hover:border-[#059669]/40',
+  },
+  orange: {
+    bg: 'bg-[#FEF4F2]',
+    text: 'text-[#EE6450]',
+    accent: 'from-[#EE6450] to-[#F87171]',
+    borderHover: 'hover:border-[#EE6450]/40',
+  },
+  yellow: {
+    bg: 'bg-[#FFFBEB]',
+    text: 'text-[#D97706]',
+    accent: 'from-[#D97706] to-[#FBBF24]',
+    borderHover: 'hover:border-[#D97706]/40',
+  },
+  indigo: {
+    bg: 'bg-[#EEF2FF]',
+    text: 'text-[#4F46E5]',
+    accent: 'from-[#4F46E5] to-[#818CF8]',
+    borderHover: 'hover:border-[#4F46E5]/40',
+  },
+};
+
+const quickActionStyles = {
+  blue: {
+    bg: 'bg-[#E9F7FA]',
+    text: 'text-[#127EAB]',
+  },
+  purple: {
+    bg: 'bg-[#EFF4F9]',
+    text: 'text-[#1F4264]',
+  },
+  green: {
+    bg: 'bg-[#ECFDF5]',
+    text: 'text-[#059669]',
   },
   indigo: {
     bg: 'bg-[#FEF4F2]',
     text: 'text-[#EE6450]',
-    hoverBg: 'group-hover:bg-[#EE6450]',
   },
 };
 
-const activityColorStyles = {
+const activityStyles = {
   green: { bg: 'bg-[#ECFDF5]', text: 'text-[#059669]' },
   blue: { bg: 'bg-[#E9F7FA]', text: 'text-[#127EAB]' },
   purple: { bg: 'bg-[#EFF4F9]', text: 'text-[#1F4264]' },
@@ -478,74 +504,105 @@ const Dashboard = () => {
       .join(' ');
   };
 
+  const displayName = getUserDisplayName();
+  const initialLetter = displayName.charAt(0).toUpperCase() || 'U';
+
   return (
-    <div className="space-y-4 sm:space-y-5 irs-page-enter">
-      {/* Welcome Section - Header */}
-      <div className="bg-white rounded-xl shadow-[0_2px_10px_rgba(31,66,100,0.03)] px-5 py-4 sm:py-5 border border-[#E5EFF4]">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
-          <div className="flex-1 min-w-0">
-            <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight truncate capitalize">
-              {getUserDisplayName()}
-            </h2>
-            <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-normal mt-0.5">
-              Welcome back! Here's what's happening with your tax filing system.
-            </p>
+    <div className="space-y-5 irs-page-enter">
+      {/* Welcome Section - Modern Ambient Hero */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-white via-[#F7FAFC] to-[#EEF7FA] p-5 sm:p-6 border border-[#D8E6ED] shadow-[0_2px_14px_rgba(31,66,100,0.04)]">
+        {/* Subtle background ambient blur circles */}
+        <div className="absolute -right-8 -top-8 w-44 h-44 rounded-full bg-[#127EAB]/8 blur-2xl pointer-events-none" />
+        <div className="absolute right-36 -bottom-10 w-36 h-36 rounded-full bg-[#1F4264]/5 blur-2xl pointer-events-none" />
+
+        <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
+            {/* User Initial Avatar Monogram */}
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#1F4264] to-[#127EAB] text-white flex items-center justify-center text-lg font-medium shadow-xs shrink-0">
+              {initialLetter}
+            </div>
+
+            <div className="min-w-0">
+              <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight truncate capitalize">
+                {displayName}
+              </h2>
+              <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-normal mt-0.5">
+                Welcome back! Here's what's happening with your tax filing system.
+              </p>
+            </div>
           </div>
-          <div className="flex items-center gap-3 flex-shrink-0">
-            {/* Financial Year Selector */}
-            <select
-              value={financialYear}
-              onChange={(e) => setFinancialYear(e.target.value)}
-              className="px-3.5 py-2 text-sm font-normal text-[#1F4264] border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white transition-all w-full sm:w-auto cursor-pointer"
-            >
-              {(() => {
-                const startYear = 2025;
-                const years = [];
-                for (let i = 0; i <= 5; i++) {
-                  years.push(startYear - i);
-                }
-                return years.map((year) => (
-                  <option key={year} value={year.toString()}>
-                    Ty-{year}
-                  </option>
-                ));
-              })()}
-            </select>
+
+          <div className="flex items-center gap-3 flex-shrink-0 self-start sm:self-auto">
+            {/* Styled Financial Year Selector Pill */}
+            <div className="relative flex items-center">
+              <Calendar className="w-4 h-4 text-[#127EAB] absolute left-3.5 pointer-events-none" />
+              <select
+                value={financialYear}
+                onChange={(e) => setFinancialYear(e.target.value)}
+                className="pl-9.5 pr-8 py-2 text-sm font-medium text-[#1F4264] bg-white border border-[#CCDCE1] hover:border-[#127EAB]/60 rounded-xl shadow-xs focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] transition-all cursor-pointer appearance-none"
+              >
+                {(() => {
+                  const startYear = 2025;
+                  const years = [];
+                  for (let i = 0; i <= 5; i++) {
+                    years.push(startYear - i);
+                  }
+                  return years.map((year) => (
+                    <option key={year} value={year.toString()}>
+                      Ty-{year}
+                    </option>
+                  ));
+                })()}
+              </select>
+              <div className="absolute right-3 pointer-events-none text-[#8BA0B2]">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Analytics Cards Grid */}
+      {/* Analytics Cards Grid with Accent Top Lines */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {statCards.map((stat) => {
           const Icon = stat.icon;
-          const style = colorStyles[stat.color] || colorStyles.blue;
+          const style = statCardStyles[stat.color] || statCardStyles.blue;
           return (
             <div
               key={stat.name}
-              className="bg-white rounded-xl border border-[#E5EFF4] p-4 sm:p-5 shadow-[0_2px_10px_rgba(31,66,100,0.03)] hover:border-[#127EAB]/35 hover:shadow-[0_4px_16px_rgba(18,126,171,0.05)] transition-all duration-200"
+              className={`group relative bg-white rounded-2xl border border-[#E2EDF2] p-5 shadow-[0_2px_12px_rgba(31,66,100,0.03)] hover:shadow-[0_8px_24px_rgba(18,126,171,0.08)] ${style.borderHover} transition-all duration-300 flex flex-col justify-between overflow-hidden`}
             >
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between mb-3 gap-2">
-                    <p className="text-xs sm:text-[13px] font-normal text-[#6F7F8E] truncate">{stat.name}</p>
-                    {stat.badge && (
-                      <Badge color={stat.badgeColor} size="sm" className="flex-shrink-0 !font-normal">
-                        {stat.badge}
-                      </Badge>
-                    )}
-                  </div>
+              {/* Top hairline accent bar */}
+              <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${style.accent}`} />
+
+              <div className="flex items-start justify-between gap-3 mb-3">
+                <div className="min-w-0 flex-1">
+                  <span className="text-[11px] sm:text-xs uppercase tracking-wider text-[#6F7F8E] font-medium block truncate">
+                    {stat.name}
+                  </span>
                   <p
-                    className="text-xl sm:text-[22px] font-medium text-[#1F4264] mb-1 truncate tracking-tight"
+                    className="text-2xl sm:text-[26px] font-medium text-[#1F4264] mt-2 mb-1 truncate tracking-tight leading-tight"
                     title={String(stat.value)}
                   >
                     {stat.value}
                   </p>
-                  <p className="text-xs text-[#8BA0B2] font-normal line-clamp-2">{stat.description}</p>
                 </div>
-                <div className={`p-2.5 rounded-lg shrink-0 ${style.bg}`}>
-                  <Icon className={`w-4 h-4 ${style.text}`} />
+                <div
+                  className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${style.bg} transition-transform duration-200 group-hover:scale-105`}
+                >
+                  <Icon className={`w-5 h-5 ${style.text}`} />
                 </div>
+              </div>
+
+              <div className="pt-2.5 border-t border-[#F0F5F8] flex items-center justify-between gap-2">
+                <p className="text-xs text-[#8BA0B2] font-normal truncate">{stat.description}</p>
+                {stat.badge && (
+                  <Badge color={stat.badgeColor} size="sm" className="flex-shrink-0 !font-normal">
+                    {stat.badge}
+                  </Badge>
+                )}
               </div>
             </div>
           );
@@ -553,52 +610,63 @@ const Dashboard = () => {
       </div>
 
       {/* Workflow Status Section */}
-      <Card className="rounded-xl border-[#E5EFF4] shadow-[0_2px_10px_rgba(31,66,100,0.03)]">
-        <Card.Header className="border-[#EDF3F6]">
-          <div className="flex items-center justify-between">
-            <div>
-              <Card.Title className="!font-medium text-[#1F4264]">Case Progress</Card.Title>
-              <Card.Description className="!font-normal text-[#6F7F8E]">
-                Current workflow status and progress
-              </Card.Description>
+      <div className="bg-white rounded-2xl border border-[#DCEAF0] p-5 sm:p-6 shadow-[0_2px_12px_rgba(31,66,100,0.03)]">
+        <div className="pb-4 mb-4 border-b border-[#EDF3F6] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-[#E9F7FA] text-[#127EAB] flex items-center justify-center shrink-0">
+              <TrendingUp className="w-4 h-4" />
             </div>
-            <Badge color="blue" size="lg" className="!font-medium">
-              {formattedCurrentStage}
-            </Badge>
+            <div>
+              <h3 className="text-base sm:text-lg font-medium text-[#1F4264]">Case Progress</h3>
+              <p className="text-xs sm:text-sm text-[#6F7F8E] font-normal mt-0.5">
+                Current workflow status and progress
+              </p>
+            </div>
           </div>
-        </Card.Header>
-        <Card.Content className="pt-4">
+          <div className="self-start sm:self-auto inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#E9F7FA] border border-[#127EAB]/20 text-[#127EAB] text-xs font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#127EAB] animate-pulse" />
+            <span>{formattedCurrentStage}</span>
+          </div>
+        </div>
+        <div className="pt-2">
           <WorkflowProgress
             currentStatus={dashboardData.currentStage}
             isPersonalInfoComplete={areAllSectionsComplete()}
           />
-        </Card.Content>
-      </Card>
+        </div>
+      </div>
 
       {/* Quick Actions & Recent Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Quick Actions (Wider ~60%) */}
-        <Card className="lg:col-span-7 xl:col-span-7 rounded-xl border-[#E5EFF4] shadow-[0_2px_10px_rgba(31,66,100,0.03)] flex flex-col justify-between">
-          <Card.Header className="border-[#EDF3F6]">
-            <Card.Title className="!font-medium text-[#1F4264]">Quick Actions</Card.Title>
-            <Card.Description className="!font-normal text-[#6F7F8E]">
-              Common tasks and shortcuts
-            </Card.Description>
-          </Card.Header>
-          <Card.Content className="flex-1 flex flex-col justify-center pt-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="lg:col-span-7 xl:col-span-7 bg-white rounded-2xl border border-[#DCEAF0] p-5 sm:p-6 shadow-[0_2px_12px_rgba(31,66,100,0.03)] flex flex-col justify-between">
+          <div className="pb-4 mb-4 border-b border-[#EDF3F6] flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-[#EFF4F9] text-[#1F4264] flex items-center justify-center shrink-0">
+              <FileText className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="text-base sm:text-lg font-medium text-[#1F4264]">Quick Actions</h3>
+              <p className="text-xs sm:text-sm text-[#6F7F8E] font-normal mt-0.5">
+                Common tasks and shortcuts
+              </p>
+            </div>
+          </div>
+          <div className="flex-1 flex flex-col justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               {quickActions.map((action) => {
                 const Icon = action.icon;
-                const style = quickActionColorStyles[action.color] || quickActionColorStyles.blue;
+                const style = quickActionStyles[action.color] || quickActionStyles.blue;
                 return (
                   <button
                     key={action.name}
                     onClick={() => navigate(action.path)}
-                    className="flex items-center justify-between gap-3 p-3.5 rounded-xl border border-[#E8EFF3] bg-[#FAFCFD] hover:bg-white hover:border-[#127EAB]/35 hover:shadow-[0_2px_10px_rgba(18,126,171,0.04)] transition-all group w-full text-left cursor-pointer"
+                    className="group flex items-center justify-between gap-3 p-3.5 rounded-xl border border-[#E2EDF2] bg-[#FBFDFE] hover:bg-white hover:border-[#127EAB]/40 hover:shadow-[0_6px_20px_rgba(18,126,171,0.07)] transition-all duration-200 text-left cursor-pointer"
                   >
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className={`p-2.5 rounded-lg transition-colors shrink-0 ${style.bg} ${style.hoverBg}`}>
-                        <Icon className={`w-4 h-4 transition-colors ${style.text} group-hover:text-white`} />
+                      <div
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-200 ${style.bg} group-hover:scale-105`}
+                      >
+                        <Icon className={`w-4.5 h-4.5 ${style.text}`} />
                       </div>
                       <div className="min-w-0">
                         <p className="text-sm font-medium text-[#1F4264] group-hover:text-[#127EAB] transition-colors truncate">
@@ -607,43 +675,53 @@ const Dashboard = () => {
                         <p className="text-xs text-[#6F7F8E] font-normal mt-0.5 line-clamp-1">{action.description}</p>
                       </div>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-[#A0B0BE] group-hover:text-[#127EAB] group-hover:translate-x-0.5 transition-all shrink-0 ml-1" />
+                    <div className="w-7 h-7 rounded-full bg-white border border-[#E2EDF2] flex items-center justify-center shrink-0 ml-1 group-hover:bg-[#127EAB] group-hover:border-[#127EAB] group-hover:text-white transition-all duration-200 text-[#8BA0B2]">
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                    </div>
                   </button>
                 );
               })}
             </div>
-          </Card.Content>
-        </Card>
+          </div>
+        </div>
 
         {/* Recent Activity (Smaller ~40%) */}
-        <Card className="lg:col-span-5 xl:col-span-5 rounded-xl border-[#E5EFF4] shadow-[0_2px_10px_rgba(31,66,100,0.03)] flex flex-col justify-between">
-          <Card.Header className="border-[#EDF3F6]">
-            <Card.Title className="!font-medium text-[#1F4264]">Recent Activity</Card.Title>
-            <Card.Description className="!font-normal text-[#6F7F8E]">
-              Latest updates and notifications
-            </Card.Description>
-          </Card.Header>
-          <Card.Content className="flex-1 flex flex-col justify-between pt-3">
-            <div className="space-y-2.5">
+        <div className="lg:col-span-5 xl:col-span-5 bg-white rounded-2xl border border-[#DCEAF0] p-5 sm:p-6 shadow-[0_2px_12px_rgba(31,66,100,0.03)] flex flex-col justify-between">
+          <div>
+            <div className="pb-4 mb-3 border-b border-[#EDF3F6] flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-[#EFF4F9] text-[#1F4264] flex items-center justify-center shrink-0">
+                <Bell className="w-4 h-4" />
+              </div>
+              <div>
+                <h3 className="text-base sm:text-lg font-medium text-[#1F4264]">Recent Activity</h3>
+                <p className="text-xs sm:text-sm text-[#6F7F8E] font-normal mt-0.5">
+                  Latest updates and notifications
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-2">
               {recentActivities.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
-                  <Bell className="w-10 h-10 mx-auto mb-2.5 text-gray-400" />
+                <div className="text-center py-7 text-gray-500">
+                  <div className="w-11 h-11 rounded-full bg-[#F4F9FB] flex items-center justify-center mx-auto mb-2.5 text-[#8BA0B2]">
+                    <Bell className="w-5 h-5" />
+                  </div>
                   <p className="text-sm font-normal text-[#6F7F8E]">No recent activity</p>
                 </div>
               ) : (
                 recentActivities.map((activity, index) => {
                   const Icon = getActivityIcon(activity.type || activity.icon);
                   const color = getActivityColor(activity.type || activity.icon, activity.color);
-                  const style = activityColorStyles[color] || activityColorStyles.blue;
+                  const style = activityStyles[color] || activityStyles.blue;
                   return (
                     <div
                       key={activity.id || index}
                       onClick={() => activity.link && navigate(activity.link)}
-                      className={`flex items-start gap-3 p-2.5 rounded-lg hover:bg-[#F5F9FA] transition-colors ${
+                      className={`flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F6FAFC] transition-colors ${
                         activity.link ? 'cursor-pointer' : ''
                       }`}
                     >
-                      <div className={`p-2 rounded-lg shrink-0 ${style.bg}`}>
+                      <div className={`w-8 h-8 rounded-lg shrink-0 flex items-center justify-center ${style.bg}`}>
                         <Icon className={`w-4 h-4 ${style.text}`} />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -659,17 +737,18 @@ const Dashboard = () => {
                 })
               )}
             </div>
-            <div className="mt-3.5 pt-3.5 border-t border-[#EDF3F6]">
-              <button
-                onClick={() => navigate('/client/dashboard/documents')}
-                className="text-xs sm:text-sm text-[#127EAB] hover:text-[#0E6083] font-medium flex items-center gap-1.5 transition-colors cursor-pointer"
-              >
-                View all notifications
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </Card.Content>
-        </Card>
+          </div>
+
+          <div className="mt-4 pt-3.5 border-t border-[#EDF3F6]">
+            <button
+              onClick={() => navigate('/client/dashboard/documents')}
+              className="w-full py-2.5 px-4 rounded-xl bg-[#F6FAFC] hover:bg-[#E9F7FA] border border-[#DCEAF0] hover:border-[#127EAB]/30 text-xs sm:text-sm font-medium text-[#127EAB] flex items-center justify-center gap-2 transition-all cursor-pointer group"
+            >
+              <span>View all notifications</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
