@@ -377,13 +377,6 @@ const ContentSettings = () => {
     { value: 'other', label: 'Other' },
   ];
 
-  const defaultSettings = [
-    { key: 'privacy-policy', title: 'Privacy Policy', type: 'privacy' },
-    { key: 'terms-conditions', title: 'Terms & Conditions', type: 'terms' },
-    { key: 'payment-terms', title: 'Payment Terms', type: 'payment-terms' },
-    { key: 'other-guidelines', title: 'Other Guidelines', type: 'other' },
-  ];
-
   const contentSettingsList = settings.filter(
     (s) => s.key !== ADVANCED_FILING_KEY && s.key !== WEBSITE_TOTAL_VIEWS_KEY
   );
@@ -964,70 +957,6 @@ const ContentSettings = () => {
           </div>
         </Card.Content>
       </Card> */}
-
-      {/* Quick Add Default Settings */}
-      <Card>
-        <Card.Header>
-          <Card.Title>Quick Add Default Settings</Card.Title>
-          <Card.Description>
-            Click to quickly add common settings with default keys
-          </Card.Description>
-        </Card.Header>
-        <Card.Content>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {defaultSettings.map((defaultSetting) => {
-              const exists = settings.some((s) => s.key === defaultSetting.key);
-              return (
-                <button
-                  key={defaultSetting.key}
-                  type="button"
-                  onClick={() => {
-                    if (!exists) {
-                      setFormData({
-                        key: defaultSetting.key,
-                        title: defaultSetting.title,
-                        content: '',
-                        type: defaultSetting.type,
-                      });
-                      setEditingKey(null);
-                      setShowModal(true);
-                    } else {
-                      const existing = settings.find(
-                        (s) => s.key === defaultSetting.key
-                      );
-                      handleEdit(existing);
-                    }
-                  }}
-                  className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer ${exists
-                    ? 'border-emerald-300 bg-emerald-50/60 hover:bg-emerald-100/60 shadow-2xs'
-                    : 'border-[#CCDCE1] bg-white hover:bg-[#F8FBFC] hover:border-[#127EAB]/40 shadow-2xs'
-                    }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-semibold text-sm text-[#1F4264]">
-                        {defaultSetting.title}
-                      </p>
-                      <p className="text-xs text-[#6F7F8E] mt-0.5">
-                        Key: <code className="text-xs bg-slate-100 px-1 py-0.5 rounded font-mono text-[#1F4264]">{defaultSetting.key}</code>
-                      </p>
-                    </div>
-                    {exists ? (
-                      <span className="text-xs text-emerald-700 font-semibold px-2 py-0.5 rounded-full bg-emerald-100 border border-emerald-200">
-                        Added (Click to Edit)
-                      </span>
-                    ) : (
-                      <span className="text-xs text-[#127EAB] font-semibold px-2.5 py-0.5 rounded-full bg-[#E9F7FA] border border-[#127EAB]/30">
-                        + Add Setting
-                      </span>
-                    )}
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </Card.Content>
-      </Card>
 
       {/* Existing Settings List */}
       <Card>
