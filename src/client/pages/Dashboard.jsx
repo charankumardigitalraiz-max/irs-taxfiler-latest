@@ -28,6 +28,46 @@ import { notificationService } from '../services/notificationService';
 import { initSocket } from '../services/socketService';
 import { getUser } from '../utils/auth';
 
+const colorStyles = {
+  blue: { bg: 'bg-[#E9F7FA]', text: 'text-[#127EAB]' },
+  purple: { bg: 'bg-[#EFF4F9]', text: 'text-[#1F4264]' },
+  green: { bg: 'bg-[#ECFDF5]', text: 'text-[#059669]' },
+  orange: { bg: 'bg-[#FEF4F2]', text: 'text-[#EE6450]' },
+  yellow: { bg: 'bg-[#FFFBEB]', text: 'text-[#D97706]' },
+  indigo: { bg: 'bg-[#EEF2FF]', text: 'text-[#4F46E5]' },
+};
+
+const quickActionColorStyles = {
+  blue: {
+    bg: 'bg-[#E9F7FA]',
+    text: 'text-[#127EAB]',
+    hoverBg: 'group-hover:bg-[#127EAB]',
+  },
+  purple: {
+    bg: 'bg-[#EFF4F9]',
+    text: 'text-[#1F4264]',
+    hoverBg: 'group-hover:bg-[#1F4264]',
+  },
+  green: {
+    bg: 'bg-[#ECFDF5]',
+    text: 'text-[#059669]',
+    hoverBg: 'group-hover:bg-[#059669]',
+  },
+  indigo: {
+    bg: 'bg-[#FEF4F2]',
+    text: 'text-[#EE6450]',
+    hoverBg: 'group-hover:bg-[#EE6450]',
+  },
+};
+
+const activityColorStyles = {
+  green: { bg: 'bg-[#ECFDF5]', text: 'text-[#059669]' },
+  blue: { bg: 'bg-[#E9F7FA]', text: 'text-[#127EAB]' },
+  purple: { bg: 'bg-[#EFF4F9]', text: 'text-[#1F4264]' },
+  orange: { bg: 'bg-[#FEF4F2]', text: 'text-[#EE6450]' },
+  gray: { bg: 'bg-slate-100', text: 'text-slate-600' },
+};
+
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -210,7 +250,6 @@ const Dashboard = () => {
         }
       } else {
         console.error('Failed to load dashboard data:', response.message);
-        // Set default data on error
         setDashboardData({
           filingStatus: 'Not Started',
           currentStage: 'PERSONAL_INFO',
@@ -223,7 +262,6 @@ const Dashboard = () => {
       }
     } catch (error) {
       console.error('Failed to load dashboard data:', error);
-      // Set default data on error
       setDashboardData({
         filingStatus: 'Not Started',
         currentStage: 'PERSONAL_INFO',
@@ -245,7 +283,7 @@ const Dashboard = () => {
   if (!dashboardData) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-gray-500">Failed to load dashboard data</div>
+        <div className="text-gray-500 font-normal">Failed to load dashboard data</div>
       </div>
     );
   }
@@ -257,7 +295,6 @@ const Dashboard = () => {
     return 'gray';
   };
 
-  // Map activity types to icons and colors
   const getActivityIcon = (type) => {
     const str = String(type || '').toUpperCase();
     if (str.includes('DOCUMENT') || str.includes('FILECHECK')) return FileCheck;
@@ -342,7 +379,7 @@ const Dashboard = () => {
       description: 'Current filing status',
       icon: FileCheck,
       color: 'blue',
-      badge: "",
+      badge: '',
       badgeColor: getStatusBadgeColor(dashboardData.filingStatus),
     },
     {
@@ -360,7 +397,7 @@ const Dashboard = () => {
       description: `${dashboardData.documentsPending} pending upload`,
       icon: FileText,
       color: 'green',
-      badge: ``,
+      badge: '',
       badgeColor: 'green',
     },
     {
@@ -369,7 +406,7 @@ const Dashboard = () => {
       description: 'Documents to be uploaded',
       icon: AlertCircle,
       color: 'orange',
-      badge: ``,
+      badge: '',
       badgeColor: 'orange',
     },
     {
@@ -378,7 +415,7 @@ const Dashboard = () => {
       description: 'Payment processing status',
       icon: CreditCard,
       color: 'yellow',
-      badge: "",
+      badge: '',
       badgeColor: getStatusBadgeColor(dashboardData.paymentStatus),
     },
     {
@@ -387,13 +424,11 @@ const Dashboard = () => {
       description: 'Selected filing method',
       icon: Send,
       color: 'indigo',
-      badge: "",
+      badge: '',
       badgeColor: 'blue',
     },
   ];
 
-
-  // Quick actions
   const quickActions = [
     {
       name: 'Upload Documents',
@@ -425,7 +460,6 @@ const Dashboard = () => {
     },
   ];
 
-  // Capitalize first letter of each word in user's display name
   const getUserDisplayName = () => {
     const raw =
       userProfile?.fullName ||
@@ -445,15 +479,15 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="space-y-4 sm:space-y-6 irs-page-enter">
+    <div className="space-y-4 sm:space-y-5 irs-page-enter">
       {/* Welcome Section - Header */}
-      <div className="bg-white rounded-lg shadow-[0_2px_10px_rgba(31,66,100,0.04)] px-5 py-4 border border-[#DCEAF0]">
+      <div className="bg-white rounded-xl shadow-[0_2px_10px_rgba(31,66,100,0.03)] px-5 py-4 sm:py-5 border border-[#E5EFF4]">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
           <div className="flex-1 min-w-0">
             <h2 className="text-xl sm:text-[22px] font-medium text-[#1F4264] tracking-tight truncate capitalize">
               {getUserDisplayName()}
             </h2>
-            <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-medium mt-0.5">
+            <p className="text-[13px] sm:text-sm text-[#6F7F8E] font-normal mt-0.5">
               Welcome back! Here's what's happening with your tax filing system.
             </p>
           </div>
@@ -462,17 +496,18 @@ const Dashboard = () => {
             <select
               value={financialYear}
               onChange={(e) => setFinancialYear(e.target.value)}
-              className="px-3.5 py-2 text-sm font-medium text-[#1F4264] border border-[#CCDCE1] rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white w-full sm:w-auto"
+              className="px-3.5 py-2 text-sm font-normal text-[#1F4264] border border-[#CCDCE1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white transition-all w-full sm:w-auto cursor-pointer"
             >
               {(() => {
                 const startYear = 2025;
                 const years = [];
-                // Generate years from 2025 going back 5 years
                 for (let i = 0; i <= 5; i++) {
                   years.push(startYear - i);
                 }
-                return years.map(year => (
-                  <option key={year} value={year.toString()}>Ty-{year}</option>
+                return years.map((year) => (
+                  <option key={year} value={year.toString()}>
+                    Ty-{year}
+                  </option>
                 ));
               })()}
             </select>
@@ -481,59 +516,58 @@ const Dashboard = () => {
       </div>
 
       {/* Analytics Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {statCards.map((stat) => {
           const Icon = stat.icon;
+          const style = colorStyles[stat.color] || colorStyles.blue;
           return (
-            <Card key={stat.name} className="hover:shadow-md hover:border-[#127EAB]/40 transition-all p-4 sm:p-6">
+            <div
+              key={stat.name}
+              className="bg-white rounded-xl border border-[#E5EFF4] p-4 sm:p-5 shadow-[0_2px_10px_rgba(31,66,100,0.03)] hover:border-[#127EAB]/35 hover:shadow-[0_4px_16px_rgba(18,126,171,0.05)] transition-all duration-200"
+            >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between mb-3 sm:mb-4 gap-2">
-                    <p className="text-xs sm:text-sm font-medium text-[#6F7F8E] truncate">{stat.name}</p>
+                  <div className="flex items-center justify-between mb-3 gap-2">
+                    <p className="text-xs sm:text-[13px] font-normal text-[#6F7F8E] truncate">{stat.name}</p>
                     {stat.badge && (
-                      <Badge color={stat.badgeColor} size="sm" className="flex-shrink-0">
+                      <Badge color={stat.badgeColor} size="sm" className="flex-shrink-0 !font-normal">
                         {stat.badge}
                       </Badge>
                     )}
                   </div>
-                  <p className="text-lg sm:text-xl font-semibold text-[#1F4264] mb-1 truncate" title={String(stat.value)}>
+                  <p
+                    className="text-xl sm:text-[22px] font-medium text-[#1F4264] mb-1 truncate tracking-tight"
+                    title={String(stat.value)}
+                  >
                     {stat.value}
                   </p>
-                  <p className="text-xs text-[#6F7F8E] font-medium line-clamp-2">{stat.description}</p>
+                  <p className="text-xs text-[#8BA0B2] font-normal line-clamp-2">{stat.description}</p>
                 </div>
-                <div
-                  className={`p-2 rounded-lg shrink-0 ${stat.color === 'blue' && 'bg-[#E9F7FA]'
-                    } ${stat.color === 'purple' && 'bg-[#EFF4F9]'} ${stat.color === 'green' && 'bg-[#ECFDF5]'
-                    } ${stat.color === 'orange' && 'bg-[#FEF4F2]'} ${stat.color === 'yellow' && 'bg-[#FFFBEB]'
-                    } ${stat.color === 'indigo' && 'bg-[#EEF2FF]'}`}
-                >
-                  <Icon
-                    className={`w-4 h-4 ${stat.color === 'blue' && 'text-[#127EAB]'
-                      } ${stat.color === 'purple' && 'text-[#1F4264]'} ${stat.color === 'green' && 'text-[#059669]'
-                      } ${stat.color === 'orange' && 'text-[#EE6450]'} ${stat.color === 'yellow' && 'text-[#D97706]'
-                      } ${stat.color === 'indigo' && 'text-[#4F46E5]'}`}
-                  />
+                <div className={`p-2.5 rounded-lg shrink-0 ${style.bg}`}>
+                  <Icon className={`w-4 h-4 ${style.text}`} />
                 </div>
               </div>
-            </Card>
+            </div>
           );
         })}
       </div>
 
       {/* Workflow Status Section */}
-      <Card>
-        <Card.Header>
+      <Card className="rounded-xl border-[#E5EFF4] shadow-[0_2px_10px_rgba(31,66,100,0.03)]">
+        <Card.Header className="border-[#EDF3F6]">
           <div className="flex items-center justify-between">
             <div>
-              <Card.Title>Case Progress</Card.Title>
-              <Card.Description>Current workflow status and progress</Card.Description>
+              <Card.Title className="!font-medium text-[#1F4264]">Case Progress</Card.Title>
+              <Card.Description className="!font-normal text-[#6F7F8E]">
+                Current workflow status and progress
+              </Card.Description>
             </div>
-            <Badge color="blue" size="lg">
+            <Badge color="blue" size="lg" className="!font-medium">
               {formattedCurrentStage}
             </Badge>
           </div>
         </Card.Header>
-        <Card.Content>
+        <Card.Content className="pt-4">
           <WorkflowProgress
             currentStatus={dashboardData.currentStage}
             isPersonalInfoComplete={areAllSectionsComplete()}
@@ -542,41 +576,38 @@ const Dashboard = () => {
       </Card>
 
       {/* Quick Actions & Recent Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
         {/* Quick Actions (Wider ~60%) */}
-        <Card className="lg:col-span-7 xl:col-span-7 flex flex-col justify-between">
-          <Card.Header>
-            <Card.Title>Quick Actions</Card.Title>
-            <Card.Description>Common tasks and shortcuts</Card.Description>
+        <Card className="lg:col-span-7 xl:col-span-7 rounded-xl border-[#E5EFF4] shadow-[0_2px_10px_rgba(31,66,100,0.03)] flex flex-col justify-between">
+          <Card.Header className="border-[#EDF3F6]">
+            <Card.Title className="!font-medium text-[#1F4264]">Quick Actions</Card.Title>
+            <Card.Description className="!font-normal text-[#6F7F8E]">
+              Common tasks and shortcuts
+            </Card.Description>
           </Card.Header>
-          <Card.Content className="flex-1 flex flex-col justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3">
+          <Card.Content className="flex-1 flex flex-col justify-center pt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {quickActions.map((action) => {
                 const Icon = action.icon;
+                const style = quickActionColorStyles[action.color] || quickActionColorStyles.blue;
                 return (
                   <button
                     key={action.name}
                     onClick={() => navigate(action.path)}
-                    className="flex items-start gap-3 p-3.5 sm:p-4 rounded-lg border border-[#DCEAF0] hover:border-[#127EAB]/40 hover:bg-[#E9F7FA]/40 transition-all group w-full text-left cursor-pointer"
+                    className="flex items-center justify-between gap-3 p-3.5 rounded-xl border border-[#E8EFF3] bg-[#FAFCFD] hover:bg-white hover:border-[#127EAB]/35 hover:shadow-[0_2px_10px_rgba(18,126,171,0.04)] transition-all group w-full text-left cursor-pointer"
                   >
-                    <div
-                      className={`p-2.5 rounded-lg transition-colors ${action.color === 'blue' && 'bg-[#E9F7FA] group-hover:bg-[#127EAB]'
-                        } ${action.color === 'purple' && 'bg-[#EFF4F9] group-hover:bg-[#1F4264]'} ${action.color === 'green' && 'bg-[#ECFDF5] group-hover:bg-[#059669]'
-                        } ${action.color === 'indigo' && 'bg-[#FEF4F2] group-hover:bg-[#EE6450]'}`}
-                    >
-                      <Icon
-                        className={`w-5 h-5 transition-colors group-hover:text-white ${action.color === 'blue' && 'text-[#127EAB]'
-                          } ${action.color === 'purple' && 'text-[#1F4264]'} ${action.color === 'green' && 'text-[#059669]'
-                          } ${action.color === 'indigo' && 'text-[#EE6450]'}`}
-                      />
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className={`p-2.5 rounded-lg transition-colors shrink-0 ${style.bg} ${style.hoverBg}`}>
+                        <Icon className={`w-4 h-4 transition-colors ${style.text} group-hover:text-white`} />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm font-medium text-[#1F4264] group-hover:text-[#127EAB] transition-colors truncate">
+                          {action.name}
+                        </p>
+                        <p className="text-xs text-[#6F7F8E] font-normal mt-0.5 line-clamp-1">{action.description}</p>
+                      </div>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-[#1F4264] group-hover:text-[#127EAB] transition-colors">
-                        {action.name}
-                      </p>
-                      <p className="text-xs text-[#6F7F8E] font-medium mt-0.5 line-clamp-1">{action.description}</p>
-                    </div>
-                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#127EAB] group-hover:translate-x-0.5 transition-all mt-1" />
+                    <ArrowRight className="w-4 h-4 text-[#A0B0BE] group-hover:text-[#127EAB] group-hover:translate-x-0.5 transition-all shrink-0 ml-1" />
                   </button>
                 );
               })}
@@ -585,57 +616,56 @@ const Dashboard = () => {
         </Card>
 
         {/* Recent Activity (Smaller ~40%) */}
-        <Card className="lg:col-span-5 xl:col-span-5 flex flex-col justify-between">
-          <Card.Header>
-            <Card.Title>Recent Activity</Card.Title>
-            <Card.Description>Latest updates and notifications</Card.Description>
+        <Card className="lg:col-span-5 xl:col-span-5 rounded-xl border-[#E5EFF4] shadow-[0_2px_10px_rgba(31,66,100,0.03)] flex flex-col justify-between">
+          <Card.Header className="border-[#EDF3F6]">
+            <Card.Title className="!font-medium text-[#1F4264]">Recent Activity</Card.Title>
+            <Card.Description className="!font-normal text-[#6F7F8E]">
+              Latest updates and notifications
+            </Card.Description>
           </Card.Header>
-          <Card.Content className="flex-1 flex flex-col justify-between">
-            <div className="space-y-4">
+          <Card.Content className="flex-1 flex flex-col justify-between pt-3">
+            <div className="space-y-2.5">
               {recentActivities.length === 0 ? (
                 <div className="text-center py-8 text-gray-500">
-                  <Bell className="w-12 h-12 mx-auto mb-3 text-gray-400" />
-                  <p>No recent activity</p>
+                  <Bell className="w-10 h-10 mx-auto mb-2.5 text-gray-400" />
+                  <p className="text-sm font-normal text-[#6F7F8E]">No recent activity</p>
                 </div>
               ) : (
                 recentActivities.map((activity, index) => {
                   const Icon = getActivityIcon(activity.type || activity.icon);
                   const color = getActivityColor(activity.type || activity.icon, activity.color);
+                  const style = activityColorStyles[color] || activityColorStyles.blue;
                   return (
                     <div
                       key={activity.id || index}
                       onClick={() => activity.link && navigate(activity.link)}
-                      className={`flex items-start gap-3.5 p-3 rounded-lg hover:bg-[#F4F9FB] transition-colors ${activity.link ? 'cursor-pointer' : ''}`}
+                      className={`flex items-start gap-3 p-2.5 rounded-lg hover:bg-[#F5F9FA] transition-colors ${
+                        activity.link ? 'cursor-pointer' : ''
+                      }`}
                     >
-                      <div
-                        className={`p-2 rounded-lg shrink-0 ${color === 'green' ? 'bg-[#ECFDF5]' : ''
-                          } ${color === 'blue' ? 'bg-[#E9F7FA]' : ''} ${color === 'purple' ? 'bg-[#EFF4F9]' : ''
-                          } ${color === 'orange' ? 'bg-[#FEF4F2]' : ''} ${color === 'gray' ? 'bg-slate-100' : ''
-                          }`}
-                      >
-                        <Icon
-                          className={`w-4 h-4 ${color === 'green' ? 'text-[#059669]' : ''
-                            } ${color === 'blue' ? 'text-[#127EAB]' : ''} ${color === 'purple' ? 'text-[#1F4264]' : ''
-                            } ${color === 'orange' ? 'text-[#EE6450]' : ''} ${color === 'gray' ? 'text-slate-600' : ''
-                            }`}
-                        />
+                      <div className={`p-2 rounded-lg shrink-0 ${style.bg}`}>
+                        <Icon className={`w-4 h-4 ${style.text}`} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs font-medium text-[#1F4264]">{activity.message || activity.action}</p>
-                        <p className="text-xs text-[#6F7F8E] mt-0.5">{formatTimeAgo(activity.time || activity.timestamp)}</p>
+                        <p className="text-xs sm:text-[13px] font-normal text-[#1F4264] leading-snug line-clamp-2">
+                          {activity.message || activity.action}
+                        </p>
+                        <p className="text-[11px] font-normal text-[#8BA0B2] mt-0.5">
+                          {formatTimeAgo(activity.time || activity.timestamp)}
+                        </p>
                       </div>
                     </div>
                   );
                 })
               )}
             </div>
-            <div className="mt-4 pt-4 border-t border-[#E6F0F5]">
+            <div className="mt-3.5 pt-3.5 border-t border-[#EDF3F6]">
               <button
                 onClick={() => navigate('/client/dashboard/documents')}
-                className="text-sm text-[#127EAB] hover:text-[#1F4264] font-semibold flex items-center gap-1 transition-colors cursor-pointer"
+                className="text-xs sm:text-sm text-[#127EAB] hover:text-[#0E6083] font-medium flex items-center gap-1.5 transition-colors cursor-pointer"
               >
                 View all notifications
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </Card.Content>
