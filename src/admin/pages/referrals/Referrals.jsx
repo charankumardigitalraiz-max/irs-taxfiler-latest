@@ -195,9 +195,10 @@ const Referrals = () => {
                           size="sm"
                           variant="ghost"
                           onClick={() => handleViewDetails(referral)}
-                          leftIcon={<Eye className="w-4 h-4 text-[#127EAB]" />}
+                          title="View Details"
+                          className="h-8 w-8 !p-0 bg-[#E9F7FA] text-[#127EAB] border border-[#127EAB]/30 hover:bg-[#127EAB] hover:text-white hover:border-[#127EAB] rounded-lg shadow-2xs transition-all cursor-pointer inline-flex items-center justify-center"
                         >
-                          View Details
+                          <Eye className="w-4 h-4" />
                         </Button>
                       </td>
                     </tr>
