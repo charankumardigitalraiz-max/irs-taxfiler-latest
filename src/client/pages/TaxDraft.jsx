@@ -14,6 +14,7 @@ import { userService } from '../services/userService';
 import { baseUrl } from '../../baseurl';
 import { useToast } from '../../admin/hooks/useToast';
 import { useDocumentViewer } from '../hooks/useDocumentViewer';
+import { getDocumentUrl } from '../utils/documentUrl';
 
 const TaxDraft = () => {
   const [documents, setDocuments] = useState([]);
@@ -79,19 +80,6 @@ const TaxDraft = () => {
       return 'Employment Docs';
     }
     return 'Additional Supporting Docs';
-  };
-
-  const getDocumentUrl = (filePath) => {
-    if (!filePath) return null;
-    // Check if it's already a full URL (e.g., Cloudinary URL)
-    if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
-      return filePath;
-    }
-    // Otherwise, prepend the base URL for local files
-    if (filePath.startsWith('/')) {
-      return `${baseUrl}${filePath}`;
-    }
-    return `${baseUrl}/${filePath}`;
   };
 
   const handleDownload = async (file) => {

@@ -15,23 +15,9 @@ import {
 } from 'lucide-react';
 import Button from '../common/Button';
 import { baseUrl } from '../../../baseurl';
+import { getDocumentUrl } from '../../../shared/utils/documentUrl';
 
 const UserInfoSidebar = ({ user, onSave, disabled = false, documents = [] }) => {
-  // Helper function to get full document URL
-  const getDocumentUrl = (filePath) => {
-    if (!filePath) return null;
-    // If already a full URL, return as is
-    if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
-      return filePath;
-    }
-    // If relative path, prepend base URL
-    if (filePath.startsWith('/')) {
-      return `${baseUrl}${filePath}`;
-    }
-    // Otherwise, assume it's a relative path from uploads
-    return `${baseUrl}/uploads/${filePath}`;
-  };
-
   // Helper function to handle file download using blob fetch
   const handleDownload = async (filePath, fileName) => {
     try {

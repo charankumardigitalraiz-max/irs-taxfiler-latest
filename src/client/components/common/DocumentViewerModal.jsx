@@ -18,7 +18,13 @@ import {
   RotateCcw,
 } from 'lucide-react';
 import { clsx } from 'clsx';
-import { baseUrl } from '../../../baseurl';
+import {
+  getDocumentUrl,
+  getDocumentName,
+  getDocumentExtension,
+  isImageUrl,
+  isPdfUrl,
+} from '../../utils/documentUrl';
 
 /**
  * Global Document Viewer Modal
@@ -53,51 +59,16 @@ const DocumentViewerModal = ({
     return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
   };
 
-  // Resolve document metadata & URL
+  // Resolve document metadata & URL using the shared documentUrl utility
   const resolveDocInfo = useCallback(() => {
     if (!activeDoc) return { url: null, name: '', ext: '', size: null, mimeType: '', isLocalBlob: false };
 
-    let url = null;
-    let name = '';
-    let size = null;
-    let mimeType = '';
-    let isLocalBlob = false;
-
-    if (typeof activeDoc === 'string') {
-      url = activeDoc;
-      name = activeDoc.split('/').pop()?.split('?')[0] || 'Document';
-    } else {
-      name =
-        titleProp ||
-        activeDoc.name ||
-        activeDoc.displayName ||
-        activeDoc.originalName ||
-        activeDoc.reportName ||
-        activeDoc.title ||
-        'Document';
-
-      size = activeDoc.size || activeDoc.fileSize || null;
-      mimeType = activeDoc.type || activeDoc.contentType || '';
-
-      if (activeDoc.filePath) {
-        const p = activeDoc.filePath;
-        if (p.startsWith('http://') || p.startsWith('https://') || p.startsWith('blob:') || p.startsWith('data:')) {
-          url = p;
-        } else if (p.startsWith('/')) {
-          url = `${baseUrl}${p}`;
-        } else {
-          url = `${baseUrl}/${p}`;
-        }
-      } else if (activeDoc.url) {
-        url = activeDoc.url;
-      } else if (activeDoc.file instanceof Blob || activeDoc.file instanceof File) {
-        url = URL.createObjectURL(activeDoc.file);
-        isLocalBlob = true;
-      }
-    }
-
-    // Ensure fallback name has an extension if possible
-    const ext = (name.split('.').pop() || '').toLowerCase();
+    const url = getDocumentUrl(activeDoc);
+    const name = titleProp || getDocumentName(activeDoc, 'Document');
+    const ext = getDocumentExtension(name || activeDoc);
+    const size = typeof activeDoc === 'object' ? (activeDoc.fileSize || activeDoc.size || null) : null;
+    const mimeType = typeof activeDoc === 'object' ? (activeDoc.mimeType || activeDoc.type || '') : '';
+    const isLocalBlob = url ? url.startsWith('blob:') : false;
 
     return { url, name, ext, size, mimeType, isLocalBlob };
   }, [activeDoc, titleProp]);
@@ -105,10 +76,8 @@ const DocumentViewerModal = ({
   const { url: resolvedUrl, name: fileName, ext: fileExt, size: fileSize, mimeType, isLocalBlob } = resolveDocInfo();
 
   // Document type classifications
-  const isPdf = fileExt === 'pdf' || mimeType.includes('pdf');
-  const isImage =
-    ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'bmp', 'ico'].includes(fileExt) ||
-    mimeType.startsWith('image/');
+  const isPdf = isPdfUrl(activeDoc) || fileExt === 'pdf';
+  const isImage = isImageUrl(activeDoc);
   const isText = ['txt', 'csv', 'json', 'log', 'xml', 'md'].includes(fileExt) || mimeType.startsWith('text/');
   const isOffice = ['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'].includes(fileExt);
 

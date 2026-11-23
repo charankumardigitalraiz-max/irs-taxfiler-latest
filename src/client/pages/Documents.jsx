@@ -14,6 +14,7 @@ import { SectionSkeleton } from '../components/common/PageLoader';
 import { documentService } from '../services/documentService';
 import { baseUrl } from '../../baseurl';
 import { useDocumentViewer } from '../hooks/useDocumentViewer';
+import { getDocumentUrl } from '../utils/documentUrl';
 
 const Documents = () => {
   const { viewDocument } = useDocumentViewer();
@@ -99,21 +100,6 @@ const Documents = () => {
   const getAvailableYears = () => {
     const years = [...new Set(files.map(f => f.uploadedYear).filter(Boolean))].sort((a, b) => b - a);
     return years;
-  };
-
-  const getDocumentUrl = (filePath) => {
-    if (!filePath) return null;
-    // Check if it's already a full URL (e.g., Cloudinary URL)
-    if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
-      return filePath;
-    }
-    // Otherwise, prepend the base URL for local files
-    // If filePath starts with /, it's already a path, just prepend baseUrl
-    // If it doesn't start with /, add it
-    if (filePath.startsWith('/')) {
-      return `${baseUrl}${filePath}`;
-    }
-    return `${baseUrl}/${filePath}`;
   };
 
   const handleDownload = async (file) => {

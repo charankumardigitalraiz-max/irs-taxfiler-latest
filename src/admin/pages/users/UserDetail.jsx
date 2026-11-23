@@ -40,6 +40,7 @@ import { couponService } from '../../services/couponService';
 import { documentService } from '../../services/documentService';
 import { meetingService } from '../../services/meetingService';
 import { baseUrl as backendBaseUrl } from '../../../baseurl';
+import { getDocumentUrl } from '../../../shared/utils/documentUrl';
 
 // Mock user data
 const mockUser = {
@@ -462,20 +463,6 @@ const UserDetail = () => {
       console.error('Error rejecting document:', error);
       showError('Failed to reject document');
     }
-  };
-
-  // Helper function to get full document URL
-  const getDocumentUrl = (filePath) => {
-    if (!filePath) return null;
-    // Check if it's already a full URL (e.g., Cloudinary URL)
-    if (filePath.startsWith('http://') || filePath.startsWith('https://')) {
-      return filePath;
-    }
-    // Otherwise, prepend the base URL for local files
-    if (filePath.startsWith('/')) {
-      return `${backendBaseUrl}${filePath}`;
-    }
-    return `${backendBaseUrl}/${filePath}`;
   };
 
   const handleDocumentUpload = async (data) => {
