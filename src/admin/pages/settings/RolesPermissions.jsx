@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Header from '../../components/layout/Header';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
@@ -26,6 +26,8 @@ import {
   Settings as SettingsIcon,
   ShieldCheck,
   CheckCheck,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { PERMISSIONS } from '../../utils/permissions';
 
@@ -143,6 +145,16 @@ const RolesPermissions = () => {
   });
 
   const [activeTab, setActiveTab] = useState('Dashboard');
+  const tabsRef = useRef(null);
+
+  const scrollTabs = (direction) => {
+    if (tabsRef.current) {
+      tabsRef.current.scrollBy({
+        left: direction === 'left' ? -220 : 220,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   const allPermissionsList = Object.values(permissionCategories).flatMap(c => c.permissions);
   const totalEnabledCount = allPermissionsList.filter(p => formData.permissions?.[p]).length;
@@ -388,7 +400,7 @@ const RolesPermissions = () => {
                 </div>
                 <div>
                   <h4 className="text-xs sm:text-sm font-bold text-[#1F4264]">Module Permissions</h4>
-                  <p className="text-[11px] text-[#6F7F8E]">Assign module-specific read, view, or manage access</p>
+                  <p className="text-[11px] font-medium text-[#6F7F8E]">Assign module-specific read, view, or manage access</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -398,21 +410,33 @@ const RolesPermissions = () => {
                 <button
                   type="button"
                   onClick={() => toggleAllGlobal(totalEnabledCount < totalAvailableCount)}
-                  className={`text-xs font-semibold px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${
-                    totalEnabledCount === totalAvailableCount
-                      ? 'bg-[#FEF4F2] text-[#EE6450] border-[#EE6450]/30 hover:bg-[#EE6450] hover:text-white'
-                      : 'bg-white text-[#1F4264] border-[#CCDCE1] hover:border-[#127EAB] hover:text-[#127EAB]'
-                  }`}
+                  className={`text-xs font-semibold px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${totalEnabledCount === totalAvailableCount
+                    ? 'bg-[#FEF4F2] text-[#EE6450] border-[#EE6450]/30 hover:bg-[#EE6450] hover:text-white'
+                    : 'bg-white text-[#1F4264] border-[#CCDCE1] hover:border-[#127EAB] hover:text-[#127EAB]'
+                    }`}
                 >
                   {totalEnabledCount === totalAvailableCount ? 'Reset All' : 'Grant All'}
                 </button>
               </div>
             </div>
 
-            {/* Split View Container */}
-            <div className="flex flex-col md:flex-row h-[420px] sm:h-[460px]">
-              {/* Vertical Sidebar Tabs */}
-              <div className="w-full md:w-56 bg-[#F8FBFC] border-b md:border-b-0 md:border-r border-[#E6F0F5] overflow-y-auto p-2 space-y-1">
+            {/* Horizontal Scrolling Tabs */}
+            <div className="bg-[#F8FBFC] border-b border-[#E6F0F5] px-2 sm:px-3 py-2.5 flex items-center gap-1.5 relative">
+              <button
+                type="button"
+                onClick={() => scrollTabs('left')}
+                className="hidden sm:flex p-1.5 rounded-lg text-[#6F7F8E] hover:text-[#1F4264] hover:bg-white border border-transparent hover:border-[#DCEAF0] transition-all cursor-pointer shrink-0"
+                title="Scroll Tabs Left"
+                aria-label="Scroll tabs left"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+
+              <div
+                ref={tabsRef}
+                className="flex items-center gap-2 overflow-x-auto py-1 scroll-smooth flex-1 scrollbar-none"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
                 {Object.keys(permissionCategories).map(key => {
                   const isActive = activeTab === key;
                   const catPerms = permissionCategories[key].permissions;
@@ -425,29 +449,25 @@ const RolesPermissions = () => {
                       type="button"
                       key={key}
                       onClick={() => setActiveTab(key)}
-                      className={`w-full text-left px-3 py-2.5 rounded-xl font-medium transition-all flex items-center justify-between gap-2 cursor-pointer group ${
+                      className={`inline-flex items-center gap-2 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap transition-all cursor-pointer shrink-0 border ${
                         isActive
-                          ? 'bg-gradient-to-r from-[#1F4264] to-[#127EAB] text-white shadow-xs font-semibold'
-                          : 'text-[#5A6E82] hover:bg-white hover:text-[#1F4264]'
+                          ? 'bg-gradient-to-r from-[#1F4264] to-[#127EAB] text-white border-[#127EAB] shadow-xs font-semibold'
+                          : 'bg-white text-[#5A6E82] hover:text-[#1F4264] hover:bg-[#F0F6F9] border-[#DCEAF0]'
                       }`}
                     >
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <Icon
-                          className={`w-4 h-4 shrink-0 transition-transform group-hover:scale-105 ${
-                            isActive ? 'text-white' : 'text-[#8BA0B2] group-hover:text-[#127EAB]'
-                          }`}
-                        />
-                        <span className="text-xs sm:text-sm truncate">
-                          {permissionCategories[key].label}
-                        </span>
-                      </div>
+                      <Icon
+                        className={`w-3.5 h-3.5 shrink-0 transition-transform ${
+                          isActive ? 'text-white' : 'text-[#8BA0B2]'
+                        }`}
+                      />
+                      <span>{permissionCategories[key].label}</span>
                       <span
                         className={`text-[11px] font-semibold px-2 py-0.5 rounded-full shrink-0 ${
                           isActive
                             ? 'bg-white/20 text-white'
                             : activeCount > 0
-                            ? 'bg-[#E9F7FA] text-[#127EAB]'
-                            : 'bg-[#CCDCE1]/40 text-[#8BA0B2]'
+                            ? 'bg-[#E9F7FA] text-[#127EAB] border border-[#127EAB]/20'
+                            : 'bg-[#F0F4F8] text-[#8BA0B2]'
                         }`}
                       >
                         {activeCount}/{totalCount}
@@ -457,81 +477,102 @@ const RolesPermissions = () => {
                 })}
               </div>
 
-              {/* Content Area */}
-              <div className="flex-1 flex flex-col min-w-0 bg-white">
-                {/* Toolbar */}
-                <div className="px-4 sm:px-5 py-3 border-b border-[#E6F0F5] flex items-center justify-between bg-white sticky top-0 z-10">
-                  <div className="flex items-center gap-2">
-                    <h4 className="font-semibold text-xs sm:text-sm text-[#1F4264]">
+              <button
+                type="button"
+                onClick={() => scrollTabs('right')}
+                className="hidden sm:flex p-1.5 rounded-lg text-[#6F7F8E] hover:text-[#1F4264] hover:bg-white border border-transparent hover:border-[#DCEAF0] transition-all cursor-pointer shrink-0"
+                title="Scroll Tabs Right"
+                aria-label="Scroll tabs right"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Content Area */}
+            <div className="flex flex-col min-w-0 bg-white">
+              {/* Toolbar */}
+              <div className="px-4 sm:px-5 py-3 border-b border-[#E6F0F5] flex items-center justify-between bg-white sticky top-0 z-10">
+                <div className="flex items-center gap-2.5">
+                  {(() => {
+                    const ActiveIcon = categoryIcons[activeTab] || ShieldCheck;
+                    return (
+                      <div className="p-1.5 rounded-lg bg-[#E9F7FA] text-[#127EAB] border border-[#127EAB]/20">
+                        <ActiveIcon className="w-4 h-4" />
+                      </div>
+                    );
+                  })()}
+                  <div>
+                    <h4 className="font-bold text-xs sm:text-sm text-[#1F4264]">
                       {permissionCategories[activeTab].label}
                     </h4>
-                    <span className="text-[11px] text-[#6F7F8E] font-medium hidden sm:inline">
-                      ({permissionCategories[activeTab].permissions.filter(p => formData.permissions[p]).length} of {permissionCategories[activeTab].permissions.length} enabled)
-                    </span>
+                    <p className="text-[11px] text-[#6F7F8E] font-medium">
+                      {permissionCategories[activeTab].permissions.filter(p => formData.permissions[p]).length} of {permissionCategories[activeTab].permissions.length} enabled
+                    </p>
                   </div>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onClick={() => toggleCategoryAll(activeTab, !isCategoryAllSelected(activeTab))}
-                    className={`h-7.5 text-xs px-3 rounded-lg border font-semibold transition-all ${
-                      isCategoryAllSelected(activeTab)
-                        ? 'bg-[#FEF4F2] text-[#EE6450] border-[#EE6450]/30 hover:bg-[#EE6450] hover:text-white'
-                        : 'bg-[#E9F7FA] text-[#127EAB] border-[#127EAB]/30 hover:bg-[#127EAB] hover:text-white'
-                    }`}
-                  >
-                    {isCategoryAllSelected(activeTab) ? 'Deselect Category' : 'Select Category'}
-                  </Button>
                 </div>
 
-                {/* Grid */}
-                <div className="p-4 sm:p-5 overflow-y-auto flex-1">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {permissionCategories[activeTab].permissions.map(perm => {
-                      const isChecked = !!formData.permissions[perm];
-                      return (
-                        <label
-                          key={perm}
-                          className={`
-                            relative flex items-center gap-3 px-3.5 py-3 border rounded-xl cursor-pointer transition-all duration-200 select-none
-                            ${isChecked
-                              ? 'border-[#127EAB] bg-[#E9F7FA]/70 ring-1 ring-[#127EAB]/30 shadow-2xs'
-                              : 'border-[#E6F0F5] bg-white hover:border-[#CCDCE1] hover:bg-[#F8FBFC]'}
-                          `}
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => toggleCategoryAll(activeTab, !isCategoryAllSelected(activeTab))}
+                  className={`h-7.5 text-xs px-3 rounded-lg border font-semibold transition-all ${
+                    isCategoryAllSelected(activeTab)
+                      ? 'bg-[#FEF4F2] text-[#EE6450] border-[#EE6450]/30 hover:bg-[#EE6450] hover:text-white'
+                      : 'bg-[#E9F7FA] text-[#127EAB] border-[#127EAB]/30 hover:bg-[#127EAB] hover:text-white'
+                  }`}
+                >
+                  {isCategoryAllSelected(activeTab) ? 'Deselect Category' : 'Select All in Category'}
+                </Button>
+              </div>
+
+              {/* Grid */}
+              <div className="p-4 sm:p-5 overflow-y-auto max-h-[300px] sm:max-h-[350px]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {permissionCategories[activeTab].permissions.map(perm => {
+                    const isChecked = !!formData.permissions[perm];
+                    return (
+                      <label
+                        key={perm}
+                        className={`
+                          relative flex items-center gap-3 px-3.5 py-3 border rounded-xl cursor-pointer transition-all duration-200 select-none
+                          ${isChecked
+                            ? 'border-[#127EAB] bg-[#E9F7FA]/70 ring-1 ring-[#127EAB]/30 shadow-2xs'
+                            : 'border-[#E6F0F5] bg-white hover:border-[#CCDCE1] hover:bg-[#F8FBFC]'}
+                        `}
+                      >
+                        <input
+                          type="checkbox"
+                          className="sr-only"
+                          checked={isChecked}
+                          onChange={() => togglePermission(perm)}
+                        />
+                        <div
+                          className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 border transition-all ${
+                            isChecked
+                              ? 'bg-[#127EAB] border-[#127EAB] text-white shadow-2xs'
+                              : 'bg-white border-[#CCDCE1] text-transparent hover:border-[#127EAB]'
+                          }`}
                         >
-                          <input
-                            type="checkbox"
-                            className="sr-only"
-                            checked={isChecked}
-                            onChange={() => togglePermission(perm)}
-                          />
-                          <div
-                            className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 border transition-all ${
-                              isChecked
-                                ? 'bg-[#127EAB] border-[#127EAB] text-white shadow-2xs'
-                                : 'bg-white border-[#CCDCE1] text-transparent hover:border-[#127EAB]'
+                          <Check className="w-3.5 h-3.5 stroke-[3]" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <span
+                            className={`text-xs sm:text-sm font-semibold block truncate ${
+                              isChecked ? 'text-[#1F4264]' : 'text-[#5A6E82]'
                             }`}
                           >
-                            <Check className="w-3.5 h-3.5 stroke-[3]" />
-                          </div>
-                          <div className="min-w-0 flex-1">
-                            <span
-                              className={`text-xs sm:text-sm font-semibold block truncate ${
-                                isChecked ? 'text-[#1F4264]' : 'text-[#5A6E82]'
-                              }`}
-                            >
-                              {getPermissionLabel(perm)}
-                            </span>
-                            <span className="text-[11px] text-[#8BA0B2] block truncate">
-                              {isChecked ? 'Access granted' : 'No access'}
-                            </span>
-                          </div>
-                          {isChecked && (
-                            <span className="w-2 h-2 rounded-full bg-[#127EAB] shrink-0" />
-                          )}
-                        </label>
-                      );
-                    })}
-                  </div>
+                            {getPermissionLabel(perm)}
+                          </span>
+                          <span className="text-[11px] text-[#8BA0B2] block truncate">
+                            {isChecked ? 'Access granted' : 'No access'}
+                          </span>
+                        </div>
+                        {isChecked && (
+                          <span className="w-2 h-2 rounded-full bg-[#127EAB] shrink-0" />
+                        )}
+                      </label>
+                    );
+                  })}
                 </div>
               </div>
             </div>
