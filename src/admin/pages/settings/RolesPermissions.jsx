@@ -7,7 +7,26 @@ import Modal from '../../components/common/Modal';
 import DataTable from '../../components/common/DataTable';
 import { useToast } from '../../hooks/useToast';
 import roleService from '../../services/roleService';
-import { Plus, Edit2, Trash2, Check, X } from 'lucide-react';
+import {
+  Plus,
+  Edit2,
+  Trash2,
+  Check,
+  X,
+  LayoutDashboard,
+  Users,
+  FileText,
+  PhoneCall,
+  FolderOpen,
+  Mail,
+  History,
+  LifeBuoy,
+  Tag,
+  Share2,
+  Settings as SettingsIcon,
+  ShieldCheck,
+  CheckCheck,
+} from 'lucide-react';
 import { PERMISSIONS } from '../../utils/permissions';
 
 // Define categories based on PERMISSIONS constant
@@ -71,6 +90,20 @@ const permissionCategories = {
   }
 };
 
+const categoryIcons = {
+  Dashboard: LayoutDashboard,
+  Users: Users,
+  Forms: FileText,
+  'Free to Call': PhoneCall,
+  Documents: FolderOpen,
+  Email: Mail,
+  'Audit Logs': History,
+  Support: LifeBuoy,
+  Coupons: Tag,
+  Referrals: Share2,
+  Settings: SettingsIcon,
+};
+
 // Helper to get clean labels for the UI
 const getPermissionLabel = (perm) => {
   const labels = {
@@ -110,6 +143,20 @@ const RolesPermissions = () => {
   });
 
   const [activeTab, setActiveTab] = useState('Dashboard');
+
+  const allPermissionsList = Object.values(permissionCategories).flatMap(c => c.permissions);
+  const totalEnabledCount = allPermissionsList.filter(p => formData.permissions?.[p]).length;
+  const totalAvailableCount = allPermissionsList.length;
+
+  const toggleAllGlobal = (enabled) => {
+    setFormData(prev => {
+      const newPermissions = { ...prev.permissions };
+      allPermissionsList.forEach(perm => {
+        newPermissions[perm] = enabled;
+      });
+      return { ...prev, permissions: newPermissions };
+    });
+  };
 
   const fetchRoles = async () => {
     try {
@@ -286,121 +333,233 @@ const RolesPermissions = () => {
       <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
-        title={editingRole ? 'Edit Role' : 'Create New Role'}
-        size="lg"
+        title={editingRole ? 'Edit Role & Permissions' : 'Create New Role'}
+        description={
+          editingRole
+            ? 'Modify role details and fine-tune module-level access permissions'
+            : 'Define role information and grant specific access permissions'
+        }
+        size="xl"
       >
         <div className="space-y-4">
           {/* General Information Section */}
-          <div className="bg-[#F8FBFC] px-4 py-3 rounded-xl border border-[#DCEAF0] flex flex-col gap-3">
-            <div className="w-full">
-              <label className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1.5">Role Name *</label>
-              <input
-                type="text"
-                className="w-full px-3.5 py-2 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2]"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="e.g., Manager, Support"
-              />
+          <div className="bg-[#F8FBFC] p-4 sm:p-5 rounded-2xl border border-[#DCEAF0] shadow-2xs">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-2 h-2 rounded-full bg-[#127EAB]" />
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[#1F4264]">
+                Role Information
+              </h4>
             </div>
-            <div className="w-full">
-              <label className="block text-xs font-semibold text-[#1F4264] uppercase tracking-wider mb-1.5">Description</label>
-              <input
-                type="text"
-                className="w-full px-3.5 py-2 text-xs sm:text-sm border border-[#DCEAF0] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2]"
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                placeholder="Brief description"
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-[#1F4264] mb-1.5">
+                  Role Name <span className="text-[#EE6450]">*</span>
+                </label>
+                <input
+                  type="text"
+                  className="w-full px-3.5 py-2.5 text-xs sm:text-sm font-medium border border-[#CCDCE1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2] shadow-2xs transition-all hover:border-[#127EAB]/40"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="e.g., Senior Tax Advisor, Manager"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-[#1F4264] mb-1.5">
+                  Description
+                </label>
+                <input
+                  type="text"
+                  className="w-full px-3.5 py-2.5 text-xs sm:text-sm font-medium border border-[#CCDCE1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder-[#8BA0B2] shadow-2xs transition-all hover:border-[#127EAB]/40"
+                  value={formData.description}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                  placeholder="e.g., Full access to tax filing forms and review"
+                />
+              </div>
             </div>
           </div>
 
           {/* Permissions Section */}
-          <div className="border border-[#DCEAF0] rounded-xl overflow-hidden flex flex-col md:flex-row h-[450px]">
-            {/* Vertical Sidebar Tabs */}
-            <div className="w-full md:w-40 bg-[#F8FBFC] border-b md:border-b-0 md:border-r border-[#E6F0F5] overflow-y-auto">
-              {Object.keys(permissionCategories).map(key => {
-                const isActive = activeTab === key;
-                const catPerms = permissionCategories[key].permissions;
-                const activeCount = catPerms.filter(p => formData.permissions[p]).length;
-                const totalCount = catPerms.length;
-
-                return (
-                  <button
-                    key={key}
-                    onClick={() => setActiveTab(key)}
-                    className={`w-full text-left px-3.5 py-3 text-xs sm:text-sm font-medium transition-all flex flex-col cursor-pointer rounded-lg ${isActive
-                      ? 'bg-gradient-to-r from-[#127EAB] to-[#0E668B] text-white font-semibold shadow-xs'
-                      : 'text-[#6F7F8E] hover:bg-white hover:text-[#1F4264]'
-                      }`}
-                  >
-                    <span>{permissionCategories[key].label}</span>
-                    <span className={`text-xs mt-0.5 ${isActive ? 'text-white/85' : 'text-[#8BA0B2]'}`}>
-                      {activeCount} / {totalCount} enabled
-                    </span>
-                  </button>
-                );
-              })}
+          <div className="border border-[#DCEAF0] rounded-2xl overflow-hidden shadow-2xs bg-white">
+            {/* Top Bar with Overall Stats and Quick Global Actions */}
+            <div className="bg-[#F8FBFC] px-4 sm:px-5 py-3 border-b border-[#E6F0F5] flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-xl bg-[#E9F7FA] text-[#127EAB] border border-[#127EAB]/20">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="text-xs sm:text-sm font-bold text-[#1F4264]">Module Permissions</h4>
+                  <p className="text-[11px] text-[#6F7F8E]">Assign module-specific read, view, or manage access</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#E9F7FA] text-[#127EAB] border border-[#127EAB]/30">
+                  {totalEnabledCount} / {totalAvailableCount} Active
+                </span>
+                <button
+                  type="button"
+                  onClick={() => toggleAllGlobal(totalEnabledCount < totalAvailableCount)}
+                  className={`text-xs font-semibold px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${
+                    totalEnabledCount === totalAvailableCount
+                      ? 'bg-[#FEF4F2] text-[#EE6450] border-[#EE6450]/30 hover:bg-[#EE6450] hover:text-white'
+                      : 'bg-white text-[#1F4264] border-[#CCDCE1] hover:border-[#127EAB] hover:text-[#127EAB]'
+                  }`}
+                >
+                  {totalEnabledCount === totalAvailableCount ? 'Reset All' : 'Grant All'}
+                </button>
+              </div>
             </div>
 
-            {/* Content Area */}
-            <div className="flex-1 flex flex-col min-w-0 bg-white">
-              {/* Toolbar */}
-              <div className="px-4 py-3 border-b border-[#E6F0F5] flex items-center justify-between bg-white sticky top-0 z-10">
-                <div>
-                  <h4 className="font-semibold text-sm text-[#1F4264]">{permissionCategories[activeTab].label}</h4>
-                </div>
-                <Button
-                  size="sm"
-                  variant="secondary"
-                  onClick={() => toggleCategoryAll(activeTab, !isCategoryAllSelected(activeTab))}
-                  className={`h-7 text-xs px-3 ${isCategoryAllSelected(activeTab) ? 'bg-[#E9F7FA] text-[#127EAB] border-[#127EAB]/30' : ''}`}
-                >
-                  {isCategoryAllSelected(activeTab) ? 'Uncheck All' : 'Check All'}
-                </Button>
+            {/* Split View Container */}
+            <div className="flex flex-col md:flex-row h-[420px] sm:h-[460px]">
+              {/* Vertical Sidebar Tabs */}
+              <div className="w-full md:w-56 bg-[#F8FBFC] border-b md:border-b-0 md:border-r border-[#E6F0F5] overflow-y-auto p-2 space-y-1">
+                {Object.keys(permissionCategories).map(key => {
+                  const isActive = activeTab === key;
+                  const catPerms = permissionCategories[key].permissions;
+                  const activeCount = catPerms.filter(p => formData.permissions[p]).length;
+                  const totalCount = catPerms.length;
+                  const Icon = categoryIcons[key] || ShieldCheck;
+
+                  return (
+                    <button
+                      type="button"
+                      key={key}
+                      onClick={() => setActiveTab(key)}
+                      className={`w-full text-left px-3 py-2.5 rounded-xl font-medium transition-all flex items-center justify-between gap-2 cursor-pointer group ${
+                        isActive
+                          ? 'bg-gradient-to-r from-[#1F4264] to-[#127EAB] text-white shadow-xs font-semibold'
+                          : 'text-[#5A6E82] hover:bg-white hover:text-[#1F4264]'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <Icon
+                          className={`w-4 h-4 shrink-0 transition-transform group-hover:scale-105 ${
+                            isActive ? 'text-white' : 'text-[#8BA0B2] group-hover:text-[#127EAB]'
+                          }`}
+                        />
+                        <span className="text-xs sm:text-sm truncate">
+                          {permissionCategories[key].label}
+                        </span>
+                      </div>
+                      <span
+                        className={`text-[11px] font-semibold px-2 py-0.5 rounded-full shrink-0 ${
+                          isActive
+                            ? 'bg-white/20 text-white'
+                            : activeCount > 0
+                            ? 'bg-[#E9F7FA] text-[#127EAB]'
+                            : 'bg-[#CCDCE1]/40 text-[#8BA0B2]'
+                        }`}
+                      >
+                        {activeCount}/{totalCount}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
 
-              {/* Grid */}
-              <div className="p-4 overflow-y-auto">
-                <div className="grid grid-cols-1 gap-2">
-                  {permissionCategories[activeTab].permissions.map(perm => {
-                    const isChecked = !!formData.permissions[perm];
-                    return (
-                      <label
-                        key={perm}
-                        className={`
-                          relative flex items-center px-3 py-2.5 border rounded-xl cursor-pointer transition-all duration-200
-                          ${isChecked
-                            ? 'border-[#127EAB] bg-[#E9F7FA] shadow-xs'
-                            : 'border-[#E6F0F5] hover:border-[#DCEAF0] hover:bg-[#F8FBFC]'}
-                        `}
-                      >
-                        <input
-                          type="checkbox"
-                          className="h-4 w-4 text-[#127EAB] border-[#CCDCE1] rounded focus:ring-[#127EAB] flex-shrink-0"
-                          checked={isChecked}
-                          onChange={() => togglePermission(perm)}
-                        />
-                        <div className="ml-3 min-w-0">
-                          <span className={`text-sm font-medium block truncate ${isChecked ? 'text-[#1F4264]' : 'text-[#6F7F8E]'}`}>
-                            {getPermissionLabel(perm)}
-                          </span>
-                        </div>
-                      </label>
-                    );
-                  })}
+              {/* Content Area */}
+              <div className="flex-1 flex flex-col min-w-0 bg-white">
+                {/* Toolbar */}
+                <div className="px-4 sm:px-5 py-3 border-b border-[#E6F0F5] flex items-center justify-between bg-white sticky top-0 z-10">
+                  <div className="flex items-center gap-2">
+                    <h4 className="font-semibold text-xs sm:text-sm text-[#1F4264]">
+                      {permissionCategories[activeTab].label}
+                    </h4>
+                    <span className="text-[11px] text-[#6F7F8E] font-medium hidden sm:inline">
+                      ({permissionCategories[activeTab].permissions.filter(p => formData.permissions[p]).length} of {permissionCategories[activeTab].permissions.length} enabled)
+                    </span>
+                  </div>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => toggleCategoryAll(activeTab, !isCategoryAllSelected(activeTab))}
+                    className={`h-7.5 text-xs px-3 rounded-lg border font-semibold transition-all ${
+                      isCategoryAllSelected(activeTab)
+                        ? 'bg-[#FEF4F2] text-[#EE6450] border-[#EE6450]/30 hover:bg-[#EE6450] hover:text-white'
+                        : 'bg-[#E9F7FA] text-[#127EAB] border-[#127EAB]/30 hover:bg-[#127EAB] hover:text-white'
+                    }`}
+                  >
+                    {isCategoryAllSelected(activeTab) ? 'Deselect Category' : 'Select Category'}
+                  </Button>
+                </div>
+
+                {/* Grid */}
+                <div className="p-4 sm:p-5 overflow-y-auto flex-1">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {permissionCategories[activeTab].permissions.map(perm => {
+                      const isChecked = !!formData.permissions[perm];
+                      return (
+                        <label
+                          key={perm}
+                          className={`
+                            relative flex items-center gap-3 px-3.5 py-3 border rounded-xl cursor-pointer transition-all duration-200 select-none
+                            ${isChecked
+                              ? 'border-[#127EAB] bg-[#E9F7FA]/70 ring-1 ring-[#127EAB]/30 shadow-2xs'
+                              : 'border-[#E6F0F5] bg-white hover:border-[#CCDCE1] hover:bg-[#F8FBFC]'}
+                          `}
+                        >
+                          <input
+                            type="checkbox"
+                            className="sr-only"
+                            checked={isChecked}
+                            onChange={() => togglePermission(perm)}
+                          />
+                          <div
+                            className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 border transition-all ${
+                              isChecked
+                                ? 'bg-[#127EAB] border-[#127EAB] text-white shadow-2xs'
+                                : 'bg-white border-[#CCDCE1] text-transparent hover:border-[#127EAB]'
+                            }`}
+                          >
+                            <Check className="w-3.5 h-3.5 stroke-[3]" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <span
+                              className={`text-xs sm:text-sm font-semibold block truncate ${
+                                isChecked ? 'text-[#1F4264]' : 'text-[#5A6E82]'
+                              }`}
+                            >
+                              {getPermissionLabel(perm)}
+                            </span>
+                            <span className="text-[11px] text-[#8BA0B2] block truncate">
+                              {isChecked ? 'Access granted' : 'No access'}
+                            </span>
+                          </div>
+                          {isChecked && (
+                            <span className="w-2 h-2 rounded-full bg-[#127EAB] shrink-0" />
+                          )}
+                        </label>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Footer Actions */}
-          <div className="flex justify-end gap-2 pt-3 border-t border-[#E6F0F5]">
-            <Button variant="secondary" size="sm" onClick={() => setShowModal(false)}>
-              Cancel
-            </Button>
-            <Button onClick={handleSave} size="sm" className="min-w-[100px]">
-              {editingRole ? 'Save' : 'Create'}
-            </Button>
+          <div className="flex items-center justify-between pt-3 border-t border-[#E6F0F5]">
+            <span className="text-xs text-[#6F7F8E] font-medium hidden sm:inline">
+              {totalEnabledCount} permissions granted across {Object.keys(permissionCategories).length} modules
+            </span>
+            <div className="flex items-center gap-2.5 ml-auto">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => setShowModal(false)}
+                className="px-4 py-2 font-medium"
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={handleSave}
+                size="sm"
+                className="min-w-[110px] px-4 py-2 bg-gradient-to-r from-[#1F4264] to-[#127EAB] hover:from-[#16314A] hover:to-[#0E668B] text-white shadow-xs font-semibold"
+              >
+                <Check className="w-4 h-4 mr-1.5" />
+                {editingRole ? 'Update Role' : 'Create Role'}
+              </Button>
+            </div>
           </div>
         </div>
       </Modal>
