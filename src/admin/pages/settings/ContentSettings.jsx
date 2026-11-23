@@ -10,10 +10,12 @@ import {
   XCircle,
   Eye,
   RotateCcw,
+  Plus,
 } from 'lucide-react';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
 import Header from '../../components/layout/Header';
+import Modal from '../../components/common/Modal';
 import Input from '../../../shared/components/common/Input';
 import { settingsService } from '../../services/settingsService';
 import { useToast } from '../../hooks/useToast';
@@ -28,6 +30,7 @@ const ContentSettings = () => {
   const [settings, setSettings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingKey, setEditingKey] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const [savingAdvanced, setSavingAdvanced] = useState(false);
   const [savingTotalViews, setSavingTotalViews] = useState(false);
   const [advancedFiling, setAdvancedFiling] = useState({
@@ -305,6 +308,18 @@ const ContentSettings = () => {
       content: setting.content,
       type: setting.type,
     });
+    setShowModal(true);
+  };
+
+  const handleCreate = () => {
+    setEditingKey(null);
+    setFormData({
+      key: '',
+      title: '',
+      content: '',
+      type: 'terms',
+    });
+    setShowModal(true);
   };
 
   const handleCancel = () => {
@@ -315,6 +330,7 @@ const ContentSettings = () => {
       content: '',
       type: 'terms',
     });
+    setShowModal(false);
   };
 
   const handleSave = async () => {
@@ -609,8 +625,8 @@ const ContentSettings = () => {
                         setTotalViewsConfig((prev) => ({ ...prev, mode: 'default' }))
                       }
                       className={`text-left p-3.5 rounded-lg border transition-all cursor-pointer ${totalViewsConfig.mode === 'default'
-                          ? 'border-[#127EAB] bg-[#E9F7FA]/60 ring-1 ring-[#127EAB]/30'
-                          : 'border-gray-200 bg-white hover:border-gray-300'
+                        ? 'border-[#127EAB] bg-[#E9F7FA]/60 ring-1 ring-[#127EAB]/30'
+                        : 'border-gray-200 bg-white hover:border-gray-300'
                         }`}
                     >
                       <div className="flex items-center justify-between gap-2">
@@ -619,8 +635,8 @@ const ContentSettings = () => {
                         </span>
                         <span
                           className={`h-4 w-4 rounded-full border-2 flex items-center justify-center ${totalViewsConfig.mode === 'default'
-                              ? 'border-[#127EAB]'
-                              : 'border-gray-300'
+                            ? 'border-[#127EAB]'
+                            : 'border-gray-300'
                             }`}
                         >
                           {totalViewsConfig.mode === 'default' && (
@@ -639,8 +655,8 @@ const ContentSettings = () => {
                         setTotalViewsConfig((prev) => ({ ...prev, mode: 'original' }))
                       }
                       className={`text-left p-3.5 rounded-lg border transition-all cursor-pointer ${totalViewsConfig.mode === 'original'
-                          ? 'border-[#127EAB] bg-[#E9F7FA]/60 ring-1 ring-[#127EAB]/30'
-                          : 'border-gray-200 bg-white hover:border-gray-300'
+                        ? 'border-[#127EAB] bg-[#E9F7FA]/60 ring-1 ring-[#127EAB]/30'
+                        : 'border-gray-200 bg-white hover:border-gray-300'
                         }`}
                     >
                       <div className="flex items-center justify-between gap-2">
@@ -649,8 +665,8 @@ const ContentSettings = () => {
                         </span>
                         <span
                           className={`h-4 w-4 rounded-full border-2 flex items-center justify-center ${totalViewsConfig.mode === 'original'
-                              ? 'border-[#127EAB]'
-                              : 'border-gray-300'
+                            ? 'border-[#127EAB]'
+                            : 'border-gray-300'
                             }`}
                         >
                           {totalViewsConfig.mode === 'original' && (
@@ -949,108 +965,6 @@ const ContentSettings = () => {
         </Card.Content>
       </Card> */}
 
-      {/* Add/Edit Form */}
-      <Card>
-        <Card.Header>
-          <Card.Title>
-            {editingKey ? 'Edit Setting' : 'Add New Setting'}
-          </Card.Title>
-        </Card.Header>
-        <Card.Content>
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Key (unique identifier) *
-                </label>
-                <Input
-                  type="text"
-                  value={formData.key}
-                  onChange={(e) =>
-                    setFormData({ ...formData, key: e.target.value })
-                  }
-                  placeholder="e.g., privacy-policy"
-                  disabled={!!editingKey}
-                  required
-                />
-                <p className="text-xs text-gray-500 mt-1">
-                  Use lowercase with hyphens (e.g., privacy-policy)
-                </p>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Type *
-                </label>
-                <select
-                  value={formData.type}
-                  onChange={(e) =>
-                    setFormData({ ...formData, type: e.target.value })
-                  }
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  required
-                >
-                  {settingTypes.map((type) => (
-                    <option key={type.value} value={type.value}>
-                      {type.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Title *
-              </label>
-              <Input
-                type="text"
-                value={formData.title}
-                onChange={(e) =>
-                  setFormData({ ...formData, title: e.target.value })
-                }
-                placeholder="e.g., Privacy Policy"
-                required
-              />
-            </div>
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-xs sm:text-sm font-semibold text-[#1F4264]">
-                  Content <span className="text-[#EE6450]">*</span>{' '}
-                  <span className="text-xs font-normal text-[#6F7F8E]">(HTML supported)</span>
-                </label>
-                <span className="text-[11px] text-[#8BA0B2] font-medium">Adaptive height</span>
-              </div>
-              <textarea
-                ref={textareaRef}
-                value={formData.content}
-                onChange={(e) =>
-                  setFormData({ ...formData, content: e.target.value })
-                }
-                onInput={handleContentInput}
-                rows={3}
-                className="w-full px-3.5 py-2.5 min-h-[80px] max-h-[600px] text-xs sm:text-sm font-medium border border-[#CCDCE1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder:text-slate-400/80 placeholder:font-normal placeholder:text-xs shadow-2xs transition-all hover:border-[#127EAB]/40 resize-none overflow-y-auto leading-relaxed"
-                placeholder="Enter content here. HTML is supported."
-                required
-              />
-            </div>
-            <div className="flex gap-3">
-              <Button onClick={handleSave} className="flex items-center gap-2">
-                <Save className="w-4 h-4" />
-                {editingKey ? 'Update Setting' : 'Save Setting'}
-              </Button>
-              {editingKey && (
-                <Button
-                  variant="secondary"
-                  onClick={handleCancel}
-                  className="flex items-center gap-2"
-                >
-                  Cancel
-                </Button>
-              )}
-            </div>
-          </div>
-        </Card.Content>
-      </Card>
-
       {/* Quick Add Default Settings */}
       <Card>
         <Card.Header>
@@ -1066,6 +980,7 @@ const ContentSettings = () => {
               return (
                 <button
                   key={defaultSetting.key}
+                  type="button"
                   onClick={() => {
                     if (!exists) {
                       setFormData({
@@ -1075,6 +990,7 @@ const ContentSettings = () => {
                         type: defaultSetting.type,
                       });
                       setEditingKey(null);
+                      setShowModal(true);
                     } else {
                       const existing = settings.find(
                         (s) => s.key === defaultSetting.key
@@ -1082,23 +998,27 @@ const ContentSettings = () => {
                       handleEdit(existing);
                     }
                   }}
-                  className={`p-3 rounded-lg border text-left transition-colors ${exists
-                    ? 'border-green-300 bg-green-50 hover:bg-green-100'
-                    : 'border-gray-200 bg-white hover:bg-gray-50'
+                  className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer ${exists
+                    ? 'border-emerald-300 bg-emerald-50/60 hover:bg-emerald-100/60 shadow-2xs'
+                    : 'border-[#CCDCE1] bg-white hover:bg-[#F8FBFC] hover:border-[#127EAB]/40 shadow-2xs'
                     }`}
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-sm text-gray-900">
+                      <p className="font-semibold text-sm text-[#1F4264]">
                         {defaultSetting.title}
                       </p>
-                      <p className="text-xs text-gray-500 mt-0.5">
-                        Key: {defaultSetting.key}
+                      <p className="text-xs text-[#6F7F8E] mt-0.5">
+                        Key: <code className="text-xs bg-slate-100 px-1 py-0.5 rounded font-mono text-[#1F4264]">{defaultSetting.key}</code>
                       </p>
                     </div>
-                    {exists && (
-                      <span className="text-xs text-green-600 font-medium">
-                        Added
+                    {exists ? (
+                      <span className="text-xs text-emerald-700 font-semibold px-2 py-0.5 rounded-full bg-emerald-100 border border-emerald-200">
+                        Added (Click to Edit)
+                      </span>
+                    ) : (
+                      <span className="text-xs text-[#127EAB] font-semibold px-2.5 py-0.5 rounded-full bg-[#E9F7FA] border border-[#127EAB]/30">
+                        + Add Setting
                       </span>
                     )}
                   </div>
@@ -1112,57 +1032,73 @@ const ContentSettings = () => {
       {/* Existing Settings List */}
       <Card>
         <Card.Header>
-          <Card.Title>Existing Settings</Card.Title>
-          <Card.Description>
-            Manage all content settings. Click edit to modify.
-          </Card.Description>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <Card.Title>Existing Settings</Card.Title>
+              <Card.Description>
+                Manage all content settings. Click edit to modify in a modal.
+              </Card.Description>
+            </div>
+            <Button
+              onClick={handleCreate}
+              size="sm"
+              className="flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
+            >
+              <Plus className="w-4 h-4" />
+              Add New Setting
+            </Button>
+          </div>
         </Card.Header>
         <Card.Content>
           {contentSettingsList.length === 0 ? (
             <p className="text-sm text-gray-500 text-center py-8">
-              No settings found. Add a new setting above.
+              No settings found. Click "Add New Setting" above to create one.
             </p>
           ) : (
             <div className="space-y-3">
               {contentSettingsList.map((setting) => (
                 <div
                   key={setting._id}
-                  className="flex items-start justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50"
+                  className="flex items-start justify-between p-4 border border-[#CCDCE1] rounded-xl hover:bg-[#F8FBFC] hover:border-[#127EAB]/30 transition-all shadow-2xs"
                 >
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="font-semibold text-gray-900">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-3 mb-2 flex-wrap">
+                      <h3 className="font-semibold text-sm sm:text-base text-[#1F4264]">
                         {setting.title}
                       </h3>
-                      <span className="px-2 py-0.5 text-xs font-medium rounded bg-primary-100 text-primary-700">
+                      <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#E9F7FA] text-[#127EAB] border border-[#127EAB]/20 capitalize">
                         {setting.type}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-600 mb-1">
-                      Key: <code className="text-xs bg-gray-100 px-1 rounded">{setting.key}</code>
+                    <p className="text-xs sm:text-sm text-[#6F7F8E] mb-1">
+                      Key: <code className="text-xs bg-slate-100 text-[#1F4264] px-1.5 py-0.5 rounded font-mono border border-slate-200">{setting.key}</code>
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-[#8BA0B2]">
                       Last updated: {new Date(setting.updatedAt).toLocaleDateString()}
                     </p>
-                    <div className="mt-2 text-sm text-gray-700 line-clamp-2">
-                      {setting.content.replace(/<[^>]*>/g, '').substring(0, 150)}...
+                    <div className="mt-2 text-xs sm:text-sm text-[#5A6E82] line-clamp-2 leading-relaxed">
+                      {setting.content.replace(/<[^>]*>/g, '').substring(0, 160)}...
                     </div>
                   </div>
-                  <div className="flex gap-2 ml-4">
-                    <button
+                  <div className="flex items-center gap-2 ml-4 shrink-0">
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       onClick={() => handleEdit(setting)}
-                      className="p-2 text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
-                      title="Edit"
+                      className="h-8 w-8 !p-0 bg-[#E9F7FA] text-[#127EAB] border border-[#127EAB]/30 hover:bg-[#127EAB] hover:text-white hover:border-[#127EAB] rounded-lg shadow-2xs transition-all cursor-pointer"
+                      title="Edit Setting"
                     >
                       <Edit2 className="w-4 h-4" />
-                    </button>
-                    <button
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
                       onClick={() => handleDelete(setting._id)}
-                      className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                      title="Delete"
+                      className="h-8 w-8 !p-0 bg-[#FEF4F2] text-[#EE6450] border border-[#EE6450]/30 hover:bg-[#EE6450] hover:text-white hover:border-[#EE6450] rounded-lg shadow-2xs transition-all cursor-pointer"
+                      title="Delete Setting"
                     >
                       <Trash2 className="w-4 h-4" />
-                    </button>
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -1170,6 +1106,130 @@ const ContentSettings = () => {
           )}
         </Card.Content>
       </Card>
+
+      {/* Add / Edit Setting Modal */}
+      <Modal
+        isOpen={showModal}
+        onClose={handleCancel}
+        title={editingKey ? 'Edit Content Setting' : 'Add New Content Setting'}
+        description={
+          editingKey
+            ? `Update content and details for "${formData.title || formData.key}"`
+            : 'Configure a new policy, terms, or general content setting'
+        }
+        size="lg"
+      >
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSave();
+          }}
+          className="space-y-4"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-[#1F4264] mb-1.5">
+                Key (unique identifier) <span className="text-[#EE6450]">*</span>
+              </label>
+              <input
+                type="text"
+                value={formData.key}
+                onChange={(e) =>
+                  setFormData({ ...formData, key: e.target.value })
+                }
+                placeholder="e.g., privacy-policy"
+                disabled={!!editingKey}
+                required
+                className={`w-full px-3.5 py-2.5 text-xs sm:text-sm font-medium border border-[#CCDCE1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] text-[#1F4264] placeholder:text-slate-400/80 placeholder:font-normal placeholder:text-xs shadow-2xs transition-all hover:border-[#127EAB]/40 ${
+                  editingKey ? 'bg-slate-100 text-slate-500 cursor-not-allowed' : 'bg-white'
+                }`}
+              />
+              <p className="text-[11px] text-[#6F7F8E] mt-1 font-medium">
+                Use lowercase with hyphens (e.g., privacy-policy)
+              </p>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-[#1F4264] mb-1.5">
+                Setting Type <span className="text-[#EE6450]">*</span>
+              </label>
+              <select
+                value={formData.type}
+                onChange={(e) =>
+                  setFormData({ ...formData, type: e.target.value })
+                }
+                className="w-full px-3.5 py-2.5 text-xs sm:text-sm font-medium border border-[#CCDCE1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] shadow-2xs transition-all hover:border-[#127EAB]/40 cursor-pointer"
+                required
+              >
+                {settingTypes.map((type) => (
+                  <option key={type.value} value={type.value}>
+                    {type.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-[#1F4264] mb-1.5">
+              Title <span className="text-[#EE6450]">*</span>
+            </label>
+            <input
+              type="text"
+              value={formData.title}
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
+              }
+              placeholder="e.g., Privacy Policy"
+              required
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm font-medium border border-[#CCDCE1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder:text-slate-400/80 placeholder:font-normal placeholder:text-xs shadow-2xs transition-all hover:border-[#127EAB]/40"
+            />
+          </div>
+
+          <div>
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="block text-xs font-semibold text-[#1F4264]">
+                Content <span className="text-[#EE6450]">*</span>{' '}
+                <span className="text-xs font-normal text-[#6F7F8E]">(HTML supported)</span>
+              </label>
+              <span className="text-[11px] text-[#8BA0B2] font-medium">Adaptive height</span>
+            </div>
+            <textarea
+              ref={textareaRef}
+              value={formData.content}
+              onChange={(e) =>
+                setFormData({ ...formData, content: e.target.value })
+              }
+              onInput={handleContentInput}
+              rows={4}
+              className="w-full px-3.5 py-2.5 min-h-[90px] max-h-[500px] text-xs sm:text-sm font-medium border border-[#CCDCE1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder:text-slate-400/80 placeholder:font-normal placeholder:text-xs shadow-2xs transition-all hover:border-[#127EAB]/40 resize-none overflow-y-auto leading-relaxed"
+              placeholder="Enter content here. HTML tags are supported..."
+              required
+            />
+          </div>
+
+          {/* Modal Footer Actions */}
+          <div className="flex items-center justify-end gap-2.5 pt-4 border-t border-[#E6F0F5]">
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              onClick={handleCancel}
+              className="px-4 py-2 font-medium"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              size="sm"
+              className="min-w-[120px] px-4 py-2 bg-gradient-to-r from-[#1F4264] to-[#127EAB] hover:from-[#16314A] hover:to-[#0E668B] text-white shadow-xs font-semibold"
+            >
+              <Save className="w-4 h-4 mr-1.5" />
+              {editingKey ? 'Update Setting' : 'Save Setting'}
+            </Button>
+          </div>
+        </form>
+      </Modal>
     </div>
   );
 };
