@@ -230,15 +230,22 @@ const RolesPermissions = () => {
       header: 'Actions',
       render: (_, row) => (
         <div className="flex items-center gap-2">
-          <Button variant="secondary" size="sm" onClick={() => handleEdit(row)}>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => handleEdit(row)}
+            title="Edit Role"
+            className="h-8 w-8 !p-0 bg-[#E9F7FA] text-[#127EAB] border border-[#127EAB]/30 hover:bg-[#127EAB] hover:border-[#127EAB] shadow-2xs transition-all rounded-lg cursor-pointer"
+          >
             <Edit2 className="h-4 w-4" />
           </Button>
           {row.name !== 'Super Admin' && (
             <Button
               variant="ghost"
               size="sm"
-              className="text-red-600 hover:bg-red-50"
-              onClick={() => handleDelete(row.id)}
+              className="h-8 w-8 !p-0 bg-[#FEF4F2] text-[#EE6450] border border-[#EE6450]/30 hover:bg-[#EE6450] hover:text-white hover:border-[#EE6450] shadow-2xs transition-all rounded-lg cursor-pointer"
+              onClick={() => handleDelete(row.id || row._id)}
+              title="Delete Role"
             >
               <Trash2 className="h-4 w-4" />
             </Button>
