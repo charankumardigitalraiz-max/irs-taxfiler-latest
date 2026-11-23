@@ -343,7 +343,7 @@ const RolesPermissions = () => {
       >
         <div className="space-y-4">
           {/* General Information Section */}
-          <div className="bg-[#F8FBFC] p-4 sm:p-5 rounded-2xl border border-[#DCEAF0] shadow-2xs">
+          <div className=" p-4 sm:p-5 rounded-md border border-[#DCEAF0] shadow-2xs">
             <div className="flex items-center gap-2 mb-3">
               <span className="w-2 h-2 rounded-full bg-[#127EAB]" />
               <h4 className="text-xs font-bold uppercase tracking-wider text-[#1F4264]">
@@ -357,7 +357,7 @@ const RolesPermissions = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full px-3.5 py-2.5 text-xs sm:text-sm font-medium border border-[#CCDCE1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder:text-slate-400/80 placeholder:font-normal placeholder:text-xs shadow-2xs transition-all hover:border-[#127EAB]/40"
+                  className="w-full px-3.5 py-2.5 text-xs sm:text-sm font-medium border border-[#CCDCE1] rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder:text-slate-400/80 placeholder:font-normal placeholder:text-xs shadow-2xs transition-all hover:border-[#127EAB]/40"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Enter role name"
@@ -369,7 +369,7 @@ const RolesPermissions = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full px-3.5 py-2.5 text-xs sm:text-sm font-medium border border-[#CCDCE1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder:text-slate-400/80 placeholder:font-normal placeholder:text-xs shadow-2xs transition-all hover:border-[#127EAB]/40"
+                  className="w-full px-3.5 py-2.5 text-xs sm:text-sm font-medium border border-[#CCDCE1] rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] bg-white text-[#1F4264] placeholder:text-slate-400/80 placeholder:font-normal placeholder:text-xs shadow-2xs transition-all hover:border-[#127EAB]/40"
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Brief description (optional)"
@@ -379,7 +379,7 @@ const RolesPermissions = () => {
           </div>
 
           {/* Permissions Section */}
-          <div className="border border-[#DCEAF0] rounded-2xl overflow-hidden shadow-2xs bg-white">
+          <div className="border border-[#DCEAF0] rounded-md overflow-hidden shadow-2xs bg-white">
             {/* Top Bar with Overall Stats and Quick Global Actions */}
             <div className="bg-[#F8FBFC] px-4 sm:px-5 py-3 border-b border-[#E6F0F5] flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-2.5">

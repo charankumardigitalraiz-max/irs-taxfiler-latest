@@ -999,13 +999,13 @@ const ContentSettings = () => {
                         {setting.type}
                       </span>
                     </div>
-                    <p className="text-xs sm:text-sm text-[#6F7F8E] mb-1">
-                      Key: <code className="text-xs bg-slate-100 text-[#1F4264] px-1.5 py-0.5 rounded font-mono border border-slate-200">{setting.key}</code>
+                    <p className="text-xs sm:text-sm text-[#6F7F8E] font-medium mb-1">
+                      Key: <code className="text-sm text-[#1F4264] font-bold px-1.5 py-0.5 rounded">{setting.key}</code>
                     </p>
                     <p className="text-xs text-[#8BA0B2]">
                       Last updated: {new Date(setting.updatedAt).toLocaleDateString()}
                     </p>
-                    <div className="mt-2 text-xs sm:text-sm text-[#5A6E82] line-clamp-2 leading-relaxed">
+                    <div className="mt-2 text-xs sm:text-sm font-medium text-[#5A6E82] line-clamp-2 leading-relaxed">
                       {setting.content.replace(/<[^>]*>/g, '').substring(0, 160)}...
                     </div>
                   </div>
@@ -1069,9 +1069,8 @@ const ContentSettings = () => {
                 placeholder="e.g., privacy-policy"
                 disabled={!!editingKey}
                 required
-                className={`w-full px-3.5 py-2.5 text-xs sm:text-sm font-medium border border-[#CCDCE1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] text-[#1F4264] placeholder:text-slate-400/80 placeholder:font-normal placeholder:text-xs shadow-2xs transition-all hover:border-[#127EAB]/40 ${
-                  editingKey ? 'bg-slate-100 text-slate-500 cursor-not-allowed' : 'bg-white'
-                }`}
+                className={`w-full px-3.5 py-2.5 text-xs sm:text-sm font-medium border border-[#CCDCE1] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] text-[#1F4264] placeholder:text-slate-400/80 placeholder:font-normal placeholder:text-xs shadow-2xs transition-all hover:border-[#127EAB]/40 ${editingKey ? 'bg-slate-100 text-slate-500 cursor-not-allowed' : 'bg-white'
+                  }`}
               />
               <p className="text-[11px] text-[#6F7F8E] mt-1 font-medium">
                 Use lowercase with hyphens (e.g., privacy-policy)

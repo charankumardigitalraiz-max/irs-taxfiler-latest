@@ -495,8 +495,8 @@ const DashboardLayout = () => {
                       aria-expanded={navDropdownOpen}
                       aria-label="Toggle all sidebar tabs"
                       className={`inline-flex items-center gap-2 px-3.5 py-1.5 text-xs sm:text-sm font-semibold rounded-lg transition-all cursor-pointer ${navDropdownOpen
-                          ? 'bg-gradient-to-r from-[#0E668B] to-[#094d6a] text-white ring-2 ring-[#127EAB]/30 shadow-md'
-                          : 'bg-gradient-to-r from-[#127EAB] to-[#0E668B] hover:from-[#0E668B] hover:to-[#094d6a] text-white shadow-[0_2px_6px_rgba(18,126,171,0.25)] hover:shadow-md'
+                        ? 'bg-gradient-to-r from-[#0E668B] to-[#094d6a] text-white ring-2 ring-[#127EAB]/30 shadow-md'
+                        : 'bg-gradient-to-r from-[#127EAB] to-[#0E668B] hover:from-[#0E668B] hover:to-[#094d6a] text-white shadow-[0_2px_6px_rgba(18,126,171,0.25)] hover:shadow-md'
                         }`}
                       title="All sidebar tabs"
                     >
@@ -563,8 +563,8 @@ const DashboardLayout = () => {
                                       navigate(item.href);
                                     }}
                                     className={`w-full flex items-center gap-2.5 px-2.5 py-2 text-xs font-medium rounded-lg transition-all text-left cursor-pointer ${isActive
-                                        ? 'bg-gradient-to-r from-[#127EAB] to-[#0E668B] text-white font-semibold shadow-[0_2px_6px_rgba(18,126,171,0.25)]'
-                                        : 'text-[#526475] hover:text-[#1F4264] hover:bg-[#F4F9FB]'
+                                      ? 'bg-gradient-to-r from-[#127EAB] to-[#0E668B] text-white font-semibold shadow-[0_2px_6px_rgba(18,126,171,0.25)]'
+                                      : 'text-[#526475] hover:text-[#1F4264] hover:bg-[#F4F9FB]'
                                       }`}
                                   >
                                     <Icon
@@ -598,8 +598,8 @@ const DashboardLayout = () => {
                                         navigate(item.href);
                                       }}
                                       className={`w-full flex items-center gap-2.5 px-2.5 py-2 text-xs font-medium rounded-lg transition-all text-left cursor-pointer ${isActive
-                                          ? 'bg-gradient-to-r from-[#127EAB] to-[#0E668B] text-white font-semibold shadow-[0_2px_6px_rgba(18,126,171,0.25)]'
-                                          : 'text-[#526475] hover:text-[#1F4264] hover:bg-[#F4F9FB]'
+                                        ? 'bg-gradient-to-r from-[#127EAB] to-[#0E668B] text-white font-semibold shadow-[0_2px_6px_rgba(18,126,171,0.25)]'
+                                        : 'text-[#526475] hover:text-[#1F4264] hover:bg-[#F4F9FB]'
                                         }`}
                                     >
                                       <Icon
@@ -640,7 +640,7 @@ const DashboardLayout = () => {
 
               {/* Live Date & Time Badge (Header Left) */}
               <div
-                className="flex items-center gap-2 sm:gap-2.5 px-2.5 sm:px-3 py-1 sm:py-1.5 bg-[#F4F9FB] border border-[#DCEAF0] hover:border-[#127EAB]/40 rounded-lg text-xs sm:text-[13px] text-[#1F4264] shadow-[0_1px_2px_rgba(31,66,100,0.04)] transition-all"
+                className="flex flex-col items-start gap-2 sm:gap-2.5 px-2.5 sm:px-1 py-1 sm:py-1.5  hover:border-[#127EAB]/40 rounded-lg text-xs sm:text-[13px] text-[#1F4264] shadow-[0_1px_2px_rgba(31,66,100,0.04)] transition-all"
                 title="Current Date & Time"
               >
                 {/* Date */}
@@ -649,14 +649,14 @@ const DashboardLayout = () => {
                   <span>{formattedDate}</span>
                 </div>
 
-                <span className="text-slate-300">|</span>
+                {/* <span className="text-slate-300">|</span> */}
 
                 {/* Live Clock with pulsing green dot */}
-                <div className="flex items-center gap-1.5 font-mono font-semibold text-[#1F4264] tabular-nums">
-                  <span className="relative flex h-2 w-2" title="Live clock">
+                <div className="flex items-center gap-1.5 font-medium font-semibold text-[#1F4264] tabular-nums">
+                  {/* <span className="relative flex h-2 w-2" title="Live clock">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
+                  </span> */}
                   <Clock className="w-3.5 h-3.5 text-[#127EAB] shrink-0" />
                   <span>{formattedTime}</span>
                 </div>
