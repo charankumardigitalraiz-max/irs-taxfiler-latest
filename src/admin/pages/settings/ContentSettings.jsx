@@ -984,50 +984,76 @@ const ContentSettings = () => {
               No settings found. Click "Add New Setting" above to create one.
             </p>
           ) : (
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {contentSettingsList.map((setting) => (
                 <div
                   key={setting._id}
-                  className="flex items-start justify-between p-4 border border-[#CCDCE1] rounded-xl hover:bg-[#F8FBFC] hover:border-[#127EAB]/30 transition-all shadow-2xs"
+                  className="bg-white border border-[#CCDCE1] rounded-xl p-4 sm:p-5 flex flex-col justify-between hover:border-[#127EAB]/40 hover:shadow-md transition-all group"
                 >
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-3 mb-2 flex-wrap">
-                      <h3 className="font-semibold text-sm sm:text-base text-[#1F4264]">
-                        {setting.title}
-                      </h3>
-                      <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-[#E9F7FA] text-[#127EAB] border border-[#127EAB]/20 capitalize">
-                        {setting.type}
-                      </span>
+                  {/* Top section: Title, Type & Actions */}
+                  <div>
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <div className="min-w-0 flex-1">
+                        <h3
+                          className="font-semibold text-sm sm:text-base text-[#1F4264] truncate"
+                          title={setting.title}
+                        >
+                          {setting.title}
+                        </h3>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="px-2 py-0.5 text-[11px] font-semibold rounded-full bg-[#E9F7FA] text-[#127EAB] border border-[#127EAB]/20 capitalize">
+                            {setting.type}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Action buttons */}
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleEdit(setting)}
+                          className="h-7 w-7 !p-0 bg-[#E9F7FA] text-[#127EAB] border border-[#127EAB]/30 hover:bg-[#127EAB] hover:text-white hover:border-[#127EAB] rounded-lg shadow-2xs transition-all cursor-pointer"
+                          title="Edit Setting"
+                        >
+                          <Edit2 className="w-3.5 h-3.5" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleDelete(setting._id)}
+                          className="h-7 w-7 !p-0 bg-[#FEF4F2] text-[#EE6450] border border-[#EE6450]/30 hover:bg-[#EE6450] hover:text-white hover:border-[#EE6450] rounded-lg shadow-2xs transition-all cursor-pointer"
+                          title="Delete Setting"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </Button>
+                      </div>
                     </div>
-                    <p className="text-xs sm:text-sm text-[#6F7F8E] font-medium mb-1">
-                      Key: <code className="text-sm text-[#1F4264] font-bold px-1.5 py-0.5 rounded">{setting.key}</code>
-                    </p>
-                    <p className="text-xs text-[#8BA0B2]">
-                      Last updated: {new Date(setting.updatedAt).toLocaleDateString()}
-                    </p>
-                    <div className="mt-2 text-xs sm:text-sm font-medium text-[#5A6E82] line-clamp-2 leading-relaxed">
-                      {setting.content.replace(/<[^>]*>/g, '').substring(0, 160)}...
+
+                    {/* Key badge */}
+                    <div className="mt-2.5 mb-2">
+                      <p className="text-xs text-[#6F7F8E] font-medium flex items-center gap-1.5 truncate">
+                        <span>Key:</span>
+                        <code className="text-xs text-[#1F4264] font-bold bg-[#F4F9FB] border border-[#CCDCE1]/60 px-2 py-0.5 rounded font-mono truncate max-w-full">
+                          {setting.key}
+                        </code>
+                      </p>
+                    </div>
+
+                    {/* Content snippet */}
+                    <div className="mt-2 text-xs sm:text-sm font-medium text-[#5A6E82] line-clamp-3 leading-relaxed bg-[#F8FBFC] p-2.5 rounded-lg border border-[#E6F0F5]">
+                      {setting.content.replace(/<[^>]*>/g, '').substring(0, 150) || (
+                        <span className="italic text-slate-400">Empty content</span>
+                      )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 ml-4 shrink-0">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleEdit(setting)}
-                      className="h-8 w-8 !p-0 bg-[#E9F7FA] text-[#127EAB] border border-[#127EAB]/30 hover:bg-[#127EAB] hover:text-white hover:border-[#127EAB] rounded-lg shadow-2xs transition-all cursor-pointer"
-                      title="Edit Setting"
-                    >
-                      <Edit2 className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleDelete(setting._id)}
-                      className="h-8 w-8 !p-0 bg-[#FEF4F2] text-[#EE6450] border border-[#EE6450]/30 hover:bg-[#EE6450] hover:text-white hover:border-[#EE6450] rounded-lg shadow-2xs transition-all cursor-pointer"
-                      title="Delete Setting"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
+
+                  {/* Card Footer: Last Updated Date */}
+                  <div className="mt-4 pt-3 border-t border-[#E6F0F5] flex items-center justify-between text-xs text-[#8BA0B2]">
+                    <span>Last updated:</span>
+                    <span className="font-medium text-[#6F7F8E]">
+                      {new Date(setting.updatedAt).toLocaleDateString()}
+                    </span>
                   </div>
                 </div>
               ))}
