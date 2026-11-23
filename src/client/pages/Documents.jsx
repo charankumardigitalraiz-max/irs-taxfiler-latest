@@ -13,8 +13,10 @@ import Button from '../components/common/Button';
 import { SectionSkeleton } from '../components/common/PageLoader';
 import { documentService } from '../services/documentService';
 import { baseUrl } from '../../baseurl';
+import { useDocumentViewer } from '../hooks/useDocumentViewer';
 
 const Documents = () => {
+  const { viewDocument } = useDocumentViewer();
   const [files, setFiles] = useState([]);
   const [dragActive, setDragActive] = useState(false);
   const [selectedDocumentType, setSelectedDocumentType] = useState('');
@@ -232,39 +234,8 @@ const Documents = () => {
 
   const handleViewFile = (file) => {
     try {
-      if (file.filePath) {
-        // Get full URL (handles both Cloudinary and local files)
-        const url = getDocumentUrl(file.filePath);
-        if (url) {
-          console.log('Opening document URL:', url);
-          // For PDFs and images, open directly
-          // For other files, try to open in new tab
-          const fileExtension = file.name?.split('.').pop()?.toLowerCase();
-          const isPdf = fileExtension === 'pdf' || file.type === 'application/pdf';
-          const isImage = file.type?.startsWith('image/');
-
-          if (isPdf || isImage) {
-            // Open PDFs and images directly in new tab
-            window.open(url, '_blank', 'noopener,noreferrer');
-          } else {
-            // For other files, try to download or open
-            const link = document.createElement('a');
-            link.href = url;
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-          }
-        } else {
-          setToast({ type: 'error', message: 'File not available for viewing.' });
-        }
-      } else if (file?.file) {
-        // View local file
-        const url = URL.createObjectURL(file.file);
-        window.open(url, '_blank', 'noopener,noreferrer');
-        // Optional: revoke after some delay
-        setTimeout(() => URL.revokeObjectURL(url), 60_000);
+      if (file?.filePath || file?.file || file?.url) {
+        viewDocument(file);
       } else {
         setToast({ type: 'error', message: 'File not available for viewing.' });
       }

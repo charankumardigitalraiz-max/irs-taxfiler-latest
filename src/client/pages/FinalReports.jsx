@@ -14,11 +14,13 @@ import { SectionSkeleton } from '../components/common/PageLoader';
 import { documentService } from '../services/documentService';
 import { baseUrl } from '../../baseurl';
 import { useToast } from '../../admin/hooks/useToast';
+import { useDocumentViewer } from '../hooks/useDocumentViewer';
 
 const FinalReports = () => {
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);
   const { showError } = useToast();
+  const { viewDocument } = useDocumentViewer();
 
   useEffect(() => {
     const fetchFinalCopies = async () => {
@@ -119,13 +121,8 @@ const FinalReports = () => {
 
   const handleViewFile = (report) => {
     try {
-      if (report.filePath) {
-        const url = getDocumentUrl(report.filePath);
-        if (url) {
-          window.open(url, '_blank', 'noopener,noreferrer');
-        } else {
-          showError('File not available for viewing.');
-        }
+      if (report?.filePath || report?.url) {
+        viewDocument(report);
       } else {
         showError('File not available for viewing.');
       }

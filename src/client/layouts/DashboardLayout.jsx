@@ -25,6 +25,7 @@ import Sidebar, {
   settingsNavigation as sidebarSettingsNavigation,
 } from '../components/layout/Sidebar';
 import FloatingButton from '../components/common/FloatingButton';
+import GlobalDocumentViewer from '../components/common/GlobalDocumentViewer';
 import { getUser, clearAuth } from '../utils/auth';
 import { userService } from '../services/userService';
 import { notificationService } from '../services/notificationService';
@@ -949,6 +950,9 @@ const DashboardLayout = () => {
 
       {/* Floating Button - Appears on all pages */}
       <FloatingButton />
+
+      {/* Global Document Viewer Modal */}
+      <GlobalDocumentViewer />
 
       {/* Toast Container for notifications */}
       <ToastContainer />

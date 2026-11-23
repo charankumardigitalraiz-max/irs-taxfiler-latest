@@ -13,6 +13,7 @@ import { documentService } from '../services/documentService';
 import { userService } from '../services/userService';
 import { baseUrl } from '../../baseurl';
 import { useToast } from '../../admin/hooks/useToast';
+import { useDocumentViewer } from '../hooks/useDocumentViewer';
 
 const TaxDraft = () => {
   const [documents, setDocuments] = useState([]);
@@ -20,6 +21,7 @@ const TaxDraft = () => {
   const [loading, setLoading] = useState(true);
   const [selectedYear, setSelectedYear] = useState('all');
   const { showError } = useToast();
+  const { viewDocument } = useDocumentViewer();
 
   // Load admin-uploaded documents and tax prep data
   useEffect(() => {
@@ -129,13 +131,8 @@ const TaxDraft = () => {
 
   const handleViewFile = (file) => {
     try {
-      if (file.filePath) {
-        const url = getDocumentUrl(file.filePath);
-        if (url) {
-          window.open(url, '_blank', 'noopener,noreferrer');
-        } else {
-          showError('File not available for viewing.');
-        }
+      if (file?.filePath || file?.url) {
+        viewDocument(file);
       } else {
         showError('File not available for viewing.');
       }
