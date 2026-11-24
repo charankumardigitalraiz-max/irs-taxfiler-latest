@@ -44,7 +44,7 @@ const CustomerSupport = () => {
       availability: 'Mon-Fri 9AM-6PM EST',
       color: '#FEF3C7',
       action: 'Call Now',
-      link: 'tel:++1 (415) 7876190',
+      link: 'tel:+15518427896',
     },
     {
       icon: DocumentTextIcon,
@@ -474,10 +474,10 @@ const CustomerSupport = () => {
                   Phone
                 </h3>
                 <a
-                  href="tel:++1 (415) 7876190"
+                  href="tel:+15518427896"
                   className="text-sm font-medium text-primary hover:text-primary hover:underline transition-colors"
                 >
-                  +1 (415) 7876190
+                  +1 (551) 842-7896
                 </a>
               </motion.div>
 

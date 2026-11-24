@@ -478,7 +478,7 @@ ${yourName || 'Your Friend'}`;
                             if (referralError.yourNumber) setReferralError((prev) => ({ ...prev, yourNumber: '' }));
                           }}
                           className={getInputClass(referralError.yourNumber)}
-                          placeholder="+1 (415) 223-1315"
+                          placeholder="+1 (551) 842-7896"
                         />
                         {referralError.yourNumber && (
                           <p className="mt-1 text-rose-600 text-xs">{referralError.yourNumber}</p>
@@ -584,7 +584,7 @@ ${yourName || 'Your Friend'}`;
                                     handleFriendChange(friend.id, "phone", val)
                                   )
                                 }
-                                placeholder="+1 (415) 223-1315"
+                                placeholder="+1 (551) 842-7896"
                                 className={getInputClass()}
                               />
                             </div>

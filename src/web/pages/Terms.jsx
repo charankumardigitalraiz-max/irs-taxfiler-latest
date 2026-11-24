@@ -263,8 +263,8 @@ const Terms = () => {
                   info@irstaxfiler.com
                 </a>
                 {' '}or call us at{' '}
-                <a href="tel:++1 (415) 2231315" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
-                  +1 (415) 2231315
+                <a href="tel:+15518427896" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
+                  +1 (551) 842-7896
                 </a>.
               </p>
             </div>

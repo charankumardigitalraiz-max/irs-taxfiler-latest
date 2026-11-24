@@ -1195,7 +1195,7 @@ const ContactInformationForm = () => {
               setFormData({ ...formData, phone: e.target.value })
             }
             className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent"
-            placeholder="+1 (555) 123-4567"
+            placeholder="+1 (551) 842-7896"
           />
           {AccountError.phone && (
             <span className="text-red-500">{AccountError.phone}</span>
@@ -1226,7 +1226,7 @@ const ContactInformationForm = () => {
               setFormData({ ...formData, alternatePhone: e.target.value })
             }
             className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent"
-            placeholder="+1 (555) 123-4567"
+            placeholder="+1 (551) 842-7896"
           />
         </div>
       </div>

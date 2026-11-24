@@ -2201,8 +2201,8 @@ const ContactInformationForm = ({ userData, setUserData, saving, setSaving, onSa
           onChange={(e) => handlePhoneChange('mobileNumber', e.target.value)}
           onBlur={() => handleBlur('mobileNumber')}
           error={errors.mobileNumber}
-          placeholder="+1 (415) 223-1315"
-          helperText="Format: (415) 223-1315 or +1 (415) 223-1315"
+          placeholder="+1 (551) 842-7896"
+          helperText="Format: (551) 842-7896 or +1 (551) 842-7896"
         />
         <Input
           label="Alternate Email"
@@ -2222,7 +2222,7 @@ const ContactInformationForm = ({ userData, setUserData, saving, setSaving, onSa
           onChange={(e) => handlePhoneChange('alternatePhone', e.target.value)}
           onBlur={() => handleBlur('alternatePhone')}
           error={errors.alternatePhone}
-          placeholder="+1 (415) 223-1315"
+          placeholder="+1 (551) 842-7896"
           helperText="Optional secondary contact number"
         />
       </div>

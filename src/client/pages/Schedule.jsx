@@ -211,17 +211,10 @@ const Schedule = () => {
                     <span className="text-xs font-medium text-[#6F7F8E]">US:</span>
                     <span className="text-[15px] font-semibold text-[#059669]">
                       <a
-                        href="tel:+14044244191"
+                        href="tel:+15518427896"
                         className="hover:text-[#047857] transition-colors"
                       >
-                        +1 (404) 424-4191
-                      </a>
-                      <span className="text-[#6F7F8E] font-normal mx-1">/</span>
-                      <a
-                        href="tel:+14044244815"
-                        className="hover:text-[#047857] transition-colors"
-                      >
-                        4815
+                        +1 (551) 842-7896
                       </a>
                     </span>
                   </div>
@@ -280,7 +273,7 @@ const Schedule = () => {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <a
-                    href="https://wa.me/14044244191"
+                    href="https://wa.me/15518427896"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-primary-50 text-primary-700 border border-primary-100 hover:bg-primary-100 transition-colors cursor-pointer"

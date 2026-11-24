@@ -94,17 +94,10 @@ const Contact = () => {
       contact: (
         <>
           <a
-            href="tel:+14044244191"
+            href="tel:+15518427896"
             className="text-[#EE6450] hover:text-[#D94F3B] hover:underline transition-colors"
           >
-            +1 (404) 424-4191
-          </a>{" "}
-          <span className="text-slate-400 font-normal">/</span>{" "}
-          <a
-            href="tel:+14044244815"
-            className="text-[#127EAB] hover:text-[#0E668B] hover:underline transition-colors"
-          >
-            4815
+            +1 (551) 842-7896
           </a>
         </>
       ),
@@ -449,16 +442,10 @@ const Contact = () => {
                           </span>
                           <div className="flex flex-col gap-0.5 mt-1">
                             <a
-                              href="tel:+14044244191"
+                              href="tel:+15518427896"
                               className="text-[13.5px] sm:text-sm text-[#EE6450] hover:text-[#D94F3B] font-semibold block truncate transition-colors"
                             >
-                              +1 (404) 424-4191
-                            </a>
-                            <a
-                              href="tel:+14044244815"
-                              className="text-[13.5px] sm:text-sm text-[#127EAB] hover:text-[#0E668B] font-semibold block truncate transition-colors"
-                            >
-                              +1 (404) 424-4815
+                              +1 (551) 842-7896
                             </a>
                           </div>
                           <span className="text-[11.5px] text-slate-500 font-medium block mt-1">

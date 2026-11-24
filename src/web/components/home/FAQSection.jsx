@@ -151,11 +151,11 @@ const FAQSection = ({ onOpenModal }) => {
                 </button>
 
                 <a
-                  href="tel:+14157876190"
+                  href="tel:+15518427896"
                   className="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-[#EFF9FB] text-slateText text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-2xs"
                 >
                   <PhoneIcon className="w-3.5 h-3.5 text-teal" />
-                  <span>+1 (415) 787-6190</span>
+                  <span>+1 (551) 842-7896</span>
                 </a>
               </div>
 

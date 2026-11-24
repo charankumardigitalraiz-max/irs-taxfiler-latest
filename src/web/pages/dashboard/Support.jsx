@@ -143,11 +143,11 @@ const Support = () => {
             </div>
             <div>
               <h3 className="font-semibold text-primary">Phone Support</h3>
-              <p className="text-sm text-slateText">+1 (555) 123-4567</p>
+              <p className="text-sm text-slateText">+1 (551) 842-7896</p>
             </div>
           </div>
           <a
-            href="tel:+15551234567"
+            href="tel:+15518427896"
             className="text-sm text-primary-blue hover:text-blue-700 font-medium"
           >
             Call Now →

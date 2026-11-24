@@ -121,7 +121,7 @@ const DoNotSell = () => {
       content: [
         'You can opt-out of the sale of your personal information by submitting the form below on this page.',
         'You can also opt-out by emailing us at info@irstaxfiler.com with the subject line "Do Not Sell My Personal Information".',
-        'You can call us at +1 (415) 7876190 and request to opt-out of the sale of your personal information.',
+        'You can call us at +1 (551) 842-7896 and request to opt-out of the sale of your personal information.',
         'We will process your opt-out request within 15 business days and confirm receipt of your request.',
         'Your opt-out request will remain in effect until you notify us that you wish to opt back in.',
       ],
@@ -549,7 +549,7 @@ const DoNotSell = () => {
                     Email Us
                   </a>
                   <a
-                    href="tel:++1 (415) 7876190"
+                    href="tel:+15518427896"
                     className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border-2 transition-all duration-300 hover:bg-gray-50"
                     style={{ borderColor: '#127EAB', color: '#1F4264' }}
                   >

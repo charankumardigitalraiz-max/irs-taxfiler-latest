@@ -404,7 +404,7 @@ const AdvancedFilingModal = ({ isOpen, onClose, offerData }) => {
                           disabled={isExpired}
                           value={formData.phone}
                           onChange={handlePhoneChange}
-                          placeholder="+1 (404) 424-4191"
+                          placeholder="+1 (551) 842-7896"
                           className="w-full pl-9 pr-3 py-2 text-xs sm:text-sm text-slate-800 font-medium bg-slate-50/70 focus:bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] placeholder:text-[11px] placeholder:font-normal placeholder:text-slate-400 transition-all disabled:opacity-60"
                         />
                       </div>

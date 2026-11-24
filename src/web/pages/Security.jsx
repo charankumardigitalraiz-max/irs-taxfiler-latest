@@ -138,7 +138,7 @@ const Security = () => {
       icon: FireIcon,
       content: [
         'If you discover a security vulnerability or suspect unauthorized access to your account, please report it to us immediately.',
-        'You can report security issues by emailing info@irstaxfiler.com or calling our security hotline at +1 (415) 7876190.',
+        'You can report security issues by emailing info@irstaxfiler.com or calling our security hotline at +1 (551) 842-7896.',
         'We take all security reports seriously and will investigate them promptly. We appreciate responsible disclosure of security vulnerabilities.',
         'If you believe your account has been compromised, change your password immediately and contact us right away.',
         'We will work with you to secure your account and investigate any security incidents that may have occurred.',
@@ -164,7 +164,7 @@ const Security = () => {
       content: [
         'If you have questions or concerns about our security practices, please contact our security team:',
         'Email: info@irstaxfiler.com',
-        'Phone: +1 (415) 7876190 (ask for the security team)',
+        'Phone: +1 (551) 842-7896 (ask for the security team)',
         'Mail: IRS Tax Adviser Inc, 12600 Deerfield Parkway, Suite 2096, Alpharetta, GA 30004, USA',
         'For general privacy questions, please see our Privacy Policy or contact info@irstaxfiler.com.',
         'For urgent security issues, please call our security hotline immediately.',
@@ -333,8 +333,8 @@ const Security = () => {
                     info@irstaxfiler.com
                   </a>
                   {' '}or call us at{' '}
-                  <a href="tel:++1 (415) 7876190" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
-                    +1 (415) 7876190
+                  <a href="tel:+15518427896" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
+                    +1 (551) 842-7896
                   </a>.
                 </p>
               </div>

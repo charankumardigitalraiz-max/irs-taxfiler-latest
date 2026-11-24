@@ -189,7 +189,7 @@ const ContactForm = () => {
                 value={formData.phone}
                 onChange={handleNumber}
                 className="w-full pl-9 pr-3.5 py-2 text-xs sm:text-sm border border-slate-200/90 rounded-xl bg-slate-50/60 hover:bg-white focus:bg-white focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] focus:outline-none transition-all placeholder:text-[11px] sm:placeholder:text-xs placeholder:font-normal placeholder:text-slate-400 text-slate-800 font-medium"
-                placeholder="+1 (404) 424-4191"
+                placeholder="+1 (551) 842-7896"
               />
             </div>
             {contactFormError.phone && (

@@ -533,7 +533,7 @@ ${yourName || 'Your Friend'}`;
                             handleFriendChange(friend.id, 'phone', e.target.value)
                           }
                           className={fieldInputClass}
-                          placeholder="e.g., +1 (415) 223-"
+                          placeholder="e.g., +1 (551) 842-"
                         />
                       </div>
 

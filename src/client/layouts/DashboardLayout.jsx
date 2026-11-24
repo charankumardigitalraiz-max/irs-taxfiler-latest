@@ -689,17 +689,10 @@ const DashboardLayout = () => {
                   <div className="flex items-center gap-1">
 
                     <a
-                      href="tel:+14044244191"
+                      href="tel:+15518427896"
                       className="text-[#1F4264] hover:text-[#127EAB] transition-colors"
                     >
-                      +1 (404) 424-4191
-                    </a>
-                    <span className="text-slate-300">/</span>
-                    <a
-                      href="tel:+14044244815"
-                      className="text-[#1F4264] hover:text-[#127EAB] transition-colors"
-                    >
-                      4815
+                      +1 (551) 842-7896
                     </a>
                   </div>
                   <span className="w-1 h-1 bg-[#CCDCE1] rounded-full shrink-0"></span>
@@ -735,9 +728,9 @@ const DashboardLayout = () => {
                   <Mail className="w-5 h-5" />
                 </a>
                 <a
-                  href="tel:+14044244191"
+                  href="tel:+15518427896"
                   className="p-2.5 bg-[#ECFDF5] hover:bg-[#D1FAE5] text-[#059669] rounded-lg transition-colors"
-                  title="US: +1 (404) 424-4191 / 4815 | IN: +91 9052 333 667 / 668"
+                  title="US: +1 (551) 842-7896 | IN: +91 9052 333 667 / 668"
                 >
                   <Phone className="w-5 h-5" />
                 </a>

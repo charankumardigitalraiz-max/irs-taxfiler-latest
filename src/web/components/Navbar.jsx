@@ -27,6 +27,7 @@ import {
   CheckCircleIcon,
   EnvelopeIcon,
   PhoneIcon,
+  MapPinIcon,
   CreditCardIcon,
   ArrowRightIcon,
   ShieldCheckIcon,
@@ -239,31 +240,32 @@ const Navbar = () => {
                   <div className="flex sm:hidden items-center justify-between gap-1.5 w-full">
                     {/* Left: Contact Channels */}
                     <div className="flex items-center gap-1.5 shrink-0">
-                      {/* US Phone Call */}
+                      {/* US Phone Call - Coral Theme */}
                       <a
-                        href="tel:+14044244191"
-                        className="h-8 px-2.5 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center gap-1.5 text-xs font-semibold shrink-0"
-                        title="Call US: +1 (404) 424-4191 / 4815"
+                        href="tel:+15518427896"
+                        className="h-8 px-2.5 rounded-full bg-[#EE6450]/20 hover:bg-[#EE6450]/30 text-[#FF7A66] border border-[#EE6450]/40 flex items-center gap-1.5 text-xs font-bold shrink-0 transition-all shadow-xs"
+                        title="Call US: +1 (551) 842-7896"
                       >
-                        <PhoneIcon className="w-3.5 h-3.5" />
-                        <span>Call</span>
+                        <PhoneIcon className="w-3.5 h-3.5 text-[#FF7A66]" />
+                        <span className="text-[#FFA280]">Call US</span>
                       </a>
 
-                      {/* India Call */}
+                      {/* India Call - Amber Theme */}
                       <a
                         href="tel:+919052333667"
-                        className="h-8 w-8 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center shrink-0"
+                        className="h-8 px-2 rounded-full bg-amber-400/15 hover:bg-amber-400/25 text-amber-300 border border-amber-400/35 flex items-center gap-1.5 text-xs font-bold shrink-0 transition-all shadow-xs"
                         title="Call India: +91 9052 333 667/668"
                       >
-                        <InFlag className="w-4 h-3 rounded-xs" />
+                        <InFlag className="w-4 h-3 rounded-xs shrink-0" />
+                        <span className="text-amber-200">Call IN</span>
                       </a>
 
-                      {/* WhatsApp */}
+                      {/* WhatsApp - Vibrant Green */}
                       <a
                         href="https://wa.me/919052333667?text=Hi%20IRS%20Tax%20Filer"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="h-8 w-8 rounded-full bg-[#25D366]/20 hover:bg-[#25D366]/35 text-[#25D366] flex items-center justify-center shrink-0 border border-[#25D366]/30"
+                        className="h-8 w-8 rounded-full bg-[#25D366]/20 hover:bg-[#25D366]/35 text-[#25D366] flex items-center justify-center shrink-0 border border-[#25D366]/40 transition-all shadow-xs"
                         title="WhatsApp: +91 9052 333 667/668"
                       >
                         <ChatBubbleLeftRightIcon className="w-3.5 h-3.5" />
@@ -294,53 +296,75 @@ const Navbar = () => {
                   {/* DESKTOP & TABLET BAR: Full comprehensive row */}
                   <div className="hidden sm:flex max-w-7xl mx-auto items-center justify-between gap-3">
                     {/* Left: Contact Numbers & Channels */}
-                    <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                      {/* US Phone */}
+                    <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
+                      {/* US Phone — Coral Theme (Direct Telephone) */}
                       <a
-                        href="tel:+14044244191"
-                        className="h-9 px-3 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center gap-2 transition-all duration-200 shadow-sm font-semibold text-xs sm:text-sm shrink-0 group/call cursor-pointer"
-                        title="Call US: +1 (404) 424-4191 / 4815"
+                        href="tel:+15518427896"
+                        className="h-9 px-3 rounded-full  border border-[#EE6450]/40 flex items-center gap-2 transition-all duration-200 shadow-xs shrink-0 group/call cursor-pointer"
+                        title="Call US: +1 (551) 842-7896"
                       >
-                        <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover/call:scale-110 transition-transform">
-                          <PhoneIcon className="w-3.5 h-3.5 group-hover/call:rotate-12 transition-transform" />
+                        <div className="w-5 h-5 rounded-full bg-[#EE6450]/25 border border-[#EE6450]/40 flex items-center justify-center group-hover/call:scale-110 transition-transform">
+                          <PhoneIcon className="w-3 h-3 text-[#FF7A66] group-hover/call:rotate-12 transition-transform" />
                         </div>
-                        {/* <UsFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" /> */}
-                        <span className="tracking-tight whitespace-nowrap">US: +1 (404) 424-4191 / 4815</span>
+                        <UsFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" />
+                        <span className="tracking-tight whitespace-nowrap text-xs sm:text-[13px]">
+                          <span className="text-[#FF8A65] font-semibold mr-1.5 uppercase text-[10.5px] tracking-wider">US</span>
+                          <span className="text-[#FF7A66] font-bold group-hover/call:text-[#FFA280] transition-colors">+1 (551) 842-7896</span>
+                        </span>
                       </a>
 
-                      {/* India Phone */}
+                      {/* India Phone — Amber Theme (Corporate Contact) */}
                       <a
                         href="tel:+919052333667"
-                        className="h-9 px-3 rounded-full hover:bg-white/15 text-white flex items-center gap-2 transition-all duration-200 shadow-sm font-semibold text-xs sm:text-sm shrink-0 group/in cursor-pointer "
-                        title="Call India: +91 9052 333 667/668"
+                        className="h-9 px-3 rounded-full  border border-amber-400/35 flex items-center gap-2 transition-all duration-200 shadow-xs shrink-0 group/in cursor-pointer"
+                        title="Call India: +91 9052 333 667 / 668"
                       >
-                        <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover/in:scale-110 transition-transform">
-                          <PhoneIcon className="w-3.5 h-3.5 group-hover/in:rotate-12 transition-transform" />
+                        <div className="w-5 h-5 rounded-full bg-amber-400/25 border border-amber-400/40 flex items-center justify-center group-hover/in:scale-110 transition-transform">
+                          <PhoneIcon className="w-3 h-3 text-amber-300 group-hover/in:rotate-12 transition-transform" />
                         </div>
-                        {/* <InFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" /> */}
-                        <span className="tracking-tight whitespace-nowrap">India: +91 9052  333  667/668</span>
+                        <InFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" />
+                        <span className="tracking-tight whitespace-nowrap text-xs sm:text-[13px]">
+                          <span className="text-amber-300 font-semibold mr-1.5 uppercase text-[10.5px] tracking-wider">India</span>
+                          <span className="text-amber-200 font-bold group-hover/in:text-amber-100 transition-colors">+91 9052 333 667/668</span>
+                        </span>
                       </a>
 
-                      {/* WhatsApp */}
+                      {/* WhatsApp — Emerald Theme */}
                       <a
                         href="https://wa.me/919052333667?text=Hi%20IRS%20Tax%20Filer"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="h-9 px-3.5 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center gap-1.5 transition-all duration-200 shadow-sm font-semibold text-xs shrink-0 border border-white/20"
+                        className="h-9 px-3 rounded-full bg-[#25D366]/15 hover:bg-[#25D366]/25 text-[#25D366] border border-[#25D366]/35 flex items-center gap-1.5 transition-all duration-200 shadow-xs shrink-0 group/wa cursor-pointer"
                         title="WhatsApp Support: +91 9052 333 667/668"
                       >
-                        <ChatBubbleLeftRightIcon className="w-4 h-4" />
-                        <span className="hidden md:inline">WhatsApp</span>
+                        <ChatBubbleLeftRightIcon className="w-4 h-4 text-[#25D366] group-hover/wa:scale-110 transition-transform" />
+                        <span className="hidden md:inline font-bold text-emerald-300 group-hover/wa:text-emerald-200 transition-colors text-xs">WhatsApp</span>
                       </a>
 
-                      {/* Email */}
+                      {/* Email — Sky Theme */}
                       <a
                         href="mailto:info@irstaxfiler.com"
-                        className="hidden xl:inline-flex items-center gap-1.5 text-xs text-white/90 hover:text-white font-medium transition-colors ml-1"
+                        className="hidden lg:inline-flex items-center gap-2 text-xs py-1.5 px-3 rounded-full bg-sky-400/15 hover:bg-sky-400/25 border border-sky-400/30 text-sky-200 transition-all shadow-xs group/mail shrink-0"
                         title="Email: info@irstaxfiler.com"
                       >
-                        <EnvelopeIcon className="w-4 h-4 text-white" />
-                        <span>info@irstaxfiler.com</span>
+                        <div className="w-4.5 h-4.5 rounded-full bg-sky-400/20 flex items-center justify-center shrink-0">
+                          <EnvelopeIcon className="w-3 h-3 text-sky-300" />
+                        </div>
+                        <span className="font-semibold text-sky-200 group-hover/mail:text-sky-100 transition-colors">info@irstaxfiler.com</span>
+                      </a>
+
+                      {/* Corporate Office — Amber Pin (matches Footer Address) */}
+                      <a
+                        href="https://www.google.com/maps/place/12600+Deerfield+Parkway+Suite+2096,+Alpharetta,+GA+30004"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hidden 2xl:inline-flex items-center gap-1.5 text-xs py-1.5 px-3 rounded-full bg-amber-400/10 hover:bg-amber-400/20 border border-amber-400/25 text-amber-200 transition-all shrink-0 group/addr"
+                        title="Corporate Office: 12600 Deerfield Pkwy, Ste 2096, Alpharetta, GA 30004"
+                      >
+                        <MapPinIcon className="w-3.5 h-3.5 text-amber-400 group-hover/addr:scale-110 transition-transform" />
+                        <span className="text-[11px] font-medium text-amber-200/90 truncate max-w-[200px]">
+                          Alpharetta, GA
+                        </span>
                       </a>
                     </div>
 
@@ -385,39 +409,43 @@ const Navbar = () => {
                   transition={{ duration: 0.2 }}
                   className="pb-2.5 sm:pb-3 flex justify-center px-3"
                 >
-                  <div className="bg-primary text-white p-1 sm:p-2 pl-2.5 sm:pl-3 pr-3 sm:pr-4 rounded-full shadow-[0_8px_30px_rgba(31,66,100,0.35)] border border-white/20 transition-all flex items-center gap-2 sm:gap-3 max-w-full">
+                  <div className="bg-primary text-white p-1 sm:p-1.5 pl-2 sm:pl-2.5 pr-2.5 sm:pr-3 rounded-full shadow-[0_8px_30px_rgba(31,66,100,0.45)] border border-white/20 backdrop-blur-md transition-all flex items-center gap-2 sm:gap-2.5 max-w-full">
+                    {/* US Call — Coral Theme */}
                     <a
-                      href="tel:+14044244191"
-                      className="flex items-center gap-1.5 sm:gap-2 group/us cursor-pointer shrink-0"
-                      title="Call US: +1 (404) 424-4191 / 4815"
+                      href="tel:+15518427896"
+                      className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-[#EE6450]/15 hover:bg-[#EE6450]/25 border border-[#EE6450]/35 group/us cursor-pointer shrink-0 transition-all"
+                      title="Call US: +1 (551) 842-7896"
                     >
-                      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/20 group-hover/us:bg-white/30 text-white flex items-center justify-center transition-all group-hover/us:scale-110 shadow-sm">
-                        <PhoneIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                      <div className="w-5 h-5 rounded-full bg-[#EE6450]/25 flex items-center justify-center group-hover/us:scale-110 transition-transform">
+                        <PhoneIcon className="w-3 h-3 text-[#FF7A66]" />
                       </div>
-                      <UsFlag className="w-4.5 h-3 sm:w-5 sm:h-3.5 rounded-sm shrink-0 shadow-sm" />
-                      <span className="text-xs sm:text-sm font-bold tracking-tight text-white whitespace-nowrap">
-                        <span className="sm:hidden">(404) 424-4191</span>
-                        <span className="hidden sm:inline">US: +1 (404) 424-4191 / 4815</span>
+                      <UsFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" />
+                      <span className="text-xs sm:text-[13px] font-bold tracking-tight text-[#FF7A66] group-hover/us:text-[#FFA280] transition-colors whitespace-nowrap">
+                        <span className="text-[#FF8A65] font-semibold mr-1 hidden sm:inline text-[10.5px] uppercase tracking-wider">US</span>
+                        <span className="sm:hidden">(551) 842-7896</span>
+                        <span className="hidden sm:inline">+1 (551) 842-7896</span>
                       </span>
                     </a>
 
-                    <div className="h-4 w-[1px] bg-white/25 hidden sm:block" />
+                    <div className="h-4 w-[1px] bg-white/20 hidden sm:block" />
 
+                    {/* India Call — Amber Theme */}
                     <a
                       href="tel:+919052333667"
-                      className="hidden sm:flex items-center gap-2 group/in cursor-pointer shrink-0"
+                      className="hidden sm:flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-amber-400/10 hover:bg-amber-400/20 border border-amber-400/30 group/in cursor-pointer shrink-0 transition-all"
                       title="Call India: +91 9052 333 667/668"
                     >
-                      <InFlag className="w-5 h-3.5 rounded-sm shrink-0 shadow-sm" />
-                      <span className="text-xs font-semibold text-white/90 whitespace-nowrap">
-                        India: +91 9052 333 667/668
+                      <InFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" />
+                      <span className="text-xs font-bold text-amber-200 group-hover/in:text-amber-100 transition-colors whitespace-nowrap">
+                        <span className="text-amber-300 font-semibold mr-1 text-[10.5px] uppercase tracking-wider">India</span>
+                        <span>+91 9052 333 667/668</span>
                       </span>
                     </a>
 
                     <button
                       type="button"
                       onClick={() => setIsContactStripOpen(true)}
-                      className="text-[10px] sm:text-[11px] font-semibold bg-white/20 hover:bg-white/30 px-2 sm:px-2.5 py-1 rounded-full text-white transition-all cursor-pointer whitespace-nowrap ml-0.5 sm:ml-1 flex items-center gap-1 shrink-0"
+                      className="text-[10px] sm:text-[11px] font-semibold bg-white/15 hover:bg-white/25 border border-white/20 px-2 sm:px-2.5 py-1 rounded-full text-white transition-all cursor-pointer whitespace-nowrap ml-0.5 sm:ml-1 flex items-center gap-1 shrink-0"
                     >
                       <span className="hidden sm:inline">Quick Bar</span>
                       <span className="sm:hidden">More</span>

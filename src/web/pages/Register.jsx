@@ -284,7 +284,7 @@ const Register = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="+1 (234) 567-8900"
+                      placeholder="+1 (551) 842-7896"
                       label="Phone Number"
                     />
                     {registerFormError.phone && (

@@ -70,7 +70,7 @@ const GLBA = () => {
       icon: UserIcon,
       content: [
         'Under GLBA, you have the right to opt-out of certain information sharing with non-affiliated third parties, except as required or permitted by law.',
-        'You may opt-out of information sharing for marketing purposes by contacting us at info@irstaxfiler.com or by calling +1 (415) 2231315.',
+        'You may opt-out of information sharing for marketing purposes by contacting us at info@irstaxfiler.com or by calling +1 (551) 842-7896.',
         'Even if you opt-out, we may still share your information as necessary to provide our services, comply with legal obligations, or as otherwise permitted by law.',
         'Your opt-out request will be processed within a reasonable time, typically within 30 days of receipt.',
         'You may change your opt-out preferences at any time by contacting us using the methods provided above.',
@@ -139,7 +139,7 @@ const GLBA = () => {
       content: [
         'If you have questions about this GLBA Privacy Notice or wish to exercise your privacy rights, please contact us:',
         'Email: info@irstaxfiler.com',
-        'Phone: +1 (415) 2231315',
+        'Phone: +1 (551) 842-7896',
         'Mail: IRS Tax Adviser Inc, 12600 Deerfield Parkway, Suite 2096, Alpharetta, GA 30004, USA',
         'We will respond to your inquiries and requests within a reasonable time, typically within 30 days.',
       ],
@@ -292,8 +292,8 @@ const GLBA = () => {
                 info@irstaxfiler.com
               </a>
               {' '}or call us at{' '}
-              <a href="tel:++1 (415) 2231315" className="text-teal hover:underline font-semibold">
-                +1 (415) 2231315
+              <a href="tel:+15518427896" className="text-teal hover:underline font-semibold">
+                +1 (551) 842-7896
               </a>.
             </p>
           </motion.div>

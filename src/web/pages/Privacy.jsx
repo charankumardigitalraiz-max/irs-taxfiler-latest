@@ -178,7 +178,7 @@ const Privacy = () => {
       content: [
         'If you have questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us:',
         'Email: info@irstaxfiler.com',
-        'Phone: +1 (415) 2231315',
+        'Phone: +1 (551) 842-7896',
         'Mail: IRS Tax Adviser Inc, 12600 Deerfield Parkway, Suite 2096, Alpharetta, GA 30004, USA',
         'We will respond to your privacy inquiries within 30 days of receipt.',
         'For general customer service inquiries, please visit our Contact Us page or call our customer support line.',
@@ -281,8 +281,8 @@ const Privacy = () => {
                     info@irstaxfiler.com
                   </a>
                   {' '}or call us at{' '}
-                  <a href="tel:++1 (415) 2231315" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
-                    +1 (415) 2231315
+                  <a href="tel:+15518427896" className="text-primary hover:text-primary hover:underline font-semibold transition-colors">
+                    +1 (551) 842-7896
                   </a>.
                 </p>
               </div>

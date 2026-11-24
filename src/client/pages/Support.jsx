@@ -191,7 +191,7 @@ const Support = () => {
         </a>
 
         <a
-          href="tel:+14044244191"
+          href="tel:+15518427896"
           className="block group rounded-lg focus:outline-none focus:ring-2 focus:ring-[#059669]/30"
         >
           <Card className="h-full group-hover:shadow-md group-hover:border-[#059669]/40 transition-all cursor-pointer">
@@ -201,7 +201,7 @@ const Support = () => {
                 <span
                   className="block text-[18px] font-semibold text-[#059669] group-hover:text-[#047857] mt-1 truncate transition-colors"
                 >
-                  +1 (415) 223-1315
+                  +1 (551) 842-7896
                 </span>
               </div>
               <div className="w-9 h-9 rounded-lg bg-[#ECFDF5] flex items-center justify-center shrink-0">
