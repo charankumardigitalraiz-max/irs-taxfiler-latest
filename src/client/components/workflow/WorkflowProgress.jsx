@@ -15,7 +15,7 @@ const MAIN_WORKFLOW_PATH = [
 ];
 
 const getProgress = (currentStage) => {
-  const index = MAIN_WORKFLOW_PATH.findIndex((stage) => 
+  const index = MAIN_WORKFLOW_PATH.findIndex((stage) =>
     stage.toLowerCase() === currentStage.toLowerCase()
   );
   if (index === -1) return 0;
@@ -33,126 +33,127 @@ const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComple
     normalizedKey === 'PERSONAL_INFO'
       ? 'Personal Info'
       : currentStatus;
-  const currentStageIndex = MAIN_WORKFLOW_PATH.findIndex((stage) => 
+  const currentStageIndex = MAIN_WORKFLOW_PATH.findIndex((stage) =>
     stage.toLowerCase() === mappedStatus?.toLowerCase()
   );
-  
+
   // Only show progress if personal info is completed
-  // If personal info is complete, show progress based on current stage
-  // If personal info is not complete, show 0% progress
   let progress = 0;
   if (isPersonalInfoComplete) {
     if (currentStageIndex >= 0) {
-      // If we're at Personal Info stage (index 0), show at least first stage as complete
       if (currentStageIndex === 0) {
         progress = Math.round((1 / MAIN_WORKFLOW_PATH.length) * 100);
       } else {
         progress = getProgress(mappedStatus);
       }
     } else {
-      // If current status doesn't match any stage but personal info is complete, show at least first stage progress
       progress = Math.round((1 / MAIN_WORKFLOW_PATH.length) * 100);
     }
   }
-  
+
   // For compact mode, show limited stages
   const displayStages = compact
     ? MAIN_WORKFLOW_PATH.filter((_, i) => i % 3 === 0 || i === MAIN_WORKFLOW_PATH.length - 1)
     : MAIN_WORKFLOW_PATH;
-  
+
   return (
     <div className="w-full">
-      {/* Progress bar */}
-      <div className="relative mb-4">
-        <div className="h-2 bg-[#E6F0F5] rounded-full overflow-hidden">
+      {/* Top Progress Track */}
+      <div className="relative mb-6">
+        <div className="flex items-center justify-between text-xs mb-2">
+          <span className="font-medium text-[#6F7F8E]">Overall Progress</span>
+          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#E9F7FA] text-[#127EAB] border border-[#127EAB]/20">
+            {progress}% Complete
+          </span>
+        </div>
+        <div className="h-2 bg-[#E9EFF3] rounded-full overflow-hidden p-[1px] border border-[#E2EDF2]">
           <div
-            className="h-full bg-gradient-to-r from-[#1F4264] to-[#127EAB] rounded-full transition-all duration-500"
+            className="h-full bg-gradient-to-r from-[#1F4264] to-[#127EAB] rounded-full transition-all duration-500 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
-        <div className="mt-1.5 flex justify-between text-xs font-medium text-[#6F7F8E]">
-          <span>Personal Info</span>
-          <span className="text-[#127EAB] font-semibold">{progress}% Complete</span>
-          <span>Filing Complete</span>
-        </div>
       </div>
-      
-      {/* Stage indicators */}
-      <div className="relative">
-        <div className="flex items-center justify-between">
+
+      {/* Modern Stepper */}
+      <div className="overflow-x-auto min-w-0 pt-1 pb-1">
+        <div className="flex items-start justify-between min-w-[620px] sm:min-w-0">
           {displayStages.map((stageKey, index) => {
             const fullIndex = MAIN_WORKFLOW_PATH.indexOf(stageKey);
-            // Personal Info (index 0) is completed if personal info is filled
-            // Other stages are completed if we've passed them
             const isPersonalInfoStage = fullIndex === 0;
             const isCompleted = isPersonalInfoComplete && (
-              (isPersonalInfoStage) || 
+              isPersonalInfoStage ||
               (currentStageIndex >= 0 && fullIndex < currentStageIndex)
             );
             const isCurrent = isPersonalInfoComplete && currentStageIndex >= 0 && fullIndex === currentStageIndex;
-            const isPending = !isPersonalInfoComplete || (currentStageIndex >= 0 && fullIndex > currentStageIndex);
-            
+
+            // Is the line connecting to the next step completed?
+            const nextStageKey = displayStages[index + 1];
+            const nextFullIndex = nextStageKey ? MAIN_WORKFLOW_PATH.indexOf(nextStageKey) : -1;
+            const isConnectorCompleted = isPersonalInfoComplete && (
+              currentStageIndex >= 0 && nextFullIndex <= currentStageIndex
+            );
+
             return (
               <div
                 key={stageKey}
-                className="flex flex-col items-center"
-                style={{ flex: 1 }}
+                className="flex-1 flex flex-col items-center relative group"
               >
-                {/* Connector line */}
-                {index > 0 && (
+                {/* Continuous Connecting Line */}
+                {index < displayStages.length - 1 && (
                   <div
                     className={clsx(
-                      'absolute h-0.5 top-4 -translate-y-1/2 z-0',
-                      isPersonalInfoComplete && (
-                        // Show line as completed if previous stage is Personal Info (completed) or if we've passed it
-                        MAIN_WORKFLOW_PATH.indexOf(displayStages[index - 1]) === 0 ||
-                        (currentStageIndex >= 0 && MAIN_WORKFLOW_PATH.indexOf(displayStages[index - 1]) < currentStageIndex)
-                      )
-                        ? 'bg-[#127EAB]' 
-                        : 'bg-[#DCEAF0]'
+                      'absolute top-4.5 left-1/2 w-full h-[2px] -translate-y-1/2 transition-colors duration-300 z-0',
+                      isConnectorCompleted ? 'bg-[#127EAB]' : 'bg-[#E2EDF2]'
                     )}
-                    style={{
-                      left: `${((index - 1) / (displayStages.length - 1)) * 100 + (50 / displayStages.length)}%`,
-                      width: `${100 / (displayStages.length - 1) - (100 / displayStages.length)}%`,
-                    }}
                   />
                 )}
-                
-                {/* Circle */}
+
+                {/* Step Circle */}
                 <div
                   className={clsx(
-                    'relative z-10 w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all',
+                    'relative z-10 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 text-xs',
                     isCompleted
-                      ? 'bg-[#127EAB] border-[#127EAB]'
+                      ? 'bg-gradient-to-br from-[#127EAB] to-[#0E668B] text-white shadow-xs'
                       : isCurrent
-                      ? 'bg-[#E9F7FA] border-[#127EAB]'
-                      : 'bg-white border-[#CCDCE1]'
+                      ? 'bg-white border-2 border-[#127EAB] text-[#127EAB] ring-4 ring-[#127EAB]/15 font-medium shadow-xs'
+                      : 'bg-[#F8FAFC] border border-[#CCDCE1] text-[#8BA0B2]'
                   )}
                 >
                   {isCompleted ? (
-                    <Check className="w-4 h-4 text-white" />
+                    <Check className="w-4 h-4 text-white stroke-[2.5]" />
                   ) : (
-                    <span
-                      className={clsx(
-                        'text-xs font-semibold',
-                        isCurrent ? 'text-[#127EAB]' : 'text-slate-400'
-                      )}
-                    >
-                      {fullIndex + 1}
-                    </span>
+                    <span className="font-medium">{fullIndex + 1}</span>
                   )}
                 </div>
-                
-                {/* Label */}
+
+                {/* Structured Step Typography */}
                 {!compact && (
-                  <span
-                    className={clsx(
-                      'mt-2 text-xs font-medium text-center max-w-[80px]',
-                      isCurrent ? 'text-[#127EAB] font-semibold' : 'text-[#6F7F8E]'
-                    )}
-                  >
-                    {stageKey}
-                  </span>
+                  <div className="mt-2.5 text-center flex flex-col items-center">
+                    <span
+                      className={clsx(
+                        'text-[10px] tracking-wider uppercase font-medium mb-0.5',
+                        isCurrent
+                          ? 'text-[#127EAB]'
+                          : isCompleted
+                          ? 'text-[#6F7F8E]'
+                          : 'text-[#A0B0BE]'
+                      )}
+                    >
+                      Step {fullIndex + 1}
+                    </span>
+                    <span
+                      className={clsx(
+                        'text-xs tracking-tight transition-colors leading-snug px-1 max-w-[85px]',
+                        isCurrent
+                          ? 'text-[#127EAB] font-medium'
+                          : isCompleted
+                          ? 'text-[#1F4264] font-medium'
+                          : 'text-[#8BA0B2] font-normal'
+                      )}
+                    >
+                      {stageKey}
+                    </span>
+                  </div>
                 )}
               </div>
             );
@@ -164,4 +165,3 @@ const WorkflowProgress = ({ currentStatus, compact = false, isPersonalInfoComple
 };
 
 export default WorkflowProgress;
-

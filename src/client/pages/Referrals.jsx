@@ -11,8 +11,15 @@ import {
   Trash2,
   Tag,
   Send,
+  Users,
+  Search,
+  Clock,
+  Phone,
+  CheckCircle2,
+  DollarSign,
 } from 'lucide-react';
 import Card from '../components/common/Card';
+import Badge from '../components/common/Badge';
 import PageLoader from '../components/common/PageLoader';
 import { referralService } from '../services/referralService';
 import { userService } from '../services/userService';
@@ -38,6 +45,15 @@ const fieldLabelClass = 'block text-[13px] font-medium text-[#334E68] mb-1.5';
 
 const Referrals = () => {
   const [referralCode, setReferralCode] = useState('');
+  const [referredFriends, setReferredFriends] = useState([]);
+  const [referralStats, setReferralStats] = useState({
+    totalReferrals: 0,
+    successfulReferrals: 0,
+    pendingReferrals: 0,
+    totalRewardsEarned: 0,
+  });
+  const [filterStatus, setFilterStatus] = useState('all'); // 'all' | 'registered' | 'pending'
+  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [copiedType, setCopiedType] = useState(null); // 'code' | 'link' | null
@@ -46,6 +62,26 @@ const Referrals = () => {
   const [friends, setFriends] = useState([createEmptyFriend(1)]);
 
   const { showSuccess, showError } = useToast();
+
+  const updateStatsFromFriends = (friendsList = []) => {
+    const totalReferrals = friendsList.length;
+    const successfulReferrals = friendsList.filter(
+      (f) => f.status === 'registered' || f.status === 'converted'
+    ).length;
+    const pendingReferrals = friendsList.filter(
+      (f) => f.status === 'pending'
+    ).length;
+    const totalRewardsEarned = friendsList.reduce(
+      (sum, f) => sum + (f.rewardEarned ? f.rewardAmount || 15 : 0),
+      0
+    );
+    setReferralStats({
+      totalReferrals,
+      successfulReferrals,
+      pendingReferrals,
+      totalRewardsEarned,
+    });
+  };
 
   // Load referral code and auto-fill user details once on mount
   useEffect(() => {
@@ -64,6 +100,13 @@ const Referrals = () => {
 
         if (referralRes?.success && referralRes.data) {
           setReferralCode(referralRes.data.referralCode || '');
+          const friendsList = referralRes.data.referredFriends || [];
+          setReferredFriends(friendsList);
+          if (referralRes.data.stats) {
+            setReferralStats(referralRes.data.stats);
+          } else {
+            updateStatsFromFriends(friendsList);
+          }
         } else if (
           referralRes?.message &&
           !referralRes.message.includes('complete registration')
@@ -217,6 +260,14 @@ ${yourName || 'Your Friend'}`;
       if (res.success) {
         showSuccess(res.message || 'Referral invitations sent successfully!');
         setFriends([createEmptyFriend(1)]);
+        if (res.data?.referredFriends) {
+          setReferredFriends(res.data.referredFriends);
+          if (res.data.stats) {
+            setReferralStats(res.data.stats);
+          } else {
+            updateStatsFromFriends(res.data.referredFriends);
+          }
+        }
       } else {
         showError(res.message || 'Failed to send referrals. Please try again.');
       }
@@ -228,20 +279,34 @@ ${yourName || 'Your Friend'}`;
     }
   };
 
+  const displayedFriends = referredFriends.filter((friend) => {
+    const matchesFilter =
+      filterStatus === 'all'
+        ? true
+        : filterStatus === 'registered'
+          ? friend.status === 'registered' || friend.status === 'converted'
+          : friend.status === filterStatus;
+
+    const query = searchQuery.trim().toLowerCase();
+    const matchesQuery =
+      !query ||
+      (friend.name && friend.name.toLowerCase().includes(query)) ||
+      (friend.email && friend.email.toLowerCase().includes(query)) ||
+      (friend.phone && friend.phone.toLowerCase().includes(query));
+
+    return matchesFilter && matchesQuery;
+  });
+
   if (loading) {
     return <PageLoader variant="referrals" />;
   }
 
   return (
-    <div className="space-y-5 irs-page-enter">
+    <div className="space-y-6 irs-page-enter">
       {/* Compact Brand Header Banner */}
       <div className="rounded-lg bg-gradient-to-r from-[#1F4264] via-[#17577A] to-[#127EAB] px-5 py-5 sm:px-6 sm:py-6 text-white shadow-[0_4px_16px_rgba(31,66,100,0.1)]">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div className="min-w-0">
-            {/* <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-xs font-medium text-white mb-2.5">
-              <Star className="h-3.5 w-3.5 text-amber-300" />
-              <span>Refer Friends. Earn Rewards.</span>
-            </div> */}
             <h1 className="text-xl sm:text-[22px] font-medium text-white tracking-tight">
               Refer &amp; Earn with IRS Tax Filer
             </h1>
@@ -515,6 +580,227 @@ ${yourName || 'Your Friend'}`;
           </Card>
         </div>
       </div>
+
+      {/* Referred Friends & Activity Card */}
+      <Card>
+        {/* Header with Title and Tabs */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-[#E6F0F5]">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-md bg-[#EAF5FA] text-[#127EAB] border border-[#127EAB]/20 flex items-center justify-center shrink-0">
+              <Users className="w-5 h-5" />
+            </div>
+            <div>
+              <h2 className="text-[16px] font-semibold text-[#1F4264]">
+                Referred Friends &amp; Rewards
+              </h2>
+              <p className="text-xs text-[#6F7F8E]">
+                Track people you have referred and the status of your US$ 15 rewards
+              </p>
+            </div>
+          </div>
+
+          {/* Filter Pills */}
+          {/* <div className="inline-flex p-1 bg-slate-100 rounded-lg border border-slate-200/80 text-xs font-medium self-start sm:self-auto">
+            <button
+              type="button"
+              onClick={() => setFilterStatus('all')}
+              className={`px-3 py-1.5 rounded-md transition-all cursor-pointer ${filterStatus === 'all'
+                ? 'bg-white text-[#1F4264] shadow-xs font-semibold'
+                : 'text-slate-600 hover:text-slate-900'
+                }`}
+            >
+              All ({referredFriends.length})
+            </button>
+            <button
+              type="button"
+              onClick={() => setFilterStatus('registered')}
+              className={`px-3 py-1.5 rounded-md transition-all cursor-pointer ${filterStatus === 'registered'
+                ? 'bg-white text-emerald-700 shadow-xs font-semibold'
+                : 'text-slate-600 hover:text-slate-900'
+                }`}
+            >
+              Registered ({referralStats.successfulReferrals})
+            </button>
+            <button
+              type="button"
+              onClick={() => setFilterStatus('pending')}
+              className={`px-3 py-1.5 rounded-md transition-all cursor-pointer ${filterStatus === 'pending'
+                ? 'bg-white text-amber-700 shadow-xs font-semibold'
+                : 'text-slate-600 hover:text-slate-900'
+                }`}
+            >
+              Pending ({referralStats.pendingReferrals})
+            </button>
+          </div> */}
+        </div>
+
+        {/* Stats Summary Bar */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 py-4 border-b border-[#E6F0F5]">
+          <div className="p-3 bg-[#F4F9FB] rounded-lg border border-[#D6E4EC]">
+            <p className="text-xs font-medium text-[#6F7F8E]">Total Referrals</p>
+            <p className="text-xl font-bold text-[#1F4264] mt-0.5">
+              {referralStats.totalReferrals}
+            </p>
+          </div>
+          <div className="p-3 bg-emerald-50/70 rounded-lg border border-emerald-200/80">
+            <p className="text-xs font-medium text-emerald-700">Registered</p>
+            <p className="text-xl font-bold text-emerald-800 mt-0.5">
+              {referralStats.successfulReferrals}
+            </p>
+          </div>
+          <div className="p-3 bg-amber-50/70 rounded-lg border border-amber-200/80">
+            <p className="text-xs font-medium text-amber-700">Pending Invite</p>
+            <p className="text-xl font-bold text-amber-800 mt-0.5">
+              {referralStats.pendingReferrals}
+            </p>
+          </div>
+          {/* <div className="p-3 bg-gradient-to-br from-[#EAF5FA] to-[#DCEAF0] rounded-lg border border-[#127EAB]/30">
+            <p className="text-xs font-medium text-[#127EAB]">Rewards Earned</p>
+            <p className="text-xl font-bold text-[#127EAB] mt-0.5">
+              US$ {referralStats.totalRewardsEarned}
+            </p>
+          </div> */}
+        </div>
+
+        {/* Search Bar (if referrals exist) */}
+        {referredFriends.length > 2 && (
+          <div className="pt-4 pb-2">
+            <div className="relative w-full sm:w-72">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
+              <input
+                type="text"
+                placeholder="Search by name, email, or phone..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-9 pr-3 py-1.5 text-xs border border-slate-200 rounded-md focus:outline-none focus:ring-1 focus:ring-[#127EAB] bg-white text-[#1F4264] placeholder:text-slate-400"
+              />
+            </div>
+          </div>
+        )}
+
+        {/* List of Referred Friends */}
+        <div className="pt-4">
+          {displayedFriends.length === 0 ? (
+            <div className="py-12 text-center">
+              <div className="w-12 h-12 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3">
+                <Users className="w-6 h-6 stroke-[1.5]" />
+              </div>
+              <p className="text-sm font-semibold text-[#1F4264]">No referred users found</p>
+              <p className="text-xs text-[#6F7F8E] mt-1 max-w-md mx-auto">
+                {referredFriends.length === 0
+                  ? 'Share your referral link with colleagues and friends, or use the "Refer a Friend" form above. When they sign up, they will appear here!'
+                  : 'No referral matches the selected filter or search keyword.'}
+              </p>
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="border-b border-slate-100 text-[11px] font-semibold text-[#6F7F8E] uppercase tracking-wider bg-slate-50/50">
+                    <th className="py-2.5 px-3">Referred User</th>
+                    <th className="py-2.5 px-3">Contact</th>
+                    <th className="py-2.5 px-3">Status</th>
+                    <th className="py-2.5 px-3">Date</th>
+                    <th className="py-2.5 px-3 text-right">Your Reward</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-sm">
+                  {displayedFriends.map((f, i) => {
+                    const initials = (f.name || 'User')
+                      .split(' ')
+                      .map((n) => n[0])
+                      .filter(Boolean)
+                      .slice(0, 2)
+                      .join('')
+                      .toUpperCase();
+
+                    return (
+                      <tr key={i} className="hover:bg-slate-50/60 transition-colors">
+                        <td className="py-3 px-3">
+                          <div className="flex items-center gap-2.5">
+                            <div className="w-8 h-8 rounded-full bg-[#127EAB]/10 text-[#127EAB] font-bold text-xs flex items-center justify-center shrink-0 border border-[#127EAB]/20">
+                              {initials || 'U'}
+                            </div>
+                            <div className="min-w-0">
+                              <p className="font-semibold text-xs text-[#1F4264] font-bold truncate">
+                                {f.name || 'Anonymous User'}
+                              </p>
+                              {f.note && (
+                                <p className="text-[11px] text-[#8BA0B2] truncate italic">
+                                  {f.note}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        </td>
+                        <td className="py-3 px-3 text-xs text-[#4A6178]">
+                          <div className="space-y-0.5">
+                            {f.email && (
+                              <div className="flex items-center gap-1.5 text-xs text-[#1F4264] font-semibold">
+                                <Mail className="w-3 h-3 text-[#127EAB] shrink-0" />
+                                <span className="truncate max-w-[200px] ">{f.email}</span>
+                              </div>
+                            )}
+                            {f.phone && (
+                              <div className="flex items-center gap-1.5 text-xs text-[#6F7F8E] font-semibold">
+                                <Phone className="w-3 h-3 text-slate-400 shrink-0" />
+                                <span>{f.phone}</span>
+                              </div>
+                            )}
+                          </div>
+                        </td>
+                        <td className="py-3 px-3">
+                          {f.status === 'registered' ? (
+                            <Badge color="green" size="sm" dot>
+                              Registered
+                            </Badge>
+                          ) : f.status === 'converted' ? (
+                            <Badge color="blue" size="sm" dot>
+                              Filing Completed
+                            </Badge>
+                          ) : (
+                            <Badge color="yellow" size="sm" dot>
+                              Invite Pending
+                            </Badge>
+                          )}
+                        </td>
+                        <td className="py-3 px-3 text-xs text-[#6F7F8E]">
+                          {f.registeredAt
+                            ? new Date(f.registeredAt).toLocaleDateString('en-US', {
+                              month: 'short',
+                              day: 'numeric',
+                              year: 'numeric',
+                            })
+                            : f.createdAt
+                              ? new Date(f.createdAt).toLocaleDateString('en-US', {
+                                month: 'short',
+                                day: 'numeric',
+                                year: 'numeric',
+                              })
+                              : '—'}
+                        </td>
+                        <td className="py-3 px-3 text-right">
+                          {f.rewardEarned || f.status === 'registered' || f.status === 'converted' ? (
+                            <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200/80">
+                              <Check className="w-3 h-3 stroke-[3]" />
+                              +US$ {f.rewardAmount || 15}
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">
+                              <Clock className="w-3 h-3 text-slate-400" />
+                              Pending
+                            </span>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </Card>
     </div>
   );
 };

@@ -419,7 +419,7 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F9FB] font-sans">
+    <div className="min-h-screen bg-[#F8F9FA] font-sans">
       {/* Desktop Sidebar (Collapsible) */}
       <aside
         className={`fixed left-0 top-0 z-40 h-screen w-64 bg-white border-r border-[#DCEAF0] hidden lg:block transition-transform duration-200 ease-out ${desktopSidebarOpen ? 'translate-x-0' : '-translate-x-full'

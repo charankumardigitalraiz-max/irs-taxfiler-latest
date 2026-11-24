@@ -13,6 +13,7 @@ import {
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Input from '../components/common/Input';
+import { customToast } from '../utils/customToast';
 
 const Settings = () => {
   const [settings, setSettings] = useState({
@@ -53,7 +54,7 @@ const Settings = () => {
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
     // Password change logic
-    alert('Password updated successfully');
+    customToast.success('Password updated successfully.', { title: 'Password Changed' });
     setPasswordData({
       currentPassword: '',
       newPassword: '',

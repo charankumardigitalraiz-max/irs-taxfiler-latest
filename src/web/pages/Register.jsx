@@ -130,7 +130,7 @@ const Register = () => {
     e.preventDefault();
 
     if (!captcha) {
-      alert("Please verify reCAPTCHA");
+      toast.error("Please verify reCAPTCHA", { title: "Verification Required" });
       return;
     }
 

@@ -13,6 +13,7 @@ import { SectionSkeleton } from '../components/common/PageLoader';
 import { meetingService } from '../services/meetingService';
 import { userService } from '../services/userService';
 import { getUser } from '../utils/auth';
+import { customToast } from '../utils/customToast';
 
 const Schedule = () => {
   const [showCallbackForm, setShowCallbackForm] = useState(false);
@@ -24,7 +25,6 @@ const Schedule = () => {
   });
   const [previousRequests, setPreviousRequests] = useState([]);
   const [loadingRequests, setLoadingRequests] = useState(true);
-  const [toast, setToast] = useState(null);
 
   // Auto-fill user details and load previous meeting requests from backend
   useEffect(() => {
@@ -98,15 +98,15 @@ const Schedule = () => {
 
     // Require phone, date and time before submitting
     if (!callbackData.phone.trim()) {
-      setToast({ type: 'error', message: 'Please enter your phone number before submitting.' });
+      customToast.error('Please enter your phone number before submitting.', { title: 'Missing Info' });
       return;
     }
     if (!callbackData.date) {
-      setToast({ type: 'error', message: 'Please select a preferred date for the call.' });
+      customToast.error('Please select a preferred date for the call.', { title: 'Missing Date' });
       return;
     }
     if (!callbackData.time) {
-      setToast({ type: 'error', message: 'Please select a preferred time for the call.' });
+      customToast.error('Please select a preferred time for the call.', { title: 'Missing Time' });
       return;
     }
 
@@ -138,9 +138,8 @@ const Schedule = () => {
 
       setPreviousRequests((prev) => [newRequest, ...prev]);
 
-      setToast({
-        type: 'success',
-        message: 'Meeting request submitted! We will contact you soon to schedule.',
+      customToast.success('Meeting request submitted! We will contact you soon to schedule.', {
+        title: 'Meeting Scheduled',
       });
       setShowCallbackForm(false);
       setCallbackData({
@@ -163,37 +162,14 @@ const Schedule = () => {
       }
     } catch (error) {
       console.error('Failed to submit meeting request:', error);
-      setToast({
-        type: 'error',
-        message: 'Failed to submit your request. Please try again.',
+      customToast.error('Failed to submit your request. Please try again.', {
+        title: 'Request Failed',
       });
     }
   };
 
   return (
     <div className="space-y-6 relative">
-      {/* Simple toast */}
-      {toast && (
-        <div className="fixed right-4 bottom-4 z-50">
-          <div
-            className={`max-w-sm px-4 py-3 rounded-lg shadow-lg text-sm ${toast.type === 'success'
-              ? 'bg-green-50 text-green-800 border border-green-200'
-              : 'bg-red-50 text-red-800 border border-red-200'
-              }`}
-          >
-            <div className="flex items-start justify-between gap-3">
-              <p>{toast.message}</p>
-              <button
-                type="button"
-                className="text-xs font-semibold opacity-70 hover:opacity-100"
-                onClick={() => setToast(null)}
-              >
-                ✕
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
       {/* Header */}
       <div className="bg-white rounded-lg shadow-[0_2px_10px_rgba(31,66,100,0.04)] px-5 py-4 border border-[#DCEAF0]">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">

@@ -1,5 +1,6 @@
 ﻿import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { toast } from 'react-toastify';
 import {
   ChatBubbleLeftRightIcon,
   PaperAirplaneIcon,
@@ -57,7 +58,9 @@ const Support = () => {
   const handleSubmitTicket = (e) => {
     e.preventDefault();
     // In real app, this would submit to backend
-    alert('Support ticket submitted successfully! Ticket number: TKT-2024-' + String(supportTickets.length + 1).padStart(3, '0'));
+    toast.success('Support ticket submitted successfully! Ticket number: TKT-2024-' + String(supportTickets.length + 1).padStart(3, '0'), {
+      title: 'Ticket Submitted',
+    });
     setTicketData({
       subject: '',
       category: '',
@@ -176,21 +179,19 @@ const Support = () => {
           <div className="flex space-x-1 px-6">
             <button
               onClick={() => setActiveTab('new-ticket')}
-              className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === 'new-ticket'
+              className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === 'new-ticket'
                   ? 'border-primary-blue text-primary-blue'
                   : 'border-transparent text-slateText hover:text-slateText'
-              }`}
+                }`}
             >
               New Ticket
             </button>
             <button
               onClick={() => setActiveTab('tickets')}
-              className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === 'tickets'
+              className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === 'tickets'
                   ? 'border-primary-blue text-primary-blue'
                   : 'border-transparent text-slateText hover:text-slateText'
-              }`}
+                }`}
             >
               My Tickets ({supportTickets.length})
             </button>

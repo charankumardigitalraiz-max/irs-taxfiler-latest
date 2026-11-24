@@ -255,6 +255,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 // import { updateProfile } from "../../Redux/Slices/userSlice";
 // import { baseUrl } from "../../../src/Services/apis";
 import {
@@ -314,7 +315,7 @@ const Profile = () => {
 
     // Optional basic validation
     if (!file.type.startsWith("image/")) {
-      alert("Please select a valid image.");
+      toast.error("Please select a valid image.", { title: "Invalid File" });
       return;
     }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   User,
   UserCircle,
@@ -9,6 +9,7 @@ import {
   CheckCircle,
   ChevronRight,
   Building,
+  Home,
   Users,
   FileText,
   Save,
@@ -16,14 +17,22 @@ import {
   Trash2,
   Edit,
   Plus,
+  Check,
+  Globe,
+  Eye,
+  EyeOff,
+  Upload,
+  ExternalLink,
 } from 'lucide-react';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Input from '../components/common/Input';
 import Badge from '../components/common/Badge';
+import Modal from '../components/common/Modal';
 import PageLoader from '../components/common/PageLoader';
 import { userService } from '../services/userService';
 import { documentService } from '../services/documentService';
+import { getDocumentUrl } from '../utils/documentUrl';
 import { useToast } from '../../admin/hooks/useToast';
 
 const AccountInformation = () => {
@@ -381,7 +390,6 @@ const AccountInformation = () => {
 const TaxpayerProfileForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }) => {
   const [formData, setFormData] = useState({
     firstName: '',
-    middleName: '',
     lastName: '',
     ssn: '',
     dateOfBirth: '',
@@ -394,7 +402,6 @@ const TaxpayerProfileForm = ({ userData, setUserData, saving, setSaving, onSaveS
     if (userData) {
       setFormData({
         firstName: userData.firstName || '',
-        middleName: userData.middleName || '',
         lastName: userData.lastName || '',
         ssn: userData.personalInfo?.ssn || '',
         dateOfBirth: userData.personalInfo?.dateOfBirth ? new Date(userData.personalInfo.dateOfBirth).toISOString().split('T')[0] : '',
@@ -431,7 +438,6 @@ const TaxpayerProfileForm = ({ userData, setUserData, saving, setSaving, onSaveS
       setSaving(true);
       const updateData = {
         firstName: formData.firstName,
-        middleName: formData.middleName,
         lastName: formData.lastName,
         personalInfo: {
           ssn: formData.ssn,
@@ -482,12 +488,6 @@ const TaxpayerProfileForm = ({ userData, setUserData, saving, setSaving, onSaveS
           placeholder="Enter first name"
         />
         <Input
-          label="Middle Name"
-          value={formData.middleName}
-          onChange={(e) => setFormData({ ...formData, middleName: e.target.value })}
-          placeholder="Enter middle name"
-        />
-        <Input
           label="Last Name"
           required
           value={formData.lastName}
@@ -526,7 +526,7 @@ const TaxpayerProfileForm = ({ userData, setUserData, saving, setSaving, onSaveS
             <option value="qualifying-widow">Qualifying Widow(er)</option>
           </select>
         </div>
-        <div className="md:col-span-2">
+        <div>
           <Input
             label="Occupation"
             value={formData.occupation}
@@ -1265,7 +1265,81 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
     });
   };
 
-  const handleSaveNew = () => {
+  // Centralized address persistence helper that synchronizes with the backend database
+  const persistAddresses = async (targetAddresses, successMsg = 'Address saved successfully!') => {
+    // Sanitize and filter addresses
+    const validAddresses = (targetAddresses || [])
+      .filter(addr => addr && typeof addr === 'object')
+      .map(addr => ({
+        street: (addr.street || '').trim(),
+        city: (addr.city || '').trim(),
+        state: (addr.state || '').trim(),
+        zipCode: (addr.zipCode || '').trim(),
+        country: addr.country || 'USA',
+        addressType: addr.addressType || 'current',
+        isPrimary: Boolean(addr.isPrimary),
+      }))
+      .filter(addr => addr.street || addr.city || addr.state || addr.zipCode);
+
+    // If there is at least one address, ensure exactly one is marked as primary
+    if (validAddresses.length > 0) {
+      const hasPrimary = validAddresses.some(a => a.isPrimary);
+      if (!hasPrimary) {
+        validAddresses[0].isPrimary = true;
+      }
+    }
+
+    try {
+      setSaving(true);
+      const primaryAddress = validAddresses.find(a => a.isPrimary) || (validAddresses.length > 0 ? validAddresses[0] : null);
+      const updateData = {
+        addresses: validAddresses,
+        address: primaryAddress,
+      };
+
+      const res = await userService.updateProfile(updateData);
+      if (res && res.success) {
+        const returnedAddresses = Array.isArray(res.data?.addresses) && res.data.addresses.length > 0
+          ? res.data.addresses.map(addr => ({
+            street: addr.street || '',
+            city: addr.city || '',
+            state: addr.state || '',
+            zipCode: addr.zipCode || '',
+            country: addr.country || 'USA',
+            addressType: addr.addressType || 'current',
+            isPrimary: Boolean(addr.isPrimary),
+          }))
+          : validAddresses;
+
+        setAddresses(returnedAddresses);
+        if (setUserData && res.data) {
+          setUserData(prev => ({
+            ...prev,
+            ...res.data,
+            addresses: returnedAddresses,
+            address: primaryAddress,
+          }));
+        }
+        if (successMsg) {
+          showSuccess(successMsg);
+        }
+        return { success: true, data: res.data };
+      } else {
+        const errMsg = res?.message || 'Failed to save address.';
+        showError(errMsg);
+        return { success: false, message: errMsg };
+      }
+    } catch (error) {
+      console.error('Error saving address to backend:', error);
+      const errMsg = error.response?.data?.message || error.message || 'Failed to save address. Please try again.';
+      showError(errMsg);
+      return { success: false, message: errMsg };
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleSaveNew = async () => {
     // Validate new address
     if (!newAddress.street || !newAddress.street.trim()) {
       showError('Street Address is required');
@@ -1290,32 +1364,44 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
       return;
     }
 
-    // If setting as primary, unset all others
+    const trimmedZip = newAddress.zipCode.trim();
     const updatedAddresses = [...addresses];
-    if (newAddress.isPrimary) {
-      updatedAddresses.forEach(addr => addr.isPrimary = false);
-    }
-    // If it's the first address, make it primary
-    if (updatedAddresses.length === 0) {
-      newAddress.isPrimary = true;
+    const isFirstAddress = updatedAddresses.length === 0;
+    const shouldBePrimary = isFirstAddress || Boolean(newAddress.isPrimary);
+
+    if (shouldBePrimary) {
+      updatedAddresses.forEach(addr => { addr.isPrimary = false; });
     }
 
-    setAddresses([...updatedAddresses, { ...newAddress, zipCode: newAddress.zipCode.trim() }]);
-    setShowAddForm(false);
-    setZipError('');
-    setNewAddress({
-      street: '',
-      city: '',
-      state: '',
-      zipCode: '',
-      country: 'USA',
-      addressType: 'current',
-      isPrimary: false,
-    });
-    showSuccess('Address added successfully!');
+    const createdAddress = {
+      street: newAddress.street.trim(),
+      city: newAddress.city.trim(),
+      state: newAddress.state.trim(),
+      zipCode: trimmedZip,
+      country: newAddress.country || 'USA',
+      addressType: newAddress.addressType || 'current',
+      isPrimary: shouldBePrimary,
+    };
+
+    const targetAddresses = [...updatedAddresses, createdAddress];
+    const result = await persistAddresses(targetAddresses, 'Address added and saved successfully!');
+
+    if (result.success) {
+      setShowAddForm(false);
+      setZipError('');
+      setNewAddress({
+        street: '',
+        city: '',
+        state: '',
+        zipCode: '',
+        country: 'USA',
+        addressType: 'current',
+        isPrimary: false,
+      });
+    }
   };
 
-  const handleUpdateAddress = (index) => {
+  const handleUpdateAddress = async (index) => {
     const addr = addresses[index];
     if (addr) {
       if (!addr.street || !addr.street.trim()) {
@@ -1341,12 +1427,16 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
         return;
       }
     }
-    setEditZipErrors(prev => {
-      const copy = { ...prev };
-      delete copy[index];
-      return copy;
-    });
-    setEditingIndex(null);
+
+    const result = await persistAddresses(addresses, 'Address updated successfully!');
+    if (result.success) {
+      setEditZipErrors(prev => {
+        const copy = { ...prev };
+        delete copy[index];
+        return copy;
+      });
+      setEditingIndex(null);
+    }
   };
 
   const handleAddressChange = (index, field, value) => {
@@ -1372,21 +1462,20 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
     }
   };
 
-  const handleDelete = (index) => {
+  const handleDelete = async (index) => {
     const addressToDelete = addresses[index];
     const confirmMessage = `Are you sure you want to delete this address?\n\n${addressToDelete.street}\n${addressToDelete.city}, ${addressToDelete.state} ${addressToDelete.zipCode}`;
 
     if (window.confirm(confirmMessage)) {
       const updated = addresses.filter((_, i) => i !== index);
       // If we removed the primary address, make the first one primary
-      if (addresses[index].isPrimary && updated.length > 0) {
+      if (addresses[index]?.isPrimary && updated.length > 0) {
         updated[0].isPrimary = true;
       }
-      setAddresses(updated);
-      if (editingIndex === index) {
+      const result = await persistAddresses(updated, 'Address deleted successfully!');
+      if (result.success && editingIndex === index) {
         setEditingIndex(null);
       }
-      showSuccess('Address deleted successfully!');
     }
   };
 
@@ -1456,14 +1545,12 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
     }
   };
 
-  const handleSetAsDefault = (index) => {
-    const updated = [...addresses];
-    // Unset all primary flags
-    updated.forEach(addr => addr.isPrimary = false);
-    // Set selected address as primary
-    updated[index].isPrimary = true;
-    setAddresses(updated);
-    showSuccess('Default address updated successfully!');
+  const handleSetAsDefault = async (index) => {
+    const updated = addresses.map((addr, i) => ({
+      ...addr,
+      isPrimary: i === index,
+    }));
+    await persistAddresses(updated, 'Default address updated successfully!');
   };
 
   const handleSave = async () => {
@@ -1508,85 +1595,9 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
       }
     }
 
-    // Ensure at least one address is marked as primary
-    const hasPrimary = validAddresses.some(addr => addr.isPrimary);
-    if (!hasPrimary && validAddresses.length > 0) {
-      validAddresses[0].isPrimary = true;
-    }
-
-    try {
-      setSaving(true);
-      const updateData = {
-        addresses: validAddresses.map(addr => ({
-          street: addr.street.trim(),
-          city: addr.city.trim(),
-          state: addr.state.trim(),
-          zipCode: addr.zipCode.trim(),
-          country: addr.country || 'USA',
-          addressType: addr.addressType || 'current',
-          isPrimary: addr.isPrimary || false,
-        })),
-        // Keep backward compatibility - set primary address as main address
-        address: validAddresses.find(addr => addr.isPrimary) || validAddresses[0],
-      };
-
-      const res = await userService.updateProfile(updateData);
-      if (res.success) {
-        // Prepare the saved addresses array
-        const savedAddresses = validAddresses.map(addr => ({
-          street: addr.street.trim(),
-          city: addr.city.trim(),
-          state: addr.state.trim(),
-          zipCode: addr.zipCode.trim(),
-          country: addr.country || 'USA',
-          addressType: addr.addressType || 'current',
-          isPrimary: addr.isPrimary || false,
-        }));
-
-        // Always update local addresses state with what we just saved
-        setAddresses(savedAddresses);
-
-        // Update userData, ensuring addresses array is always included
-        if (res.data) {
-          // Check if backend returned addresses
-          if (res.data.addresses && Array.isArray(res.data.addresses) && res.data.addresses.length === savedAddresses.length) {
-            // Backend returned all addresses, verify and use them
-            const backendAddresses = res.data.addresses.map(addr => ({
-              street: addr.street || '',
-              city: addr.city || '',
-              state: addr.state || '',
-              zipCode: addr.zipCode || '',
-              country: addr.country || 'USA',
-              addressType: addr.addressType || 'current',
-              isPrimary: addr.isPrimary || false,
-            }));
-            // Only use backend addresses if count matches
-            if (backendAddresses.length === savedAddresses.length) {
-              setAddresses(backendAddresses);
-              setUserData({ ...res.data, addresses: backendAddresses });
-            } else {
-              // Backend returned wrong count, use what we saved
-              setUserData({ ...res.data, addresses: savedAddresses });
-            }
-          } else {
-            // Backend didn't return addresses or returned incomplete, use what we saved
-            setUserData({ ...res.data, addresses: savedAddresses });
-          }
-        } else {
-          // No data in response, just update addresses
-          setUserData({ ...res.data, addresses: savedAddresses });
-        }
-
-        showSuccess(`Successfully saved ${savedAddresses.length} address(es)!`);
-        if (onSaveSuccess) onSaveSuccess(res.data);
-      } else {
-        showError(res.message || 'Failed to save addresses.');
-      }
-    } catch (error) {
-      console.error('Failed to save addresses:', error);
-      showError('Failed to save addresses. Please try again.');
-    } finally {
-      setSaving(false);
+    const result = await persistAddresses(validAddresses, `Successfully saved ${validAddresses.length} address(es)!`);
+    if (result.success && onSaveSuccess) {
+      onSaveSuccess(result.data);
     }
   };
 
@@ -1596,9 +1607,22 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
       previous: 'Previous Address',
       mailing: 'Mailing Address',
       business: 'Business Address',
-      other: 'Other',
+      other: 'Other Address',
     };
     return labels[type] || 'Address';
+  };
+
+  const getAddressIcon = (type) => {
+    switch (type) {
+      case 'current':
+        return <Home className="w-4 h-4" />;
+      case 'mailing':
+        return <Mail className="w-4 h-4" />;
+      case 'business':
+        return <Building className="w-4 h-4" />;
+      default:
+        return <MapPin className="w-4 h-4" />;
+    }
   };
 
   return (
@@ -1623,323 +1647,340 @@ const AddressForm = ({ userData, setUserData, saving, setSaving, onSaveSuccess }
               onClick={handleDeleteAll}
               variant="secondary"
               size="sm"
+              disabled={saving}
               className="text-rose-600 border-rose-200 hover:bg-rose-50 hover:border-rose-300"
               leftIcon={<Trash2 className="w-4 h-4" />}
             >
               Delete All
             </Button>
           )}
-          <Button onClick={handleAddNew} variant="success" size="sm" leftIcon={<Plus className="w-4 h-4" />}>
+          <Button onClick={handleAddNew} variant="success" size="sm" disabled={saving} leftIcon={<Plus className="w-4 h-4" />}>
             Add New Address
           </Button>
         </div>
       </div>
 
-      {/* Addresses List */}
+      {/* Addresses Grid */}
       {addresses.length > 0 ? (
-        <div className={`grid gap-4 ${editingIndex !== null
-          ? 'grid-cols-1'
-          : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-          }`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {addresses.map((address, index) => (
-            <Card
+            <div
               key={index}
-              className={`relative hover:shadow-lg transition-all border-2 ${editingIndex === index
-                ? 'border-primary-400 bg-primary-50/50 shadow-md md:col-span-2 lg:col-span-3'
-                : address.isPrimary
-                  ? 'border-primary-500 bg-primary-50/30'
-                  : 'border-gray-200 hover:border-primary-300'
+              className={`relative rounded-xl transition-all duration-150 flex flex-col justify-between ${address.isPrimary
+                  ? 'border-2 border-[#127EAB] bg-white shadow-xs'
+                  : 'border border-gray-200 bg-white hover:border-gray-300 shadow-xs'
                 }`}
             >
-              {editingIndex === index ? (
-                // Edit Form - Full width when editing
-                <Card.Content className="p-6">
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-primary-100 rounded-md flex items-center justify-center">
-                        <Edit className="w-5 h-5 text-primary-600" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900">Edit Address</h3>
-                        <p className="text-xs text-gray-500 mt-0.5">Update address details</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Button
-                        variant="success"
-                        size="sm"
-                        onClick={() => handleUpdateAddress(index)}
-                        leftIcon={<Save className="w-4 h-4" />}
+              <div className="p-5 flex flex-col justify-between h-full">
+                <div>
+                  {/* Header Row: Type Icon + Labels + Default Pill */}
+                  <div className="flex items-center justify-between gap-3 mb-3">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div
+                        className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${address.isPrimary
+                            ? 'bg-[#EAF5FA] text-[#127EAB]'
+                            : 'bg-gray-100 text-gray-500'
+                          }`}
                       >
-                        Save Changes
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="md:col-span-2">
-                        <Input
-                          label="Street Address"
-                          required
-                          value={address.street}
-                          onChange={(e) => handleAddressChange(index, 'street', e.target.value)}
-                          placeholder="Enter street address"
-                        />
+                        {getAddressIcon(address.addressType)}
                       </div>
-                      <Input
-                        label="City"
-                        required
-                        value={address.city}
-                        onChange={(e) => handleAddressChange(index, 'city', e.target.value)}
-                        placeholder="Enter city"
-                      />
-                      <Input
-                        label="State"
-                        required
-                        value={address.state}
-                        onChange={(e) => handleAddressChange(index, 'state', e.target.value)}
-                        placeholder="Enter state"
-                      />
-                      <Input
-                        label="ZIP / PIN Code"
-                        required
-                        maxLength={10}
-                        value={address.zipCode}
-                        onChange={(e) => {
-                          const val = e.target.value.replace(/[^\d-]/g, '').slice(0, 10);
-                          handleAddressChange(index, 'zipCode', val);
-                          if (editZipErrors[index] && isValidZipCode(val)) {
-                            setEditZipErrors(prev => ({ ...prev, [index]: '' }));
-                          }
-                        }}
-                        onBlur={() => {
-                          if (address.zipCode && !isValidZipCode(address.zipCode)) {
-                            setEditZipErrors(prev => ({ ...prev, [index]: 'Enter a valid 5-digit ZIP or 6-digit PIN' }));
-                          } else {
-                            setEditZipErrors(prev => ({ ...prev, [index]: '' }));
-                          }
-                        }}
-                        error={editZipErrors[index]}
-                        placeholder="e.g. 12345 or 500081"
-                      />
-                      <Input
-                        label="Country"
-                        value={address.country}
-                        onChange={(e) => handleAddressChange(index, 'country', e.target.value)}
-                        placeholder="Enter country"
-                      />
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Address Type
-                        </label>
-                        <select
-                          value={address.addressType}
-                          onChange={(e) => handleAddressChange(index, 'addressType', e.target.value)}
-                          className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white transition-colors"
-                        >
-                          <option value="current">Current Address</option>
-                          <option value="previous">Previous Address</option>
-                          <option value="mailing">Mailing Address</option>
-                          <option value="business">Business Address</option>
-                          <option value="other">Other</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center pt-4 border-t border-gray-200">
-                      <label className="flex items-center gap-3 cursor-pointer group">
-                        <input
-                          type="checkbox"
-                          checked={address.isPrimary}
-                          onChange={(e) => handleAddressChange(index, 'isPrimary', e.target.checked)}
-                          className="w-5 h-5 text-primary-600 border-gray-300 rounded focus:ring-[#127EAB] focus:ring-2 transition-colors cursor-pointer"
-                        />
-                        <div>
-                          <span className="text-sm font-medium text-gray-900 block">Set as Default Address</span>
-                          <span className="text-xs text-gray-500">This will be your primary delivery address</span>
-                        </div>
-                      </label>
-                    </div>
-                  </div>
-                </Card.Content>
-              ) : (
-                // Display View - Flipkart Style
-                <Card.Content className="p-5">
-                  {/* Default Badge */}
-                  {address.isPrimary && (
-                    <div className="absolute top-3 right-3">
-                      <Badge color="green" size="sm" className="bg-green-600 text-white">
-                        DEFAULT
-                      </Badge>
-                    </div>
-                  )}
-
-                  <div className="space-y-3">
-                    {/* Address Type */}
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4 text-primary-600" />
-                      <span className="text-xs font-semibold text-primary-600 uppercase tracking-wide">
+                      <h4 className="text-sm font-semibold text-gray-900 truncate">
                         {getAddressTypeLabel(address.addressType)}
+                      </h4>
+                    </div>
+
+                    {address.isPrimary && (
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
+                        <Check className="w-3 h-3 text-emerald-600" />
+                        Default
                       </span>
-                    </div>
-
-                    {/* Address Details */}
-                    <div className="space-y-1">
-                      <p className="font-semibold text-gray-900 text-base leading-tight">
-                        {address.street || 'No street address'}
-                      </p>
-                      <p className="text-sm text-gray-600">
-                        {address.city || 'N/A'}, {address.state || 'N/A'} {address.zipCode || ''}
-                      </p>
-                      {address.country && address.country !== 'USA' && (
-                        <p className="text-sm text-gray-500">{address.country}</p>
-                      )}
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-gray-200">
-                      {!address.isPrimary && (
-                        <button
-                          onClick={() => handleSetAsDefault(index)}
-                          className="px-3 py-1.5 text-xs font-medium text-primary-600 hover:text-primary-700 hover:bg-primary-50 rounded border border-primary-300 transition-colors"
-                        >
-                          Set as Default
-                        </button>
-                      )}
-                      <button
-                        onClick={() => handleEdit(index)}
-                        className="px-3 py-1.5 text-xs font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded border border-gray-300 transition-colors flex items-center gap-1"
-                      >
-                        <Edit className="w-3 h-3" />
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDelete(index)}
-                        className="px-3 py-1.5 text-xs font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded border border-red-300 transition-colors flex items-center gap-1"
-                      >
-                        <Trash2 className="w-3 h-3" />
-                        Delete
-                      </button>
-                    </div>
+                    )}
                   </div>
-                </Card.Content>
-              )}
-            </Card>
+
+                  {/* Address Details */}
+                  <div className="text-sm text-gray-600 space-y-1 mb-4 pl-0.5">
+                    <p className="font-medium text-gray-900 leading-snug break-words">
+                      {address.street || 'No street address provided'}
+                    </p>
+                    <p className="leading-relaxed text-gray-600">
+                      {address.city || 'N/A'}, {address.state || 'N/A'} {address.zipCode || ''}
+                    </p>
+                    {address.country && address.country !== 'USA' && (
+                      <p className="text-xs text-gray-500 flex items-center gap-1 pt-0.5">
+                        <Globe className="w-3.5 h-3.5 text-gray-400" />
+                        <span>{address.country}</span>
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Action Buttons Footer */}
+                <div className="flex items-center justify-between gap-2 pt-3 border-t border-gray-100">
+                  <div>
+                    {!address.isPrimary && (
+                      <button
+                        type="button"
+                        disabled={saving}
+                        onClick={() => handleSetAsDefault(index)}
+                        className="text-xs font-medium text-[#127EAB] hover:text-[#0E6083] hover:underline transition-colors cursor-pointer disabled:opacity-50"
+                      >
+                        Set as default
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-1 ml-auto">
+                    <button
+                      type="button"
+                      disabled={saving}
+                      onClick={() => handleEdit(index)}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors cursor-pointer disabled:opacity-50"
+                      title="Edit address"
+                    >
+                      <Edit className="w-3.5 h-3.5" />
+                      <span>Edit</span>
+                    </button>
+                    <button
+                      type="button"
+                      disabled={saving}
+                      onClick={() => handleDelete(index)}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-md transition-colors cursor-pointer disabled:opacity-50"
+                      title="Delete address"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                      <span>Delete</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
-      ) : !showAddForm ? (
-        <Card>
-          <Card.Content className="p-8 text-center">
-            <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-            <p className="text-gray-500">No addresses added yet. Click "Add New Address" to get started.</p>
-          </Card.Content>
-        </Card>
-      ) : null}
+      ) : (
+        <div className="rounded-xl border border-dashed border-gray-200 bg-gray-50/50 p-8 text-center">
+          <div className="w-12 h-12 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center mx-auto mb-3">
+            <MapPin className="w-6 h-6" />
+          </div>
+          <h3 className="text-sm font-semibold text-gray-900 mb-1">No Addresses Saved Yet</h3>
+          <p className="text-xs text-gray-500 max-w-sm mx-auto mb-4 font-normal">
+            Add your primary residential or mailing address to ensure accurate tax filing.
+          </p>
+          <Button onClick={handleAddNew} variant="success" size="sm" leftIcon={<Plus className="w-4 h-4" />}>
+            Add Address Now
+          </Button>
+        </div>
+      )}
 
-      {/* Add New Address Form */}
-      {showAddForm && (
-        <Card className="border-2 border-[#127EAB]/25 bg-[#F8FBFD]">
-          <Card.Content className="p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-[#1F4264]">Add New Address</h3>
-              <Button variant="secondary" size="sm" onClick={handleCancelEdit}>
-                Cancel
-              </Button>
+      {/* Add New Address Modal */}
+      <Modal
+        isOpen={showAddForm}
+        onClose={handleCancelEdit}
+        title="Add New Address"
+        description="Enter your address details for tax filing and IRS correspondence"
+        icon={<MapPin className="w-5 h-5 text-[#127EAB]" />}
+        size="lg"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="md:col-span-2">
+            <Input
+              label="Street Address"
+              required
+              value={newAddress.street}
+              onChange={(e) => handleNewAddressChange('street', e.target.value)}
+              placeholder="Enter street address"
+            />
+          </div>
+          <Input
+            label="City"
+            required
+            value={newAddress.city}
+            onChange={(e) => handleNewAddressChange('city', e.target.value)}
+            placeholder="Enter city"
+          />
+          <Input
+            label="State"
+            required
+            value={newAddress.state}
+            onChange={(e) => handleNewAddressChange('state', e.target.value)}
+            placeholder="Enter state"
+          />
+          <Input
+            label="ZIP / PIN Code"
+            required
+            maxLength={10}
+            value={newAddress.zipCode}
+            onChange={(e) => {
+              const val = e.target.value.replace(/[^\d-]/g, '').slice(0, 10);
+              handleNewAddressChange('zipCode', val);
+              if (zipError && isValidZipCode(val)) {
+                setZipError('');
+              }
+            }}
+            onBlur={() => {
+              if (newAddress.zipCode && !isValidZipCode(newAddress.zipCode)) {
+                setZipError('Enter a valid 5-digit ZIP or 6-digit PIN');
+              } else {
+                setZipError('');
+              }
+            }}
+            error={zipError}
+            placeholder="e.g. 12345 or 500081"
+          />
+          <Input
+            label="Country"
+            value={newAddress.country}
+            onChange={(e) => handleNewAddressChange('country', e.target.value)}
+            placeholder="Enter country"
+          />
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Address Type
+            </label>
+            <select
+              value={newAddress.addressType}
+              onChange={(e) => handleNewAddressChange('addressType', e.target.value)}
+              className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white"
+            >
+              <option value="current">Current Address</option>
+              <option value="previous">Previous Address</option>
+              <option value="mailing">Mailing Address</option>
+              <option value="business">Business Address</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div className="flex items-center pt-2 md:col-span-2">
+            <label className="flex items-center gap-2.5 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={newAddress.isPrimary || addresses.length === 0}
+                onChange={(e) => handleNewAddressChange('isPrimary', e.target.checked)}
+                disabled={addresses.length === 0}
+                className="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-[#127EAB] disabled:opacity-50 cursor-pointer"
+              />
+              <span className="text-sm font-semibold text-gray-700">
+                Set as Default Address {addresses.length === 0 && '(First address is default)'}
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCancelEdit} disabled={saving}>
+            Cancel
+          </Button>
+          <Button onClick={handleSaveNew} disabled={saving} leftIcon={<Plus className="w-4 h-4" />}>
+            {saving ? 'Adding...' : 'Add Address'}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Edit Address Modal */}
+      {editingIndex !== null && addresses[editingIndex] && (
+        <Modal
+          isOpen={true}
+          onClose={handleCancelEdit}
+          title="Edit Address"
+          description="Update your address details below"
+          icon={<Edit className="w-5 h-5 text-[#127EAB]" />}
+          size="lg"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="md:col-span-2">
+              <Input
+                label="Street Address"
+                required
+                value={addresses[editingIndex].street}
+                onChange={(e) => handleAddressChange(editingIndex, 'street', e.target.value)}
+                placeholder="Enter street address"
+              />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="md:col-span-2">
-                <Input
-                  label="Street Address"
-                  required
-                  value={newAddress.street}
-                  onChange={(e) => handleNewAddressChange('street', e.target.value)}
-                  placeholder="Enter street address"
+            <Input
+              label="City"
+              required
+              value={addresses[editingIndex].city}
+              onChange={(e) => handleAddressChange(editingIndex, 'city', e.target.value)}
+              placeholder="Enter city"
+            />
+            <Input
+              label="State"
+              required
+              value={addresses[editingIndex].state}
+              onChange={(e) => handleAddressChange(editingIndex, 'state', e.target.value)}
+              placeholder="Enter state"
+            />
+            <Input
+              label="ZIP / PIN Code"
+              required
+              maxLength={10}
+              value={addresses[editingIndex].zipCode}
+              onChange={(e) => {
+                const val = e.target.value.replace(/[^\d-]/g, '').slice(0, 10);
+                handleAddressChange(editingIndex, 'zipCode', val);
+                if (editZipErrors[editingIndex] && isValidZipCode(val)) {
+                  setEditZipErrors(prev => ({ ...prev, [editingIndex]: '' }));
+                }
+              }}
+              onBlur={() => {
+                if (addresses[editingIndex].zipCode && !isValidZipCode(addresses[editingIndex].zipCode)) {
+                  setEditZipErrors(prev => ({ ...prev, [editingIndex]: 'Enter a valid 5-digit ZIP or 6-digit PIN' }));
+                } else {
+                  setEditZipErrors(prev => ({ ...prev, [editingIndex]: '' }));
+                }
+              }}
+              error={editZipErrors[editingIndex]}
+              placeholder="e.g. 12345 or 500081"
+            />
+            <Input
+              label="Country"
+              value={addresses[editingIndex].country}
+              onChange={(e) => handleAddressChange(editingIndex, 'country', e.target.value)}
+              placeholder="Enter country"
+            />
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Address Type
+              </label>
+              <select
+                value={addresses[editingIndex].addressType}
+                onChange={(e) => handleAddressChange(editingIndex, 'addressType', e.target.value)}
+                className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white transition-colors"
+              >
+                <option value="current">Current Address</option>
+                <option value="previous">Previous Address</option>
+                <option value="mailing">Mailing Address</option>
+                <option value="business">Business Address</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div className="flex items-center pt-2 md:col-span-2">
+              <label className="flex items-center gap-2.5 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={addresses[editingIndex].isPrimary}
+                  onChange={(e) => handleAddressChange(editingIndex, 'isPrimary', e.target.checked)}
+                  className="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-[#127EAB] focus:ring-2 transition-colors cursor-pointer"
                 />
-              </div>
-              <Input
-                label="City"
-                required
-                value={newAddress.city}
-                onChange={(e) => handleNewAddressChange('city', e.target.value)}
-                placeholder="Enter city"
-              />
-              <Input
-                label="State"
-                required
-                value={newAddress.state}
-                onChange={(e) => handleNewAddressChange('state', e.target.value)}
-                placeholder="Enter state"
-              />
-              <Input
-                label="ZIP / PIN Code"
-                required
-                maxLength={10}
-                value={newAddress.zipCode}
-                onChange={(e) => {
-                  const val = e.target.value.replace(/[^\d-]/g, '').slice(0, 10);
-                  handleNewAddressChange('zipCode', val);
-                  if (zipError && isValidZipCode(val)) {
-                    setZipError('');
-                  }
-                }}
-                onBlur={() => {
-                  if (newAddress.zipCode && !isValidZipCode(newAddress.zipCode)) {
-                    setZipError('Enter a valid 5-digit ZIP or 6-digit PIN');
-                  } else {
-                    setZipError('');
-                  }
-                }}
-                error={zipError}
-                placeholder="e.g. 12345 or 500081"
-              />
-              <Input
-                label="Country"
-                value={newAddress.country}
-                onChange={(e) => handleNewAddressChange('country', e.target.value)}
-                placeholder="Enter country"
-              />
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Address Type
-                </label>
-                <select
-                  value={newAddress.addressType}
-                  onChange={(e) => handleNewAddressChange('addressType', e.target.value)}
-                  className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white"
-                >
-                  <option value="current">Current Address</option>
-                  <option value="previous">Previous Address</option>
-                  <option value="mailing">Mailing Address</option>
-                  <option value="business">Business Address</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div className="flex items-center pt-6">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={newAddress.isPrimary || addresses.length === 0}
-                    onChange={(e) => handleNewAddressChange('isPrimary', e.target.checked)}
-                    disabled={addresses.length === 0}
-                    className="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-[#127EAB] disabled:opacity-50"
-                  />
-                  <span className="text-sm font-medium text-gray-700">
-                    Set as Default Address {addresses.length === 0 && '(First address will be default)'}
-                  </span>
-                </label>
-              </div>
+                <span className="text-sm font-semibold text-gray-700">
+                  Set as Default Address
+                </span>
+              </label>
             </div>
-            <div className="flex items-center justify-end gap-3 mt-6 pt-6 border-t border-[#E6F0F5]">
-              <Button variant="secondary" onClick={handleCancelEdit}>
-                Cancel
-              </Button>
-              <Button onClick={handleSaveNew} leftIcon={<Plus className="w-4 h-4" />}>
-                Add Address
-              </Button>
-            </div>
-          </Card.Content>
-        </Card>
+          </div>
+
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCancelEdit} disabled={saving}>
+              Cancel
+            </Button>
+            <Button
+              variant="success"
+              onClick={() => handleUpdateAddress(editingIndex)}
+              leftIcon={<Save className="w-4 h-4" />}
+              disabled={saving}
+            >
+              {saving ? 'Saving...' : 'Save Changes'}
+            </Button>
+          </Modal.Footer>
+        </Modal>
       )}
 
       {/* Save All Button */}
@@ -1962,32 +2003,151 @@ const ContactInformationForm = ({ userData, setUserData, saving, setSaving, onSa
     alternateEmail: '',
     alternatePhone: '',
   });
+  const [errors, setErrors] = useState({});
   const { showSuccess, showError } = useToast();
+
+  const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
+  // Format phone number and strictly prevent invalid characters or entering beyond maximum digits
+  const formatPhoneInput = (val) => {
+    if (!val) return '';
+    const trimmed = val.trimStart();
+    const hasPlus = trimmed.startsWith('+');
+    // Extract only digits and strictly limit to 15 digits (E.164 max limit)
+    const digits = val.replace(/\D/g, '').slice(0, 15);
+
+    if (!digits) {
+      return hasPlus ? '+' : '';
+    }
+
+    if (hasPlus) {
+      if (digits.startsWith('1')) {
+        const us = digits.slice(1, 11); // max 10 US digits
+        if (us.length === 0) return '+1 ';
+        if (us.length <= 3) return `+1 (${us}`;
+        if (us.length <= 6) return `+1 (${us.slice(0, 3)}) ${us.slice(3)}`;
+        return `+1 (${us.slice(0, 3)}) ${us.slice(3, 6)}-${us.slice(6)}`;
+      }
+      if (digits.length <= 3) return `+${digits}`;
+      if (digits.length <= 7) return `+${digits.slice(0, 2)} ${digits.slice(2)}`;
+      if (digits.length <= 12) return `+${digits.slice(0, 2)} ${digits.slice(2, 7)} ${digits.slice(7)}`;
+      return `+${digits.slice(0, 3)} ${digits.slice(3, 7)} ${digits.slice(7)}`;
+    }
+
+    if (digits.length <= 10) {
+      if (digits.length <= 3) return digits;
+      if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+      return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+    }
+
+    if (digits.length === 11 && digits.startsWith('1')) {
+      const us = digits.slice(1);
+      return `+1 (${us.slice(0, 3)}) ${us.slice(3, 6)}-${us.slice(6)}`;
+    }
+
+    return digits;
+  };
 
   useEffect(() => {
     if (userData) {
       setFormData({
         email: userData.email || '',
-        mobileNumber: userData.mobileNumber || '',
+        mobileNumber: formatPhoneInput(userData.mobileNumber || ''),
         alternateEmail: userData.alternateEmail || '',
-        alternatePhone: userData.alternatePhone || '',
+        alternatePhone: formatPhoneInput(userData.alternatePhone || ''),
       });
     }
   }, [userData]);
 
+  const validateField = (field, value, currentFormData = formData) => {
+    const trimmed = (value || '').trim();
+
+    if (field === 'mobileNumber') {
+      if (!trimmed) {
+        return 'Phone Number is required';
+      }
+      const digits = trimmed.replace(/\D/g, '');
+      if (digits.length < 10) {
+        return 'Please enter a valid phone number (at least 10 digits)';
+      }
+      return '';
+    }
+
+    if (field === 'alternateEmail') {
+      if (!trimmed) return '';
+      if (!EMAIL_REGEX.test(trimmed)) {
+        return 'Please enter a valid email address';
+      }
+      if (currentFormData.email && trimmed.toLowerCase() === currentFormData.email.trim().toLowerCase()) {
+        return 'Alternate email cannot be the same as primary email';
+      }
+      return '';
+    }
+
+    if (field === 'alternatePhone') {
+      if (!trimmed) return '';
+      const digits = trimmed.replace(/\D/g, '');
+      if (digits.length < 10) {
+        return 'Please enter a valid phone number (at least 10 digits)';
+      }
+      const primaryDigits = (currentFormData.mobileNumber || '').replace(/\D/g, '');
+      if (primaryDigits && digits === primaryDigits) {
+        return 'Alternate phone cannot be the same as primary phone';
+      }
+      return '';
+    }
+
+    return '';
+  };
+
+  const validateAll = () => {
+    const newErrors = {};
+
+    const mobileErr = validateField('mobileNumber', formData.mobileNumber);
+    if (mobileErr) newErrors.mobileNumber = mobileErr;
+
+    const altEmailErr = validateField('alternateEmail', formData.alternateEmail);
+    if (altEmailErr) newErrors.alternateEmail = altEmailErr;
+
+    const altPhoneErr = validateField('alternatePhone', formData.alternatePhone);
+    if (altPhoneErr) newErrors.alternatePhone = altPhoneErr;
+
+    setErrors(newErrors);
+    return newErrors;
+  };
+
+  const handleFieldChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: '' }));
+    }
+  };
+
+  const handlePhoneChange = (field, rawValue) => {
+    // Strictly format and limit digits - wrong characters are filtered automatically
+    const formatted = formatPhoneInput(rawValue);
+    handleFieldChange(field, formatted);
+  };
+
+  const handleBlur = (field) => {
+    const errorMsg = validateField(field, formData[field]);
+    setErrors((prev) => ({ ...prev, [field]: errorMsg }));
+  };
+
   const handleSave = async () => {
-    // Validate required fields
-    if (!formData.mobileNumber || !formData.mobileNumber.trim()) {
-      showError('Phone Number is required');
+    const validationErrors = validateAll();
+    if (Object.keys(validationErrors).length > 0) {
+      const firstError = Object.values(validationErrors)[0];
+      showError(firstError);
       return;
     }
 
     try {
       setSaving(true);
       const updateData = {
-        mobileNumber: formData.mobileNumber,
-        alternateEmail: formData.alternateEmail,
-        alternatePhone: formData.alternatePhone,
+        mobileNumber: formData.mobileNumber.trim(),
+        alternateEmail: formData.alternateEmail.trim(),
+        alternatePhone: formData.alternatePhone.trim(),
       };
 
       const res = await userService.updateProfile(updateData);
@@ -2030,28 +2190,40 @@ const ContactInformationForm = ({ userData, setUserData, saving, setSaving, onSa
           value={formData.email}
           disabled
           className="bg-gray-50"
+          helperText="Primary email linked to your account"
         />
         <Input
           label="Phone Number"
           type="tel"
           required
+          maxLength={18}
           value={formData.mobileNumber}
-          onChange={(e) => setFormData({ ...formData, mobileNumber: e.target.value })}
+          onChange={(e) => handlePhoneChange('mobileNumber', e.target.value)}
+          onBlur={() => handleBlur('mobileNumber')}
+          error={errors.mobileNumber}
           placeholder="+1 (415) 223-1315"
+          helperText="Format: (415) 223-1315 or +1 (415) 223-1315"
         />
         <Input
           label="Alternate Email"
           type="email"
           value={formData.alternateEmail}
-          onChange={(e) => setFormData({ ...formData, alternateEmail: e.target.value })}
+          onChange={(e) => handleFieldChange('alternateEmail', e.target.value)}
+          onBlur={() => handleBlur('alternateEmail')}
+          error={errors.alternateEmail}
           placeholder="alternate.email@example.com"
+          helperText="Optional backup email for tax updates"
         />
         <Input
           label="Alternate Phone"
           type="tel"
+          maxLength={18}
           value={formData.alternatePhone}
-          onChange={(e) => setFormData({ ...formData, alternatePhone: e.target.value })}
+          onChange={(e) => handlePhoneChange('alternatePhone', e.target.value)}
+          onBlur={() => handleBlur('alternatePhone')}
+          error={errors.alternatePhone}
           placeholder="+1 (415) 223-1315"
+          helperText="Optional secondary contact number"
         />
       </div>
 
@@ -2071,7 +2243,11 @@ const IdentityVerificationForm = ({ userData, setUserData, saving, setSaving, on
     stateOfIssue: '',
     expirationDate: '',
     licenseDocument: null,
+    existingDocument: '',
   });
+  const [errors, setErrors] = useState({});
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef(null);
   const { showSuccess, showError } = useToast();
 
   useEffect(() => {
@@ -2081,56 +2257,146 @@ const IdentityVerificationForm = ({ userData, setUserData, saving, setSaving, on
         stateOfIssue: userData.identityVerification?.stateOfIssue || '',
         expirationDate: userData.identityVerification?.expirationDate ? new Date(userData.identityVerification.expirationDate).toISOString().split('T')[0] : '',
         licenseDocument: null,
+        existingDocument: userData.identityVerification?.licenseDocument || '',
       });
     }
   }, [userData]);
 
+  const validateField = (field, value) => {
+    if (field === 'licenseDocument') {
+      if (!formData.licenseDocument && !formData.existingDocument) {
+        return "Driver's License document is required";
+      }
+      return '';
+    }
+
+    const trimmed = typeof value === 'string' ? value.trim() : (value ? String(value).trim() : '');
+
+    if (field === 'licenseNumber') {
+      if (!trimmed) return "Driver's License Number is required";
+      if (trimmed.length < 4) return "License Number must be at least 4 characters";
+      return '';
+    }
+
+    if (field === 'stateOfIssue') {
+      if (!trimmed) return 'State of Issue is required';
+      if (trimmed.length < 2) return 'Please enter a valid state (e.g. CA, NY)';
+      return '';
+    }
+
+    if (field === 'expirationDate') {
+      if (!trimmed) return 'Expiration Date is required';
+      return '';
+    }
+
+    return '';
+  };
+
+  const validateAll = () => {
+    const newErrors = {};
+    const licErr = validateField('licenseNumber', formData.licenseNumber);
+    if (licErr) newErrors.licenseNumber = licErr;
+
+    const stateErr = validateField('stateOfIssue', formData.stateOfIssue);
+    if (stateErr) newErrors.stateOfIssue = stateErr;
+
+    const expErr = validateField('expirationDate', formData.expirationDate);
+    if (expErr) newErrors.expirationDate = expErr;
+
+    const docErr = validateField('licenseDocument', formData.licenseDocument);
+    if (docErr) newErrors.licenseDocument = docErr;
+
+    setErrors(newErrors);
+    return newErrors;
+  };
+
+  const handleFieldChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: '' }));
+    }
+  };
+
+  const handleBlur = (field) => {
+    const errorMsg = validateField(field, formData[field]);
+    setErrors((prev) => ({ ...prev, [field]: errorMsg }));
+  };
+
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files?.[0];
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
         showError('File size must be less than 5MB');
         return;
       }
-      setFormData({ ...formData, licenseDocument: file });
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'];
+      if (!allowedTypes.includes(file.type) && !file.name.match(/\.(jpg|jpeg|png|webp|pdf)$/i)) {
+        showError('Please select a valid image (PNG, JPG, WEBP) or PDF file');
+        return;
+      }
+      setFormData((prev) => ({ ...prev, licenseDocument: file }));
+      if (errors.licenseDocument) {
+        setErrors((prev) => ({ ...prev, licenseDocument: '' }));
+      }
     }
   };
 
   const handleSave = async () => {
-    // Validate required fields
-    if (!formData.licenseNumber || !formData.licenseNumber.trim()) {
-      showError('Driver\'s License Number is required');
-      return;
-    }
-    if (!formData.stateOfIssue || !formData.stateOfIssue.trim()) {
-      showError('State of Issue is required');
-      return;
-    }
-    if (!formData.expirationDate) {
-      showError('Expiration Date is required');
+    const validationErrors = validateAll();
+    if (Object.keys(validationErrors).length > 0) {
+      const firstError = Object.values(validationErrors)[0];
+      showError(firstError);
       return;
     }
 
     try {
       setSaving(true);
+      setUploading(true);
+
+      let uploadedDocPath = formData.existingDocument || '';
+
+      // Upload file to document service if a new file was chosen
+      if (formData.licenseDocument) {
+        try {
+          const uploadRes = await documentService.uploadDocument({
+            documentType: 'DRIVER_LICENSE',
+            file: formData.licenseDocument,
+          });
+
+          if (uploadRes && uploadRes.success) {
+            uploadedDocPath = uploadRes.data?.filePath || uploadRes.data?.url || uploadedDocPath;
+          } else {
+            throw new Error(uploadRes?.message || 'Failed to upload document');
+          }
+        } catch (uploadErr) {
+          console.error('Failed to upload driver license document:', uploadErr);
+          showError('Failed to upload driver license document. Please try again.');
+          setSaving(false);
+          setUploading(false);
+          return;
+        }
+      }
+
+      // Update user profile with text info and uploaded document path
       const updateData = {
         identityVerification: {
-          licenseNumber: formData.licenseNumber,
-          stateOfIssue: formData.stateOfIssue,
+          licenseNumber: formData.licenseNumber.trim(),
+          stateOfIssue: formData.stateOfIssue.trim(),
           expirationDate: formData.expirationDate ? new Date(formData.expirationDate) : undefined,
-          // Note: File upload would need to be handled separately via document upload API
-          // For now, we save the text fields
+          licenseDocument: uploadedDocPath || undefined,
         },
       };
 
       const res = await userService.updateProfile(updateData);
       if (res.success) {
-        showSuccess('Identity verification information saved successfully!');
+        showSuccess('Identity verification saved successfully!');
         setUserData(res.data);
-        // TODO: Handle file upload separately if needed
-        if (formData.licenseDocument) {
-          showSuccess('License information saved. Please upload the document separately.');
-        }
+        setFormData((prev) => ({
+          ...prev,
+          existingDocument: res.data?.identityVerification?.licenseDocument || uploadedDocPath,
+          licenseDocument: null,
+        }));
+        if (fileInputRef.current) fileInputRef.current.value = '';
         if (onSaveSuccess) onSaveSuccess(res.data);
       } else {
         showError(res.message || 'Failed to save identity verification.');
@@ -2140,6 +2406,7 @@ const IdentityVerificationForm = ({ userData, setUserData, saving, setSaving, on
       showError('Failed to save identity verification. Please try again.');
     } finally {
       setSaving(false);
+      setUploading(false);
     }
   };
 
@@ -2164,51 +2431,149 @@ const IdentityVerificationForm = ({ userData, setUserData, saving, setSaving, on
           label="Driver's License Number"
           required
           value={formData.licenseNumber}
-          onChange={(e) => setFormData({ ...formData, licenseNumber: e.target.value })}
+          onChange={(e) => handleFieldChange('licenseNumber', e.target.value.toUpperCase())}
+          onBlur={() => handleBlur('licenseNumber')}
+          error={errors.licenseNumber}
           placeholder="Enter license number"
+          helperText="Alphanumeric driver's license or state ID number"
         />
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
             label="State of Issue"
             required
             value={formData.stateOfIssue}
-            onChange={(e) => setFormData({ ...formData, stateOfIssue: e.target.value })}
-            placeholder="Enter state"
+            onChange={(e) => handleFieldChange('stateOfIssue', e.target.value.toUpperCase())}
+            onBlur={() => handleBlur('stateOfIssue')}
+            error={errors.stateOfIssue}
+            placeholder="e.g., CA, TX, NY"
+            helperText="2-letter state code or issuing state"
           />
           <Input
             label="Expiration Date"
             type="date"
             required
             value={formData.expirationDate}
-            onChange={(e) => setFormData({ ...formData, expirationDate: e.target.value })}
+            onChange={(e) => handleFieldChange('expirationDate', e.target.value)}
+            onBlur={() => handleBlur('expirationDate')}
+            error={errors.expirationDate}
           />
         </div>
-        <div className="p-6 bg-gray-50 rounded-md border-2 border-dashed border-gray-300">
-          <label className="block text-sm font-medium text-gray-700 mb-3">
-            Upload Driver's License <span className="text-red-500">*</span>
+
+        {/* Upload Driver's License Document */}
+        <div className="space-y-2">
+          <label className="block text-sm font-medium text-[#1F4264]">
+            Upload Driver's License <span className="text-[#EE6450]">*</span>
           </label>
-          <div className="flex items-center gap-4">
-            <input
-              type="file"
-              accept="image/*,.pdf"
-              onChange={handleFileChange}
-              className="flex-1 text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary-600 file:text-white hover:file:bg-primary-700 file:cursor-pointer file:transition-colors"
-            />
-          </div>
-          {formData.licenseDocument && (
-            <p className="mt-2 text-xs text-green-600 font-medium">
-              Selected: {formData.licenseDocument.name}
-            </p>
+
+          {/* Currently Uploaded Document Banner */}
+          {formData.existingDocument && !formData.licenseDocument && (
+            <div className="p-4 bg-emerald-50/70 border border-emerald-200/80 rounded-lg flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-9 h-9 rounded-md bg-emerald-100 flex items-center justify-center shrink-0 text-emerald-700">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-emerald-900 truncate">
+                    Driver's License Attached
+                  </p>
+                  <p className="text-xs text-emerald-700">
+                    Document is securely uploaded and linked to your profile
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <a
+                  href={getDocumentUrl(formData.existingDocument)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-emerald-700 hover:text-emerald-800 bg-white border border-emerald-300 rounded-md shadow-2xs hover:bg-emerald-50 transition-colors"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  View
+                </a>
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#127EAB] hover:text-[#0E668B] bg-white border border-[#127EAB]/30 rounded-md shadow-2xs hover:bg-[#EAF5FA] transition-colors cursor-pointer"
+                >
+                  <Upload className="w-3.5 h-3.5" />
+                  Replace
+                </button>
+              </div>
+            </div>
           )}
-          <p className="mt-3 text-xs text-gray-500">
-            Upload a clear image or PDF of your driver's license (Max 5MB)
-          </p>
+
+          {/* Newly Selected File Banner */}
+          {formData.licenseDocument && (
+            <div className="p-4 bg-[#EAF5FA] border border-[#127EAB]/30 rounded-lg flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-9 h-9 rounded-md bg-[#127EAB] flex items-center justify-center shrink-0 text-white">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-[#1F4264] truncate">
+                    {formData.licenseDocument.name}
+                  </p>
+                  <p className="text-xs text-[#5A6E82]">
+                    {(formData.licenseDocument.size / (1024 * 1024)).toFixed(2)} MB • Ready to upload on save
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setFormData((prev) => ({ ...prev, licenseDocument: null }));
+                  if (fileInputRef.current) fileInputRef.current.value = '';
+                }}
+                className="p-1.5 text-slate-400 hover:text-rose-600 rounded-md hover:bg-white transition-colors cursor-pointer"
+                title="Remove file"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          )}
+
+          {/* Dropzone / Upload Box */}
+          {(!formData.existingDocument || formData.licenseDocument) && !formData.licenseDocument && (
+            <div
+              onClick={() => fileInputRef.current?.click()}
+              className={`p-6 bg-slate-50/80 hover:bg-slate-50 rounded-lg border-2 border-dashed transition-all cursor-pointer flex flex-col items-center justify-center text-center ${
+                errors.licenseDocument
+                  ? 'border-rose-300 bg-rose-50/20'
+                  : 'border-slate-300 hover:border-[#127EAB]'
+              }`}
+            >
+              <div className="w-10 h-10 rounded-full bg-[#EAF5FA] text-[#127EAB] flex items-center justify-center mb-2.5">
+                <Upload className="w-5 h-5" />
+              </div>
+              <p className="text-sm font-medium text-[#1F4264]">
+                Click to browse or drag & drop driver's license
+              </p>
+              <p className="text-xs text-[#6F7F8E] mt-1">
+                PNG, JPG, WEBP, or PDF up to 5MB
+              </p>
+            </div>
+          )}
+
+          {/* Hidden file input */}
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*,.pdf"
+            onChange={handleFileChange}
+            className="hidden"
+          />
+
+          {errors.licenseDocument && (
+            <p className="mt-1 text-xs text-rose-600">{errors.licenseDocument}</p>
+          )}
         </div>
       </div>
 
       <div className="flex items-center justify-end gap-3 pt-6 border-t border-gray-200">
-        <Button onClick={handleSave} disabled={saving} leftIcon={<Save className="w-4 h-4" />}>
-          {saving ? 'Saving...' : 'Save & Continue'}
+        <Button onClick={handleSave} disabled={saving || uploading} leftIcon={<Save className="w-4 h-4" />}>
+          {saving || uploading ? 'Uploading & Saving...' : 'Save & Continue'}
         </Button>
       </div>
     </div>
@@ -2224,6 +2589,8 @@ const BankDetailsForm = ({ userData, setUserData, saving, setSaving, onSaveSucce
     routingNumber: '',
     accountHolderName: '',
   });
+  const [errors, setErrors] = useState({});
+  const [showAccountNumber, setShowAccountNumber] = useState(false);
   const { showSuccess, showError } = useToast();
 
   useEffect(() => {
@@ -2238,26 +2605,70 @@ const BankDetailsForm = ({ userData, setUserData, saving, setSaving, onSaveSucce
     }
   }, [userData]);
 
+  const validateField = (field, value) => {
+    const trimmed = (value || '').trim();
+
+    if (field === 'bankName') {
+      if (!trimmed) return 'Bank Name is required';
+      if (trimmed.length < 2) return 'Bank Name must be at least 2 characters';
+      return '';
+    }
+
+    if (field === 'accountType') {
+      if (!trimmed) return 'Please select an account type';
+      return '';
+    }
+
+    if (field === 'accountNumber') {
+      if (!trimmed) return 'Account Number is required';
+      const digits = trimmed.replace(/\D/g, '');
+      if (digits.length < 4) return 'Account number must be between 4 and 17 digits';
+      return '';
+    }
+
+    if (field === 'routingNumber') {
+      if (!trimmed) return 'Routing Number is required';
+      const digits = trimmed.replace(/\D/g, '');
+      if (digits.length !== 9) return 'Routing number must be exactly 9 digits';
+      return '';
+    }
+
+    if (field === 'accountHolderName') {
+      if (!trimmed) return 'Account Holder Name is required';
+      if (trimmed.length < 2) return 'Account Holder Name must be at least 2 characters';
+      return '';
+    }
+
+    return '';
+  };
+
+  const validateAll = () => {
+    const newErrors = {};
+    ['bankName', 'accountType', 'accountNumber', 'routingNumber', 'accountHolderName'].forEach((f) => {
+      const err = validateField(f, formData[f]);
+      if (err) newErrors[f] = err;
+    });
+    setErrors(newErrors);
+    return newErrors;
+  };
+
+  const handleFieldChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: '' }));
+    }
+  };
+
+  const handleBlur = (field) => {
+    const errorMsg = validateField(field, formData[field]);
+    setErrors((prev) => ({ ...prev, [field]: errorMsg }));
+  };
+
   const handleSave = async () => {
-    // Validate required fields
-    if (!formData.bankName || !formData.bankName.trim()) {
-      showError('Bank Name is required');
-      return;
-    }
-    if (!formData.accountType) {
-      showError('Account Type is required');
-      return;
-    }
-    if (!formData.accountNumber || !formData.accountNumber.trim()) {
-      showError('Account Number is required');
-      return;
-    }
-    if (!formData.routingNumber || !formData.routingNumber.trim()) {
-      showError('Routing Number is required');
-      return;
-    }
-    if (!formData.accountHolderName || !formData.accountHolderName.trim()) {
-      showError('Account Holder Name is required');
+    const validationErrors = validateAll();
+    if (Object.keys(validationErrors).length > 0) {
+      const firstError = Object.values(validationErrors)[0];
+      showError(firstError);
       return;
     }
 
@@ -2265,11 +2676,11 @@ const BankDetailsForm = ({ userData, setUserData, saving, setSaving, onSaveSucce
       setSaving(true);
       const updateData = {
         bankDetails: {
-          bankName: formData.bankName,
+          bankName: formData.bankName.trim(),
           accountType: formData.accountType,
-          accountNumber: formData.accountNumber,
-          routingNumber: formData.routingNumber,
-          accountHolderName: formData.accountHolderName,
+          accountNumber: formData.accountNumber.trim(),
+          routingNumber: formData.routingNumber.trim(),
+          accountHolderName: formData.accountHolderName.trim(),
         },
       };
 
@@ -2310,45 +2721,104 @@ const BankDetailsForm = ({ userData, setUserData, saving, setSaving, onSaveSucce
           label="Bank Name"
           required
           value={formData.bankName}
-          onChange={(e) => setFormData({ ...formData, bankName: e.target.value })}
-          placeholder="Enter bank name"
+          onChange={(e) => handleFieldChange('bankName', e.target.value)}
+          onBlur={() => handleBlur('bankName')}
+          error={errors.bankName}
+          placeholder="e.g., Chase, Bank of America"
+          helperText="Official bank or financial institution name"
         />
+
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Account Type <span className="text-red-500">*</span>
+          <label className="block text-sm font-medium text-[#1F4264] mb-1">
+            Account Type <span className="text-[#EE6450]">*</span>
           </label>
           <select
             value={formData.accountType}
-            onChange={(e) => setFormData({ ...formData, accountType: e.target.value })}
-            className="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB] focus:border-transparent bg-white"
+            onChange={(e) => handleFieldChange('accountType', e.target.value)}
+            onBlur={() => handleBlur('accountType')}
+            className={`w-full px-3.5 py-2.5 text-sm text-[#1F4264] border rounded-md focus:outline-none focus:ring-2 focus:ring-[#127EAB]/20 focus:border-[#127EAB] transition-all bg-white cursor-pointer ${
+              errors.accountType ? 'border-rose-300 focus:ring-rose-500/20 focus:border-rose-500' : 'border-[#CCDCE1]'
+            }`}
           >
             <option value="">Select account type</option>
             <option value="checking">Checking</option>
             <option value="savings">Savings</option>
           </select>
+          {errors.accountType ? (
+            <p className="mt-1 text-xs text-rose-600">{errors.accountType}</p>
+          ) : (
+            <p className="mt-1 text-xs text-[#6F7F8E]">Type of bank account for deposit</p>
+          )}
         </div>
-        <Input
-          label="Account Number"
-          type="password"
-          required
-          value={formData.accountNumber}
-          onChange={(e) => setFormData({ ...formData, accountNumber: e.target.value })}
-          placeholder="Enter account number"
-        />
+
+        <div>
+          <div className="flex items-center justify-between mb-1">
+            <label className="block text-sm font-medium text-[#1F4264]">
+              Account Number <span className="text-[#EE6450]">*</span>
+            </label>
+            <button
+              type="button"
+              onClick={() => setShowAccountNumber(!showAccountNumber)}
+              className="inline-flex items-center gap-1 text-xs font-medium text-[#127EAB] hover:text-[#0E668B] transition-colors cursor-pointer"
+            >
+              {showAccountNumber ? (
+                <>
+                  <EyeOff className="w-3.5 h-3.5" />
+                  <span>Hide</span>
+                </>
+              ) : (
+                <>
+                  <Eye className="w-3.5 h-3.5" />
+                  <span>Show</span>
+                </>
+              )}
+            </button>
+          </div>
+          <Input
+            type={showAccountNumber ? 'text' : 'password'}
+            required
+            maxLength={17}
+            value={formData.accountNumber}
+            onChange={(e) => {
+              const sanitized = e.target.value.replace(/\D/g, '').slice(0, 17);
+              handleFieldChange('accountNumber', sanitized);
+            }}
+            onBlur={() => handleBlur('accountNumber')}
+            error={errors.accountNumber}
+            placeholder="Enter account number"
+            helperText="4 to 17 digits numeric account number"
+          />
+        </div>
+
         <Input
           label="Routing Number"
+          type="text"
           required
+          maxLength={9}
           value={formData.routingNumber}
-          onChange={(e) => setFormData({ ...formData, routingNumber: e.target.value })}
-          placeholder="Enter routing number"
+          onChange={(e) => {
+            const sanitized = e.target.value.replace(/\D/g, '').slice(0, 9);
+            handleFieldChange('routingNumber', sanitized);
+          }}
+          onBlur={() => handleBlur('routingNumber')}
+          error={errors.routingNumber}
+          placeholder="9-digit routing number"
+          helperText="9-digit ABA routing transit number"
         />
+
         <div className="md:col-span-2">
           <Input
             label="Account Holder Name"
             required
             value={formData.accountHolderName}
-            onChange={(e) => setFormData({ ...formData, accountHolderName: e.target.value })}
+            onChange={(e) => {
+              const sanitized = e.target.value.replace(/[^a-zA-Z\s.'-]/g, '');
+              handleFieldChange('accountHolderName', sanitized);
+            }}
+            onBlur={() => handleBlur('accountHolderName')}
+            error={errors.accountHolderName}
             placeholder="Enter account holder name"
+            helperText="Name exactly as it appears on bank records"
           />
         </div>
       </div>
@@ -2370,7 +2840,6 @@ const BankDetailsForm = ({ userData, setUserData, saving, setSaving, onSaveSucce
           variant="secondary"
           disabled={saving}
           onClick={() => {
-            // Reset form to original userData
             if (userData) {
               setFormData({
                 bankName: userData.bankDetails?.bankName || '',
@@ -2380,6 +2849,7 @@ const BankDetailsForm = ({ userData, setUserData, saving, setSaving, onSaveSucce
                 accountHolderName: userData.bankDetails?.accountHolderName || '',
               });
             }
+            setErrors({});
           }}
         >
           <X className="w-4 h-4 mr-2" />

@@ -147,7 +147,128 @@
 }
 
 .animate-slide-in {
-  animation: slide-in 0.3s ease-out;
+  animation: slide-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   PREMIUM SAAS FLOATING TOASTER (Sonner / Apple Floating Capsule - Image 2)
+   ========================================================================== */
+
+.Toastify__toast-container {
+  width: auto;
+  max-width: 420px;
+  padding: 16px;
+  z-index: 999999 !important;
+}
+
+@media (max-width: 480px) {
+  .Toastify__toast-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    left: 0;
+    right: 0;
+    margin: 0;
+  }
+}
+
+.Toastify__toast {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 14px 16px 12px 14px !important;
+  min-height: auto !important;
+  margin-bottom: 12px !important;
+  border-radius: 20px !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.03), 0 0 0 1px rgba(0, 0, 0, 0.02) !important;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  cursor: default;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.Toastify__toast:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -6px rgba(15, 23, 42, 0.12), 0 8px 16px -2px rgba(15, 23, 42, 0.04) !important;
+}
+
+/* Delicate border glow */
+.Toastify__toast--success {
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.Toastify__toast--error {
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+.Toastify__toast--warning {
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+.Toastify__toast--info {
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Toast Body */
+.Toastify__toast-body {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  width: 100% !important;
+  flex: 1 1 auto;
+}
+
+/* Close Button matching Image 2 */
+.Toastify__close-button {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  width: 24px !important;
+  height: 24px !important;
+  border-radius: 9999px !important;
+  color: #94A3B8 !important;
+  opacity: 0.7 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer;
+  transition: all 0.15s ease !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  z-index: 10;
+}
+
+.Toastify__close-button:hover {
+  background: #F1F5F9 !important;
+  color: #334155 !important;
+  opacity: 1 !important;
+}
+
+.Toastify__close-button > svg {
+  width: 13px !important;
+  height: 13px !important;
+  fill: currentColor !important;
+}
+
+/* Progress bar hidden for native react-toastify since we render inset capsule */
+.Toastify__progress-bar {
+  display: none !important;
+}
+
+/* Inset Capsule Progress Bar Animation */
+@keyframes toastProgressBar {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
 }
 
 /* Infinite Brand Marquee Animation */

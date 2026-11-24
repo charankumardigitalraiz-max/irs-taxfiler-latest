@@ -16,6 +16,7 @@ import {
 import Button from '../common/Button';
 import { baseUrl } from '../../../baseurl';
 import { getDocumentUrl } from '../../../shared/utils/documentUrl';
+import { showError } from '../../utils/toast';
 
 const UserInfoSidebar = ({ user, onSave, disabled = false, documents = [] }) => {
   // Helper function to handle file download using blob fetch
@@ -47,7 +48,7 @@ const UserInfoSidebar = ({ user, onSave, disabled = false, documents = [] }) => 
       setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
     } catch (error) {
       console.error('Download error:', error);
-      alert('Failed to download file. Please try again.');
+      showError('Failed to download file. Please try again.');
     }
   };
   const [activeSection, setActiveSection] = useState('personal');

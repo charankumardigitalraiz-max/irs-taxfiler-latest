@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './client/utils/customToast';
 
 // ============================================
 // CLIENT PORTAL IMPORTS
@@ -89,7 +90,15 @@ function App() {
   return (
     <>
       <ScrollToTop />
-      <ToastContainer position="top-right" autoClose={4000} />
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={true}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        theme="light"
+      />
       <Routes>
         {/* ============================================
             WEB (PUBLIC SITE) ROUTES

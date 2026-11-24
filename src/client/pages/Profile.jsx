@@ -10,6 +10,7 @@ import {
   Camera,
   Save,
   X,
+  Edit,
 } from 'lucide-react';
 import Card from '../components/common/Card';
 import Badge from '../components/common/Badge';
@@ -304,15 +305,19 @@ const Profile = () => {
               <div className="space-y-1">
                 {tabs.map((tab) => {
                   const Icon = tab.icon;
+                  const isActive = activeTab === tab.id;
                   return (
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all cursor-pointer ${activeTab === tab.id
-                        }`}
+                      className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all cursor-pointer text-left ${
+                        isActive
+                          ? 'bg-[#127EAB] text-white shadow-xs font-semibold'
+                          : 'text-[#4A6178] hover:bg-[#F4F9FB] hover:text-[#1F4264]'
+                      }`}
                     >
-                      <Icon className="w-5 h-5" />
-                      <span className="text-sm font-medium">{tab.label}</span>
+                      <Icon className={`w-5 h-5 shrink-0 ${isActive ? 'text-white' : 'text-[#6F7F8E]'}`} />
+                      <span className="text-sm">{tab.label}</span>
                     </button>
                   );
                 })}
@@ -340,8 +345,9 @@ const Profile = () => {
                 {editingTab !== activeTab && (
                   <Button
                     onClick={() => setEditingTab(activeTab)}
-                    variant="secondary"
+                    variant="primary"
                     size="sm"
+                    leftIcon={<Edit className="w-3.5 h-3.5" />}
                   >
                     Edit {tabs.find((t) => t.id === activeTab)?.label}
                   </Button>

@@ -15,6 +15,7 @@ import { documentService } from '../services/documentService';
 import { baseUrl } from '../../baseurl';
 import { useDocumentViewer } from '../hooks/useDocumentViewer';
 import { getDocumentUrl } from '../utils/documentUrl';
+import { customToast } from '../utils/customToast';
 
 const Documents = () => {
   const { viewDocument } = useDocumentViewer();
@@ -25,7 +26,6 @@ const Documents = () => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear().toString());
   const fileInputRef = useRef(null);
   const replaceInputRefs = useRef({});
-  const [toast, setToast] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -78,9 +78,8 @@ const Documents = () => {
         setFiles(docs);
       } catch (error) {
         console.error('Failed to load documents', error);
-        setToast({
-          type: 'error',
-          message: 'Failed to load your documents. Please try again.',
+        customToast.error('Failed to load your documents. Please try again.', {
+          title: 'Load Failed',
         });
       } finally {
         setLoading(false);
@@ -127,7 +126,7 @@ const Documents = () => {
           // Clean up blob URL after a delay
           setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
         } else {
-          setToast({ type: 'error', message: 'File not available for download.' });
+          customToast.error('File not available for download.', { title: 'Download Error' });
         }
       } else if (file.file) {
         // Download local file (not yet uploaded)
@@ -140,11 +139,11 @@ const Documents = () => {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
       } else {
-        setToast({ type: 'error', message: 'File not available for download.' });
+        customToast.error('File not available for download.', { title: 'Download Error' });
       }
     } catch (error) {
       console.error('Download error:', error);
-      setToast({ type: 'error', message: 'Failed to download file. Please try again.' });
+      customToast.error('Failed to download file. Please try again.', { title: 'Download Failed' });
     }
   };
 
@@ -223,11 +222,13 @@ const Documents = () => {
       if (file?.filePath || file?.file || file?.url) {
         viewDocument(file);
       } else {
-        setToast({ type: 'error', message: 'File not available for viewing.' });
+        customToast.error('File not available for viewing.', { title: 'Preview Unavailable' });
       }
     } catch (e) {
       console.error('Unable to open file preview', e);
-      setToast({ type: 'error', message: 'Unable to open file preview. Please try downloading the file instead.' });
+      customToast.error('Unable to open file preview. Please try downloading the file instead.', {
+        title: 'Preview Error',
+      });
     }
   };
 
@@ -267,28 +268,6 @@ const Documents = () => {
 
   return (
     <div className="space-y-6 relative">
-      {/* Simple toast */}
-      {toast && (
-        <div className="fixed right-4 bottom-4 z-50">
-          <div
-            className={`max-w-sm px-4 py-3 rounded-lg shadow-lg text-sm ${toast.type === 'success'
-                ? 'bg-green-50 text-green-800 border border-green-200'
-                : 'bg-red-50 text-red-800 border border-red-200'
-              }`}
-          >
-            <div className="flex items-start justify-between gap-3">
-              <p>{toast.message}</p>
-              <button
-                type="button"
-                className="text-xs font-semibold opacity-70 hover:opacity-100"
-                onClick={() => setToast(null)}
-              >
-                ✕
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
       {/* Hero Header */}
       <div className="relative overflow-hidden rounded-lg bg-gradient-to-r from-[#1F4264] via-[#17577A] to-[#127EAB] text-white p-6 shadow-md">
         <div className="absolute inset-0 opacity-20 pointer-events-none">
@@ -416,13 +395,12 @@ const Documents = () => {
         {/* Upload Area */}
         <Card
           padding="none"
-          className={`flex-1 flex flex-col justify-center border border-dashed transition-all duration-200 rounded-xl overflow-hidden ${
-            dragActive
+          className={`flex-1 flex flex-col justify-center border border-dashed transition-all duration-200 rounded-xl overflow-hidden ${dragActive
               ? 'border-[#127EAB] bg-[#E9F7FA] ring-2 ring-[#127EAB]/20'
               : selectedDocumentType
-              ? 'border-[#127EAB] bg-[#F4F9FB]/60'
-              : 'border-[#CCDCE1] hover:border-[#127EAB]/50 bg-white'
-          }`}
+                ? 'border-[#127EAB] bg-[#F4F9FB]/60'
+                : 'border-[#CCDCE1] hover:border-[#127EAB]/50 bg-white'
+            }`}
         >
           <div
             className="relative py-6 px-4 sm:py-7 sm:px-6 text-center h-full flex flex-col justify-center items-center"
@@ -611,7 +589,7 @@ const Documents = () => {
             onClick={async () => {
               const newDocs = files.filter((f) => f.isNew);
               if (newDocs.length === 0) {
-                setToast({ type: 'error', message: 'No new documents to save.' });
+                customToast.warning('No new documents to save.', { title: 'No Changes' });
                 return;
               }
               setIsSaving(true);
@@ -629,15 +607,14 @@ const Documents = () => {
                   }
                 }
                 setFiles([...files]);
-                setToast({
-                  type: 'success',
-                  message: 'Documents saved successfully. Our team can now see them in the admin panel.',
-                });
+                customToast.success(
+                  'Documents saved successfully. Our team can now see them in the admin panel.',
+                  { title: 'Documents Saved' }
+                );
               } catch (error) {
                 console.error('Failed to save documents', error);
-                setToast({
-                  type: 'error',
-                  message: 'Failed to save documents. Please try again.',
+                customToast.error('Failed to save documents. Please try again.', {
+                  title: 'Save Failed',
                 });
               } finally {
                 setIsSaving(false);

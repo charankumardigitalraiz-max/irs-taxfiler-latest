@@ -4,6 +4,7 @@ import Header from '../../components/layout/Header';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
 import { api } from '../../api';
+import { showSuccess, showError } from '../../utils/toast';
 
 const sampleUrl = new URL('../../../assets/sample.csv', import.meta.url).href;
 
@@ -208,12 +209,12 @@ const Email = () => {
   const handleSend = async () => {
     if (userType === 'single') {
       if (!formData.to || !formData.emailTemplate) {
-        alert('Please fill in all required fields (Email and Template)');
+        showError('Please fill in all required fields (Email and Template)');
         return;
       }
     } else {
       if (!formData.emailTemplate || !selectedFile) {
-        alert('Please select a template and upload an Excel file');
+        showError('Please select a template and upload an Excel file');
         return;
       }
     }
@@ -245,7 +246,7 @@ const Email = () => {
 
       const response = await api.email.sendEmail(formDataToSend);
       if (response.success) {
-        alert('Email sent successfully!');
+        showSuccess('Email sent successfully!');
         if (emailTemplates.length > 0) {
           const firstTemplate = emailTemplates[0];
           try {
@@ -294,7 +295,7 @@ const Email = () => {
       }
     } catch (error) {
       console.error('Error sending email:', error);
-      alert('Failed to send email. Please try again.');
+      showError('Failed to send email. Please try again.');
     }
   };
 
