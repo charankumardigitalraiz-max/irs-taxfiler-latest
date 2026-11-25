@@ -240,14 +240,14 @@ const Navbar = () => {
                   <div className="flex sm:hidden items-center justify-between gap-1.5 w-full">
                     {/* Left: Contact Channels */}
                     <div className="flex items-center gap-1.5 shrink-0">
-                      {/* US Phone Call - Coral Theme */}
+                      {/* US Phone Call - Vibrant Coral */}
                       <a
                         href="tel:+15518427896"
-                        className="h-8 px-2.5 rounded-full bg-[#EE6450]/20 hover:bg-[#EE6450]/30 text-[#FF7A66] border border-[#EE6450]/40 flex items-center gap-1.5 text-xs font-bold shrink-0 transition-all shadow-xs"
+                        className="h-8 px-3 rounded-full bg-gradient-to-r from-[#FF5238] to-[#EE6450] hover:from-[#E84328] hover:to-[#D9523E] text-white flex items-center gap-1.5 text-xs font-bold shrink-0 transition-all shadow-xs border border-white/20"
                         title="Call US: +1 (551) 842-7896"
                       >
-                        <PhoneIcon className="w-3.5 h-3.5 text-[#FF7A66]" />
-                        <span className="text-[#FFA280]">Call US</span>
+                        <PhoneIcon className="w-3.5 h-3.5 text-white" />
+                        <span className="text-white font-bold">Call US</span>
                       </a>
 
                       {/* India Call - Amber Theme */}
@@ -297,26 +297,26 @@ const Navbar = () => {
                   <div className="hidden sm:flex max-w-7xl mx-auto items-center justify-between gap-3">
                     {/* Left: Contact Numbers & Channels */}
                     <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
-                      {/* US Phone — Coral Theme (Direct Telephone) */}
+                      {/* US Phone — Vibrant Coral CTA */}
                       <a
                         href="tel:+15518427896"
-                        className="h-9 px-3 rounded-full  border border-[#EE6450]/40 flex items-center gap-2 transition-all duration-200 shadow-xs shrink-0 group/call cursor-pointer"
+                        className="h-9 px-3.5 rounded-full bg-gradient-to-r from-[#FF5238] to-[#EE6450] hover:from-[#E84328] hover:to-[#D9523E] text-white flex items-center gap-2 transition-all duration-200 shadow-md shadow-[#FF5238]/30 shrink-0 group/call cursor-pointer border border-white/25 hover:scale-[1.02]"
                         title="Call US: +1 (551) 842-7896"
                       >
-                        <div className="w-5 h-5 rounded-full bg-[#EE6450]/25 border border-[#EE6450]/40 flex items-center justify-center group-hover/call:scale-110 transition-transform">
-                          <PhoneIcon className="w-3 h-3 text-[#FF7A66] group-hover/call:rotate-12 transition-transform" />
+                        <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover/call:scale-110 transition-transform">
+                          <PhoneIcon className="w-3 h-3 text-white group-hover/call:rotate-12 transition-transform" />
                         </div>
-                        <UsFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" />
-                        <span className="tracking-tight whitespace-nowrap text-xs sm:text-[13px]">
-                          <span className="text-[#FF8A65] font-semibold mr-1.5 uppercase text-[10.5px] tracking-wider">US</span>
-                          <span className="text-[#FF7A66] font-bold group-hover/call:text-[#FFA280] transition-colors">+1 (551) 842-7896</span>
+                        <UsFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-sm" />
+                        <span className="tracking-tight whitespace-nowrap text-xs sm:text-[13px] font-bold text-white flex items-center">
+                          <span className="text-white/90 font-semibold mr-1.5 uppercase text-[10.5px] tracking-wider">US</span>
+                          <span className="text-white font-extrabold">+1 (551) 842-7896</span>
                         </span>
                       </a>
 
                       {/* India Phone — Amber Theme (Corporate Contact) */}
                       <a
                         href="tel:+919052333667"
-                        className="h-9 px-3 rounded-full  border border-amber-400/35 flex items-center gap-2 transition-all duration-200 shadow-xs shrink-0 group/in cursor-pointer"
+                        className="h-9 px-3 rounded-full bg-amber-400/20 hover:bg-amber-400/30 border border-amber-400/50 flex items-center gap-2 transition-all duration-200 shadow-xs shrink-0 group/in cursor-pointer"
                         title="Call India: +91 9052 333 667 / 668"
                       >
                         <div className="w-5 h-5 rounded-full bg-amber-400/25 border border-amber-400/40 flex items-center justify-center group-hover/in:scale-110 transition-transform">
@@ -350,7 +350,7 @@ const Navbar = () => {
                         <div className="w-4.5 h-4.5 rounded-full bg-sky-400/20 flex items-center justify-center shrink-0">
                           <EnvelopeIcon className="w-3 h-3 text-sky-300" />
                         </div>
-                        <span className="font-semibold text-sky-200 group-hover/mail:text-sky-100 transition-colors">info@irstaxfiler.com</span>
+                        <span className="font-semibold text-white group-hover/mail:text-sky-100 transition-colors">info@irstaxfiler.com</span>
                       </a>
 
                       {/* Corporate Office — Amber Pin (matches Footer Address) */}
@@ -410,18 +410,18 @@ const Navbar = () => {
                   className="pb-2.5 sm:pb-3 flex justify-center px-3"
                 >
                   <div className="bg-primary text-white p-1 sm:p-1.5 pl-2 sm:pl-2.5 pr-2.5 sm:pr-3 rounded-full shadow-[0_8px_30px_rgba(31,66,100,0.45)] border border-white/20 backdrop-blur-md transition-all flex items-center gap-2 sm:gap-2.5 max-w-full">
-                    {/* US Call — Coral Theme */}
+                    {/* US Call — Vibrant Coral */}
                     <a
                       href="tel:+15518427896"
-                      className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-[#EE6450]/15 hover:bg-[#EE6450]/25 border border-[#EE6450]/35 group/us cursor-pointer shrink-0 transition-all"
+                      className="flex items-center gap-1.5 sm:gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-[#FF5238] to-[#EE6450] hover:from-[#E84328] hover:to-[#D9523E] text-white group/us cursor-pointer shrink-0 transition-all shadow-xs border border-white/20"
                       title="Call US: +1 (551) 842-7896"
                     >
-                      <div className="w-5 h-5 rounded-full bg-[#EE6450]/25 flex items-center justify-center group-hover/us:scale-110 transition-transform">
-                        <PhoneIcon className="w-3 h-3 text-[#FF7A66]" />
+                      <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover/us:scale-110 transition-transform">
+                        <PhoneIcon className="w-3 h-3 text-white" />
                       </div>
                       <UsFlag className="w-4.5 h-3 rounded-xs shrink-0 shadow-2xs" />
-                      <span className="text-xs sm:text-[13px] font-bold tracking-tight text-[#FF7A66] group-hover/us:text-[#FFA280] transition-colors whitespace-nowrap">
-                        <span className="text-[#FF8A65] font-semibold mr-1 hidden sm:inline text-[10.5px] uppercase tracking-wider">US</span>
+                      <span className="text-xs sm:text-[13px] font-bold tracking-tight text-white whitespace-nowrap">
+                        <span className="text-white/90 font-semibold mr-1 hidden sm:inline text-[10.5px] uppercase tracking-wider">US</span>
                         <span className="sm:hidden">(551) 842-7896</span>
                         <span className="hidden sm:inline">+1 (551) 842-7896</span>
                       </span>

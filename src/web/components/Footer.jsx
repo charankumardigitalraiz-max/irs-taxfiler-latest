@@ -403,15 +403,15 @@ const Footer = () => {
                 <div className="w-7 h-7 rounded-lg bg-amber-400/15 border border-amber-400/30 flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
                   <MapPinIcon className="w-3.5 h-3.5 text-amber-400" />
                 </div>
-                <div className="min-w-0 flex-1">
-                  <span className="text-[10px] font-semibold text-amber-300 uppercase tracking-wider block leading-none mb-1">
+                <div className="min-w-0 flex-1 space-y-2">
+                  <span className="text-[10px] font-semibold text-amber-100/90  uppercase tracking-wider block leading-none mb-1">
                     Corporate Office
                   </span>
                   <a
                     href="https://www.google.com/maps/place/12600+Deerfield+Parkway+Suite+2096,+Alpharetta,+GA+30004"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-amber-100/90 hover:text-amber-200 font-medium transition-colors block text-[11px] leading-snug"
+                    className="text-amber-300 hover:text-amber-200 font-medium transition-colors block text-[13px] leading-snug"
                   >
                     12600 Deerfield Pkwy, Ste 2096, Alpharetta, GA 30004
                   </a>
@@ -423,14 +423,14 @@ const Footer = () => {
                 <div className="w-7 h-7 rounded-lg bg-[#EE6450]/20 border border-[#EE6450]/40 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                   <PhoneIcon className="w-3.5 h-3.5 text-[#EE6450]" />
                 </div>
-                <div className="min-w-0 flex-1">
+                <div className="min-w-0 flex-1 space-y-2">
                   <span className="text-[10px] font-semibold text-[#FF8A65] uppercase tracking-wider block leading-none mb-1">
                     Direct Telephone
                   </span>
                   <div className="flex items-center gap-1.5 text-xs font-bold text-[#FF7A66] tracking-wide">
                     <a
                       href="tel:+15518427896"
-                      className="hover:text-[#FFA280] transition-colors"
+                      className="hover:text-[#FFA280] transition-colors text-[13px]"
                     >
                       +1 (551) 842-7896
                     </a>
@@ -443,7 +443,7 @@ const Footer = () => {
                 <div className="w-7 h-7 rounded-lg bg-white/10 border border-white/25 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                   <EnvelopeIcon className="w-3.5 h-3.5 text-white" />
                 </div>
-                <div className="min-w-0 flex-1">
+                <div className="min-w-0 flex-1 space-y-2">
                   <span className="text-[10px] font-semibold text-white/70 uppercase tracking-wider block leading-none mb-1">
                     Email Support
                   </span>
